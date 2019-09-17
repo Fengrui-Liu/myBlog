@@ -1,0 +1,2147 @@
+<!DOCTYPE html>
+<html  lang="zh">
+<head>
+    <meta charset="utf-8" />
+
+<meta name="generator" content="Hexo 3.8.0" />
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+
+<title>分类: Data mining - Fengrui Liu&#39;s Blog</title>
+
+
+    <meta property="og:type" content="website">
+<meta property="og:title" content="Fengrui Liu&#39;s Blog">
+<meta property="og:url" content="http://www.liufr.com/categories/Data-mining/index.html">
+<meta property="og:site_name" content="Fengrui Liu&#39;s Blog">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http://www.liufr.com/images/og_image.png">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Fengrui Liu&#39;s Blog">
+<meta name="twitter:image" content="http://www.liufr.com/images/og_image.png">
+
+
+
+
+
+
+
+<link rel="icon" href="/images/favicon.svg">
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.7.2/css/bulma.css">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Ubuntu:400,600|Source+Code+Pro">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@9.12.0/styles/atom-one-light.css">
+
+
+    
+    
+    
+    <style>body>.footer,body>.navbar,body>.section{opacity:0}</style>
+    
+
+    
+    
+    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@1.6.8/dist/css/lightgallery.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/css/justifiedGallery.min.css">
+    
+
+    
+    
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/outdatedbrowser@1.1.5/outdatedbrowser/outdatedbrowser.min.css">
+
+
+    
+    
+    
+    
+
+<link rel="stylesheet" href="/css/back-to-top.css">
+
+
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+<link rel="stylesheet" href="/css/progressbar.css">
+<script src="https://cdn.jsdelivr.net/npm/pace-js@1.0.2/pace.min.js"></script>
+
+    
+    
+    
+
+
+<link rel="stylesheet" href="/css/style.css">
+</head>
+<body class="is-3-column">
+    <nav class="navbar navbar-main">
+    <div class="container">
+        <div class="navbar-brand is-flex-center">
+            <a class="navbar-item navbar-logo" href="/">
+            
+                <img src="/images/logo.svg" alt="Fengrui Liu&#39;s Blog" height="28">
+            
+            </a>
+        </div>
+        <div class="navbar-menu">
+            
+            <div class="navbar-start">
+                
+                <a class="navbar-item"
+                href="/">Home</a>
+                
+                <a class="navbar-item"
+                href="/archives">Archives</a>
+                
+                <a class="navbar-item"
+                href="/categories">Categories</a>
+                
+                <a class="navbar-item"
+                href="/tags">Tags</a>
+                
+                <a class="navbar-item"
+                href="/about">About</a>
+                
+            </div>
+            
+            <div class="navbar-end">
+                
+                    
+                    
+                    <a class="navbar-item" target="_blank" title="Download on GitHub" href="https://github.com/ppoffice/hexo-theme-icarus">
+                        
+                        <i class="fab fa-github"></i>
+                        
+                    </a>
+                    
+                
+                
+                
+                <a class="navbar-item search" title="搜索" href="javascript:;">
+                    <i class="fas fa-search"></i>
+                </a>
+                
+            </div>
+        </div>
+    </div>
+</nav>
+    
+    <section class="section">
+        <div class="container">
+            <div class="columns">
+                <div class="column is-8-tablet is-8-desktop is-6-widescreen has-order-2 column-main"><div class="card">
+    <div class="card-content">
+        <nav class="breadcrumb" aria-label="breadcrumbs">
+        <ul>
+            <li><a href="/categories">分类</a></li>
+            
+            <li class="is-active"><a href="#" aria-current="page">Data mining</a></li>
+        </ul>
+        </nav>
+    </div>
+</div>
+
+    <div class="card">
+    
+    <div class="card-content article ">
+        
+        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+            <div class="level-left">
+                <time class="level-item has-text-grey" datetime="2018-12-04T16:00:00.000Z">2018-12-05</time>
+                
+                <div class="level-item">
+                <a class="has-link-grey -link" href="/categories/Data-mining/">Data mining</a>
+                </div>
+                
+                
+                <span class="level-item has-text-grey">
+                    
+                    
+                    9 分钟 读完 (大约 1359 个字)
+                </span>
+                
+                
+            </div>
+        </div>
+        
+        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+            
+                <a class="has-link-black-ter" href="/2018/12/05/数据挖掘/2018-12-05-互联网搜索与排序/">互联网搜索与排序</a>
+            
+        </h1>
+        <div class="content">
+            <h2 id="向量空间模型（VSM）"><a href="#向量空间模型（VSM）" class="headerlink" title="向量空间模型（VSM）"></a>向量空间模型（VSM）</h2><ul>
+<li>将查询字符串表达为带权重的tf-idf向量(查询向量)</li>
+<li>类似,将文档字符串表达为带权重tf-idf向量(文档向量)</li>
+<li>计算查询查询向量和文档向量的余弦相似度</li>
+<li>将文档按照其与查询的相似度分值从大到小进行排序</li>
+<li>返回前K个(e.g.,K=10)文档并展示给用户</li>
+</ul>
+<h3 id="tf-idf"><a href="#tf-idf" class="headerlink" title="tf-idf"></a>tf-idf</h3><p>衡量某一个词在文档中的重要性</p>
+<ul>
+<li>tf(w,d):term frequency 词w在d中出现的次数，tf值越大，w在文档d中越重要。</li>
+<li>df(w): document frequency 整个数据集中，包含w文档的个数，df越大，w越不重要。</li>
+<li>idf(w): inverse document frequency $idf = log \frac{N}{df}$ 其中N为文档集的个数</li>
+<li>tf-idf(w,d) = tf(w,d)*idf(w)</li>
+</ul>
+<h3 id="BM25-Best-match-25"><a href="#BM25-Best-match-25" class="headerlink" title="BM25(Best match 25)"></a>BM25(Best match 25)</h3><script type="math/tex; mode=display">
+BM25 = \sum_{i \in q} \log\frac{N}{df_i} \cdot \frac{(k_1+1)tf_i}{k_1((1-b)+b\frac{dl}{avdl})+tf_i}</script><ul>
+<li>avgdl:集合中平均文档长度</li>
+<li>$k_1$:控制因$tf$的增大最终排序值的速度<ul>
+<li>k1=0:二值模型,只反映词是否出现,不考虑出现次数</li>
+<li>k1无穷大:反映真正的tf值</li>
+</ul>
+</li>
+<li>b:控制文档长度归一化程度<ul>
+<li>b=0:不考虑文档长度对最终分值的影响</li>
+<li>b=1:考虑文档长度平均文档长度的相对值</li>
+</ul>
+</li>
+<li>经验值:k1=1.2~2,b=0.75</li>
+</ul>
+<p>在上述公式中，文档长度定义为$dl = \sum_{i\in V}tf_i$，文档长度归一化部分为$(1-b)+b\frac{dl}{avdl}, 0\leq b \leq 1$ 当$b=0$时，不进行归一化，当$b=1$时，全文档进行归一化。</p>
+<hr>
+<h2 id="排序评价指标"><a href="#排序评价指标" class="headerlink" title="排序评价指标"></a>排序评价指标</h2><h3 id="P-K-Precision-at-K"><a href="#P-K-Precision-at-K" class="headerlink" title="P@K(Precision at K)"></a>P@K(Precision at K)</h3><ul>
+<li>设置一个排序位置K</li>
+<li>前K个位置相关文档所占的比例</li>
+<li>忽略K位置之后的所有值</li>
+</ul>
+<h3 id="MAP-Mean-average-precision"><a href="#MAP-Mean-average-precision" class="headerlink" title="MAP(Mean average precision)"></a>MAP(Mean average precision)</h3><ul>
+<li>只考虑出现过相关文档的位置</li>
+</ul>
+<p><img src="https://ws4.sinaimg.cn/large/006tNbRwly1fxw5h5m1v9j311o0dyt9n.jpg" alt></p>
+<h3 id="DCG-Discounted-Cumulative-Gain"><a href="#DCG-Discounted-Cumulative-Gain" class="headerlink" title="DCG(Discounted Cumulative Gain)"></a>DCG(Discounted Cumulative Gain)</h3><ul>
+<li><strong>Gain</strong>: 文档对用户Gain与其查询相关度有关，$2^{label}-1$，其中$label$取值如bad(0),fair(1),good(3),excellent(7),perfect(15)等，也就是说Gain是一个指数函数，效果越好影响越大。</li>
+<li><strong>Discounted Cumulative Gain</strong>：由于返回结果有一个排序，因此根据所在排序还需要一定的打折$\frac{1}{log_2(rank+1)}$</li>
+</ul>
+<p>比较二者那么<br><strong>CG@N</strong> $CG=r_1+r_2+…+r_n$<br><strong>NCG@N</strong> $NCG= \frac{r_1}{\log(1+1)} + \frac{r_2}{\log(1+2)}+…+\frac{r_n}{\log(1+n)}$</p>
+<h3 id="NDCG-Normalized-DCG"><a href="#NDCG-Normalized-DCG" class="headerlink" title="NDCG(Normalized DCG)"></a>NDCG(Normalized DCG)</h3><p>利用最优排序对DCG@N进行归一化处理，其中最优排序为按照用户标注对文档进行排序。其中$IDCG_p$为理想情况下最大的$DCG$值。</p>
+<script type="math/tex; mode=display">
+nDCG_p = \frac{DCG_p}{IDCG_p}</script><h2 id="Pair-wise排序学习：区分文档间的差异"><a href="#Pair-wise排序学习：区分文档间的差异" class="headerlink" title="Pair-wise排序学习：区分文档间的差异"></a>Pair-wise排序学习：区分文档间的差异</h2><p>核心思想：模型只需要区分同一个查询内部标注为不同相关度文档间的差异</p>
+<h3 id="排序支持向量机（ranking-SVM）"><a href="#排序支持向量机（ranking-SVM）" class="headerlink" title="排序支持向量机（ranking SVM）"></a>排序支持向量机（ranking SVM）</h3><ul>
+<li>Ranking SVM 训练<ul>
+<li>构造训练数据集合$\{\phi(q_k,d_{ki})-\phi(q_k,d_{kj}),+1\}$</li>
+<li>训练二值分类SVM，得到打分函数$f(q,d)=<w,\phi(q,d)>$</w,\phi(q,d)></li>
+</ul>
+</li>
+<li>Ranking SVM 在线应用<ul>
+<li>给定一个查询q和检索出的文档集合$C=\{d_i\}$</li>
+<li>用$f(q,d)$对每一个C中的文档进行打分</li>
+<li>将C中的文档按照$f(q,d)$从大到小排序</li>
+</ul>
+</li>
+</ul>
+<p><img src="https://ws3.sinaimg.cn/large/006tNbRwly1fxwtpbeiuhj31030u0jut.jpg" alt></p>
+<p>优点</p>
+<ul>
+<li>只关注文档间的差异性，解决了查询的差异化问题</li>
+<li>实际应用效果良好</li>
+</ul>
+<p>缺点</p>
+<ul>
+<li>N个文档有$O(N^2)$文档有序对，复杂度高</li>
+<li>没有考虑浏览特性</li>
+<li>违背分类训练数据独立同分布假设</li>
+</ul>
+<hr>
+<h2 id="语言排序模型"><a href="#语言排序模型" class="headerlink" title="语言排序模型"></a>语言排序模型</h2><p>词袋假设$P(w_1,w_2,…w_m)=P(w_1)P(w_2)…P(w_m)$<br>估计每一个词的出现概率$P(w)=\frac{#w}{all\,words}$，其中$\sum_{w\in V}P(w)=1$ </p>
+<p>语言模型中的马尔科夫假设，$P(w_n|w_{n-1},w_{n-2},…,w_1)=P(w_n|w_{n-1})$<br>$P(w_1,w_2,…,w_m)=P(w_1)P(w_2|w_1)P(w_3|w_2)…P(w_m|w_{m-1})$<br>给定一个训练文档集合，统计给个一个词之后，其他词出现的概率$P(w_i|w_j)=\frac{#(w_jw_i)}{#w_j}$<br>举例来说$\sum_{w_i\in V}P(w_i|’is’)=1$</p>
+<h3 id="数据稀疏问题"><a href="#数据稀疏问题" class="headerlink" title="数据稀疏问题"></a>数据稀疏问题</h3><p>对于0概率问题采用平滑化方法</p>
+<h3 id="LM-for-IR"><a href="#LM-for-IR" class="headerlink" title="LM for IR"></a>LM for IR</h3><ul>
+<li>定义生成模型的细节</li>
+<li>估计模型参数$P(w|d)$</li>
+<li>平滑化，防止零概率</li>
+<li>将文档对应的生成模型应用于查询，计算生成概率</li>
+<li>按照生成概率将文档排序，取topN展现给用户</li>
+</ul>
+<p>给定查询$q$和文档$d$，对文档的打分为$P(d|q)$根据贝叶斯公式</p>
+<script type="math/tex; mode=display">
+P(d|q) = \frac{P(q|d)P(d)}{P(q)}</script><p>对于独立假设来说$P(q|d)=P(q_1q_2,….q_m|d)=\Pi_{i=1}^MP(q_i|d)$</p>
+<p>举例：<br>$q$ 中国_科学院_大学<br>$d$ 科学院_大学_计算机_学院</p>
+<p>$P(q|d)=P(中国|d)P(科学院|d)P(大学|d)=0<em>0.25</em>0.25=0$</p>
+<h3 id="Dirichlet-平滑-与混合平滑"><a href="#Dirichlet-平滑-与混合平滑" class="headerlink" title="Dirichlet 平滑 与混合平滑"></a>Dirichlet 平滑 与混合平滑</h3><p>D={d1,d2}, Query q: Michael Jackson</p>
+<p>d1: Jackson was one of the most talented entertainers of all time（11）<br>d2: Michael Jackson anointed himself King of Pop（7）<br>$P(q|d_1)=\frac{0}{11}<em>\frac{1}{11}=0,P(q|d_2)=\frac{1}{7}</em>\frac{1}{7}=\frac{1}{49},P(Michael|C)=\frac{1}{18},P(Jackson|C)=\frac{2}{18}$</p>
+<p><strong>混合模型</strong>$\lambda=0.5$<br>$P_{mix}(q|d_1)=(\frac{0}{11}<em>\frac{1}{2}+\frac{1}{18}</em>\frac{1}{2})<em>(\frac{1}{11}</em>\frac{1}{2}+\frac{2}{18}<em>\frac{1}{2})$<br>$P_{mix}(q|d_2)=(\frac{1}{7}</em>\frac{1}{2}+\frac{1}{18}<em>\frac{1}{2})</em>(\frac{1}{7}<em>\frac{1}{2}+\frac{2}{18}</em>\frac{1}{2})$<br><strong>狄里克莱平滑</strong>$\mu = 5$<br>$P_{dir}(q|d_1)=(\frac{0+\frac{5}{18}}{11+5})(\frac{1+5<em>\frac{2}{18}}{11+5})$<br>$P_{dir}(q|d_2)=(\frac{1+\frac{5}{18}}{7+5})(\frac{1+5</em>\frac{2}{18}}{7+5})$</p>
+
+        </div>
+        
+        
+        
+    </div>
+</div>
+
+
+
+
+
+
+
+
+    <div class="card">
+    
+    <div class="card-content article ">
+        
+        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+            <div class="level-left">
+                <time class="level-item has-text-grey" datetime="2018-12-04T16:00:00.000Z">2018-12-05</time>
+                
+                <div class="level-item">
+                <a class="has-link-grey -link" href="/categories/Data-mining/">Data mining</a>
+                </div>
+                
+                
+                <span class="level-item has-text-grey">
+                    
+                    
+                    5 分钟 读完 (大约 690 个字)
+                </span>
+                
+                
+            </div>
+        </div>
+        
+        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+            
+                <a class="has-link-black-ter" href="/2018/12/05/数据挖掘/2018-12-05-大规模机器学习/">大规模机器学习</a>
+            
+        </h1>
+        <div class="content">
+            <p>百万级别的数据样本：<strong>指数级别的算法基本告别了</strong><br>十亿级别的数据样本：<strong>开始考虑分布式存储</strong><br>万亿级别的数据样本：<strong>无法得知数据全貌，采用Peer-to-peer（机器处理本地的数据无总控）</strong></p>
+<h2 id="理解机器学习"><a href="#理解机器学习" class="headerlink" title="理解机器学习"></a>理解机器学习</h2><h3 id="从优化的角度看机器学习"><a href="#从优化的角度看机器学习" class="headerlink" title="从优化的角度看机器学习"></a>从优化的角度看机器学习</h3><script type="math/tex; mode=display">
+\arg max_{\vec{\theta}} \equiv \mathcal{L}(\{x_i,y_i\}_{i=1}^N;\vec{\theta})+ \Omega(\vec{\theta})</script><p>其中$\mathcal{L}$是一个模型（经验风险），$x_i,y_i$代表的是数据，$N$是数据规模，$\vec{\theta}$代表参数（结构风险），有参数就是有偏估计，方差小，有更好的泛化能力。然后通过迭代求解：</p>
+<script type="math/tex; mode=display">
+\vec{\theta}^{t+1}=g(\vec{\theta}^t,\Delta_f \vec{theta}(\mathcal{D}))</script><p>其中后一项为模型参数的梯度计算，用于迭代与修正，梯度如果各项独立通常可以并行，即每台电脑可以算本地的，然后多台机器合并，显而易见的是模型并行数据一定并行。</p>
+<p><img src="https://ws3.sinaimg.cn/large/006tNbRwly1fxvp8olas5j30ug0hyq5b.jpg" alt></p>
+<p>这里的数据与参数都是稀疏的，只拉入必要的参数即可，即使参数有误，也可以在最后收敛。</p>
+<h3 id="参数更新方案"><a href="#参数更新方案" class="headerlink" title="参数更新方案"></a>参数更新方案</h3><h4 id="同步更新"><a href="#同步更新" class="headerlink" title="同步更新"></a>同步更新</h4><p><img src="https://ws4.sinaimg.cn/large/006tNbRwly1fxvpauo6vqj30us0iaacd.jpg" alt></p>
+<h5 id="同步更新特点"><a href="#同步更新特点" class="headerlink" title="同步更新特点"></a>同步更新特点</h5><ul>
+<li>设置同步点，通常每一轮迭代至少一个同步点<ul>
+<li>同步点等候所有节点完成任务，统一更新参数</li>
+<li>更新后进入下一轮迭代</li>
+</ul>
+</li>
+<li>最大程度模拟序列计算<ul>
+<li>与序列计算结果基本一致</li>
+<li>与序列计算具有同样的理论保障</li>
+</ul>
+</li>
+</ul>
+<h5 id="同步更新缺点"><a href="#同步更新缺点" class="headerlink" title="同步更新缺点"></a>同步更新缺点</h5><ul>
+<li>低效<ul>
+<li>网络速度慢，延迟大</li>
+</ul>
+</li>
+<li>配置相同的机器计算速度不一致导致等待<ul>
+<li>与机器的即时状态有关</li>
+<li>与需要处理的数据有关</li>
+</ul>
+</li>
+</ul>
+<h4 id="异步更新"><a href="#异步更新" class="headerlink" title="异步更新"></a>异步更新</h4><p><img src="https://ws3.sinaimg.cn/large/006tNbRwly1fxvv2hiw4wj30p00c8t9u.jpg" alt></p>
+<h5 id="异步更新缺点"><a href="#异步更新缺点" class="headerlink" title="异步更新缺点"></a>异步更新缺点</h5><ul>
+<li>本地数据不全面：单个节点只有部分数据，独立更新参数从总体看结果不正确</li>
+<li>不同的机器执行的更新次数有很大的差异</li>
+<li>参数互相依赖：下一轮的梯度计算可能依赖上一轮所有的正确参数值</li>
+<li>参数过期：本轮更新的参数的梯度不是最新的参数的梯度</li>
+</ul>
+<h4 id="半同步更新"><a href="#半同步更新" class="headerlink" title="半同步更新"></a>半同步更新</h4><p><img src="https://ws1.sinaimg.cn/large/006tNbRwly1fxvv5ezeg8j31440h0q5q.jpg" alt></p>
+<h5 id="半同步更新特点"><a href="#半同步更新特点" class="headerlink" title="半同步更新特点"></a>半同步更新特点</h5><ul>
+<li>设置执行最快和最慢的节点间轮数的最大差异</li>
+<li>比同步块，比异步准确</li>
+</ul>
+
+        </div>
+        
+        
+        
+    </div>
+</div>
+
+
+
+
+
+
+
+
+    <div class="card">
+    
+    <div class="card-content article ">
+        
+        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+            <div class="level-left">
+                <time class="level-item has-text-grey" datetime="2018-12-02T16:00:00.000Z">2018-12-03</time>
+                
+                <div class="level-item">
+                <a class="has-link-grey -link" href="/categories/Data-mining/">Data mining</a>
+                </div>
+                
+                
+                <span class="level-item has-text-grey">
+                    
+                    
+                    5 分钟 读完 (大约 739 个字)
+                </span>
+                
+                
+            </div>
+        </div>
+        
+        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+            
+                <a class="has-link-black-ter" href="/2018/12/03/数据挖掘/2018-12-03-非监督学习/">无监督学习 Unsupervised Learning(聚类、矩阵分解、话题模型)</a>
+            
+        </h1>
+        <div class="content">
+            <h2 id="聚类"><a href="#聚类" class="headerlink" title="聚类"></a>聚类</h2><h3 id="K-means"><a href="#K-means" class="headerlink" title="K-means"></a>K-means</h3><figure class="highlight c hljs"><table><tr><td class="code"><pre><span class="line">输入：数据D=&#123;x1,x2,...,xn&#125;,簇数目K</span><br><span class="line"><span class="hljs-number">1.</span> 随机选取K个种子数据点（seeds）作为K个簇中心</span><br><span class="line"><span class="hljs-number">2.</span> repeat</span><br><span class="line"><span class="hljs-number">3.</span>      foreach x in D <span class="hljs-keyword">do</span></span><br><span class="line"><span class="hljs-number">4.</span>          计算x与每一个簇中心的距离</span><br><span class="line"><span class="hljs-number">5.</span>          将x指配到距离最近的簇中心</span><br><span class="line"><span class="hljs-number">6.</span>      endfor</span><br><span class="line"><span class="hljs-number">7.</span>      用当前的簇内点重新计算K个簇中心位置</span><br><span class="line"><span class="hljs-number">8.</span> until（达到终止条件）</span><br></pre></td></tr></table></figure>
+<p><img src="https://ws4.sinaimg.cn/large/006tNbRwly1fxtowximhdj317g0c8abn.jpg" alt></p>
+<p>优点：</p>
+<ul>
+<li>简单：易于理解和实现</li>
+<li>高效：时间复杂度为O(TKN)，其中T为运行轮数，K为簇数目，N为样本数</li>
+</ul>
+<p>缺点：</p>
+<ul>
+<li>局部最优解：每一个数据点贪心选择距离最近的中心，不同初始中心可能得到不同的族</li>
+<li>平均值点一般来说要求为<strong>数值型</strong>，对于类别型特种不适应</li>
+<li>用户指定K，提前难以预知</li>
+<li>离群点敏感（可能为数据准备，预处理过程中出现的错误）</li>
+</ul>
+<hr>
+<h2 id="矩阵分解"><a href="#矩阵分解" class="headerlink" title="矩阵分解"></a>矩阵分解</h2><h3 id="SVD分解"><a href="#SVD分解" class="headerlink" title="SVD分解"></a>SVD分解</h3><script type="math/tex; mode=display">
+D = \sum_{k=1}^p\sigma_k\mu_kv_k^T=U {\tiny \sum} V^T</script><p>${\tiny \sum}=\begin{bmatrix}<br>\sigma_1 &amp; 0 &amp; 0 &amp; 0\ <br>0 &amp; \sigma_2 &amp; 0 &amp; 0\ <br>0 &amp; 0 &amp; … &amp; 0\ <br>0 &amp; 0 &amp; 0 &amp; \sigma_n<br>\end{bmatrix}$ 对角矩阵，表示的是特征值,此维度上的方差与能量。</p>
+<p>$u_k,v_k$表示的是对于$\sigma_k$对应的特征向量。<br>$U^TU=I,V^TV=I:U,V$均为正交矩阵。</p>
+<p>左特征向量$U$，每一列对应一个方向，不同的列对应的向量互相垂直，那么将${\tiny \sum}$中的$\sigma_k$按照从小到大排序，$u_k，v_k$也相应排序，可以得到$u_1$是对应方差能量最大的方向，$u_2$是与$u_1$垂直的方差最大的方向…<br>右特征向量$V$，由于$D^T=V{\tiny \sum}U^T$，可以按照与上述相同的理解，因此只是维度存在的不同。</p>
+<h3 id="SVD分解与主成分分析-PCA"><a href="#SVD分解与主成分分析-PCA" class="headerlink" title="SVD分解与主成分分析(PCA)"></a>SVD分解与主成分分析(PCA)</h3><p>给定矩阵</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+S_{M*M}&=D*D^T\\
+&=(U {\tiny \sum} V^T)(U {\tiny \sum} V^T)^T\\
+&={\tiny \sum}^2
+\end{aligned}</script><p>也就是说$U$中对应最大的向量位主成分</p>
+<hr>
+<h3 id="LSI分解"><a href="#LSI分解" class="headerlink" title="LSI分解"></a>LSI分解</h3><p><img src="https://ws2.sinaimg.cn/large/006tNbRwly1fxuk04kt2oj31180eu75l.jpg" alt></p>
+<h3 id="NMF分解"><a href="#NMF分解" class="headerlink" title="NMF分解"></a>NMF分解</h3><p><img src="https://ws1.sinaimg.cn/large/006tNbRwly1fxtqt0jr55j30uq08iwf1.jpg" alt></p>
+<hr>
+<p>单词的分布式表达</p>
+<p>每一个词用一般的向量表示<br>科学院：[1.0,0.5,0],中科院：[0.5,1.0,0],数据挖掘：[0,0.1,1.0]<br>分布式假设：</p>
+<ul>
+<li>Syntagmatic:两个单词频繁在文档中共现，则它们具有一定的语义相似度</li>
+<li>Paradigmatic:两个单词频繁在文档的上下文中共现，则它们具有一定的语义相似度</li>
+</ul>
+<p>核心思想：一个单词的表达可以通过在它周围出现的单词计算出来（Word2Vec）<br>举例如下：<br>d1: Albert Einstein was a physicist<br>d2: Richard Feynman was a physicist</p>
+<p>WordsVec 分解Word-Word矩阵，建模单词间的上下文共现</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th></th>
+<th>Einstein</th>
+<th>Feynman</th>
+<th>physicist</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Einstein</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+</tr>
+<tr>
+<td>Feynman</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+</tr>
+<tr>
+<td>physicist</td>
+<td>1</td>
+<td>1</td>
+<td>0</td>
+</tr>
+</tbody>
+</table>
+</div>
+
+        </div>
+        
+        
+        
+    </div>
+</div>
+
+
+
+
+
+
+
+
+    <div class="card">
+    
+    <div class="card-content article ">
+        
+        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+            <div class="level-left">
+                <time class="level-item has-text-grey" datetime="2018-12-01T16:00:00.000Z">2018-12-02</time>
+                
+                <div class="level-item">
+                <a class="has-link-grey -link" href="/categories/Data-mining/">Data mining</a>
+                </div>
+                
+                
+                <span class="level-item has-text-grey">
+                    
+                    
+                    7 分钟 读完 (大约 1092 个字)
+                </span>
+                
+                
+            </div>
+        </div>
+        
+        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+            
+                <a class="has-link-black-ter" href="/2018/12/02/数据挖掘/2018-12-02-监督学习/">监督学习 Supervised Learning(决策树+SVM/Perceptron+AdaBoost)</a>
+            
+        </h1>
+        <div class="content">
+            <h2 id="监督学习的形式化描述"><a href="#监督学习的形式化描述" class="headerlink" title="监督学习的形式化描述"></a>监督学习的形式化描述</h2><h3 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h3><ul>
+<li>样本空间$X$(如X为所有的网页集合)和目标空间$Y$(Y={个人主页，公司主页，科研机构主页，其他网页})</li>
+<li>预测函数$f：X-&gt;Y$</li>
+<li>假设空间$H=\{h|h:X-&gt;Y\}$</li>
+</ul>
+<h3 id="算法输入"><a href="#算法输入" class="headerlink" title="算法输入"></a>算法输入</h3><ul>
+<li>训练集合$D={(x_i,y_i)}_{i=1}^N$,其中$(x_i,y_i)\in X*Y$</li>
+</ul>
+<h3 id="算法输出"><a href="#算法输出" class="headerlink" title="算法输出"></a>算法输出</h3><ul>
+<li>根据D中的样本估计”最优”的函数$h\in H$,使之能够对<strong>未出现在D中的样本</strong>的标签进行预测</li>
+</ul>
+<hr>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:center"></th>
+<th style="text-align:center">二值分类（Y为类别集合）</th>
+<th style="text-align:center">回归（Y为实数集合）</th>
+<th style="text-align:center">结构预测/排序（Y为结构类型/排序）</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">线性函数$f(x)=<w,x>$</w,x></td>
+<td style="text-align:center">Perceptron,SVM</td>
+<td style="text-align:center">Ridge regression SVR</td>
+<td style="text-align:center">Structured SVM,Ranking SVM</td>
+</tr>
+<tr>
+<td style="text-align:center">树</td>
+<td style="text-align:center">Decision tree</td>
+<td style="text-align:center">Regression tree</td>
+<td style="text-align:center">LambdaMART</td>
+</tr>
+<tr>
+<td style="text-align:center">神经网络</td>
+<td style="text-align:center">神经网络</td>
+<td style="text-align:center">神经网络</td>
+<td style="text-align:center">RankNet</td>
+</tr>
+<tr>
+<td style="text-align:center">叠加函数$f(x)=\sum_th_t(x)$</td>
+<td style="text-align:center">AdaBoost</td>
+<td style="text-align:center">Boosted Regression Tree</td>
+<td style="text-align:center">RankBoost</td>
+</tr>
+</tbody>
+</table>
+</div>
+<hr>
+<h2 id="分类模型的评价方法"><a href="#分类模型的评价方法" class="headerlink" title="分类模型的评价方法"></a>分类模型的评价方法</h2><h3 id="n折交叉验证"><a href="#n折交叉验证" class="headerlink" title="n折交叉验证"></a>n折交叉验证</h3><p><img src="https://ws4.sinaimg.cn/large/006tNbRwly1fxs8tdtjifj31bk0e8whc.jpg" alt></p>
+<h3 id="评价准则"><a href="#评价准则" class="headerlink" title="评价准则"></a>评价准则</h3><div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:center"></th>
+<th style="text-align:center">预测为正样本</th>
+<th style="text-align:center">预测为负样本</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">标注为正样本</td>
+<td style="text-align:center">TP(true positive)</td>
+<td style="text-align:center">FN(false negative)</td>
+</tr>
+<tr>
+<td style="text-align:center">标注为负样本</td>
+<td style="text-align:center">FP(false positive)</td>
+<td style="text-align:center">TN(true negative)</td>
+</tr>
+</tbody>
+</table>
+</div>
+<ul>
+<li>$Accuracy = \frac{TP+TN}{TP+FN+FP+TN}$</li>
+<li>$Precision = \frac{TP}{TP+FP}$</li>
+<li>$Recall = \frac{TP}{TP+FN}$</li>
+<li>$F = \frac{2PR}{P+R}$ 调和平均数</li>
+</ul>
+<p>由于数据大多不平衡，Accuracy在所有的预测样本均预测到负样本的时候，会严重偏差。</p>
+<hr>
+<h2 id="决策树"><a href="#决策树" class="headerlink" title="决策树"></a>决策树</h2><p>分类函数$f$为一棵树，称为决策树<br>中间节点：决策步骤<br>叶子节点：决策结果、类别标签<br><img src="https://ws2.sinaimg.cn/large/006tNbRwly1fxshxs5q39j31dv0u042r.jpg" alt></p>
+<p>给定的训练数据，可能存在多颗能够拟合数据的决策树，那么如何选择呢？</p>
+<ol>
+<li>选择最简单的树</li>
+<li>拟合精度高的树</li>
+</ol>
+<h3 id="选择决策特征"><a href="#选择决策特征" class="headerlink" title="选择决策特征"></a>选择决策特征</h3><p>核心步骤：选择<strong>合适</strong>的特征进行决策，划分数据，生成子节点<br>合适：尽量大的减少划分后自数据集的混杂度</p>
+<p><img src="https://ws3.sinaimg.cn/large/006tNbRwly1fxsi7sec7gj31660hqjsv.jpg" alt></p>
+<h3 id="信息增益-Information-gain"><a href="#信息增益-Information-gain" class="headerlink" title="信息增益(Information gain)"></a>信息增益(Information gain)</h3><p><img src="https://ws2.sinaimg.cn/small/006tNbRwly1fxss71x6b0j30gi0d4js6.jpg" alt></p>
+<p>从上图可以看出有以下性质</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+&H(A,X) = H(X,A)\\
+&IG(X|A) = IG(A|X)\\
+&IG(X|X) = H(X)\\
+&IG(X|A) = H(X) + H(A) - H(X,A)
+\end{aligned}</script><p>对于上述决策树算法有以下特征：</p>
+<ul>
+<li>贪心策略 <ul>
+<li>从根节点开始，已建立的树不再改变</li>
+<li>数据划分后不再改变</li>
+<li>每次选择局部信息增益最大的特征划分数据</li>
+<li>局部最优解</li>
+</ul>
+</li>
+<li>递归算法 - 每一个决策节点用相同的策略扩张</li>
+<li>信息增益IG不是唯一的选择</li>
+</ul>
+<h3 id="改进"><a href="#改进" class="headerlink" title="改进"></a>改进</h3><p>上述算法只能够处理类别型的特征，对于数值型特征需要划分区间，按照IG最大化的原则选择阈值。<br>对于过拟合的情况要降低模型复杂度，采用剪枝方法减少节点数目(post-pruning)。</p>
+<p><img src="https://ws4.sinaimg.cn/large/006tNbRwly1fxssoc2linj312a0u0grf.jpg" alt></p>
+<hr>
+<h2 id="SVM-Perceptron"><a href="#SVM-Perceptron" class="headerlink" title="SVM/Perceptron"></a>SVM/Perceptron</h2><p>分类边距Margin：对线性分类器而言，边距就是从分类面到最近的训练样本的距离。<br>SVM(support vector machine)：最大化分类边距，VC理论证明最大边距分类器有较好的泛化能力。</p>
+<p><img src="https://ws2.sinaimg.cn/large/006tNbRwly1fxssvady1bj31bw0iu772.jpg" alt></p>
+<p>$$<br>Margin = |x^+-x^-| = |\lambda w|=\frac{2}{<w,w>}\sqrt{<w,w>}=\frac{2}{\sqrt{w,w}}</w,w></w,w></p>
+<p>$$</p>
+<p>优化目标: $min_{w,b}|w|^2$，约束条件$y_i(<w,x_i>+b)\geq 1, for \,i=1,…,N$</w,x_i></p>
+<p>当出现线性不可分的时候，解决方案是容忍错误的发生，采用软边距</p>
+<p><img src="https://ws3.sinaimg.cn/large/006tNbRwly1fxstiyn2x1j31ac0he40m.jpg" alt></p>
+<p>优化目标：$min_{w,b}|w|^2+C\cdot \sum_{i=1}^N\xi_i$，约束条件$y_i(<w,x_i>+b)\geq 1-\xi_i,\xi_i \geq 0$<br>$C$：权衡边距大小与错误容忍度，C变大牺牲边距减少训练集合上的错误</w,x_i></p>
+<hr>
+<h2 id="AdaBoost"><a href="#AdaBoost" class="headerlink" title="AdaBoost"></a>AdaBoost</h2><ul>
+<li>组会有差异性的弱分类器可以得到强分类器</li>
+<li>不同的弱分类器可以通过不同的算法、特征、数据训练得到</li>
+<li>弱分类器的预测精度强于随机预测</li>
+</ul>
+<p>基本训练过程如下：</p>
+<p><img src="https://ws4.sinaimg.cn/large/006tNbRwly1fxstsvq2jnj31400s80vt.jpg" alt></p>
+<p>AdaBoost 算法如下：</p>
+<p><img src="https://ws1.sinaimg.cn/large/006tNbRwly1fxstukht4mj31aa0u0ajy.jpg" alt></p>
+
+        </div>
+        
+        
+        
+    </div>
+</div>
+
+
+
+
+
+
+
+
+</div>
+                
+
+
+
+
+<div class="column is-4-tablet is-4-desktop is-3-widescreen  has-order-1 column-left ">
+    
+        
+<div class="card widget">
+    <div class="card-content">
+        <nav class="level">
+            <div class="level-item has-text-centered" style="flex-shrink: 1">
+                <div>
+                    
+                    <figure class="image is-128x128 has-mb-6">
+                        <img class="" src="/images/avatar.png" alt="Your name">
+                    </figure>
+                    
+                    <p class="is-size-4 is-block">
+                        Your name
+                    </p>
+                    
+                    
+                    <p class="is-size-6 is-block">
+                        Your title
+                    </p>
+                    
+                    
+                    <p class="is-size-6 is-flex is-flex-center has-text-grey">
+                        <i class="fas fa-map-marker-alt has-mr-7"></i>
+                        <span>Your location</span>
+                    </p>
+                    
+                </div>
+            </div>
+        </nav>
+        <nav class="level is-mobile">
+            <div class="level-item has-text-centered is-marginless">
+                <div>
+                    <p class="heading">
+                        文章
+                    </p>
+                    <p class="title has-text-weight-normal">
+                        73
+                    </p>
+                </div>
+            </div>
+            <div class="level-item has-text-centered is-marginless">
+                <div>
+                    <p class="heading">
+                        分类
+                    </p>
+                    <p class="title has-text-weight-normal">
+                        12
+                    </p>
+                </div>
+            </div>
+            <div class="level-item has-text-centered is-marginless">
+                <div>
+                    <p class="heading">
+                        标签
+                    </p>
+                    <p class="title has-text-weight-normal">
+                        18
+                    </p>
+                </div>
+            </div>
+        </nav>
+        <div class="level">
+            <a class="level-item button is-link is-rounded" href="https://github.com/ppoffice" target="_blank">
+                关注我</a>
+        </div>
+        
+        
+        <div class="level is-mobile">
+            
+            <a class="level-item button is-white is-marginless" target="_blank"
+                title="Github" href="https://github.com/ppoffice">
+                
+                <i class="fab fa-github"></i>
+                
+            </a>
+            
+            <a class="level-item button is-white is-marginless" target="_blank"
+                title="Facebook" href="https://facebook.com">
+                
+                <i class="fab fa-facebook"></i>
+                
+            </a>
+            
+            <a class="level-item button is-white is-marginless" target="_blank"
+                title="Twitter" href="https://twitter.com">
+                
+                <i class="fab fa-twitter"></i>
+                
+            </a>
+            
+            <a class="level-item button is-white is-marginless" target="_blank"
+                title="Dribbble" href="https://dribbble.com">
+                
+                <i class="fab fa-dribbble"></i>
+                
+            </a>
+            
+            <a class="level-item button is-white is-marginless" target="_blank"
+                title="RSS" href="/">
+                
+                <i class="fas fa-rss"></i>
+                
+            </a>
+            
+        </div>
+        
+    </div>
+</div>
+    
+        
+    
+        
+
+<div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+        <h3 class="menu-label">
+            链接
+        </h3>
+        <ul class="menu-list">
+        
+            <li>
+                <a class="level is-mobile" href="https://hexo.io" target="_blank">
+                    <span class="level-left">
+                        <span class="level-item">Hexo</span>
+                    </span>
+                    <span class="level-right">
+                        <span class="level-item tag">hexo.io</span>
+                    </span>
+                </a>
+            </li>
+        
+            <li>
+                <a class="level is-mobile" href="https://github.com/ppoffice" target="_blank">
+                    <span class="level-left">
+                        <span class="level-item">PPOffice</span>
+                    </span>
+                    <span class="level-right">
+                        <span class="level-item tag">github.com</span>
+                    </span>
+                </a>
+            </li>
+        
+        </ul>
+        </div>
+    </div>
+</div>
+
+
+    
+        
+<div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+            <h3 class="menu-label">
+                分类
+            </h3>
+            <ul class="menu-list">
+            <li>
+        <a class="level is-marginless" href="/categories/Anomaly-detection/">
+            <span class="level-start">
+                <span class="level-item">Anomaly detection</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">4</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/Concept/">
+            <span class="level-start">
+                <span class="level-item">Concept</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">4</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/Data-mining/">
+            <span class="level-start">
+                <span class="level-item">Data mining</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">4</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/Database/">
+            <span class="level-start">
+                <span class="level-item">Database</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">3</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/Information-Retrieval/">
+            <span class="level-start">
+                <span class="level-item">Information Retrieval</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">1</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/Linux/">
+            <span class="level-start">
+                <span class="level-item">Linux</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">5</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/Pattern-recognition/">
+            <span class="level-start">
+                <span class="level-item">Pattern recognition</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">1</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/Pi/">
+            <span class="level-start">
+                <span class="level-item">Pi</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">12</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/RL/">
+            <span class="level-start">
+                <span class="level-item">RL</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">3</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/Security/">
+            <span class="level-start">
+                <span class="level-item">Security</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">8</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/算法/">
+            <span class="level-start">
+                <span class="level-item">算法</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">13</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/网络/">
+            <span class="level-start">
+                <span class="level-item">网络</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">13</span>
+            </span>
+        </a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+    
+        
+<div class="card widget">
+    <div class="card-content">
+        <h3 class="menu-label">
+            标签云
+        </h3>
+        <a href="/tags/Algorithm/" style="font-size: 18.89px;">Algorithm</a> <a href="/tags/Anomaly-detection/" style="font-size: 16.67px;">Anomaly detection</a> <a href="/tags/Concept/" style="font-size: 12.22px;">Concept</a> <a href="/tags/Data-mining/" style="font-size: 12.22px;">Data mining</a> <a href="/tags/Database/" style="font-size: 11.11px;">Database</a> <a href="/tags/IPv4/" style="font-size: 10px;">IPv4</a> <a href="/tags/Information-Retrieval/" style="font-size: 10px;">Information Retrieval</a> <a href="/tags/Linux/" style="font-size: 13.33px;">Linux</a> <a href="/tags/Mininet/" style="font-size: 10px;">Mininet</a> <a href="/tags/Networking/" style="font-size: 15.56px;">Networking</a> <a href="/tags/OS/" style="font-size: 20px;">OS</a> <a href="/tags/Pattern-recognition/" style="font-size: 10px;">Pattern recognition</a> <a href="/tags/RL/" style="font-size: 11.11px;">RL</a> <a href="/tags/Raspberry-Pi/" style="font-size: 17.78px;">Raspberry-Pi</a> <a href="/tags/Security/" style="font-size: 15.56px;">Security</a> <a href="/tags/VANET/" style="font-size: 14.44px;">VANET</a> <a href="/tags/ns3/" style="font-size: 14.44px;">ns3</a> <a href="/tags/time-series/" style="font-size: 10px;">time series</a>
+    </div>
+</div>
+
+    
+    
+        <div class="column-right-shadow is-hidden-widescreen ">
+        
+            
+<div class="card widget">
+    <div class="card-content">
+        <h3 class="menu-label">
+            最新文章
+        </h3>
+        
+        <article class="media">
+            
+            <a href="/2019/09/16/数据挖掘/2019-09-16-基于注意力模型的RNN时序预测/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-09-16T08:29:00.668Z">2019-09-16</time></div>
+                    <a href="/2019/09/16/数据挖掘/2019-09-16-基于注意力模型的RNN时序预测/" class="title has-link-black-ter is-size-6 has-text-weight-normal"></a>
+                    <p class="is-size-7 is-uppercase">
+                        
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2019/09/12/数据挖掘/2019-09-12-时间注意力模型下的时序预测/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="时间注意力模型下的时序预测.md">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-09-11T16:00:00.000Z">2019-09-12</time></div>
+                    <a href="/2019/09/12/数据挖掘/2019-09-12-时间注意力模型下的时序预测/" class="title has-link-black-ter is-size-6 has-text-weight-normal">时间注意力模型下的时序预测.md</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/Anomaly-detection/">Anomaly detection</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2019/09/09/数据挖掘/2019-09-09-DNN多维时序无监督异常检测/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="多维时序无监督异常检测.md">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-09-08T16:00:00.000Z">2019-09-09</time></div>
+                    <a href="/2019/09/09/数据挖掘/2019-09-09-DNN多维时序无监督异常检测/" class="title has-link-black-ter is-size-6 has-text-weight-normal">多维时序无监督异常检测.md</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/Anomaly-detection/">Anomaly detection</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2019/08/14/数据挖掘/2019-08-14-异常检测（MSRA KDD'19）/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="异常检测（MSRA，KDD&#39;19）">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-08-13T16:00:00.000Z">2019-08-14</time></div>
+                    <a href="/2019/08/14/数据挖掘/2019-08-14-异常检测（MSRA KDD'19）/" class="title has-link-black-ter is-size-6 has-text-weight-normal">异常检测（MSRA，KDD&#39;19）</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/Anomaly-detection/">Anomaly detection</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2019/07/21/数据挖掘/2019-08-13-实时异常检测/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="实时异常检测（xStream，KDD&#39;18）">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-07-20T16:00:00.000Z">2019-07-21</time></div>
+                    <a href="/2019/07/21/数据挖掘/2019-08-13-实时异常检测/" class="title has-link-black-ter is-size-6 has-text-weight-normal">实时异常检测（xStream，KDD&#39;18）</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/Anomaly-detection/">Anomaly detection</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+    </div>
+</div>
+
+        
+            <div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+        <h3 class="menu-label">
+            归档
+        </h3>
+        <ul class="menu-list">
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2019/09/">
+                <span class="level-start">
+                    <span class="level-item">九月 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">3</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2019/08/">
+                <span class="level-start">
+                    <span class="level-item">八月 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2019/07/">
+                <span class="level-start">
+                    <span class="level-item">七月 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">7</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2019/06/">
+                <span class="level-start">
+                    <span class="level-item">六月 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">4</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2019/05/">
+                <span class="level-start">
+                    <span class="level-item">五月 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">4</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2018/12/">
+                <span class="level-start">
+                    <span class="level-item">十二月 2018</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">4</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2018/11/">
+                <span class="level-start">
+                    <span class="level-item">十一月 2018</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">2</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2018/10/">
+                <span class="level-start">
+                    <span class="level-item">十月 2018</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2018/09/">
+                <span class="level-start">
+                    <span class="level-item">九月 2018</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2018/08/">
+                <span class="level-start">
+                    <span class="level-item">八月 2018</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">3</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2018/04/">
+                <span class="level-start">
+                    <span class="level-item">四月 2018</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">2</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2017/11/">
+                <span class="level-start">
+                    <span class="level-item">十一月 2017</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">3</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2017/10/">
+                <span class="level-start">
+                    <span class="level-item">十月 2017</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">6</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2017/09/">
+                <span class="level-start">
+                    <span class="level-item">九月 2017</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">7</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2017/07/">
+                <span class="level-start">
+                    <span class="level-item">七月 2017</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">2</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2017/03/">
+                <span class="level-start">
+                    <span class="level-item">三月 2017</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">6</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2016/12/">
+                <span class="level-start">
+                    <span class="level-item">十二月 2016</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">2</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2016/10/">
+                <span class="level-start">
+                    <span class="level-item">十月 2016</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">2</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2016/09/">
+                <span class="level-start">
+                    <span class="level-item">九月 2016</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2016/08/">
+                <span class="level-start">
+                    <span class="level-item">八月 2016</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">11</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2016/05/">
+                <span class="level-start">
+                    <span class="level-item">五月 2016</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        </ul>
+        </div>
+    </div>
+</div>
+        
+            <div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+            <h3 class="menu-label">
+                标签
+            </h3>
+            <div class="field is-grouped is-grouped-multiline">
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Algorithm/">
+                        <span class="tag">Algorithm</span>
+                        <span class="tag is-grey">13</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Anomaly-detection/">
+                        <span class="tag">Anomaly detection</span>
+                        <span class="tag is-grey">10</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Concept/">
+                        <span class="tag">Concept</span>
+                        <span class="tag is-grey">4</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Data-mining/">
+                        <span class="tag">Data mining</span>
+                        <span class="tag is-grey">4</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Database/">
+                        <span class="tag">Database</span>
+                        <span class="tag is-grey">3</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/IPv4/">
+                        <span class="tag">IPv4</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Information-Retrieval/">
+                        <span class="tag">Information Retrieval</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Linux/">
+                        <span class="tag">Linux</span>
+                        <span class="tag is-grey">5</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Mininet/">
+                        <span class="tag">Mininet</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Networking/">
+                        <span class="tag">Networking</span>
+                        <span class="tag is-grey">8</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/OS/">
+                        <span class="tag">OS</span>
+                        <span class="tag is-grey">17</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Pattern-recognition/">
+                        <span class="tag">Pattern recognition</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/RL/">
+                        <span class="tag">RL</span>
+                        <span class="tag is-grey">3</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Raspberry-Pi/">
+                        <span class="tag">Raspberry-Pi</span>
+                        <span class="tag is-grey">12</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Security/">
+                        <span class="tag">Security</span>
+                        <span class="tag is-grey">8</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/VANET/">
+                        <span class="tag">VANET</span>
+                        <span class="tag is-grey">6</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/ns3/">
+                        <span class="tag">ns3</span>
+                        <span class="tag is-grey">6</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/time-series/">
+                        <span class="tag">time series</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+</div>
+        
+        </div>
+    
+</div>
+
+                
+
+
+
+
+<div class="column is-4-tablet is-4-desktop is-3-widescreen is-hidden-touch is-hidden-desktop-only has-order-3 column-right ">
+    
+        
+<div class="card widget">
+    <div class="card-content">
+        <h3 class="menu-label">
+            最新文章
+        </h3>
+        
+        <article class="media">
+            
+            <a href="/2019/09/16/数据挖掘/2019-09-16-基于注意力模型的RNN时序预测/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-09-16T08:29:00.668Z">2019-09-16</time></div>
+                    <a href="/2019/09/16/数据挖掘/2019-09-16-基于注意力模型的RNN时序预测/" class="title has-link-black-ter is-size-6 has-text-weight-normal"></a>
+                    <p class="is-size-7 is-uppercase">
+                        
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2019/09/12/数据挖掘/2019-09-12-时间注意力模型下的时序预测/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="时间注意力模型下的时序预测.md">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-09-11T16:00:00.000Z">2019-09-12</time></div>
+                    <a href="/2019/09/12/数据挖掘/2019-09-12-时间注意力模型下的时序预测/" class="title has-link-black-ter is-size-6 has-text-weight-normal">时间注意力模型下的时序预测.md</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/Anomaly-detection/">Anomaly detection</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2019/09/09/数据挖掘/2019-09-09-DNN多维时序无监督异常检测/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="多维时序无监督异常检测.md">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-09-08T16:00:00.000Z">2019-09-09</time></div>
+                    <a href="/2019/09/09/数据挖掘/2019-09-09-DNN多维时序无监督异常检测/" class="title has-link-black-ter is-size-6 has-text-weight-normal">多维时序无监督异常检测.md</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/Anomaly-detection/">Anomaly detection</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2019/08/14/数据挖掘/2019-08-14-异常检测（MSRA KDD'19）/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="异常检测（MSRA，KDD&#39;19）">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-08-13T16:00:00.000Z">2019-08-14</time></div>
+                    <a href="/2019/08/14/数据挖掘/2019-08-14-异常检测（MSRA KDD'19）/" class="title has-link-black-ter is-size-6 has-text-weight-normal">异常检测（MSRA，KDD&#39;19）</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/Anomaly-detection/">Anomaly detection</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2019/07/21/数据挖掘/2019-08-13-实时异常检测/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="实时异常检测（xStream，KDD&#39;18）">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-07-20T16:00:00.000Z">2019-07-21</time></div>
+                    <a href="/2019/07/21/数据挖掘/2019-08-13-实时异常检测/" class="title has-link-black-ter is-size-6 has-text-weight-normal">实时异常检测（xStream，KDD&#39;18）</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/Anomaly-detection/">Anomaly detection</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+    </div>
+</div>
+
+    
+        <div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+        <h3 class="menu-label">
+            归档
+        </h3>
+        <ul class="menu-list">
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2019/09/">
+                <span class="level-start">
+                    <span class="level-item">九月 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">3</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2019/08/">
+                <span class="level-start">
+                    <span class="level-item">八月 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2019/07/">
+                <span class="level-start">
+                    <span class="level-item">七月 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">7</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2019/06/">
+                <span class="level-start">
+                    <span class="level-item">六月 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">4</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2019/05/">
+                <span class="level-start">
+                    <span class="level-item">五月 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">4</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2018/12/">
+                <span class="level-start">
+                    <span class="level-item">十二月 2018</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">4</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2018/11/">
+                <span class="level-start">
+                    <span class="level-item">十一月 2018</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">2</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2018/10/">
+                <span class="level-start">
+                    <span class="level-item">十月 2018</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2018/09/">
+                <span class="level-start">
+                    <span class="level-item">九月 2018</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2018/08/">
+                <span class="level-start">
+                    <span class="level-item">八月 2018</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">3</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2018/04/">
+                <span class="level-start">
+                    <span class="level-item">四月 2018</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">2</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2017/11/">
+                <span class="level-start">
+                    <span class="level-item">十一月 2017</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">3</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2017/10/">
+                <span class="level-start">
+                    <span class="level-item">十月 2017</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">6</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2017/09/">
+                <span class="level-start">
+                    <span class="level-item">九月 2017</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">7</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2017/07/">
+                <span class="level-start">
+                    <span class="level-item">七月 2017</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">2</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2017/03/">
+                <span class="level-start">
+                    <span class="level-item">三月 2017</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">6</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2016/12/">
+                <span class="level-start">
+                    <span class="level-item">十二月 2016</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">2</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2016/10/">
+                <span class="level-start">
+                    <span class="level-item">十月 2016</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">2</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2016/09/">
+                <span class="level-start">
+                    <span class="level-item">九月 2016</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2016/08/">
+                <span class="level-start">
+                    <span class="level-item">八月 2016</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">11</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2016/05/">
+                <span class="level-start">
+                    <span class="level-item">五月 2016</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        </ul>
+        </div>
+    </div>
+</div>
+    
+        <div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+            <h3 class="menu-label">
+                标签
+            </h3>
+            <div class="field is-grouped is-grouped-multiline">
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Algorithm/">
+                        <span class="tag">Algorithm</span>
+                        <span class="tag is-grey">13</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Anomaly-detection/">
+                        <span class="tag">Anomaly detection</span>
+                        <span class="tag is-grey">10</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Concept/">
+                        <span class="tag">Concept</span>
+                        <span class="tag is-grey">4</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Data-mining/">
+                        <span class="tag">Data mining</span>
+                        <span class="tag is-grey">4</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Database/">
+                        <span class="tag">Database</span>
+                        <span class="tag is-grey">3</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/IPv4/">
+                        <span class="tag">IPv4</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Information-Retrieval/">
+                        <span class="tag">Information Retrieval</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Linux/">
+                        <span class="tag">Linux</span>
+                        <span class="tag is-grey">5</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Mininet/">
+                        <span class="tag">Mininet</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Networking/">
+                        <span class="tag">Networking</span>
+                        <span class="tag is-grey">8</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/OS/">
+                        <span class="tag">OS</span>
+                        <span class="tag is-grey">17</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Pattern-recognition/">
+                        <span class="tag">Pattern recognition</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/RL/">
+                        <span class="tag">RL</span>
+                        <span class="tag is-grey">3</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Raspberry-Pi/">
+                        <span class="tag">Raspberry-Pi</span>
+                        <span class="tag is-grey">12</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Security/">
+                        <span class="tag">Security</span>
+                        <span class="tag is-grey">8</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/VANET/">
+                        <span class="tag">VANET</span>
+                        <span class="tag is-grey">6</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/ns3/">
+                        <span class="tag">ns3</span>
+                        <span class="tag is-grey">6</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/time-series/">
+                        <span class="tag">time series</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+</div>
+    
+    
+</div>
+
+            </div>
+        </div>
+    </section>
+    <footer class="footer">
+    <div class="container">
+        <div class="level">
+            <div class="level-start has-text-centered-mobile">
+                <a class="footer-logo is-block has-mb-6" href="/">
+                
+                    <img src="/images/logo.svg" alt="Fengrui Liu&#39;s Blog" height="28">
+                
+                </a>
+                <p class="is-size-7">
+                &copy; 2019 Fengrui Liu&nbsp;
+                Powered by <a href="https://hexo.io/" target="_blank">Hexo</a> & <a
+                        href="https://github.com/ppoffice/hexo-theme-icarus" target="_blank">Icarus</a>
+                
+                </p>
+            </div>
+            <div class="level-end">
+            
+                <div class="field has-addons is-flex-center-mobile has-mt-5-mobile is-flex-wrap is-flex-middle">
+                
+                
+                <p class="control">
+                    <a class="button is-white is-large" target="_blank" title="Creative Commons" href="https://creativecommons.org/">
+                        
+                        <i class="fab fa-creative-commons"></i>
+                        
+                    </a>
+                </p>
+                
+                <p class="control">
+                    <a class="button is-white is-large" target="_blank" title="Attribution 4.0 International" href="https://creativecommons.org/licenses/by/4.0/">
+                        
+                        <i class="fab fa-creative-commons-by"></i>
+                        
+                    </a>
+                </p>
+                
+                <p class="control">
+                    <a class="button is-white is-large" target="_blank" title="Download on GitHub" href="https://github.com/ppoffice/hexo-theme-icarus">
+                        
+                        <i class="fab fa-github"></i>
+                        
+                    </a>
+                </p>
+                
+                </div>
+            
+            </div>
+        </div>
+    </div>
+</footer>
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/min/moment-with-locales.min.js"></script>
+<script>moment.locale("zh-CN");</script>
+
+<script>
+var IcarusThemeSettings = {
+    article: {
+        highlight: {
+            clipboard: true,
+            fold: 'unfolded'
+        }
+    }
+};
+</script>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.4/dist/clipboard.min.js" defer></script>
+
+
+
+    
+    
+    
+    <script src="/js/animation.js"></script>
+    
+
+    
+    
+    
+    <script src="https://cdn.jsdelivr.net/npm/lightgallery@1.6.8/dist/js/lightgallery.min.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/js/jquery.justifiedGallery.min.js" defer></script>
+    <script src="/js/gallery.js" defer></script>
+    
+
+    
+    
+
+<div id="outdated">
+    <h6>Your browser is out-of-date!</h6>
+    <p>Update your browser to view this website correctly. <a id="btnUpdateBrowser" href="http://outdatedbrowser.com/">Update
+            my browser now </a></p>
+    <p class="last"><a href="#" id="btnCloseUpdateBrowser" title="Close">&times;</a></p>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/outdatedbrowser@1.1.5/outdatedbrowser/outdatedbrowser.min.js" defer></script>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        outdatedBrowser({
+            bgColor: '#f25648',
+            color: '#ffffff',
+            lowerThan: 'flex'
+        });
+    });
+</script>
+
+
+    
+    
+<script src="https://cdn.jsdelivr.net/npm/mathjax@2.7.5/unpacked/MathJax.js?config=TeX-MML-AM_CHTML" defer></script>
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    MathJax.Hub.Config({
+        'HTML-CSS': {
+            matchFontHeight: false
+        },
+        SVG: {
+            matchFontHeight: false
+        },
+        CommonHTML: {
+            matchFontHeight: false
+        },
+        tex2jax: {
+            inlineMath: [
+                ['$','$'],
+                ['\\(','\\)']
+            ]
+        }
+    });
+});
+</script>
+
+    
+    
+
+<a id="back-to-top" title="回到顶端" href="javascript:;">
+    <i class="fas fa-chevron-up"></i>
+</a>
+<script src="/js/back-to-top.js" defer></script>
+
+
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+    
+
+
+<script src="/js/main.js" defer></script>
+
+    
+    <div class="searchbox ins-search">
+    <div class="searchbox-container ins-search-container">
+        <div class="searchbox-input-wrapper">
+            <input type="text" class="searchbox-input ins-search-input" placeholder="想要查找什么..." />
+            <span class="searchbox-close ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="searchbox-result-wrapper ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+    (function (window) {
+        var INSIGHT_CONFIG = {
+            TRANSLATION: {
+                POSTS: '文章',
+                PAGES: '页面',
+                CATEGORIES: '分类',
+                TAGS: '标签',
+                UNTITLED: '(无标题)',
+            },
+            CONTENT_URL: '/content.json',
+        };
+        window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+    })(window);
+</script>
+<script src="/js/insight.js" defer></script>
+<link rel="stylesheet" href="/css/search.css">
+<link rel="stylesheet" href="/css/insight.css">
+    
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+</body>
+</html>

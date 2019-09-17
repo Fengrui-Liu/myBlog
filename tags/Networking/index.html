@@ -1,0 +1,2305 @@
+<!DOCTYPE html>
+<html  lang="zh">
+<head>
+    <meta charset="utf-8" />
+
+<meta name="generator" content="Hexo 3.8.0" />
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+
+<title>标签: Networking - Fengrui Liu&#39;s Blog</title>
+
+
+    <meta property="og:type" content="website">
+<meta property="og:title" content="Fengrui Liu&#39;s Blog">
+<meta property="og:url" content="http://www.liufr.com/tags/Networking/index.html">
+<meta property="og:site_name" content="Fengrui Liu&#39;s Blog">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http://www.liufr.com/images/og_image.png">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Fengrui Liu&#39;s Blog">
+<meta name="twitter:image" content="http://www.liufr.com/images/og_image.png">
+
+
+
+
+
+
+
+<link rel="icon" href="/images/favicon.svg">
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.7.2/css/bulma.css">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Ubuntu:400,600|Source+Code+Pro">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@9.12.0/styles/atom-one-light.css">
+
+
+    
+    
+    
+    <style>body>.footer,body>.navbar,body>.section{opacity:0}</style>
+    
+
+    
+    
+    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@1.6.8/dist/css/lightgallery.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/css/justifiedGallery.min.css">
+    
+
+    
+    
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/outdatedbrowser@1.1.5/outdatedbrowser/outdatedbrowser.min.css">
+
+
+    
+    
+    
+    
+
+<link rel="stylesheet" href="/css/back-to-top.css">
+
+
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+<link rel="stylesheet" href="/css/progressbar.css">
+<script src="https://cdn.jsdelivr.net/npm/pace-js@1.0.2/pace.min.js"></script>
+
+    
+    
+    
+
+
+<link rel="stylesheet" href="/css/style.css">
+</head>
+<body class="is-3-column">
+    <nav class="navbar navbar-main">
+    <div class="container">
+        <div class="navbar-brand is-flex-center">
+            <a class="navbar-item navbar-logo" href="/">
+            
+                <img src="/images/logo.svg" alt="Fengrui Liu&#39;s Blog" height="28">
+            
+            </a>
+        </div>
+        <div class="navbar-menu">
+            
+            <div class="navbar-start">
+                
+                <a class="navbar-item"
+                href="/">Home</a>
+                
+                <a class="navbar-item"
+                href="/archives">Archives</a>
+                
+                <a class="navbar-item"
+                href="/categories">Categories</a>
+                
+                <a class="navbar-item"
+                href="/tags">Tags</a>
+                
+                <a class="navbar-item"
+                href="/about">About</a>
+                
+            </div>
+            
+            <div class="navbar-end">
+                
+                    
+                    
+                    <a class="navbar-item" target="_blank" title="Download on GitHub" href="https://github.com/ppoffice/hexo-theme-icarus">
+                        
+                        <i class="fab fa-github"></i>
+                        
+                    </a>
+                    
+                
+                
+                
+                <a class="navbar-item search" title="搜索" href="javascript:;">
+                    <i class="fas fa-search"></i>
+                </a>
+                
+            </div>
+        </div>
+    </div>
+</nav>
+    
+    <section class="section">
+        <div class="container">
+            <div class="columns">
+                <div class="column is-8-tablet is-8-desktop is-6-widescreen has-order-2 column-main"><div class="card">
+    <div class="card-content">
+        <nav class="breadcrumb" aria-label="breadcrumbs">
+        <ul>
+            <li><a href="/tags">标签</a></li>
+            <li class="is-active"><a href="#" aria-current="page">Networking</a></li>
+        </ul>
+        </nav>
+    </div>
+</div>
+
+    <div class="card">
+    
+    <div class="card-content article ">
+        
+        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+            <div class="level-left">
+                <time class="level-item has-text-grey" datetime="2018-09-01T16:00:00.000Z">2018-09-02</time>
+                
+                <div class="level-item">
+                <a class="has-link-grey -link" href="/categories/Security/">Security</a>
+                </div>
+                
+                
+                <span class="level-item has-text-grey">
+                    
+                    
+                    11 分钟 读完 (大约 1619 个字)
+                </span>
+                
+                
+            </div>
+        </div>
+        
+        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+            
+                <a class="has-link-black-ter" href="/2018/09/02/安全/2018-09-02-蜜罐技术/">蜜罐技术</a>
+            
+        </h1>
+        <div class="content">
+            <h1 id="蜜罐技术"><a href="#蜜罐技术" class="headerlink" title="蜜罐技术"></a>蜜罐技术</h1><h2 id="蜜罐主要工作原理"><a href="#蜜罐主要工作原理" class="headerlink" title="蜜罐主要工作原理"></a>蜜罐主要工作原理</h2><p>蜜罐通常伪装成看似有利用价值的网络且提供一些必要的漏洞，当一个攻击者试图侵入蜜罐时，入侵检测系统会触发一个报警，隐藏的记录器会记录下入侵者一切活动，当入侵者试图从蜜罐中转向真实主机时，一个单独的防火墙会随时把主机从网络上断开。</p>
+<h2 id="蜜罐技术的分类"><a href="#蜜罐技术的分类" class="headerlink" title="蜜罐技术的分类"></a>蜜罐技术的分类</h2><ul>
+<li><strong>高交互蜜罐：</strong> 模拟一个全功能的生产环境，因此攻击者可能因为多种服务浪费攻击时间。通过虚拟机技术可以在单个物理机上托管多个蜜罐，也方便恢复。高交互蜜罐难以检测，安全性较高但是维护开销也较高，对于某些特殊情况甚至需要一台物理机部署一个蜜罐。</li>
+<li><strong>低交互蜜罐：</strong> 只模拟那些经常被攻击请求的服务，由于它消耗的资源有限，复杂度较低可以降低一定的部署费用，但是安全性也相对较低。</li>
+</ul>
+<h2 id="蜜罐技术存在的风险："><a href="#蜜罐技术存在的风险：" class="headerlink" title="蜜罐技术存在的风险："></a>蜜罐技术存在的风险：</h2><p>如果蜜罐被设计从互联网来访问，可能会有一个风险，创建非信任站点列表的外部监控组织可能会报告组织的系统是脆弱的，因为无法区分这个脆弱性是属于蜜罐还是系统自身。</p>
+<p>蜜罐原本提供的漏洞稍有不慎就会导致系统被渗透，可能会涉及隐私、责任与设陷技术等。例如黑客可能利用被攻陷的电脑作为跳板或者传播病毒等等。</p>
+<hr>
+<h2 id="工具资料"><a href="#工具资料" class="headerlink" title="工具资料"></a>工具资料</h2><p><a href="https://github.com/paralax/awesome-honeypots/blob/master/README_CN.md" target="_blank" rel="noopener">现有的蜜罐参考列表</a></p>
+<h3 id="蜜罐平台"><a href="#蜜罐平台" class="headerlink" title="蜜罐平台"></a>蜜罐平台</h3><ul>
+<li><a href="https://dtag-dev-sec.github.io/mediator/feature/2017/11/07/t-pot-17.10.html" target="_blank" rel="noopener">开源蜜罐项目T-Pot</a>：基于docker技术集成了众多针对不同应用蜜罐程序的系统。</li>
+<li><a href="https://github.com/threatstream/mhn" target="_blank" rel="noopener">现代蜜网MHN</a>：集成了多种蜜罐的安装脚本，可以快速部署、使用，也能够快速的从节点收集数据。</li>
+</ul>
+<h3 id="T-pot和MHN支持的蜜罐容器："><a href="#T-pot和MHN支持的蜜罐容器：" class="headerlink" title="T-pot和MHN支持的蜜罐容器："></a>T-pot和MHN支持的蜜罐容器：</h3><ul>
+<li><a href="https://github.com/mushorg/conpot" target="_blank" rel="noopener">Conpot</a>：低交互工控蜜罐，提供一系列通用工业控制协议, 能够模拟复杂的工控基础设施。</li>
+<li><a href="https://github.com/micheloosterhof/cowrie" target="_blank" rel="noopener">Cowire</a>：中等交互的SSH与Telnet蜜罐，可以记录暴力攻击，并提供伪造的文件系统环境记录黑客操作行为。</li>
+<li><a href="https://github.com/DinoTools/dionaea" target="_blank" rel="noopener">Dionaea</a>: 它开放常见网络服务的默认端口，当有外来连接时模拟正常反馈，同时记录下数据流，网络数据流经由检测模块检测后按类别进行处理。</li>
+<li><a href="https://github.com/mushorg/glastopf" target="_blank" rel="noopener">Glastopf</a>: 低交互型Web应用蜜罐，能够模拟成千上万的web漏洞，针对攻击的不同攻击手段来回应攻击者，然后从对目标Web应用程序的攻击过程中收集数据。</li>
+<li><a href="https://github.com/honeytrap/honeytrap" target="_blank" rel="noopener">Honeytrap</a>: 观察针对TCP或UDP服务的攻击，并能够分析攻击字符串，执行相应的下载文件指令。</li>
+</ul>
+<h3 id="可视化界面："><a href="#可视化界面：" class="headerlink" title="可视化界面："></a>可视化界面：</h3><p><img src="https://ws2.sinaimg.cn/large/006tNbRwly1fuvhxyagn8j30ps0gun10.jpg" alt="攻击地图"><br><img src="https://ws3.sinaimg.cn/large/006tNbRwly1fuvhx8gtunj30ou0gimz3.jpg" alt="攻击总量"></p>
+<hr>
+<h2 id="蜜罐衍生概念"><a href="#蜜罐衍生概念" class="headerlink" title="蜜罐衍生概念"></a>蜜罐衍生概念</h2><ul>
+<li><strong>蜜场：</strong> 蜜场的思想是将网络中可疑数据流重定向到蜜场中。在网络中放置检测器，当发现可疑数据流时，利用重定向器将其导向蜜场。所有蜜罐集中于蜜场，与外网之间用防火墙隔离。蜜场的优势在于集中性。 </li>
+<li><strong>蜜网：</strong> 当多个蜜罐被网络连接在一起，组成一个大型虚假业务系统，利用其中一部分主机吸引攻击者入侵，通过监测入侵过程，一方面收集攻击者的攻击行为，另一方面可以更新相应的安全防护策略。这种由多个蜜罐组成的模拟网络就称为蜜网。</li>
+<li><strong>分布式蜜网：</strong> 分布式蜜网系统能够将各个不同位置部署的蜜网捕获的数据进行汇总分析，有效的提升安全威胁监测的覆盖面，克服了传统蜜罐监测范围窄的缺陷，因而成为目前安全业界采用蜜罐技术构建互联网安全威胁监测体系的普遍部署模式。</li>
+<li><strong>动态蜜网：</strong> 动态蜜网，将低交互蜜罐和高交互蜜罐结合起来，需要虚拟蜜网技术的支持，利用被动指纹工具监控网络。依据获得的网络信息对蜜网进行部署和配置。最主要的是其自适应能力，能够自动学习周围的网络环境，配置适当数量的蜜罐，并随网络环境的变化做出调整。</li>
+<li><strong>SDN蜜网：</strong> 结合虚拟化技术，能够在威胁发现之后动态的生成相应的蜜网系统，同时利用SDN控制器将异常流量调度到虚拟化的蜜网系统中，完成异常行为的跟踪取证与安全防护。这种SDN蜜网有效的解决了传统蜜网的部署结构不灵活，基础设施成本高等问题。<br><img src="https://ws4.sinaimg.cn/large/006tNbRwly1fuvikem9bpj30ff07jmxi.jpg" alt></li>
+</ul>
+<p><a href="http://www.honeynet.org" target="_blank" rel="noopener">蜜网研究项目参考网站</a></p>
+<hr>
+<h2 id="总结分析"><a href="#总结分析" class="headerlink" title="总结分析"></a>总结分析</h2><ol>
+<li>T-pot与MHN提供了比较完善的开源平台，我们可以尝试利用虚拟机或者docker技术等将其部署在物理机或云服务器上，进行异常流量的监测工作（同李振华老师的做法）。</li>
+<li>针对项目特定需求二次开发相应的蜜罐容器，采用分布式蜜网或SDN蜜网等方法，将蜜罐部署到各个节点之上，对实际项目中的异常流量或者攻击行为进行监测。</li>
+</ol>
+
+        </div>
+        
+        
+        
+    </div>
+</div>
+
+
+
+
+
+
+
+
+    <div class="card">
+    
+    <div class="card-content article ">
+        
+        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+            <div class="level-left">
+                <time class="level-item has-text-grey" datetime="2018-08-22T16:00:00.000Z">2018-08-23</time>
+                
+                <div class="level-item">
+                <a class="has-link-grey -link" href="/categories/网络/">网络</a>
+                </div>
+                
+                
+                <span class="level-item has-text-grey">
+                    
+                    
+                    19 分钟 读完 (大约 2829 个字)
+                </span>
+                
+                
+            </div>
+        </div>
+        
+        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+            
+                <a class="has-link-black-ter" href="/2018/08/23/网络/2018-8-23-SketchVisor/">SketchVisor: Robust Network Measurement for Soware Packet Processing</a>
+            
+        </h1>
+        <div class="content">
+            <h2 id="概要"><a href="#概要" class="headerlink" title="概要"></a>概要</h2><p>Sketch是一种紧凑的数据结构，以固定的内存大小来统计网络数据包。传统的sketch-based方法都是消耗大量的CPU资源，例如虚拟机或者容器环境下，同样位置的多个应用都会抢占资源。传统的sketch-based算法过于简洁，因此在将其应用到实际环境当中，就需要加入额外的扩展功能从而导致运算量的增加。虽然在数据中心的链路速度并不总是高要求的，但是这依然是重要的指标。</p>
+<p>本文提出的SketchVisor是一种针对软件数据包处理的鲁棒性网络测量框架。即使在很高的网络流量当中，SV都会有很好的性能以及很高的准确性。SV 引入了独立的数据通路（fast path）以提供快速但是低准确度的测量，以解决那些不能被及时处理的数据包。之后，通过sketch-based以及fast path准确恢复整个网络范围内的测量结果。</p>
+<h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>特别的，SV部署在一个分布式的数据平面上，网络管理员将对不同的数据平面上分配任务，如果这些任务过载或者不能被及时处理，那么就会将任务重定向到fast-path上。本文针对fast-path提出了一个top-k算法以跟踪大数据流。Top-k可以实现较低的偿还过程以及缩紧评价指标。还维持了一个全局的计数器用来追踪进入fast-path的网络流，从而来捕获所有较小的网络数据流的特征。</p>
+<p>除此之外，SV还部署了个中心化的控制平面来合并本地的测量结果（sketch-based以及fast path的结果），fast path不可避免的会出现准确性的损失，本文形式化了一个矩阵插入问题，使得在控制平面可以恢复这些丢失的数据。</p>
+<hr>
+<h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><h3 id="网络测量"><a href="#网络测量" class="headerlink" title="网络测量"></a>网络测量</h3><p>本文着重考虑一下的几个网络数据统计量：</p>
+<ul>
+<li><p>Heavy hitter：在一个时期中流字节大小超过一定阈值的网络流。</p>
+</li>
+<li><p>Heavy changer：在两个连续的时期中发生改变的字节大小超过一定的阈值的网络流。</p>
+</li>
+<li><p>DDos：一个目标host在一定时期中接到的网络数据包超过了阈值。</p>
+</li>
+<li><p>Superspreader：在一个时期内，源host向多于阈值个目标host发送数据。</p>
+</li>
+<li><p>Cardinality：势。在一个时期内不同网络流的数量。</p>
+</li>
+<li><p>Flow size distribution：一个时期内不同字节数范围内的分数大小。</p>
+</li>
+<li><p>Entropy：一个时期内流大小的熵。</p>
+</li>
+</ul>
+<hr>
+<h2 id="概览"><a href="#概览" class="headerlink" title="概览"></a>概览</h2><p>设计目标：</p>
+<ul>
+<li>性能</li>
+<li>资源效率</li>
+<li>精确性</li>
+<li>通用性</li>
+<li>简洁性</li>
+</ul>
+<hr>
+<h3 id="数据层："><a href="#数据层：" class="headerlink" title="数据层："></a>数据层：</h3><p><img src="https://ws3.sinaimg.cn/large/006tNbRwly1fuf1nkkfj1j30hu0dk0vh.jpg" alt></p>
+<p>在每一个host上都部署了一个测量模块，每一个模块都处理连续不断的数据流并且统计分析该数据。为了防止多次测量，我们可以只测量出或者入的数据，再或者利用哈希来选择监控不连续的数据包。测量模块被分为两个部分，normal path和fast path。Normal path部署一个或者多个sketch-based方法， fast path作为一种补充，通过部署快速但是低准确度的测量方法。正常情况下，在normal path里采用FIFO buffer。 当数据流负载过重时，buffer满了，SV将重定向这部分数据包到fast path，然后收集这部分流量的数据。由网络管理来决定采用哪一种sketch-based方法。</p>
+<p>fast path 所面临的挑战是：</p>
+<ul>
+<li>足够快一致于可以吸收所有重定向的网络数据流</li>
+<li>虽然比normal path的准确度低但是也要保持一定的准确度</li>
+<li>对于不同的网络统计来讲具有一定的通用性。</li>
+</ul>
+<h3 id="控制层："><a href="#控制层：" class="headerlink" title="控制层："></a>控制层：</h3><p><img src="https://ws2.sinaimg.cn/large/006tNbRwly1fuf2h5c4ykj30h60dc41o.jpg" alt></p>
+<p>从多个host收集本地测量结果并且合并，提供网络范围内的测量结果。目标是当所有流量都走normal path时，在网络范围内提供准确的测量结果。</p>
+<p>控制层面临的挑战：</p>
+<ul>
+<li>排除fast path 所导致的测量错误，也就是说所有的错误都是由sketch本身所产生的。这样一来，对于fast path 设计带来了巨大挑战，要保证所有的测量任务的兼容。</li>
+</ul>
+<hr>
+<h2 id="Fast-path"><a href="#Fast-path" class="headerlink" title="Fast path"></a>Fast path</h2><p>Fast path 主要保证了系统的鲁棒性，如果没有这个设计，normal path必定要丢弃那些过载的数据流，从而在准确度上作出妥协。</p>
+<p>设计fast path要尽可能多地去追踪网络数据信息，在大多数情况下网络都是被几个较大规模的数据流所占有，这个假设就会引起很多sketch 设计（要求该设计识别大规模数据流），在我们的设计中就着重关注最大规模的数据流，或者前k个数据流（k取决于内存空间）。</p>
+<p>如果只关注大规模的数据流，那么必定会忽视小数据流的信息，这些对于基于连通的网络统计量来说也很重要，但同时对于所有的小数据流都进行追踪是不现实的。幸运的是，sketch-based解决方法会估计不同流的统计信息。观察发现小流的影响微不足道，因此我们用一个全局变量计数（此处应该是指统计大数据流），并在控制层来推断具体的sketch统计数据。</p>
+<hr>
+<h3 id="方案概览"><a href="#方案概览" class="headerlink" title="方案概览"></a>方案概览</h3><p>fast path 算法是基于Misra-Gries‘s算法的top-k算法，但是原算法有两点对于高性能和准确性的限制。首先，改进算法剔除一个小数据流然后加入一个潜在的大数据流，它表现出$O(k)$的复杂度去更新k个计数器，当有很多个小的数据流时，节省下来的开销就很可观了。其次，改进算法对于估计top-k条数据流的界限要求比较宽松。我们结合了PLC算法，可以提高偏差数据的准确率。最后，每条数据流都用三个计数器来追踪确保每条流都有严格的上界和下界。</p>
+<p>主要思路就是保证top-k条流一直在哈希表H中，当H满了就适当移除一条不满足条件的数据流。当接收到一条大小为v的数据流$f$时，先更新统计计数器$V=V+v$，如果$f$在哈希$H$中，那么就更新$r_f=r_f+v$，如果$H$未满，那么就直接加入$f$并初始化为$(E,v,0)$,如果$H$已满，那么就要计算一个减小值$e$，并对$H$中的所有流的$r$参数减小$e$，$d$参数增加$e$。倘若有$r$小于0那么将被剔除，并加入合适的流。</p>
+<hr>
+<h2 id="网络范围内的恢复"><a href="#网络范围内的恢复" class="headerlink" title="网络范围内的恢复"></a>网络范围内的恢复</h2><h3 id="基本思想"><a href="#基本思想" class="headerlink" title="基本思想"></a>基本思想</h3><p>控制层通过周期性的收集本地数据提供全网范围内的测量数据，它可以通过矩阵加将所有的sketch合并到一个sketch上（合并后的结果用N来表示），将多个哈希表合并成一个，并且将计数器的结果合并成一个，注意到之前算法有不确定性，因此它只维护top-k个数据流并且没有跟踪到具体的某一个小的数据流上。这部分的研究目标就是精确恢复。</p>
+<p>我们分解网络流数据成两个向量，$x$表示哈希表$H$中的流实际的字节数，$y$表示其他流实际的字节数。如果一个流不存在，那么所有的数据就都是0了。$x+y$就表示了fast-path中的每一个数据流。</p>
+<p>为了恢复出所有的网络流T，我们可以将fast path中的所有流都注入到normal path中，本质就是用sketch方法来处理$x+y$，表示为$sk(x+y)$，</p>
+<script type="math/tex; mode=display">
+T=N+sk(x+y)</script><p> 由于fast path 并不是追踪到每条数据流，因此$x$和$y$实际上是未知的，但是我们可以通过统计量来明确其值的限制条件。$x$和$y$的$l_1$范数之和可以如下表示：</p>
+<script type="math/tex; mode=display">
+\lVert x\rVert_1 + \lVert y\rVert_1 = V</script><p>除此之外，合并后的哈希表H也给出了每条流的上/下确界：</p>
+<script type="math/tex; mode=display">
+rf+df \leq xf \leq rf+df+ef</script><p>前两个等式表述的是网络流的聚集合并特性，第三个式子表示的是每条流的错误区间。但是上述信息还不够完整全面，有很多工作都针对其做矩阵插入的解决方案，本文则着力于找到最佳的估计矩阵T，以实现最好的恢复效果。</p>
+<h3 id="压缩感知"><a href="#压缩感知" class="headerlink" title="压缩感知"></a>压缩感知</h3><p>首先明确出$T，x，y$的特性</p>
+<p>$T$接近是一个低秩矩阵。网络中大多数都是较大流量的数据流，又因为大数据流会引起更多的重视，因此，计数器的统计量大多近似。</p>
+<p>$x$和$sk(x)$是稀疏的。因为$x$只包含top-k条流在哈希表中，且整张表的规模是非常大的，因此我们可以将$x$视作一个稀疏向量，又因为$x$在sketch算法中由计数器限定了一定的数量，所以$sk(x)$也是稀疏的。</p>
+<p>$y$和$sk(y)$是低噪的。由y所记录的所有数据流都是规模小且区分度低。因此我们可以将y视作一个低噪的向量。</p>
+<p>我们使用奇异值分解方法，对几个sketch矩阵产生了低秩近似。</p>
+<p><strong>目标函数</strong><br>我们将上述的特性引入到目标函数当中，然后利用压缩感知框架LENS去恢复T，LENS就是这样一种算法，可以将网络流矩阵分解成低秩、稀疏并且低噪的部分。通过LENS我们将目标函数设定为：</p>
+<script type="math/tex; mode=display">
+minimize: \alpha\lVert T\rVert_* + \beta\lVert x\rVert_1 + \frac{1}{2\gamma}\lVert y\rVert^2_F</script><p>$\lVert T\rVert_*$ : T的核范数，可以约束低秩矩阵。<br>$\lVert x\rVert_1$ : x的l1范数，约束x的稀疏性。<br>$\lVert y\rVert^2_F$ :Frobenius 范数，约束y里面的大元素。</p>
+
+        </div>
+        
+        
+        
+    </div>
+</div>
+
+
+
+
+
+
+
+
+    <div class="card">
+    
+    <div class="card-content article ">
+        
+        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+            <div class="level-left">
+                <time class="level-item has-text-grey" datetime="2018-08-22T16:00:00.000Z">2018-08-23</time>
+                
+                <div class="level-item">
+                <a class="has-link-grey -link" href="/categories/网络/">网络</a>
+                </div>
+                
+                
+                <span class="level-item has-text-grey">
+                    
+                    
+                    28 分钟 读完 (大约 4169 个字)
+                </span>
+                
+                
+            </div>
+        </div>
+        
+        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+            
+                <a class="has-link-black-ter" href="/2018/08/23/网络/2018-8-23-Elastic Sketch/">Elastic Sketch: Adaptive and Fast Network-wide Measurements</a>
+            
+        </h1>
+        <div class="content">
+            <h2 id="概要"><a href="#概要" class="headerlink" title="概要"></a>概要</h2><p>当网络面临拥塞、扫描攻击以及DDos攻击等等时，通信特征例如可用带宽、包速率以及流大小都散布非常剧烈，严重影响了测量性能。为了解决这些问题，提出了Elastic sketch。ES对于不同的任务以及平台都有一定的普适性(P4，FPGA，GPU，CPU，多核CPU，OVS)。</p>
+<hr>
+<h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><h3 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h3><p>现有的网络测量方法都是在准确度、速度以及内存使用量上的一个trade off问题。且现有方法都没有解决的问题是，在网络通信各个特征大幅变化时如何实现网络的准确测量。</p>
+<p>第一个网络特征就是可用带宽。数据中心中，管理员相比于一条单独的链路或者节点，更关心整个网络的状态，也就是全网的测量。管理员可以部署多个测量节点，这些节点周期性地向 collector汇报 sketches测量结果，这样的测量过程也需要占用一定的带宽。在数据中心里，网络拥塞也是非常常见的，这样一来，网络测量对于拥塞控制与解除问题来说就至关重要了。一方面，不能等待可用带宽去汇报测量结果，因为这些结果都具有相当的实时性，另一方面，网络测量不应该是网络中的一个负担。一个良好的解决方法是同时兼顾准确性与低带宽的占用。这里用的方法是压缩sketch算法。</p>
+<p>第二个网络特征就是包到达速率。这项指标在短时间内可能会大幅变化。有一些路由协议是根据网络性能来调整包的发送速率。但是现有的sketches算法对于包的处理速率都是固定的，因此对于突然提高的包速率处理不好，对此，我们可以加快对于重要信息的处理过程，丢弃不重要的信息。</p>
+<p>第三个网络特征是流大小的分配。大多数的网络流都是比较小的。我们应当将大数据流区分出来，并用不同的数据结构来存储他们。然而，流大小十分分散。有的人认为我们可以通过预测实现预先分配内存大小，但是对于小时为单位的预测大数据流是可以的，却没办法精确到秒级。因此我们需要设计一个弹性的数据结构从而动态地给大数据流分配合适的内存空间。</p>
+<p>总的来说，为了解决现阶段的问题需要一个弹性的sketch方案：自适应带宽，包速率以及网络流量大小分布。除此之外的要求还有普适性，实时性以及准确性。</p>
+<h3 id="解决方案："><a href="#解决方案：" class="headerlink" title="解决方案："></a>解决方案：</h3><p>Elastic sketch，由heavy part和light part构成。提出了一种Ostracism技术可以保证大数据流导入heavy part 并且小数据流导入light part。</p>
+<p>为了实现弹性伸缩，我们可以实现以下内容：</p>
+<ol>
+<li>为了适应带宽，我们提出了压缩与合并sketch的算法。首先是压缩我们原有的sketch到一个合适的大小以适应现在的可用带宽，然后在用服务器来合并sketches并减少带宽使用。</li>
+<li>当包速率提高时，我们改变其处理方法，我们仅仅记录那些大数据流并丢弃小数据流的信息。这样在损失极小的准确度的情况下可以实现更快的数据处理。</li>
+<li>当大数据流的数量发生剧烈变化时，我们设计了一个算法动态增加heavy part的内存大小。</li>
+</ol>
+<p>为了实现普适性，我们可以实现以下内容：</p>
+<ol>
+<li>对于测量任务的普适性。我们保留每个数据包最不可或缺的信息，但是要丢弃小数据流的ID信息，因为根据我们观察得知处理ID通常会消耗内存但是实用性较低。</li>
+<li>对于平台的普适性。我们分别提出了一个软件和硬件版本来表示ES，甚至针对P4也做出了适配改进。</li>
+</ol>
+<hr>
+<h2 id="背景和相关工作"><a href="#背景和相关工作" class="headerlink" title="背景和相关工作"></a>背景和相关工作</h2><h3 id="自适应测量的挑战："><a href="#自适应测量的挑战：" class="headerlink" title="自适应测量的挑战："></a>自适应测量的挑战：</h3><ol>
+<li>根据合适的带宽将测量数据以合适的大小发送出去。当可用带宽比较小时，发送较大的sketch将会导致较大的延迟并且影响正常的用户数据。除此之外，所有现有的测量方法都是在开始测量之前选定一个固定大小的内存。问题就是如何将sketch的大小缩小到可用带宽大小以下。设计目标是用低于现有方法一半的内存空间来实现与原方法相近的准确度。</li>
+<li>处理包的速率适应包速率。现有方法大多是固定速率，且需要的内存空间较大（大于数据包10倍的内存空间）。设计目标是如何在包速率较低时用2倍的内存空间，以及包速率较高时用1倍的内存空间，同时保证高准确度。</li>
+<li>在真实的网络环境中，网络流大小的分布式偏斜且变化无常的(skewed and variable)。（Skewed）大多数的网络数据流都是小流，少部分是大数据流。为了实现内存利用效率，可以分离大流与小流，因为大流往往比小流要重要得多，所以给大数据流分配合适的内存大小也是至关重要的。由于在网络中大流和小流都是未知的，因此动态地分配内存是极具挑战的。</li>
+</ol>
+<h3 id="测量的通用性方法："><a href="#测量的通用性方法：" class="headerlink" title="测量的通用性方法："></a>测量的通用性方法：</h3><ol>
+<li>流大小的估计：对任意一条网络流大小都进行规模估计。ID可以由5元组构成。本文将网络流大小用数据包的数量或者流字节大小来代替。</li>
+<li>Heavy hitter检测：将所有大小超过预先定义阈值的网络流报告出来。</li>
+<li>Heavy change检测：将所有在相邻两个时隙内流大小变化超过一定阈值的网络流报告出来。</li>
+<li>流大小分布估计</li>
+<li>熵估计：网络流大小的熵</li>
+<li>势估计：网络流数量</li>
+</ol>
+<hr>
+<h2 id="弹性Sketches"><a href="#弹性Sketches" class="headerlink" title="弹性Sketches"></a>弹性Sketches</h2><h3 id="基本思路"><a href="#基本思路" class="headerlink" title="基本思路"></a>基本思路</h3><p>逻辑依据(Rationale): 根据上述提到的，我们需要区分大小数据流。我们将分流问题规约为：已知一个高速的网络流，如果用一个桶(bucket)来选择最大的网络流？因为内存大小有限，不可能实现一个完全准确的答案，因此我们应该致力于提高该算法的准确度。我们的方法与陶片放逐法(Ostracism)的思路类似。详细来讲，每一个桶(bucket)都有三个域：ID，positive votes，negative votes。已知一个ID为$f_1$的流传来了一个数据包，如果与bucket 中的ID一致，就增加其positive votes的值，反之增加negative notes的值。如果($\frac{negative votes}{positive votes} \geq \lambda$)其中λ是预先定义好的阈值，我们将原有的数据流从bucket中删除并将$f_1$放入到bucket中。</p>
+<p><img src="https://ws4.sinaimg.cn/large/006tNbRwly1fuilqxx4h2j30lm09u406.jpg" alt></p>
+<p>如图所示，数据结构包含两部分，heavy part记录大数据流，light part记录小数据流。$h(.)$是一个哈希函数，$vote^+$可以记录本数据流的数据包，$vote^-$可以记录其他数据流的数据包，flag标志light part里面是否包含本条数据流的positive votes。</p>
+<p>light part是一个CM sketch, 一个CM sketch包含$d$个数组，每个数组都有一个哈希函数，并组成了$w$个计数器。给定一个进来的数据包，CM sketch取出流ID，计算$d$个哈希函数去给每一个数组定位一个计数器，并且在该计数器上加1。</p>
+<p>插入：给定一个进来的流ID为$f$的数据包，我们把它哈希到桶$\mathcal{H}[h(f)\%B]$中，$B$是heavy part里面bucket的个数。假设bucket保存$(f1,vote+,flag1,vote-)$。与陶片放逐法Ostracism相同的是，如果$f$与$f_1$匹配，我们增加$vote^+$，否则增加$vote^-$并且决定是否驱逐$f_1$。具体来说有以下四种情况：</p>
+<ol>
+<li>bucket是空的，插入$(f,1,F,0)$</li>
+<li>$f=f1$,$vote^+$加1</li>
+<li>$f \neq f1$且在$vote^-$加1后，$\frac{vote^-}{vote^+} &lt; \lambda$，我们将$(f,1)$插入到CMsketch中，并且将哈希计数器加1。</li>
+<li>$f \neq f1$且在$vote^-$加1后，$\frac{vote^-}{vote^+}\geq \lambda$, 我们将$f_1$剔除bucket并将$f$填到桶中，并初始化为$(f,1,T,1)$。$f_1$会被放到CM sketch中，增量大小为原$vote^+$，注意这里的flag置为T，因为在此之前，有可能存在$f$流已经被插入到light part的情况。</li>
+</ol>
+<p>对于任意不在heavy part的流，light part可以直接反映出其大小。对于任意一个在heavy part的数据流有两种情况：</p>
+<ol>
+<li>$flag=F$，大小就是$vote^+$。</li>
+<li>$flag=T$,我们需要合并$vote^+$以及CM sketch的结果。</li>
+</ol>
+<p>Elastic Sketch 的准确性在大多数情况下都是足够高的，得益于以下两点：</p>
+<ol>
+<li>heavy part没有任何错误：对于任何flag为F的数据流，$vote^+$代表的就是全部的数据流，当flag为T时，$vote^+$代表的是一部分的真实数据流。</li>
+<li>light part中我们没有记录流ID，仅仅记录那些小数据流的大小，因此可以使用很多小计数器（如8位计数器），相比传统sketch算法中的较大计数器，我们的方法可以更加精确。</li>
+</ol>
+<p>对于精确度影响最大的就是大数据流的冲突：当两个或两个以上的大数据流哈希到同一个bucket里，其中一条大数据流就会导入light part中，使得一些小数据流过高估计了。对于该问题的解决方法就是减小哈希冲突，两个经典思路其一是使用子表，另一个就是多个key值匹配。</p>
+<hr>
+<h3 id="自适应匹配可用带宽"><a href="#自适应匹配可用带宽" class="headerlink" title="自适应匹配可用带宽"></a>自适应匹配可用带宽</h3><p>为了适应可用带宽，我们在发送sketches之前要先对其进行压缩。大多数的网络流都是小数据流，因此，light part的内存使用要远远大于heavy part的。这里我们要研究的内容是如何压缩合并light part，也就是CM sketch的。</p>
+<p>压缩的主要思路是先将计数器分组，并将同一组里的计数器合并到一个计数器上。</p>
+<p><img src="https://ws2.sinaimg.cn/large/006tNbRwly1fujn6aip66j30ik092q48.jpg" alt></p>
+<p>分组：由上图所示，给定一个大小为$zw’*d$的sketch A(宽度$w=zw’$，深度为$d$，$z$是一个整数代表压缩率),我们的压缩方法遵循以下规定：</p>
+<ol>
+<li><p>将sketch A划分为相等的部分，每个部分都是$w’*d$。</p>
+</li>
+<li><p>我们设立一个sketch B大小为$w’ * d$。3）有同样索引的计数器将会被分到同一个组里（${A_i^k[j]}_{k=1,…,z}$），因此我们可以设置$B_i[j]=OP^z_{k=1}{A_i^k[j]}(1&lt;=i&lt;=d,1&lt;=j&lt;=z)$,$OP$是一个合并操作符如MAX或Sum，图例中就是取最大值，为了符合sketch B，我们也仅仅需要将哈希函数$hi(.)\%w$变为$hi(.)\%w\%w’$。</p>
+</li>
+</ol>
+<p>合并操作：第一种是加和压缩(SC)，将每一组的计数器求和。另一种就是最大值压缩(MC)。关于二者有以下结论：</p>
+<ol>
+<li>SC不会改变原始的误差范围，MC则会让误差范围更加严格。2. 我们证实使用MC方法，压缩后的CM sketch有over-estimation的错误，但却没有under-estimation的错误，就是说只可能过度估计，不会少估计。</li>
+<li>压缩过程是很快的，比原始方法块5~8倍。</li>
+<li>不需要解压缩。</li>
+<li>压缩也不需要任何额外的数据结构。</li>
+</ol>
+<h3 id="合并sketches"><a href="#合并sketches" class="headerlink" title="合并sketches"></a>合并sketches</h3><p><img src="https://ws2.sinaimg.cn/large/006tNbRwly1fujn6aip66j30ik092q48.jpg" alt></p>
+<p>如上图所示，可以利用服务器来节省带宽。每一个服务器都从测量节点收到很多个sketches，然后合并sketches并将合并结果发送到collector。为了实现合并，我们需要每一个sketches都使用相同的哈希函数。如果他们都有共同的流ID，我们建议使用求和合并，否则我们建议使用最大值合并。</p>
+<p><strong>求和合并（Sum Merging）</strong>：给定两个相同大小($d*w$)的，将相对应的计数器值相加即可，这种方法简单快速但是准确率低。</p>
+<p><strong>对于相同大小的sketches进行最大值合并</strong>：如下图所示，给定两个sketches A和B（$w*d$），建立一个新的sketch $\mathbb{C}$，$C_i[j]=max\{Ai_[j],B_i[j]\}(1 \leq i \leq d,1 \leq j \leq w)$。</p>
+<p><img src="https://ws1.sinaimg.cn/large/006tNbRwly1fujp4i6cm3j30iu0680tf.jpg" alt></p>
+<hr>
+<h3 id="自适应数据包传输速率"><a href="#自适应数据包传输速率" class="headerlink" title="自适应数据包传输速率"></a>自适应数据包传输速率</h3><p>在测量节点上，总是有一个输入队列来缓存数据包。包速率在大多数情况下都是比较低的，但是更糟的情况下，其速度是很高的，输入队列也很快填满了，也就很难记录所有的数据流。上一篇文章SketchVisor使用一个专用组件fast path来容纳高速率的数据包。然而，最差情况下他还要将整个数据结构都进行传输，可能会影响一定的性能。</p>
+<p>我们提出了一个方法来应对突发流量。当包数量大于预先设定的阈值时，我们让输入包只到heavy part中，这样保留大数据流，丢弃小数据流。这样一来，只有在以下情况可能发生改变：如果一个bucket里的数据流f由另一个数据流$f’$替换，$f’$的流大小就被设置成了$f$。因此我们需要一个探针，当数据流量速度减小的时候，就回到之前的方法上。</p>
+<p>上述方法在损失很小精确度的情况下实现了更高的速度。该策略被激活的时候，我们没有丢弃light part而是阻止其更新。也就是仅仅当数据包速度很快的时候才会发生信息的丢失。</p>
+<hr>
+<h3 id="自适应网络流大小分布"><a href="#自适应网络流大小分布" class="headerlink" title="自适应网络流大小分布"></a>自适应网络流大小分布</h3><p>对于流大小分布的主要判别依据就是大数据流的数量。我们需要根据数据流的分布来调整heavy part的规模。步骤如下：首先我们向heavy part分配一个小内存空间，随着越来越多的大数据流的加入，heavy part将会满了。我们设定一个阈值T1。当 heavy part满了的时候，我们提出了一下的复制操作：将 heavy part拷贝并与原heavy part合并为一个。哈希函数也从$h(.)\%w$变为$h(.)\%2w$。这样一来，bucket就节省了一半的空间。</p>
+<p><img src="https://ws1.sinaimg.cn/large/006tNbRwly1fujqe6jlqmj30j009q75l.jpg" alt></p>
+<p>上图所示到达的$f_2$数据流哈希到了$f_3$的bucket位置上，这样将$w$翻倍，由4变到8，$f_3$数据流的余数可以变为6，$f_2$落到原$f_3$的位置上，这样动态实现了网络流大小的分布适应。</p>
+
+        </div>
+        
+        
+        
+    </div>
+</div>
+
+
+
+
+
+
+
+
+    <div class="card">
+    
+    <div class="card-content article ">
+        
+        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+            <div class="level-left">
+                <time class="level-item has-text-grey" datetime="2018-08-22T16:00:00.000Z">2018-08-23</time>
+                
+                <div class="level-item">
+                <a class="has-link-grey -link" href="/categories/网络/">网络</a>
+                </div>
+                
+                
+                <span class="level-item has-text-grey">
+                    
+                    
+                    9 分钟 读完 (大约 1352 个字)
+                </span>
+                
+                
+            </div>
+        </div>
+        
+        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+            
+                <a class="has-link-black-ter" href="/2018/08/23/网络/2018-8-24-SketchLearn/">SketchLearn: Relieving User Burdens in Approximate Measurement with Automated Statistical Inference</a>
+            
+        </h1>
+        <div class="content">
+            <h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2><p>在巨大的网络流量下，网络测量对于资源的利用有着严格的限制。近似测量的方法可以节省一定的资源，需要人工对其进行合适的配置。详细来说，典型方法通过严控参数，在合理的测量误差下提供足够的资源。我们设计了SketchLearn，这是一个sketch-based的测量框架，可以通过学习统计特性解决资源冲突从而消除了网络流量上的冲突。</p>
+<h2 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h2><p>由于网络资源的限制，许多的网络测量方法都需要在资源利用与测量准确度之间进行权衡。基本思路就是将次线性的数据结构压缩，并在有限的资源下理论保证恢复。尽管这具有理论可行性但是现有方法都不方便使用，因为巨大的网络流总是在竞争有限的资源，并由资源冲突引发一定的错误，为了消除这些错误，还需要分出一些资源来实现准确度。综上，资源配置与准确度之间还有紧密的联系，这些联系导致了一部分限制：</p>
+<ol>
+<li>管理员需要将错误容忍级别当做一个参数引入到资源配置算法中。</li>
+<li>每一种资源配置都对应一个阈值参数。</li>
+<li>理论分析只给出了基于实际负载的最坏结果。</li>
+<li>每一种配置都被特定的流所限制。</li>
+<li>管理员不能容忍较大的测量误差。</li>
+</ol>
+<p>由于以上限制的存在，如何在理论方法与实际应用之间架起桥梁对我们来说是一个挑战。</p>
+<p>为了解决这个问题，我们使用的sketch-based方法可以完全记录所有观测到的数据包的统计数据，他们都有固定的数据结构。SketchLearn的基本思想是将固有的资源矛盾的统计特征描绘出来，而非追求一个消除所有资源冲突的配置参数。详细的说，SketchLearn建立了一个多层的sketch来追踪网络流记录的频数。这个多级结构引出了一个计数器的多bit-level的高斯分布。SketchLearn利用高斯分布来确定其限制。它反复从多级sketch中推算并提取出大数据流，直到剩余的多级sketch满足高斯分布。通过分离大小数据流，SketchLearn消除了资源冲突并且提高其测量准确性。</p>
+<h2 id="研究动机"><a href="#研究动机" class="headerlink" title="研究动机"></a>研究动机</h2><p>在一个时间间隙里每条网络数据流的频数被称为epochs。每条流都用一个flowkey作为标志，例如5元组或者源/目的地址对。通过每条流的频数，我们都可以得到较复杂的数据流统计量，如heavy hitters, heavy changers, superspreaders 以及 DDoS，cardinality(势),流大小分布和熵。</p>
+<h3 id="设计要求"><a href="#设计要求" class="headerlink" title="设计要求"></a>设计要求</h3><ol>
+<li>较小的内存使用</li>
+<li>较快的包处理速度</li>
+<li>实时响应</li>
+<li>通用性</li>
+</ol>
+<h3 id="现有方法的一些限制"><a href="#现有方法的一些限制" class="headerlink" title="现有方法的一些限制"></a>现有方法的一些限制</h3><ol>
+<li>很难说明预期误差</li>
+<li>很难处理不同的阈值（针对那些阈值作为一项输入的方法来说）</li>
+<li>很难根据理论依据来调整参数配置</li>
+<li>很难重新定义flowkeys</li>
+<li>很难去检查其准确性</li>
+</ol>
+<hr>
+<h2 id="SketchLearn-概览"><a href="#SketchLearn-概览" class="headerlink" title="SketchLearn 概览"></a>SketchLearn 概览</h2><h3 id="功能设计"><a href="#功能设计" class="headerlink" title="功能设计"></a>功能设计</h3><p><strong>对于每位进行追踪的多级sketch</strong><br>SketchLearn维护一个由多个小sketches所组成的多级sketch，每个多级sketch都会对一个给定的flowkey进行特定的网络流数据跟踪。结合统计模型，SketchLearn不仅仅减少了sketch的大小，还加强了对于资源的利用，同时还使得flowkey可以按需随意定制。在多级sketch中，每一个flowkey都有多个域来组成，如5元组。</p>
+<p><strong>对大小数据流进行分离</strong><br>多级sketch提供了一个关键的特性就是如果没有大数据流，他的计数器就跟从高斯分布。这样，SketchLearn从多级sketch中抽取大数据流，并且剩下小数据流的计数器形成高斯分布。这样的分离使得SketchLearn解决哈希冲突。例如SketchLearn只对那些抽取出来的大数据流进行hitter检测。</p>
+<p><strong>无参数的模型接口</strong><br>SketchLearn在不借助任何参数的情况下实现对于大小数据流的区分。它反复学习多级sketch中的统计分布并且利用这种分布来指导大数据流的提取。注意这里的无参数不是说SketchLearn是零配置的，例如对于heavy hitter的检测仍然需要一个阈值，但是SketchLearn已经尽可能减少了配置量。</p>
+<p><strong>对于独立数据流的误差测量</strong>对于给定数据流统计量SketchLearn都有相应的误差测量。我们不需要识别任何误差，相反的是我们利用这个来识别正确的数据流</p>
+<p><strong>全网范围</strong>SketchLearn可以部署到全网的测量节点上。</p>
+<h3 id="架构设计"><a href="#架构设计" class="headerlink" title="架构设计"></a>架构设计</h3>
+        </div>
+        
+        
+        
+    </div>
+</div>
+
+
+
+
+
+
+
+
+    <div class="card">
+    
+    <div class="card-content article ">
+        
+        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+            <div class="level-left">
+                <time class="level-item has-text-grey" datetime="2018-04-23T16:00:00.000Z">2018-04-24</time>
+                
+                <div class="level-item">
+                <a class="has-link-grey -link" href="/categories/网络/">网络</a>
+                </div>
+                
+                
+                <span class="level-item has-text-grey">
+                    
+                    
+                    4 分钟 读完 (大约 537 个字)
+                </span>
+                
+                
+            </div>
+        </div>
+        
+        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+            
+                <a class="has-link-black-ter" href="/2018/04/24/网络/2018-4-24-Mininet拓扑学习/">Mininet拓扑学习</a>
+            
+        </h1>
+        <div class="content">
+            <p><a href="https://github.com/mininet/mininet/wiki/Introduction-to-Mininet" target="_blank" rel="noopener">Mininet</a> /<a href="http://mininet.org/api/annotated.html" target="_blank" rel="noopener">Mininet API</a>给出了相当丰富的功能，本篇对各函数总结归纳。</p>
+<hr>
+<h2 id="拓扑结构"><a href="#拓扑结构" class="headerlink" title="拓扑结构"></a>拓扑结构</h2><ul>
+<li>Top</li>
+<li>build()</li>
+<li>addSwitch()</li>
+<li>addHost()</li>
+<li>addLink()</li>
+<li>start()</li>
+<li>stop()</li>
+<li>net.hosts</li>
+</ul>
+<figure class="highlight python hljs"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line"><span class="hljs-keyword">from</span> mininet.topo <span class="hljs-keyword">import</span> Topo</span><br><span class="line"><span class="hljs-keyword">from</span> mininet.net <span class="hljs-keyword">import</span> Mininet</span><br><span class="line"><span class="hljs-keyword">from</span> mininet.util <span class="hljs-keyword">import</span> dumpNodeConnections</span><br><span class="line"><span class="hljs-keyword">from</span> mininet.log <span class="hljs-keyword">import</span> setLogLevel</span><br><span class="line"></span><br><span class="line"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">SingleSwitchTopo</span><span class="hljs-params">(Topo)</span>:</span></span><br><span class="line">    <span class="hljs-string">"Single switch connected to n hosts."</span></span><br><span class="line">    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">build</span><span class="hljs-params">(self, n=<span class="hljs-number">2</span>)</span>:</span></span><br><span class="line">        switch = self.addSwitch(<span class="hljs-string">'s1'</span>)</span><br><span class="line">        <span class="hljs-comment"># Python's range(N) generates 0..N-1</span></span><br><span class="line">        <span class="hljs-keyword">for</span> h <span class="hljs-keyword">in</span> range(n):</span><br><span class="line">            host = self.addHost(<span class="hljs-string">'h%s'</span> % (h + <span class="hljs-number">1</span>))</span><br><span class="line">            self.addLink(host, switch)</span><br><span class="line"></span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">simpleTest</span><span class="hljs-params">()</span>:</span></span><br><span class="line">    <span class="hljs-string">"Create and test a simple network"</span></span><br><span class="line">    topo = SingleSwitchTopo(n=<span class="hljs-number">4</span>)</span><br><span class="line">    net = Mininet(topo)</span><br><span class="line">    net.start()</span><br><span class="line">    net.stop()</span><br><span class="line"></span><br><span class="line"><span class="hljs-keyword">if</span> __name__ == <span class="hljs-string">'__main__'</span>:</span><br><span class="line">    <span class="hljs-comment"># Tell mininet to print useful information</span></span><br><span class="line">    setLogLevel(<span class="hljs-string">'info'</span>)</span><br><span class="line">    simpleTest()</span><br></pre></td></tr></table></figure>
+<h2 id="网络工具"><a href="#网络工具" class="headerlink" title="网络工具"></a>网络工具</h2><ul>
+<li>pingAll(): 测试网络所有节点的连通性，注意保证节点都在net中，否则不测试。</li>
+<li>dumpNodeConnections():截获节点之间的连通并进行分析。</li>
+<li>iperf(): 测试两个节点之间的网络性能，返回网速。</li>
+</ul>
+<h2 id="性能设定（以参数方法实现）"><a href="#性能设定（以参数方法实现）" class="headerlink" title="性能设定（以参数方法实现）"></a>性能设定（以参数方法实现）</h2><ul>
+<li><p>self.addHost(name, cpu=f):</p>
+<p>  可以指定一个小数，意义是让CPU分配一定比例(设定的百分数)的CPU资源给虚拟主机。</p>
+</li>
+<li><p>self.addLink(node1, node2, bw=10, delay=’5ms’, max_queue_size=1000, loss=10, use_htb=True):</p>
+<p>  以bw(bandwidth)，delay，以及loss的值建立一个双向连接，最大等待队列长度为1000且启用HTB算法(提高带宽利用率且限制P2P海量软件的下载)。</p>
+</li>
+</ul>
+<figure class="highlight python hljs"><table><tr><td class="code"><pre><span class="line"><span class="hljs-comment">#!/usr/bin/python</span></span><br><span class="line"></span><br><span class="line"><span class="hljs-keyword">from</span> mininet.topo <span class="hljs-keyword">import</span> Topo</span><br><span class="line"><span class="hljs-keyword">from</span> mininet.net <span class="hljs-keyword">import</span> Mininet</span><br><span class="line"><span class="hljs-keyword">from</span> mininet.node <span class="hljs-keyword">import</span> CPULimitedHost</span><br><span class="line"><span class="hljs-keyword">from</span> mininet.link <span class="hljs-keyword">import</span> TCLink</span><br><span class="line"><span class="hljs-keyword">from</span> mininet.util <span class="hljs-keyword">import</span> dumpNodeConnections</span><br><span class="line"><span class="hljs-keyword">from</span> mininet.log <span class="hljs-keyword">import</span> setLogLevel</span><br><span class="line"></span><br><span class="line"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">SingleSwitchTopo</span><span class="hljs-params">( Topo )</span>:</span></span><br><span class="line">    <span class="hljs-string">"Single switch connected to n hosts."</span></span><br><span class="line">    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">build</span><span class="hljs-params">( self, n=<span class="hljs-number">2</span> )</span>:</span></span><br><span class="line">	switch = self.addSwitch( <span class="hljs-string">'s1'</span> )</span><br><span class="line">	<span class="hljs-keyword">for</span> h <span class="hljs-keyword">in</span> range(n):</span><br><span class="line">	    <span class="hljs-comment"># Each host gets 50%/n of system CPU</span></span><br><span class="line">	    host = self.addHost( <span class="hljs-string">'h%s'</span> % (h + <span class="hljs-number">1</span>),</span><br><span class="line">		                 cpu=<span class="hljs-number">.5</span>/n )</span><br><span class="line">	    <span class="hljs-comment"># 10 Mbps, 5ms delay, 2% loss, 1000 packet queue</span></span><br><span class="line">	    self.addLink( host, switch, bw=<span class="hljs-number">10</span>, delay=<span class="hljs-string">'5ms'</span>, loss=<span class="hljs-number">2</span>,</span><br><span class="line">                          max_queue_size=<span class="hljs-number">1000</span>, use_htb=<span class="hljs-keyword">True</span> )</span><br><span class="line"></span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">perfTest</span><span class="hljs-params">()</span>:</span></span><br><span class="line">    <span class="hljs-string">"Create network and run simple performance test"</span></span><br><span class="line">    topo = SingleSwitchTopo( n=<span class="hljs-number">4</span> )</span><br><span class="line">    net = Mininet( topo=topo,</span><br><span class="line">	           host=CPULimitedHost, link=TCLink )</span><br><span class="line">    net.start()</span><br><span class="line">    <span class="hljs-keyword">print</span> <span class="hljs-string">"Dumping host connections"</span></span><br><span class="line">    dumpNodeConnections( net.hosts )</span><br><span class="line">    <span class="hljs-keyword">print</span> <span class="hljs-string">"Testing network connectivity"</span></span><br><span class="line">    net.pingAll()</span><br><span class="line">    <span class="hljs-keyword">print</span> <span class="hljs-string">"Testing bandwidth between h1 and h4"</span></span><br><span class="line">    h1, h4 = net.get( <span class="hljs-string">'h1'</span>, <span class="hljs-string">'h4'</span> )</span><br><span class="line">    net.iperf( (h1, h4) )</span><br><span class="line">    net.stop()</span><br><span class="line"></span><br><span class="line"><span class="hljs-keyword">if</span> __name__ == <span class="hljs-string">'__main__'</span>:</span><br><span class="line">    setLogLevel( <span class="hljs-string">'info'</span> )</span><br><span class="line">    perfTest()</span><br></pre></td></tr></table></figure>
+<h2 id="指令"><a href="#指令" class="headerlink" title="指令"></a>指令</h2><ul>
+<li>cmd()</li>
+</ul>
+<p>由于每一个host主机都是作为bash shell来进行模拟的，所以理论上可以支持所有终端指令</p>
+<figure class="highlight py hljs"><table><tr><td class="code"><pre><span class="line">h1 = net.get(<span class="hljs-string">'h1'</span>)</span><br><span class="line">result = h1.cmd(<span class="hljs-string">'ifconfig'</span>)</span><br><span class="line"><span class="hljs-keyword">print</span> result</span><br></pre></td></tr></table></figure>
+
+        </div>
+        
+        
+        
+    </div>
+</div>
+
+
+
+
+
+
+
+
+    <div class="card">
+    
+    <div class="card-content article ">
+        
+        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+            <div class="level-left">
+                <time class="level-item has-text-grey" datetime="2017-11-27T16:00:00.000Z">2017-11-28</time>
+                
+                <div class="level-item">
+                <a class="has-link-grey -link" href="/categories/网络/">网络</a>
+                </div>
+                
+                
+                <span class="level-item has-text-grey">
+                    
+                    
+                    6 分钟 读完 (大约 911 个字)
+                </span>
+                
+                
+            </div>
+        </div>
+        
+        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+            
+                <a class="has-link-black-ter" href="/2017/11/28/网络/2017-11-28-路由协议汇总整理/">路由协议汇总整理</a>
+            
+        </h1>
+        <div class="content">
+            <p><img src="https://ws1.sinaimg.cn/large/006tKfTcgy1flypeui4sjj31560o2jux.jpg" alt></p>
+<blockquote>
+<p>IGP主内，EGP主外</p>
+</blockquote>
+<p>IGP 是网内路由协议，运行在单一的自治系统内部(autonomous system，AS)内决策路由。</p>
+<p>EGP 是网间路由协议，是一种在AS的相邻两个网关主机间交换路由信息的协议。</p>
+<blockquote>
+<p>IGP</p>
+</blockquote>
+<p>距离矢量协议：<strong>听信谣言</strong></p>
+<p>类似的，假如你要从A到D地区，先问路人甲如何从A到B,再问路人乙如何从B到C，最后问路人丙如何从C到D。这样的话引申出了RIP协议的缺陷：</p>
+<ul>
+<li>RIP限制了网络的规模，能使用的最大距离为15(16表示不可达)</li>
+<li>其次路由器交换的信息是路由器的完整路由表，因而随着网络规模的扩大，开销也就增加</li>
+<li>“坏消息传播得慢”，使更新过程的收敛时间过长。</li>
+</ul>
+<p>链路状态路由协议：<strong>全局考量</strong></p>
+<p>类似的，假如你要从A到D地区，先下载全国的地图，然后根据拥堵情况等等，在本地计算最近的路径。其优点是：</p>
+<ul>
+<li>创建拓扑图(SPF树)，路由器可以独立确定通向每个网络的最短路径。</li>
+<li>收敛快速，当收到一个LSP(链路状态数据包)后链路状态路由协议立即将该LSP从除接收该LSP的接口以外的所有接口flooding出去。</li>
+<li>事件驱动更新:仅在拓扑发生改变的时候才发出LSP,而距离路由协议则会定期发送更新。</li>
+<li>层次设计：区域的概念使得多个区域行程了层次化的结构。</li>
+</ul>
+<blockquote>
+<p>OSPF&amp;IS-IS</p>
+</blockquote>
+<ul>
+<li>OSPF 支持NBMA以及点对多点链接，但是IS-IS不支持</li>
+<li>IS-IS直接建立在L2上，而OSPF则是基于IP,因此IS-IS有更好的安全性。</li>
+<li>OSPF可以支持虚拟链路但是IS-IS不可以(因为它建立在L2上)</li>
+<li>OSPF选举DR(Designated Router)和BDR(Backup Designated Router),(注意这里是先选举BDR然后才选举DR,因为如果反过来当选举BDR的时候DR失效，切换将无法进行，状态机也没法切换)，这样不容易被预抢占。反之IS-IS使用单一的DIS。</li>
+</ul>
+<blockquote>
+<p>EGP</p>
+</blockquote>
+<p>一般局域网中用不到，在大网中使用。底层还是要IGP来负责。现在EGP里面主要用的就是BGP。</p>
+<blockquote>
+<p>BGP</p>
+</blockquote>
+<p>BGP用于在不同的自治系统（AS）之间交换路由信息。当两个AS需要交换路由信息时，每个AS都必须指定一个运行BGP的节点，来代表AS与其他的AS交换路由信息。这个节点可以是一个主机。但通常是路由器来执行BGP。两个AS中利用BGP交换信息的路由器也被称为边界网关（Border Gateway）或边界路由器（Border Router）。<br>由于可能与不同的AS相连，在一个AS内部可能存在多个运行BGP的边界路由器。同一个自治系统(AS)中的两个或多个对等实体之间运行的BGP 被称为 IBGP（Internal/Interior BGP）。归属不同的AS的对等实体之间运行的BGP称为EBGP （External/Exterior BGP）。在AS边界上与其他AS交换信息的路由器被称作边界路由器(border/edge router)。</p>
+
+        </div>
+        
+        
+        
+    </div>
+</div>
+
+
+
+
+
+
+
+
+    <div class="card">
+    
+    <div class="card-content article ">
+        
+        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+            <div class="level-left">
+                <time class="level-item has-text-grey" datetime="2017-07-13T16:00:00.000Z">2017-07-14</time>
+                
+                <div class="level-item">
+                <a class="has-link-grey -link" href="/categories/网络/">网络</a>
+                </div>
+                
+                
+                <span class="level-item has-text-grey">
+                    
+                    
+                    2 分钟 读完 (大约 349 个字)
+                </span>
+                
+                
+            </div>
+        </div>
+        
+        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+            
+                <a class="has-link-black-ter" href="/2017/07/14/网络/2017-07-14-Ego networks/">Ego networks</a>
+            
+        </h1>
+        <div class="content">
+            <p>可以简单理解为，Ego network 侧重研究网络中的局部，也就是某一个体的性质，这种网络常常出现在社交网络研究中，<br>2016年infocom workshop上面的一篇文章Distributed Probabilistic Caching Strategy in VANETs through Named Data Networking<br>提到了这种网络，可以考虑将这种网络结构运用到VANET当中，从而结合Degree and Betweenness measures等来确定中心节点。</p>
+<p><img src="https://ws1.sinaimg.cn/large/006tKfTcly1fhj7g8ejpdj30bb09st8s.jpg" alt="ego network"></p>
+<p>其中ego就是中心节点，其它就是邻居节点（alert）,每一个ego网络中只有一个中心节点，以及若干与其相连的（tie）的邻居节点。</p>
+<p>如何计算ego network的betweenness可以参考<a href="http://www.sciencedirect.com/science/article/pii/S037887330400067X" target="_blank" rel="noopener">论文</a>。</p>
+<p>主要思想就是构建一个以ego为中心的矩阵，在矩阵中为第一行第一列，邻居节点补充为其它行列。<br>0表示不连通，1表示连通，因此对角线为全0.</p>
+<p><img src="https://ws2.sinaimg.cn/large/006tKfTcly1fhj8f8mz7nj30do09274g.jpg" alt></p>
+<p>如果是无向图，可以和容易发现这个矩阵是对称矩阵，计算betweeness可以用以下矩阵</p>
+<p><img src="https://ws2.sinaimg.cn/large/006tKfTcly1fhj8gqkxu1j30ig09oglv.jpg" alt></p>
+<p>betweeness 为上述矩阵中的值的倒数和，图例中计算的值为3.5。</p>
+
+        </div>
+        
+        
+        
+    </div>
+</div>
+
+
+
+
+
+
+
+
+    <div class="card">
+    
+    <div class="card-content article ">
+        
+        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+            <div class="level-left">
+                <time class="level-item has-text-grey" datetime="2016-12-23T16:00:00.000Z">2016-12-24</time>
+                
+                <div class="level-item">
+                <a class="has-link-grey -link" href="/categories/网络/">网络</a>
+                </div>
+                
+                
+                <span class="level-item has-text-grey">
+                    
+                    
+                    1 分钟 读完 (大约 144 个字)
+                </span>
+                
+                
+            </div>
+        </div>
+        
+        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+            
+                <a class="has-link-black-ter" href="/2016/12/24/网络/2016-12-24-ipv4在Linux上的实现/">学习构造用户空间的IP栈（资料总结）</a>
+            
+        </h1>
+        <div class="content">
+            <p>学习构造用户空间的IP栈（资料总结）</p>
+<h2 id="saminiir的博客及相关代码"><a href="#saminiir的博客及相关代码" class="headerlink" title="saminiir的博客及相关代码"></a>saminiir的博客及相关代码</h2><ul>
+<li><a href="http://www.saminiir.com/lets-code-tcp-ip-stack-1-ethernet-arp" target="_blank" rel="noopener">Ethernet &amp; ARP BY saminiir’s blog</a></li>
+<li><a href="http://www.saminiir.com/lets-code-tcp-ip-stack-2-ipv4-icmpv4/" target="_blank" rel="noopener">IPv4 &amp; ICMPv4 BY saminiir’s blog</a></li>
+<li><a href="http://www.saminiir.com/lets-code-tcp-ip-stack-3-tcp-handshake/" target="_blank" rel="noopener">TCP Basics &amp; Handshake BY saminiir’s blog</a></li>
+<li><a href="http://www.saminiir.com/lets-code-tcp-ip-stack-4-tcp-data-flow-socket-api/" target="_blank" rel="noopener">TCP Data Flow &amp; Socket API BY saminiir’s blog</a></li>
+<li><a href="https://github.com/saminiir/level-ip" target="_blank" rel="noopener">level-ip(code)</a></li>
+</ul>
+<h2 id="chobits的代码"><a href="#chobits的代码" class="headerlink" title="chobits的代码"></a>chobits的代码</h2><ul>
+<li><a href="https://github.com/chobits/tapip" target="_blank" rel="noopener">tapip(code)</a></li>
+</ul>
+<h2 id="Linux源码-IP部分"><a href="#Linux源码-IP部分" class="headerlink" title="Linux源码-IP部分"></a>Linux源码-IP部分</h2><ul>
+<li><a href="https://git.kernel.org/cgit/linux/kernel/git/torvalds/linux.git/tree/net/ipv4" target="_blank" rel="noopener">root/net/ipv4</a></li>
+</ul>
+
+        </div>
+        
+        
+        
+    </div>
+</div>
+
+
+
+
+
+
+
+
+</div>
+                
+
+
+
+
+<div class="column is-4-tablet is-4-desktop is-3-widescreen  has-order-1 column-left ">
+    
+        
+<div class="card widget">
+    <div class="card-content">
+        <nav class="level">
+            <div class="level-item has-text-centered" style="flex-shrink: 1">
+                <div>
+                    
+                    <figure class="image is-128x128 has-mb-6">
+                        <img class="" src="/images/avatar.png" alt="Your name">
+                    </figure>
+                    
+                    <p class="is-size-4 is-block">
+                        Your name
+                    </p>
+                    
+                    
+                    <p class="is-size-6 is-block">
+                        Your title
+                    </p>
+                    
+                    
+                    <p class="is-size-6 is-flex is-flex-center has-text-grey">
+                        <i class="fas fa-map-marker-alt has-mr-7"></i>
+                        <span>Your location</span>
+                    </p>
+                    
+                </div>
+            </div>
+        </nav>
+        <nav class="level is-mobile">
+            <div class="level-item has-text-centered is-marginless">
+                <div>
+                    <p class="heading">
+                        文章
+                    </p>
+                    <p class="title has-text-weight-normal">
+                        73
+                    </p>
+                </div>
+            </div>
+            <div class="level-item has-text-centered is-marginless">
+                <div>
+                    <p class="heading">
+                        分类
+                    </p>
+                    <p class="title has-text-weight-normal">
+                        12
+                    </p>
+                </div>
+            </div>
+            <div class="level-item has-text-centered is-marginless">
+                <div>
+                    <p class="heading">
+                        标签
+                    </p>
+                    <p class="title has-text-weight-normal">
+                        18
+                    </p>
+                </div>
+            </div>
+        </nav>
+        <div class="level">
+            <a class="level-item button is-link is-rounded" href="https://github.com/ppoffice" target="_blank">
+                关注我</a>
+        </div>
+        
+        
+        <div class="level is-mobile">
+            
+            <a class="level-item button is-white is-marginless" target="_blank"
+                title="Github" href="https://github.com/ppoffice">
+                
+                <i class="fab fa-github"></i>
+                
+            </a>
+            
+            <a class="level-item button is-white is-marginless" target="_blank"
+                title="Facebook" href="https://facebook.com">
+                
+                <i class="fab fa-facebook"></i>
+                
+            </a>
+            
+            <a class="level-item button is-white is-marginless" target="_blank"
+                title="Twitter" href="https://twitter.com">
+                
+                <i class="fab fa-twitter"></i>
+                
+            </a>
+            
+            <a class="level-item button is-white is-marginless" target="_blank"
+                title="Dribbble" href="https://dribbble.com">
+                
+                <i class="fab fa-dribbble"></i>
+                
+            </a>
+            
+            <a class="level-item button is-white is-marginless" target="_blank"
+                title="RSS" href="/">
+                
+                <i class="fas fa-rss"></i>
+                
+            </a>
+            
+        </div>
+        
+    </div>
+</div>
+    
+        
+    
+        
+
+<div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+        <h3 class="menu-label">
+            链接
+        </h3>
+        <ul class="menu-list">
+        
+            <li>
+                <a class="level is-mobile" href="https://hexo.io" target="_blank">
+                    <span class="level-left">
+                        <span class="level-item">Hexo</span>
+                    </span>
+                    <span class="level-right">
+                        <span class="level-item tag">hexo.io</span>
+                    </span>
+                </a>
+            </li>
+        
+            <li>
+                <a class="level is-mobile" href="https://github.com/ppoffice" target="_blank">
+                    <span class="level-left">
+                        <span class="level-item">PPOffice</span>
+                    </span>
+                    <span class="level-right">
+                        <span class="level-item tag">github.com</span>
+                    </span>
+                </a>
+            </li>
+        
+        </ul>
+        </div>
+    </div>
+</div>
+
+
+    
+        
+<div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+            <h3 class="menu-label">
+                分类
+            </h3>
+            <ul class="menu-list">
+            <li>
+        <a class="level is-marginless" href="/categories/Anomaly-detection/">
+            <span class="level-start">
+                <span class="level-item">Anomaly detection</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">4</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/Concept/">
+            <span class="level-start">
+                <span class="level-item">Concept</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">4</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/Data-mining/">
+            <span class="level-start">
+                <span class="level-item">Data mining</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">4</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/Database/">
+            <span class="level-start">
+                <span class="level-item">Database</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">3</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/Information-Retrieval/">
+            <span class="level-start">
+                <span class="level-item">Information Retrieval</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">1</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/Linux/">
+            <span class="level-start">
+                <span class="level-item">Linux</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">5</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/Pattern-recognition/">
+            <span class="level-start">
+                <span class="level-item">Pattern recognition</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">1</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/Pi/">
+            <span class="level-start">
+                <span class="level-item">Pi</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">12</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/RL/">
+            <span class="level-start">
+                <span class="level-item">RL</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">3</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/Security/">
+            <span class="level-start">
+                <span class="level-item">Security</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">8</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/算法/">
+            <span class="level-start">
+                <span class="level-item">算法</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">13</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/网络/">
+            <span class="level-start">
+                <span class="level-item">网络</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">13</span>
+            </span>
+        </a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+    
+        
+<div class="card widget">
+    <div class="card-content">
+        <h3 class="menu-label">
+            标签云
+        </h3>
+        <a href="/tags/Algorithm/" style="font-size: 18.89px;">Algorithm</a> <a href="/tags/Anomaly-detection/" style="font-size: 16.67px;">Anomaly detection</a> <a href="/tags/Concept/" style="font-size: 12.22px;">Concept</a> <a href="/tags/Data-mining/" style="font-size: 12.22px;">Data mining</a> <a href="/tags/Database/" style="font-size: 11.11px;">Database</a> <a href="/tags/IPv4/" style="font-size: 10px;">IPv4</a> <a href="/tags/Information-Retrieval/" style="font-size: 10px;">Information Retrieval</a> <a href="/tags/Linux/" style="font-size: 13.33px;">Linux</a> <a href="/tags/Mininet/" style="font-size: 10px;">Mininet</a> <a href="/tags/Networking/" style="font-size: 15.56px;">Networking</a> <a href="/tags/OS/" style="font-size: 20px;">OS</a> <a href="/tags/Pattern-recognition/" style="font-size: 10px;">Pattern recognition</a> <a href="/tags/RL/" style="font-size: 11.11px;">RL</a> <a href="/tags/Raspberry-Pi/" style="font-size: 17.78px;">Raspberry-Pi</a> <a href="/tags/Security/" style="font-size: 15.56px;">Security</a> <a href="/tags/VANET/" style="font-size: 14.44px;">VANET</a> <a href="/tags/ns3/" style="font-size: 14.44px;">ns3</a> <a href="/tags/time-series/" style="font-size: 10px;">time series</a>
+    </div>
+</div>
+
+    
+    
+        <div class="column-right-shadow is-hidden-widescreen ">
+        
+            
+<div class="card widget">
+    <div class="card-content">
+        <h3 class="menu-label">
+            最新文章
+        </h3>
+        
+        <article class="media">
+            
+            <a href="/2019/09/16/数据挖掘/2019-09-16-基于注意力模型的RNN时序预测/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-09-16T08:29:00.668Z">2019-09-16</time></div>
+                    <a href="/2019/09/16/数据挖掘/2019-09-16-基于注意力模型的RNN时序预测/" class="title has-link-black-ter is-size-6 has-text-weight-normal"></a>
+                    <p class="is-size-7 is-uppercase">
+                        
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2019/09/12/数据挖掘/2019-09-12-时间注意力模型下的时序预测/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="时间注意力模型下的时序预测.md">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-09-11T16:00:00.000Z">2019-09-12</time></div>
+                    <a href="/2019/09/12/数据挖掘/2019-09-12-时间注意力模型下的时序预测/" class="title has-link-black-ter is-size-6 has-text-weight-normal">时间注意力模型下的时序预测.md</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/Anomaly-detection/">Anomaly detection</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2019/09/09/数据挖掘/2019-09-09-DNN多维时序无监督异常检测/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="多维时序无监督异常检测.md">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-09-08T16:00:00.000Z">2019-09-09</time></div>
+                    <a href="/2019/09/09/数据挖掘/2019-09-09-DNN多维时序无监督异常检测/" class="title has-link-black-ter is-size-6 has-text-weight-normal">多维时序无监督异常检测.md</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/Anomaly-detection/">Anomaly detection</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2019/08/14/数据挖掘/2019-08-14-异常检测（MSRA KDD'19）/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="异常检测（MSRA，KDD&#39;19）">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-08-13T16:00:00.000Z">2019-08-14</time></div>
+                    <a href="/2019/08/14/数据挖掘/2019-08-14-异常检测（MSRA KDD'19）/" class="title has-link-black-ter is-size-6 has-text-weight-normal">异常检测（MSRA，KDD&#39;19）</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/Anomaly-detection/">Anomaly detection</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2019/07/21/数据挖掘/2019-08-13-实时异常检测/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="实时异常检测（xStream，KDD&#39;18）">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-07-20T16:00:00.000Z">2019-07-21</time></div>
+                    <a href="/2019/07/21/数据挖掘/2019-08-13-实时异常检测/" class="title has-link-black-ter is-size-6 has-text-weight-normal">实时异常检测（xStream，KDD&#39;18）</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/Anomaly-detection/">Anomaly detection</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+    </div>
+</div>
+
+        
+            <div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+        <h3 class="menu-label">
+            归档
+        </h3>
+        <ul class="menu-list">
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2019/09/">
+                <span class="level-start">
+                    <span class="level-item">九月 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">3</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2019/08/">
+                <span class="level-start">
+                    <span class="level-item">八月 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2019/07/">
+                <span class="level-start">
+                    <span class="level-item">七月 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">7</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2019/06/">
+                <span class="level-start">
+                    <span class="level-item">六月 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">4</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2019/05/">
+                <span class="level-start">
+                    <span class="level-item">五月 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">4</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2018/12/">
+                <span class="level-start">
+                    <span class="level-item">十二月 2018</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">4</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2018/11/">
+                <span class="level-start">
+                    <span class="level-item">十一月 2018</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">2</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2018/10/">
+                <span class="level-start">
+                    <span class="level-item">十月 2018</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2018/09/">
+                <span class="level-start">
+                    <span class="level-item">九月 2018</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2018/08/">
+                <span class="level-start">
+                    <span class="level-item">八月 2018</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">3</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2018/04/">
+                <span class="level-start">
+                    <span class="level-item">四月 2018</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">2</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2017/11/">
+                <span class="level-start">
+                    <span class="level-item">十一月 2017</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">3</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2017/10/">
+                <span class="level-start">
+                    <span class="level-item">十月 2017</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">6</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2017/09/">
+                <span class="level-start">
+                    <span class="level-item">九月 2017</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">7</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2017/07/">
+                <span class="level-start">
+                    <span class="level-item">七月 2017</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">2</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2017/03/">
+                <span class="level-start">
+                    <span class="level-item">三月 2017</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">6</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2016/12/">
+                <span class="level-start">
+                    <span class="level-item">十二月 2016</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">2</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2016/10/">
+                <span class="level-start">
+                    <span class="level-item">十月 2016</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">2</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2016/09/">
+                <span class="level-start">
+                    <span class="level-item">九月 2016</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2016/08/">
+                <span class="level-start">
+                    <span class="level-item">八月 2016</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">11</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2016/05/">
+                <span class="level-start">
+                    <span class="level-item">五月 2016</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        </ul>
+        </div>
+    </div>
+</div>
+        
+            <div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+            <h3 class="menu-label">
+                标签
+            </h3>
+            <div class="field is-grouped is-grouped-multiline">
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Algorithm/">
+                        <span class="tag">Algorithm</span>
+                        <span class="tag is-grey">13</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Anomaly-detection/">
+                        <span class="tag">Anomaly detection</span>
+                        <span class="tag is-grey">10</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Concept/">
+                        <span class="tag">Concept</span>
+                        <span class="tag is-grey">4</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Data-mining/">
+                        <span class="tag">Data mining</span>
+                        <span class="tag is-grey">4</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Database/">
+                        <span class="tag">Database</span>
+                        <span class="tag is-grey">3</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/IPv4/">
+                        <span class="tag">IPv4</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Information-Retrieval/">
+                        <span class="tag">Information Retrieval</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Linux/">
+                        <span class="tag">Linux</span>
+                        <span class="tag is-grey">5</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Mininet/">
+                        <span class="tag">Mininet</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Networking/">
+                        <span class="tag">Networking</span>
+                        <span class="tag is-grey">8</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/OS/">
+                        <span class="tag">OS</span>
+                        <span class="tag is-grey">17</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Pattern-recognition/">
+                        <span class="tag">Pattern recognition</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/RL/">
+                        <span class="tag">RL</span>
+                        <span class="tag is-grey">3</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Raspberry-Pi/">
+                        <span class="tag">Raspberry-Pi</span>
+                        <span class="tag is-grey">12</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Security/">
+                        <span class="tag">Security</span>
+                        <span class="tag is-grey">8</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/VANET/">
+                        <span class="tag">VANET</span>
+                        <span class="tag is-grey">6</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/ns3/">
+                        <span class="tag">ns3</span>
+                        <span class="tag is-grey">6</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/time-series/">
+                        <span class="tag">time series</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+</div>
+        
+        </div>
+    
+</div>
+
+                
+
+
+
+
+<div class="column is-4-tablet is-4-desktop is-3-widescreen is-hidden-touch is-hidden-desktop-only has-order-3 column-right ">
+    
+        
+<div class="card widget">
+    <div class="card-content">
+        <h3 class="menu-label">
+            最新文章
+        </h3>
+        
+        <article class="media">
+            
+            <a href="/2019/09/16/数据挖掘/2019-09-16-基于注意力模型的RNN时序预测/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-09-16T08:29:00.668Z">2019-09-16</time></div>
+                    <a href="/2019/09/16/数据挖掘/2019-09-16-基于注意力模型的RNN时序预测/" class="title has-link-black-ter is-size-6 has-text-weight-normal"></a>
+                    <p class="is-size-7 is-uppercase">
+                        
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2019/09/12/数据挖掘/2019-09-12-时间注意力模型下的时序预测/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="时间注意力模型下的时序预测.md">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-09-11T16:00:00.000Z">2019-09-12</time></div>
+                    <a href="/2019/09/12/数据挖掘/2019-09-12-时间注意力模型下的时序预测/" class="title has-link-black-ter is-size-6 has-text-weight-normal">时间注意力模型下的时序预测.md</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/Anomaly-detection/">Anomaly detection</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2019/09/09/数据挖掘/2019-09-09-DNN多维时序无监督异常检测/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="多维时序无监督异常检测.md">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-09-08T16:00:00.000Z">2019-09-09</time></div>
+                    <a href="/2019/09/09/数据挖掘/2019-09-09-DNN多维时序无监督异常检测/" class="title has-link-black-ter is-size-6 has-text-weight-normal">多维时序无监督异常检测.md</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/Anomaly-detection/">Anomaly detection</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2019/08/14/数据挖掘/2019-08-14-异常检测（MSRA KDD'19）/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="异常检测（MSRA，KDD&#39;19）">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-08-13T16:00:00.000Z">2019-08-14</time></div>
+                    <a href="/2019/08/14/数据挖掘/2019-08-14-异常检测（MSRA KDD'19）/" class="title has-link-black-ter is-size-6 has-text-weight-normal">异常检测（MSRA，KDD&#39;19）</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/Anomaly-detection/">Anomaly detection</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2019/07/21/数据挖掘/2019-08-13-实时异常检测/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="实时异常检测（xStream，KDD&#39;18）">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-07-20T16:00:00.000Z">2019-07-21</time></div>
+                    <a href="/2019/07/21/数据挖掘/2019-08-13-实时异常检测/" class="title has-link-black-ter is-size-6 has-text-weight-normal">实时异常检测（xStream，KDD&#39;18）</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/Anomaly-detection/">Anomaly detection</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+    </div>
+</div>
+
+    
+        <div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+        <h3 class="menu-label">
+            归档
+        </h3>
+        <ul class="menu-list">
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2019/09/">
+                <span class="level-start">
+                    <span class="level-item">九月 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">3</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2019/08/">
+                <span class="level-start">
+                    <span class="level-item">八月 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2019/07/">
+                <span class="level-start">
+                    <span class="level-item">七月 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">7</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2019/06/">
+                <span class="level-start">
+                    <span class="level-item">六月 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">4</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2019/05/">
+                <span class="level-start">
+                    <span class="level-item">五月 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">4</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2018/12/">
+                <span class="level-start">
+                    <span class="level-item">十二月 2018</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">4</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2018/11/">
+                <span class="level-start">
+                    <span class="level-item">十一月 2018</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">2</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2018/10/">
+                <span class="level-start">
+                    <span class="level-item">十月 2018</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2018/09/">
+                <span class="level-start">
+                    <span class="level-item">九月 2018</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2018/08/">
+                <span class="level-start">
+                    <span class="level-item">八月 2018</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">3</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2018/04/">
+                <span class="level-start">
+                    <span class="level-item">四月 2018</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">2</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2017/11/">
+                <span class="level-start">
+                    <span class="level-item">十一月 2017</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">3</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2017/10/">
+                <span class="level-start">
+                    <span class="level-item">十月 2017</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">6</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2017/09/">
+                <span class="level-start">
+                    <span class="level-item">九月 2017</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">7</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2017/07/">
+                <span class="level-start">
+                    <span class="level-item">七月 2017</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">2</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2017/03/">
+                <span class="level-start">
+                    <span class="level-item">三月 2017</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">6</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2016/12/">
+                <span class="level-start">
+                    <span class="level-item">十二月 2016</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">2</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2016/10/">
+                <span class="level-start">
+                    <span class="level-item">十月 2016</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">2</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2016/09/">
+                <span class="level-start">
+                    <span class="level-item">九月 2016</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2016/08/">
+                <span class="level-start">
+                    <span class="level-item">八月 2016</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">11</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2016/05/">
+                <span class="level-start">
+                    <span class="level-item">五月 2016</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        </ul>
+        </div>
+    </div>
+</div>
+    
+        <div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+            <h3 class="menu-label">
+                标签
+            </h3>
+            <div class="field is-grouped is-grouped-multiline">
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Algorithm/">
+                        <span class="tag">Algorithm</span>
+                        <span class="tag is-grey">13</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Anomaly-detection/">
+                        <span class="tag">Anomaly detection</span>
+                        <span class="tag is-grey">10</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Concept/">
+                        <span class="tag">Concept</span>
+                        <span class="tag is-grey">4</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Data-mining/">
+                        <span class="tag">Data mining</span>
+                        <span class="tag is-grey">4</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Database/">
+                        <span class="tag">Database</span>
+                        <span class="tag is-grey">3</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/IPv4/">
+                        <span class="tag">IPv4</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Information-Retrieval/">
+                        <span class="tag">Information Retrieval</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Linux/">
+                        <span class="tag">Linux</span>
+                        <span class="tag is-grey">5</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Mininet/">
+                        <span class="tag">Mininet</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Networking/">
+                        <span class="tag">Networking</span>
+                        <span class="tag is-grey">8</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/OS/">
+                        <span class="tag">OS</span>
+                        <span class="tag is-grey">17</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Pattern-recognition/">
+                        <span class="tag">Pattern recognition</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/RL/">
+                        <span class="tag">RL</span>
+                        <span class="tag is-grey">3</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Raspberry-Pi/">
+                        <span class="tag">Raspberry-Pi</span>
+                        <span class="tag is-grey">12</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Security/">
+                        <span class="tag">Security</span>
+                        <span class="tag is-grey">8</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/VANET/">
+                        <span class="tag">VANET</span>
+                        <span class="tag is-grey">6</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/ns3/">
+                        <span class="tag">ns3</span>
+                        <span class="tag is-grey">6</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/time-series/">
+                        <span class="tag">time series</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+</div>
+    
+    
+</div>
+
+            </div>
+        </div>
+    </section>
+    <footer class="footer">
+    <div class="container">
+        <div class="level">
+            <div class="level-start has-text-centered-mobile">
+                <a class="footer-logo is-block has-mb-6" href="/">
+                
+                    <img src="/images/logo.svg" alt="Fengrui Liu&#39;s Blog" height="28">
+                
+                </a>
+                <p class="is-size-7">
+                &copy; 2019 Fengrui Liu&nbsp;
+                Powered by <a href="https://hexo.io/" target="_blank">Hexo</a> & <a
+                        href="https://github.com/ppoffice/hexo-theme-icarus" target="_blank">Icarus</a>
+                
+                </p>
+            </div>
+            <div class="level-end">
+            
+                <div class="field has-addons is-flex-center-mobile has-mt-5-mobile is-flex-wrap is-flex-middle">
+                
+                
+                <p class="control">
+                    <a class="button is-white is-large" target="_blank" title="Creative Commons" href="https://creativecommons.org/">
+                        
+                        <i class="fab fa-creative-commons"></i>
+                        
+                    </a>
+                </p>
+                
+                <p class="control">
+                    <a class="button is-white is-large" target="_blank" title="Attribution 4.0 International" href="https://creativecommons.org/licenses/by/4.0/">
+                        
+                        <i class="fab fa-creative-commons-by"></i>
+                        
+                    </a>
+                </p>
+                
+                <p class="control">
+                    <a class="button is-white is-large" target="_blank" title="Download on GitHub" href="https://github.com/ppoffice/hexo-theme-icarus">
+                        
+                        <i class="fab fa-github"></i>
+                        
+                    </a>
+                </p>
+                
+                </div>
+            
+            </div>
+        </div>
+    </div>
+</footer>
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/min/moment-with-locales.min.js"></script>
+<script>moment.locale("zh-CN");</script>
+
+<script>
+var IcarusThemeSettings = {
+    article: {
+        highlight: {
+            clipboard: true,
+            fold: 'unfolded'
+        }
+    }
+};
+</script>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.4/dist/clipboard.min.js" defer></script>
+
+
+
+    
+    
+    
+    <script src="/js/animation.js"></script>
+    
+
+    
+    
+    
+    <script src="https://cdn.jsdelivr.net/npm/lightgallery@1.6.8/dist/js/lightgallery.min.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/js/jquery.justifiedGallery.min.js" defer></script>
+    <script src="/js/gallery.js" defer></script>
+    
+
+    
+    
+
+<div id="outdated">
+    <h6>Your browser is out-of-date!</h6>
+    <p>Update your browser to view this website correctly. <a id="btnUpdateBrowser" href="http://outdatedbrowser.com/">Update
+            my browser now </a></p>
+    <p class="last"><a href="#" id="btnCloseUpdateBrowser" title="Close">&times;</a></p>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/outdatedbrowser@1.1.5/outdatedbrowser/outdatedbrowser.min.js" defer></script>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        outdatedBrowser({
+            bgColor: '#f25648',
+            color: '#ffffff',
+            lowerThan: 'flex'
+        });
+    });
+</script>
+
+
+    
+    
+<script src="https://cdn.jsdelivr.net/npm/mathjax@2.7.5/unpacked/MathJax.js?config=TeX-MML-AM_CHTML" defer></script>
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    MathJax.Hub.Config({
+        'HTML-CSS': {
+            matchFontHeight: false
+        },
+        SVG: {
+            matchFontHeight: false
+        },
+        CommonHTML: {
+            matchFontHeight: false
+        },
+        tex2jax: {
+            inlineMath: [
+                ['$','$'],
+                ['\\(','\\)']
+            ]
+        }
+    });
+});
+</script>
+
+    
+    
+
+<a id="back-to-top" title="回到顶端" href="javascript:;">
+    <i class="fas fa-chevron-up"></i>
+</a>
+<script src="/js/back-to-top.js" defer></script>
+
+
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+    
+
+
+<script src="/js/main.js" defer></script>
+
+    
+    <div class="searchbox ins-search">
+    <div class="searchbox-container ins-search-container">
+        <div class="searchbox-input-wrapper">
+            <input type="text" class="searchbox-input ins-search-input" placeholder="想要查找什么..." />
+            <span class="searchbox-close ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="searchbox-result-wrapper ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+    (function (window) {
+        var INSIGHT_CONFIG = {
+            TRANSLATION: {
+                POSTS: '文章',
+                PAGES: '页面',
+                CATEGORIES: '分类',
+                TAGS: '标签',
+                UNTITLED: '(无标题)',
+            },
+            CONTENT_URL: '/content.json',
+        };
+        window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+    })(window);
+</script>
+<script src="/js/insight.js" defer></script>
+<link rel="stylesheet" href="/css/search.css">
+<link rel="stylesheet" href="/css/insight.css">
+    
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+</body>
+</html>

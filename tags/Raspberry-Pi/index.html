@@ -1,0 +1,2493 @@
+<!DOCTYPE html>
+<html  lang="zh">
+<head>
+    <meta charset="utf-8" />
+
+<meta name="generator" content="Hexo 3.8.0" />
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+
+<title>标签: Raspberry-Pi - Fengrui Liu&#39;s Blog</title>
+
+
+    <meta property="og:type" content="website">
+<meta property="og:title" content="Fengrui Liu&#39;s Blog">
+<meta property="og:url" content="http://www.liufr.com/tags/Raspberry-Pi/index.html">
+<meta property="og:site_name" content="Fengrui Liu&#39;s Blog">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http://www.liufr.com/images/og_image.png">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Fengrui Liu&#39;s Blog">
+<meta name="twitter:image" content="http://www.liufr.com/images/og_image.png">
+
+
+
+
+
+
+
+<link rel="icon" href="/images/favicon.svg">
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.7.2/css/bulma.css">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Ubuntu:400,600|Source+Code+Pro">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@9.12.0/styles/atom-one-light.css">
+
+
+    
+    
+    
+    <style>body>.footer,body>.navbar,body>.section{opacity:0}</style>
+    
+
+    
+    
+    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@1.6.8/dist/css/lightgallery.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/css/justifiedGallery.min.css">
+    
+
+    
+    
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/outdatedbrowser@1.1.5/outdatedbrowser/outdatedbrowser.min.css">
+
+
+    
+    
+    
+    
+
+<link rel="stylesheet" href="/css/back-to-top.css">
+
+
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+<link rel="stylesheet" href="/css/progressbar.css">
+<script src="https://cdn.jsdelivr.net/npm/pace-js@1.0.2/pace.min.js"></script>
+
+    
+    
+    
+
+
+<link rel="stylesheet" href="/css/style.css">
+</head>
+<body class="is-3-column">
+    <nav class="navbar navbar-main">
+    <div class="container">
+        <div class="navbar-brand is-flex-center">
+            <a class="navbar-item navbar-logo" href="/">
+            
+                <img src="/images/logo.svg" alt="Fengrui Liu&#39;s Blog" height="28">
+            
+            </a>
+        </div>
+        <div class="navbar-menu">
+            
+            <div class="navbar-start">
+                
+                <a class="navbar-item"
+                href="/">Home</a>
+                
+                <a class="navbar-item"
+                href="/archives">Archives</a>
+                
+                <a class="navbar-item"
+                href="/categories">Categories</a>
+                
+                <a class="navbar-item"
+                href="/tags">Tags</a>
+                
+                <a class="navbar-item"
+                href="/about">About</a>
+                
+            </div>
+            
+            <div class="navbar-end">
+                
+                    
+                    
+                    <a class="navbar-item" target="_blank" title="Download on GitHub" href="https://github.com/ppoffice/hexo-theme-icarus">
+                        
+                        <i class="fab fa-github"></i>
+                        
+                    </a>
+                    
+                
+                
+                
+                <a class="navbar-item search" title="搜索" href="javascript:;">
+                    <i class="fas fa-search"></i>
+                </a>
+                
+            </div>
+        </div>
+    </div>
+</nav>
+    
+    <section class="section">
+        <div class="container">
+            <div class="columns">
+                <div class="column is-8-tablet is-8-desktop is-6-widescreen has-order-2 column-main"><div class="card">
+    <div class="card-content">
+        <nav class="breadcrumb" aria-label="breadcrumbs">
+        <ul>
+            <li><a href="/tags">标签</a></li>
+            <li class="is-active"><a href="#" aria-current="page">Raspberry-Pi</a></li>
+        </ul>
+        </nav>
+    </div>
+</div>
+
+    <div class="card">
+    
+    <div class="card-content article ">
+        
+        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+            <div class="level-left">
+                <time class="level-item has-text-grey" datetime="2016-08-31T16:00:00.000Z">2016-09-01</time>
+                
+                <div class="level-item">
+                <a class="has-link-grey -link" href="/categories/Pi/">Pi</a>
+                </div>
+                
+                
+                <span class="level-item has-text-grey">
+                    
+                    
+                    9 分钟 读完 (大约 1376 个字)
+                </span>
+                
+                
+            </div>
+        </div>
+        
+        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+            
+                <a class="has-link-black-ter" href="/2016/09/01/Pi/2016-09-01-Raspberry Pi Input02/">Raspberry Pi Input02</a>
+            
+        </h1>
+        <div class="content">
+            <h3 id="实验目标"><a href="#实验目标" class="headerlink" title="实验目标"></a>实验目标</h3><p>在实验Input 01的基础上建立一个命令行接口，计算机可以中断并显示它们。</p>
+<h4 id="终端"><a href="#终端" class="headerlink" title="终端"></a>终端</h4><p>具体操作行为步骤如下：</p>
+<ol>
+<li>启动计算机，显示欢迎信息</li>
+<li>计算机表明它准备好工作</li>
+<li>使用者在键盘上键入指令和参数</li>
+<li>当敲下回车键时表示提交一条指令</li>
+<li>计算机解析并执行指令如果该指令没有错误</li>
+<li>计算机显示指令正确以及接下来发生了什么</li>
+<li>返回到步骤2</li>
+</ol>
+<p>在终端的命令行输入输出操作都具有一定的统一性，因此我们不再需要去绘制出每一个像素点（计算机在此处的额操作是以字符为单位的），我们将每一个字符的图案信息、颜色信息等都保存起来，再按照需要通过<strong>DrawCharacter</strong>函数调用每一个字符即可。</p>
+<figure class="highlight arm hljs"><table><tr><td class="code"><pre><span class="line"><span class="hljs-symbol">.section</span> <span class="hljs-meta">.data</span></span><br><span class="line"><span class="hljs-symbol">.align</span> <span class="hljs-number">4</span></span><br><span class="line"><span class="hljs-symbol">terminalStart</span>:</span><br><span class="line"><span class="hljs-symbol">.int</span> terminalBuffer</span><br><span class="line"><span class="hljs-symbol">terminalStop</span>:</span><br><span class="line"><span class="hljs-symbol">.int</span> terminalBuffer</span><br><span class="line"><span class="hljs-symbol">terminalView</span>:</span><br><span class="line"><span class="hljs-symbol">.int</span> terminalBuffer</span><br><span class="line"><span class="hljs-symbol">terminalColour</span>:</span><br><span class="line"><span class="hljs-symbol">.byte</span> <span class="hljs-number">0xf</span></span><br><span class="line"><span class="hljs-symbol">.align</span> <span class="hljs-number">8</span></span><br><span class="line"><span class="hljs-symbol">terminalBuffer</span>:</span><br><span class="line"><span class="hljs-symbol">.rept</span> <span class="hljs-number">128</span>*<span class="hljs-number">128</span></span><br><span class="line"><span class="hljs-symbol">.byte</span> <span class="hljs-number">0x7f</span></span><br><span class="line"><span class="hljs-symbol">.byte</span> <span class="hljs-number">0x0</span></span><br><span class="line"><span class="hljs-symbol">.endr</span></span><br><span class="line"><span class="hljs-symbol">terminalScreen</span>:</span><br><span class="line"><span class="hljs-symbol">.rept</span> <span class="hljs-number">1024</span>/<span class="hljs-number">8</span> * <span class="hljs-number">768</span>/<span class="hljs-number">16</span></span><br><span class="line"><span class="hljs-symbol">.byte</span> <span class="hljs-number">0x7f</span></span><br><span class="line"><span class="hljs-symbol">.byte</span> <span class="hljs-number">0x0</span></span><br><span class="line"><span class="hljs-symbol">.endr</span></span><br></pre></td></tr></table></figure>
+<p><strong>terminalBuffer</strong></p>
+<p>可以保存我们所有需要显示的文本信息，这里定义了最多可以保存128行并且每个保存了128个字符，每个字符又保存了ASCII字符以及颜色信息，使用buffer的优点如下：</p>
+<ol>
+<li>我们可以轻易看哪个字符不同，从而区分出来</li>
+<li>我们可以回滚到历史版本因为buffer里面可以保存到历史信息</li>
+</ol>
+<p><strong>terminalScreen</strong></p>
+<p>保存当前显示的文本信息</p>
+<p><strong>terminalStart terminalStop</strong></p>
+<p>由于在这里的buffer是环形结构的，类似于数据结构的循环链表，因此需要用Start和Stop来进行标识起始于中止位置，因此当中止超过起始的时候就能发觉是否要更替字母或者其它操作</p>
+<p>.<img src="http://ww4.sinaimg.cn/large/72f96cbagw1f7k7zyu73uj20fc0lsdhr.jpg" alt></p>
+<p><strong>terminalColor</strong></p>
+<p>综合前景文字与背景各16种颜色，一共256组合,每个字符中低位保存的是前景颜色，高位保存的是背景颜色，</p>
+<p><img src="http://ww3.sinaimg.cn/large/72f96cbagw1f7k8dp1268j208c0jbwh4.jpg" alt></p>
+<h4 id="文本显示"><a href="#文本显示" class="headerlink" title="文本显示"></a>文本显示</h4><p><strong>terminalDisplay</strong></p>
+<p>该函数是从terminalBuffer中复制当前的数据到terminalScreen中，首先要比较二者是否不同，如果不同要数据更新。</p>
+<ol>
+<li>加载 <strong>terminalView</strong> <strong>terminalStop</strong> <strong>terminalDisplay</strong> 函数</li>
+<li>对于每一行来说（先行遍历）<ol>
+<li>对于每一列来说（再列遍历）<ol>
+<li>如果view视图中不为stop，则加载view当前字符与颜色</li>
+<li>否在加载字符0x7f与颜色0</li>
+<li>从<strong>terminalDisplay</strong>加载当前字符</li>
+<li>如果二者相同则跳转到步骤10</li>
+<li>二者不同则需要将加载到的字符与颜色保存到<strong>terminalDisplay</strong>中</li>
+<li>调用 <strong>TerminalColor</strong> 函数，获取背景颜色</li>
+<li>调用 <strong>DrawCharacter</strong> 函数，r0 = 0x7f（空白），r1=x， r2 = y</li>
+<li>调用 <strong>TerminalColor</strong> 函数，获取前景颜色</li>
+<li>调用 <strong>DrawCharacter</strong> 函数，r0 = 当前显示字符，r1=x， r2 = y</li>
+<li>将 <strong>terminalDisplay</strong> 函数显示的位置加2</li>
+<li>如果view 与 stop 不相同（没有将所有空间填满），view的位置也加2</li>
+<li>否则要将end替换掉start的位置</li>
+<li>x的坐标要加8</li>
+</ol>
+</li>
+<li>y的坐标要加16</li>
+</ol>
+</li>
+</ol>
+<h4 id="打印行信息"><a href="#打印行信息" class="headerlink" title="打印行信息"></a>打印行信息</h4><p>该函数在r0寄存器中保存了串地址，在r1中保存了串长度，然后将内容写出到当前的地址中，并显示到显示器上。</p>
+<ol>
+<li>检测串长度是否为0，如果为0则返回</li>
+<li>加载 <strong>terminalStop</strong> 和 <strong>terminalView</strong> 函数</li>
+<li>计算并确认x坐标的位置（目的是为了确定要显示串的位置）</li>
+<li>对于每一个字符有以下操作<ol>
+<li>检查换行符</li>
+<li>如果需要换行将bufferStop标识更新到行尾</li>
+<li>如果不需要换行将字符复制到当前的terminalColour中</li>
+<li>检查是否在行尾</li>
+<li>如果在行尾就需要检查在terminalView与terminalStop中的字符数量是否超过了当前屏幕所能容纳的数量</li>
+<li>如果超出当前屏幕就需要换行</li>
+<li>检查 <strong>terminalView</strong> 如果在buffer尾，则需要将start更新</li>
+<li>检查 <strong>terminalStop</strong> 如果在buffer尾，则需要将start更新</li>
+<li>检查 <strong>terminalStop</strong> 与 <strong>terminalStart</strong> 是否相等，如果相等则需要增加 terminalStart的值来换行</li>
+<li>检查 <strong>terminalStart</strong> 是否在buffer尾，如果是这样则用start来更新当前值</li>
+</ol>
+</li>
+<li>保存 <strong>terminalStop</strong> 与 <strong>terminalView</strong></li>
+</ol>
+<h4 id="标准输入"><a href="#标准输入" class="headerlink" title="标准输入"></a>标准输入</h4><p><strong>ReadLine</strong></p>
+<ol>
+<li>如果最大长度是0（即没有输入），那么返回0</li>
+<li>取回 <strong>terminalStop</strong> 和 <strong>terminalView</strong> 当前值</li>
+<li>如果最大长度大于buffer大小的一半，将长度置为buffer大小的一半</li>
+<li>从最大长度减去以保证能实现下划线闪烁与空终端的实现</li>
+<li>在字符串中加上下划线</li>
+<li>写回 <strong>terminalView</strong> 与 <strong>terminalStop</strong> 地址</li>
+<li>对当前字符串调用 <strong>Print</strong> 函数</li>
+<li>调用 <strong>terminalDisplay</strong></li>
+<li>调用 <strong>KeyboardUpdate</strong></li>
+<li>调用 <strong>KeyboardGetChar</strong></li>
+<li>如果是新的行字符，到步骤16</li>
+<li>如果是空格并且长度大于1则在长度上减1</li>
+<li>如果是常规字符并且长度小于最大长度那么将字符写入到串中</li>
+<li>如果字符串以下划线结尾，加一个空格否则加一个下划线</li>
+<li>回到步骤6</li>
+<li>在已有的字符串后面增加一个新行</li>
+<li>调用 <strong>Print</strong> 和 <strong>TerminalDisplay</strong> 函数</li>
+<li>将新行用空终端来代替</li>
+<li>返回字符串的长度</li>
+</ol>
+
+        </div>
+        
+        
+        
+    </div>
+</div>
+
+
+
+
+
+
+
+
+    <div class="card">
+    
+    <div class="card-content article ">
+        
+        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+            <div class="level-left">
+                <time class="level-item has-text-grey" datetime="2016-08-30T16:00:00.000Z">2016-08-31</time>
+                
+                <div class="level-item">
+                <a class="has-link-grey -link" href="/categories/Pi/">Pi</a>
+                </div>
+                
+                
+                <span class="level-item has-text-grey">
+                    
+                    
+                    4 分钟 读完 (大约 615 个字)
+                </span>
+                
+                
+            </div>
+        </div>
+        
+        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+            
+                <a class="has-link-black-ter" href="/2016/08/31/Pi/2016-08-31-Raspberry Pi Input01/">Raspberry Pi Input01</a>
+            
+        </h1>
+        <div class="content">
+            <h3 id="实验目标"><a href="#实验目标" class="headerlink" title="实验目标"></a>实验目标</h3><p>了解驱动与链接，以及键盘和如何在显示器上显示文本。</p>
+<h4 id="链接"><a href="#链接" class="headerlink" title="链接"></a>链接</h4><p>静态链接库与动态链接库都是共享代码的方式，它允许我们通过链接的方式实现代码调用。静态链接库直接将代码地址写入到操作系统中，而动态链接库则是在加载的过程中实现链接，本实验采用的是静态链接的方式。</p>
+<h4 id="键盘实现键入更新"><a href="#键盘实现键入更新" class="headerlink" title="键盘实现键入更新"></a>键盘实现键入更新</h4><p>在计算机当中，重复查看某一更新被称为轮询，这种方法经常在I/O当中使用，在本实验当中也是通过这种轮询的方法来查看键盘是否有新的输入。</p>
+<p>具体步骤如下：</p>
+<ol>
+<li>取回存入的键盘地址（默认初始为0）</li>
+<li>如果不为0则说明有当前键入值，那么跳到步骤9</li>
+<li>使用<strong>UsbCheckForChange</strong>函数来检测是否有新的函数值更新</li>
+<li>使用<strong>KeyboardCount</strong>检测现在有多少键</li>
+<li>当返回0时说明没有找到设备</li>
+<li>使用<strong>KeyboardGetAddress</strong>函数去得到第一个键盘地址</li>
+<li>存入地址</li>
+<li>有错误产生返回0</li>
+<li>重复使用6次<strong>KeyboardGetKeyDown</strong>函数取得每一个键值并存储</li>
+<li>使用<strong>KeyboardPoll</strong>函数</li>
+<li>如果没有错误则跳转到步骤3</li>
+</ol>
+<figure class="highlight arm hljs"><table><tr><td class="code"><pre><span class="line"><span class="hljs-symbol">.section</span> <span class="hljs-meta">.text</span></span><br><span class="line"><span class="hljs-symbol">.globl</span> KeyboardUpdate</span><br><span class="line"><span class="hljs-symbol">KeyboardUpdate</span>:</span><br><span class="line"><span class="hljs-keyword">push </span>&#123;<span class="hljs-built_in">r4</span>,<span class="hljs-built_in">r5</span>,<span class="hljs-built_in">lr</span>&#125;</span><br><span class="line"></span><br><span class="line"><span class="hljs-symbol">kbd</span> <span class="hljs-meta">.req</span> <span class="hljs-built_in">r4</span></span><br><span class="line"><span class="hljs-keyword">ldr </span><span class="hljs-built_in">r0</span>,<span class="hljs-symbol">=KeyboardAddress</span></span><br><span class="line"><span class="hljs-keyword">ldr </span>kbd,[<span class="hljs-built_in">r0</span>]</span><br><span class="line"></span><br><span class="line"><span class="hljs-keyword">teq </span>kbd,<span class="hljs-number">#0</span></span><br><span class="line"><span class="hljs-keyword">bne </span>haveKeyboard$</span><br><span class="line"></span><br><span class="line"><span class="hljs-symbol">getKeyboard$</span>:</span><br><span class="line"><span class="hljs-keyword">bl </span>UsbCheckForChange</span><br></pre></td></tr></table></figure>
+<p>首先将KeyboardAddress存入r4中，并判断其是否为0，当地址为0则说明发生错误没有找到键盘，那么就使用UsbCheckForChange来查找新设备，但是这一步消耗资源较大，尽量避免。</p>
+<figure class="highlight arm hljs"><table><tr><td class="code"><pre><span class="line"><span class="hljs-keyword">teq </span><span class="hljs-built_in">r0</span>,<span class="hljs-number">#0</span></span><br><span class="line"><span class="hljs-keyword">ldreq </span><span class="hljs-built_in">r1</span>,<span class="hljs-symbol">=KeyboardAddress</span></span><br><span class="line"><span class="hljs-keyword">streq </span><span class="hljs-built_in">r0</span>,[<span class="hljs-built_in">r1</span>]</span><br><span class="line"><span class="hljs-keyword">beq </span>return$</span><br><span class="line"></span><br><span class="line"><span class="hljs-keyword">mov </span><span class="hljs-built_in">r0</span>,<span class="hljs-number">#0</span></span><br><span class="line"><span class="hljs-keyword">bl </span>KeyboardGetAddress</span><br></pre></td></tr></table></figure>
+<p>当没有找到键盘是，理应获取不到键盘地址，那么就应该将r0初始化为0后继续进行返回来查看地址。</p>
+<figure class="highlight arm hljs"><table><tr><td class="code"><pre><span class="line"><span class="hljs-symbol">saveKeys$</span>:</span><br><span class="line"><span class="hljs-keyword">mov </span><span class="hljs-built_in">r0</span>,kbd</span><br><span class="line"><span class="hljs-keyword">mov </span><span class="hljs-built_in">r1</span>,<span class="hljs-built_in">r5</span></span><br><span class="line"><span class="hljs-keyword">bl </span>KeyboardGetKeyDown</span><br><span class="line"></span><br><span class="line"><span class="hljs-keyword">ldr </span><span class="hljs-built_in">r1</span>,<span class="hljs-symbol">=KeyboardOldDown</span></span><br><span class="line"><span class="hljs-keyword">add </span><span class="hljs-built_in">r1</span>,<span class="hljs-built_in">r5</span>,<span class="hljs-keyword">lsl </span><span class="hljs-number">#1</span></span><br><span class="line"><span class="hljs-keyword">strh </span><span class="hljs-built_in">r0</span>,[<span class="hljs-built_in">r1</span>]</span><br><span class="line"><span class="hljs-keyword">add </span><span class="hljs-built_in">r5</span>,<span class="hljs-number">#1</span></span><br><span class="line"><span class="hljs-keyword">cmp </span><span class="hljs-built_in">r5</span>,<span class="hljs-number">#6</span></span><br><span class="line"><span class="hljs-keyword">blt </span>saveKeys$</span><br></pre></td></tr></table></figure>
+<p>这里就是采用轮询的方式来获取键入值</p>
+<figure class="highlight arm hljs"><table><tr><td class="code"><pre><span class="line"><span class="hljs-keyword">mov </span><span class="hljs-built_in">r0</span>,kbd</span><br><span class="line"><span class="hljs-keyword">bl </span>KeyboardPoll</span><br><span class="line"></span><br><span class="line"><span class="hljs-keyword">teq </span><span class="hljs-built_in">r0</span>,<span class="hljs-number">#0</span></span><br><span class="line"><span class="hljs-keyword">bne </span>getKeyboard$</span><br><span class="line"></span><br><span class="line"><span class="hljs-symbol">return$</span>:</span><br><span class="line"><span class="hljs-keyword">pop </span>&#123;<span class="hljs-built_in">r4</span>,<span class="hljs-built_in">r5</span>,<span class="hljs-built_in">pc</span>&#125;</span><br><span class="line"><span class="hljs-symbol">.unreq</span> kbd</span><br></pre></td></tr></table></figure>
+<p>成功获取当前键入值之后使调用<strong>KeyboardPoll</strong>函数。</p>
+<p>然后根据键盘匹配的字符表来进行比对从而得到每一个按键所代表的字符信息，完成信息键入。</p>
+
+        </div>
+        
+        
+        
+    </div>
+</div>
+
+
+
+
+
+
+
+
+    <div class="card">
+    
+    <div class="card-content article ">
+        
+        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+            <div class="level-left">
+                <time class="level-item has-text-grey" datetime="2016-08-15T16:00:00.000Z">2016-08-16</time>
+                
+                <div class="level-item">
+                <a class="has-link-grey -link" href="/categories/Pi/">Pi</a>
+                </div>
+                
+                
+                <span class="level-item has-text-grey">
+                    
+                    
+                    6 分钟 读完 (大约 889 个字)
+                </span>
+                
+                
+            </div>
+        </div>
+        
+        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+            
+                <a class="has-link-black-ter" href="/2016/08/16/Pi/2016-08-16-Raspberry Pi Screen04/">Raspberry Pi Screen04</a>
+            
+        </h1>
+        <div class="content">
+            <h3 id="实验目标"><a href="#实验目标" class="headerlink" title="实验目标"></a>实验目标</h3><p>在图形界面上操作文本</p>
+<h3 id="背景补充"><a href="#背景补充" class="headerlink" title="背景补充"></a>背景补充</h3><h4 id="字符串操作"><a href="#字符串操作" class="headerlink" title="字符串操作"></a>字符串操作</h4><p>计算机不能满足于只显示提前准备好的字符串，需要有特定的函数来处理含有变量的字符串，比如说接下来的表格就是C++常见语法。</p>
+<p><img src="http://ww4.sinaimg.cn/large/006tKfTcgw1f6vf3hlemij30m60ea79f.jpg" alt></p>
+<p>即使传入的变量相同，但是显示的格式不一样得到的结果也是不同的，比如说如下：</p>
+<p><img src="http://ww3.sinaimg.cn/large/006tKfTcgw1f6vf5wt0rwj30dx06775c.jpg" alt></p>
+<h4 id="除法"><a href="#除法" class="headerlink" title="除法"></a>除法</h4><p>不同于人们运算除法时采用的乘法表的方式，计算机在进行除法运算时，首先将其转换成二进制数字，从被除数最高为开始，选择一个数，非零即一，检查该位上能否减去除数之后余数还大于0。接下来把余数部位，继续完成下一位的运算。重复直到所有被除数的位都被处理既完成。</p>
+<p>相比较于其他运算，除法相对来说开销是很大的，一方面他的每一个商实际上都是试验的结果，并不是直接计算能确定的结果；另一方面他的每一次运算都取决于上一次的运算结果，没法通过硬件实现并行计算。所以如果能提升除法的性能是很有意义的。</p>
+<p>我们对于一些特殊的除法运算可以进行如下的优化：比如说一些较小的数的计算，1/1 我们就没有必要从最高位开始loop，用clz指令（可以计算前导0的数目），这样我们就可以避开高位为0的情况，提高计算性能。</p>
+<hr>
+<h3 id="代码分析"><a href="#代码分析" class="headerlink" title="代码分析"></a>代码分析</h3><h4 id="数字串"><a href="#数字串" class="headerlink" title="数字串"></a>数字串</h4><p><strong>SignedString</strong></p>
+<p>我们处理有符号和无符号数时主要的区别就是在于最高位所代表的含义是不同的，因此对于正有符号数可以直接按照无符号数处理，负有符号数可以用剩余位的数字进行处理然后最后判断符号填在结果前面就好。</p>
+<p><strong>UnsignedString</strong></p>
+<p>在处理无符号的数时，这里有两句伪代码 <strong>rem + ‘0’</strong>， <strong>rem - 10 + ‘a’</strong> 就是根据ascii码进行处理的。</p>
+<h4 id="格式串"><a href="#格式串" class="headerlink" title="格式串"></a>格式串</h4><p>我们之前提到的 <strong>%d</strong> 就是一种格式化的输出，格式化字符串的精髓就是各种变参（<a href="http://blog.csdn.net/wangjieest/article/details/7087907" target="_blank" rel="noopener">可以参看这篇博客</a>）,甚至可以限制长度、精度等。对于不同的函数，我们手首要确定的关键就是参数，这里我们采用栈来存储参数，对于传入的参数反向压栈，然后依次判断每个字符的含义，从而进行字符串的格式化处理。</p>
+<h4 id="进制转换"><a href="#进制转换" class="headerlink" title="进制转换"></a>进制转换</h4><p>在这一部分我们将10进制数字转换成其它进制的数字。</p>
+<figure class="highlight arm hljs"><table><tr><td class="code"><pre><span class="line"><span class="hljs-keyword">mov </span><span class="hljs-built_in">r4</span>,<span class="hljs-number">#0</span></span><br><span class="line"><span class="hljs-symbol">loop$</span>:</span><br><span class="line"><span class="hljs-keyword">ldr </span><span class="hljs-built_in">r0</span>,<span class="hljs-symbol">=format</span></span><br><span class="line"><span class="hljs-keyword">mov </span><span class="hljs-built_in">r1</span>,<span class="hljs-symbol">#formatEnd</span>-format</span><br><span class="line"><span class="hljs-keyword">ldr </span><span class="hljs-built_in">r2</span>,<span class="hljs-symbol">=formatEnd</span></span><br><span class="line"><span class="hljs-keyword">lsr </span><span class="hljs-built_in">r3</span>,<span class="hljs-built_in">r4</span>,<span class="hljs-number">#4</span></span><br><span class="line"><span class="hljs-keyword">push </span>&#123;<span class="hljs-built_in">r3</span>&#125;</span><br><span class="line"><span class="hljs-keyword">push </span>&#123;<span class="hljs-built_in">r3</span>&#125;</span><br><span class="line"><span class="hljs-keyword">push </span>&#123;<span class="hljs-built_in">r3</span>&#125;</span><br><span class="line"><span class="hljs-keyword">push </span>&#123;<span class="hljs-built_in">r3</span>&#125;</span><br><span class="line"><span class="hljs-keyword">bl </span>FormatString</span><br><span class="line"><span class="hljs-keyword">add </span><span class="hljs-built_in">sp</span>,<span class="hljs-number">#16</span></span><br></pre></td></tr></table></figure>
+<p>注意这里<strong>push</strong>指令先减栈指针再数据入栈（也有说二者顺序颠倒，结果没有差别主要看CPU设计），然后接下来的工作就将数字进行进制转换。</p>
+<hr>
+<h3 id="结果展示"><a href="#结果展示" class="headerlink" title="结果展示"></a>结果展示</h3><p><img src="http://ww1.sinaimg.cn/large/65e4f1e6gw1f7rm2rc12dj21kw16o7wh.jpg" alt></p>
+
+        </div>
+        
+        
+        
+    </div>
+</div>
+
+
+
+
+
+
+
+
+    <div class="card">
+    
+    <div class="card-content article ">
+        
+        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+            <div class="level-left">
+                <time class="level-item has-text-grey" datetime="2016-08-13T16:00:00.000Z">2016-08-14</time>
+                
+                <div class="level-item">
+                <a class="has-link-grey -link" href="/categories/Pi/">Pi</a>
+                </div>
+                
+                
+                <span class="level-item has-text-grey">
+                    
+                    
+                    12 分钟 读完 (大约 1795 个字)
+                </span>
+                
+                
+            </div>
+        </div>
+        
+        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+            
+                <a class="has-link-black-ter" href="/2016/08/14/Pi/2016-08-14-Raspberry Pi Screen03/">Raspberry Pi Screen03</a>
+            
+        </h1>
+        <div class="content">
+            <h3 id="实验目标"><a href="#实验目标" class="headerlink" title="实验目标"></a>实验目标</h3><p>在图形界面上实现文本，以及一个命令行的功能。</p>
+<h3 id="背景补充"><a href="#背景补充" class="headerlink" title="背景补充"></a>背景补充</h3><h4 id="字符串及其编码"><a href="#字符串及其编码" class="headerlink" title="字符串及其编码"></a>字符串及其编码</h4><p>我们都知道计算机可以将字符显示到屏幕上，同时我们也知道计算机无法直接处理文本信息，因为它只认识bit和byte，并在数字的基础上做运算，所以实际上我们需要制定的是一种映射关系，使得计算机能将屏幕上显示的内容与内存中的信息联系起来。所以在我们录入信息的时候可以看做我们将文本加密成一种计算机可识别的信息，反过来显示的时候就是计算机的特定信息解密成可显示的文本，这其中的加密与解密的秘钥就是我们所说的编码，一种编码对应一种加解密方式，也就是说当你使用了错误的编码那么所得到的结果就注定是一种错误的乱码。</p>
+<p>由于自然语言的多种多样，导致了编码时的难以统一，在现在网络的大环境下，必须要用同一的标准也就是说，在计算机里的同一个数字要对应同一个字符，尤其是面对多语音的混合文档。所以就像该书所说：</p>
+<blockquote>
+<p>Everything you thought you knew about strings is wrong.</p>
+</blockquote>
+<h5 id="ASCII"><a href="#ASCII" class="headerlink" title="ASCII"></a>ASCII</h5><p>ASCII是专门为英语设计的，也是计算机非常流行的一种编码方式，使用一个字节的低7位（共8位），剩余的1位被用来制定其它语言的字符或者特殊符号，但是标准不是很统一。</p>
+<p><img src="http://ww4.sinaimg.cn/large/006tKfTcgw1f6te9lvwmvj30ta0f9diz.jpg" alt></p>
+<h5 id="Unicode-UTF32"><a href="#Unicode-UTF32" class="headerlink" title="Unicode - UTF32"></a>Unicode - UTF32</h5><p>UTF32的设想是用4个字节来表示所有自然语言的字符，不存在二义性，比如说U+0041总是代表’A’，即使这种语言没有’A’这个字符。但问题是，对于某些字符来说（比如说英语），4个字节是一种大大的浪费，这对空间的占用不可忽视，虽然说这种编码方式可以准确全面的定位到所有的字符，但是在绝大多数的使用场景中，都不会用到这么多种字符。</p>
+<h5 id="Unicode-UTF16"><a href="#Unicode-UTF16" class="headerlink" title="Unicode - UTF16"></a>Unicode - UTF16</h5><p>UTF16就是缩减到2个字节，对于盲区的字符用其他方法索引实现，这样一来就能大大减少空间使用。但是UTF32与UTF16都有一个很大的问题就是，对于计算机不同的大小端存储方式，可能会造成数据混乱。这里引入了Byte Order Mark（字节顺序标记），如果一个文档以FFEE开头则说明是单向，以FEFF开头则说明是反向文档。</p>
+<h5 id="Unicode-UTF8"><a href="#Unicode-UTF8" class="headerlink" title="Unicode - UTF8"></a>Unicode - UTF8</h5><p>人们对于UTF16的空间存储造成的浪费以及对于盲区字符的困扰没有满足，重新设计UTF8，这是一种变长的编码系统，对于不同的字符选择合适大小的存储空间，但是查询的索引可能复杂度高于前两者。</p>
+<p><a href="http://www.diveintopython3.net/strings.html" target="_blank" rel="noopener">参考资料1</a></p>
+<p><a href="http://liujiacai.net/blog/2015/11/20/strings/" target="_blank" rel="noopener">参考资料2</a></p>
+<h4 id="字体显示"><a href="#字体显示" class="headerlink" title="字体显示"></a>字体显示</h4><p>早期的字体显示是用可以类比位图，这样的缺点就是我们需要给同一个字符设置许多种不同的大小来满足需求，很显然这样是非常愚蠢的一种做法，后来我们用向量来表示不同的字体，这样我们存储一个字符实际上就是存储这个字符的表述信息，比如说字母’o’我们就可以描述成一个圈。（尽管向量描述是一个优秀的方法，但是在本次实验中我们任然采用第一种位图的方法，因为实现起来相对容易一些），在原文中给了一个字母A的例子</p>
+<p><img src="http://ww4.sinaimg.cn/large/006tKfTcgw1f6tgubhe5mj30d10oy42a.jpg" alt></p>
+<p>可以看到，每一排都是8位，非0即1，每一排都可以对应一个特有的序列，我们用16进制表示</p>
+<ol>
+<li>00</li>
+<li>00</li>
+<li>00</li>
+<li>10</li>
+<li>28</li>
+<li>28</li>
+<li>28</li>
+<li>44</li>
+<li>44</li>
+<li>7C</li>
+<li>C6</li>
+<li>82</li>
+<li>00</li>
+<li>00</li>
+<li>00</li>
+<li>00</li>
+</ol>
+<hr>
+<h3 id="代码分析"><a href="#代码分析" class="headerlink" title="代码分析"></a>代码分析</h3><p><strong>drawCharacter</strong></p>
+<p>这个实际上的逻辑就是根据传入的具体字符，得到上述表示的每一行像素的8位表示，然后再通过起始的x与y坐标进行绘制，原文中给出伪代码与汇编对照看，容易理解。</p>
+<p><strong>drawStrings</strong></p>
+<p>画出一个字符串实际上就是多次画出其包含的每一个字符，除此之外我们还需要考虑的是什么时候能换行与结束。实际上我们在检查边界条件代码与上面drawCharacter的代码结合起来就可以了。（汇编代码中有一处是替换掉了loop循环中的乘法运算，因为位图的固定大小优势使得我们可以这样做）</p>
+<p><strong>命令行绘制</strong></p>
+<p>我们首先要了解实验在ARM架构中的数据格式，整理翻译如下</p>
+<ol>
+<li>数据是在「tag」标签中止的。</li>
+<li>总共有9种标签，「core」内核，「mem」内存，「videotext」可视图文，「ramdisk」虚拟内存盘，「intrd2」初始RAM磁盘，「serial」串口，「revision」校验，「videolfb」「cmdline」命令行。</li>
+<li>标签只能出现一次但「core」是缺省标签。</li>
+<li>标签地址是从0x100依次排列的。</li>
+<li>在标签的末尾总是包含两个全0的字节。</li>
+<li>大小是4的整数倍</li>
+<li>标签总是以其大小为开始的，这个大小也包含其本身。</li>
+<li>实际上标签是以从1到9的序号来代表他们的。</li>
+<li>数据格式总是跟着一个5441（hex）的半字。</li>
+<li>字中的数据长度+2总是能符合要求的</li>
+<li>「core」既可以是2也可以是5的长度，如果是2那么没有数据，如果是5则代表有3个字。</li>
+<li>「mem」4个字的长度，数据和总长度是在首地址的。</li>
+<li>「cmdline」包含一个空的中止字符串，这个内核的一个重要特点。</li>
+</ol>
+<p>在我们的实验中只有「core」「mem」「cmdline」出现。</p>
+<p>首先初始化将1-9标签都设为 .int 0</p>
+<p><strong>FindTag</strong></p>
+<p>在这个函数中，首先检查标签范围，然后检查地址并将其设置为0x100，接下来在loop循环中依次获取tag的数据即可。</p>
+<p><strong>Hello World</strong></p>
+<figure class="highlight arm hljs"><table><tr><td class="code"><pre><span class="line"><span class="hljs-keyword">mov </span><span class="hljs-built_in">r0</span>,<span class="hljs-number">#9</span></span><br><span class="line"><span class="hljs-keyword">bl </span>FindTag</span><br><span class="line"><span class="hljs-keyword">ldr </span><span class="hljs-built_in">r1</span>,[<span class="hljs-built_in">r0</span>]</span><br><span class="line"><span class="hljs-keyword">lsl </span><span class="hljs-built_in">r1</span>,<span class="hljs-number">#2</span></span><br><span class="line"><span class="hljs-keyword">sub </span><span class="hljs-built_in">r1</span>,<span class="hljs-number">#8</span></span><br><span class="line"><span class="hljs-keyword">add </span><span class="hljs-built_in">r0</span>,<span class="hljs-number">#8</span></span><br><span class="line"><span class="hljs-keyword">mov </span><span class="hljs-built_in">r2</span>,<span class="hljs-number">#0</span></span><br><span class="line"><span class="hljs-keyword">mov </span><span class="hljs-built_in">r3</span>,<span class="hljs-number">#0</span></span><br><span class="line"><span class="hljs-keyword">bl </span>DrawString</span><br><span class="line"><span class="hljs-symbol">loop$</span>:</span><br><span class="line"><span class="hljs-keyword">b </span>loop$</span><br></pre></td></tr></table></figure>
+<p>利用FindTag找到9号「cmdline」标签计算出长度等信息，然后传入参数，以及初始化，画出字符，大功告成。</p>
+<hr>
+
+        </div>
+        
+        
+        
+    </div>
+</div>
+
+
+
+
+
+
+
+
+    <div class="card">
+    
+    <div class="card-content article ">
+        
+        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+            <div class="level-left">
+                <time class="level-item has-text-grey" datetime="2016-08-08T16:00:00.000Z">2016-08-09</time>
+                
+                <div class="level-item">
+                <a class="has-link-grey -link" href="/categories/Pi/">Pi</a>
+                </div>
+                
+                
+                <span class="level-item has-text-grey">
+                    
+                    
+                    8 分钟 读完 (大约 1159 个字)
+                </span>
+                
+                
+            </div>
+        </div>
+        
+        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+            
+                <a class="has-link-black-ter" href="/2016/08/09/Pi/2016-08-11-Raspberry Pi Screen02/">Raspberry Pi Screen02</a>
+            
+        </h1>
+        <div class="content">
+            <h3 id="实验目标"><a href="#实验目标" class="headerlink" title="实验目标"></a>实验目标</h3><p>用产生伪随机数的方式画出线条和其它的一些东西。</p>
+<hr>
+<h3 id="代码分析"><a href="#代码分析" class="headerlink" title="代码分析"></a>代码分析</h3><h4 id="点"><a href="#点" class="headerlink" title="点"></a>点</h4><p>我们希望通过在任意两点确定一条直线的方式画线，所以我们需要<strong>SetPixel</strong>函数来确定两个点。</p>
+<p><strong>drawing.s</strong></p>
+<figure class="highlight arm hljs"><table><tr><td class="code"><pre><span class="line"><span class="hljs-symbol">.section</span> <span class="hljs-meta">.data</span></span><br><span class="line"><span class="hljs-symbol">.align</span> <span class="hljs-number">1</span></span><br><span class="line"><span class="hljs-symbol">foreColour</span>:</span><br><span class="line"><span class="hljs-symbol">.hword</span> <span class="hljs-number">0xFFFF</span></span><br><span class="line"></span><br><span class="line"><span class="hljs-symbol">.align</span> <span class="hljs-number">2</span></span><br><span class="line"><span class="hljs-symbol">graphicsAddress</span>:</span><br><span class="line"><span class="hljs-symbol">.int</span> <span class="hljs-number">0</span></span><br><span class="line"></span><br><span class="line"><span class="hljs-symbol">.section</span> <span class="hljs-meta">.text</span></span><br><span class="line"><span class="hljs-symbol">.globl</span> SetForeColour</span><br><span class="line"><span class="hljs-symbol">SetForeColour</span>:</span><br><span class="line"><span class="hljs-keyword">cmp </span><span class="hljs-built_in">r0</span>,<span class="hljs-number">#0x10000</span></span><br><span class="line"><span class="hljs-keyword">movhs </span><span class="hljs-built_in">pc</span>,<span class="hljs-built_in">lr</span></span><br><span class="line"><span class="hljs-keyword">ldr </span><span class="hljs-built_in">r1</span>,<span class="hljs-symbol">=foreColour</span></span><br><span class="line"><span class="hljs-keyword">strh </span><span class="hljs-built_in">r0</span>,[<span class="hljs-built_in">r1</span>]</span><br><span class="line"><span class="hljs-keyword">mov </span><span class="hljs-built_in">pc</span>,<span class="hljs-built_in">lr</span></span><br><span class="line"></span><br><span class="line"><span class="hljs-symbol">.globl</span> SetGraphicsAddress</span><br><span class="line"><span class="hljs-symbol">SetGraphicsAddress</span>:</span><br><span class="line"><span class="hljs-keyword">ldr </span><span class="hljs-built_in">r1</span>,<span class="hljs-symbol">=graphicsAddress</span></span><br><span class="line"><span class="hljs-keyword">str </span><span class="hljs-built_in">r0</span>,[<span class="hljs-built_in">r1</span>]</span><br><span class="line"><span class="hljs-keyword">mov </span><span class="hljs-built_in">pc</span>,<span class="hljs-built_in">lr</span></span><br></pre></td></tr></table></figure>
+<p>这些函数写在<strong>drawing.s</strong>文件中方便调用，可以用在不同的memory中。</p>
+<p><strong>SetPixel</strong></p>
+<ol>
+<li>加载地址 graphicsAddress</li>
+<li>确定x和y数值的合法性</li>
+<li>计算每个像素点的地址（frameBufferAddress + (x + y <em> width) </em> pixel size）</li>
+<li>加载颜色信息foreColor</li>
+<li>将颜色foreColor保存到相应地址中</li>
+</ol>
+<figure class="highlight arm hljs"><table><tr><td class="code"><pre><span class="line"><span class="hljs-symbol">.globl</span> DrawPixel</span><br><span class="line"><span class="hljs-symbol">DrawPixel</span>:</span><br><span class="line"><span class="hljs-symbol">px</span> <span class="hljs-meta">.req</span> <span class="hljs-built_in">r0</span></span><br><span class="line"><span class="hljs-symbol">py</span> <span class="hljs-meta">.req</span> <span class="hljs-built_in">r1</span></span><br><span class="line"><span class="hljs-keyword">addr </span><span class="hljs-meta">.req</span> <span class="hljs-built_in">r2</span></span><br><span class="line"><span class="hljs-keyword">ldr </span><span class="hljs-keyword">addr,=graphicsAddress</span></span><br><span class="line"><span class="hljs-keyword">ldr </span><span class="hljs-keyword">addr,[addr]</span></span><br></pre></td></tr></table></figure>
+<p>px（r0寄存器），py（r1寄存器），addr（r2寄存器）</p>
+<figure class="highlight arm hljs"><table><tr><td class="code"><pre><span class="line"><span class="hljs-symbol">height</span> <span class="hljs-meta">.req</span> <span class="hljs-built_in">r3</span></span><br><span class="line"><span class="hljs-keyword">ldr </span>height,[<span class="hljs-keyword">addr,#4]</span></span><br><span class="line"><span class="hljs-keyword">sub </span>height,<span class="hljs-number">#1</span></span><br><span class="line"><span class="hljs-keyword">cmp </span>py,height</span><br><span class="line"><span class="hljs-keyword">movhi </span><span class="hljs-built_in">pc</span>,<span class="hljs-built_in">lr</span></span><br><span class="line"><span class="hljs-symbol">.unreq</span> height</span><br><span class="line"></span><br><span class="line"><span class="hljs-symbol">width</span> <span class="hljs-meta">.req</span> <span class="hljs-built_in">r3</span></span><br><span class="line"><span class="hljs-keyword">ldr </span>width,[<span class="hljs-keyword">addr,#0]</span></span><br><span class="line"><span class="hljs-keyword">sub </span>width,<span class="hljs-number">#1</span></span><br><span class="line"><span class="hljs-keyword">cmp </span>px,width</span><br><span class="line"><span class="hljs-keyword">movhi </span><span class="hljs-built_in">pc</span>,<span class="hljs-built_in">lr</span></span><br></pre></td></tr></table></figure>
+<p>根据上个实验中定义的数据格式，Physical height和Physical width分别在偏移地址4和0上，然后再确认我们定义的px和py是否符合height和width的范围。</p>
+<figure class="highlight arm hljs"><table><tr><td class="code"><pre><span class="line"><span class="hljs-keyword">ldr </span><span class="hljs-keyword">addr,[addr,#32]</span></span><br><span class="line"><span class="hljs-keyword">add </span>width,<span class="hljs-number">#1</span></span><br><span class="line"><span class="hljs-keyword">mla </span>px,py,width,px</span><br><span class="line"><span class="hljs-symbol">.unreq</span> width</span><br><span class="line"><span class="hljs-symbol">.unreq</span> py</span><br><span class="line"><span class="hljs-keyword">add </span><span class="hljs-keyword">addr, </span>px,<span class="hljs-keyword">lsl </span><span class="hljs-number">#1</span></span><br><span class="line"><span class="hljs-symbol">.unreq</span> px</span><br></pre></td></tr></table></figure>
+<p><strong>[addr,#32]</strong> 是数据格式中的指向特定图像的指针； <strong>mla</strong> 指令是带累加的相乘，完成的是px = py*width+px，地址还需要乘上每个像素的大小，<strong>add addr, px,lsl #1</strong> 得到的地址就是特定像素的地址了。</p>
+<figure class="highlight arm hljs"><table><tr><td class="code"><pre><span class="line"><span class="hljs-symbol">fore</span> <span class="hljs-meta">.req</span> <span class="hljs-built_in">r3</span></span><br><span class="line"><span class="hljs-keyword">ldr </span>fore,<span class="hljs-symbol">=foreColour</span></span><br><span class="line"><span class="hljs-keyword">ldrh </span>fore,[fore]</span><br><span class="line"></span><br><span class="line"><span class="hljs-keyword">strh </span>fore,[<span class="hljs-keyword">addr]</span></span><br><span class="line"><span class="hljs-keyword">.unreq </span>fore</span><br><span class="line"><span class="hljs-symbol">.unreq</span> <span class="hljs-keyword">addr</span></span><br><span class="line"><span class="hljs-keyword">mov </span><span class="hljs-built_in">pc</span>,<span class="hljs-built_in">lr</span></span><br></pre></td></tr></table></figure>
+<p>所以从foreColor中取出特定的颜色信息再传入到上面计算好的addr地址中，就是这个特定地址的像素信息了。</p>
+<h4 id="线"><a href="#线" class="headerlink" title="线"></a>线</h4><p>在汇编语言中使用除法是一件比较麻烦的事情，所以计算倾角来画线是不明智的选择，在这里介绍一种布雷森汉算法（<a href="https://en.wikipedia.org/wiki/Bresenham%27s_line_algorithm" target="_blank" rel="noopener">Bresenham’s line algorithm</a>），可以画直线，并且只用到了加减与移位运算。</p>
+<p>实际上Bresenham’s Algorithm是将我们现实中连续的直线离散化，因为我们实际上不可能有足够高的精度去描述一条准确的直线，毕竟计算机本身就是离散的，图形描述的离散也是情理之中。</p>
+<p><img src="http://image67.360doc.com/DownloadImg/2013/12/2009/37616883_1.png" alt></p>
+<p>算法的流程图如下,有关各式的推导可以在维基百科中得到。</p>
+<p><img src="http://image67.360doc.com/DownloadImg/2013/12/2009/37616883_2.png" alt></p>
+<h3 id="随机数生成"><a href="#随机数生成" class="headerlink" title="随机数生成"></a>随机数生成</h3><p>一种迭代的随机数生成算法，xn就是种子。</p>
+<p><img src="http://ww3.sinaimg.cn/large/006tKfTcgw1f6sbxiv81oj307e01m745.jpg" alt></p>
+<ol>
+<li>a是偶数</li>
+<li>b = a + 1 mod 4</li>
+<li>c是奇数</li>
+</ol>
+<p>实际上我们知道最简单的随机数数学公式可以用</p>
+<p><img src="http://ww3.sinaimg.cn/large/006tKfTcgw1f6sci7lzmej306500zt8i.jpg" alt></p>
+<p>这样一个最简单的公式表达，也的确能生成的一个数字序列，但是随机性也是非常低的，我们用二次函数来代替一次函数在某些程度上可以增加他的随机性，但是这些依然是伪随机生成。</p>
+<p>将算法与随机数生成程序都用<a href="http://www.cl.cam.ac.uk/projects/raspberrypi/tutorials/os/screen02.html" target="_blank" rel="noopener">汇编</a>实现。然后接下来就是按照实验步骤一步一步实现一个随机数画图程序了。</p>
+<h4 id="实验过程"><a href="#实验过程" class="headerlink" title="实验过程"></a>实验过程</h4><ol>
+<li>使用SetGraphicsAddress, 并用r0传入帧缓冲区的地址。</li>
+<li>初始化4个寄存器，一个保存随机数，一个保存颜色信息，还有一对是x，y坐标信息。</li>
+<li>在现有的坐标上，利用随机数生成下一个x轴坐标</li>
+<li>利用x坐标生成下一个y坐标</li>
+<li>迭代更新，用随机数代表y</li>
+<li>使用SetForeColour函数和颜色寄存器去设置颜色。</li>
+<li>由于我们的像素都是小于1024的，然而寄存器却能保存32位，远大于1024，所以要将寄存器值逻辑右移22位，以满足要求。</li>
+<li>检查y寄存器是否小于等于767，否则回到步骤3.</li>
+<li>利用布雷森汉算法在两点之间画线。</li>
+<li>用生成的x和y坐标更新现有的坐标。</li>
+<li>回到步骤三，画下一条线。</li>
+</ol>
+<hr>
+<h3 id="结果展示"><a href="#结果展示" class="headerlink" title="结果展示"></a>结果展示</h3><p><img src="http://ww3.sinaimg.cn/large/65e4f1e6gw1f7rlwph4uag20dc08yb2j.gif" alt></p>
+
+        </div>
+        
+        
+        
+    </div>
+</div>
+
+
+
+
+
+
+
+
+    <div class="card">
+    
+    <div class="card-content article ">
+        
+        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+            <div class="level-left">
+                <time class="level-item has-text-grey" datetime="2016-08-08T16:00:00.000Z">2016-08-09</time>
+                
+                <div class="level-item">
+                <a class="has-link-grey -link" href="/categories/Pi/">Pi</a>
+                </div>
+                
+                
+                <span class="level-item has-text-grey">
+                    
+                    
+                    2 分钟 读完 (大约 347 个字)
+                </span>
+                
+                
+            </div>
+        </div>
+        
+        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+            
+                <a class="has-link-black-ter" href="/2016/08/09/Pi/2016-08-09-Raspberry Pi OK04/">Raspberry Pi OK04</a>
+            
+        </h1>
+        <div class="content">
+            <h3 id="实验目标"><a href="#实验目标" class="headerlink" title="实验目标"></a>实验目标</h3><p>利用timer使ACT灯闪烁</p>
+<h3 id="背景补充"><a href="#背景补充" class="headerlink" title="背景补充"></a>背景补充</h3><p>timer的相关地址与其功能</p>
+<p><img src="http://ww3.sinaimg.cn/large/006tKfTcgw1f6nolpyw8bj30d50fxq4z.jpg" alt></p>
+<p>根据流程图我们可以知道，timer实际上是每隔1s钟自加1，直到与其比较的寄存器相同时结束。</p>
+<h3 id="代码分析"><a href="#代码分析" class="headerlink" title="代码分析"></a>代码分析</h3><figure class="highlight arm hljs"><table><tr><td class="code"><pre><span class="line"><span class="hljs-keyword">ldr </span><span class="hljs-built_in">r0</span>,<span class="hljs-number">=100000</span></span><br><span class="line"><span class="hljs-keyword">bl </span>Wait</span><br></pre></td></tr></table></figure>
+<p>在<strong>main.s</strong>文件中我们可以看到，这两句代码是通过r0设置等待时间，然后调用新函数实现timer的计时等待功能。</p>
+<figure class="highlight arm hljs"><table><tr><td class="code"><pre><span class="line"><span class="hljs-symbol">delay</span> <span class="hljs-meta">.req</span> <span class="hljs-built_in">r2</span></span><br><span class="line">	<span class="hljs-keyword">mov </span>delay,<span class="hljs-built_in">r0</span></span><br><span class="line">	<span class="hljs-keyword">push </span>&#123;<span class="hljs-built_in">lr</span>&#125;</span><br><span class="line">	<span class="hljs-keyword">bl </span>GetTimeStamp</span><br></pre></td></tr></table></figure>
+<p>在<strong>systemTimer.s</strong>中的<strong>Wait</strong>函数中，将r0传入的参数保存到r2中</p>
+<figure class="highlight arm hljs"><table><tr><td class="code"><pre><span class="line"><span class="hljs-symbol">.globl</span> GetSystemTimerBase</span><br><span class="line"><span class="hljs-symbol">GetSystemTimerBase</span>:</span><br><span class="line">	<span class="hljs-keyword">ldr </span><span class="hljs-built_in">r0</span>,<span class="hljs-number">=0x20003000</span></span><br><span class="line">	<span class="hljs-keyword">mov </span><span class="hljs-built_in">pc</span>,<span class="hljs-built_in">lr</span></span><br></pre></td></tr></table></figure>
+<p>通过这个函数在r0中获取到timer的基地址，并使用lr返回。</p>
+<figure class="highlight arm hljs"><table><tr><td class="code"><pre><span class="line"><span class="hljs-keyword">ldrd </span><span class="hljs-built_in">r0</span>,<span class="hljs-built_in">r1</span>,[<span class="hljs-built_in">r2</span>,<span class="hljs-number">#4</span>]</span><br></pre></td></tr></table></figure>
+<p>在这里我们使用的计数器counter有8字节，但是实际上每个寄存器只有4字节大小，所以每个counter都需要2个寄存器，所以使用<strong>ldrd</strong>指令，一次可以向一个地址中加载两个寄存器的值，r1是高字节，r0是低字节，非常方便。</p>
+<p>此时我们就可以通过loop函数进行逐次比较了。</p>
+<h3 id="结果展示"><a href="#结果展示" class="headerlink" title="结果展示"></a>结果展示</h3><p>与上个实验现象相同</p>
+<p><img src="http://ww1.sinaimg.cn/large/006tKfTcgw1f6k2d4nld4g308w0ciu0z.gif" alt></p>
+
+        </div>
+        
+        
+        
+    </div>
+</div>
+
+
+
+
+
+
+
+
+    <div class="card">
+    
+    <div class="card-content article ">
+        
+        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+            <div class="level-left">
+                <time class="level-item has-text-grey" datetime="2016-08-08T16:00:00.000Z">2016-08-09</time>
+                
+                <div class="level-item">
+                <a class="has-link-grey -link" href="/categories/Pi/">Pi</a>
+                </div>
+                
+                
+                <span class="level-item has-text-grey">
+                    
+                    
+                    5 分钟 读完 (大约 822 个字)
+                </span>
+                
+                
+            </div>
+        </div>
+        
+        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+            
+                <a class="has-link-black-ter" href="/2016/08/09/Pi/2016-08-09-Raspberry Pi OK05/">Raspberry Pi OK05</a>
+            
+        </h1>
+        <div class="content">
+            <h3 id="实验目的"><a href="#实验目的" class="headerlink" title="实验目的"></a>实验目的</h3><p>利用前面的知识做出一个SOS信号的闪烁灯。学会汇编中的代码段与数据段。</p>
+<h3 id="背景补充"><a href="#背景补充" class="headerlink" title="背景补充"></a>背景补充</h3><p>转自<a href="http://blog.chinaunix.net/uid-20548989-id-1667484.html" target="_blank" rel="noopener">梦开始的地方</a></p>
+<figure class="highlight arm hljs"><table><tr><td class="code"><pre><span class="line"><span class="hljs-symbol">.section</span> <span class="hljs-meta">.data</span></span><br></pre></td></tr></table></figure>
+<p>汇编程序中以.开头的名称并不是指令的助记符，不会被翻译成机器指令，而是给汇编器一些特殊指示，称为汇编指示（Assembler Directive）或伪操作（Pseudo-operation），由于它不是真正的指令所以加个“伪”字。.section指示把代码划分成若干个段（Section），程序被操作系统加载执行时，每个段被加载到不同的地址，操作系统对不同的页面设置不同的读、写、执行权限。.data段保存程序的数据，是可读可写的，相当于C程序的全局变量。本程序中没有定义数据，所以.data段是空的。</p>
+<figure class="highlight arm hljs"><table><tr><td class="code"><pre><span class="line"><span class="hljs-symbol">.section</span> <span class="hljs-meta">.text</span></span><br></pre></td></tr></table></figure>
+<p>.text段保存代码，是只读和可执行的，后面那些指令都属于.text段。</p>
+<figure class="highlight arm hljs"><table><tr><td class="code"><pre><span class="line"><span class="hljs-symbol">.globl</span> _start</span><br></pre></td></tr></table></figure>
+<p>_start是一个符号（Symbol），符号在汇编程序中代表一个地址，可以用在指令中，汇编程序经过汇编器的处理之后，所有的符号都被替换成它所代表的地址值。在C语言中我们通过变量名访问一个变量，其实就是读写某个地址的内存单元，我们通过函数名调用一个函数，其实就是跳转到该函数第一条指令所在的地址，所以变量名和函数名都是符号，本质上是代表内存地址的。</p>
+<p>.globl指示告诉汇编器，_start这个符号要被链接器用到，所以要在目标文件的符号表中标记它是一个全局符号。_start就像C程序的main函数一样特殊，是整个程序的入口，链接器在链接时会查找目标文件中的_start符号代表的地址，把它设置为整个程序的入口地址，所以每个汇编程序都要提供一个_start符号并且用.globl声明。如果一个符号没有用.globl声明，就表示这个符号不会被链接器用到。</p>
+<h3 id="代码分析"><a href="#代码分析" class="headerlink" title="代码分析"></a>代码分析</h3><figure class="highlight arm hljs"><table><tr><td class="code"><pre><span class="line"><span class="hljs-symbol">.section</span> <span class="hljs-meta">.data</span></span><br><span class="line"><span class="hljs-symbol">.align</span> <span class="hljs-number">2</span></span><br><span class="line"><span class="hljs-symbol">pattern</span>:</span><br><span class="line"><span class="hljs-symbol">.int</span> <span class="hljs-number">0b11111111101010100010001000101010</span></span><br></pre></td></tr></table></figure>
+<p><strong>.align 2</strong> 对齐伪指令，要求使用的地址都必须是2的倍数，因为在<strong>ldr</strong>指令中，所使用的地址都是4的倍数。<strong>.int</strong> 就是我们的闪烁序列了，1代表亮，0代表灭，在这里改变序列就可以改变灯的变化，可以多尝试几组不同序列。</p>
+<figure class="highlight arm hljs"><table><tr><td class="code"><pre><span class="line"><span class="hljs-symbol">ptrn</span> <span class="hljs-meta">.req</span> <span class="hljs-built_in">r4</span></span><br><span class="line"><span class="hljs-keyword">ldr </span>ptrn,<span class="hljs-symbol">=pattern</span></span><br><span class="line"><span class="hljs-keyword">ldr </span>ptrn,[ptrn]</span><br><span class="line"><span class="hljs-symbol">seq</span> <span class="hljs-meta">.req</span> <span class="hljs-built_in">r5</span></span><br><span class="line"><span class="hljs-keyword">mov </span>seq,<span class="hljs-number">#0</span></span><br></pre></td></tr></table></figure>
+<p><strong>ldr ptrn,=pattern</strong> 指令中，将pattern的地址加载到r4中，再从该地址取值，所以最后r4寄存器保存的是pattern中的数值（此处通过ldr的转换不同于mov有位数的限制，支持更大的数据）</p>
+<h3 id="结果展示"><a href="#结果展示" class="headerlink" title="结果展示"></a>结果展示</h3><p><img src="http://ww1.sinaimg.cn/large/006tKfTcgw1f6ooy4htowg308w050x6u.gif" alt></p>
+
+        </div>
+        
+        
+        
+    </div>
+</div>
+
+
+
+
+
+
+
+
+    <div class="card">
+    
+    <div class="card-content article ">
+        
+        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+            <div class="level-left">
+                <time class="level-item has-text-grey" datetime="2016-08-08T16:00:00.000Z">2016-08-09</time>
+                
+                <div class="level-item">
+                <a class="has-link-grey -link" href="/categories/Pi/">Pi</a>
+                </div>
+                
+                
+                <span class="level-item has-text-grey">
+                    
+                    
+                    11 分钟 读完 (大约 1589 个字)
+                </span>
+                
+                
+            </div>
+        </div>
+        
+        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+            
+                <a class="has-link-black-ter" href="/2016/08/09/Pi/2016-08-10-Raspberry Pi Screen01/">Raspberry Pi Screen01</a>
+            
+        </h1>
+        <div class="content">
+            <h3 id="实验目标"><a href="#实验目标" class="headerlink" title="实验目标"></a>实验目标</h3><p>了解图形图像的基本知识</p>
+<h3 id="背景补充"><a href="#背景补充" class="headerlink" title="背景补充"></a>背景补充</h3><p>有关黑白、灰度、8色、低彩、高彩、真彩和RGB32的详细说明与区别见<a href="http://www.cl.cam.ac.uk/projects/raspberrypi/tutorials/os/screen01.html" target="_blank" rel="noopener">原文</a></p>
+<p>Pi在开机时，先运行的是图像处理器，后运行主处理器，当外接显示器时可以看到在启动Pi时，是先在屏幕上显示一张全彩的影像，然后才进入到系统启动。</p>
+<p>Pi在进行与图像处理器通信的时候采用的是信箱通信方式，以发送信件以及接收回答信件为进程间通信的基本方式。当一个进程希望与另一进程通信时，就创建一个链接两个进程的信箱，发送进程把信件投入信箱，而接收进程可以在任何时刻取走信件。 采用信箱通信的最大好处是，发送方和接收方不必直接建联系，没有处理时间上的限制。发送方可以在任何时间发信，接收方也可以在任何时间收信。</p>
+<p>信箱的地址表如下</p>
+<p><img src="http://ww4.sinaimg.cn/large/006tKfTcgw1f6op6ropz1j30lu06rwg6.jpg" alt></p>
+<p>发送方：</p>
+<ol>
+<li>发送方等待直到状态字段的最高位为0。</li>
+<li>最低的4位代表了所要发送的信箱序号，高28位代表了所要发送的内容。</li>
+</ol>
+<p>接收方：</p>
+<ol>
+<li>接收方等待直到状态字段的30标志位为0。</li>
+<li>读取。</li>
+<li>确认信箱的正确，否则重复上述步骤直到正确。</li>
+</ol>
+<hr>
+<h3 id="代码分析"><a href="#代码分析" class="headerlink" title="代码分析"></a>代码分析</h3><p><strong>GetMailboxBase</strong></p>
+<figure class="highlight arm hljs"><table><tr><td class="code"><pre><span class="line"><span class="hljs-symbol">.globl</span> GetMailboxBase</span><br><span class="line"><span class="hljs-symbol">GetMailboxBase</span>:</span><br><span class="line"><span class="hljs-keyword">ldr </span><span class="hljs-built_in">r0</span>,<span class="hljs-number">=0x2000B880</span></span><br><span class="line"><span class="hljs-keyword">mov </span><span class="hljs-built_in">pc</span>,<span class="hljs-built_in">lr</span></span><br></pre></td></tr></table></figure>
+<p>根据上表我们知道<strong>0x2000B880</strong>是信箱的地址。</p>
+<p><strong>MailboxWrite</strong></p>
+<ol>
+<li>校验输入（r0）输出（r1）的低四位都是0，确保信箱正确性。</li>
+<li>利用<strong>GetMailboxBase</strong>函数得到信箱地址。</li>
+<li>读取状态字段。</li>
+<li>校验状态字段的最高位是否为0，否则返回第3步。（等待）</li>
+<li>连接发送内容（高28位）与信箱通道（低4位）</li>
+<li>写</li>
+</ol>
+<figure class="highlight arm hljs"><table><tr><td class="code"><pre><span class="line"><span class="hljs-symbol">.globl</span> MailboxWrite</span><br><span class="line"><span class="hljs-symbol">MailboxWrite</span>:</span><br><span class="line"><span class="hljs-keyword">tst </span><span class="hljs-built_in">r0</span>,<span class="hljs-number">#0b1111</span></span><br><span class="line"><span class="hljs-keyword">movne </span><span class="hljs-built_in">pc</span>,<span class="hljs-built_in">lr</span></span><br><span class="line"><span class="hljs-keyword">cmp </span><span class="hljs-built_in">r1</span>,<span class="hljs-number">#15</span></span><br><span class="line"><span class="hljs-keyword">movhi </span><span class="hljs-built_in">pc</span>,<span class="hljs-built_in">lr</span></span><br></pre></td></tr></table></figure>
+<p><strong>tst</strong> 数据处理指令，用于把一个寄存器的内容和另一个寄存器的内容或立即数进行按位的与运算，并根据运算结果更新CPSR中条件标志位的值,这几行代码就是检查r0和r1寄存器的最低4为是否为0，若不为0则把lr寄存器装载到pc中，返回并退出。</p>
+<figure class="highlight arm hljs"><table><tr><td class="code"><pre><span class="line"><span class="hljs-symbol">channel</span> <span class="hljs-meta">.req</span> <span class="hljs-built_in">r1</span></span><br><span class="line"><span class="hljs-symbol">value</span> <span class="hljs-meta">.req</span> <span class="hljs-built_in">r2</span></span><br><span class="line"><span class="hljs-keyword">mov </span>value,<span class="hljs-built_in">r0</span></span><br><span class="line"><span class="hljs-keyword">push </span>&#123;<span class="hljs-built_in">lr</span>&#125;</span><br><span class="line"><span class="hljs-keyword">bl </span>GetMailboxBase</span><br><span class="line"><span class="hljs-symbol">mailbox</span> <span class="hljs-meta">.req</span> <span class="hljs-built_in">r0</span></span><br></pre></td></tr></table></figure>
+<p>保护现场，避免覆盖r0的值。</p>
+<figure class="highlight arm hljs"><table><tr><td class="code"><pre><span class="line"><span class="hljs-symbol">wait1$</span>:</span><br><span class="line"><span class="hljs-symbol">status</span> <span class="hljs-meta">.req</span> <span class="hljs-built_in">r3</span></span><br><span class="line"><span class="hljs-keyword">ldr </span>status,[mailbox,<span class="hljs-number">#0x18</span>]</span><br></pre></td></tr></table></figure>
+<p>根据表格可以知道0x2000B898是Status的地址。</p>
+<figure class="highlight arm hljs"><table><tr><td class="code"><pre><span class="line"><span class="hljs-keyword">tst </span>status,<span class="hljs-number">#0x80000000</span></span><br><span class="line"><span class="hljs-symbol">.unreq</span> status</span><br><span class="line"><span class="hljs-keyword">bne </span>wait1$</span><br></pre></td></tr></table></figure>
+<p>检查最高位是否为0。</p>
+<figure class="highlight arm hljs"><table><tr><td class="code"><pre><span class="line"><span class="hljs-keyword">add </span>value,channel</span><br><span class="line"><span class="hljs-symbol">.unreq</span> channel</span><br></pre></td></tr></table></figure>
+<p>高28位数值于低4位通道号连接。</p>
+<figure class="highlight arm hljs"><table><tr><td class="code"><pre><span class="line"><span class="hljs-keyword">str </span>value,[mailbox,<span class="hljs-number">#0x20</span>]</span><br><span class="line"><span class="hljs-symbol">.unreq</span> value</span><br><span class="line"><span class="hljs-symbol">.unreq</span> mailbox</span><br><span class="line"><span class="hljs-keyword">pop </span>&#123;<span class="hljs-built_in">pc</span>&#125;</span><br></pre></td></tr></table></figure>
+<p>根据表格可以得知地址<strong>2000B8A0</strong>是WRITE，将value的值保存到该地址中即可，同时取消所有定义，pc出栈，完成操作。</p>
+<p><strong>MailboxRead</strong></p>
+<p>从信箱中读取信件的代码与之前实现基本相同。在读取的时候要从0x2000B880地址中读取。</p>
+<p><strong>FrameBufferInfo</strong></p>
+<figure class="highlight arm hljs"><table><tr><td class="code"><pre><span class="line"><span class="hljs-symbol">.section</span> <span class="hljs-meta">.data</span></span><br><span class="line"><span class="hljs-symbol">.align</span> <span class="hljs-number">4</span></span><br><span class="line"><span class="hljs-symbol">.globl</span> FrameBufferInfo</span><br><span class="line"><span class="hljs-symbol">FrameBufferInfo</span>:</span><br><span class="line"><span class="hljs-symbol">.int</span> <span class="hljs-number">1024</span> <span class="hljs-comment">/* #0 Physical Width */</span></span><br><span class="line"><span class="hljs-symbol">.int</span> <span class="hljs-number">768</span> <span class="hljs-comment">/* #4 Physical Height */</span></span><br><span class="line"><span class="hljs-symbol">.int</span> <span class="hljs-number">1024</span> <span class="hljs-comment">/* #8 Virtual Width */</span></span><br><span class="line"><span class="hljs-symbol">.int</span> <span class="hljs-number">768</span> <span class="hljs-comment">/* #12 Virtual Height */</span></span><br><span class="line"><span class="hljs-symbol">.int</span> <span class="hljs-number">0</span> <span class="hljs-comment">/* #16 GPU - Pitch */</span></span><br><span class="line"><span class="hljs-symbol">.int</span> <span class="hljs-number">16</span> <span class="hljs-comment">/* #20 Bit Depth */</span></span><br><span class="line"><span class="hljs-symbol">.int</span> <span class="hljs-number">0</span> <span class="hljs-comment">/* #24 X */</span></span><br><span class="line"><span class="hljs-symbol">.int</span> <span class="hljs-number">0</span> <span class="hljs-comment">/* #28 Y */</span></span><br><span class="line"><span class="hljs-symbol">.int</span> <span class="hljs-number">0</span> <span class="hljs-comment">/* #32 GPU - Pointer */</span></span><br><span class="line"><span class="hljs-symbol">.int</span> <span class="hljs-number">0</span> <span class="hljs-comment">/* #36 GPU - Size */</span></span><br></pre></td></tr></table></figure>
+<p>以上代码是定义传到GPU的数据格式，各项意义均已说明，注意字对齐。</p>
+<p>接下来的步骤如下：</p>
+<ol>
+<li>向mailbox1 写入地址FrameBufferInfo + 0x40000000。</li>
+<li>从mailbox1 中读出数据，如果不是0，则停止申请frame buffer。</li>
+<li>将指针指向我们所要展示的图片，就能在显示器上看到图片了。</li>
+</ol>
+<figure class="highlight arm hljs"><table><tr><td class="code"><pre><span class="line"><span class="hljs-symbol">FrameBufferInfo</span> + <span class="hljs-number">0x40000000</span></span><br></pre></td></tr></table></figure>
+<p>加上0x40000000是一种特定的指令，为了能够告诉GPU禁止自身的cache，以便能让我们观察到数据变换，这是规定好的指令。</p>
+<ol>
+<li>输入</li>
+<li>将输入写到帧缓冲区中</li>
+<li>将frame buffer + 0x40000000 的地址送到mailbox中</li>
+<li>从mailbox中得到返回值</li>
+<li>判断返回是否为0，如果是0则表示成功</li>
+<li>返回一个帧缓冲区的指针</li>
+</ol>
+<p><strong>InitialiseFrameBuffer</strong></p>
+<figure class="highlight arm hljs"><table><tr><td class="code"><pre><span class="line"><span class="hljs-symbol">.section</span> <span class="hljs-meta">.text</span></span><br><span class="line"><span class="hljs-symbol">.globl</span> InitialiseFrameBuffer</span><br><span class="line"><span class="hljs-symbol">InitialiseFrameBuffer</span>:</span><br><span class="line"><span class="hljs-symbol">width</span> <span class="hljs-meta">.req</span> <span class="hljs-built_in">r0</span></span><br><span class="line"><span class="hljs-symbol">height</span> <span class="hljs-meta">.req</span> <span class="hljs-built_in">r1</span></span><br><span class="line"><span class="hljs-keyword">bitDepth </span><span class="hljs-meta">.req</span> <span class="hljs-built_in">r2</span></span><br><span class="line"><span class="hljs-keyword">cmp </span>width,<span class="hljs-number">#4096</span></span><br><span class="line"><span class="hljs-keyword">cmpls </span>height,<span class="hljs-number">#4096</span></span><br><span class="line"><span class="hljs-keyword">cmpls </span><span class="hljs-keyword">bitDepth,#32</span></span><br><span class="line"><span class="hljs-keyword">result </span><span class="hljs-meta">.req</span> <span class="hljs-built_in">r0</span></span><br><span class="line"><span class="hljs-keyword">movhi </span>result,<span class="hljs-number">#0</span></span><br><span class="line"><span class="hljs-keyword">movhi </span><span class="hljs-built_in">pc</span>,<span class="hljs-built_in">lr</span></span><br></pre></td></tr></table></figure>
+<p>检查width和height是否都小于等于4096，bitDepth是否小于等于32，如果满足条件则将0保存到result中，表示符合条件。</p>
+<figure class="highlight arm hljs"><table><tr><td class="code"><pre><span class="line"><span class="hljs-symbol">fbInfoAddr</span> <span class="hljs-meta">.req</span> <span class="hljs-built_in">r3</span></span><br><span class="line"><span class="hljs-keyword">push </span>&#123;<span class="hljs-built_in">lr</span>&#125;</span><br><span class="line"><span class="hljs-keyword">ldr </span>fbInfoAddr,<span class="hljs-symbol">=FrameBufferInfo</span></span><br><span class="line"><span class="hljs-keyword">str </span>width,[fbInfoAddr,<span class="hljs-number">#0</span>]</span><br><span class="line"><span class="hljs-keyword">str </span>height,[fbInfoAddr,<span class="hljs-number">#4</span>]</span><br><span class="line"><span class="hljs-keyword">str </span>width,[fbInfoAddr,<span class="hljs-number">#8</span>]</span><br><span class="line"><span class="hljs-keyword">str </span>height,[fbInfoAddr,<span class="hljs-number">#12</span>]</span><br><span class="line"><span class="hljs-keyword">str </span><span class="hljs-keyword">bitDepth,[fbInfoAddr,#20]</span></span><br><span class="line"><span class="hljs-keyword">.unreq </span>width</span><br><span class="line"><span class="hljs-symbol">.unreq</span> height</span><br><span class="line"><span class="hljs-symbol">.unreq</span> <span class="hljs-keyword">bitDepth</span></span><br></pre></td></tr></table></figure>
+<p>按照之前给出的数据格式保存到相应的地址中</p>
+<figure class="highlight arm hljs"><table><tr><td class="code"><pre><span class="line"><span class="hljs-keyword">mov </span><span class="hljs-built_in">r0</span>,fbInfoAddr</span><br><span class="line"><span class="hljs-keyword">add </span><span class="hljs-built_in">r0</span>,<span class="hljs-number">#0x40000000</span></span><br><span class="line"><span class="hljs-keyword">mov </span><span class="hljs-built_in">r1</span>,<span class="hljs-number">#1</span></span><br><span class="line"><span class="hljs-keyword">bl </span>MailboxWrite</span><br></pre></td></tr></table></figure>
+<p>这里就是之前说的固定格式的地址指令，r1中则是选择了通道。</p>
+<figure class="highlight arm hljs"><table><tr><td class="code"><pre><span class="line"><span class="hljs-keyword">mov </span><span class="hljs-built_in">r0</span>,<span class="hljs-number">#1</span></span><br><span class="line"><span class="hljs-keyword">bl </span>MailboxRead</span><br></pre></td></tr></table></figure>
+<p>r0中选择了通道，与上面写信箱的通道保持一致。</p>
+<figure class="highlight arm hljs"><table><tr><td class="code"><pre><span class="line"><span class="hljs-keyword">teq </span>result,<span class="hljs-number">#0</span></span><br><span class="line"><span class="hljs-keyword">movne </span>result,<span class="hljs-number">#0</span></span><br><span class="line"><span class="hljs-keyword">popne </span>&#123;<span class="hljs-built_in">pc</span>&#125;</span><br></pre></td></tr></table></figure>
+<p>测试返回值是否为0，如果结果不为0则返回0表示有错误发生。</p>
+<figure class="highlight arm hljs"><table><tr><td class="code"><pre><span class="line"><span class="hljs-keyword">mov </span>result,fbInfoAddr</span><br><span class="line"><span class="hljs-keyword">pop </span>&#123;<span class="hljs-built_in">pc</span>&#125;</span><br><span class="line"><span class="hljs-symbol">.unreq</span> result</span><br><span class="line"><span class="hljs-symbol">.unreq</span> fbInfoAddr</span><br></pre></td></tr></table></figure>
+<p>将帧缓冲地址返回</p>
+<hr>
+<p>现在我们要使用GPU处理图像。</p>
+<figure class="highlight arm hljs"><table><tr><td class="code"><pre><span class="line"><span class="hljs-keyword">mov </span><span class="hljs-built_in">r0</span>,<span class="hljs-number">#1024</span></span><br><span class="line"><span class="hljs-keyword">mov </span><span class="hljs-built_in">r1</span>,<span class="hljs-number">#768</span></span><br><span class="line"><span class="hljs-keyword">mov </span><span class="hljs-built_in">r2</span>,<span class="hljs-number">#16</span></span><br><span class="line"><span class="hljs-keyword">bl </span>InitialiseFrameBuffer</span><br></pre></td></tr></table></figure>
+<p>定义一个1024*768，16位色的帧</p>
+<figure class="highlight arm hljs"><table><tr><td class="code"><pre><span class="line"><span class="hljs-keyword">teq </span><span class="hljs-built_in">r0</span>,<span class="hljs-number">#0</span></span><br><span class="line"><span class="hljs-keyword">bne </span>noError$</span><br><span class="line"></span><br><span class="line"><span class="hljs-keyword">mov </span><span class="hljs-built_in">r0</span>,<span class="hljs-number">#16</span></span><br><span class="line"><span class="hljs-keyword">mov </span><span class="hljs-built_in">r1</span>,<span class="hljs-number">#1</span></span><br><span class="line"><span class="hljs-keyword">bl </span>SetGpioFunction</span><br><span class="line"><span class="hljs-keyword">mov </span><span class="hljs-built_in">r0</span>,<span class="hljs-number">#16</span></span><br><span class="line"><span class="hljs-keyword">mov </span><span class="hljs-built_in">r1</span>,<span class="hljs-number">#0</span></span><br><span class="line"><span class="hljs-keyword">bl </span>SetGpio</span><br><span class="line"></span><br><span class="line"><span class="hljs-symbol">error$</span>:</span><br><span class="line"><span class="hljs-keyword">b </span>error$</span><br><span class="line"></span><br><span class="line"><span class="hljs-symbol">noError$</span>:</span><br><span class="line"><span class="hljs-symbol">fbInfoAddr</span> <span class="hljs-meta">.req</span> <span class="hljs-built_in">r4</span></span><br><span class="line"><span class="hljs-keyword">mov </span>fbInfoAddr,<span class="hljs-built_in">r0</span></span><br></pre></td></tr></table></figure>
+<p>检查r0寄存器中是否为0，若不为0，进行图像处理程序，否则通过GPIO口点亮ACT灯。</p>
+<p>在大多数的位图的存储方式中，总是从左向右，从上到下，所以我们使用两个循环完成每个像素点。</p>
+<figure class="highlight arm hljs"><table><tr><td class="code"><pre><span class="line"><span class="hljs-symbol">render$</span>:</span><br><span class="line">	fbAddr <span class="hljs-meta">.req</span> <span class="hljs-built_in">r3</span></span><br><span class="line">	<span class="hljs-keyword">ldr </span>fbAddr,[fbInfoAddr,<span class="hljs-number">#32</span>]</span><br><span class="line"></span><br><span class="line">	colour <span class="hljs-meta">.req</span> <span class="hljs-built_in">r0</span></span><br><span class="line">	y <span class="hljs-meta">.req</span> <span class="hljs-built_in">r1</span></span><br><span class="line">	<span class="hljs-keyword">mov </span>y,<span class="hljs-number">#768</span></span><br><span class="line"><span class="hljs-symbol">	drawRow$:</span></span><br><span class="line">		x <span class="hljs-meta">.req</span> <span class="hljs-built_in">r2</span></span><br><span class="line">		<span class="hljs-keyword">mov </span>x,<span class="hljs-number">#1024</span></span><br><span class="line"><span class="hljs-symbol">		drawPixel$:</span></span><br><span class="line">			<span class="hljs-keyword">strh </span>colour,[fbAddr]</span><br><span class="line">			<span class="hljs-keyword">add </span>fbAddr,<span class="hljs-number">#2</span></span><br><span class="line">			<span class="hljs-keyword">sub </span>x,<span class="hljs-number">#1</span></span><br><span class="line">			<span class="hljs-keyword">teq </span>x,<span class="hljs-number">#0</span></span><br><span class="line">			<span class="hljs-keyword">bne </span>drawPixel$</span><br><span class="line"></span><br><span class="line">		<span class="hljs-keyword">sub </span>y,<span class="hljs-number">#1</span></span><br><span class="line">		<span class="hljs-keyword">add </span>colour,<span class="hljs-number">#1</span></span><br><span class="line">		<span class="hljs-keyword">teq </span>y,<span class="hljs-number">#0</span></span><br><span class="line">		<span class="hljs-keyword">bne </span>drawRow$</span><br><span class="line"></span><br><span class="line">	<span class="hljs-keyword">b </span>render$</span><br><span class="line"></span><br><span class="line"><span class="hljs-symbol">.unreq</span> fbAddr</span><br><span class="line"><span class="hljs-symbol">.unreq</span> fbInfoAddr</span><br></pre></td></tr></table></figure>
+<p><strong>strh</strong> 指令是半字存储，在通过x和y分别控制循环变量，实现嵌套的循环，完成整个屏幕像素点的加载</p>
+<hr>
+<h3 id="结果展示"><a href="#结果展示" class="headerlink" title="结果展示"></a>结果展示</h3><p><img src="http://ww2.sinaimg.cn/large/65e4f1e6gw1f7r9ue2k8hg20dc06zkjn.gif" alt></p>
+
+        </div>
+        
+        
+        
+    </div>
+</div>
+
+
+
+
+
+
+
+
+    <div class="card">
+    
+    <div class="card-content article ">
+        
+        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+            <div class="level-left">
+                <time class="level-item has-text-grey" datetime="2016-08-05T16:00:00.000Z">2016-08-06</time>
+                
+                <div class="level-item">
+                <a class="has-link-grey -link" href="/categories/Pi/">Pi</a>
+                </div>
+                
+                
+                <span class="level-item has-text-grey">
+                    
+                    
+                    2 分钟 读完 (大约 343 个字)
+                </span>
+                
+                
+            </div>
+        </div>
+        
+        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+            
+                <a class="has-link-black-ter" href="/2016/08/06/Pi/2016-08-06-Raspberry Pi OK01/">Raspberry Pi OK01</a>
+            
+        </h1>
+        <div class="content">
+            <h3 id="实验目标"><a href="#实验目标" class="headerlink" title="实验目标"></a>实验目标</h3><p>通过GPIO使能Pi上ACT/OK灯，从而了解GPIO口。</p>
+<h3 id="代码分析"><a href="#代码分析" class="headerlink" title="代码分析"></a>代码分析</h3><figure class="highlight arm hljs"><table><tr><td class="code"><pre><span class="line"><span class="hljs-keyword">ldr </span><span class="hljs-built_in">r0</span>,<span class="hljs-number">=0x20200000</span></span><br></pre></td></tr></table></figure>
+<p><img src="http://www.z4a.net/images/2016/08/06/GPIO-Register-Bytes.png" alt="GPIO-Register-Bytes.png"></p>
+<p>通过上表我们可以知道GPIO口是以0x20200000作为开始的，那么此时r0寄存器中保存的就是基址。</p>
+<figure class="highlight arm hljs"><table><tr><td class="code"><pre><span class="line"><span class="hljs-keyword">mov </span><span class="hljs-built_in">r1</span>,<span class="hljs-number">#1</span></span><br><span class="line"><span class="hljs-keyword">lsl </span><span class="hljs-built_in">r1</span>,<span class="hljs-number">#18</span></span><br><span class="line"><span class="hljs-keyword">str </span><span class="hljs-built_in">r1</span>,[<span class="hljs-built_in">r0</span>,<span class="hljs-number">#4</span>]</span><br></pre></td></tr></table></figure>
+<p><img src="http://www.z4a.net/images/2016/08/06/Bits-Pin-Map.png" alt="Bits-Pin-Map.png"></p>
+<p><img src="http://ww3.sinaimg.cn/large/006tKfTcgw1f6k1384mpjj308e05bjs2.jpg" alt></p>
+<p>根据以上两张图我们可以知道将地址0x20200000的第18位置1，相当于将GPIO16设置为output，此处GPIO16就是我们要点亮的ACT灯的输出位置。</p>
+<hr>
+<p>在正式点亮ACT灯之前，树莓派还要求将GPIO16口进行清除操作</p>
+<p><img src="http://ww2.sinaimg.cn/large/006tKfTcgw1f6k17n3iz3j30h9084wge.jpg" alt></p>
+<figure class="highlight arm hljs"><table><tr><td class="code"><pre><span class="line"><span class="hljs-keyword">mov </span><span class="hljs-built_in">r1</span>,<span class="hljs-number">#1</span></span><br><span class="line"><span class="hljs-keyword">lsl </span><span class="hljs-built_in">r1</span>,<span class="hljs-number">#16</span></span><br><span class="line"><span class="hljs-keyword">str </span><span class="hljs-built_in">r1</span>,[<span class="hljs-built_in">r0</span>,<span class="hljs-number">#40</span>]</span><br></pre></td></tr></table></figure>
+<p>根据图标显示我们有了以上代码，将物理地址0x20200028里的第16位设置成1，代表着清除GPIO16。</p>
+<hr>
+<p>可以将以上代码理解成初始化步骤，接下里就让Pi在一个无限循环的loop里工作。</p>
+<figure class="highlight arm hljs"><table><tr><td class="code"><pre><span class="line"><span class="hljs-symbol">loop$</span>:</span><br><span class="line"><span class="hljs-keyword">b </span>loop$</span><br></pre></td></tr></table></figure>
+<p>此时使用<strong>make</strong>指令，将生成的kernel.img文件进行更换,可以观察到Pi的ACT灯亮起，实验结束。</p>
+<h3 id="结果展示"><a href="#结果展示" class="headerlink" title="结果展示"></a>结果展示</h3><p><img src="http://ww4.sinaimg.cn/large/006tKfTcgw1f6k1fmvgqxj31kw23u7wh.jpg" alt></p>
+
+        </div>
+        
+        
+        
+    </div>
+</div>
+
+
+
+
+
+
+
+
+    <div class="card">
+    
+    <div class="card-content article ">
+        
+        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+            <div class="level-left">
+                <time class="level-item has-text-grey" datetime="2016-08-05T16:00:00.000Z">2016-08-06</time>
+                
+                <div class="level-item">
+                <a class="has-link-grey -link" href="/categories/Pi/">Pi</a>
+                </div>
+                
+                
+                <span class="level-item has-text-grey">
+                    
+                    
+                    1 分钟 读完 (大约 145 个字)
+                </span>
+                
+                
+            </div>
+        </div>
+        
+        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+            
+                <a class="has-link-black-ter" href="/2016/08/06/Pi/2016-08-06-Raspberry Pi OK02/">Raspberry Pi OK02</a>
+            
+        </h1>
+        <div class="content">
+            <h3 id="实验目标"><a href="#实验目标" class="headerlink" title="实验目标"></a>实验目标</h3><p>在OK01的实验基础上，通过GPIO口重复控制ACT/OK灯的亮灭。掌握OS的等待/延迟实现。</p>
+<h3 id="代码分析"><a href="#代码分析" class="headerlink" title="代码分析"></a>代码分析</h3><figure class="highlight arm hljs"><table><tr><td class="code"><pre><span class="line"><span class="hljs-keyword">mov </span><span class="hljs-built_in">r2</span>,<span class="hljs-number">#0x3F0000</span></span><br><span class="line"><span class="hljs-symbol">wait1$</span>:</span><br><span class="line"><span class="hljs-keyword">sub </span><span class="hljs-built_in">r2</span>,<span class="hljs-number">#1</span></span><br><span class="line"><span class="hljs-keyword">cmp </span><span class="hljs-built_in">r2</span>,<span class="hljs-number">#0</span></span><br><span class="line"><span class="hljs-keyword">bne </span>wait1$</span><br></pre></td></tr></table></figure>
+<p>通过减法实现可控的循环延迟。</p>
+<hr>
+<p><img src="http://ww3.sinaimg.cn/large/006tKfTcgw1f6k1ylrxyzj30h9084jtg.jpg" alt></p>
+<p>在这幅图中又可以看出想要将GPIO16置0只需要设置0x2020001c就可以了，所以代码逻辑就是</p>
+<blockquote>
+<p>开灯 延迟 关灯 延迟 开灯 …</p>
+</blockquote>
+<hr>
+<h3 id="结果展示"><a href="#结果展示" class="headerlink" title="结果展示"></a>结果展示</h3><p><img src="http://ww1.sinaimg.cn/large/006tKfTcgw1f6k2d4nld4g308w0ciu0z.gif" alt></p>
+
+        </div>
+        
+        
+        
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+    
+<div class="card card-transparent">
+    <nav class="pagination is-centered" role="navigation" aria-label="pagination">
+        <div class="pagination-previous is-invisible is-hidden-mobile">
+            <a class="is-flex-grow has-text-black-ter" href="/tags/Raspberry-Pi/page/0/">上一页</a>
+        </div>
+        <div class="pagination-next">
+            <a class="is-flex-grow has-text-black-ter" href="/tags/Raspberry-Pi/page/2/">下一页</a>
+        </div>
+        <ul class="pagination-list is-hidden-mobile">
+            
+            <li><a class="pagination-link is-current" href="/tags/Raspberry-Pi/">1</a></li>
+            
+            <li><a class="pagination-link has-text-black-ter" href="/tags/Raspberry-Pi/page/2/">2</a></li>
+            
+        </ul>
+    </nav>
+</div>
+</div>
+                
+
+
+
+
+<div class="column is-4-tablet is-4-desktop is-3-widescreen  has-order-1 column-left ">
+    
+        
+<div class="card widget">
+    <div class="card-content">
+        <nav class="level">
+            <div class="level-item has-text-centered" style="flex-shrink: 1">
+                <div>
+                    
+                    <figure class="image is-128x128 has-mb-6">
+                        <img class="" src="/images/avatar.png" alt="Your name">
+                    </figure>
+                    
+                    <p class="is-size-4 is-block">
+                        Your name
+                    </p>
+                    
+                    
+                    <p class="is-size-6 is-block">
+                        Your title
+                    </p>
+                    
+                    
+                    <p class="is-size-6 is-flex is-flex-center has-text-grey">
+                        <i class="fas fa-map-marker-alt has-mr-7"></i>
+                        <span>Your location</span>
+                    </p>
+                    
+                </div>
+            </div>
+        </nav>
+        <nav class="level is-mobile">
+            <div class="level-item has-text-centered is-marginless">
+                <div>
+                    <p class="heading">
+                        文章
+                    </p>
+                    <p class="title has-text-weight-normal">
+                        73
+                    </p>
+                </div>
+            </div>
+            <div class="level-item has-text-centered is-marginless">
+                <div>
+                    <p class="heading">
+                        分类
+                    </p>
+                    <p class="title has-text-weight-normal">
+                        12
+                    </p>
+                </div>
+            </div>
+            <div class="level-item has-text-centered is-marginless">
+                <div>
+                    <p class="heading">
+                        标签
+                    </p>
+                    <p class="title has-text-weight-normal">
+                        18
+                    </p>
+                </div>
+            </div>
+        </nav>
+        <div class="level">
+            <a class="level-item button is-link is-rounded" href="https://github.com/ppoffice" target="_blank">
+                关注我</a>
+        </div>
+        
+        
+        <div class="level is-mobile">
+            
+            <a class="level-item button is-white is-marginless" target="_blank"
+                title="Github" href="https://github.com/ppoffice">
+                
+                <i class="fab fa-github"></i>
+                
+            </a>
+            
+            <a class="level-item button is-white is-marginless" target="_blank"
+                title="Facebook" href="https://facebook.com">
+                
+                <i class="fab fa-facebook"></i>
+                
+            </a>
+            
+            <a class="level-item button is-white is-marginless" target="_blank"
+                title="Twitter" href="https://twitter.com">
+                
+                <i class="fab fa-twitter"></i>
+                
+            </a>
+            
+            <a class="level-item button is-white is-marginless" target="_blank"
+                title="Dribbble" href="https://dribbble.com">
+                
+                <i class="fab fa-dribbble"></i>
+                
+            </a>
+            
+            <a class="level-item button is-white is-marginless" target="_blank"
+                title="RSS" href="/">
+                
+                <i class="fas fa-rss"></i>
+                
+            </a>
+            
+        </div>
+        
+    </div>
+</div>
+    
+        
+    
+        
+
+<div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+        <h3 class="menu-label">
+            链接
+        </h3>
+        <ul class="menu-list">
+        
+            <li>
+                <a class="level is-mobile" href="https://hexo.io" target="_blank">
+                    <span class="level-left">
+                        <span class="level-item">Hexo</span>
+                    </span>
+                    <span class="level-right">
+                        <span class="level-item tag">hexo.io</span>
+                    </span>
+                </a>
+            </li>
+        
+            <li>
+                <a class="level is-mobile" href="https://github.com/ppoffice" target="_blank">
+                    <span class="level-left">
+                        <span class="level-item">PPOffice</span>
+                    </span>
+                    <span class="level-right">
+                        <span class="level-item tag">github.com</span>
+                    </span>
+                </a>
+            </li>
+        
+        </ul>
+        </div>
+    </div>
+</div>
+
+
+    
+        
+<div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+            <h3 class="menu-label">
+                分类
+            </h3>
+            <ul class="menu-list">
+            <li>
+        <a class="level is-marginless" href="/categories/Anomaly-detection/">
+            <span class="level-start">
+                <span class="level-item">Anomaly detection</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">4</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/Concept/">
+            <span class="level-start">
+                <span class="level-item">Concept</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">4</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/Data-mining/">
+            <span class="level-start">
+                <span class="level-item">Data mining</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">4</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/Database/">
+            <span class="level-start">
+                <span class="level-item">Database</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">3</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/Information-Retrieval/">
+            <span class="level-start">
+                <span class="level-item">Information Retrieval</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">1</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/Linux/">
+            <span class="level-start">
+                <span class="level-item">Linux</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">5</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/Pattern-recognition/">
+            <span class="level-start">
+                <span class="level-item">Pattern recognition</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">1</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/Pi/">
+            <span class="level-start">
+                <span class="level-item">Pi</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">12</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/RL/">
+            <span class="level-start">
+                <span class="level-item">RL</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">3</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/Security/">
+            <span class="level-start">
+                <span class="level-item">Security</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">8</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/算法/">
+            <span class="level-start">
+                <span class="level-item">算法</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">13</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/网络/">
+            <span class="level-start">
+                <span class="level-item">网络</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">13</span>
+            </span>
+        </a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+    
+        
+<div class="card widget">
+    <div class="card-content">
+        <h3 class="menu-label">
+            标签云
+        </h3>
+        <a href="/tags/Algorithm/" style="font-size: 18.89px;">Algorithm</a> <a href="/tags/Anomaly-detection/" style="font-size: 16.67px;">Anomaly detection</a> <a href="/tags/Concept/" style="font-size: 12.22px;">Concept</a> <a href="/tags/Data-mining/" style="font-size: 12.22px;">Data mining</a> <a href="/tags/Database/" style="font-size: 11.11px;">Database</a> <a href="/tags/IPv4/" style="font-size: 10px;">IPv4</a> <a href="/tags/Information-Retrieval/" style="font-size: 10px;">Information Retrieval</a> <a href="/tags/Linux/" style="font-size: 13.33px;">Linux</a> <a href="/tags/Mininet/" style="font-size: 10px;">Mininet</a> <a href="/tags/Networking/" style="font-size: 15.56px;">Networking</a> <a href="/tags/OS/" style="font-size: 20px;">OS</a> <a href="/tags/Pattern-recognition/" style="font-size: 10px;">Pattern recognition</a> <a href="/tags/RL/" style="font-size: 11.11px;">RL</a> <a href="/tags/Raspberry-Pi/" style="font-size: 17.78px;">Raspberry-Pi</a> <a href="/tags/Security/" style="font-size: 15.56px;">Security</a> <a href="/tags/VANET/" style="font-size: 14.44px;">VANET</a> <a href="/tags/ns3/" style="font-size: 14.44px;">ns3</a> <a href="/tags/time-series/" style="font-size: 10px;">time series</a>
+    </div>
+</div>
+
+    
+    
+        <div class="column-right-shadow is-hidden-widescreen ">
+        
+            
+<div class="card widget">
+    <div class="card-content">
+        <h3 class="menu-label">
+            最新文章
+        </h3>
+        
+        <article class="media">
+            
+            <a href="/2019/09/16/数据挖掘/2019-09-16-基于注意力模型的RNN时序预测/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-09-16T08:29:00.668Z">2019-09-16</time></div>
+                    <a href="/2019/09/16/数据挖掘/2019-09-16-基于注意力模型的RNN时序预测/" class="title has-link-black-ter is-size-6 has-text-weight-normal"></a>
+                    <p class="is-size-7 is-uppercase">
+                        
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2019/09/12/数据挖掘/2019-09-12-时间注意力模型下的时序预测/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="时间注意力模型下的时序预测.md">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-09-11T16:00:00.000Z">2019-09-12</time></div>
+                    <a href="/2019/09/12/数据挖掘/2019-09-12-时间注意力模型下的时序预测/" class="title has-link-black-ter is-size-6 has-text-weight-normal">时间注意力模型下的时序预测.md</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/Anomaly-detection/">Anomaly detection</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2019/09/09/数据挖掘/2019-09-09-DNN多维时序无监督异常检测/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="多维时序无监督异常检测.md">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-09-08T16:00:00.000Z">2019-09-09</time></div>
+                    <a href="/2019/09/09/数据挖掘/2019-09-09-DNN多维时序无监督异常检测/" class="title has-link-black-ter is-size-6 has-text-weight-normal">多维时序无监督异常检测.md</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/Anomaly-detection/">Anomaly detection</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2019/08/14/数据挖掘/2019-08-14-异常检测（MSRA KDD'19）/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="异常检测（MSRA，KDD&#39;19）">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-08-13T16:00:00.000Z">2019-08-14</time></div>
+                    <a href="/2019/08/14/数据挖掘/2019-08-14-异常检测（MSRA KDD'19）/" class="title has-link-black-ter is-size-6 has-text-weight-normal">异常检测（MSRA，KDD&#39;19）</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/Anomaly-detection/">Anomaly detection</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2019/07/21/数据挖掘/2019-08-13-实时异常检测/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="实时异常检测（xStream，KDD&#39;18）">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-07-20T16:00:00.000Z">2019-07-21</time></div>
+                    <a href="/2019/07/21/数据挖掘/2019-08-13-实时异常检测/" class="title has-link-black-ter is-size-6 has-text-weight-normal">实时异常检测（xStream，KDD&#39;18）</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/Anomaly-detection/">Anomaly detection</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+    </div>
+</div>
+
+        
+            <div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+        <h3 class="menu-label">
+            归档
+        </h3>
+        <ul class="menu-list">
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2019/09/">
+                <span class="level-start">
+                    <span class="level-item">九月 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">3</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2019/08/">
+                <span class="level-start">
+                    <span class="level-item">八月 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2019/07/">
+                <span class="level-start">
+                    <span class="level-item">七月 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">7</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2019/06/">
+                <span class="level-start">
+                    <span class="level-item">六月 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">4</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2019/05/">
+                <span class="level-start">
+                    <span class="level-item">五月 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">4</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2018/12/">
+                <span class="level-start">
+                    <span class="level-item">十二月 2018</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">4</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2018/11/">
+                <span class="level-start">
+                    <span class="level-item">十一月 2018</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">2</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2018/10/">
+                <span class="level-start">
+                    <span class="level-item">十月 2018</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2018/09/">
+                <span class="level-start">
+                    <span class="level-item">九月 2018</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2018/08/">
+                <span class="level-start">
+                    <span class="level-item">八月 2018</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">3</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2018/04/">
+                <span class="level-start">
+                    <span class="level-item">四月 2018</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">2</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2017/11/">
+                <span class="level-start">
+                    <span class="level-item">十一月 2017</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">3</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2017/10/">
+                <span class="level-start">
+                    <span class="level-item">十月 2017</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">6</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2017/09/">
+                <span class="level-start">
+                    <span class="level-item">九月 2017</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">7</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2017/07/">
+                <span class="level-start">
+                    <span class="level-item">七月 2017</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">2</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2017/03/">
+                <span class="level-start">
+                    <span class="level-item">三月 2017</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">6</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2016/12/">
+                <span class="level-start">
+                    <span class="level-item">十二月 2016</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">2</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2016/10/">
+                <span class="level-start">
+                    <span class="level-item">十月 2016</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">2</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2016/09/">
+                <span class="level-start">
+                    <span class="level-item">九月 2016</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2016/08/">
+                <span class="level-start">
+                    <span class="level-item">八月 2016</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">11</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2016/05/">
+                <span class="level-start">
+                    <span class="level-item">五月 2016</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        </ul>
+        </div>
+    </div>
+</div>
+        
+            <div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+            <h3 class="menu-label">
+                标签
+            </h3>
+            <div class="field is-grouped is-grouped-multiline">
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Algorithm/">
+                        <span class="tag">Algorithm</span>
+                        <span class="tag is-grey">13</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Anomaly-detection/">
+                        <span class="tag">Anomaly detection</span>
+                        <span class="tag is-grey">10</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Concept/">
+                        <span class="tag">Concept</span>
+                        <span class="tag is-grey">4</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Data-mining/">
+                        <span class="tag">Data mining</span>
+                        <span class="tag is-grey">4</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Database/">
+                        <span class="tag">Database</span>
+                        <span class="tag is-grey">3</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/IPv4/">
+                        <span class="tag">IPv4</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Information-Retrieval/">
+                        <span class="tag">Information Retrieval</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Linux/">
+                        <span class="tag">Linux</span>
+                        <span class="tag is-grey">5</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Mininet/">
+                        <span class="tag">Mininet</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Networking/">
+                        <span class="tag">Networking</span>
+                        <span class="tag is-grey">8</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/OS/">
+                        <span class="tag">OS</span>
+                        <span class="tag is-grey">17</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Pattern-recognition/">
+                        <span class="tag">Pattern recognition</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/RL/">
+                        <span class="tag">RL</span>
+                        <span class="tag is-grey">3</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Raspberry-Pi/">
+                        <span class="tag">Raspberry-Pi</span>
+                        <span class="tag is-grey">12</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Security/">
+                        <span class="tag">Security</span>
+                        <span class="tag is-grey">8</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/VANET/">
+                        <span class="tag">VANET</span>
+                        <span class="tag is-grey">6</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/ns3/">
+                        <span class="tag">ns3</span>
+                        <span class="tag is-grey">6</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/time-series/">
+                        <span class="tag">time series</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+</div>
+        
+        </div>
+    
+</div>
+
+                
+
+
+
+
+<div class="column is-4-tablet is-4-desktop is-3-widescreen is-hidden-touch is-hidden-desktop-only has-order-3 column-right ">
+    
+        
+<div class="card widget">
+    <div class="card-content">
+        <h3 class="menu-label">
+            最新文章
+        </h3>
+        
+        <article class="media">
+            
+            <a href="/2019/09/16/数据挖掘/2019-09-16-基于注意力模型的RNN时序预测/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-09-16T08:29:00.668Z">2019-09-16</time></div>
+                    <a href="/2019/09/16/数据挖掘/2019-09-16-基于注意力模型的RNN时序预测/" class="title has-link-black-ter is-size-6 has-text-weight-normal"></a>
+                    <p class="is-size-7 is-uppercase">
+                        
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2019/09/12/数据挖掘/2019-09-12-时间注意力模型下的时序预测/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="时间注意力模型下的时序预测.md">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-09-11T16:00:00.000Z">2019-09-12</time></div>
+                    <a href="/2019/09/12/数据挖掘/2019-09-12-时间注意力模型下的时序预测/" class="title has-link-black-ter is-size-6 has-text-weight-normal">时间注意力模型下的时序预测.md</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/Anomaly-detection/">Anomaly detection</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2019/09/09/数据挖掘/2019-09-09-DNN多维时序无监督异常检测/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="多维时序无监督异常检测.md">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-09-08T16:00:00.000Z">2019-09-09</time></div>
+                    <a href="/2019/09/09/数据挖掘/2019-09-09-DNN多维时序无监督异常检测/" class="title has-link-black-ter is-size-6 has-text-weight-normal">多维时序无监督异常检测.md</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/Anomaly-detection/">Anomaly detection</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2019/08/14/数据挖掘/2019-08-14-异常检测（MSRA KDD'19）/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="异常检测（MSRA，KDD&#39;19）">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-08-13T16:00:00.000Z">2019-08-14</time></div>
+                    <a href="/2019/08/14/数据挖掘/2019-08-14-异常检测（MSRA KDD'19）/" class="title has-link-black-ter is-size-6 has-text-weight-normal">异常检测（MSRA，KDD&#39;19）</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/Anomaly-detection/">Anomaly detection</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2019/07/21/数据挖掘/2019-08-13-实时异常检测/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="实时异常检测（xStream，KDD&#39;18）">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-07-20T16:00:00.000Z">2019-07-21</time></div>
+                    <a href="/2019/07/21/数据挖掘/2019-08-13-实时异常检测/" class="title has-link-black-ter is-size-6 has-text-weight-normal">实时异常检测（xStream，KDD&#39;18）</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/Anomaly-detection/">Anomaly detection</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+    </div>
+</div>
+
+    
+        <div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+        <h3 class="menu-label">
+            归档
+        </h3>
+        <ul class="menu-list">
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2019/09/">
+                <span class="level-start">
+                    <span class="level-item">九月 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">3</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2019/08/">
+                <span class="level-start">
+                    <span class="level-item">八月 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2019/07/">
+                <span class="level-start">
+                    <span class="level-item">七月 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">7</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2019/06/">
+                <span class="level-start">
+                    <span class="level-item">六月 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">4</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2019/05/">
+                <span class="level-start">
+                    <span class="level-item">五月 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">4</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2018/12/">
+                <span class="level-start">
+                    <span class="level-item">十二月 2018</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">4</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2018/11/">
+                <span class="level-start">
+                    <span class="level-item">十一月 2018</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">2</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2018/10/">
+                <span class="level-start">
+                    <span class="level-item">十月 2018</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2018/09/">
+                <span class="level-start">
+                    <span class="level-item">九月 2018</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2018/08/">
+                <span class="level-start">
+                    <span class="level-item">八月 2018</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">3</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2018/04/">
+                <span class="level-start">
+                    <span class="level-item">四月 2018</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">2</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2017/11/">
+                <span class="level-start">
+                    <span class="level-item">十一月 2017</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">3</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2017/10/">
+                <span class="level-start">
+                    <span class="level-item">十月 2017</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">6</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2017/09/">
+                <span class="level-start">
+                    <span class="level-item">九月 2017</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">7</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2017/07/">
+                <span class="level-start">
+                    <span class="level-item">七月 2017</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">2</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2017/03/">
+                <span class="level-start">
+                    <span class="level-item">三月 2017</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">6</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2016/12/">
+                <span class="level-start">
+                    <span class="level-item">十二月 2016</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">2</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2016/10/">
+                <span class="level-start">
+                    <span class="level-item">十月 2016</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">2</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2016/09/">
+                <span class="level-start">
+                    <span class="level-item">九月 2016</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2016/08/">
+                <span class="level-start">
+                    <span class="level-item">八月 2016</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">11</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2016/05/">
+                <span class="level-start">
+                    <span class="level-item">五月 2016</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        </ul>
+        </div>
+    </div>
+</div>
+    
+        <div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+            <h3 class="menu-label">
+                标签
+            </h3>
+            <div class="field is-grouped is-grouped-multiline">
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Algorithm/">
+                        <span class="tag">Algorithm</span>
+                        <span class="tag is-grey">13</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Anomaly-detection/">
+                        <span class="tag">Anomaly detection</span>
+                        <span class="tag is-grey">10</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Concept/">
+                        <span class="tag">Concept</span>
+                        <span class="tag is-grey">4</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Data-mining/">
+                        <span class="tag">Data mining</span>
+                        <span class="tag is-grey">4</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Database/">
+                        <span class="tag">Database</span>
+                        <span class="tag is-grey">3</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/IPv4/">
+                        <span class="tag">IPv4</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Information-Retrieval/">
+                        <span class="tag">Information Retrieval</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Linux/">
+                        <span class="tag">Linux</span>
+                        <span class="tag is-grey">5</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Mininet/">
+                        <span class="tag">Mininet</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Networking/">
+                        <span class="tag">Networking</span>
+                        <span class="tag is-grey">8</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/OS/">
+                        <span class="tag">OS</span>
+                        <span class="tag is-grey">17</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Pattern-recognition/">
+                        <span class="tag">Pattern recognition</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/RL/">
+                        <span class="tag">RL</span>
+                        <span class="tag is-grey">3</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Raspberry-Pi/">
+                        <span class="tag">Raspberry-Pi</span>
+                        <span class="tag is-grey">12</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Security/">
+                        <span class="tag">Security</span>
+                        <span class="tag is-grey">8</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/VANET/">
+                        <span class="tag">VANET</span>
+                        <span class="tag is-grey">6</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/ns3/">
+                        <span class="tag">ns3</span>
+                        <span class="tag is-grey">6</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/time-series/">
+                        <span class="tag">time series</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+</div>
+    
+    
+</div>
+
+            </div>
+        </div>
+    </section>
+    <footer class="footer">
+    <div class="container">
+        <div class="level">
+            <div class="level-start has-text-centered-mobile">
+                <a class="footer-logo is-block has-mb-6" href="/">
+                
+                    <img src="/images/logo.svg" alt="Fengrui Liu&#39;s Blog" height="28">
+                
+                </a>
+                <p class="is-size-7">
+                &copy; 2019 Fengrui Liu&nbsp;
+                Powered by <a href="https://hexo.io/" target="_blank">Hexo</a> & <a
+                        href="https://github.com/ppoffice/hexo-theme-icarus" target="_blank">Icarus</a>
+                
+                </p>
+            </div>
+            <div class="level-end">
+            
+                <div class="field has-addons is-flex-center-mobile has-mt-5-mobile is-flex-wrap is-flex-middle">
+                
+                
+                <p class="control">
+                    <a class="button is-white is-large" target="_blank" title="Creative Commons" href="https://creativecommons.org/">
+                        
+                        <i class="fab fa-creative-commons"></i>
+                        
+                    </a>
+                </p>
+                
+                <p class="control">
+                    <a class="button is-white is-large" target="_blank" title="Attribution 4.0 International" href="https://creativecommons.org/licenses/by/4.0/">
+                        
+                        <i class="fab fa-creative-commons-by"></i>
+                        
+                    </a>
+                </p>
+                
+                <p class="control">
+                    <a class="button is-white is-large" target="_blank" title="Download on GitHub" href="https://github.com/ppoffice/hexo-theme-icarus">
+                        
+                        <i class="fab fa-github"></i>
+                        
+                    </a>
+                </p>
+                
+                </div>
+            
+            </div>
+        </div>
+    </div>
+</footer>
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/min/moment-with-locales.min.js"></script>
+<script>moment.locale("zh-CN");</script>
+
+<script>
+var IcarusThemeSettings = {
+    article: {
+        highlight: {
+            clipboard: true,
+            fold: 'unfolded'
+        }
+    }
+};
+</script>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.4/dist/clipboard.min.js" defer></script>
+
+
+
+    
+    
+    
+    <script src="/js/animation.js"></script>
+    
+
+    
+    
+    
+    <script src="https://cdn.jsdelivr.net/npm/lightgallery@1.6.8/dist/js/lightgallery.min.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/js/jquery.justifiedGallery.min.js" defer></script>
+    <script src="/js/gallery.js" defer></script>
+    
+
+    
+    
+
+<div id="outdated">
+    <h6>Your browser is out-of-date!</h6>
+    <p>Update your browser to view this website correctly. <a id="btnUpdateBrowser" href="http://outdatedbrowser.com/">Update
+            my browser now </a></p>
+    <p class="last"><a href="#" id="btnCloseUpdateBrowser" title="Close">&times;</a></p>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/outdatedbrowser@1.1.5/outdatedbrowser/outdatedbrowser.min.js" defer></script>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        outdatedBrowser({
+            bgColor: '#f25648',
+            color: '#ffffff',
+            lowerThan: 'flex'
+        });
+    });
+</script>
+
+
+    
+    
+<script src="https://cdn.jsdelivr.net/npm/mathjax@2.7.5/unpacked/MathJax.js?config=TeX-MML-AM_CHTML" defer></script>
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    MathJax.Hub.Config({
+        'HTML-CSS': {
+            matchFontHeight: false
+        },
+        SVG: {
+            matchFontHeight: false
+        },
+        CommonHTML: {
+            matchFontHeight: false
+        },
+        tex2jax: {
+            inlineMath: [
+                ['$','$'],
+                ['\\(','\\)']
+            ]
+        }
+    });
+});
+</script>
+
+    
+    
+
+<a id="back-to-top" title="回到顶端" href="javascript:;">
+    <i class="fas fa-chevron-up"></i>
+</a>
+<script src="/js/back-to-top.js" defer></script>
+
+
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+    
+
+
+<script src="/js/main.js" defer></script>
+
+    
+    <div class="searchbox ins-search">
+    <div class="searchbox-container ins-search-container">
+        <div class="searchbox-input-wrapper">
+            <input type="text" class="searchbox-input ins-search-input" placeholder="想要查找什么..." />
+            <span class="searchbox-close ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="searchbox-result-wrapper ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+    (function (window) {
+        var INSIGHT_CONFIG = {
+            TRANSLATION: {
+                POSTS: '文章',
+                PAGES: '页面',
+                CATEGORIES: '分类',
+                TAGS: '标签',
+                UNTITLED: '(无标题)',
+            },
+            CONTENT_URL: '/content.json',
+        };
+        window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+    })(window);
+</script>
+<script src="/js/insight.js" defer></script>
+<link rel="stylesheet" href="/css/search.css">
+<link rel="stylesheet" href="/css/insight.css">
+    
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+</body>
+</html>

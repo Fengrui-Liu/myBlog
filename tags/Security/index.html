@@ -1,0 +1,2161 @@
+<!DOCTYPE html>
+<html  lang="zh">
+<head>
+    <meta charset="utf-8" />
+
+<meta name="generator" content="Hexo 3.8.0" />
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+
+<title>标签: Security - Fengrui Liu&#39;s Blog</title>
+
+
+    <meta property="og:type" content="website">
+<meta property="og:title" content="Fengrui Liu&#39;s Blog">
+<meta property="og:url" content="http://www.liufr.com/tags/Security/index.html">
+<meta property="og:site_name" content="Fengrui Liu&#39;s Blog">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http://www.liufr.com/images/og_image.png">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Fengrui Liu&#39;s Blog">
+<meta name="twitter:image" content="http://www.liufr.com/images/og_image.png">
+
+
+
+
+
+
+
+<link rel="icon" href="/images/favicon.svg">
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.7.2/css/bulma.css">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Ubuntu:400,600|Source+Code+Pro">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@9.12.0/styles/atom-one-light.css">
+
+
+    
+    
+    
+    <style>body>.footer,body>.navbar,body>.section{opacity:0}</style>
+    
+
+    
+    
+    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@1.6.8/dist/css/lightgallery.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/css/justifiedGallery.min.css">
+    
+
+    
+    
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/outdatedbrowser@1.1.5/outdatedbrowser/outdatedbrowser.min.css">
+
+
+    
+    
+    
+    
+
+<link rel="stylesheet" href="/css/back-to-top.css">
+
+
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+<link rel="stylesheet" href="/css/progressbar.css">
+<script src="https://cdn.jsdelivr.net/npm/pace-js@1.0.2/pace.min.js"></script>
+
+    
+    
+    
+
+
+<link rel="stylesheet" href="/css/style.css">
+</head>
+<body class="is-3-column">
+    <nav class="navbar navbar-main">
+    <div class="container">
+        <div class="navbar-brand is-flex-center">
+            <a class="navbar-item navbar-logo" href="/">
+            
+                <img src="/images/logo.svg" alt="Fengrui Liu&#39;s Blog" height="28">
+            
+            </a>
+        </div>
+        <div class="navbar-menu">
+            
+            <div class="navbar-start">
+                
+                <a class="navbar-item"
+                href="/">Home</a>
+                
+                <a class="navbar-item"
+                href="/archives">Archives</a>
+                
+                <a class="navbar-item"
+                href="/categories">Categories</a>
+                
+                <a class="navbar-item"
+                href="/tags">Tags</a>
+                
+                <a class="navbar-item"
+                href="/about">About</a>
+                
+            </div>
+            
+            <div class="navbar-end">
+                
+                    
+                    
+                    <a class="navbar-item" target="_blank" title="Download on GitHub" href="https://github.com/ppoffice/hexo-theme-icarus">
+                        
+                        <i class="fab fa-github"></i>
+                        
+                    </a>
+                    
+                
+                
+                
+                <a class="navbar-item search" title="搜索" href="javascript:;">
+                    <i class="fas fa-search"></i>
+                </a>
+                
+            </div>
+        </div>
+    </div>
+</nav>
+    
+    <section class="section">
+        <div class="container">
+            <div class="columns">
+                <div class="column is-8-tablet is-8-desktop is-6-widescreen has-order-2 column-main"><div class="card">
+    <div class="card-content">
+        <nav class="breadcrumb" aria-label="breadcrumbs">
+        <ul>
+            <li><a href="/tags">标签</a></li>
+            <li class="is-active"><a href="#" aria-current="page">Security</a></li>
+        </ul>
+        </nav>
+    </div>
+</div>
+
+    <div class="card">
+    
+    <div class="card-content article ">
+        
+        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+            <div class="level-left">
+                <time class="level-item has-text-grey" datetime="2019-07-20T16:00:00.000Z">2019-07-21</time>
+                
+                <div class="level-item">
+                <a class="has-link-grey -link" href="/categories/Security/">Security</a>
+                </div>
+                
+                
+                <span class="level-item has-text-grey">
+                    
+                    
+                    4 分钟 读完 (大约 561 个字)
+                </span>
+                
+                
+            </div>
+        </div>
+        
+        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+            
+                <a class="has-link-black-ter" href="/2019/07/21/安全/2019-07-21-指数加权移动平均法（EWMA）/">指数加权移动平均法（EWMA）</a>
+            
+        </h1>
+        <div class="content">
+            <h2 id="主要思想"><a href="#主要思想" class="headerlink" title="主要思想"></a>主要思想</h2><p>Exponentially Weighted Moving Average (EWMA)，对观察值给予不同的权重求得平均值，并以平均值为基础确定预测值的方法，往往近期观察值的权重高是因为其更能反映近期变化的趋势。各个指数加权系数是随时间指数递减的，越靠近当前时刻，加权系数就越大。</p>
+<p>可以视作一种理想的最大似然估计，当前估计值由前一次估计值和当前的抽样值共同决定；也可以视作一个低通滤波器，剔除短期波动保留长期发展趋势的平滑形式。</p>
+<h2 id="优点"><a href="#优点" class="headerlink" title="优点"></a>优点</h2><ol>
+<li>不需要保存过去的所有数值</li>
+<li>计算量显著减小</li>
+</ol>
+<h2 id="计算"><a href="#计算" class="headerlink" title="计算"></a>计算</h2><script type="math/tex; mode=display">v_t = \beta v_{t-1}+(1-\beta)\theta_t</script><p>其中$\theta_t$为时刻$t$的实际温度；$\beta$表示加权下降的速率，其值越小下降越快；$v_t$为$t$时刻的EWMA值。</p>
+<h2 id="变差修正"><a href="#变差修正" class="headerlink" title="变差修正"></a>变差修正</h2><p>如果初始化$v_0=0$,那么初期值都会偏小，虽然最后会慢慢减小这部分影响但是还是对公式做出适当修正：</p>
+<script type="math/tex; mode=display">v_t = \frac{\beta v_{t-1}+(1-\beta)\theta_t}{1-\beta^t}</script><p>当t表较小（初期）分母可以很好放大当前数值，当t很大，分母趋为1，对数值机会没有影响。</p>
+<h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2><figure class="highlight python hljs"><table><tr><td class="code"><pre><span class="line"><span class="hljs-keyword">import</span> numpy <span class="hljs-keyword">as</span> np</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Ewma</span><span class="hljs-params">(object)</span>:</span></span><br><span class="line">    <span class="hljs-string">"""</span></span><br><span class="line"><span class="hljs-string">    In statistical quality control, the EWMA chart (or exponentially weighted moving average chart)</span></span><br><span class="line"><span class="hljs-string">    is a type of control chart used to monitor either variables or attributes-type data using the monitored business</span></span><br><span class="line"><span class="hljs-string">    or industrial process's entire history of output. While other control charts treat rational subgroups of samples</span></span><br><span class="line"><span class="hljs-string">    individually, the EWMA chart tracks the exponentially-weighted moving average of all prior sample means.</span></span><br><span class="line"><span class="hljs-string">    WIKIPEDIA: https://en.wikipedia.org/wiki/EWMA_chart</span></span><br><span class="line"><span class="hljs-string">    """</span></span><br><span class="line"></span><br><span class="line">    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">__init__</span><span class="hljs-params">(self, alpha=<span class="hljs-number">0.3</span>, coefficient=<span class="hljs-number">3</span>)</span>:</span></span><br><span class="line">        <span class="hljs-string">"""</span></span><br><span class="line"><span class="hljs-string">        :param alpha: Discount rate of ewma, usually in (0.2, 0.3).</span></span><br><span class="line"><span class="hljs-string">        :param coefficient: Coefficient is the width of the control limits, usually in (2.7, 3.0).</span></span><br><span class="line"><span class="hljs-string">        """</span></span><br><span class="line">        self.alpha = alpha</span><br><span class="line">        self.coefficient = coefficient</span><br><span class="line"></span><br><span class="line">    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">predict</span><span class="hljs-params">(self, X)</span>:</span></span><br><span class="line">        <span class="hljs-string">"""</span></span><br><span class="line"><span class="hljs-string">        Predict if a particular sample is an outlier or not.</span></span><br><span class="line"><span class="hljs-string">        :param X: the time series to detect of</span></span><br><span class="line"><span class="hljs-string">        :param type X: pandas.Series</span></span><br><span class="line"><span class="hljs-string">        :return: 1 denotes normal, 0 denotes abnormal</span></span><br><span class="line"><span class="hljs-string">        """</span></span><br><span class="line">        s = [X[<span class="hljs-number">0</span>]]</span><br><span class="line">        <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> range(<span class="hljs-number">1</span>, len(X)):</span><br><span class="line">            temp = self.alpha * X[i] + (<span class="hljs-number">1</span> - self.alpha) * s[<span class="hljs-number">-1</span>]</span><br><span class="line">            s.append(temp)</span><br><span class="line">        s_avg = np.mean(s)</span><br><span class="line">        sigma = np.sqrt(np.var(X))</span><br><span class="line">        ucl = s_avg + self.coefficient * sigma * np.sqrt(self.alpha / (<span class="hljs-number">2</span> - self.alpha))</span><br><span class="line">        lcl = s_avg - self.coefficient * sigma * np.sqrt(self.alpha / (<span class="hljs-number">2</span> - self.alpha))</span><br><span class="line">        <span class="hljs-keyword">if</span> s[<span class="hljs-number">-1</span>] &gt; ucl <span class="hljs-keyword">or</span> s[<span class="hljs-number">-1</span>] &lt; lcl:</span><br><span class="line">            <span class="hljs-keyword">return</span> <span class="hljs-number">0</span></span><br><span class="line">        <span class="hljs-keyword">return</span> <span class="hljs-number">1</span></span><br></pre></td></tr></table></figure>
+        </div>
+        
+        
+        
+    </div>
+</div>
+
+
+
+
+
+
+
+
+    <div class="card">
+    
+    <div class="card-content article ">
+        
+        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+            <div class="level-left">
+                <time class="level-item has-text-grey" datetime="2019-07-20T16:00:00.000Z">2019-07-21</time>
+                
+                <div class="level-item">
+                <a class="has-link-grey -link" href="/categories/Security/">Security</a>
+                </div>
+                
+                
+                <span class="level-item has-text-grey">
+                    
+                    
+                    5 分钟 读完 (大约 684 个字)
+                </span>
+                
+                
+            </div>
+        </div>
+        
+        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+            
+                <a class="has-link-black-ter" href="/2019/07/21/安全/2019-07-21-梯度提升决策树(GBDT)/">梯度提升决策树（GBDT）</a>
+            
+        </h1>
+        <div class="content">
+            <h2 id="GCDT：梯度提升决策树"><a href="#GCDT：梯度提升决策树" class="headerlink" title="GCDT：梯度提升决策树"></a>GCDT：梯度提升决策树</h2><p>Gradient Boosting Decision Tree，又叫做MART（Multiple Additive Regression Tree）迭代的决策树算法，由多颗决策树组成，具有较强的泛化能力。GBDT是一回归树用来做回归预测，调整后可以用于分类。</p>
+<h2 id="Regression-Decision-Tree：回归树"><a href="#Regression-Decision-Tree：回归树" class="headerlink" title="Regression Decision Tree：回归树"></a>Regression Decision Tree：回归树</h2><p>回归树的每一个节点都会有一个预测值（例如平均值），分支时穷举每一个feature的每个阈值找到最好的分割点，且用最小化平方误差进行衡量分类标准。也就是说分类错误越多平方误差越大，直到每个叶子节点上的预测值都能达到预设的终止条件。</p>
+<h2 id="Boosting-Decision-Tree：提升树算法"><a href="#Boosting-Decision-Tree：提升树算法" class="headerlink" title="Boosting Decision Tree：提升树算法"></a>Boosting Decision Tree：提升树算法</h2><p>Boosting：将弱学习提升为强学习器的算法。主要思想：对于负责任务，将多个专家的判断进行适当综合得出对应的判断，比任何一个专家单独的判断要好。</p>
+<p>提升树通过迭代多个回归树来进行共同决策。当采用平方误差损失函数，每一个回归树学习的是所有树的结论和残差，拟合得到当前的残差回归树。残差=真实值-预测值。提升树可以视作整个迭代过程生成的回归树的累加。</p>
+<p>每一次迭代都增加被错误分类的样本的权重，使模型在之后的迭代中更加注意到难以分类的样本。</p>
+<p><img src="pictures/GBDT.webp" alt></p>
+<h2 id="Xgboost-和-GBDT-的区别："><a href="#Xgboost-和-GBDT-的区别：" class="headerlink" title="Xgboost 和 GBDT 的区别："></a>Xgboost 和 GBDT 的区别：</h2><h3 id="GBDT："><a href="#GBDT：" class="headerlink" title="GBDT："></a>GBDT：</h3><ol>
+<li>GBDT 它的非线性变换比较多，表达能力强，而且不需要做复杂的特征工程和特征变换。</li>
+<li>GBDT 的缺点也很明显，Boost 是一个串行过程，不好并行化，而且计算复杂度高，同时不太适合高维稀疏特征；</li>
+<li>传统 GBDT 在优化时只用到一阶导数信息。</li>
+</ol>
+<h3 id="Xgboost："><a href="#Xgboost：" class="headerlink" title="Xgboost："></a>Xgboost：</h3><ol>
+<li>显示的把树模型复杂度作为正则项加到优化目标中。</li>
+<li>公式推导中用到了二阶导数，用了二阶泰勒展开。（GBDT 用牛顿法貌似也是二阶信息）</li>
+<li>实现了分裂点寻找近似算法。</li>
+<li>利用了特征的稀疏性。</li>
+<li>数据事先排序并且以 block 形式存储，有利于并行计算。</li>
+<li>基于分布式通信框架 rabit，可以运行在 MPI 和 yarn 上。（最新已经不基于 rabit 了）</li>
+<li>实现做了面向体系结构的优化，针对 cache 和内存做了性能优化</li>
+</ol>
+
+        </div>
+        
+        
+        
+    </div>
+</div>
+
+
+
+
+
+
+
+
+    <div class="card">
+    
+    <div class="card-content article ">
+        
+        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+            <div class="level-left">
+                <time class="level-item has-text-grey" datetime="2019-07-20T16:00:00.000Z">2019-07-21</time>
+                
+                <div class="level-item">
+                <a class="has-link-grey -link" href="/categories/Security/">Security</a>
+                </div>
+                
+                
+                <span class="level-item has-text-grey">
+                    
+                    
+                    2 分钟 读完 (大约 246 个字)
+                </span>
+                
+                
+            </div>
+        </div>
+        
+        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+            
+                <a class="has-link-black-ter" href="/2019/07/21/安全/2019-07-21-多项式插值/">多项式插值</a>
+            
+        </h1>
+        <div class="content">
+            <h2 id="Polynominal-Interpolation"><a href="#Polynominal-Interpolation" class="headerlink" title="Polynominal Interpolation"></a>Polynominal Interpolation</h2><p>多项式插值，给定一组数据，寻找一个恰好通过这些数据点的多项式。</p>
+<h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2><figure class="highlight python hljs"><table><tr><td class="code"><pre><span class="line"><span class="hljs-keyword">import</span> numpy <span class="hljs-keyword">as</span> np</span><br><span class="line"><span class="hljs-keyword">from</span> sklearn.linear_model <span class="hljs-keyword">import</span> Ridge</span><br><span class="line"><span class="hljs-keyword">from</span> sklearn.preprocessing <span class="hljs-keyword">import</span> PolynomialFeatures</span><br><span class="line"><span class="hljs-keyword">from</span> sklearn.pipeline <span class="hljs-keyword">import</span> make_pipeline</span><br><span class="line"><span class="hljs-keyword">from</span> time_series_detector.common.tsd_common <span class="hljs-keyword">import</span> *</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">PolynomialInterpolation</span><span class="hljs-params">(object)</span>:</span></span><br><span class="line">    <span class="hljs-string">"""</span></span><br><span class="line"><span class="hljs-string">    In statistics, polynomial regression is a form of regression analysis in which the relationship</span></span><br><span class="line"><span class="hljs-string">    between the independent variable x and the dependent variable y is modelled as an nth degree polynomial in x.</span></span><br><span class="line"><span class="hljs-string">    WIKIPEDIA: https://en.wikipedia.org/wiki/Polynomial_regression</span></span><br><span class="line"><span class="hljs-string">    """</span></span><br><span class="line"></span><br><span class="line">    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">__init__</span><span class="hljs-params">(self, threshold=<span class="hljs-number">0.15</span>, degree=<span class="hljs-number">4</span>)</span>:</span></span><br><span class="line">        <span class="hljs-string">"""</span></span><br><span class="line"><span class="hljs-string">       :param threshold: The critical point of normal.</span></span><br><span class="line"><span class="hljs-string">       :param degree: Depth of iteration.</span></span><br><span class="line"><span class="hljs-string">        """</span></span><br><span class="line">        self.degree = degree</span><br><span class="line">        self.threshold = threshold</span><br><span class="line"></span><br><span class="line">    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">predict</span><span class="hljs-params">(self, X, window=DEFAULT_WINDOW)</span>:</span></span><br><span class="line">        <span class="hljs-string">"""</span></span><br><span class="line"><span class="hljs-string">        Predict if a particular sample is an outlier or not.</span></span><br><span class="line"><span class="hljs-string">        :param X: the time series to detect of</span></span><br><span class="line"><span class="hljs-string">        :param type X: pandas.Series</span></span><br><span class="line"><span class="hljs-string">        :param window: the length of window</span></span><br><span class="line"><span class="hljs-string">        :param type window: int</span></span><br><span class="line"><span class="hljs-string">        :return: 1 denotes normal, 0 denotes abnormal</span></span><br><span class="line"><span class="hljs-string">        """</span></span><br><span class="line">        x_train = list(range(<span class="hljs-number">0</span>, <span class="hljs-number">2</span> * window + <span class="hljs-number">1</span>)) + list(range(<span class="hljs-number">0</span>, <span class="hljs-number">2</span> * window + <span class="hljs-number">1</span>)) + list(range(<span class="hljs-number">0</span>, window + <span class="hljs-number">1</span>))</span><br><span class="line">        x_train = np.array(x_train)</span><br><span class="line">        x_train = x_train[:, np.newaxis]</span><br><span class="line">        avg_value = np.mean(X[-(window + <span class="hljs-number">1</span>):])</span><br><span class="line">        <span class="hljs-keyword">if</span> avg_value &gt; <span class="hljs-number">1</span>:</span><br><span class="line">            y_train = X / avg_value</span><br><span class="line">        <span class="hljs-keyword">else</span>:</span><br><span class="line">            y_train = X</span><br><span class="line">        model = make_pipeline(PolynomialFeatures(self.degree), Ridge())</span><br><span class="line">        model.fit(x_train, y_train)</span><br><span class="line">        <span class="hljs-keyword">if</span> abs(y_train[<span class="hljs-number">-1</span>] - model.predict(np.array(x_train[<span class="hljs-number">-1</span>]).reshape(<span class="hljs-number">1</span>, <span class="hljs-number">-1</span>))) &gt; self.threshold:</span><br><span class="line">            <span class="hljs-keyword">return</span> <span class="hljs-number">0</span></span><br><span class="line">        <span class="hljs-keyword">return</span> <span class="hljs-number">1</span></span><br></pre></td></tr></table></figure>
+        </div>
+        
+        
+        
+    </div>
+</div>
+
+
+
+
+
+
+
+
+    <div class="card">
+    
+    <div class="card-content article ">
+        
+        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+            <div class="level-left">
+                <time class="level-item has-text-grey" datetime="2019-07-20T16:00:00.000Z">2019-07-21</time>
+                
+                <div class="level-item">
+                <a class="has-link-grey -link" href="/categories/Security/">Security</a>
+                </div>
+                
+                
+                <span class="level-item has-text-grey">
+                    
+                    
+                    几秒 读完 (大约 0 个字)
+                </span>
+                
+                
+            </div>
+        </div>
+        
+        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+            
+                <a class="has-link-black-ter" href="/2019/07/21/安全/2019-07-22-xgboost/">孤立森林（Isolation Forest）</a>
+            
+        </h1>
+        <div class="content">
+            
+        </div>
+        
+        
+        
+    </div>
+</div>
+
+
+
+
+
+
+
+
+    <div class="card">
+    
+    <div class="card-content article ">
+        
+        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+            <div class="level-left">
+                <time class="level-item has-text-grey" datetime="2019-07-20T16:00:00.000Z">2019-07-21</time>
+                
+                <div class="level-item">
+                <a class="has-link-grey -link" href="/categories/Security/">Security</a>
+                </div>
+                
+                
+                <span class="level-item has-text-grey">
+                    
+                    
+                    5 分钟 读完 (大约 819 个字)
+                </span>
+                
+                
+            </div>
+        </div>
+        
+        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+            
+                <a class="has-link-black-ter" href="/2019/07/21/安全/2019-07-22-利用时序决策树进行DGA僵尸检测/">利用时序决策树进行DGA僵尸检测</a>
+            
+        </h1>
+        <div class="content">
+            <p>DGA Bot Detection with Time Series Decision Trees</p>
+<h2 id="主要思路"><a href="#主要思路" class="headerlink" title="主要思路"></a>主要思路</h2><ol>
+<li>标签模块依赖分类技术，该模块可以对训练模型生成有标签的数据，并对每一个已经检测到的僵尸网络提供一系列的感染IP</li>
+<li>训练模块使用对生成的标签数据进行有监督的学习，对每一个僵尸网络家族都构造一个检测模型。利用典型的IP时间轮廓评估。</li>
+<li>检测模块在短时间内检测受到影响的IP。</li>
+</ol>
+<h2 id="标签模块"><a href="#标签模块" class="headerlink" title="标签模块"></a>标签模块</h2><p>给有监督训练模型提供受感染IP的实例，该模块只处理在DNS服务器中不存在的域名，利用的原理是通过将相同DGA僵尸网络的子集请求进行聚类。</p>
+<ol>
+<li><strong>数据预处理</strong> 通过启发式方法减小数据量，减少良性的DNS流量，只保留可疑的NXDOMAIN来进行后续的聚类。（根据域名进行判断）</li>
+<li><strong>分级聚类</strong> D作为一系列的域名，每一个域名d都由一组IP代表，这组IP可以至少区分一个不成功的DNS请求。聚类结果C可以代表D的一种划分，对于每一个类别c都是自底向上聚类的结果。两个类可以计算相似度，如果相似度在限制内可以进行合并；该限制也可以防止没有共享足够IP的两个类进行合并。</li>
+</ol>
+<p>相似度计算公式：</p>
+<script type="math/tex; mode=display">
+\forall(c_i,c_j) \in C^2, sim(c_i.c_j) = |IP^{c_i}\cap IP^{c_j} |</script><p>相似度限制公式：</p>
+<script type="math/tex; mode=display">
+sim(c_1^*,c_2^*) > \alpha \cdot min(|IP^{c_1^*}|,|IP^{c_2^*}|)</script><p><img src="pictures/DGA.jpg" alt></p>
+<ol>
+<li><strong>得到受感染的IP</strong> 往往丢弃与恶意行为不相干的类别，对已识别的DGA僵尸网络命名，</li>
+</ol>
+<h2 id="检测模块：时序决策树"><a href="#检测模块：时序决策树" class="headerlink" title="检测模块：时序决策树"></a>检测模块：时序决策树</h2><p>输入：DNS时序，每个IP都有标签{Infected，NonInfected}</p>
+<p>在CART决策树的基础上训练，根节点包含所有的训练实例。每个内部节点都包含一系列的训练实例$\tau$以及根据输入特征确定的分割条件s</p>
+<ol>
+<li>所有的实例拥有相同的标签<script type="math/tex; mode=display">\forall(T_0,T_1) \in \tau^2, label(T_0)=label(T_1)</script></li>
+<li>所有的实例根据距离公式都是相等的<script type="math/tex; mode=display">\forall(T_0,T_1) \in \tau^2, dist(T_0,T_1)=0</script></li>
+</ol>
+<h3 id="训练模块"><a href="#训练模块" class="headerlink" title="训练模块"></a>训练模块</h3><p>分治算法进行决策树的处理，一条子树持续划分直到满足上述两个限制。</p>
+<p>对于一个训练集，首先计算分裂的候选值，要求分裂结果使得子树最干净，干净可以用标签的定义来进行判断。最不干净的结果就是一半为{Infected}另一半为{NonInfected}</p>
+<h3 id="检测模块"><a href="#检测模块" class="headerlink" title="检测模块"></a>检测模块</h3><p>当决策树构建结束后，就可以通过从根节点到叶子节点的一条路径上的划分来区分其属于哪一个类。</p>
+<h3 id="时序划分候选"><a href="#时序划分候选" class="headerlink" title="时序划分候选"></a>时序划分候选</h3><ul>
+<li>标准划分：通过半径划分</li>
+<li>聚类划分：根据到中心的的距离进行划分</li>
+</ul>
+<p><img src="pictures/DGA1.jpg" alt></p>
+<h3 id="时序距离"><a href="#时序距离" class="headerlink" title="时序距离"></a>时序距离</h3><p>DTW距离（很好的分析时序距离的方法）</p>
+
+        </div>
+        
+        
+        
+    </div>
+</div>
+
+
+
+
+
+
+
+
+    <div class="card">
+    
+    <div class="card-content article ">
+        
+        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+            <div class="level-left">
+                <time class="level-item has-text-grey" datetime="2019-07-20T16:00:00.000Z">2019-07-21</time>
+                
+                <div class="level-item">
+                <a class="has-link-grey -link" href="/categories/Security/">Security</a>
+                </div>
+                
+                
+                <span class="level-item has-text-grey">
+                    
+                    
+                    3 分钟 读完 (大约 480 个字)
+                </span>
+                
+                
+            </div>
+        </div>
+        
+        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+            
+                <a class="has-link-black-ter" href="/2019/07/21/安全/2019-07-22-孤立森林（Isolation Froest）/">孤立森林（Isolation Forest）</a>
+            
+        </h1>
+        <div class="content">
+            <h2 id="iForest"><a href="#iForest" class="headerlink" title="iForest"></a>iForest</h2><p>无参数无监督方法。</p>
+<p>假设用一个随机超平面切割数据空间，切一次产生两个子空间，依次循环下去直到每个子空间只有一个数据点为止。直观的说那些密度很高的簇需要被切割很多次才会停止，但是那些密度较低的点很容易较早地停在一个子空间里</p>
+<h2 id="实现步骤"><a href="#实现步骤" class="headerlink" title="实现步骤"></a>实现步骤</h2><p>切割是随机的因此需要集成方法得到一个收敛值，即反复从头开始切然后平均每次的结果。</p>
+<ol>
+<li>从训练数据集中选择样本点作为subsample,放入树的根节点。</li>
+<li>随机指定一个维度，随机产生一个切割点p，位于当前数据的最大最小值之间。</li>
+<li>以切割点生成超平面，然后将当前的节点数据空间划分为2个子空间，把小于p的放入节点的左孩子，大于等于p的放在右孩子</li>
+<li>在孩子节点中不断递归步骤2和3，直到无法切割，或者达到限定高度。</li>
+</ol>
+<p>获得t个iTree后，训练结束然后可以用生成的iForest来评估测试数据，对于每一个训练数据x遍历每一棵iTree，计算其落在第几层，得到x在每个树高度平均值。获得测试数据的高度平均值后可以设置一个阈值，低于阈值的测试数据为异常。异常在书中往往有较短的平均高度。论文对高度进行归一化结果是一个0到1的数值，越短高度越接近1（异常可能性越高）</p>
+<p><img src="pictures/iForest.webp" alt></p>
+<p>可以看出d最有可能是异常</p>
+<h2 id="默认参数"><a href="#默认参数" class="headerlink" title="默认参数"></a>默认参数</h2><ul>
+<li>subsample size：256</li>
+<li>Tree height：8</li>
+<li>Number of trees：100</li>
+</ul>
+
+        </div>
+        
+        
+        
+    </div>
+</div>
+
+
+
+
+
+
+
+
+    <div class="card">
+    
+    <div class="card-content article ">
+        
+        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+            <div class="level-left">
+                <time class="level-item has-text-grey" datetime="2019-06-21T16:00:00.000Z">2019-06-22</time>
+                
+                <div class="level-item">
+                <a class="has-link-grey -link" href="/categories/Security/">Security</a>
+                </div>
+                
+                
+                <span class="level-item has-text-grey">
+                    
+                    
+                    11 分钟 读完 (大约 1657 个字)
+                </span>
+                
+                
+            </div>
+        </div>
+        
+        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+            
+                <a class="has-link-black-ter" href="/2019/06/22/安全/2019-06-22-网络异常行为检测/">网络异常行为检测</a>
+            
+        </h1>
+        <div class="content">
+            <h2 id="基于统计学习的网络异常行为检测技术-启明"><a href="#基于统计学习的网络异常行为检测技术-启明" class="headerlink" title="基于统计学习的网络异常行为检测技术(启明)"></a><a href="http://www.199it.com/archives/436132.html" target="_blank" rel="noopener">基于统计学习的网络异常行为检测技术</a>(启明)</h2><p>基于人工特征提取的异常检测技术的技术路线是：分析人员首先以某种方式从原始数据中提取特征参数，然后基于特征进行建模和异常检测。</p>
+<p>人工特征提取的优点是（应用较多）：</p>
+<ul>
+<li>特征提取建立在安全分析人员的认知基础之上，对异常行为有较强的针对性；</li>
+<li>对训练样本数量的依赖度低，较少的样本训练即可得到相对准确的模型；</li>
+<li>模型的可解释度高，容易确定异常检测结果的有效性。</li>
+</ul>
+<p>人工特征提取的缺点：</p>
+<ul>
+<li>对安全分析人员的依赖度高，特征的选取方法会对异常检测结果的有效性产生直接影响。</li>
+</ul>
+<p>深度学习优点：</p>
+<ul>
+<li>提出了一种让计算机自动学习产生特征的方法，并将特征学习融入建立模型的过程中，从而减少了人为设计特征引发的不完备。</li>
+</ul>
+<p>深度学习方法局限性：</p>
+<ul>
+<li>需要有大量的训练样本进行训练，才能保证模型的准确度。</li>
+<li>当训练样本数量不足时，深度学习算法将不能够对数据的规律进行无偏估计，模型的识别效果可能还不如传统基于人工特征提取的统计分析方法。</li>
+<li>当前深度学习的成功应用大都集中在有大量训练样本的模式识别领域，如语音识别、图像识别、机器翻译等。</li>
+</ul>
+<p>特征选择：</p>
+<ul>
+<li>命令与控制通道行为检测<ul>
+<li>反向连接特征（判断是不是一个流）</li>
+<li>心跳特征（检测数据传输的平稳度）</li>
+</ul>
+</li>
+<li>获取行为检测<ul>
+<li>会话信息类指标。统计一台主机单位时间内不同协议类型的会话统计信息。如TCP连接次数、UDP连接次数、对应的流量、数据分组大小的均值和标准差等</li>
+<li>应用分布类指标。统计一台主机单位时间内不同应用类型的访问统计信息。如访问不同应用的流量分布、次数、目标地址位置、国别分布等</li>
+<li>指示位标识类指标。统计一台主机单位时间内收发的含特定协议标识位的数据分组数量及其比值。有TCP_SYN_send、TCP_SYN_ACK_receive、RST_send等标志位的会话数目；TCP_SYN_ACK_receive/TCP_SYN_send的比值；单位时间里的ICMP_T3、ICMP_Echo_Reply、ICMP_Echo_Request等报文数目</li>
+<li>地址分布指标。统计一台主机单位时间内访问的IP地址网段分布、内外网分布等参数</li>
+</ul>
+</li>
+</ul>
+<p>特征值异常检测</p>
+<hr>
+<h2 id="基于主动学习的异常检测"><a href="#基于主动学习的异常检测" class="headerlink" title="基于主动学习的异常检测"></a><a href="https://mp.weixin.qq.com/s?__biz=MzIyMzcxMDYwNg==&amp;mid=2247484232&amp;idx=1&amp;sn=28dcd0f1d32ab1298f2ba9c5380d1ce7&amp;chksm=e81b5fa9df6cd6bf391a188c31cb1ac53024f0fd1b6fddb48b13e04882be5d13b53b30eba482&amp;mpshare=1&amp;scene=1&amp;srcid=#rd" target="_blank" rel="noopener">基于主动学习的异常检测</a></h2><p>运维人员会把自己的领域知识融入到异常检测中，针对初始的异常分数排名，给出排名靠前的样本的反馈之后，模型会根据这个反馈来重新调整参数，从而输出新的异常分数排名，目的是使运维人员感兴趣的异常排在靠前的位置，从而节约排查异常所需的时间。</p>
+<p><strong>损失函数</strong>：<br>异常样本被排在最前面，说明目前的模型是好的，损失函数的值需要减少,正常点排在前面，那么这个模型是有问题的，需要增大损失函数。</p>
+<p><strong>镜像下降学习算法</strong></p>
+<hr>
+<h2 id="通过半监督学习为新KPI曲线快速部署异常检测"><a href="#通过半监督学习为新KPI曲线快速部署异常检测" class="headerlink" title="通过半监督学习为新KPI曲线快速部署异常检测"></a><a href="https://mp.weixin.qq.com/s?__biz=MzIyMzcxMDYwNg==&amp;mid=2247484321&amp;idx=1&amp;sn=2d7e8fa47adca709814242fa0308c074&amp;chksm=e81b5f40df6cd656ef182ab30c3a7d117268e21e2823d5ab2be438478b5843039b8eb03aca84&amp;mpshare=1&amp;scene=1&amp;srcid=#rd" target="_blank" rel="noopener">通过半监督学习为新KPI曲线快速部署异常检测</a></h2><p>分析KPI曲线，尽管KPI曲线的数量众多，但是曲线的形状大体上只有少数的几类。这本质是由于，曲线的形状是由业务的类型（比如交易量，游戏在线人数，搜索）以及曲线的类型（CPU使用率，成功率）所决定的，而非集群的规模。除非是上线一个全新的业务，否则新的曲线的形状大概率会和旧曲线的形状相似。这启示作者，可以对曲线做聚类，属于同一类别的曲线，其特征空间也大致相似。属于同一类别的曲线形状相似，但是并不完全一致，在模型层面上需要有所区分。作者开始思考，是否可以用机器学习中的半监督算法来解决这个问题，既可以使用原有的label标注，提高准确率，又能够为每根新上线的曲线分配不同的模型。</p>
+<p><a href="https://zhuanlan.zhihu.com/p/50698719" target="_blank" rel="noopener">ROCKA</a> 分析曲线相似度</p>
+<hr>
+<p><a href="https://github.com/Tencent/Metis" target="_blank" rel="noopener">腾讯Metis</a></p>
+<ol>
+<li>对于已知的故障：织云 Metis 能够综合故障数据和人工经验自动提取故障特征，以故障特征库的形式，自动匹配定位故障；</li>
+<li>对于未知场景：织云 Metis 可根据故障特征推算出可能的原因，并在人工确认后加入故障特征库。</li>
+</ol>
+<p>特征：提供三类时间序列的特征（统计特征、拟合特征、分类特征）用于对时序数据进行特征提取，在监督学习和训练中使用。支持增加自定义特征</p>
+<p>算法： 提供常见的几种机器学习算法封装（统计判别算法、指数移动平均算法、多项式算法、GBDT和xgboost等）用于对序数据进行联合仲裁检测。</p>
+<hr>
+<p><a href="https://mp.weixin.qq.com/s/AXhjawsINKl6cLDV1yf6fw" target="_blank" rel="noopener">百度</a></p>
+<ol>
+<li>阈值检测</li>
+<li>突升突降类算法（检测均值漂移）</li>
+<li>同比类算法（判断正态分布的均值与方差）</li>
+<li>参数自动配置</li>
+</ol>
+
+        </div>
+        
+        
+        
+    </div>
+</div>
+
+
+
+
+
+
+
+
+    <div class="card">
+    
+    <div class="card-content article ">
+        
+        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+            <div class="level-left">
+                <time class="level-item has-text-grey" datetime="2018-09-01T16:00:00.000Z">2018-09-02</time>
+                
+                <div class="level-item">
+                <a class="has-link-grey -link" href="/categories/Security/">Security</a>
+                </div>
+                
+                
+                <span class="level-item has-text-grey">
+                    
+                    
+                    11 分钟 读完 (大约 1619 个字)
+                </span>
+                
+                
+            </div>
+        </div>
+        
+        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+            
+                <a class="has-link-black-ter" href="/2018/09/02/安全/2018-09-02-蜜罐技术/">蜜罐技术</a>
+            
+        </h1>
+        <div class="content">
+            <h1 id="蜜罐技术"><a href="#蜜罐技术" class="headerlink" title="蜜罐技术"></a>蜜罐技术</h1><h2 id="蜜罐主要工作原理"><a href="#蜜罐主要工作原理" class="headerlink" title="蜜罐主要工作原理"></a>蜜罐主要工作原理</h2><p>蜜罐通常伪装成看似有利用价值的网络且提供一些必要的漏洞，当一个攻击者试图侵入蜜罐时，入侵检测系统会触发一个报警，隐藏的记录器会记录下入侵者一切活动，当入侵者试图从蜜罐中转向真实主机时，一个单独的防火墙会随时把主机从网络上断开。</p>
+<h2 id="蜜罐技术的分类"><a href="#蜜罐技术的分类" class="headerlink" title="蜜罐技术的分类"></a>蜜罐技术的分类</h2><ul>
+<li><strong>高交互蜜罐：</strong> 模拟一个全功能的生产环境，因此攻击者可能因为多种服务浪费攻击时间。通过虚拟机技术可以在单个物理机上托管多个蜜罐，也方便恢复。高交互蜜罐难以检测，安全性较高但是维护开销也较高，对于某些特殊情况甚至需要一台物理机部署一个蜜罐。</li>
+<li><strong>低交互蜜罐：</strong> 只模拟那些经常被攻击请求的服务，由于它消耗的资源有限，复杂度较低可以降低一定的部署费用，但是安全性也相对较低。</li>
+</ul>
+<h2 id="蜜罐技术存在的风险："><a href="#蜜罐技术存在的风险：" class="headerlink" title="蜜罐技术存在的风险："></a>蜜罐技术存在的风险：</h2><p>如果蜜罐被设计从互联网来访问，可能会有一个风险，创建非信任站点列表的外部监控组织可能会报告组织的系统是脆弱的，因为无法区分这个脆弱性是属于蜜罐还是系统自身。</p>
+<p>蜜罐原本提供的漏洞稍有不慎就会导致系统被渗透，可能会涉及隐私、责任与设陷技术等。例如黑客可能利用被攻陷的电脑作为跳板或者传播病毒等等。</p>
+<hr>
+<h2 id="工具资料"><a href="#工具资料" class="headerlink" title="工具资料"></a>工具资料</h2><p><a href="https://github.com/paralax/awesome-honeypots/blob/master/README_CN.md" target="_blank" rel="noopener">现有的蜜罐参考列表</a></p>
+<h3 id="蜜罐平台"><a href="#蜜罐平台" class="headerlink" title="蜜罐平台"></a>蜜罐平台</h3><ul>
+<li><a href="https://dtag-dev-sec.github.io/mediator/feature/2017/11/07/t-pot-17.10.html" target="_blank" rel="noopener">开源蜜罐项目T-Pot</a>：基于docker技术集成了众多针对不同应用蜜罐程序的系统。</li>
+<li><a href="https://github.com/threatstream/mhn" target="_blank" rel="noopener">现代蜜网MHN</a>：集成了多种蜜罐的安装脚本，可以快速部署、使用，也能够快速的从节点收集数据。</li>
+</ul>
+<h3 id="T-pot和MHN支持的蜜罐容器："><a href="#T-pot和MHN支持的蜜罐容器：" class="headerlink" title="T-pot和MHN支持的蜜罐容器："></a>T-pot和MHN支持的蜜罐容器：</h3><ul>
+<li><a href="https://github.com/mushorg/conpot" target="_blank" rel="noopener">Conpot</a>：低交互工控蜜罐，提供一系列通用工业控制协议, 能够模拟复杂的工控基础设施。</li>
+<li><a href="https://github.com/micheloosterhof/cowrie" target="_blank" rel="noopener">Cowire</a>：中等交互的SSH与Telnet蜜罐，可以记录暴力攻击，并提供伪造的文件系统环境记录黑客操作行为。</li>
+<li><a href="https://github.com/DinoTools/dionaea" target="_blank" rel="noopener">Dionaea</a>: 它开放常见网络服务的默认端口，当有外来连接时模拟正常反馈，同时记录下数据流，网络数据流经由检测模块检测后按类别进行处理。</li>
+<li><a href="https://github.com/mushorg/glastopf" target="_blank" rel="noopener">Glastopf</a>: 低交互型Web应用蜜罐，能够模拟成千上万的web漏洞，针对攻击的不同攻击手段来回应攻击者，然后从对目标Web应用程序的攻击过程中收集数据。</li>
+<li><a href="https://github.com/honeytrap/honeytrap" target="_blank" rel="noopener">Honeytrap</a>: 观察针对TCP或UDP服务的攻击，并能够分析攻击字符串，执行相应的下载文件指令。</li>
+</ul>
+<h3 id="可视化界面："><a href="#可视化界面：" class="headerlink" title="可视化界面："></a>可视化界面：</h3><p><img src="https://ws2.sinaimg.cn/large/006tNbRwly1fuvhxyagn8j30ps0gun10.jpg" alt="攻击地图"><br><img src="https://ws3.sinaimg.cn/large/006tNbRwly1fuvhx8gtunj30ou0gimz3.jpg" alt="攻击总量"></p>
+<hr>
+<h2 id="蜜罐衍生概念"><a href="#蜜罐衍生概念" class="headerlink" title="蜜罐衍生概念"></a>蜜罐衍生概念</h2><ul>
+<li><strong>蜜场：</strong> 蜜场的思想是将网络中可疑数据流重定向到蜜场中。在网络中放置检测器，当发现可疑数据流时，利用重定向器将其导向蜜场。所有蜜罐集中于蜜场，与外网之间用防火墙隔离。蜜场的优势在于集中性。 </li>
+<li><strong>蜜网：</strong> 当多个蜜罐被网络连接在一起，组成一个大型虚假业务系统，利用其中一部分主机吸引攻击者入侵，通过监测入侵过程，一方面收集攻击者的攻击行为，另一方面可以更新相应的安全防护策略。这种由多个蜜罐组成的模拟网络就称为蜜网。</li>
+<li><strong>分布式蜜网：</strong> 分布式蜜网系统能够将各个不同位置部署的蜜网捕获的数据进行汇总分析，有效的提升安全威胁监测的覆盖面，克服了传统蜜罐监测范围窄的缺陷，因而成为目前安全业界采用蜜罐技术构建互联网安全威胁监测体系的普遍部署模式。</li>
+<li><strong>动态蜜网：</strong> 动态蜜网，将低交互蜜罐和高交互蜜罐结合起来，需要虚拟蜜网技术的支持，利用被动指纹工具监控网络。依据获得的网络信息对蜜网进行部署和配置。最主要的是其自适应能力，能够自动学习周围的网络环境，配置适当数量的蜜罐，并随网络环境的变化做出调整。</li>
+<li><strong>SDN蜜网：</strong> 结合虚拟化技术，能够在威胁发现之后动态的生成相应的蜜网系统，同时利用SDN控制器将异常流量调度到虚拟化的蜜网系统中，完成异常行为的跟踪取证与安全防护。这种SDN蜜网有效的解决了传统蜜网的部署结构不灵活，基础设施成本高等问题。<br><img src="https://ws4.sinaimg.cn/large/006tNbRwly1fuvikem9bpj30ff07jmxi.jpg" alt></li>
+</ul>
+<p><a href="http://www.honeynet.org" target="_blank" rel="noopener">蜜网研究项目参考网站</a></p>
+<hr>
+<h2 id="总结分析"><a href="#总结分析" class="headerlink" title="总结分析"></a>总结分析</h2><ol>
+<li>T-pot与MHN提供了比较完善的开源平台，我们可以尝试利用虚拟机或者docker技术等将其部署在物理机或云服务器上，进行异常流量的监测工作（同李振华老师的做法）。</li>
+<li>针对项目特定需求二次开发相应的蜜罐容器，采用分布式蜜网或SDN蜜网等方法，将蜜罐部署到各个节点之上，对实际项目中的异常流量或者攻击行为进行监测。</li>
+</ol>
+
+        </div>
+        
+        
+        
+    </div>
+</div>
+
+
+
+
+
+
+
+
+</div>
+                
+
+
+
+
+<div class="column is-4-tablet is-4-desktop is-3-widescreen  has-order-1 column-left ">
+    
+        
+<div class="card widget">
+    <div class="card-content">
+        <nav class="level">
+            <div class="level-item has-text-centered" style="flex-shrink: 1">
+                <div>
+                    
+                    <figure class="image is-128x128 has-mb-6">
+                        <img class="" src="/images/avatar.png" alt="Your name">
+                    </figure>
+                    
+                    <p class="is-size-4 is-block">
+                        Your name
+                    </p>
+                    
+                    
+                    <p class="is-size-6 is-block">
+                        Your title
+                    </p>
+                    
+                    
+                    <p class="is-size-6 is-flex is-flex-center has-text-grey">
+                        <i class="fas fa-map-marker-alt has-mr-7"></i>
+                        <span>Your location</span>
+                    </p>
+                    
+                </div>
+            </div>
+        </nav>
+        <nav class="level is-mobile">
+            <div class="level-item has-text-centered is-marginless">
+                <div>
+                    <p class="heading">
+                        文章
+                    </p>
+                    <p class="title has-text-weight-normal">
+                        73
+                    </p>
+                </div>
+            </div>
+            <div class="level-item has-text-centered is-marginless">
+                <div>
+                    <p class="heading">
+                        分类
+                    </p>
+                    <p class="title has-text-weight-normal">
+                        12
+                    </p>
+                </div>
+            </div>
+            <div class="level-item has-text-centered is-marginless">
+                <div>
+                    <p class="heading">
+                        标签
+                    </p>
+                    <p class="title has-text-weight-normal">
+                        18
+                    </p>
+                </div>
+            </div>
+        </nav>
+        <div class="level">
+            <a class="level-item button is-link is-rounded" href="https://github.com/ppoffice" target="_blank">
+                关注我</a>
+        </div>
+        
+        
+        <div class="level is-mobile">
+            
+            <a class="level-item button is-white is-marginless" target="_blank"
+                title="Github" href="https://github.com/ppoffice">
+                
+                <i class="fab fa-github"></i>
+                
+            </a>
+            
+            <a class="level-item button is-white is-marginless" target="_blank"
+                title="Facebook" href="https://facebook.com">
+                
+                <i class="fab fa-facebook"></i>
+                
+            </a>
+            
+            <a class="level-item button is-white is-marginless" target="_blank"
+                title="Twitter" href="https://twitter.com">
+                
+                <i class="fab fa-twitter"></i>
+                
+            </a>
+            
+            <a class="level-item button is-white is-marginless" target="_blank"
+                title="Dribbble" href="https://dribbble.com">
+                
+                <i class="fab fa-dribbble"></i>
+                
+            </a>
+            
+            <a class="level-item button is-white is-marginless" target="_blank"
+                title="RSS" href="/">
+                
+                <i class="fas fa-rss"></i>
+                
+            </a>
+            
+        </div>
+        
+    </div>
+</div>
+    
+        
+    
+        
+
+<div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+        <h3 class="menu-label">
+            链接
+        </h3>
+        <ul class="menu-list">
+        
+            <li>
+                <a class="level is-mobile" href="https://hexo.io" target="_blank">
+                    <span class="level-left">
+                        <span class="level-item">Hexo</span>
+                    </span>
+                    <span class="level-right">
+                        <span class="level-item tag">hexo.io</span>
+                    </span>
+                </a>
+            </li>
+        
+            <li>
+                <a class="level is-mobile" href="https://github.com/ppoffice" target="_blank">
+                    <span class="level-left">
+                        <span class="level-item">PPOffice</span>
+                    </span>
+                    <span class="level-right">
+                        <span class="level-item tag">github.com</span>
+                    </span>
+                </a>
+            </li>
+        
+        </ul>
+        </div>
+    </div>
+</div>
+
+
+    
+        
+<div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+            <h3 class="menu-label">
+                分类
+            </h3>
+            <ul class="menu-list">
+            <li>
+        <a class="level is-marginless" href="/categories/Anomaly-detection/">
+            <span class="level-start">
+                <span class="level-item">Anomaly detection</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">4</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/Concept/">
+            <span class="level-start">
+                <span class="level-item">Concept</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">4</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/Data-mining/">
+            <span class="level-start">
+                <span class="level-item">Data mining</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">4</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/Database/">
+            <span class="level-start">
+                <span class="level-item">Database</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">3</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/Information-Retrieval/">
+            <span class="level-start">
+                <span class="level-item">Information Retrieval</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">1</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/Linux/">
+            <span class="level-start">
+                <span class="level-item">Linux</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">5</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/Pattern-recognition/">
+            <span class="level-start">
+                <span class="level-item">Pattern recognition</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">1</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/Pi/">
+            <span class="level-start">
+                <span class="level-item">Pi</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">12</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/RL/">
+            <span class="level-start">
+                <span class="level-item">RL</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">3</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/Security/">
+            <span class="level-start">
+                <span class="level-item">Security</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">8</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/算法/">
+            <span class="level-start">
+                <span class="level-item">算法</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">13</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/网络/">
+            <span class="level-start">
+                <span class="level-item">网络</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">13</span>
+            </span>
+        </a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+    
+        
+<div class="card widget">
+    <div class="card-content">
+        <h3 class="menu-label">
+            标签云
+        </h3>
+        <a href="/tags/Algorithm/" style="font-size: 18.89px;">Algorithm</a> <a href="/tags/Anomaly-detection/" style="font-size: 16.67px;">Anomaly detection</a> <a href="/tags/Concept/" style="font-size: 12.22px;">Concept</a> <a href="/tags/Data-mining/" style="font-size: 12.22px;">Data mining</a> <a href="/tags/Database/" style="font-size: 11.11px;">Database</a> <a href="/tags/IPv4/" style="font-size: 10px;">IPv4</a> <a href="/tags/Information-Retrieval/" style="font-size: 10px;">Information Retrieval</a> <a href="/tags/Linux/" style="font-size: 13.33px;">Linux</a> <a href="/tags/Mininet/" style="font-size: 10px;">Mininet</a> <a href="/tags/Networking/" style="font-size: 15.56px;">Networking</a> <a href="/tags/OS/" style="font-size: 20px;">OS</a> <a href="/tags/Pattern-recognition/" style="font-size: 10px;">Pattern recognition</a> <a href="/tags/RL/" style="font-size: 11.11px;">RL</a> <a href="/tags/Raspberry-Pi/" style="font-size: 17.78px;">Raspberry-Pi</a> <a href="/tags/Security/" style="font-size: 15.56px;">Security</a> <a href="/tags/VANET/" style="font-size: 14.44px;">VANET</a> <a href="/tags/ns3/" style="font-size: 14.44px;">ns3</a> <a href="/tags/time-series/" style="font-size: 10px;">time series</a>
+    </div>
+</div>
+
+    
+    
+        <div class="column-right-shadow is-hidden-widescreen ">
+        
+            
+<div class="card widget">
+    <div class="card-content">
+        <h3 class="menu-label">
+            最新文章
+        </h3>
+        
+        <article class="media">
+            
+            <a href="/2019/09/16/数据挖掘/2019-09-16-基于注意力模型的RNN时序预测/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-09-16T08:29:00.668Z">2019-09-16</time></div>
+                    <a href="/2019/09/16/数据挖掘/2019-09-16-基于注意力模型的RNN时序预测/" class="title has-link-black-ter is-size-6 has-text-weight-normal"></a>
+                    <p class="is-size-7 is-uppercase">
+                        
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2019/09/12/数据挖掘/2019-09-12-时间注意力模型下的时序预测/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="时间注意力模型下的时序预测.md">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-09-11T16:00:00.000Z">2019-09-12</time></div>
+                    <a href="/2019/09/12/数据挖掘/2019-09-12-时间注意力模型下的时序预测/" class="title has-link-black-ter is-size-6 has-text-weight-normal">时间注意力模型下的时序预测.md</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/Anomaly-detection/">Anomaly detection</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2019/09/09/数据挖掘/2019-09-09-DNN多维时序无监督异常检测/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="多维时序无监督异常检测.md">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-09-08T16:00:00.000Z">2019-09-09</time></div>
+                    <a href="/2019/09/09/数据挖掘/2019-09-09-DNN多维时序无监督异常检测/" class="title has-link-black-ter is-size-6 has-text-weight-normal">多维时序无监督异常检测.md</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/Anomaly-detection/">Anomaly detection</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2019/08/14/数据挖掘/2019-08-14-异常检测（MSRA KDD'19）/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="异常检测（MSRA，KDD&#39;19）">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-08-13T16:00:00.000Z">2019-08-14</time></div>
+                    <a href="/2019/08/14/数据挖掘/2019-08-14-异常检测（MSRA KDD'19）/" class="title has-link-black-ter is-size-6 has-text-weight-normal">异常检测（MSRA，KDD&#39;19）</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/Anomaly-detection/">Anomaly detection</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2019/07/21/数据挖掘/2019-08-13-实时异常检测/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="实时异常检测（xStream，KDD&#39;18）">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-07-20T16:00:00.000Z">2019-07-21</time></div>
+                    <a href="/2019/07/21/数据挖掘/2019-08-13-实时异常检测/" class="title has-link-black-ter is-size-6 has-text-weight-normal">实时异常检测（xStream，KDD&#39;18）</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/Anomaly-detection/">Anomaly detection</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+    </div>
+</div>
+
+        
+            <div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+        <h3 class="menu-label">
+            归档
+        </h3>
+        <ul class="menu-list">
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2019/09/">
+                <span class="level-start">
+                    <span class="level-item">九月 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">3</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2019/08/">
+                <span class="level-start">
+                    <span class="level-item">八月 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2019/07/">
+                <span class="level-start">
+                    <span class="level-item">七月 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">7</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2019/06/">
+                <span class="level-start">
+                    <span class="level-item">六月 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">4</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2019/05/">
+                <span class="level-start">
+                    <span class="level-item">五月 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">4</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2018/12/">
+                <span class="level-start">
+                    <span class="level-item">十二月 2018</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">4</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2018/11/">
+                <span class="level-start">
+                    <span class="level-item">十一月 2018</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">2</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2018/10/">
+                <span class="level-start">
+                    <span class="level-item">十月 2018</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2018/09/">
+                <span class="level-start">
+                    <span class="level-item">九月 2018</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2018/08/">
+                <span class="level-start">
+                    <span class="level-item">八月 2018</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">3</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2018/04/">
+                <span class="level-start">
+                    <span class="level-item">四月 2018</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">2</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2017/11/">
+                <span class="level-start">
+                    <span class="level-item">十一月 2017</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">3</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2017/10/">
+                <span class="level-start">
+                    <span class="level-item">十月 2017</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">6</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2017/09/">
+                <span class="level-start">
+                    <span class="level-item">九月 2017</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">7</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2017/07/">
+                <span class="level-start">
+                    <span class="level-item">七月 2017</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">2</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2017/03/">
+                <span class="level-start">
+                    <span class="level-item">三月 2017</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">6</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2016/12/">
+                <span class="level-start">
+                    <span class="level-item">十二月 2016</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">2</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2016/10/">
+                <span class="level-start">
+                    <span class="level-item">十月 2016</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">2</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2016/09/">
+                <span class="level-start">
+                    <span class="level-item">九月 2016</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2016/08/">
+                <span class="level-start">
+                    <span class="level-item">八月 2016</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">11</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2016/05/">
+                <span class="level-start">
+                    <span class="level-item">五月 2016</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        </ul>
+        </div>
+    </div>
+</div>
+        
+            <div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+            <h3 class="menu-label">
+                标签
+            </h3>
+            <div class="field is-grouped is-grouped-multiline">
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Algorithm/">
+                        <span class="tag">Algorithm</span>
+                        <span class="tag is-grey">13</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Anomaly-detection/">
+                        <span class="tag">Anomaly detection</span>
+                        <span class="tag is-grey">10</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Concept/">
+                        <span class="tag">Concept</span>
+                        <span class="tag is-grey">4</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Data-mining/">
+                        <span class="tag">Data mining</span>
+                        <span class="tag is-grey">4</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Database/">
+                        <span class="tag">Database</span>
+                        <span class="tag is-grey">3</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/IPv4/">
+                        <span class="tag">IPv4</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Information-Retrieval/">
+                        <span class="tag">Information Retrieval</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Linux/">
+                        <span class="tag">Linux</span>
+                        <span class="tag is-grey">5</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Mininet/">
+                        <span class="tag">Mininet</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Networking/">
+                        <span class="tag">Networking</span>
+                        <span class="tag is-grey">8</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/OS/">
+                        <span class="tag">OS</span>
+                        <span class="tag is-grey">17</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Pattern-recognition/">
+                        <span class="tag">Pattern recognition</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/RL/">
+                        <span class="tag">RL</span>
+                        <span class="tag is-grey">3</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Raspberry-Pi/">
+                        <span class="tag">Raspberry-Pi</span>
+                        <span class="tag is-grey">12</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Security/">
+                        <span class="tag">Security</span>
+                        <span class="tag is-grey">8</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/VANET/">
+                        <span class="tag">VANET</span>
+                        <span class="tag is-grey">6</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/ns3/">
+                        <span class="tag">ns3</span>
+                        <span class="tag is-grey">6</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/time-series/">
+                        <span class="tag">time series</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+</div>
+        
+        </div>
+    
+</div>
+
+                
+
+
+
+
+<div class="column is-4-tablet is-4-desktop is-3-widescreen is-hidden-touch is-hidden-desktop-only has-order-3 column-right ">
+    
+        
+<div class="card widget">
+    <div class="card-content">
+        <h3 class="menu-label">
+            最新文章
+        </h3>
+        
+        <article class="media">
+            
+            <a href="/2019/09/16/数据挖掘/2019-09-16-基于注意力模型的RNN时序预测/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-09-16T08:29:00.668Z">2019-09-16</time></div>
+                    <a href="/2019/09/16/数据挖掘/2019-09-16-基于注意力模型的RNN时序预测/" class="title has-link-black-ter is-size-6 has-text-weight-normal"></a>
+                    <p class="is-size-7 is-uppercase">
+                        
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2019/09/12/数据挖掘/2019-09-12-时间注意力模型下的时序预测/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="时间注意力模型下的时序预测.md">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-09-11T16:00:00.000Z">2019-09-12</time></div>
+                    <a href="/2019/09/12/数据挖掘/2019-09-12-时间注意力模型下的时序预测/" class="title has-link-black-ter is-size-6 has-text-weight-normal">时间注意力模型下的时序预测.md</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/Anomaly-detection/">Anomaly detection</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2019/09/09/数据挖掘/2019-09-09-DNN多维时序无监督异常检测/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="多维时序无监督异常检测.md">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-09-08T16:00:00.000Z">2019-09-09</time></div>
+                    <a href="/2019/09/09/数据挖掘/2019-09-09-DNN多维时序无监督异常检测/" class="title has-link-black-ter is-size-6 has-text-weight-normal">多维时序无监督异常检测.md</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/Anomaly-detection/">Anomaly detection</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2019/08/14/数据挖掘/2019-08-14-异常检测（MSRA KDD'19）/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="异常检测（MSRA，KDD&#39;19）">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-08-13T16:00:00.000Z">2019-08-14</time></div>
+                    <a href="/2019/08/14/数据挖掘/2019-08-14-异常检测（MSRA KDD'19）/" class="title has-link-black-ter is-size-6 has-text-weight-normal">异常检测（MSRA，KDD&#39;19）</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/Anomaly-detection/">Anomaly detection</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2019/07/21/数据挖掘/2019-08-13-实时异常检测/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="实时异常检测（xStream，KDD&#39;18）">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-07-20T16:00:00.000Z">2019-07-21</time></div>
+                    <a href="/2019/07/21/数据挖掘/2019-08-13-实时异常检测/" class="title has-link-black-ter is-size-6 has-text-weight-normal">实时异常检测（xStream，KDD&#39;18）</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/Anomaly-detection/">Anomaly detection</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+    </div>
+</div>
+
+    
+        <div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+        <h3 class="menu-label">
+            归档
+        </h3>
+        <ul class="menu-list">
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2019/09/">
+                <span class="level-start">
+                    <span class="level-item">九月 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">3</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2019/08/">
+                <span class="level-start">
+                    <span class="level-item">八月 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2019/07/">
+                <span class="level-start">
+                    <span class="level-item">七月 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">7</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2019/06/">
+                <span class="level-start">
+                    <span class="level-item">六月 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">4</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2019/05/">
+                <span class="level-start">
+                    <span class="level-item">五月 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">4</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2018/12/">
+                <span class="level-start">
+                    <span class="level-item">十二月 2018</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">4</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2018/11/">
+                <span class="level-start">
+                    <span class="level-item">十一月 2018</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">2</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2018/10/">
+                <span class="level-start">
+                    <span class="level-item">十月 2018</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2018/09/">
+                <span class="level-start">
+                    <span class="level-item">九月 2018</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2018/08/">
+                <span class="level-start">
+                    <span class="level-item">八月 2018</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">3</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2018/04/">
+                <span class="level-start">
+                    <span class="level-item">四月 2018</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">2</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2017/11/">
+                <span class="level-start">
+                    <span class="level-item">十一月 2017</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">3</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2017/10/">
+                <span class="level-start">
+                    <span class="level-item">十月 2017</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">6</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2017/09/">
+                <span class="level-start">
+                    <span class="level-item">九月 2017</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">7</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2017/07/">
+                <span class="level-start">
+                    <span class="level-item">七月 2017</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">2</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2017/03/">
+                <span class="level-start">
+                    <span class="level-item">三月 2017</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">6</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2016/12/">
+                <span class="level-start">
+                    <span class="level-item">十二月 2016</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">2</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2016/10/">
+                <span class="level-start">
+                    <span class="level-item">十月 2016</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">2</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2016/09/">
+                <span class="level-start">
+                    <span class="level-item">九月 2016</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2016/08/">
+                <span class="level-start">
+                    <span class="level-item">八月 2016</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">11</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2016/05/">
+                <span class="level-start">
+                    <span class="level-item">五月 2016</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        </ul>
+        </div>
+    </div>
+</div>
+    
+        <div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+            <h3 class="menu-label">
+                标签
+            </h3>
+            <div class="field is-grouped is-grouped-multiline">
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Algorithm/">
+                        <span class="tag">Algorithm</span>
+                        <span class="tag is-grey">13</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Anomaly-detection/">
+                        <span class="tag">Anomaly detection</span>
+                        <span class="tag is-grey">10</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Concept/">
+                        <span class="tag">Concept</span>
+                        <span class="tag is-grey">4</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Data-mining/">
+                        <span class="tag">Data mining</span>
+                        <span class="tag is-grey">4</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Database/">
+                        <span class="tag">Database</span>
+                        <span class="tag is-grey">3</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/IPv4/">
+                        <span class="tag">IPv4</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Information-Retrieval/">
+                        <span class="tag">Information Retrieval</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Linux/">
+                        <span class="tag">Linux</span>
+                        <span class="tag is-grey">5</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Mininet/">
+                        <span class="tag">Mininet</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Networking/">
+                        <span class="tag">Networking</span>
+                        <span class="tag is-grey">8</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/OS/">
+                        <span class="tag">OS</span>
+                        <span class="tag is-grey">17</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Pattern-recognition/">
+                        <span class="tag">Pattern recognition</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/RL/">
+                        <span class="tag">RL</span>
+                        <span class="tag is-grey">3</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Raspberry-Pi/">
+                        <span class="tag">Raspberry-Pi</span>
+                        <span class="tag is-grey">12</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Security/">
+                        <span class="tag">Security</span>
+                        <span class="tag is-grey">8</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/VANET/">
+                        <span class="tag">VANET</span>
+                        <span class="tag is-grey">6</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/ns3/">
+                        <span class="tag">ns3</span>
+                        <span class="tag is-grey">6</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/time-series/">
+                        <span class="tag">time series</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+</div>
+    
+    
+</div>
+
+            </div>
+        </div>
+    </section>
+    <footer class="footer">
+    <div class="container">
+        <div class="level">
+            <div class="level-start has-text-centered-mobile">
+                <a class="footer-logo is-block has-mb-6" href="/">
+                
+                    <img src="/images/logo.svg" alt="Fengrui Liu&#39;s Blog" height="28">
+                
+                </a>
+                <p class="is-size-7">
+                &copy; 2019 Fengrui Liu&nbsp;
+                Powered by <a href="https://hexo.io/" target="_blank">Hexo</a> & <a
+                        href="https://github.com/ppoffice/hexo-theme-icarus" target="_blank">Icarus</a>
+                
+                </p>
+            </div>
+            <div class="level-end">
+            
+                <div class="field has-addons is-flex-center-mobile has-mt-5-mobile is-flex-wrap is-flex-middle">
+                
+                
+                <p class="control">
+                    <a class="button is-white is-large" target="_blank" title="Creative Commons" href="https://creativecommons.org/">
+                        
+                        <i class="fab fa-creative-commons"></i>
+                        
+                    </a>
+                </p>
+                
+                <p class="control">
+                    <a class="button is-white is-large" target="_blank" title="Attribution 4.0 International" href="https://creativecommons.org/licenses/by/4.0/">
+                        
+                        <i class="fab fa-creative-commons-by"></i>
+                        
+                    </a>
+                </p>
+                
+                <p class="control">
+                    <a class="button is-white is-large" target="_blank" title="Download on GitHub" href="https://github.com/ppoffice/hexo-theme-icarus">
+                        
+                        <i class="fab fa-github"></i>
+                        
+                    </a>
+                </p>
+                
+                </div>
+            
+            </div>
+        </div>
+    </div>
+</footer>
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/min/moment-with-locales.min.js"></script>
+<script>moment.locale("zh-CN");</script>
+
+<script>
+var IcarusThemeSettings = {
+    article: {
+        highlight: {
+            clipboard: true,
+            fold: 'unfolded'
+        }
+    }
+};
+</script>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.4/dist/clipboard.min.js" defer></script>
+
+
+
+    
+    
+    
+    <script src="/js/animation.js"></script>
+    
+
+    
+    
+    
+    <script src="https://cdn.jsdelivr.net/npm/lightgallery@1.6.8/dist/js/lightgallery.min.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/js/jquery.justifiedGallery.min.js" defer></script>
+    <script src="/js/gallery.js" defer></script>
+    
+
+    
+    
+
+<div id="outdated">
+    <h6>Your browser is out-of-date!</h6>
+    <p>Update your browser to view this website correctly. <a id="btnUpdateBrowser" href="http://outdatedbrowser.com/">Update
+            my browser now </a></p>
+    <p class="last"><a href="#" id="btnCloseUpdateBrowser" title="Close">&times;</a></p>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/outdatedbrowser@1.1.5/outdatedbrowser/outdatedbrowser.min.js" defer></script>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        outdatedBrowser({
+            bgColor: '#f25648',
+            color: '#ffffff',
+            lowerThan: 'flex'
+        });
+    });
+</script>
+
+
+    
+    
+<script src="https://cdn.jsdelivr.net/npm/mathjax@2.7.5/unpacked/MathJax.js?config=TeX-MML-AM_CHTML" defer></script>
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    MathJax.Hub.Config({
+        'HTML-CSS': {
+            matchFontHeight: false
+        },
+        SVG: {
+            matchFontHeight: false
+        },
+        CommonHTML: {
+            matchFontHeight: false
+        },
+        tex2jax: {
+            inlineMath: [
+                ['$','$'],
+                ['\\(','\\)']
+            ]
+        }
+    });
+});
+</script>
+
+    
+    
+
+<a id="back-to-top" title="回到顶端" href="javascript:;">
+    <i class="fas fa-chevron-up"></i>
+</a>
+<script src="/js/back-to-top.js" defer></script>
+
+
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+    
+
+
+<script src="/js/main.js" defer></script>
+
+    
+    <div class="searchbox ins-search">
+    <div class="searchbox-container ins-search-container">
+        <div class="searchbox-input-wrapper">
+            <input type="text" class="searchbox-input ins-search-input" placeholder="想要查找什么..." />
+            <span class="searchbox-close ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="searchbox-result-wrapper ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+    (function (window) {
+        var INSIGHT_CONFIG = {
+            TRANSLATION: {
+                POSTS: '文章',
+                PAGES: '页面',
+                CATEGORIES: '分类',
+                TAGS: '标签',
+                UNTITLED: '(无标题)',
+            },
+            CONTENT_URL: '/content.json',
+        };
+        window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+    })(window);
+</script>
+<script src="/js/insight.js" defer></script>
+<link rel="stylesheet" href="/css/search.css">
+<link rel="stylesheet" href="/css/insight.css">
+    
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+</body>
+</html>
