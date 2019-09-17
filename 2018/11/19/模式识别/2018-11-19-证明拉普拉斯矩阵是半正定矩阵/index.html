@@ -9,18 +9,18 @@
         <meta name="keywords" content="Pattern recognition">
     
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <meta name="description" content="&amp;#x56E0;&amp;#x4E3A;\(L=D-W\),&amp;#x90A3;&amp;#x4E48;\(x^TLx\)&amp;#x6709;&amp;#xFF1A; \[ x^TLx = x^T(D-W)x = x^TDx - x^TWx \] \(W\)&amp;#x4E3A;&amp;#x4E00;&amp;#x4E2A;&amp;#x5BF9;&amp;#x79F0;&amp;#x77E9;&amp;#x9635;,&amp;#x5C06;\(W\)&amp;#x7684;&amp;#x5404;&amp;">
+    <meta name="description" content="&amp;#x56E0;&amp;#x4E3A;$L=D-W$,&amp;#x90A3;&amp;#x4E48;$x^TLx$&amp;#x6709;&amp;#xFF1A;  x^TLx = x^T(D-W)x = x^TDx - x^TWx$W$&amp;#x4E3A;&amp;#x4E00;&amp;#x4E2A;&amp;#x5BF9;&amp;#x79F0;&amp;#x77E9;&amp;#x9635;,&amp;#x5C06;$W$&amp;#x7684;&amp;#x5404;&amp;#x884C;&amp;#x5143">
 <meta name="keywords" content="Pattern recognition">
 <meta property="og:type" content="article">
 <meta property="og:title" content="证明拉普拉斯矩阵是半正定矩阵">
 <meta property="og:url" content="http://www.liufr.com/2018/11/19/模式识别/2018-11-19-证明拉普拉斯矩阵是半正定矩阵/index.html">
 <meta property="og:site_name" content="Fengrui Liu&#39;s Blog">
-<meta property="og:description" content="&amp;#x56E0;&amp;#x4E3A;\(L=D-W\),&amp;#x90A3;&amp;#x4E48;\(x^TLx\)&amp;#x6709;&amp;#xFF1A; \[ x^TLx = x^T(D-W)x = x^TDx - x^TWx \] \(W\)&amp;#x4E3A;&amp;#x4E00;&amp;#x4E2A;&amp;#x5BF9;&amp;#x79F0;&amp;#x77E9;&amp;#x9635;,&amp;#x5C06;\(W\)&amp;#x7684;&amp;#x5404;&amp;">
+<meta property="og:description" content="&amp;#x56E0;&amp;#x4E3A;$L=D-W$,&amp;#x90A3;&amp;#x4E48;$x^TLx$&amp;#x6709;&amp;#xFF1A;  x^TLx = x^T(D-W)x = x^TDx - x^TWx$W$&amp;#x4E3A;&amp;#x4E00;&amp;#x4E2A;&amp;#x5BF9;&amp;#x79F0;&amp;#x77E9;&amp;#x9635;,&amp;#x5C06;$W$&amp;#x7684;&amp;#x5404;&amp;#x884C;&amp;#x5143">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:updated_time" content="2018-11-19T08:28:01.610Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="证明拉普拉斯矩阵是半正定矩阵">
-<meta name="twitter:description" content="&amp;#x56E0;&amp;#x4E3A;\(L=D-W\),&amp;#x90A3;&amp;#x4E48;\(x^TLx\)&amp;#x6709;&amp;#xFF1A; \[ x^TLx = x^T(D-W)x = x^TDx - x^TWx \] \(W\)&amp;#x4E3A;&amp;#x4E00;&amp;#x4E2A;&amp;#x5BF9;&amp;#x79F0;&amp;#x77E9;&amp;#x9635;,&amp;#x5C06;\(W\)&amp;#x7684;&amp;#x5404;&amp;">
+<meta name="twitter:description" content="&amp;#x56E0;&amp;#x4E3A;$L=D-W$,&amp;#x90A3;&amp;#x4E48;$x^TLx$&amp;#x6709;&amp;#xFF1A;  x^TLx = x^T(D-W)x = x^TDx - x^TWx$W$&amp;#x4E3A;&amp;#x4E00;&amp;#x4E2A;&amp;#x5BF9;&amp;#x79F0;&amp;#x77E9;&amp;#x9635;,&amp;#x5C06;$W$&amp;#x7684;&amp;#x5404;&amp;#x884C;&amp;#x5143">
     
 
     
@@ -167,7 +167,7 @@
                             &nbsp;
                             Algorithm
                         </a>
-                         <ul class="unstyled" id="tree">  <li class="file"><a href="/2016/10/25/算法/2016-10-25-BellmanFord算法/">Bellman-Ford算法</a></li>  <li class="file"><a href="/2016/10/25/算法/2016-10-25-Dijkstra算法/">Dijkstra算法</a></li>  <li class="file"><a href="/2016/12/08/算法/2016-12-08-Bloom Filter/">Bloom Filter</a></li>  <li class="file"><a href="/2017/07/14/算法/2017-7-14-tf-idf/">tf-idf</a></li>  <li class="file"><a href="/2017/09/13/算法/2017-9-13-前缀和/">前缀和（SJTU OJ 1002）</a></li>  <li class="file"><a href="/2017/09/14/算法/2017-9-14-超大数求和/">超大数求和（SJTU OJ 1007）</a></li>  <li class="file"><a href="/2017/09/15/算法/2017-9-15-DP(0" 1背包) ">DP（0/1背包）</a></li>  <li class="file"><a href="/2017/09/15/算法/2017-9-15-完全背包/">DP（完全背包）</a></li>  <li class="file"><a href="/2017/09/15/算法/2017-9-15-DP问题/">DP（SJTU OJ 1012）</a></li>  <li class="file"><a href="/2017/09/15/算法/2017-9-15-DP最长公共子序列/">DP（最长公共子序列）</a></li>  <li class="file"><a href="/2017/09/25/算法/2017-9-25-约瑟夫问题/">约瑟夫问题(SJTU OJ 1038)</a></li>  <li class="file"><a href="/2018/04/02/算法/2018-4-2-排序(位图数据结构)/">排序(位图数据结构)</a></li>  <li class="file"><a href="/2018/10/18/算法/2018-10-15-非负矩阵分解/">非负矩阵分解</a></li>  </ul> 
+                         <ul class="unstyled" id="tree">  <li class="file"><a href="/2016/10/25/算法/2016-10-25-BellmanFord算法/">Bellman-Ford算法</a></li>  <li class="file"><a href="/2016/10/25/算法/2016-10-25-Dijkstra算法/">Dijkstra算法</a></li>  <li class="file"><a href="/2016/12/08/算法/2016-12-08-Bloom Filter/">Bloom Filter</a></li>  <li class="file"><a href="/2017/07/14/算法/2017-7-14-tf-idf/">tf-idf</a></li>  <li class="file"><a href="/2017/09/13/算法/2017-9-13-前缀和/">前缀和（SJTU OJ 1002）</a></li>  <li class="file"><a href="/2017/09/14/算法/2017-9-14-超大数求和/">超大数求和（SJTU OJ 1007）</a></li>  <li class="file"><a href="/2017/09/15/算法/2017-9-15-DP最长公共子序列/">DP（最长公共子序列）</a></li>  <li class="file"><a href="/2017/09/15/算法/2017-9-15-DP(0" 1背包) ">DP（0/1背包）</a></li>  <li class="file"><a href="/2017/09/15/算法/2017-9-15-DP问题/">DP（SJTU OJ 1012）</a></li>  <li class="file"><a href="/2017/09/15/算法/2017-9-15-完全背包/">DP（完全背包）</a></li>  <li class="file"><a href="/2017/09/25/算法/2017-9-25-约瑟夫问题/">约瑟夫问题(SJTU OJ 1038)</a></li>  <li class="file"><a href="/2018/04/02/算法/2018-4-2-排序(位图数据结构)/">排序(位图数据结构)</a></li>  <li class="file"><a href="/2018/10/18/算法/2018-10-15-非负矩阵分解/">非负矩阵分解</a></li>  </ul> 
                     </li> 
                     
                     <li class="directory">
@@ -221,7 +221,7 @@
                             &nbsp;
                             Networking
                         </a>
-                         <ul class="unstyled" id="tree">  <li class="file"><a href="/2016/12/24/网络/2016-12-24-ipv4在Linux上的实现/">学习构造用户空间的IP栈（资料总结）</a></li>  <li class="file"><a href="/2017/07/14/网络/2017-07-14-Ego networks/">Ego networks</a></li>  <li class="file"><a href="/2017/11/28/网络/2017-11-28-路由协议汇总整理/">路由协议汇总整理</a></li>  <li class="file"><a href="/2018/04/24/网络/2018-4-24-Mininet拓扑学习/">Mininet拓扑学习</a></li>  <li class="file"><a href="/2018/08/23/网络/2018-8-24-SketchLearn/">SketchLearn: Relieving User Burdens in Approximate Measurement with Automated Statistical Inference</a></li>  <li class="file"><a href="/2018/08/23/网络/2018-8-23-Elastic Sketch/">Elastic Sketch: Adaptive and Fast Network-wide Measurements</a></li>  <li class="file"><a href="/2018/08/23/网络/2018-8-23-SketchVisor/">SketchVisor: Robust Network Measurement for Soware Packet Processing</a></li>  </ul> 
+                         <ul class="unstyled" id="tree">  <li class="file"><a href="/2016/12/24/网络/2016-12-24-ipv4在Linux上的实现/">学习构造用户空间的IP栈（资料总结）</a></li>  <li class="file"><a href="/2017/07/14/网络/2017-07-14-Ego networks/">Ego networks</a></li>  <li class="file"><a href="/2017/11/28/网络/2017-11-28-路由协议汇总整理/">路由协议汇总整理</a></li>  <li class="file"><a href="/2018/04/24/网络/2018-4-24-Mininet拓扑学习/">Mininet拓扑学习</a></li>  <li class="file"><a href="/2018/08/23/网络/2018-8-24-SketchLearn/">SketchLearn: Relieving User Burdens in Approximate Measurement with Automated Statistical Inference</a></li>  <li class="file"><a href="/2018/08/23/网络/2018-8-23-SketchVisor/">SketchVisor: Robust Network Measurement for Soware Packet Processing</a></li>  <li class="file"><a href="/2018/08/23/网络/2018-8-23-Elastic Sketch/">Elastic Sketch: Adaptive and Fast Network-wide Measurements</a></li>  </ul> 
                     </li> 
                     
                     <li class="directory open">
@@ -239,7 +239,7 @@
                             &nbsp;
                             Pi
                         </a>
-                         <ul class="unstyled" id="tree">  <li class="file"><a href="/2016/08/06/Pi/2016-08-06-Raspberry Pi OK01/">Raspberry Pi OK01</a></li>  <li class="file"><a href="/2016/08/06/Pi/2016-08-06-Raspberry Pi OK03/">Raspberry Pi OK03</a></li>  <li class="file"><a href="/2016/08/06/Pi/2016-08-06-Raspberry Pi OK02/">Raspberry Pi OK02</a></li>  <li class="file"><a href="/2016/08/06/Pi/2016-08-06-Baking Pi – Operating Systems Development前言/">Raspberry Pi OS Development 前言</a></li>  <li class="file"><a href="/2016/08/09/Pi/2016-08-09-Raspberry Pi OK04/">Raspberry Pi OK04</a></li>  <li class="file"><a href="/2016/08/09/Pi/2016-08-11-Raspberry Pi Screen02/">Raspberry Pi Screen02</a></li>  <li class="file"><a href="/2016/08/09/Pi/2016-08-09-Raspberry Pi OK05/">Raspberry Pi OK05</a></li>  <li class="file"><a href="/2016/08/09/Pi/2016-08-10-Raspberry Pi Screen01/">Raspberry Pi Screen01</a></li>  <li class="file"><a href="/2016/08/14/Pi/2016-08-14-Raspberry Pi Screen03/">Raspberry Pi Screen03</a></li>  <li class="file"><a href="/2016/08/16/Pi/2016-08-16-Raspberry Pi Screen04/">Raspberry Pi Screen04</a></li>  <li class="file"><a href="/2016/08/31/Pi/2016-08-31-Raspberry Pi Input01/">Raspberry Pi Input01</a></li>  <li class="file"><a href="/2016/09/01/Pi/2016-09-01-Raspberry Pi Input02/">Raspberry Pi Input02</a></li>  </ul> 
+                         <ul class="unstyled" id="tree">  <li class="file"><a href="/2016/08/06/Pi/2016-08-06-Raspberry Pi OK01/">Raspberry Pi OK01</a></li>  <li class="file"><a href="/2016/08/06/Pi/2016-08-06-Raspberry Pi OK02/">Raspberry Pi OK02</a></li>  <li class="file"><a href="/2016/08/06/Pi/2016-08-06-Raspberry Pi OK03/">Raspberry Pi OK03</a></li>  <li class="file"><a href="/2016/08/06/Pi/2016-08-06-Baking Pi – Operating Systems Development前言/">Raspberry Pi OS Development 前言</a></li>  <li class="file"><a href="/2016/08/09/Pi/2016-08-09-Raspberry Pi OK05/">Raspberry Pi OK05</a></li>  <li class="file"><a href="/2016/08/09/Pi/2016-08-10-Raspberry Pi Screen01/">Raspberry Pi Screen01</a></li>  <li class="file"><a href="/2016/08/09/Pi/2016-08-09-Raspberry Pi OK04/">Raspberry Pi OK04</a></li>  <li class="file"><a href="/2016/08/09/Pi/2016-08-11-Raspberry Pi Screen02/">Raspberry Pi Screen02</a></li>  <li class="file"><a href="/2016/08/14/Pi/2016-08-14-Raspberry Pi Screen03/">Raspberry Pi Screen03</a></li>  <li class="file"><a href="/2016/08/16/Pi/2016-08-16-Raspberry Pi Screen04/">Raspberry Pi Screen04</a></li>  <li class="file"><a href="/2016/08/31/Pi/2016-08-31-Raspberry Pi Input01/">Raspberry Pi Input01</a></li>  <li class="file"><a href="/2016/09/01/Pi/2016-09-01-Raspberry Pi Input02/">Raspberry Pi Input02</a></li>  </ul> 
                     </li> 
                     
                     <li class="directory">
@@ -257,7 +257,7 @@
                             &nbsp;
                             Security
                         </a>
-                         <ul class="unstyled" id="tree">  <li class="file"><a href="/2018/09/02/安全/2018-09-02-蜜罐技术/">蜜罐技术</a></li>  <li class="file"><a href="/2019/06/22/安全/2019-06-22-网络异常行为检测/">网络异常行为检测</a></li>  <li class="file"><a href="/2019/07/21/安全/2019-07-21-多项式插值/">多项式插值</a></li>  <li class="file"><a href="/2019/07/21/安全/2019-07-21-指数加权移动平均法（EWMA）/">指数加权移动平均法（EWMA）</a></li>  <li class="file"><a href="/2019/07/21/安全/2019-07-21-梯度提升决策树(GBDT)/">梯度提升决策树（GBDT）</a></li>  <li class="file"><a href="/2019/07/21/安全/2019-07-22-xgboost/">孤立森林（Isolation Forest）</a></li>  <li class="file"><a href="/2019/07/21/安全/2019-07-22-孤立森林（Isolation Froest）/">孤立森林（Isolation Forest）</a></li>  <li class="file"><a href="/2019/07/21/安全/2019-07-22-利用时序决策树进行DGA僵尸检测/">利用时序决策树进行DGA僵尸检测</a></li>  </ul> 
+                         <ul class="unstyled" id="tree">  <li class="file"><a href="/2018/09/02/安全/2018-09-02-蜜罐技术/">蜜罐技术</a></li>  <li class="file"><a href="/2019/06/22/安全/2019-06-22-网络异常行为检测/">网络异常行为检测</a></li>  <li class="file"><a href="/2019/07/21/安全/2019-07-21-多项式插值/">多项式插值</a></li>  <li class="file"><a href="/2019/07/21/安全/2019-07-21-指数加权移动平均法（EWMA）/">指数加权移动平均法（EWMA）</a></li>  <li class="file"><a href="/2019/07/21/安全/2019-07-22-xgboost/">孤立森林（Isolation Forest）</a></li>  <li class="file"><a href="/2019/07/21/安全/2019-07-21-梯度提升决策树(GBDT)/">梯度提升决策树（GBDT）</a></li>  <li class="file"><a href="/2019/07/21/安全/2019-07-22-利用时序决策树进行DGA僵尸检测/">利用时序决策树进行DGA僵尸检测</a></li>  <li class="file"><a href="/2019/07/21/安全/2019-07-22-孤立森林（Isolation Froest）/">孤立森林（Isolation Forest）</a></li>  </ul> 
                     </li> 
                     
                     <li class="directory">
@@ -266,7 +266,7 @@
                             &nbsp;
                             VANET
                         </a>
-                         <ul class="unstyled" id="tree">  <li class="file"><a href="/2017/03/12/VANET/2017-3-12-Vanet仿真-ns3(2)/">VANET仿真-ns3(2)</a></li>  <li class="file"><a href="/2017/03/12/VANET/2017-3-12-Vanet仿真-ns3(1)/">VANET仿真-ns3(1)</a></li>  <li class="file"><a href="/2017/03/12/VANET/2017-3-12-Vanet仿真-ns3(3)/">VANET仿真-ns3(3)</a></li>  <li class="file"><a href="/2017/03/13/VANET/2017-3-13-Vanet仿真-ns3(4)/">VANET仿真-ns3(4)</a></li>  <li class="file"><a href="/2017/03/13/VANET/2017-3-13-Vanet仿真-ns3(5)/">VANET仿真-ns3(5)</a></li>  <li class="file"><a href="/2017/03/15/VANET/2017-3-15-Vanet仿真-ns3(6)/">VANET仿真-ns3(6)</a></li>  </ul> 
+                         <ul class="unstyled" id="tree">  <li class="file"><a href="/2017/03/12/VANET/2017-3-12-Vanet仿真-ns3(1)/">VANET仿真-ns3(1)</a></li>  <li class="file"><a href="/2017/03/12/VANET/2017-3-12-Vanet仿真-ns3(2)/">VANET仿真-ns3(2)</a></li>  <li class="file"><a href="/2017/03/12/VANET/2017-3-12-Vanet仿真-ns3(3)/">VANET仿真-ns3(3)</a></li>  <li class="file"><a href="/2017/03/13/VANET/2017-3-13-Vanet仿真-ns3(4)/">VANET仿真-ns3(4)</a></li>  <li class="file"><a href="/2017/03/13/VANET/2017-3-13-Vanet仿真-ns3(5)/">VANET仿真-ns3(5)</a></li>  <li class="file"><a href="/2017/03/15/VANET/2017-3-15-Vanet仿真-ns3(6)/">VANET仿真-ns3(6)</a></li>  </ul> 
                     </li> 
                      <li class="file"><a href="/2019/09/16/数据挖掘/2019-09-16-基于注意力模型的RNN时序预测/"></a></li>  </ul> 
     </div>
@@ -409,17 +409,16 @@
             
         
         
-            <p>&#x56E0;&#x4E3A;<span class="math inline">\(L=D-W\)</span>,&#x90A3;&#x4E48;<span class="math inline">\(x^TLx\)</span>&#x6709;&#xFF1A; <span class="math display">\[
-x^TLx = x^T(D-W)x = x^TDx - x^TWx
-\]</span> <span class="math inline">\(W\)</span>&#x4E3A;&#x4E00;&#x4E2A;&#x5BF9;&#x79F0;&#x77E9;&#x9635;,&#x5C06;<span class="math inline">\(W\)</span>&#x7684;&#x5404;&#x884C;&#x5143;&#x7D20;&#x7D2F;&#x52A0;&#x5F97;&#x5230;&#x4E86;<span class="math inline">\(D\)</span>,&#x7531;&#x4E8E;<span class="math inline">\(D\)</span>&#x662F;&#x5BF9;&#x89D2;&#x77E9;&#x9635;<span class="math inline">\(x^TDx=\sum_{i=1}^nd_ix_i^2\)</span>&#xFF0C; <span class="math display">\[
+            <p>&#x56E0;&#x4E3A;$L=D-W$,&#x90A3;&#x4E48;$x^TLx$&#x6709;&#xFF1A;</p>
+<script type="math/tex; mode=display">
+x^TLx = x^T(D-W)x = x^TDx - x^TWx</script><p>$W$&#x4E3A;&#x4E00;&#x4E2A;&#x5BF9;&#x79F0;&#x77E9;&#x9635;,&#x5C06;$W$&#x7684;&#x5404;&#x884C;&#x5143;&#x7D20;&#x7D2F;&#x52A0;&#x5F97;&#x5230;&#x4E86;$D$,&#x7531;&#x4E8E;$D$&#x662F;&#x5BF9;&#x89D2;&#x77E9;&#x9635;$x^TDx=\sum_{i=1}^nd_ix_i^2$&#xFF0C;</p>
+<script type="math/tex; mode=display">
 \begin{aligned}
-x^TLx &amp;= \sum_{i=1}^nd_ix_i^2 - \sum_{i=1}^n\sum_{j=1}^nw_{ij}x_ix_j\\\
-&amp;=\frac{1}{2}(\sum_{i=1}^nd_ix_i^2 - 2\sum_{i=1}^n\sum_{j=1}^nw_{ij}x_ix_j + \sum_{j=1}^nd_jx_j^2)\\\
-&amp;=\frac{1}{2}\sum_{i=1}^n\sum_{j=1}^n(w_{ij}x_i^2-2w_{ij}x_ix_j+w_{ji}x_i^2)\\\
-&amp;=\frac{1}{2}\sum_{i=1}^n\sum_{j=1}^nw_{ij}(x_i-x_j)^2\geq0
-\end{aligned}
-\]</span></p>
-<p>&#x7EFC;&#x4E0A;&#x62C9;&#x666E;&#x62C9;&#x65AF;&#x77E9;&#x9635;<span class="math inline">\(L=D-W\)</span>&#x662F;&#x4E00;&#x4E2A;&#x534A;&#x6B63;&#x5B9A;&#x7684;&#x77E9;&#x9635;&#x3002;</p>
+x^TLx &= \sum_{i=1}^nd_ix_i^2 - \sum_{i=1}^n\sum_{j=1}^nw_{ij}x_ix_j\\\
+&=\frac{1}{2}(\sum_{i=1}^nd_ix_i^2 - 2\sum_{i=1}^n\sum_{j=1}^nw_{ij}x_ix_j + \sum_{j=1}^nd_jx_j^2)\\\
+&=\frac{1}{2}\sum_{i=1}^n\sum_{j=1}^n(w_{ij}x_i^2-2w_{ij}x_ix_j+w_{ji}x_i^2)\\\
+&=\frac{1}{2}\sum_{i=1}^n\sum_{j=1}^nw_{ij}(x_i-x_j)^2\geq0
+\end{aligned}</script><p>&#x7EFC;&#x4E0A;&#x62C9;&#x666E;&#x62C9;&#x65AF;&#x77E9;&#x9635;$L=D-W$&#x662F;&#x4E00;&#x4E2A;&#x534A;&#x6B63;&#x5B9A;&#x7684;&#x77E9;&#x9635;&#x3002;</p>
 
             </div>
         
@@ -464,7 +463,37 @@ x^TLx &amp;= \sum_{i=1}^nd_ix_i^2 - \sum_{i=1}^n\sum_{j=1}^nw_{ij}x_ix_j\\\
     !function(){var e=/([http|https]:\/\/[a-zA-Z0-9\_\.]+\.baidu\.com)/gi,r=window.location.href,o=document.referrer;if(!e.test(r)){var n="//api.share.baidu.com/s.gif";o?(n+="?r="+encodeURIComponent(document.referrer),r&&(n+="&l="+r)):r&&(n+="?l="+r);var t=new Image;t.src=n}}(window);
 </script>     
 
-</section>
+
+<!-- {% elseif theme.gitalk.enable %}
+    <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+<div id="gitalk-container"></div>
+<script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+<script type="text/javascript">
+    var gitalk = new Gitalk({
+        clientID: '59bf56def5b523033e41',
+        clientSecret: 'e45ef0cd1591ca86c1c08a1bacbfc70f68352aec',
+        id: window.location.pathname,
+        repo: 'Fengrui-Liu.github.io',
+        owner: 'Fengrui-Liu',
+        admin: 'Fengrui-Liu'
+    })
+    gitalk.render('gitalk-container')
+</script>
+{% endif %} -->
+<link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+<div id="gitalk-container"></div>
+<script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+<script type="text/javascript">
+    var gitalk = new Gitalk({
+        clientID: '59bf56def5b523033e41',
+        clientSecret: 'e45ef0cd1591ca86c1c08a1bacbfc70f68352aec',
+        id: window.location.pathname,
+        repo: 'Fengrui-Liu.github.io',
+        owner: 'Fengrui-Liu',
+        admin: 'Fengrui-Liu'
+    })
+    gitalk.render('gitalk-container')
+</script></section>
         </div>
         <footer id="footer">
     <div class="outer">
