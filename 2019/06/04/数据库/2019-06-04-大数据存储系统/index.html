@@ -9,23 +9,23 @@
         <meta name="keywords" content="Database">
     
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <meta name="description" content="NFSPOSIX文件系统 主要目的：  从不同终端访问同一个目录 多用户共享数据 集中管理 不是处理大规模数据  设计目标1：服务器出现故障可以简单快速恢复。Staeless(无状态)：NFS Server不保存任何状态，每个操作都是无状态的。Idempoten(幂等性)：重复多次结果不变。（Read不改变数据；Write在相同位置写相同的数据） Server Crash Recovery：Ser">
+    <meta name="description" content="NFS POSIX&amp;#x6587;&amp;#x4EF6;&amp;#x7CFB;&amp;#x7EDF; &amp;#x4E3B;&amp;#x8981;&amp;#x76EE;&amp;#x7684;&amp;#xFF1A; * &amp;#x4ECE;&amp;#x4E0D;&amp;#x540C;&amp;#x7EC8;&amp;#x7AEF;&amp;#x8BBF;&amp;#x95EE;&amp;#x540C;&amp;#x4E00;&amp;#x4E2A;&amp;#x76EE;&amp;#x5F55; * &amp;#x591A;&amp;#x7528;">
 <meta name="keywords" content="Database">
 <meta property="og:type" content="article">
 <meta property="og:title" content="大数据存储系统">
 <meta property="og:url" content="http://www.liufr.com/2019/06/04/数据库/2019-06-04-大数据存储系统/index.html">
 <meta property="og:site_name" content="Fengrui Liu&#39;s Blog">
-<meta property="og:description" content="NFSPOSIX文件系统 主要目的：  从不同终端访问同一个目录 多用户共享数据 集中管理 不是处理大规模数据  设计目标1：服务器出现故障可以简单快速恢复。Staeless(无状态)：NFS Server不保存任何状态，每个操作都是无状态的。Idempoten(幂等性)：重复多次结果不变。（Read不改变数据；Write在相同位置写相同的数据） Server Crash Recovery：Ser">
+<meta property="og:description" content="NFS POSIX&amp;#x6587;&amp;#x4EF6;&amp;#x7CFB;&amp;#x7EDF; &amp;#x4E3B;&amp;#x8981;&amp;#x76EE;&amp;#x7684;&amp;#xFF1A; * &amp;#x4ECE;&amp;#x4E0D;&amp;#x540C;&amp;#x7EC8;&amp;#x7AEF;&amp;#x8BBF;&amp;#x95EE;&amp;#x540C;&amp;#x4E00;&amp;#x4E2A;&amp;#x76EE;&amp;#x5F55; * &amp;#x591A;&amp;#x7528;">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="http://www.liufr.com/2019/06/04/数据库/2019-06-04-大数据存储系统/pictures/consistent_hash.jpg">
-<meta property="og:image" content="http://www.liufr.com/2019/06/04/数据库/2019-06-04-大数据存储系统/pictures/consistent_hash1.jpg">
-<meta property="og:image" content="http://www.liufr.com/2019/06/04/数据库/2019-06-04-大数据存储系统/pictures/bigtable.jpg">
-<meta property="og:image" content="http://www.liufr.com/2019/06/04/数据库/2019-06-04-大数据存储系统/pictures/Cassandra.jpg">
+<meta property="og:image" content="http://www.liufr.com/2019/06/04/数据库/2019-06-04-大数据存储系统/consistent_hash.jpg">
+<meta property="og:image" content="http://www.liufr.com/2019/06/04/数据库/2019-06-04-大数据存储系统/consistent_hash1.jpg">
+<meta property="og:image" content="http://www.liufr.com/2019/06/04/数据库/2019-06-04-大数据存储系统/bigtable.jpg">
+<meta property="og:image" content="http://www.liufr.com/2019/06/04/数据库/2019-06-04-大数据存储系统/Cassandra.jpg">
 <meta property="og:updated_time" content="2019-06-05T02:38:05.122Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="大数据存储系统">
-<meta name="twitter:description" content="NFSPOSIX文件系统 主要目的：  从不同终端访问同一个目录 多用户共享数据 集中管理 不是处理大规模数据  设计目标1：服务器出现故障可以简单快速恢复。Staeless(无状态)：NFS Server不保存任何状态，每个操作都是无状态的。Idempoten(幂等性)：重复多次结果不变。（Read不改变数据；Write在相同位置写相同的数据） Server Crash Recovery：Ser">
-<meta name="twitter:image" content="http://www.liufr.com/2019/06/04/数据库/2019-06-04-大数据存储系统/pictures/consistent_hash.jpg">
+<meta name="twitter:description" content="NFS POSIX&amp;#x6587;&amp;#x4EF6;&amp;#x7CFB;&amp;#x7EDF; &amp;#x4E3B;&amp;#x8981;&amp;#x76EE;&amp;#x7684;&amp;#xFF1A; * &amp;#x4ECE;&amp;#x4E0D;&amp;#x540C;&amp;#x7EC8;&amp;#x7AEF;&amp;#x8BBF;&amp;#x95EE;&amp;#x540C;&amp;#x4E00;&amp;#x4E2A;&amp;#x76EE;&amp;#x5F55; * &amp;#x591A;&amp;#x7528;">
+<meta name="twitter:image" content="http://www.liufr.com/2019/06/04/数据库/2019-06-04-大数据存储系统/consistent_hash.jpg">
     
 
     
@@ -172,7 +172,7 @@
                             &nbsp;
                             Algorithm
                         </a>
-                         <ul class="unstyled" id="tree">  <li class="file"><a href="/2016/10/25/算法/2016-10-25-Dijkstra算法/">Dijkstra算法</a></li>  <li class="file"><a href="/2016/10/25/算法/2016-10-25-BellmanFord算法/">Bellman-Ford算法</a></li>  <li class="file"><a href="/2016/12/08/算法/2016-12-08-Bloom Filter/">Bloom Filter</a></li>  <li class="file"><a href="/2017/07/14/算法/2017-7-14-tf-idf/">tf-idf</a></li>  <li class="file"><a href="/2017/09/13/算法/2017-9-13-前缀和/">前缀和（SJTU OJ 1002）</a></li>  <li class="file"><a href="/2017/09/14/算法/2017-9-14-超大数求和/">超大数求和（SJTU OJ 1007）</a></li>  <li class="file"><a href="/2017/09/15/算法/2017-9-15-完全背包/">DP（完全背包）</a></li>  <li class="file"><a href="/2017/09/15/算法/2017-9-15-DP问题/">DP（SJTU OJ 1012）</a></li>  <li class="file"><a href="/2017/09/15/算法/2017-9-15-DP最长公共子序列/">DP（最长公共子序列）</a></li>  <li class="file"><a href="/2017/09/15/算法/2017-9-15-DP(0" 1背包) ">DP（0/1背包）</a></li>  <li class="file"><a href="/2017/09/25/算法/2017-9-25-约瑟夫问题/">约瑟夫问题(SJTU OJ 1038)</a></li>  <li class="file"><a href="/2018/04/02/算法/2018-4-2-排序(位图数据结构)/">排序(位图数据结构)</a></li>  <li class="file"><a href="/2018/10/18/算法/2018-10-15-非负矩阵分解/">非负矩阵分解</a></li>  </ul> 
+                         <ul class="unstyled" id="tree">  <li class="file"><a href="/2016/10/25/算法/2016-10-25-BellmanFord算法/">Bellman-Ford算法</a></li>  <li class="file"><a href="/2016/10/25/算法/2016-10-25-Dijkstra算法/">Dijkstra算法</a></li>  <li class="file"><a href="/2016/12/08/算法/2016-12-08-Bloom Filter/">Bloom Filter</a></li>  <li class="file"><a href="/2017/07/14/算法/2017-7-14-tf-idf/">tf-idf</a></li>  <li class="file"><a href="/2017/09/13/算法/2017-9-13-前缀和/">前缀和（SJTU OJ 1002）</a></li>  <li class="file"><a href="/2017/09/14/算法/2017-9-14-超大数求和/">超大数求和（SJTU OJ 1007）</a></li>  <li class="file"><a href="/2017/09/15/算法/2017-9-15-DP最长公共子序列/">DP（最长公共子序列）</a></li>  <li class="file"><a href="/2017/09/15/算法/2017-9-15-DP(0" 1背包) ">DP（0/1背包）</a></li>  <li class="file"><a href="/2017/09/15/算法/2017-9-15-完全背包/">DP（完全背包）</a></li>  <li class="file"><a href="/2017/09/15/算法/2017-9-15-DP问题/">DP（SJTU OJ 1012）</a></li>  <li class="file"><a href="/2017/09/25/算法/2017-9-25-约瑟夫问题/">约瑟夫问题(SJTU OJ 1038)</a></li>  <li class="file"><a href="/2018/04/02/算法/2018-4-2-排序(位图数据结构)/">排序(位图数据结构)</a></li>  <li class="file"><a href="/2018/10/18/算法/2018-10-15-非负矩阵分解/">非负矩阵分解</a></li>  </ul> 
                     </li> 
                     
                     <li class="directory">
@@ -199,7 +199,7 @@
                             &nbsp;
                             Data mining
                         </a>
-                         <ul class="unstyled" id="tree">  <li class="file"><a href="/2018/12/02/数据挖掘/2018-12-02-监督学习/">监督学习 Supervised Learning(决策树+SVM/Perceptron+AdaBoost)</a></li>  <li class="file"><a href="/2018/12/03/数据挖掘/2018-12-03-非监督学习/">无监督学习 Unsupervised Learning(聚类、矩阵分解、话题模型)</a></li>  <li class="file"><a href="/2018/12/05/数据挖掘/2018-12-05-互联网搜索与排序/">互联网搜索与排序</a></li>  <li class="file"><a href="/2018/12/05/数据挖掘/2018-12-05-大规模机器学习/">大规模机器学习</a></li>  </ul> 
+                         <ul class="unstyled" id="tree">  <li class="file"><a href="/2018/12/02/数据挖掘/2018-12-02-监督学习/">监督学习 Supervised Learning(决策树+SVM/Perceptron+AdaBoost)</a></li>  <li class="file"><a href="/2018/12/03/数据挖掘/2018-12-03-非监督学习/">无监督学习 Unsupervised Learning(聚类、矩阵分解、话题模型)</a></li>  <li class="file"><a href="/2018/12/05/数据挖掘/2018-12-05-大规模机器学习/">大规模机器学习</a></li>  <li class="file"><a href="/2018/12/05/数据挖掘/2018-12-05-互联网搜索与排序/">互联网搜索与排序</a></li>  </ul> 
                     </li> 
                     
                     <li class="directory open">
@@ -208,7 +208,7 @@
                             &nbsp;
                             Database
                         </a>
-                         <ul class="unstyled" id="tree">  <li class="file"><a href="/2019/06/03/数据库/2019-06-03-关系数据库/">关系数据库</a></li>  <li class="file active"><a href="/2019/06/04/数据库/2019-06-04-大数据存储系统/">大数据存储系统</a></li>  <li class="file"><a href="/2019/06/04/数据库/2019-06-04-大数据运算/">大数据存储系统</a></li>  </ul> 
+                         <ul class="unstyled" id="tree">  <li class="file"><a href="/2019/06/03/数据库/2019-06-03-关系数据库/">关系数据库</a></li>  <li class="file"><a href="/2019/06/04/数据库/2019-06-04-大数据运算/">大数据存储系统</a></li>  <li class="file active"><a href="/2019/06/04/数据库/2019-06-04-大数据存储系统/">大数据存储系统</a></li>  </ul> 
                     </li> 
                     
                     <li class="directory">
@@ -226,7 +226,7 @@
                             &nbsp;
                             Linux
                         </a>
-                         <ul class="unstyled" id="tree">  <li class="file"><a href="/2017/10/05/Linux/2017-10-05-Linux-进程管理/">Linux-进程管理</a></li>  <li class="file"><a href="/2017/10/17/Linux/2017-10-17-Linux进程调度/">Linux-进程调度</a></li>  <li class="file"><a href="/2017/10/20/Linux/2017-10-20-Linux系统调用/">Linux-系统调用</a></li>  <li class="file"><a href="/2017/10/22/Linux/2017-10-22-Linux中断和中断处理/">Linux-中断和中断处理</a></li>  <li class="file"><a href="/2017/10/22/Linux/2017-11-2-Linux-下半部和推后执行的工作/">Linux-下半部和推后执行的工作"</a></li>  </ul> 
+                         <ul class="unstyled" id="tree">  <li class="file"><a href="/2017/10/05/Linux/2017-10-05-Linux-进程管理/">Linux-进程管理</a></li>  <li class="file"><a href="/2017/10/17/Linux/2017-10-17-Linux进程调度/">Linux-进程调度</a></li>  <li class="file"><a href="/2017/10/20/Linux/2017-10-20-Linux系统调用/">Linux-系统调用</a></li>  <li class="file"><a href="/2017/10/22/Linux/2017-11-2-Linux-下半部和推后执行的工作/">Linux-下半部和推后执行的工作"</a></li>  <li class="file"><a href="/2017/10/22/Linux/2017-10-22-Linux中断和中断处理/">Linux-中断和中断处理</a></li>  </ul> 
                     </li> 
                     
                     <li class="directory">
@@ -253,7 +253,7 @@
                             &nbsp;
                             Pi
                         </a>
-                         <ul class="unstyled" id="tree">  <li class="file"><a href="/2016/08/06/Pi/2016-08-06-Raspberry Pi OK02/">Raspberry Pi OK02</a></li>  <li class="file"><a href="/2016/08/06/Pi/2016-08-06-Raspberry Pi OK03/">Raspberry Pi OK03</a></li>  <li class="file"><a href="/2016/08/06/Pi/2016-08-06-Baking Pi – Operating Systems Development前言/">Raspberry Pi OS Development 前言</a></li>  <li class="file"><a href="/2016/08/06/Pi/2016-08-06-Raspberry Pi OK01/">Raspberry Pi OK01</a></li>  <li class="file"><a href="/2016/08/09/Pi/2016-08-09-Raspberry Pi OK04/">Raspberry Pi OK04</a></li>  <li class="file"><a href="/2016/08/09/Pi/2016-08-11-Raspberry Pi Screen02/">Raspberry Pi Screen02</a></li>  <li class="file"><a href="/2016/08/09/Pi/2016-08-10-Raspberry Pi Screen01/">Raspberry Pi Screen01</a></li>  <li class="file"><a href="/2016/08/09/Pi/2016-08-09-Raspberry Pi OK05/">Raspberry Pi OK05</a></li>  <li class="file"><a href="/2016/08/14/Pi/2016-08-14-Raspberry Pi Screen03/">Raspberry Pi Screen03</a></li>  <li class="file"><a href="/2016/08/16/Pi/2016-08-16-Raspberry Pi Screen04/">Raspberry Pi Screen04</a></li>  <li class="file"><a href="/2016/08/31/Pi/2016-08-31-Raspberry Pi Input01/">Raspberry Pi Input01</a></li>  <li class="file"><a href="/2016/09/01/Pi/2016-09-01-Raspberry Pi Input02/">Raspberry Pi Input02</a></li>  </ul> 
+                         <ul class="unstyled" id="tree">  <li class="file"><a href="/2016/08/06/Pi/2016-08-06-Raspberry Pi OK02/">Raspberry Pi OK02</a></li>  <li class="file"><a href="/2016/08/06/Pi/2016-08-06-Baking Pi – Operating Systems Development前言/">Raspberry Pi OS Development 前言</a></li>  <li class="file"><a href="/2016/08/06/Pi/2016-08-06-Raspberry Pi OK01/">Raspberry Pi OK01</a></li>  <li class="file"><a href="/2016/08/06/Pi/2016-08-06-Raspberry Pi OK03/">Raspberry Pi OK03</a></li>  <li class="file"><a href="/2016/08/09/Pi/2016-08-11-Raspberry Pi Screen02/">Raspberry Pi Screen02</a></li>  <li class="file"><a href="/2016/08/09/Pi/2016-08-09-Raspberry Pi OK05/">Raspberry Pi OK05</a></li>  <li class="file"><a href="/2016/08/09/Pi/2016-08-09-Raspberry Pi OK04/">Raspberry Pi OK04</a></li>  <li class="file"><a href="/2016/08/09/Pi/2016-08-10-Raspberry Pi Screen01/">Raspberry Pi Screen01</a></li>  <li class="file"><a href="/2016/08/14/Pi/2016-08-14-Raspberry Pi Screen03/">Raspberry Pi Screen03</a></li>  <li class="file"><a href="/2016/08/16/Pi/2016-08-16-Raspberry Pi Screen04/">Raspberry Pi Screen04</a></li>  <li class="file"><a href="/2016/08/31/Pi/2016-08-31-Raspberry Pi Input01/">Raspberry Pi Input01</a></li>  <li class="file"><a href="/2016/09/01/Pi/2016-09-01-Raspberry Pi Input02/">Raspberry Pi Input02</a></li>  </ul> 
                     </li> 
                     
                     <li class="directory">
@@ -271,7 +271,7 @@
                             &nbsp;
                             Security
                         </a>
-                         <ul class="unstyled" id="tree">  <li class="file"><a href="/2018/09/02/安全/2018-09-02-蜜罐技术/">蜜罐技术</a></li>  <li class="file"><a href="/2019/06/22/安全/2019-06-22-网络异常行为检测/">网络异常行为检测</a></li>  <li class="file"><a href="/2019/07/21/安全/2019-07-21-指数加权移动平均法（EWMA）/">指数加权移动平均法（EWMA）</a></li>  <li class="file"><a href="/2019/07/21/安全/2019-07-22-孤立森林（Isolation Froest）/">孤立森林（Isolation Forest）</a></li>  <li class="file"><a href="/2019/07/21/安全/2019-07-22-xgboost/">孤立森林（Isolation Forest）</a></li>  <li class="file"><a href="/2019/07/21/安全/2019-07-21-多项式插值/">多项式插值</a></li>  <li class="file"><a href="/2019/07/21/安全/2019-07-22-利用时序决策树进行DGA僵尸检测/">利用时序决策树进行DGA僵尸检测</a></li>  <li class="file"><a href="/2019/07/21/安全/2019-07-21-梯度提升决策树(GBDT)/">梯度提升决策树（GBDT）</a></li>  </ul> 
+                         <ul class="unstyled" id="tree">  <li class="file"><a href="/2018/09/02/安全/2018-09-02-蜜罐技术/">蜜罐技术</a></li>  <li class="file"><a href="/2019/06/22/安全/2019-06-22-网络异常行为检测/">网络异常行为检测</a></li>  <li class="file"><a href="/2019/07/21/安全/2019-07-21-多项式插值/">多项式插值</a></li>  <li class="file"><a href="/2019/07/21/安全/2019-07-21-指数加权移动平均法（EWMA）/">指数加权移动平均法（EWMA）</a></li>  <li class="file"><a href="/2019/07/21/安全/2019-07-21-梯度提升决策树(GBDT)/">梯度提升决策树（GBDT）</a></li>  <li class="file"><a href="/2019/07/21/安全/2019-07-22-利用时序决策树进行DGA僵尸检测/">利用时序决策树进行DGA僵尸检测</a></li>  <li class="file"><a href="/2019/07/21/安全/2019-07-22-孤立森林（Isolation Froest）/">孤立森林（Isolation Forest）</a></li>  <li class="file"><a href="/2019/07/21/安全/2019-07-22-xgboost/">孤立森林（Isolation Forest）</a></li>  </ul> 
                     </li> 
                     
                     <li class="directory">
@@ -280,7 +280,7 @@
                             &nbsp;
                             网络
                         </a>
-                         <ul class="unstyled" id="tree">  <li class="file"><a href="/2016/12/24/网络/2016-12-24-ipv4在Linux上的实现/">学习构造用户空间的IP栈（资料总结）</a></li>  <li class="file"><a href="/2017/03/12/VANET/2017-3-12-Vanet仿真-ns3(3)/">VANET仿真-ns3(3)</a></li>  <li class="file"><a href="/2017/03/12/VANET/2017-3-12-Vanet仿真-ns3(2)/">VANET仿真-ns3(2)</a></li>  <li class="file"><a href="/2017/03/12/VANET/2017-3-12-Vanet仿真-ns3(1)/">VANET仿真-ns3(1)</a></li>  <li class="file"><a href="/2017/03/13/VANET/2017-3-13-Vanet仿真-ns3(4)/">VANET仿真-ns3(4)</a></li>  <li class="file"><a href="/2017/03/13/VANET/2017-3-13-Vanet仿真-ns3(5)/">VANET仿真-ns3(5)</a></li>  <li class="file"><a href="/2017/03/15/VANET/2017-3-15-Vanet仿真-ns3(6)/">VANET仿真-ns3(6)</a></li>  <li class="file"><a href="/2017/07/14/网络/2017-07-14-Ego networks/">Ego networks</a></li>  </ul> 
+                         <ul class="unstyled" id="tree">  <li class="file"><a href="/2016/12/24/网络/2016-12-24-ipv4在Linux上的实现/">学习构造用户空间的IP栈（资料总结）</a></li>  <li class="file"><a href="/2017/03/12/VANET/2017-3-12-Vanet仿真-ns3(1)/">VANET仿真-ns3(1)</a></li>  <li class="file"><a href="/2017/03/12/VANET/2017-3-12-Vanet仿真-ns3(2)/">VANET仿真-ns3(2)</a></li>  <li class="file"><a href="/2017/03/12/VANET/2017-3-12-Vanet仿真-ns3(3)/">VANET仿真-ns3(3)</a></li>  <li class="file"><a href="/2017/03/13/VANET/2017-3-13-Vanet仿真-ns3(5)/">VANET仿真-ns3(5)</a></li>  <li class="file"><a href="/2017/03/13/VANET/2017-3-13-Vanet仿真-ns3(4)/">VANET仿真-ns3(4)</a></li>  <li class="file"><a href="/2017/03/15/VANET/2017-3-15-Vanet仿真-ns3(6)/">VANET仿真-ns3(6)</a></li>  <li class="file"><a href="/2017/07/14/网络/2017-07-14-Ego networks/">Ego networks</a></li>  </ul> 
                     </li> 
                      <li class="file"><a href="/2019/05/30/强化学习/~$19-05-28-强化学习(2)/"></a></li>  <li class="file"><a href="/2019/09/16/数据挖掘/2019-09-16-基于注意力模型的RNN时序预测/"></a></li>  </ul> 
     </div>
@@ -423,224 +423,175 @@
             
         
         
-            <h2 id="NFS"><a href="#NFS" class="headerlink" title="NFS"></a>NFS</h2><p>POSIX文件系统</p>
-<p>主要目的：</p>
-<ul>
-<li>从不同终端访问同一个目录</li>
-<li>多用户共享数据</li>
-<li>集中管理</li>
-<li>不是处理大规模数据</li>
-</ul>
-<h3 id="设计目标1：服务器出现故障可以简单快速恢复。"><a href="#设计目标1：服务器出现故障可以简单快速恢复。" class="headerlink" title="设计目标1：服务器出现故障可以简单快速恢复。"></a>设计目标1：服务器出现故障可以简单快速恢复。</h3><p>Staeless(无状态)：NFS Server不保存任何状态，每个操作都是无状态的。<br>Idempoten(幂等性)：重复多次结果不变。（Read不改变数据；Write在相同位置写相同的数据）</p>
-<p>Server Crash Recovery：Server只用重启；Client不断重试。</p>
-<h3 id="设计目标2：远程文件操作性能高。"><a href="#设计目标2：远程文件操作性能高。" class="headerlink" title="设计目标2：远程文件操作性能高。"></a>设计目标2：远程文件操作性能高。</h3><p>在Client cache中缓存读写的数据。</p>
-<p>可能会造成访问冲突问题，Cache不能保证一致性。<strong>解决方法</strong>:</p>
-<ol>
-<li>在文件关闭时必须把缓存的已修改的文件数据写回NFS Server。</li>
-<li>每次使用缓存数据前必须检查是否已经过时（轮询操作影响性能）。</li>
-</ol>
-<h3 id="AFS"><a href="#AFS" class="headerlink" title="AFS"></a>AFS</h3><p>Invalidation</p>
-<ul>
-<li>Client 获得一个文件在server上登记</li>
-<li>Server 发现文件被修改向登记的Client发送一个callback</li>
-<li>Client 收到callback删除缓存的文件</li>
-</ul>
+            <h2 id="nfs">NFS</h2>
+<p>POSIX&#x6587;&#x4EF6;&#x7CFB;&#x7EDF;</p>
+<p>&#x4E3B;&#x8981;&#x76EE;&#x7684;&#xFF1A; * &#x4ECE;&#x4E0D;&#x540C;&#x7EC8;&#x7AEF;&#x8BBF;&#x95EE;&#x540C;&#x4E00;&#x4E2A;&#x76EE;&#x5F55; * &#x591A;&#x7528;&#x6237;&#x5171;&#x4EAB;&#x6570;&#x636E; * &#x96C6;&#x4E2D;&#x7BA1;&#x7406; * &#x4E0D;&#x662F;&#x5904;&#x7406;&#x5927;&#x89C4;&#x6A21;&#x6570;&#x636E;</p>
+<h3 id="&#x8BBE;&#x8BA1;&#x76EE;&#x6807;1&#x670D;&#x52A1;&#x5668;&#x51FA;&#x73B0;&#x6545;&#x969C;&#x53EF;&#x4EE5;&#x7B80;&#x5355;&#x5FEB;&#x901F;&#x6062;&#x590D;">&#x8BBE;&#x8BA1;&#x76EE;&#x6807;1&#xFF1A;&#x670D;&#x52A1;&#x5668;&#x51FA;&#x73B0;&#x6545;&#x969C;&#x53EF;&#x4EE5;&#x7B80;&#x5355;&#x5FEB;&#x901F;&#x6062;&#x590D;&#x3002;</h3>
+<p>Staeless(&#x65E0;&#x72B6;&#x6001;)&#xFF1A;NFS Server&#x4E0D;&#x4FDD;&#x5B58;&#x4EFB;&#x4F55;&#x72B6;&#x6001;&#xFF0C;&#x6BCF;&#x4E2A;&#x64CD;&#x4F5C;&#x90FD;&#x662F;&#x65E0;&#x72B6;&#x6001;&#x7684;&#x3002; Idempoten(&#x5E42;&#x7B49;&#x6027;)&#xFF1A;&#x91CD;&#x590D;&#x591A;&#x6B21;&#x7ED3;&#x679C;&#x4E0D;&#x53D8;&#x3002;&#xFF08;Read&#x4E0D;&#x6539;&#x53D8;&#x6570;&#x636E;&#xFF1B;Write&#x5728;&#x76F8;&#x540C;&#x4F4D;&#x7F6E;&#x5199;&#x76F8;&#x540C;&#x7684;&#x6570;&#x636E;&#xFF09;</p>
+<p>Server Crash Recovery&#xFF1A;Server&#x53EA;&#x7528;&#x91CD;&#x542F;&#xFF1B;Client&#x4E0D;&#x65AD;&#x91CD;&#x8BD5;&#x3002;</p>
+<h3 id="&#x8BBE;&#x8BA1;&#x76EE;&#x6807;2&#x8FDC;&#x7A0B;&#x6587;&#x4EF6;&#x64CD;&#x4F5C;&#x6027;&#x80FD;&#x9AD8;">&#x8BBE;&#x8BA1;&#x76EE;&#x6807;2&#xFF1A;&#x8FDC;&#x7A0B;&#x6587;&#x4EF6;&#x64CD;&#x4F5C;&#x6027;&#x80FD;&#x9AD8;&#x3002;</h3>
+<p>&#x5728;Client cache&#x4E2D;&#x7F13;&#x5B58;&#x8BFB;&#x5199;&#x7684;&#x6570;&#x636E;&#x3002;</p>
+<p>&#x53EF;&#x80FD;&#x4F1A;&#x9020;&#x6210;&#x8BBF;&#x95EE;&#x51B2;&#x7A81;&#x95EE;&#x9898;&#xFF0C;Cache&#x4E0D;&#x80FD;&#x4FDD;&#x8BC1;&#x4E00;&#x81F4;&#x6027;&#x3002;<strong>&#x89E3;&#x51B3;&#x65B9;&#x6CD5;</strong>: 1. &#x5728;&#x6587;&#x4EF6;&#x5173;&#x95ED;&#x65F6;&#x5FC5;&#x987B;&#x628A;&#x7F13;&#x5B58;&#x7684;&#x5DF2;&#x4FEE;&#x6539;&#x7684;&#x6587;&#x4EF6;&#x6570;&#x636E;&#x5199;&#x56DE;NFS Server&#x3002; 2. &#x6BCF;&#x6B21;&#x4F7F;&#x7528;&#x7F13;&#x5B58;&#x6570;&#x636E;&#x524D;&#x5FC5;&#x987B;&#x68C0;&#x67E5;&#x662F;&#x5426;&#x5DF2;&#x7ECF;&#x8FC7;&#x65F6;&#xFF08;&#x8F6E;&#x8BE2;&#x64CD;&#x4F5C;&#x5F71;&#x54CD;&#x6027;&#x80FD;&#xFF09;&#x3002;</p>
+<h3 id="afs">AFS</h3>
+<p>Invalidation * Client &#x83B7;&#x5F97;&#x4E00;&#x4E2A;&#x6587;&#x4EF6;&#x5728;server&#x4E0A;&#x767B;&#x8BB0; * Server &#x53D1;&#x73B0;&#x6587;&#x4EF6;&#x88AB;&#x4FEE;&#x6539;&#x5411;&#x767B;&#x8BB0;&#x7684;Client&#x53D1;&#x9001;&#x4E00;&#x4E2A;callback * Client &#x6536;&#x5230;callback&#x5220;&#x9664;&#x7F13;&#x5B58;&#x7684;&#x6587;&#x4EF6;</p>
 <hr>
-<h2 id="GFS-HDFS"><a href="#GFS-HDFS" class="headerlink" title="GFS/HDFS"></a>GFS/HDFS</h2><p>应用层文件系统（Meta data和Data分离）</p>
+<h2 id="gfshdfs">GFS/HDFS</h2>
+<p>&#x5E94;&#x7528;&#x5C42;&#x6587;&#x4EF6;&#x7CFB;&#x7EDF;&#xFF08;Meta data&#x548C;Data&#x5206;&#x79BB;&#xFF09;</p>
 <ul>
-<li>Name Node（存元数据）：文件名，长度，分成多少数据块，每个数据块分布在哪些Data Node上</li>
-<li>Data Node：存数据块</li>
+<li>Name Node&#xFF08;&#x5B58;&#x5143;&#x6570;&#x636E;&#xFF09;&#xFF1A;&#x6587;&#x4EF6;&#x540D;&#xFF0C;&#x957F;&#x5EA6;&#xFF0C;&#x5206;&#x6210;&#x591A;&#x5C11;&#x6570;&#x636E;&#x5757;&#xFF0C;&#x6BCF;&#x4E2A;&#x6570;&#x636E;&#x5757;&#x5206;&#x5E03;&#x5728;&#x54EA;&#x4E9B;Data Node&#x4E0A;</li>
+<li>Data Node&#xFF1A;&#x5B58;&#x6570;&#x636E;&#x5757;</li>
 </ul>
-<h3 id="Read"><a href="#Read" class="headerlink" title="Read"></a>Read</h3><ol>
-<li>打开文件时与Name node通信一次</li>
-<li>之后的读操作直接与Data Node通信</li>
-<li>支持并发read</li>
+<h3 id="read">Read</h3>
+<ol type="1">
+<li>&#x6253;&#x5F00;&#x6587;&#x4EF6;&#x65F6;&#x4E0E;Name node&#x901A;&#x4FE1;&#x4E00;&#x6B21;</li>
+<li>&#x4E4B;&#x540E;&#x7684;&#x8BFB;&#x64CD;&#x4F5C;&#x76F4;&#x63A5;&#x4E0E;Data Node&#x901A;&#x4FE1;</li>
+<li>&#x652F;&#x6301;&#x5E76;&#x53D1;read</li>
 </ol>
-<h3 id="Write"><a href="#Write" class="headerlink" title="Write"></a>Write</h3><ol>
-<li>写与Name node通信一次，返回应写的Data nodes（由Name Node决定）</li>
-<li>CLient 发送数据给Primary和secondary datanode，形成流水线，实现备份，此时写入cache中还没写进HDFS</li>
-<li>收到写命令才把缓存写入文件系统</li>
+<h3 id="write">Write</h3>
+<ol type="1">
+<li>&#x5199;&#x4E0E;Name node&#x901A;&#x4FE1;&#x4E00;&#x6B21;&#xFF0C;&#x8FD4;&#x56DE;&#x5E94;&#x5199;&#x7684;Data nodes&#xFF08;&#x7531;Name Node&#x51B3;&#x5B9A;&#xFF09;</li>
+<li>CLient &#x53D1;&#x9001;&#x6570;&#x636E;&#x7ED9;Primary&#x548C;secondary datanode&#xFF0C;&#x5F62;&#x6210;&#x6D41;&#x6C34;&#x7EBF;&#xFF0C;&#x5B9E;&#x73B0;&#x5907;&#x4EFD;&#xFF0C;&#x6B64;&#x65F6;&#x5199;&#x5165;cache&#x4E2D;&#x8FD8;&#x6CA1;&#x5199;&#x8FDB;HDFS</li>
+<li>&#x6536;&#x5230;&#x5199;&#x547D;&#x4EE4;&#x624D;&#x628A;&#x7F13;&#x5B58;&#x5199;&#x5165;&#x6587;&#x4EF6;&#x7CFB;&#x7EDF;</li>
 </ol>
-<p>并发写的问题可能因为对于同一个数据块的两次操作，可能对之前的有覆盖（不支持此操作）；支持并行append。</p>
+<p>&#x5E76;&#x53D1;&#x5199;&#x7684;&#x95EE;&#x9898;&#x53EF;&#x80FD;&#x56E0;&#x4E3A;&#x5BF9;&#x4E8E;&#x540C;&#x4E00;&#x4E2A;&#x6570;&#x636E;&#x5757;&#x7684;&#x4E24;&#x6B21;&#x64CD;&#x4F5C;&#xFF0C;&#x53EF;&#x80FD;&#x5BF9;&#x4E4B;&#x524D;&#x7684;&#x6709;&#x8986;&#x76D6;&#xFF08;&#x4E0D;&#x652F;&#x6301;&#x6B64;&#x64CD;&#x4F5C;&#xFF09;&#xFF1B;&#x652F;&#x6301;&#x5E76;&#x884C;append&#x3002;</p>
 <hr>
-<h2 id="NoSQL"><a href="#NoSQL" class="headerlink" title="NoSQL"></a>NoSQL</h2><h3 id="Dynamo"><a href="#Dynamo" class="headerlink" title="Dynamo"></a>Dynamo</h3><p>最简单的<key,value>模型，get/put操作</key,value></p>
-<ul>
-<li>单节点上存储由外部存储系统实现</li>
-<li>多节点间的数据分布<ul>
-<li>Consistent hashing</li>
-<li>Quorum (N, W, R)</li>
-<li>Eventual consistency</li>
-</ul>
-</li>
-</ul>
-<h4 id="一致性哈希"><a href="#一致性哈希" class="headerlink" title="一致性哈希"></a>一致性哈希</h4><p><img src="pictures/consistent_hash.jpg" alt><br><img src="pictures/consistent_hash1.jpg" alt></p>
-<h4 id="3副本备份"><a href="#3副本备份" class="headerlink" title="3副本备份"></a>3副本备份</h4><p>Put到Node j上的数据，要备份到Node j+1和Node j+2上，所以一个Node j上实际存储的数据是$(u_{j-3}, u_j]$，增加或者删除节点时需要更改备份位置。</p>
-<h4 id="Quorum机制：实现读写的一致性"><a href="#Quorum机制：实现读写的一致性" class="headerlink" title="Quorum机制：实现读写的一致性"></a>Quorum机制：实现读写的一致性</h4><p>Quorum（N，W，R）</p>
-<ul>
-<li>由N个副本</li>
-<li>写:保证&gt;=W个副本的写完成</li>
-<li>读:读&gt;=R个副本，选出最新版本</li>
-<li>如果R+W&gt;N，那么一定读到最新的数据</li>
-<li>R小，读效率高</li>
-<li>W小，写效率高</li>
-</ul>
-<p>Put操作</p>
-<ul>
-<li>Client根据hash(key)得到所有N个副本所在的节点</li>
-<li>Client向所有N个副本所在的节点发出put</li>
-<li>等到至少W个节点完成的响应，就认为写成功</li>
-</ul>
-<p>Get操作</p>
-<ul>
-<li>Client根据hash(key)得到所有N个副本所在的节点</li>
-<li>Client向所有N个副本所在的节点发出get</li>
-<li>等到至少R个节点的value，就必然包含最新一次写的值</li>
-</ul>
+<h2 id="nosql">NoSQL</h2>
+<h3 id="dynamo">Dynamo</h3>
+<p>&#x6700;&#x7B80;&#x5355;&#x7684;&lt;key,value&gt;&#x6A21;&#x578B;&#xFF0C;get/put&#x64CD;&#x4F5C; * &#x5355;&#x8282;&#x70B9;&#x4E0A;&#x5B58;&#x50A8;&#x7531;&#x5916;&#x90E8;&#x5B58;&#x50A8;&#x7CFB;&#x7EDF;&#x5B9E;&#x73B0; * &#x591A;&#x8282;&#x70B9;&#x95F4;&#x7684;&#x6570;&#x636E;&#x5206;&#x5E03; * Consistent hashing * Quorum (N, W, R) * Eventual consistency</p>
+<h4 id="&#x4E00;&#x81F4;&#x6027;&#x54C8;&#x5E0C;">&#x4E00;&#x81F4;&#x6027;&#x54C8;&#x5E0C;</h4>
+<p><img src="/2019/06/04/&#x6570;&#x636E;&#x5E93;/2019-06-04-&#x5927;&#x6570;&#x636E;&#x5B58;&#x50A8;&#x7CFB;&#x7EDF;/consistent_hash.jpg"> <img src="/2019/06/04/&#x6570;&#x636E;&#x5E93;/2019-06-04-&#x5927;&#x6570;&#x636E;&#x5B58;&#x50A8;&#x7CFB;&#x7EDF;/consistent_hash1.jpg"></p>
+<h4 id="&#x526F;&#x672C;&#x5907;&#x4EFD;">3&#x526F;&#x672C;&#x5907;&#x4EFD;</h4>
+<p>Put&#x5230;Node j&#x4E0A;&#x7684;&#x6570;&#x636E;&#xFF0C;&#x8981;&#x5907;&#x4EFD;&#x5230;Node j+1&#x548C;Node j+2&#x4E0A;&#xFF0C;&#x6240;&#x4EE5;&#x4E00;&#x4E2A;Node j&#x4E0A;&#x5B9E;&#x9645;&#x5B58;&#x50A8;&#x7684;&#x6570;&#x636E;&#x662F;<span class="math inline">\((u_{j-3}, u_j]\)</span>&#xFF0C;&#x589E;&#x52A0;&#x6216;&#x8005;&#x5220;&#x9664;&#x8282;&#x70B9;&#x65F6;&#x9700;&#x8981;&#x66F4;&#x6539;&#x5907;&#x4EFD;&#x4F4D;&#x7F6E;&#x3002;</p>
+<h4 id="quorum&#x673A;&#x5236;&#x5B9E;&#x73B0;&#x8BFB;&#x5199;&#x7684;&#x4E00;&#x81F4;&#x6027;">Quorum&#x673A;&#x5236;&#xFF1A;&#x5B9E;&#x73B0;&#x8BFB;&#x5199;&#x7684;&#x4E00;&#x81F4;&#x6027;</h4>
+<p>Quorum&#xFF08;N&#xFF0C;W&#xFF0C;R&#xFF09; * &#x7531;N&#x4E2A;&#x526F;&#x672C; * &#x5199;:&#x4FDD;&#x8BC1;&gt;=W&#x4E2A;&#x526F;&#x672C;&#x7684;&#x5199;&#x5B8C;&#x6210; * &#x8BFB;:&#x8BFB;&gt;=R&#x4E2A;&#x526F;&#x672C;&#xFF0C;&#x9009;&#x51FA;&#x6700;&#x65B0;&#x7248;&#x672C; * &#x5982;&#x679C;R+W&gt;N&#xFF0C;&#x90A3;&#x4E48;&#x4E00;&#x5B9A;&#x8BFB;&#x5230;&#x6700;&#x65B0;&#x7684;&#x6570;&#x636E; * R&#x5C0F;&#xFF0C;&#x8BFB;&#x6548;&#x7387;&#x9AD8; * W&#x5C0F;&#xFF0C;&#x5199;&#x6548;&#x7387;&#x9AD8;</p>
+<p>Put&#x64CD;&#x4F5C; * Client&#x6839;&#x636E;hash(key)&#x5F97;&#x5230;&#x6240;&#x6709;N&#x4E2A;&#x526F;&#x672C;&#x6240;&#x5728;&#x7684;&#x8282;&#x70B9; * Client&#x5411;&#x6240;&#x6709;N&#x4E2A;&#x526F;&#x672C;&#x6240;&#x5728;&#x7684;&#x8282;&#x70B9;&#x53D1;&#x51FA;put * &#x7B49;&#x5230;&#x81F3;&#x5C11;W&#x4E2A;&#x8282;&#x70B9;&#x5B8C;&#x6210;&#x7684;&#x54CD;&#x5E94;&#xFF0C;&#x5C31;&#x8BA4;&#x4E3A;&#x5199;&#x6210;&#x529F;</p>
+<p>Get&#x64CD;&#x4F5C; * Client&#x6839;&#x636E;hash(key)&#x5F97;&#x5230;&#x6240;&#x6709;N&#x4E2A;&#x526F;&#x672C;&#x6240;&#x5728;&#x7684;&#x8282;&#x70B9; * Client&#x5411;&#x6240;&#x6709;N&#x4E2A;&#x526F;&#x672C;&#x6240;&#x5728;&#x7684;&#x8282;&#x70B9;&#x53D1;&#x51FA;get * &#x7B49;&#x5230;&#x81F3;&#x5C11;R&#x4E2A;&#x8282;&#x70B9;&#x7684;value&#xFF0C;&#x5C31;&#x5FC5;&#x7136;&#x5305;&#x542B;&#x6700;&#x65B0;&#x4E00;&#x6B21;&#x5199;&#x7684;&#x503C;</p>
 <hr>
-<h3 id="Bigtable-HBase"><a href="#Bigtable-HBase" class="headerlink" title="Bigtable/HBase"></a>Bigtable/HBase</h3><p><img src="pictures/bigtable.jpg" alt></p>
+<h3 id="bigtablehbase">Bigtable/HBase</h3>
+<p><img src="/2019/06/04/&#x6570;&#x636E;&#x5E93;/2019-06-04-&#x5927;&#x6570;&#x636E;&#x5B58;&#x50A8;&#x7CFB;&#x7EDF;/bigtable.jpg"></p>
 <ul>
-<li>Key包括row key与column两个部分</li>
-<li>所有row key是按顺序存储的</li>
-<li>其中column又有column family前缀<ul>
-<li>Column family是需要事先声明的，种类有限（例如~10或~100）</li>
-<li>而column key可以有很多</li>
-</ul>
-</li>
-<li><p>具体存储时，每个column family将分开存储（类似列式数据库）</p>
-</li>
+<li><p>Key&#x5305;&#x62EC;row key&#x4E0E;column&#x4E24;&#x4E2A;&#x90E8;&#x5206;</p></li>
+<li><p>&#x6240;&#x6709;row key&#x662F;&#x6309;&#x987A;&#x5E8F;&#x5B58;&#x50A8;&#x7684;</p></li>
+<li><p>&#x5176;&#x4E2D;column&#x53C8;&#x6709;column family&#x524D;&#x7F00;</p>
+<ul>
+<li>Column family&#x662F;&#x9700;&#x8981;&#x4E8B;&#x5148;&#x58F0;&#x660E;&#x7684;&#xFF0C;&#x79CD;&#x7C7B;&#x6709;&#x9650;&#xFF08;&#x4F8B;&#x5982;<sub>10&#x6216;</sub>100&#xFF09;</li>
+<li>&#x800C;column key&#x53EF;&#x4EE5;&#x6709;&#x5F88;&#x591A;</li>
+</ul></li>
+<li><p>&#x5177;&#x4F53;&#x5B58;&#x50A8;&#x65F6;&#xFF0C;&#x6BCF;&#x4E2A;column family&#x5C06;&#x5206;&#x5F00;&#x5B58;&#x50A8;&#xFF08;&#x7C7B;&#x4F3C;&#x5217;&#x5F0F;&#x6570;&#x636E;&#x5E93;&#xFF09;</p></li>
 <li><p>Get</p>
 <ul>
-<li>给定row key, column family, column key</li>
-<li>读取value</li>
-</ul>
-</li>
-<li>Put<ul>
-<li>给定row key, column family, column key</li>
-<li>创建或更新value</li>
-</ul>
-</li>
-<li>Scan<ul>
-<li>给定一个范围，读取这个范围内所有row key的value</li>
-<li>Row key是排序存储的</li>
-</ul>
-</li>
-<li>Delete<ul>
-<li>删除一个指定的value</li>
-</ul>
-</li>
-</ul>
-<p>Tablet是分布式Bigtable表的一部分</p>
-<p>查找Tablet：三层的B+-Tree，每个叶子节点是一个Tablet，内部节点是特殊的MetaData Tablet，其包含Tablet的位置信息。</p>
+<li>&#x7ED9;&#x5B9A;row key, column family, column key</li>
+<li>&#x8BFB;&#x53D6;value</li>
+</ul></li>
+<li><p>Put</p>
 <ul>
-<li>Put<ul>
-<li>写入MemTable，Append日志</li>
-<li>MemTable满了就对其排序，生成新的SSTable，只创建一次不修改最后删除。</li>
-</ul>
-</li>
-<li>Get<ul>
-<li>对每个SSTable都建索引</li>
-</ul>
-</li>
-</ul>
-<hr>
-<h3 id="Cassandra-Dynamo-Bigtable"><a href="#Cassandra-Dynamo-Bigtable" class="headerlink" title="Cassandra(Dynamo+Bigtable)"></a>Cassandra(Dynamo+Bigtable)</h3><p><img src="pictures/Cassandra.jpg" alt></p>
-<hr>
-<h3 id="分布式协调（ZooKeeper）"><a href="#分布式协调（ZooKeeper）" class="headerlink" title="分布式协调（ZooKeeper）"></a>分布式协调（ZooKeeper）</h3><p>多个ZooKeeper维护一组共同的数据状态，2f+1个ZooKeeper可以容忍f个节点故障。</p>
-<p>ZooKeeper是一个简化的文件系统，树结构，可以用一条从根开始的路径确定。</p>
-<p>Client Session：开始（Client主动连接），结束（CLient主动关闭，或者经过一个Timeout，Zookeeper没有收到通信）</p>
-<p>Watch机制：exists可以判断节点是否存在；ZooKeeper通知，通知后Watch被删除。</p>
-<p>同步机制：请求后阻塞；异步机制：允许Client发多个请求，提供回调函数。</p>
-<p>Zookeeper需要保证写操作串行化（由leader领导follower按照相同顺序完成，FIFO，无保证，要调用sync）</p>
-<p>ZAB（一致性协议）</p>
+<li>&#x7ED9;&#x5B9A;row key, column family, column key</li>
+<li>&#x521B;&#x5EFA;&#x6216;&#x66F4;&#x65B0;value</li>
+</ul></li>
+<li><p>Scan</p>
 <ul>
-<li>Propose阶段<ul>
-<li>Leader把一个新的txn写入本地log， 广播Propose这个txn </li>
-<li>每个Follower收到Propose后，写入本地log，向Leader发回Ack</li>
+<li>&#x7ED9;&#x5B9A;&#x4E00;&#x4E2A;&#x8303;&#x56F4;&#xFF0C;&#x8BFB;&#x53D6;&#x8FD9;&#x4E2A;&#x8303;&#x56F4;&#x5185;&#x6240;&#x6709;row key&#x7684;value</li>
+<li>Row key&#x662F;&#x6392;&#x5E8F;&#x5B58;&#x50A8;&#x7684;</li>
+</ul></li>
+<li><p>Delete</p>
+<ul>
+<li>&#x5220;&#x9664;&#x4E00;&#x4E2A;&#x6307;&#x5B9A;&#x7684;value</li>
+</ul></li>
 </ul>
-</li>
-<li>Commit阶段<ul>
-<li>Leader收到 f个Ack后，写Commit到log, 广播Commit，然后修改自己的ZooKeeper树</li>
-<li>Follower收到Commit消息，写Commit到log，然后修改ZooKeeper树、</li>
-</ul>
-</li>
-<li>Recovery<ul>
-<li>竞选leader（Txn ID最大的节点）</li>
-<li>新的leader包正确执行的Txn都正确执行，丢弃未执行的操作</li>
-</ul>
-</li>
-</ul>
-<hr>
-<h2 id="JSON"><a href="#JSON" class="headerlink" title="JSON"></a>JSON</h2><h3 id="JSON-vs-Google-Protocol-Buffers"><a href="#JSON-vs-Google-Protocol-Buffers" class="headerlink" title="JSON vs Google Protocol Buffers"></a>JSON vs Google Protocol Buffers</h3><ul>
-<li>相同点：<ul>
-<li>都可以表达程序设计语言中的结构和数组</li>
-<li>嵌套：JSON object, PB message/group</li>
-<li>数组：JSON array, PB repeated</li>
-<li>缺值的情况：JSON记录实际上没有规定一定要有什么域，PB optional</li>
-</ul>
-</li>
-<li>不同点：<ul>
-<li>数据类型：PB要求事先声明，JSON不需要</li>
-</ul>
-</li>
-</ul>
-<h3 id="JSON-vs-XML"><a href="#JSON-vs-XML" class="headerlink" title="JSON vs XML"></a>JSON vs XML</h3><ul>
-<li>JSON；轻量，自定义格式，key-value</li>
-<li>XML：重量，需要定义格式</li>
+<p>Tablet&#x662F;&#x5206;&#x5E03;&#x5F0F;Bigtable&#x8868;&#x7684;&#x4E00;&#x90E8;&#x5206;</p>
+<p>&#x67E5;&#x627E;Tablet&#xFF1A;&#x4E09;&#x5C42;&#x7684;B+-Tree&#xFF0C;&#x6BCF;&#x4E2A;&#x53F6;&#x5B50;&#x8282;&#x70B9;&#x662F;&#x4E00;&#x4E2A;Tablet&#xFF0C;&#x5185;&#x90E8;&#x8282;&#x70B9;&#x662F;&#x7279;&#x6B8A;&#x7684;MetaData Tablet&#xFF0C;&#x5176;&#x5305;&#x542B;Tablet&#x7684;&#x4F4D;&#x7F6E;&#x4FE1;&#x606F;&#x3002;</p>
+<ul>
+<li>Put
+<ul>
+<li>&#x5199;&#x5165;MemTable&#xFF0C;Append&#x65E5;&#x5FD7;</li>
+<li>MemTable&#x6EE1;&#x4E86;&#x5C31;&#x5BF9;&#x5176;&#x6392;&#x5E8F;&#xFF0C;&#x751F;&#x6210;&#x65B0;&#x7684;SSTable&#xFF0C;&#x53EA;&#x521B;&#x5EFA;&#x4E00;&#x6B21;&#x4E0D;&#x4FEE;&#x6539;&#x6700;&#x540E;&#x5220;&#x9664;&#x3002;</li>
+</ul></li>
+<li>Get
+<ul>
+<li>&#x5BF9;&#x6BCF;&#x4E2A;SSTable&#x90FD;&#x5EFA;&#x7D22;&#x5F15;</li>
+</ul></li>
 </ul>
 <hr>
-<h2 id="Document-Store"><a href="#Document-Store" class="headerlink" title="Document Store"></a>Document Store</h2><ul>
-<li>Database &lt;-&gt; 数据库</li>
-<li>Collection &lt;-&gt; Table概念</li>
-<li>Document &lt;-&gt; 记录概念</li>
-</ul>
-<div class="table-container">
-<table>
-<thead>
-<tr>
-<th style="text-align:right">MongoDB</th>
-<th style="text-align:right">SQL</th>
-</tr>
-</thead>
+<h3 id="cassandradynamobigtable">Cassandra(Dynamo+Bigtable)</h3>
+<p><img src="/2019/06/04/&#x6570;&#x636E;&#x5E93;/2019-06-04-&#x5927;&#x6570;&#x636E;&#x5B58;&#x50A8;&#x7CFB;&#x7EDF;/Cassandra.jpg"></p>
+<hr>
+<h3 id="&#x5206;&#x5E03;&#x5F0F;&#x534F;&#x8C03;zookeeper">&#x5206;&#x5E03;&#x5F0F;&#x534F;&#x8C03;&#xFF08;ZooKeeper&#xFF09;</h3>
+<p>&#x591A;&#x4E2A;ZooKeeper&#x7EF4;&#x62A4;&#x4E00;&#x7EC4;&#x5171;&#x540C;&#x7684;&#x6570;&#x636E;&#x72B6;&#x6001;&#xFF0C;2f+1&#x4E2A;ZooKeeper&#x53EF;&#x4EE5;&#x5BB9;&#x5FCD;f&#x4E2A;&#x8282;&#x70B9;&#x6545;&#x969C;&#x3002;</p>
+<p>ZooKeeper&#x662F;&#x4E00;&#x4E2A;&#x7B80;&#x5316;&#x7684;&#x6587;&#x4EF6;&#x7CFB;&#x7EDF;&#xFF0C;&#x6811;&#x7ED3;&#x6784;&#xFF0C;&#x53EF;&#x4EE5;&#x7528;&#x4E00;&#x6761;&#x4ECE;&#x6839;&#x5F00;&#x59CB;&#x7684;&#x8DEF;&#x5F84;&#x786E;&#x5B9A;&#x3002;</p>
+<p>Client Session&#xFF1A;&#x5F00;&#x59CB;&#xFF08;Client&#x4E3B;&#x52A8;&#x8FDE;&#x63A5;&#xFF09;&#xFF0C;&#x7ED3;&#x675F;&#xFF08;CLient&#x4E3B;&#x52A8;&#x5173;&#x95ED;&#xFF0C;&#x6216;&#x8005;&#x7ECF;&#x8FC7;&#x4E00;&#x4E2A;Timeout&#xFF0C;Zookeeper&#x6CA1;&#x6709;&#x6536;&#x5230;&#x901A;&#x4FE1;&#xFF09;</p>
+<p>Watch&#x673A;&#x5236;&#xFF1A;exists&#x53EF;&#x4EE5;&#x5224;&#x65AD;&#x8282;&#x70B9;&#x662F;&#x5426;&#x5B58;&#x5728;&#xFF1B;ZooKeeper&#x901A;&#x77E5;&#xFF0C;&#x901A;&#x77E5;&#x540E;Watch&#x88AB;&#x5220;&#x9664;&#x3002;</p>
+<p>&#x540C;&#x6B65;&#x673A;&#x5236;&#xFF1A;&#x8BF7;&#x6C42;&#x540E;&#x963B;&#x585E;&#xFF1B;&#x5F02;&#x6B65;&#x673A;&#x5236;&#xFF1A;&#x5141;&#x8BB8;Client&#x53D1;&#x591A;&#x4E2A;&#x8BF7;&#x6C42;&#xFF0C;&#x63D0;&#x4F9B;&#x56DE;&#x8C03;&#x51FD;&#x6570;&#x3002;</p>
+<p>Zookeeper&#x9700;&#x8981;&#x4FDD;&#x8BC1;&#x5199;&#x64CD;&#x4F5C;&#x4E32;&#x884C;&#x5316;&#xFF08;&#x7531;leader&#x9886;&#x5BFC;follower&#x6309;&#x7167;&#x76F8;&#x540C;&#x987A;&#x5E8F;&#x5B8C;&#x6210;&#xFF0C;FIFO&#xFF0C;&#x65E0;&#x4FDD;&#x8BC1;&#xFF0C;&#x8981;&#x8C03;&#x7528;sync&#xFF09;</p>
+<p>ZAB&#xFF08;&#x4E00;&#x81F4;&#x6027;&#x534F;&#x8BAE;&#xFF09; * Propose&#x9636;&#x6BB5; * Leader&#x628A;&#x4E00;&#x4E2A;&#x65B0;&#x7684;txn&#x5199;&#x5165;&#x672C;&#x5730;log&#xFF0C; &#x5E7F;&#x64AD;Propose&#x8FD9;&#x4E2A;txn * &#x6BCF;&#x4E2A;Follower&#x6536;&#x5230;Propose&#x540E;&#xFF0C;&#x5199;&#x5165;&#x672C;&#x5730;log&#xFF0C;&#x5411;Leader&#x53D1;&#x56DE;Ack * Commit&#x9636;&#x6BB5; * Leader&#x6536;&#x5230; f&#x4E2A;Ack&#x540E;&#xFF0C;&#x5199;Commit&#x5230;log, &#x5E7F;&#x64AD;Commit&#xFF0C;&#x7136;&#x540E;&#x4FEE;&#x6539;&#x81EA;&#x5DF1;&#x7684;ZooKeeper&#x6811; * Follower&#x6536;&#x5230;Commit&#x6D88;&#x606F;&#xFF0C;&#x5199;Commit&#x5230;log&#xFF0C;&#x7136;&#x540E;&#x4FEE;&#x6539;ZooKeeper&#x6811;&#x3001; * Recovery * &#x7ADE;&#x9009;leader&#xFF08;Txn ID&#x6700;&#x5927;&#x7684;&#x8282;&#x70B9;&#xFF09; * &#x65B0;&#x7684;leader&#x5305;&#x6B63;&#x786E;&#x6267;&#x884C;&#x7684;Txn&#x90FD;&#x6B63;&#x786E;&#x6267;&#x884C;&#xFF0C;&#x4E22;&#x5F03;&#x672A;&#x6267;&#x884C;&#x7684;&#x64CD;&#x4F5C;</p>
+<table style="width:8%;">
+<colgroup>
+<col style="width: 8%">
+</colgroup>
 <tbody>
-<tr>
-<td style="text-align:right">insert</td>
-<td style="text-align:right">create</td>
+<tr class="odd">
+<td>## JSON ### JSON vs Google Protocol Buffers</td>
 </tr>
-<tr>
-<td style="text-align:right">insert</td>
-<td style="text-align:right">insert</td>
+<tr class="even">
+<td>* &#x76F8;&#x540C;&#x70B9;&#xFF1A; * &#x90FD;&#x53EF;&#x4EE5;&#x8868;&#x8FBE;&#x7A0B;&#x5E8F;&#x8BBE;&#x8BA1;&#x8BED;&#x8A00;&#x4E2D;&#x7684;&#x7ED3;&#x6784;&#x548C;&#x6570;&#x7EC4; * &#x5D4C;&#x5957;&#xFF1A;JSON object, PB message/group * &#x6570;&#x7EC4;&#xFF1A;JSON array, PB repeated * &#x7F3A;&#x503C;&#x7684;&#x60C5;&#x51B5;&#xFF1A;JSON&#x8BB0;&#x5F55;&#x5B9E;&#x9645;&#x4E0A;&#x6CA1;&#x6709;&#x89C4;&#x5B9A;&#x4E00;&#x5B9A;&#x8981;&#x6709;&#x4EC0;&#x4E48;&#x57DF;&#xFF0C;PB optional * &#x4E0D;&#x540C;&#x70B9;&#xFF1A; * &#x6570;&#x636E;&#x7C7B;&#x578B;&#xFF1A;PB&#x8981;&#x6C42;&#x4E8B;&#x5148;&#x58F0;&#x660E;&#xFF0C;JSON&#x4E0D;&#x9700;&#x8981;</td>
 </tr>
-<tr>
-<td style="text-align:right">find</td>
-<td style="text-align:right">select</td>
+<tr class="odd">
+<td>### JSON vs XML</td>
 </tr>
-<tr>
-<td style="text-align:right">aggregate/group</td>
-<td style="text-align:right">group by</td>
-</tr>
-<tr>
-<td style="text-align:right">不支持join</td>
-<td style="text-align:right">join</td>
-</tr>
-<tr>
-<td style="text-align:right">支持index</td>
+<tr class="even">
+<td>* JSON&#xFF1B;&#x8F7B;&#x91CF;&#xFF0C;&#x81EA;&#x5B9A;&#x4E49;&#x683C;&#x5F0F;&#xFF0C;key-value * XML&#xFF1A;&#x91CD;&#x91CF;&#xFF0C;&#x9700;&#x8981;&#x5B9A;&#x4E49;&#x683C;&#x5F0F;</td>
 </tr>
 </tbody>
 </table>
-</div>
-<p>Write concern：</p>
-<ol>
-<li>Unacknowledged: 写请求发送了，就认为完成</li>
-<li>Acknowledged：MongoDB应答了收到写请求，就认为完成</li>
-<li>Journaled：MongoDB把写请求记录在硬盘上的日志中，认为完成</li>
-</ol>
-<hr>
-<h2 id="图存储系统"><a href="#图存储系统" class="headerlink" title="图存储系统"></a>图存储系统</h2><h3 id="Neo4j"><a href="#Neo4j" class="headerlink" title="Neo4j"></a>Neo4j</h3><ul>
-<li>顶点 &lt;-&gt; node</li>
-<li>边 &lt;-&gt; relationship, 双向链表</li>
-<li>顶点和边存储多个key-value值 &lt;-&gt; property，单向链表</li>
+<h2 id="document-store">Document Store</h2>
+<ul>
+<li>Database &lt;-&gt; &#x6570;&#x636E;&#x5E93;</li>
+<li>Collection &lt;-&gt; Table&#x6982;&#x5FF5;</li>
+<li>Document &lt;-&gt; &#x8BB0;&#x5F55;&#x6982;&#x5FF5;</li>
 </ul>
-<p>对node relationship property由缓冲区</p>
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: right;">MongoDB</th>
+<th style="text-align: right;">SQL</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: right;">insert</td>
+<td style="text-align: right;">create</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">insert</td>
+<td style="text-align: right;">insert</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">find</td>
+<td style="text-align: right;">select</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">aggregate/group</td>
+<td style="text-align: right;">group by</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">&#x4E0D;&#x652F;&#x6301;join</td>
+<td style="text-align: right;">join</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">&#x652F;&#x6301;index</td>
+<td style="text-align: right;"></td>
+</tr>
+</tbody>
+</table>
+<p>Write concern&#xFF1A; 1. Unacknowledged: &#x5199;&#x8BF7;&#x6C42;&#x53D1;&#x9001;&#x4E86;&#xFF0C;&#x5C31;&#x8BA4;&#x4E3A;&#x5B8C;&#x6210; 2. Acknowledged&#xFF1A;MongoDB&#x5E94;&#x7B54;&#x4E86;&#x6536;&#x5230;&#x5199;&#x8BF7;&#x6C42;&#xFF0C;&#x5C31;&#x8BA4;&#x4E3A;&#x5B8C;&#x6210; 3. Journaled&#xFF1A;MongoDB&#x628A;&#x5199;&#x8BF7;&#x6C42;&#x8BB0;&#x5F55;&#x5728;&#x786C;&#x76D8;&#x4E0A;&#x7684;&#x65E5;&#x5FD7;&#x4E2D;&#xFF0C;&#x8BA4;&#x4E3A;&#x5B8C;&#x6210;</p>
+<hr>
+<h2 id="&#x56FE;&#x5B58;&#x50A8;&#x7CFB;&#x7EDF;">&#x56FE;&#x5B58;&#x50A8;&#x7CFB;&#x7EDF;</h2>
+<h3 id="neo4j">Neo4j</h3>
+<ul>
+<li>&#x9876;&#x70B9; &lt;-&gt; node</li>
+<li>&#x8FB9; &lt;-&gt; relationship, &#x53CC;&#x5411;&#x94FE;&#x8868;</li>
+<li>&#x9876;&#x70B9;&#x548C;&#x8FB9;&#x5B58;&#x50A8;&#x591A;&#x4E2A;key-value&#x503C; &lt;-&gt; property&#xFF0C;&#x5355;&#x5411;&#x94FE;&#x8868;</li>
+</ul>
+<p>&#x5BF9;node relationship property&#x7531;&#x7F13;&#x51B2;&#x533A;</p>
 
             </div>
         
@@ -653,19 +604,19 @@
     
 <nav id="article-nav">
     
-        <a href="/2019/06/22/安全/2019-06-22-网络异常行为检测/" id="article-nav-newer" class="article-nav-link-wrap">
+        <a href="/2019/06/04/数据库/2019-06-04-大数据运算/" id="article-nav-newer" class="article-nav-link-wrap">
             <strong class="article-nav-caption">上一篇</strong>
             <div class="article-nav-title">
                 
-                    网络异常行为检测
+                    大数据存储系统
                 
             </div>
         </a>
     
     
-        <a href="/2019/06/04/数据库/2019-06-04-大数据运算/" id="article-nav-older" class="article-nav-link-wrap">
+        <a href="/2019/06/03/数据库/2019-06-03-关系数据库/" id="article-nav-older" class="article-nav-link-wrap">
             <strong class="article-nav-caption">下一篇</strong>
-            <div class="article-nav-title">大数据存储系统</div>
+            <div class="article-nav-title">关系数据库</div>
         </a>
     
 </nav>

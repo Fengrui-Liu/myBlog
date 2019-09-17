@@ -9,20 +9,20 @@
         <meta name="keywords" content="OS,Raspberry-Pi">
     
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <meta name="description" content="实验目标利用timer使ACT灯闪烁 背景补充timer的相关地址与其功能  根据流程图我们可以知道，timer实际上是每隔1s钟自加1，直到与其比较的寄存器相同时结束。 代码分析ldr r0,=100000bl Wait 在main.s文件中我们可以看到，这两句代码是通过r0设置等待时间，然后调用新函数实现timer的计时等待功能。 delay .req r2	mov delay,r0	push">
+    <meta name="description" content="&amp;#x5B9E;&amp;#x9A8C;&amp;#x76EE;&amp;#x6807; &amp;#x5229;&amp;#x7528;timer&amp;#x4F7F;ACT&amp;#x706F;&amp;#x95EA;&amp;#x70C1; &amp;#x80CC;&amp;#x666F;&amp;#x8865;&amp;#x5145; timer&amp;#x7684;&amp;#x76F8;&amp;#x5173;&amp;#x5730;&amp;#x5740;&amp;#x4E0E;&amp;#x5176;&amp;#x529F;&amp;#x80FD;">
 <meta name="keywords" content="OS,Raspberry-Pi">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Raspberry Pi OK04">
 <meta property="og:url" content="http://www.liufr.com/2016/08/09/Pi/2016-08-09-Raspberry Pi OK04/index.html">
 <meta property="og:site_name" content="Fengrui Liu&#39;s Blog">
-<meta property="og:description" content="实验目标利用timer使ACT灯闪烁 背景补充timer的相关地址与其功能  根据流程图我们可以知道，timer实际上是每隔1s钟自加1，直到与其比较的寄存器相同时结束。 代码分析ldr r0,=100000bl Wait 在main.s文件中我们可以看到，这两句代码是通过r0设置等待时间，然后调用新函数实现timer的计时等待功能。 delay .req r2	mov delay,r0	push">
+<meta property="og:description" content="&amp;#x5B9E;&amp;#x9A8C;&amp;#x76EE;&amp;#x6807; &amp;#x5229;&amp;#x7528;timer&amp;#x4F7F;ACT&amp;#x706F;&amp;#x95EA;&amp;#x70C1; &amp;#x80CC;&amp;#x666F;&amp;#x8865;&amp;#x5145; timer&amp;#x7684;&amp;#x76F8;&amp;#x5173;&amp;#x5730;&amp;#x5740;&amp;#x4E0E;&amp;#x5176;&amp;#x529F;&amp;#x80FD;">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http://ww3.sinaimg.cn/large/006tKfTcgw1f6nolpyw8bj30d50fxq4z.jpg">
 <meta property="og:image" content="http://ww1.sinaimg.cn/large/006tKfTcgw1f6k2d4nld4g308w0ciu0z.gif">
 <meta property="og:updated_time" content="2017-10-20T01:30:43.510Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Raspberry Pi OK04">
-<meta name="twitter:description" content="实验目标利用timer使ACT灯闪烁 背景补充timer的相关地址与其功能  根据流程图我们可以知道，timer实际上是每隔1s钟自加1，直到与其比较的寄存器相同时结束。 代码分析ldr r0,=100000bl Wait 在main.s文件中我们可以看到，这两句代码是通过r0设置等待时间，然后调用新函数实现timer的计时等待功能。 delay .req r2	mov delay,r0	push">
+<meta name="twitter:description" content="&amp;#x5B9E;&amp;#x9A8C;&amp;#x76EE;&amp;#x6807; &amp;#x5229;&amp;#x7528;timer&amp;#x4F7F;ACT&amp;#x706F;&amp;#x95EA;&amp;#x70C1; &amp;#x80CC;&amp;#x666F;&amp;#x8865;&amp;#x5145; timer&amp;#x7684;&amp;#x76F8;&amp;#x5173;&amp;#x5730;&amp;#x5740;&amp;#x4E0E;&amp;#x5176;&amp;#x529F;&amp;#x80FD;">
 <meta name="twitter:image" content="http://ww3.sinaimg.cn/large/006tKfTcgw1f6nolpyw8bj30d50fxq4z.jpg">
     
 
@@ -170,7 +170,7 @@
                             &nbsp;
                             Algorithm
                         </a>
-                         <ul class="unstyled" id="tree">  <li class="file"><a href="/2016/10/25/算法/2016-10-25-Dijkstra算法/">Dijkstra算法</a></li>  <li class="file"><a href="/2016/10/25/算法/2016-10-25-BellmanFord算法/">Bellman-Ford算法</a></li>  <li class="file"><a href="/2016/12/08/算法/2016-12-08-Bloom Filter/">Bloom Filter</a></li>  <li class="file"><a href="/2017/07/14/算法/2017-7-14-tf-idf/">tf-idf</a></li>  <li class="file"><a href="/2017/09/13/算法/2017-9-13-前缀和/">前缀和（SJTU OJ 1002）</a></li>  <li class="file"><a href="/2017/09/14/算法/2017-9-14-超大数求和/">超大数求和（SJTU OJ 1007）</a></li>  <li class="file"><a href="/2017/09/15/算法/2017-9-15-完全背包/">DP（完全背包）</a></li>  <li class="file"><a href="/2017/09/15/算法/2017-9-15-DP问题/">DP（SJTU OJ 1012）</a></li>  <li class="file"><a href="/2017/09/15/算法/2017-9-15-DP最长公共子序列/">DP（最长公共子序列）</a></li>  <li class="file"><a href="/2017/09/15/算法/2017-9-15-DP(0" 1背包) ">DP（0/1背包）</a></li>  <li class="file"><a href="/2017/09/25/算法/2017-9-25-约瑟夫问题/">约瑟夫问题(SJTU OJ 1038)</a></li>  <li class="file"><a href="/2018/04/02/算法/2018-4-2-排序(位图数据结构)/">排序(位图数据结构)</a></li>  <li class="file"><a href="/2018/10/18/算法/2018-10-15-非负矩阵分解/">非负矩阵分解</a></li>  </ul> 
+                         <ul class="unstyled" id="tree">  <li class="file"><a href="/2016/10/25/算法/2016-10-25-BellmanFord算法/">Bellman-Ford算法</a></li>  <li class="file"><a href="/2016/10/25/算法/2016-10-25-Dijkstra算法/">Dijkstra算法</a></li>  <li class="file"><a href="/2016/12/08/算法/2016-12-08-Bloom Filter/">Bloom Filter</a></li>  <li class="file"><a href="/2017/07/14/算法/2017-7-14-tf-idf/">tf-idf</a></li>  <li class="file"><a href="/2017/09/13/算法/2017-9-13-前缀和/">前缀和（SJTU OJ 1002）</a></li>  <li class="file"><a href="/2017/09/14/算法/2017-9-14-超大数求和/">超大数求和（SJTU OJ 1007）</a></li>  <li class="file"><a href="/2017/09/15/算法/2017-9-15-DP最长公共子序列/">DP（最长公共子序列）</a></li>  <li class="file"><a href="/2017/09/15/算法/2017-9-15-DP(0" 1背包) ">DP（0/1背包）</a></li>  <li class="file"><a href="/2017/09/15/算法/2017-9-15-完全背包/">DP（完全背包）</a></li>  <li class="file"><a href="/2017/09/15/算法/2017-9-15-DP问题/">DP（SJTU OJ 1012）</a></li>  <li class="file"><a href="/2017/09/25/算法/2017-9-25-约瑟夫问题/">约瑟夫问题(SJTU OJ 1038)</a></li>  <li class="file"><a href="/2018/04/02/算法/2018-4-2-排序(位图数据结构)/">排序(位图数据结构)</a></li>  <li class="file"><a href="/2018/10/18/算法/2018-10-15-非负矩阵分解/">非负矩阵分解</a></li>  </ul> 
                     </li> 
                     
                     <li class="directory">
@@ -197,7 +197,7 @@
                             &nbsp;
                             Data mining
                         </a>
-                         <ul class="unstyled" id="tree">  <li class="file"><a href="/2018/12/02/数据挖掘/2018-12-02-监督学习/">监督学习 Supervised Learning(决策树+SVM/Perceptron+AdaBoost)</a></li>  <li class="file"><a href="/2018/12/03/数据挖掘/2018-12-03-非监督学习/">无监督学习 Unsupervised Learning(聚类、矩阵分解、话题模型)</a></li>  <li class="file"><a href="/2018/12/05/数据挖掘/2018-12-05-互联网搜索与排序/">互联网搜索与排序</a></li>  <li class="file"><a href="/2018/12/05/数据挖掘/2018-12-05-大规模机器学习/">大规模机器学习</a></li>  </ul> 
+                         <ul class="unstyled" id="tree">  <li class="file"><a href="/2018/12/02/数据挖掘/2018-12-02-监督学习/">监督学习 Supervised Learning(决策树+SVM/Perceptron+AdaBoost)</a></li>  <li class="file"><a href="/2018/12/03/数据挖掘/2018-12-03-非监督学习/">无监督学习 Unsupervised Learning(聚类、矩阵分解、话题模型)</a></li>  <li class="file"><a href="/2018/12/05/数据挖掘/2018-12-05-大规模机器学习/">大规模机器学习</a></li>  <li class="file"><a href="/2018/12/05/数据挖掘/2018-12-05-互联网搜索与排序/">互联网搜索与排序</a></li>  </ul> 
                     </li> 
                     
                     <li class="directory">
@@ -206,7 +206,7 @@
                             &nbsp;
                             Database
                         </a>
-                         <ul class="unstyled" id="tree">  <li class="file"><a href="/2019/06/03/数据库/2019-06-03-关系数据库/">关系数据库</a></li>  <li class="file"><a href="/2019/06/04/数据库/2019-06-04-大数据存储系统/">大数据存储系统</a></li>  <li class="file"><a href="/2019/06/04/数据库/2019-06-04-大数据运算/">大数据存储系统</a></li>  </ul> 
+                         <ul class="unstyled" id="tree">  <li class="file"><a href="/2019/06/03/数据库/2019-06-03-关系数据库/">关系数据库</a></li>  <li class="file"><a href="/2019/06/04/数据库/2019-06-04-大数据运算/">大数据存储系统</a></li>  <li class="file"><a href="/2019/06/04/数据库/2019-06-04-大数据存储系统/">大数据存储系统</a></li>  </ul> 
                     </li> 
                     
                     <li class="directory">
@@ -224,7 +224,7 @@
                             &nbsp;
                             Linux
                         </a>
-                         <ul class="unstyled" id="tree">  <li class="file"><a href="/2017/10/05/Linux/2017-10-05-Linux-进程管理/">Linux-进程管理</a></li>  <li class="file"><a href="/2017/10/17/Linux/2017-10-17-Linux进程调度/">Linux-进程调度</a></li>  <li class="file"><a href="/2017/10/20/Linux/2017-10-20-Linux系统调用/">Linux-系统调用</a></li>  <li class="file"><a href="/2017/10/22/Linux/2017-10-22-Linux中断和中断处理/">Linux-中断和中断处理</a></li>  <li class="file"><a href="/2017/10/22/Linux/2017-11-2-Linux-下半部和推后执行的工作/">Linux-下半部和推后执行的工作"</a></li>  </ul> 
+                         <ul class="unstyled" id="tree">  <li class="file"><a href="/2017/10/05/Linux/2017-10-05-Linux-进程管理/">Linux-进程管理</a></li>  <li class="file"><a href="/2017/10/17/Linux/2017-10-17-Linux进程调度/">Linux-进程调度</a></li>  <li class="file"><a href="/2017/10/20/Linux/2017-10-20-Linux系统调用/">Linux-系统调用</a></li>  <li class="file"><a href="/2017/10/22/Linux/2017-11-2-Linux-下半部和推后执行的工作/">Linux-下半部和推后执行的工作"</a></li>  <li class="file"><a href="/2017/10/22/Linux/2017-10-22-Linux中断和中断处理/">Linux-中断和中断处理</a></li>  </ul> 
                     </li> 
                     
                     <li class="directory">
@@ -251,7 +251,7 @@
                             &nbsp;
                             Pi
                         </a>
-                         <ul class="unstyled" id="tree">  <li class="file"><a href="/2016/08/06/Pi/2016-08-06-Raspberry Pi OK02/">Raspberry Pi OK02</a></li>  <li class="file"><a href="/2016/08/06/Pi/2016-08-06-Raspberry Pi OK03/">Raspberry Pi OK03</a></li>  <li class="file"><a href="/2016/08/06/Pi/2016-08-06-Baking Pi – Operating Systems Development前言/">Raspberry Pi OS Development 前言</a></li>  <li class="file"><a href="/2016/08/06/Pi/2016-08-06-Raspberry Pi OK01/">Raspberry Pi OK01</a></li>  <li class="file active"><a href="/2016/08/09/Pi/2016-08-09-Raspberry Pi OK04/">Raspberry Pi OK04</a></li>  <li class="file"><a href="/2016/08/09/Pi/2016-08-11-Raspberry Pi Screen02/">Raspberry Pi Screen02</a></li>  <li class="file"><a href="/2016/08/09/Pi/2016-08-10-Raspberry Pi Screen01/">Raspberry Pi Screen01</a></li>  <li class="file"><a href="/2016/08/09/Pi/2016-08-09-Raspberry Pi OK05/">Raspberry Pi OK05</a></li>  <li class="file"><a href="/2016/08/14/Pi/2016-08-14-Raspberry Pi Screen03/">Raspberry Pi Screen03</a></li>  <li class="file"><a href="/2016/08/16/Pi/2016-08-16-Raspberry Pi Screen04/">Raspberry Pi Screen04</a></li>  <li class="file"><a href="/2016/08/31/Pi/2016-08-31-Raspberry Pi Input01/">Raspberry Pi Input01</a></li>  <li class="file"><a href="/2016/09/01/Pi/2016-09-01-Raspberry Pi Input02/">Raspberry Pi Input02</a></li>  </ul> 
+                         <ul class="unstyled" id="tree">  <li class="file"><a href="/2016/08/06/Pi/2016-08-06-Raspberry Pi OK02/">Raspberry Pi OK02</a></li>  <li class="file"><a href="/2016/08/06/Pi/2016-08-06-Baking Pi – Operating Systems Development前言/">Raspberry Pi OS Development 前言</a></li>  <li class="file"><a href="/2016/08/06/Pi/2016-08-06-Raspberry Pi OK01/">Raspberry Pi OK01</a></li>  <li class="file"><a href="/2016/08/06/Pi/2016-08-06-Raspberry Pi OK03/">Raspberry Pi OK03</a></li>  <li class="file"><a href="/2016/08/09/Pi/2016-08-11-Raspberry Pi Screen02/">Raspberry Pi Screen02</a></li>  <li class="file"><a href="/2016/08/09/Pi/2016-08-09-Raspberry Pi OK05/">Raspberry Pi OK05</a></li>  <li class="file active"><a href="/2016/08/09/Pi/2016-08-09-Raspberry Pi OK04/">Raspberry Pi OK04</a></li>  <li class="file"><a href="/2016/08/09/Pi/2016-08-10-Raspberry Pi Screen01/">Raspberry Pi Screen01</a></li>  <li class="file"><a href="/2016/08/14/Pi/2016-08-14-Raspberry Pi Screen03/">Raspberry Pi Screen03</a></li>  <li class="file"><a href="/2016/08/16/Pi/2016-08-16-Raspberry Pi Screen04/">Raspberry Pi Screen04</a></li>  <li class="file"><a href="/2016/08/31/Pi/2016-08-31-Raspberry Pi Input01/">Raspberry Pi Input01</a></li>  <li class="file"><a href="/2016/09/01/Pi/2016-09-01-Raspberry Pi Input02/">Raspberry Pi Input02</a></li>  </ul> 
                     </li> 
                     
                     <li class="directory">
@@ -269,7 +269,7 @@
                             &nbsp;
                             Security
                         </a>
-                         <ul class="unstyled" id="tree">  <li class="file"><a href="/2018/09/02/安全/2018-09-02-蜜罐技术/">蜜罐技术</a></li>  <li class="file"><a href="/2019/06/22/安全/2019-06-22-网络异常行为检测/">网络异常行为检测</a></li>  <li class="file"><a href="/2019/07/21/安全/2019-07-21-指数加权移动平均法（EWMA）/">指数加权移动平均法（EWMA）</a></li>  <li class="file"><a href="/2019/07/21/安全/2019-07-22-孤立森林（Isolation Froest）/">孤立森林（Isolation Forest）</a></li>  <li class="file"><a href="/2019/07/21/安全/2019-07-22-xgboost/">孤立森林（Isolation Forest）</a></li>  <li class="file"><a href="/2019/07/21/安全/2019-07-21-多项式插值/">多项式插值</a></li>  <li class="file"><a href="/2019/07/21/安全/2019-07-22-利用时序决策树进行DGA僵尸检测/">利用时序决策树进行DGA僵尸检测</a></li>  <li class="file"><a href="/2019/07/21/安全/2019-07-21-梯度提升决策树(GBDT)/">梯度提升决策树（GBDT）</a></li>  </ul> 
+                         <ul class="unstyled" id="tree">  <li class="file"><a href="/2018/09/02/安全/2018-09-02-蜜罐技术/">蜜罐技术</a></li>  <li class="file"><a href="/2019/06/22/安全/2019-06-22-网络异常行为检测/">网络异常行为检测</a></li>  <li class="file"><a href="/2019/07/21/安全/2019-07-21-多项式插值/">多项式插值</a></li>  <li class="file"><a href="/2019/07/21/安全/2019-07-21-指数加权移动平均法（EWMA）/">指数加权移动平均法（EWMA）</a></li>  <li class="file"><a href="/2019/07/21/安全/2019-07-21-梯度提升决策树(GBDT)/">梯度提升决策树（GBDT）</a></li>  <li class="file"><a href="/2019/07/21/安全/2019-07-22-利用时序决策树进行DGA僵尸检测/">利用时序决策树进行DGA僵尸检测</a></li>  <li class="file"><a href="/2019/07/21/安全/2019-07-22-孤立森林（Isolation Froest）/">孤立森林（Isolation Forest）</a></li>  <li class="file"><a href="/2019/07/21/安全/2019-07-22-xgboost/">孤立森林（Isolation Forest）</a></li>  </ul> 
                     </li> 
                     
                     <li class="directory">
@@ -278,7 +278,7 @@
                             &nbsp;
                             网络
                         </a>
-                         <ul class="unstyled" id="tree">  <li class="file"><a href="/2016/12/24/网络/2016-12-24-ipv4在Linux上的实现/">学习构造用户空间的IP栈（资料总结）</a></li>  <li class="file"><a href="/2017/03/12/VANET/2017-3-12-Vanet仿真-ns3(3)/">VANET仿真-ns3(3)</a></li>  <li class="file"><a href="/2017/03/12/VANET/2017-3-12-Vanet仿真-ns3(2)/">VANET仿真-ns3(2)</a></li>  <li class="file"><a href="/2017/03/12/VANET/2017-3-12-Vanet仿真-ns3(1)/">VANET仿真-ns3(1)</a></li>  <li class="file"><a href="/2017/03/13/VANET/2017-3-13-Vanet仿真-ns3(4)/">VANET仿真-ns3(4)</a></li>  <li class="file"><a href="/2017/03/13/VANET/2017-3-13-Vanet仿真-ns3(5)/">VANET仿真-ns3(5)</a></li>  <li class="file"><a href="/2017/03/15/VANET/2017-3-15-Vanet仿真-ns3(6)/">VANET仿真-ns3(6)</a></li>  <li class="file"><a href="/2017/07/14/网络/2017-07-14-Ego networks/">Ego networks</a></li>  </ul> 
+                         <ul class="unstyled" id="tree">  <li class="file"><a href="/2016/12/24/网络/2016-12-24-ipv4在Linux上的实现/">学习构造用户空间的IP栈（资料总结）</a></li>  <li class="file"><a href="/2017/03/12/VANET/2017-3-12-Vanet仿真-ns3(1)/">VANET仿真-ns3(1)</a></li>  <li class="file"><a href="/2017/03/12/VANET/2017-3-12-Vanet仿真-ns3(2)/">VANET仿真-ns3(2)</a></li>  <li class="file"><a href="/2017/03/12/VANET/2017-3-12-Vanet仿真-ns3(3)/">VANET仿真-ns3(3)</a></li>  <li class="file"><a href="/2017/03/13/VANET/2017-3-13-Vanet仿真-ns3(5)/">VANET仿真-ns3(5)</a></li>  <li class="file"><a href="/2017/03/13/VANET/2017-3-13-Vanet仿真-ns3(4)/">VANET仿真-ns3(4)</a></li>  <li class="file"><a href="/2017/03/15/VANET/2017-3-15-Vanet仿真-ns3(6)/">VANET仿真-ns3(6)</a></li>  <li class="file"><a href="/2017/07/14/网络/2017-07-14-Ego networks/">Ego networks</a></li>  </ul> 
                     </li> 
                      <li class="file"><a href="/2019/05/30/强化学习/~$19-05-28-强化学习(2)/"></a></li>  <li class="file"><a href="/2019/09/16/数据挖掘/2019-09-16-基于注意力模型的RNN时序预测/"></a></li>  </ul> 
     </div>
@@ -421,21 +421,25 @@
             
         
         
-            <h3 id="实验目标"><a href="#实验目标" class="headerlink" title="实验目标"></a>实验目标</h3><p>利用timer使ACT灯闪烁</p>
-<h3 id="背景补充"><a href="#背景补充" class="headerlink" title="背景补充"></a>背景补充</h3><p>timer的相关地址与其功能</p>
-<p><img src="http://ww3.sinaimg.cn/large/006tKfTcgw1f6nolpyw8bj30d50fxq4z.jpg" alt></p>
-<p>根据流程图我们可以知道，timer实际上是每隔1s钟自加1，直到与其比较的寄存器相同时结束。</p>
-<h3 id="代码分析"><a href="#代码分析" class="headerlink" title="代码分析"></a>代码分析</h3><figure class="highlight arm"><table><tr><td class="code"><pre><span class="line"><span class="keyword">ldr </span><span class="built_in">r0</span>,<span class="number">=100000</span></span><br><span class="line"><span class="keyword">bl </span>Wait</span><br></pre></td></tr></table></figure>
-<p>在<strong>main.s</strong>文件中我们可以看到，这两句代码是通过r0设置等待时间，然后调用新函数实现timer的计时等待功能。</p>
-<figure class="highlight arm"><table><tr><td class="code"><pre><span class="line"><span class="symbol">delay</span> <span class="meta">.req</span> <span class="built_in">r2</span></span><br><span class="line">	<span class="keyword">mov </span>delay,<span class="built_in">r0</span></span><br><span class="line">	<span class="keyword">push </span>&#123;<span class="built_in">lr</span>&#125;</span><br><span class="line">	<span class="keyword">bl </span>GetTimeStamp</span><br></pre></td></tr></table></figure>
-<p>在<strong>systemTimer.s</strong>中的<strong>Wait</strong>函数中，将r0传入的参数保存到r2中</p>
+            <h3 id="&#x5B9E;&#x9A8C;&#x76EE;&#x6807;">&#x5B9E;&#x9A8C;&#x76EE;&#x6807;</h3>
+<p>&#x5229;&#x7528;timer&#x4F7F;ACT&#x706F;&#x95EA;&#x70C1;</p>
+<h3 id="&#x80CC;&#x666F;&#x8865;&#x5145;">&#x80CC;&#x666F;&#x8865;&#x5145;</h3>
+<p>timer&#x7684;&#x76F8;&#x5173;&#x5730;&#x5740;&#x4E0E;&#x5176;&#x529F;&#x80FD;</p>
+<p><img src="http://ww3.sinaimg.cn/large/006tKfTcgw1f6nolpyw8bj30d50fxq4z.jpg"></p>
+<p>&#x6839;&#x636E;&#x6D41;&#x7A0B;&#x56FE;&#x6211;&#x4EEC;&#x53EF;&#x4EE5;&#x77E5;&#x9053;&#xFF0C;timer&#x5B9E;&#x9645;&#x4E0A;&#x662F;&#x6BCF;&#x9694;1s&#x949F;&#x81EA;&#x52A0;1&#xFF0C;&#x76F4;&#x5230;&#x4E0E;&#x5176;&#x6BD4;&#x8F83;&#x7684;&#x5BC4;&#x5B58;&#x5668;&#x76F8;&#x540C;&#x65F6;&#x7ED3;&#x675F;&#x3002;</p>
+<h3 id="&#x4EE3;&#x7801;&#x5206;&#x6790;">&#x4EE3;&#x7801;&#x5206;&#x6790;</h3>
+<figure class="highlight arm"><table><tr><td class="code"><pre><span class="line"><span class="keyword">ldr </span><span class="built_in">r0</span>,<span class="number">=100000</span></span><br><span class="line"><span class="keyword">bl </span>Wait</span><br></pre></td></tr></table></figure>
+<p>&#x5728;<strong>main.s</strong>&#x6587;&#x4EF6;&#x4E2D;&#x6211;&#x4EEC;&#x53EF;&#x4EE5;&#x770B;&#x5230;&#xFF0C;&#x8FD9;&#x4E24;&#x53E5;&#x4EE3;&#x7801;&#x662F;&#x901A;&#x8FC7;r0&#x8BBE;&#x7F6E;&#x7B49;&#x5F85;&#x65F6;&#x95F4;&#xFF0C;&#x7136;&#x540E;&#x8C03;&#x7528;&#x65B0;&#x51FD;&#x6570;&#x5B9E;&#x73B0;timer&#x7684;&#x8BA1;&#x65F6;&#x7B49;&#x5F85;&#x529F;&#x80FD;&#x3002;</p>
+<figure class="highlight arm"><table><tr><td class="code"><pre><span class="line"><span class="symbol">delay</span> <span class="meta">.req</span> <span class="built_in">r2</span></span><br><span class="line">	<span class="keyword">mov </span>delay,<span class="built_in">r0</span></span><br><span class="line">	<span class="keyword">push </span>{<span class="built_in">lr</span>}</span><br><span class="line">	<span class="keyword">bl </span>GetTimeStamp</span><br></pre></td></tr></table></figure>
+<p>&#x5728;<strong>systemTimer.s</strong>&#x4E2D;&#x7684;<strong>Wait</strong>&#x51FD;&#x6570;&#x4E2D;&#xFF0C;&#x5C06;r0&#x4F20;&#x5165;&#x7684;&#x53C2;&#x6570;&#x4FDD;&#x5B58;&#x5230;r2&#x4E2D;</p>
 <figure class="highlight arm"><table><tr><td class="code"><pre><span class="line"><span class="symbol">.globl</span> GetSystemTimerBase</span><br><span class="line"><span class="symbol">GetSystemTimerBase</span>:</span><br><span class="line">	<span class="keyword">ldr </span><span class="built_in">r0</span>,<span class="number">=0x20003000</span></span><br><span class="line">	<span class="keyword">mov </span><span class="built_in">pc</span>,<span class="built_in">lr</span></span><br></pre></td></tr></table></figure>
-<p>通过这个函数在r0中获取到timer的基地址，并使用lr返回。</p>
+<p>&#x901A;&#x8FC7;&#x8FD9;&#x4E2A;&#x51FD;&#x6570;&#x5728;r0&#x4E2D;&#x83B7;&#x53D6;&#x5230;timer&#x7684;&#x57FA;&#x5730;&#x5740;&#xFF0C;&#x5E76;&#x4F7F;&#x7528;lr&#x8FD4;&#x56DE;&#x3002;</p>
 <figure class="highlight arm"><table><tr><td class="code"><pre><span class="line"><span class="keyword">ldrd </span><span class="built_in">r0</span>,<span class="built_in">r1</span>,[<span class="built_in">r2</span>,<span class="number">#4</span>]</span><br></pre></td></tr></table></figure>
-<p>在这里我们使用的计数器counter有8字节，但是实际上每个寄存器只有4字节大小，所以每个counter都需要2个寄存器，所以使用<strong>ldrd</strong>指令，一次可以向一个地址中加载两个寄存器的值，r1是高字节，r0是低字节，非常方便。</p>
-<p>此时我们就可以通过loop函数进行逐次比较了。</p>
-<h3 id="结果展示"><a href="#结果展示" class="headerlink" title="结果展示"></a>结果展示</h3><p>与上个实验现象相同</p>
-<p><img src="http://ww1.sinaimg.cn/large/006tKfTcgw1f6k2d4nld4g308w0ciu0z.gif" alt></p>
+<p>&#x5728;&#x8FD9;&#x91CC;&#x6211;&#x4EEC;&#x4F7F;&#x7528;&#x7684;&#x8BA1;&#x6570;&#x5668;counter&#x6709;8&#x5B57;&#x8282;&#xFF0C;&#x4F46;&#x662F;&#x5B9E;&#x9645;&#x4E0A;&#x6BCF;&#x4E2A;&#x5BC4;&#x5B58;&#x5668;&#x53EA;&#x6709;4&#x5B57;&#x8282;&#x5927;&#x5C0F;&#xFF0C;&#x6240;&#x4EE5;&#x6BCF;&#x4E2A;counter&#x90FD;&#x9700;&#x8981;2&#x4E2A;&#x5BC4;&#x5B58;&#x5668;&#xFF0C;&#x6240;&#x4EE5;&#x4F7F;&#x7528;<strong>ldrd</strong>&#x6307;&#x4EE4;&#xFF0C;&#x4E00;&#x6B21;&#x53EF;&#x4EE5;&#x5411;&#x4E00;&#x4E2A;&#x5730;&#x5740;&#x4E2D;&#x52A0;&#x8F7D;&#x4E24;&#x4E2A;&#x5BC4;&#x5B58;&#x5668;&#x7684;&#x503C;&#xFF0C;r1&#x662F;&#x9AD8;&#x5B57;&#x8282;&#xFF0C;r0&#x662F;&#x4F4E;&#x5B57;&#x8282;&#xFF0C;&#x975E;&#x5E38;&#x65B9;&#x4FBF;&#x3002;</p>
+<p>&#x6B64;&#x65F6;&#x6211;&#x4EEC;&#x5C31;&#x53EF;&#x4EE5;&#x901A;&#x8FC7;loop&#x51FD;&#x6570;&#x8FDB;&#x884C;&#x9010;&#x6B21;&#x6BD4;&#x8F83;&#x4E86;&#x3002;</p>
+<h3 id="&#x7ED3;&#x679C;&#x5C55;&#x793A;">&#x7ED3;&#x679C;&#x5C55;&#x793A;</h3>
+<p>&#x4E0E;&#x4E0A;&#x4E2A;&#x5B9E;&#x9A8C;&#x73B0;&#x8C61;&#x76F8;&#x540C;</p>
+<p><img src="http://ww1.sinaimg.cn/large/006tKfTcgw1f6k2d4nld4g308w0ciu0z.gif"></p>
 
             </div>
         
@@ -448,19 +452,19 @@
     
 <nav id="article-nav">
     
-        <a href="/2016/08/09/Pi/2016-08-09-Raspberry Pi OK05/" id="article-nav-newer" class="article-nav-link-wrap">
+        <a href="/2016/08/09/Pi/2016-08-11-Raspberry Pi Screen02/" id="article-nav-newer" class="article-nav-link-wrap">
             <strong class="article-nav-caption">上一篇</strong>
             <div class="article-nav-title">
                 
-                    Raspberry Pi OK05
+                    Raspberry Pi Screen02
                 
             </div>
         </a>
     
     
-        <a href="/2016/08/06/Pi/2016-08-06-Raspberry Pi OK03/" id="article-nav-older" class="article-nav-link-wrap">
+        <a href="/2016/08/09/Pi/2016-08-09-Raspberry Pi OK05/" id="article-nav-older" class="article-nav-link-wrap">
             <strong class="article-nav-caption">下一篇</strong>
-            <div class="article-nav-title">Raspberry Pi OK03</div>
+            <div class="article-nav-title">Raspberry Pi OK05</div>
         </a>
     
 </nav>

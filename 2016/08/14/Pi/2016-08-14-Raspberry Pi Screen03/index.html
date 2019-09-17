@@ -9,20 +9,20 @@
         <meta name="keywords" content="OS,Raspberry-Pi">
     
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <meta name="description" content="实验目标在图形界面上实现文本，以及一个命令行的功能。 背景补充字符串及其编码我们都知道计算机可以将字符显示到屏幕上，同时我们也知道计算机无法直接处理文本信息，因为它只认识bit和byte，并在数字的基础上做运算，所以实际上我们需要制定的是一种映射关系，使得计算机能将屏幕上显示的内容与内存中的信息联系起来。所以在我们录入信息的时候可以看做我们将文本加密成一种计算机可识别的信息，反过来显示的时候就是计">
+    <meta name="description" content="&amp;#x5B9E;&amp;#x9A8C;&amp;#x76EE;&amp;#x6807; &amp;#x5728;&amp;#x56FE;&amp;#x5F62;&amp;#x754C;&amp;#x9762;&amp;#x4E0A;&amp;#x5B9E;&amp;#x73B0;&amp;#x6587;&amp;#x672C;&amp;#xFF0C;&amp;#x4EE5;&amp;#x53CA;&amp;#x4E00;&amp;#x4E2A;&amp;#x547D;&amp;#x4EE4;&amp;#x884C;&amp;#x7684;&amp;#x529F;&amp;#x80FD">
 <meta name="keywords" content="OS,Raspberry-Pi">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Raspberry Pi Screen03">
 <meta property="og:url" content="http://www.liufr.com/2016/08/14/Pi/2016-08-14-Raspberry Pi Screen03/index.html">
 <meta property="og:site_name" content="Fengrui Liu&#39;s Blog">
-<meta property="og:description" content="实验目标在图形界面上实现文本，以及一个命令行的功能。 背景补充字符串及其编码我们都知道计算机可以将字符显示到屏幕上，同时我们也知道计算机无法直接处理文本信息，因为它只认识bit和byte，并在数字的基础上做运算，所以实际上我们需要制定的是一种映射关系，使得计算机能将屏幕上显示的内容与内存中的信息联系起来。所以在我们录入信息的时候可以看做我们将文本加密成一种计算机可识别的信息，反过来显示的时候就是计">
+<meta property="og:description" content="&amp;#x5B9E;&amp;#x9A8C;&amp;#x76EE;&amp;#x6807; &amp;#x5728;&amp;#x56FE;&amp;#x5F62;&amp;#x754C;&amp;#x9762;&amp;#x4E0A;&amp;#x5B9E;&amp;#x73B0;&amp;#x6587;&amp;#x672C;&amp;#xFF0C;&amp;#x4EE5;&amp;#x53CA;&amp;#x4E00;&amp;#x4E2A;&amp;#x547D;&amp;#x4EE4;&amp;#x884C;&amp;#x7684;&amp;#x529F;&amp;#x80FD">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http://ww4.sinaimg.cn/large/006tKfTcgw1f6te9lvwmvj30ta0f9diz.jpg">
 <meta property="og:image" content="http://ww4.sinaimg.cn/large/006tKfTcgw1f6tgubhe5mj30d10oy42a.jpg">
 <meta property="og:updated_time" content="2017-10-20T01:31:13.050Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Raspberry Pi Screen03">
-<meta name="twitter:description" content="实验目标在图形界面上实现文本，以及一个命令行的功能。 背景补充字符串及其编码我们都知道计算机可以将字符显示到屏幕上，同时我们也知道计算机无法直接处理文本信息，因为它只认识bit和byte，并在数字的基础上做运算，所以实际上我们需要制定的是一种映射关系，使得计算机能将屏幕上显示的内容与内存中的信息联系起来。所以在我们录入信息的时候可以看做我们将文本加密成一种计算机可识别的信息，反过来显示的时候就是计">
+<meta name="twitter:description" content="&amp;#x5B9E;&amp;#x9A8C;&amp;#x76EE;&amp;#x6807; &amp;#x5728;&amp;#x56FE;&amp;#x5F62;&amp;#x754C;&amp;#x9762;&amp;#x4E0A;&amp;#x5B9E;&amp;#x73B0;&amp;#x6587;&amp;#x672C;&amp;#xFF0C;&amp;#x4EE5;&amp;#x53CA;&amp;#x4E00;&amp;#x4E2A;&amp;#x547D;&amp;#x4EE4;&amp;#x884C;&amp;#x7684;&amp;#x529F;&amp;#x80FD">
 <meta name="twitter:image" content="http://ww4.sinaimg.cn/large/006tKfTcgw1f6te9lvwmvj30ta0f9diz.jpg">
     
 
@@ -170,7 +170,7 @@
                             &nbsp;
                             Algorithm
                         </a>
-                         <ul class="unstyled" id="tree">  <li class="file"><a href="/2016/10/25/算法/2016-10-25-Dijkstra算法/">Dijkstra算法</a></li>  <li class="file"><a href="/2016/10/25/算法/2016-10-25-BellmanFord算法/">Bellman-Ford算法</a></li>  <li class="file"><a href="/2016/12/08/算法/2016-12-08-Bloom Filter/">Bloom Filter</a></li>  <li class="file"><a href="/2017/07/14/算法/2017-7-14-tf-idf/">tf-idf</a></li>  <li class="file"><a href="/2017/09/13/算法/2017-9-13-前缀和/">前缀和（SJTU OJ 1002）</a></li>  <li class="file"><a href="/2017/09/14/算法/2017-9-14-超大数求和/">超大数求和（SJTU OJ 1007）</a></li>  <li class="file"><a href="/2017/09/15/算法/2017-9-15-完全背包/">DP（完全背包）</a></li>  <li class="file"><a href="/2017/09/15/算法/2017-9-15-DP问题/">DP（SJTU OJ 1012）</a></li>  <li class="file"><a href="/2017/09/15/算法/2017-9-15-DP最长公共子序列/">DP（最长公共子序列）</a></li>  <li class="file"><a href="/2017/09/15/算法/2017-9-15-DP(0" 1背包) ">DP（0/1背包）</a></li>  <li class="file"><a href="/2017/09/25/算法/2017-9-25-约瑟夫问题/">约瑟夫问题(SJTU OJ 1038)</a></li>  <li class="file"><a href="/2018/04/02/算法/2018-4-2-排序(位图数据结构)/">排序(位图数据结构)</a></li>  <li class="file"><a href="/2018/10/18/算法/2018-10-15-非负矩阵分解/">非负矩阵分解</a></li>  </ul> 
+                         <ul class="unstyled" id="tree">  <li class="file"><a href="/2016/10/25/算法/2016-10-25-BellmanFord算法/">Bellman-Ford算法</a></li>  <li class="file"><a href="/2016/10/25/算法/2016-10-25-Dijkstra算法/">Dijkstra算法</a></li>  <li class="file"><a href="/2016/12/08/算法/2016-12-08-Bloom Filter/">Bloom Filter</a></li>  <li class="file"><a href="/2017/07/14/算法/2017-7-14-tf-idf/">tf-idf</a></li>  <li class="file"><a href="/2017/09/13/算法/2017-9-13-前缀和/">前缀和（SJTU OJ 1002）</a></li>  <li class="file"><a href="/2017/09/14/算法/2017-9-14-超大数求和/">超大数求和（SJTU OJ 1007）</a></li>  <li class="file"><a href="/2017/09/15/算法/2017-9-15-DP最长公共子序列/">DP（最长公共子序列）</a></li>  <li class="file"><a href="/2017/09/15/算法/2017-9-15-DP(0" 1背包) ">DP（0/1背包）</a></li>  <li class="file"><a href="/2017/09/15/算法/2017-9-15-完全背包/">DP（完全背包）</a></li>  <li class="file"><a href="/2017/09/15/算法/2017-9-15-DP问题/">DP（SJTU OJ 1012）</a></li>  <li class="file"><a href="/2017/09/25/算法/2017-9-25-约瑟夫问题/">约瑟夫问题(SJTU OJ 1038)</a></li>  <li class="file"><a href="/2018/04/02/算法/2018-4-2-排序(位图数据结构)/">排序(位图数据结构)</a></li>  <li class="file"><a href="/2018/10/18/算法/2018-10-15-非负矩阵分解/">非负矩阵分解</a></li>  </ul> 
                     </li> 
                     
                     <li class="directory">
@@ -197,7 +197,7 @@
                             &nbsp;
                             Data mining
                         </a>
-                         <ul class="unstyled" id="tree">  <li class="file"><a href="/2018/12/02/数据挖掘/2018-12-02-监督学习/">监督学习 Supervised Learning(决策树+SVM/Perceptron+AdaBoost)</a></li>  <li class="file"><a href="/2018/12/03/数据挖掘/2018-12-03-非监督学习/">无监督学习 Unsupervised Learning(聚类、矩阵分解、话题模型)</a></li>  <li class="file"><a href="/2018/12/05/数据挖掘/2018-12-05-互联网搜索与排序/">互联网搜索与排序</a></li>  <li class="file"><a href="/2018/12/05/数据挖掘/2018-12-05-大规模机器学习/">大规模机器学习</a></li>  </ul> 
+                         <ul class="unstyled" id="tree">  <li class="file"><a href="/2018/12/02/数据挖掘/2018-12-02-监督学习/">监督学习 Supervised Learning(决策树+SVM/Perceptron+AdaBoost)</a></li>  <li class="file"><a href="/2018/12/03/数据挖掘/2018-12-03-非监督学习/">无监督学习 Unsupervised Learning(聚类、矩阵分解、话题模型)</a></li>  <li class="file"><a href="/2018/12/05/数据挖掘/2018-12-05-大规模机器学习/">大规模机器学习</a></li>  <li class="file"><a href="/2018/12/05/数据挖掘/2018-12-05-互联网搜索与排序/">互联网搜索与排序</a></li>  </ul> 
                     </li> 
                     
                     <li class="directory">
@@ -206,7 +206,7 @@
                             &nbsp;
                             Database
                         </a>
-                         <ul class="unstyled" id="tree">  <li class="file"><a href="/2019/06/03/数据库/2019-06-03-关系数据库/">关系数据库</a></li>  <li class="file"><a href="/2019/06/04/数据库/2019-06-04-大数据存储系统/">大数据存储系统</a></li>  <li class="file"><a href="/2019/06/04/数据库/2019-06-04-大数据运算/">大数据存储系统</a></li>  </ul> 
+                         <ul class="unstyled" id="tree">  <li class="file"><a href="/2019/06/03/数据库/2019-06-03-关系数据库/">关系数据库</a></li>  <li class="file"><a href="/2019/06/04/数据库/2019-06-04-大数据运算/">大数据存储系统</a></li>  <li class="file"><a href="/2019/06/04/数据库/2019-06-04-大数据存储系统/">大数据存储系统</a></li>  </ul> 
                     </li> 
                     
                     <li class="directory">
@@ -224,7 +224,7 @@
                             &nbsp;
                             Linux
                         </a>
-                         <ul class="unstyled" id="tree">  <li class="file"><a href="/2017/10/05/Linux/2017-10-05-Linux-进程管理/">Linux-进程管理</a></li>  <li class="file"><a href="/2017/10/17/Linux/2017-10-17-Linux进程调度/">Linux-进程调度</a></li>  <li class="file"><a href="/2017/10/20/Linux/2017-10-20-Linux系统调用/">Linux-系统调用</a></li>  <li class="file"><a href="/2017/10/22/Linux/2017-10-22-Linux中断和中断处理/">Linux-中断和中断处理</a></li>  <li class="file"><a href="/2017/10/22/Linux/2017-11-2-Linux-下半部和推后执行的工作/">Linux-下半部和推后执行的工作"</a></li>  </ul> 
+                         <ul class="unstyled" id="tree">  <li class="file"><a href="/2017/10/05/Linux/2017-10-05-Linux-进程管理/">Linux-进程管理</a></li>  <li class="file"><a href="/2017/10/17/Linux/2017-10-17-Linux进程调度/">Linux-进程调度</a></li>  <li class="file"><a href="/2017/10/20/Linux/2017-10-20-Linux系统调用/">Linux-系统调用</a></li>  <li class="file"><a href="/2017/10/22/Linux/2017-11-2-Linux-下半部和推后执行的工作/">Linux-下半部和推后执行的工作"</a></li>  <li class="file"><a href="/2017/10/22/Linux/2017-10-22-Linux中断和中断处理/">Linux-中断和中断处理</a></li>  </ul> 
                     </li> 
                     
                     <li class="directory">
@@ -251,7 +251,7 @@
                             &nbsp;
                             Pi
                         </a>
-                         <ul class="unstyled" id="tree">  <li class="file"><a href="/2016/08/06/Pi/2016-08-06-Raspberry Pi OK02/">Raspberry Pi OK02</a></li>  <li class="file"><a href="/2016/08/06/Pi/2016-08-06-Raspberry Pi OK03/">Raspberry Pi OK03</a></li>  <li class="file"><a href="/2016/08/06/Pi/2016-08-06-Baking Pi – Operating Systems Development前言/">Raspberry Pi OS Development 前言</a></li>  <li class="file"><a href="/2016/08/06/Pi/2016-08-06-Raspberry Pi OK01/">Raspberry Pi OK01</a></li>  <li class="file"><a href="/2016/08/09/Pi/2016-08-09-Raspberry Pi OK04/">Raspberry Pi OK04</a></li>  <li class="file"><a href="/2016/08/09/Pi/2016-08-11-Raspberry Pi Screen02/">Raspberry Pi Screen02</a></li>  <li class="file"><a href="/2016/08/09/Pi/2016-08-10-Raspberry Pi Screen01/">Raspberry Pi Screen01</a></li>  <li class="file"><a href="/2016/08/09/Pi/2016-08-09-Raspberry Pi OK05/">Raspberry Pi OK05</a></li>  <li class="file active"><a href="/2016/08/14/Pi/2016-08-14-Raspberry Pi Screen03/">Raspberry Pi Screen03</a></li>  <li class="file"><a href="/2016/08/16/Pi/2016-08-16-Raspberry Pi Screen04/">Raspberry Pi Screen04</a></li>  <li class="file"><a href="/2016/08/31/Pi/2016-08-31-Raspberry Pi Input01/">Raspberry Pi Input01</a></li>  <li class="file"><a href="/2016/09/01/Pi/2016-09-01-Raspberry Pi Input02/">Raspberry Pi Input02</a></li>  </ul> 
+                         <ul class="unstyled" id="tree">  <li class="file"><a href="/2016/08/06/Pi/2016-08-06-Raspberry Pi OK02/">Raspberry Pi OK02</a></li>  <li class="file"><a href="/2016/08/06/Pi/2016-08-06-Baking Pi – Operating Systems Development前言/">Raspberry Pi OS Development 前言</a></li>  <li class="file"><a href="/2016/08/06/Pi/2016-08-06-Raspberry Pi OK01/">Raspberry Pi OK01</a></li>  <li class="file"><a href="/2016/08/06/Pi/2016-08-06-Raspberry Pi OK03/">Raspberry Pi OK03</a></li>  <li class="file"><a href="/2016/08/09/Pi/2016-08-11-Raspberry Pi Screen02/">Raspberry Pi Screen02</a></li>  <li class="file"><a href="/2016/08/09/Pi/2016-08-09-Raspberry Pi OK05/">Raspberry Pi OK05</a></li>  <li class="file"><a href="/2016/08/09/Pi/2016-08-09-Raspberry Pi OK04/">Raspberry Pi OK04</a></li>  <li class="file"><a href="/2016/08/09/Pi/2016-08-10-Raspberry Pi Screen01/">Raspberry Pi Screen01</a></li>  <li class="file active"><a href="/2016/08/14/Pi/2016-08-14-Raspberry Pi Screen03/">Raspberry Pi Screen03</a></li>  <li class="file"><a href="/2016/08/16/Pi/2016-08-16-Raspberry Pi Screen04/">Raspberry Pi Screen04</a></li>  <li class="file"><a href="/2016/08/31/Pi/2016-08-31-Raspberry Pi Input01/">Raspberry Pi Input01</a></li>  <li class="file"><a href="/2016/09/01/Pi/2016-09-01-Raspberry Pi Input02/">Raspberry Pi Input02</a></li>  </ul> 
                     </li> 
                     
                     <li class="directory">
@@ -269,7 +269,7 @@
                             &nbsp;
                             Security
                         </a>
-                         <ul class="unstyled" id="tree">  <li class="file"><a href="/2018/09/02/安全/2018-09-02-蜜罐技术/">蜜罐技术</a></li>  <li class="file"><a href="/2019/06/22/安全/2019-06-22-网络异常行为检测/">网络异常行为检测</a></li>  <li class="file"><a href="/2019/07/21/安全/2019-07-21-指数加权移动平均法（EWMA）/">指数加权移动平均法（EWMA）</a></li>  <li class="file"><a href="/2019/07/21/安全/2019-07-22-孤立森林（Isolation Froest）/">孤立森林（Isolation Forest）</a></li>  <li class="file"><a href="/2019/07/21/安全/2019-07-22-xgboost/">孤立森林（Isolation Forest）</a></li>  <li class="file"><a href="/2019/07/21/安全/2019-07-21-多项式插值/">多项式插值</a></li>  <li class="file"><a href="/2019/07/21/安全/2019-07-22-利用时序决策树进行DGA僵尸检测/">利用时序决策树进行DGA僵尸检测</a></li>  <li class="file"><a href="/2019/07/21/安全/2019-07-21-梯度提升决策树(GBDT)/">梯度提升决策树（GBDT）</a></li>  </ul> 
+                         <ul class="unstyled" id="tree">  <li class="file"><a href="/2018/09/02/安全/2018-09-02-蜜罐技术/">蜜罐技术</a></li>  <li class="file"><a href="/2019/06/22/安全/2019-06-22-网络异常行为检测/">网络异常行为检测</a></li>  <li class="file"><a href="/2019/07/21/安全/2019-07-21-多项式插值/">多项式插值</a></li>  <li class="file"><a href="/2019/07/21/安全/2019-07-21-指数加权移动平均法（EWMA）/">指数加权移动平均法（EWMA）</a></li>  <li class="file"><a href="/2019/07/21/安全/2019-07-21-梯度提升决策树(GBDT)/">梯度提升决策树（GBDT）</a></li>  <li class="file"><a href="/2019/07/21/安全/2019-07-22-利用时序决策树进行DGA僵尸检测/">利用时序决策树进行DGA僵尸检测</a></li>  <li class="file"><a href="/2019/07/21/安全/2019-07-22-孤立森林（Isolation Froest）/">孤立森林（Isolation Forest）</a></li>  <li class="file"><a href="/2019/07/21/安全/2019-07-22-xgboost/">孤立森林（Isolation Forest）</a></li>  </ul> 
                     </li> 
                     
                     <li class="directory">
@@ -278,7 +278,7 @@
                             &nbsp;
                             网络
                         </a>
-                         <ul class="unstyled" id="tree">  <li class="file"><a href="/2016/12/24/网络/2016-12-24-ipv4在Linux上的实现/">学习构造用户空间的IP栈（资料总结）</a></li>  <li class="file"><a href="/2017/03/12/VANET/2017-3-12-Vanet仿真-ns3(3)/">VANET仿真-ns3(3)</a></li>  <li class="file"><a href="/2017/03/12/VANET/2017-3-12-Vanet仿真-ns3(2)/">VANET仿真-ns3(2)</a></li>  <li class="file"><a href="/2017/03/12/VANET/2017-3-12-Vanet仿真-ns3(1)/">VANET仿真-ns3(1)</a></li>  <li class="file"><a href="/2017/03/13/VANET/2017-3-13-Vanet仿真-ns3(4)/">VANET仿真-ns3(4)</a></li>  <li class="file"><a href="/2017/03/13/VANET/2017-3-13-Vanet仿真-ns3(5)/">VANET仿真-ns3(5)</a></li>  <li class="file"><a href="/2017/03/15/VANET/2017-3-15-Vanet仿真-ns3(6)/">VANET仿真-ns3(6)</a></li>  <li class="file"><a href="/2017/07/14/网络/2017-07-14-Ego networks/">Ego networks</a></li>  </ul> 
+                         <ul class="unstyled" id="tree">  <li class="file"><a href="/2016/12/24/网络/2016-12-24-ipv4在Linux上的实现/">学习构造用户空间的IP栈（资料总结）</a></li>  <li class="file"><a href="/2017/03/12/VANET/2017-3-12-Vanet仿真-ns3(1)/">VANET仿真-ns3(1)</a></li>  <li class="file"><a href="/2017/03/12/VANET/2017-3-12-Vanet仿真-ns3(2)/">VANET仿真-ns3(2)</a></li>  <li class="file"><a href="/2017/03/12/VANET/2017-3-12-Vanet仿真-ns3(3)/">VANET仿真-ns3(3)</a></li>  <li class="file"><a href="/2017/03/13/VANET/2017-3-13-Vanet仿真-ns3(5)/">VANET仿真-ns3(5)</a></li>  <li class="file"><a href="/2017/03/13/VANET/2017-3-13-Vanet仿真-ns3(4)/">VANET仿真-ns3(4)</a></li>  <li class="file"><a href="/2017/03/15/VANET/2017-3-15-Vanet仿真-ns3(6)/">VANET仿真-ns3(6)</a></li>  <li class="file"><a href="/2017/07/14/网络/2017-07-14-Ego networks/">Ego networks</a></li>  </ul> 
                     </li> 
                      <li class="file"><a href="/2019/05/30/强化学习/~$19-05-28-强化学习(2)/"></a></li>  <li class="file"><a href="/2019/09/16/数据挖掘/2019-09-16-基于注意力模型的RNN时序预测/"></a></li>  </ul> 
     </div>
@@ -421,23 +421,31 @@
             
         
         
-            <h3 id="实验目标"><a href="#实验目标" class="headerlink" title="实验目标"></a>实验目标</h3><p>在图形界面上实现文本，以及一个命令行的功能。</p>
-<h3 id="背景补充"><a href="#背景补充" class="headerlink" title="背景补充"></a>背景补充</h3><h4 id="字符串及其编码"><a href="#字符串及其编码" class="headerlink" title="字符串及其编码"></a>字符串及其编码</h4><p>我们都知道计算机可以将字符显示到屏幕上，同时我们也知道计算机无法直接处理文本信息，因为它只认识bit和byte，并在数字的基础上做运算，所以实际上我们需要制定的是一种映射关系，使得计算机能将屏幕上显示的内容与内存中的信息联系起来。所以在我们录入信息的时候可以看做我们将文本加密成一种计算机可识别的信息，反过来显示的时候就是计算机的特定信息解密成可显示的文本，这其中的加密与解密的秘钥就是我们所说的编码，一种编码对应一种加解密方式，也就是说当你使用了错误的编码那么所得到的结果就注定是一种错误的乱码。</p>
-<p>由于自然语言的多种多样，导致了编码时的难以统一，在现在网络的大环境下，必须要用同一的标准也就是说，在计算机里的同一个数字要对应同一个字符，尤其是面对多语音的混合文档。所以就像该书所说：</p>
+            <h3 id="&#x5B9E;&#x9A8C;&#x76EE;&#x6807;">&#x5B9E;&#x9A8C;&#x76EE;&#x6807;</h3>
+<p>&#x5728;&#x56FE;&#x5F62;&#x754C;&#x9762;&#x4E0A;&#x5B9E;&#x73B0;&#x6587;&#x672C;&#xFF0C;&#x4EE5;&#x53CA;&#x4E00;&#x4E2A;&#x547D;&#x4EE4;&#x884C;&#x7684;&#x529F;&#x80FD;&#x3002;</p>
+<h3 id="&#x80CC;&#x666F;&#x8865;&#x5145;">&#x80CC;&#x666F;&#x8865;&#x5145;</h3>
+<h4 id="&#x5B57;&#x7B26;&#x4E32;&#x53CA;&#x5176;&#x7F16;&#x7801;">&#x5B57;&#x7B26;&#x4E32;&#x53CA;&#x5176;&#x7F16;&#x7801;</h4>
+<p>&#x6211;&#x4EEC;&#x90FD;&#x77E5;&#x9053;&#x8BA1;&#x7B97;&#x673A;&#x53EF;&#x4EE5;&#x5C06;&#x5B57;&#x7B26;&#x663E;&#x793A;&#x5230;&#x5C4F;&#x5E55;&#x4E0A;&#xFF0C;&#x540C;&#x65F6;&#x6211;&#x4EEC;&#x4E5F;&#x77E5;&#x9053;&#x8BA1;&#x7B97;&#x673A;&#x65E0;&#x6CD5;&#x76F4;&#x63A5;&#x5904;&#x7406;&#x6587;&#x672C;&#x4FE1;&#x606F;&#xFF0C;&#x56E0;&#x4E3A;&#x5B83;&#x53EA;&#x8BA4;&#x8BC6;bit&#x548C;byte&#xFF0C;&#x5E76;&#x5728;&#x6570;&#x5B57;&#x7684;&#x57FA;&#x7840;&#x4E0A;&#x505A;&#x8FD0;&#x7B97;&#xFF0C;&#x6240;&#x4EE5;&#x5B9E;&#x9645;&#x4E0A;&#x6211;&#x4EEC;&#x9700;&#x8981;&#x5236;&#x5B9A;&#x7684;&#x662F;&#x4E00;&#x79CD;&#x6620;&#x5C04;&#x5173;&#x7CFB;&#xFF0C;&#x4F7F;&#x5F97;&#x8BA1;&#x7B97;&#x673A;&#x80FD;&#x5C06;&#x5C4F;&#x5E55;&#x4E0A;&#x663E;&#x793A;&#x7684;&#x5185;&#x5BB9;&#x4E0E;&#x5185;&#x5B58;&#x4E2D;&#x7684;&#x4FE1;&#x606F;&#x8054;&#x7CFB;&#x8D77;&#x6765;&#x3002;&#x6240;&#x4EE5;&#x5728;&#x6211;&#x4EEC;&#x5F55;&#x5165;&#x4FE1;&#x606F;&#x7684;&#x65F6;&#x5019;&#x53EF;&#x4EE5;&#x770B;&#x505A;&#x6211;&#x4EEC;&#x5C06;&#x6587;&#x672C;&#x52A0;&#x5BC6;&#x6210;&#x4E00;&#x79CD;&#x8BA1;&#x7B97;&#x673A;&#x53EF;&#x8BC6;&#x522B;&#x7684;&#x4FE1;&#x606F;&#xFF0C;&#x53CD;&#x8FC7;&#x6765;&#x663E;&#x793A;&#x7684;&#x65F6;&#x5019;&#x5C31;&#x662F;&#x8BA1;&#x7B97;&#x673A;&#x7684;&#x7279;&#x5B9A;&#x4FE1;&#x606F;&#x89E3;&#x5BC6;&#x6210;&#x53EF;&#x663E;&#x793A;&#x7684;&#x6587;&#x672C;&#xFF0C;&#x8FD9;&#x5176;&#x4E2D;&#x7684;&#x52A0;&#x5BC6;&#x4E0E;&#x89E3;&#x5BC6;&#x7684;&#x79D8;&#x94A5;&#x5C31;&#x662F;&#x6211;&#x4EEC;&#x6240;&#x8BF4;&#x7684;&#x7F16;&#x7801;&#xFF0C;&#x4E00;&#x79CD;&#x7F16;&#x7801;&#x5BF9;&#x5E94;&#x4E00;&#x79CD;&#x52A0;&#x89E3;&#x5BC6;&#x65B9;&#x5F0F;&#xFF0C;&#x4E5F;&#x5C31;&#x662F;&#x8BF4;&#x5F53;&#x4F60;&#x4F7F;&#x7528;&#x4E86;&#x9519;&#x8BEF;&#x7684;&#x7F16;&#x7801;&#x90A3;&#x4E48;&#x6240;&#x5F97;&#x5230;&#x7684;&#x7ED3;&#x679C;&#x5C31;&#x6CE8;&#x5B9A;&#x662F;&#x4E00;&#x79CD;&#x9519;&#x8BEF;&#x7684;&#x4E71;&#x7801;&#x3002;</p>
+<p>&#x7531;&#x4E8E;&#x81EA;&#x7136;&#x8BED;&#x8A00;&#x7684;&#x591A;&#x79CD;&#x591A;&#x6837;&#xFF0C;&#x5BFC;&#x81F4;&#x4E86;&#x7F16;&#x7801;&#x65F6;&#x7684;&#x96BE;&#x4EE5;&#x7EDF;&#x4E00;&#xFF0C;&#x5728;&#x73B0;&#x5728;&#x7F51;&#x7EDC;&#x7684;&#x5927;&#x73AF;&#x5883;&#x4E0B;&#xFF0C;&#x5FC5;&#x987B;&#x8981;&#x7528;&#x540C;&#x4E00;&#x7684;&#x6807;&#x51C6;&#x4E5F;&#x5C31;&#x662F;&#x8BF4;&#xFF0C;&#x5728;&#x8BA1;&#x7B97;&#x673A;&#x91CC;&#x7684;&#x540C;&#x4E00;&#x4E2A;&#x6570;&#x5B57;&#x8981;&#x5BF9;&#x5E94;&#x540C;&#x4E00;&#x4E2A;&#x5B57;&#x7B26;&#xFF0C;&#x5C24;&#x5176;&#x662F;&#x9762;&#x5BF9;&#x591A;&#x8BED;&#x97F3;&#x7684;&#x6DF7;&#x5408;&#x6587;&#x6863;&#x3002;&#x6240;&#x4EE5;&#x5C31;&#x50CF;&#x8BE5;&#x4E66;&#x6240;&#x8BF4;&#xFF1A;</p>
 <blockquote>
 <p>Everything you thought you knew about strings is wrong.</p>
 </blockquote>
-<h5 id="ASCII"><a href="#ASCII" class="headerlink" title="ASCII"></a>ASCII</h5><p>ASCII是专门为英语设计的，也是计算机非常流行的一种编码方式，使用一个字节的低7位（共8位），剩余的1位被用来制定其它语言的字符或者特殊符号，但是标准不是很统一。</p>
-<p><img src="http://ww4.sinaimg.cn/large/006tKfTcgw1f6te9lvwmvj30ta0f9diz.jpg" alt></p>
-<h5 id="Unicode-UTF32"><a href="#Unicode-UTF32" class="headerlink" title="Unicode - UTF32"></a>Unicode - UTF32</h5><p>UTF32的设想是用4个字节来表示所有自然语言的字符，不存在二义性，比如说U+0041总是代表’A’，即使这种语言没有’A’这个字符。但问题是，对于某些字符来说（比如说英语），4个字节是一种大大的浪费，这对空间的占用不可忽视，虽然说这种编码方式可以准确全面的定位到所有的字符，但是在绝大多数的使用场景中，都不会用到这么多种字符。</p>
-<h5 id="Unicode-UTF16"><a href="#Unicode-UTF16" class="headerlink" title="Unicode - UTF16"></a>Unicode - UTF16</h5><p>UTF16就是缩减到2个字节，对于盲区的字符用其他方法索引实现，这样一来就能大大减少空间使用。但是UTF32与UTF16都有一个很大的问题就是，对于计算机不同的大小端存储方式，可能会造成数据混乱。这里引入了Byte Order Mark（字节顺序标记），如果一个文档以FFEE开头则说明是单向，以FEFF开头则说明是反向文档。</p>
-<h5 id="Unicode-UTF8"><a href="#Unicode-UTF8" class="headerlink" title="Unicode - UTF8"></a>Unicode - UTF8</h5><p>人们对于UTF16的空间存储造成的浪费以及对于盲区字符的困扰没有满足，重新设计UTF8，这是一种变长的编码系统，对于不同的字符选择合适大小的存储空间，但是查询的索引可能复杂度高于前两者。</p>
-<p><a href="http://www.diveintopython3.net/strings.html" target="_blank" rel="noopener">参考资料1</a></p>
-<p><a href="http://liujiacai.net/blog/2015/11/20/strings/" target="_blank" rel="noopener">参考资料2</a></p>
-<h4 id="字体显示"><a href="#字体显示" class="headerlink" title="字体显示"></a>字体显示</h4><p>早期的字体显示是用可以类比位图，这样的缺点就是我们需要给同一个字符设置许多种不同的大小来满足需求，很显然这样是非常愚蠢的一种做法，后来我们用向量来表示不同的字体，这样我们存储一个字符实际上就是存储这个字符的表述信息，比如说字母’o’我们就可以描述成一个圈。（尽管向量描述是一个优秀的方法，但是在本次实验中我们任然采用第一种位图的方法，因为实现起来相对容易一些），在原文中给了一个字母A的例子</p>
-<p><img src="http://ww4.sinaimg.cn/large/006tKfTcgw1f6tgubhe5mj30d10oy42a.jpg" alt></p>
-<p>可以看到，每一排都是8位，非0即1，每一排都可以对应一个特有的序列，我们用16进制表示</p>
-<ol>
+<h5 id="ascii">ASCII</h5>
+<p>ASCII&#x662F;&#x4E13;&#x95E8;&#x4E3A;&#x82F1;&#x8BED;&#x8BBE;&#x8BA1;&#x7684;&#xFF0C;&#x4E5F;&#x662F;&#x8BA1;&#x7B97;&#x673A;&#x975E;&#x5E38;&#x6D41;&#x884C;&#x7684;&#x4E00;&#x79CD;&#x7F16;&#x7801;&#x65B9;&#x5F0F;&#xFF0C;&#x4F7F;&#x7528;&#x4E00;&#x4E2A;&#x5B57;&#x8282;&#x7684;&#x4F4E;7&#x4F4D;&#xFF08;&#x5171;8&#x4F4D;&#xFF09;&#xFF0C;&#x5269;&#x4F59;&#x7684;1&#x4F4D;&#x88AB;&#x7528;&#x6765;&#x5236;&#x5B9A;&#x5176;&#x5B83;&#x8BED;&#x8A00;&#x7684;&#x5B57;&#x7B26;&#x6216;&#x8005;&#x7279;&#x6B8A;&#x7B26;&#x53F7;&#xFF0C;&#x4F46;&#x662F;&#x6807;&#x51C6;&#x4E0D;&#x662F;&#x5F88;&#x7EDF;&#x4E00;&#x3002;</p>
+<p><img src="http://ww4.sinaimg.cn/large/006tKfTcgw1f6te9lvwmvj30ta0f9diz.jpg"></p>
+<h5 id="unicode---utf32">Unicode - UTF32</h5>
+<p>UTF32&#x7684;&#x8BBE;&#x60F3;&#x662F;&#x7528;4&#x4E2A;&#x5B57;&#x8282;&#x6765;&#x8868;&#x793A;&#x6240;&#x6709;&#x81EA;&#x7136;&#x8BED;&#x8A00;&#x7684;&#x5B57;&#x7B26;&#xFF0C;&#x4E0D;&#x5B58;&#x5728;&#x4E8C;&#x4E49;&#x6027;&#xFF0C;&#x6BD4;&#x5982;&#x8BF4;U+0041&#x603B;&#x662F;&#x4EE3;&#x8868;&apos;A&apos;&#xFF0C;&#x5373;&#x4F7F;&#x8FD9;&#x79CD;&#x8BED;&#x8A00;&#x6CA1;&#x6709;&apos;A&apos;&#x8FD9;&#x4E2A;&#x5B57;&#x7B26;&#x3002;&#x4F46;&#x95EE;&#x9898;&#x662F;&#xFF0C;&#x5BF9;&#x4E8E;&#x67D0;&#x4E9B;&#x5B57;&#x7B26;&#x6765;&#x8BF4;&#xFF08;&#x6BD4;&#x5982;&#x8BF4;&#x82F1;&#x8BED;&#xFF09;&#xFF0C;4&#x4E2A;&#x5B57;&#x8282;&#x662F;&#x4E00;&#x79CD;&#x5927;&#x5927;&#x7684;&#x6D6A;&#x8D39;&#xFF0C;&#x8FD9;&#x5BF9;&#x7A7A;&#x95F4;&#x7684;&#x5360;&#x7528;&#x4E0D;&#x53EF;&#x5FFD;&#x89C6;&#xFF0C;&#x867D;&#x7136;&#x8BF4;&#x8FD9;&#x79CD;&#x7F16;&#x7801;&#x65B9;&#x5F0F;&#x53EF;&#x4EE5;&#x51C6;&#x786E;&#x5168;&#x9762;&#x7684;&#x5B9A;&#x4F4D;&#x5230;&#x6240;&#x6709;&#x7684;&#x5B57;&#x7B26;&#xFF0C;&#x4F46;&#x662F;&#x5728;&#x7EDD;&#x5927;&#x591A;&#x6570;&#x7684;&#x4F7F;&#x7528;&#x573A;&#x666F;&#x4E2D;&#xFF0C;&#x90FD;&#x4E0D;&#x4F1A;&#x7528;&#x5230;&#x8FD9;&#x4E48;&#x591A;&#x79CD;&#x5B57;&#x7B26;&#x3002;</p>
+<h5 id="unicode---utf16">Unicode - UTF16</h5>
+<p>UTF16&#x5C31;&#x662F;&#x7F29;&#x51CF;&#x5230;2&#x4E2A;&#x5B57;&#x8282;&#xFF0C;&#x5BF9;&#x4E8E;&#x76F2;&#x533A;&#x7684;&#x5B57;&#x7B26;&#x7528;&#x5176;&#x4ED6;&#x65B9;&#x6CD5;&#x7D22;&#x5F15;&#x5B9E;&#x73B0;&#xFF0C;&#x8FD9;&#x6837;&#x4E00;&#x6765;&#x5C31;&#x80FD;&#x5927;&#x5927;&#x51CF;&#x5C11;&#x7A7A;&#x95F4;&#x4F7F;&#x7528;&#x3002;&#x4F46;&#x662F;UTF32&#x4E0E;UTF16&#x90FD;&#x6709;&#x4E00;&#x4E2A;&#x5F88;&#x5927;&#x7684;&#x95EE;&#x9898;&#x5C31;&#x662F;&#xFF0C;&#x5BF9;&#x4E8E;&#x8BA1;&#x7B97;&#x673A;&#x4E0D;&#x540C;&#x7684;&#x5927;&#x5C0F;&#x7AEF;&#x5B58;&#x50A8;&#x65B9;&#x5F0F;&#xFF0C;&#x53EF;&#x80FD;&#x4F1A;&#x9020;&#x6210;&#x6570;&#x636E;&#x6DF7;&#x4E71;&#x3002;&#x8FD9;&#x91CC;&#x5F15;&#x5165;&#x4E86;Byte Order Mark&#xFF08;&#x5B57;&#x8282;&#x987A;&#x5E8F;&#x6807;&#x8BB0;&#xFF09;&#xFF0C;&#x5982;&#x679C;&#x4E00;&#x4E2A;&#x6587;&#x6863;&#x4EE5;FFEE&#x5F00;&#x5934;&#x5219;&#x8BF4;&#x660E;&#x662F;&#x5355;&#x5411;&#xFF0C;&#x4EE5;FEFF&#x5F00;&#x5934;&#x5219;&#x8BF4;&#x660E;&#x662F;&#x53CD;&#x5411;&#x6587;&#x6863;&#x3002;</p>
+<h5 id="unicode---utf8">Unicode - UTF8</h5>
+<p>&#x4EBA;&#x4EEC;&#x5BF9;&#x4E8E;UTF16&#x7684;&#x7A7A;&#x95F4;&#x5B58;&#x50A8;&#x9020;&#x6210;&#x7684;&#x6D6A;&#x8D39;&#x4EE5;&#x53CA;&#x5BF9;&#x4E8E;&#x76F2;&#x533A;&#x5B57;&#x7B26;&#x7684;&#x56F0;&#x6270;&#x6CA1;&#x6709;&#x6EE1;&#x8DB3;&#xFF0C;&#x91CD;&#x65B0;&#x8BBE;&#x8BA1;UTF8&#xFF0C;&#x8FD9;&#x662F;&#x4E00;&#x79CD;&#x53D8;&#x957F;&#x7684;&#x7F16;&#x7801;&#x7CFB;&#x7EDF;&#xFF0C;&#x5BF9;&#x4E8E;&#x4E0D;&#x540C;&#x7684;&#x5B57;&#x7B26;&#x9009;&#x62E9;&#x5408;&#x9002;&#x5927;&#x5C0F;&#x7684;&#x5B58;&#x50A8;&#x7A7A;&#x95F4;&#xFF0C;&#x4F46;&#x662F;&#x67E5;&#x8BE2;&#x7684;&#x7D22;&#x5F15;&#x53EF;&#x80FD;&#x590D;&#x6742;&#x5EA6;&#x9AD8;&#x4E8E;&#x524D;&#x4E24;&#x8005;&#x3002;</p>
+<p><a href="http://www.diveintopython3.net/strings.html" target="_blank" rel="noopener">&#x53C2;&#x8003;&#x8D44;&#x6599;1</a></p>
+<p><a href="http://liujiacai.net/blog/2015/11/20/strings/" target="_blank" rel="noopener">&#x53C2;&#x8003;&#x8D44;&#x6599;2</a></p>
+<h4 id="&#x5B57;&#x4F53;&#x663E;&#x793A;">&#x5B57;&#x4F53;&#x663E;&#x793A;</h4>
+<p>&#x65E9;&#x671F;&#x7684;&#x5B57;&#x4F53;&#x663E;&#x793A;&#x662F;&#x7528;&#x53EF;&#x4EE5;&#x7C7B;&#x6BD4;&#x4F4D;&#x56FE;&#xFF0C;&#x8FD9;&#x6837;&#x7684;&#x7F3A;&#x70B9;&#x5C31;&#x662F;&#x6211;&#x4EEC;&#x9700;&#x8981;&#x7ED9;&#x540C;&#x4E00;&#x4E2A;&#x5B57;&#x7B26;&#x8BBE;&#x7F6E;&#x8BB8;&#x591A;&#x79CD;&#x4E0D;&#x540C;&#x7684;&#x5927;&#x5C0F;&#x6765;&#x6EE1;&#x8DB3;&#x9700;&#x6C42;&#xFF0C;&#x5F88;&#x663E;&#x7136;&#x8FD9;&#x6837;&#x662F;&#x975E;&#x5E38;&#x611A;&#x8822;&#x7684;&#x4E00;&#x79CD;&#x505A;&#x6CD5;&#xFF0C;&#x540E;&#x6765;&#x6211;&#x4EEC;&#x7528;&#x5411;&#x91CF;&#x6765;&#x8868;&#x793A;&#x4E0D;&#x540C;&#x7684;&#x5B57;&#x4F53;&#xFF0C;&#x8FD9;&#x6837;&#x6211;&#x4EEC;&#x5B58;&#x50A8;&#x4E00;&#x4E2A;&#x5B57;&#x7B26;&#x5B9E;&#x9645;&#x4E0A;&#x5C31;&#x662F;&#x5B58;&#x50A8;&#x8FD9;&#x4E2A;&#x5B57;&#x7B26;&#x7684;&#x8868;&#x8FF0;&#x4FE1;&#x606F;&#xFF0C;&#x6BD4;&#x5982;&#x8BF4;&#x5B57;&#x6BCD;&apos;o&apos;&#x6211;&#x4EEC;&#x5C31;&#x53EF;&#x4EE5;&#x63CF;&#x8FF0;&#x6210;&#x4E00;&#x4E2A;&#x5708;&#x3002;&#xFF08;&#x5C3D;&#x7BA1;&#x5411;&#x91CF;&#x63CF;&#x8FF0;&#x662F;&#x4E00;&#x4E2A;&#x4F18;&#x79C0;&#x7684;&#x65B9;&#x6CD5;&#xFF0C;&#x4F46;&#x662F;&#x5728;&#x672C;&#x6B21;&#x5B9E;&#x9A8C;&#x4E2D;&#x6211;&#x4EEC;&#x4EFB;&#x7136;&#x91C7;&#x7528;&#x7B2C;&#x4E00;&#x79CD;&#x4F4D;&#x56FE;&#x7684;&#x65B9;&#x6CD5;&#xFF0C;&#x56E0;&#x4E3A;&#x5B9E;&#x73B0;&#x8D77;&#x6765;&#x76F8;&#x5BF9;&#x5BB9;&#x6613;&#x4E00;&#x4E9B;&#xFF09;&#xFF0C;&#x5728;&#x539F;&#x6587;&#x4E2D;&#x7ED9;&#x4E86;&#x4E00;&#x4E2A;&#x5B57;&#x6BCD;A&#x7684;&#x4F8B;&#x5B50;</p>
+<p><img src="http://ww4.sinaimg.cn/large/006tKfTcgw1f6tgubhe5mj30d10oy42a.jpg"></p>
+<p>&#x53EF;&#x4EE5;&#x770B;&#x5230;&#xFF0C;&#x6BCF;&#x4E00;&#x6392;&#x90FD;&#x662F;8&#x4F4D;&#xFF0C;&#x975E;0&#x5373;1&#xFF0C;&#x6BCF;&#x4E00;&#x6392;&#x90FD;&#x53EF;&#x4EE5;&#x5BF9;&#x5E94;&#x4E00;&#x4E2A;&#x7279;&#x6709;&#x7684;&#x5E8F;&#x5217;&#xFF0C;&#x6211;&#x4EEC;&#x7528;16&#x8FDB;&#x5236;&#x8868;&#x793A;</p>
+<ol type="1">
 <li>00</li>
 <li>00</li>
 <li>00</li>
@@ -456,34 +464,35 @@
 <li>00</li>
 </ol>
 <hr>
-<h3 id="代码分析"><a href="#代码分析" class="headerlink" title="代码分析"></a>代码分析</h3><p><strong>drawCharacter</strong></p>
-<p>这个实际上的逻辑就是根据传入的具体字符，得到上述表示的每一行像素的8位表示，然后再通过起始的x与y坐标进行绘制，原文中给出伪代码与汇编对照看，容易理解。</p>
+<h3 id="&#x4EE3;&#x7801;&#x5206;&#x6790;">&#x4EE3;&#x7801;&#x5206;&#x6790;</h3>
+<p><strong>drawCharacter</strong></p>
+<p>&#x8FD9;&#x4E2A;&#x5B9E;&#x9645;&#x4E0A;&#x7684;&#x903B;&#x8F91;&#x5C31;&#x662F;&#x6839;&#x636E;&#x4F20;&#x5165;&#x7684;&#x5177;&#x4F53;&#x5B57;&#x7B26;&#xFF0C;&#x5F97;&#x5230;&#x4E0A;&#x8FF0;&#x8868;&#x793A;&#x7684;&#x6BCF;&#x4E00;&#x884C;&#x50CF;&#x7D20;&#x7684;8&#x4F4D;&#x8868;&#x793A;&#xFF0C;&#x7136;&#x540E;&#x518D;&#x901A;&#x8FC7;&#x8D77;&#x59CB;&#x7684;x&#x4E0E;y&#x5750;&#x6807;&#x8FDB;&#x884C;&#x7ED8;&#x5236;&#xFF0C;&#x539F;&#x6587;&#x4E2D;&#x7ED9;&#x51FA;&#x4F2A;&#x4EE3;&#x7801;&#x4E0E;&#x6C47;&#x7F16;&#x5BF9;&#x7167;&#x770B;&#xFF0C;&#x5BB9;&#x6613;&#x7406;&#x89E3;&#x3002;</p>
 <p><strong>drawStrings</strong></p>
-<p>画出一个字符串实际上就是多次画出其包含的每一个字符，除此之外我们还需要考虑的是什么时候能换行与结束。实际上我们在检查边界条件代码与上面drawCharacter的代码结合起来就可以了。（汇编代码中有一处是替换掉了loop循环中的乘法运算，因为位图的固定大小优势使得我们可以这样做）</p>
-<p><strong>命令行绘制</strong></p>
-<p>我们首先要了解实验在ARM架构中的数据格式，整理翻译如下</p>
-<ol>
-<li>数据是在「tag」标签中止的。</li>
-<li>总共有9种标签，「core」内核，「mem」内存，「videotext」可视图文，「ramdisk」虚拟内存盘，「intrd2」初始RAM磁盘，「serial」串口，「revision」校验，「videolfb」「cmdline」命令行。</li>
-<li>标签只能出现一次但「core」是缺省标签。</li>
-<li>标签地址是从0x100依次排列的。</li>
-<li>在标签的末尾总是包含两个全0的字节。</li>
-<li>大小是4的整数倍</li>
-<li>标签总是以其大小为开始的，这个大小也包含其本身。</li>
-<li>实际上标签是以从1到9的序号来代表他们的。</li>
-<li>数据格式总是跟着一个5441（hex）的半字。</li>
-<li>字中的数据长度+2总是能符合要求的</li>
-<li>「core」既可以是2也可以是5的长度，如果是2那么没有数据，如果是5则代表有3个字。</li>
-<li>「mem」4个字的长度，数据和总长度是在首地址的。</li>
-<li>「cmdline」包含一个空的中止字符串，这个内核的一个重要特点。</li>
+<p>&#x753B;&#x51FA;&#x4E00;&#x4E2A;&#x5B57;&#x7B26;&#x4E32;&#x5B9E;&#x9645;&#x4E0A;&#x5C31;&#x662F;&#x591A;&#x6B21;&#x753B;&#x51FA;&#x5176;&#x5305;&#x542B;&#x7684;&#x6BCF;&#x4E00;&#x4E2A;&#x5B57;&#x7B26;&#xFF0C;&#x9664;&#x6B64;&#x4E4B;&#x5916;&#x6211;&#x4EEC;&#x8FD8;&#x9700;&#x8981;&#x8003;&#x8651;&#x7684;&#x662F;&#x4EC0;&#x4E48;&#x65F6;&#x5019;&#x80FD;&#x6362;&#x884C;&#x4E0E;&#x7ED3;&#x675F;&#x3002;&#x5B9E;&#x9645;&#x4E0A;&#x6211;&#x4EEC;&#x5728;&#x68C0;&#x67E5;&#x8FB9;&#x754C;&#x6761;&#x4EF6;&#x4EE3;&#x7801;&#x4E0E;&#x4E0A;&#x9762;drawCharacter&#x7684;&#x4EE3;&#x7801;&#x7ED3;&#x5408;&#x8D77;&#x6765;&#x5C31;&#x53EF;&#x4EE5;&#x4E86;&#x3002;&#xFF08;&#x6C47;&#x7F16;&#x4EE3;&#x7801;&#x4E2D;&#x6709;&#x4E00;&#x5904;&#x662F;&#x66FF;&#x6362;&#x6389;&#x4E86;loop&#x5FAA;&#x73AF;&#x4E2D;&#x7684;&#x4E58;&#x6CD5;&#x8FD0;&#x7B97;&#xFF0C;&#x56E0;&#x4E3A;&#x4F4D;&#x56FE;&#x7684;&#x56FA;&#x5B9A;&#x5927;&#x5C0F;&#x4F18;&#x52BF;&#x4F7F;&#x5F97;&#x6211;&#x4EEC;&#x53EF;&#x4EE5;&#x8FD9;&#x6837;&#x505A;&#xFF09;</p>
+<p><strong>&#x547D;&#x4EE4;&#x884C;&#x7ED8;&#x5236;</strong></p>
+<p>&#x6211;&#x4EEC;&#x9996;&#x5148;&#x8981;&#x4E86;&#x89E3;&#x5B9E;&#x9A8C;&#x5728;ARM&#x67B6;&#x6784;&#x4E2D;&#x7684;&#x6570;&#x636E;&#x683C;&#x5F0F;&#xFF0C;&#x6574;&#x7406;&#x7FFB;&#x8BD1;&#x5982;&#x4E0B;</p>
+<ol type="1">
+<li>&#x6570;&#x636E;&#x662F;&#x5728;&#x300C;tag&#x300D;&#x6807;&#x7B7E;&#x4E2D;&#x6B62;&#x7684;&#x3002;</li>
+<li>&#x603B;&#x5171;&#x6709;9&#x79CD;&#x6807;&#x7B7E;&#xFF0C;&#x300C;core&#x300D;&#x5185;&#x6838;&#xFF0C;&#x300C;mem&#x300D;&#x5185;&#x5B58;&#xFF0C;&#x300C;videotext&#x300D;&#x53EF;&#x89C6;&#x56FE;&#x6587;&#xFF0C;&#x300C;ramdisk&#x300D;&#x865A;&#x62DF;&#x5185;&#x5B58;&#x76D8;&#xFF0C;&#x300C;intrd2&#x300D;&#x521D;&#x59CB;RAM&#x78C1;&#x76D8;&#xFF0C;&#x300C;serial&#x300D;&#x4E32;&#x53E3;&#xFF0C;&#x300C;revision&#x300D;&#x6821;&#x9A8C;&#xFF0C;&#x300C;videolfb&#x300D;&#x300C;cmdline&#x300D;&#x547D;&#x4EE4;&#x884C;&#x3002;</li>
+<li>&#x6807;&#x7B7E;&#x53EA;&#x80FD;&#x51FA;&#x73B0;&#x4E00;&#x6B21;&#x4F46;&#x300C;core&#x300D;&#x662F;&#x7F3A;&#x7701;&#x6807;&#x7B7E;&#x3002;</li>
+<li>&#x6807;&#x7B7E;&#x5730;&#x5740;&#x662F;&#x4ECE;0x100&#x4F9D;&#x6B21;&#x6392;&#x5217;&#x7684;&#x3002;</li>
+<li>&#x5728;&#x6807;&#x7B7E;&#x7684;&#x672B;&#x5C3E;&#x603B;&#x662F;&#x5305;&#x542B;&#x4E24;&#x4E2A;&#x5168;0&#x7684;&#x5B57;&#x8282;&#x3002;</li>
+<li>&#x5927;&#x5C0F;&#x662F;4&#x7684;&#x6574;&#x6570;&#x500D;</li>
+<li>&#x6807;&#x7B7E;&#x603B;&#x662F;&#x4EE5;&#x5176;&#x5927;&#x5C0F;&#x4E3A;&#x5F00;&#x59CB;&#x7684;&#xFF0C;&#x8FD9;&#x4E2A;&#x5927;&#x5C0F;&#x4E5F;&#x5305;&#x542B;&#x5176;&#x672C;&#x8EAB;&#x3002;</li>
+<li>&#x5B9E;&#x9645;&#x4E0A;&#x6807;&#x7B7E;&#x662F;&#x4EE5;&#x4ECE;1&#x5230;9&#x7684;&#x5E8F;&#x53F7;&#x6765;&#x4EE3;&#x8868;&#x4ED6;&#x4EEC;&#x7684;&#x3002;</li>
+<li>&#x6570;&#x636E;&#x683C;&#x5F0F;&#x603B;&#x662F;&#x8DDF;&#x7740;&#x4E00;&#x4E2A;5441&#xFF08;hex&#xFF09;&#x7684;&#x534A;&#x5B57;&#x3002;</li>
+<li>&#x5B57;&#x4E2D;&#x7684;&#x6570;&#x636E;&#x957F;&#x5EA6;+2&#x603B;&#x662F;&#x80FD;&#x7B26;&#x5408;&#x8981;&#x6C42;&#x7684;</li>
+<li>&#x300C;core&#x300D;&#x65E2;&#x53EF;&#x4EE5;&#x662F;2&#x4E5F;&#x53EF;&#x4EE5;&#x662F;5&#x7684;&#x957F;&#x5EA6;&#xFF0C;&#x5982;&#x679C;&#x662F;2&#x90A3;&#x4E48;&#x6CA1;&#x6709;&#x6570;&#x636E;&#xFF0C;&#x5982;&#x679C;&#x662F;5&#x5219;&#x4EE3;&#x8868;&#x6709;3&#x4E2A;&#x5B57;&#x3002;</li>
+<li>&#x300C;mem&#x300D;4&#x4E2A;&#x5B57;&#x7684;&#x957F;&#x5EA6;&#xFF0C;&#x6570;&#x636E;&#x548C;&#x603B;&#x957F;&#x5EA6;&#x662F;&#x5728;&#x9996;&#x5730;&#x5740;&#x7684;&#x3002;</li>
+<li>&#x300C;cmdline&#x300D;&#x5305;&#x542B;&#x4E00;&#x4E2A;&#x7A7A;&#x7684;&#x4E2D;&#x6B62;&#x5B57;&#x7B26;&#x4E32;&#xFF0C;&#x8FD9;&#x4E2A;&#x5185;&#x6838;&#x7684;&#x4E00;&#x4E2A;&#x91CD;&#x8981;&#x7279;&#x70B9;&#x3002;</li>
 </ol>
-<p>在我们的实验中只有「core」「mem」「cmdline」出现。</p>
-<p>首先初始化将1-9标签都设为 .int 0</p>
+<p>&#x5728;&#x6211;&#x4EEC;&#x7684;&#x5B9E;&#x9A8C;&#x4E2D;&#x53EA;&#x6709;&#x300C;core&#x300D;&#x300C;mem&#x300D;&#x300C;cmdline&#x300D;&#x51FA;&#x73B0;&#x3002;</p>
+<p>&#x9996;&#x5148;&#x521D;&#x59CB;&#x5316;&#x5C06;1-9&#x6807;&#x7B7E;&#x90FD;&#x8BBE;&#x4E3A; .int 0</p>
 <p><strong>FindTag</strong></p>
-<p>在这个函数中，首先检查标签范围，然后检查地址并将其设置为0x100，接下来在loop循环中依次获取tag的数据即可。</p>
+<p>&#x5728;&#x8FD9;&#x4E2A;&#x51FD;&#x6570;&#x4E2D;&#xFF0C;&#x9996;&#x5148;&#x68C0;&#x67E5;&#x6807;&#x7B7E;&#x8303;&#x56F4;&#xFF0C;&#x7136;&#x540E;&#x68C0;&#x67E5;&#x5730;&#x5740;&#x5E76;&#x5C06;&#x5176;&#x8BBE;&#x7F6E;&#x4E3A;0x100&#xFF0C;&#x63A5;&#x4E0B;&#x6765;&#x5728;loop&#x5FAA;&#x73AF;&#x4E2D;&#x4F9D;&#x6B21;&#x83B7;&#x53D6;tag&#x7684;&#x6570;&#x636E;&#x5373;&#x53EF;&#x3002;</p>
 <p><strong>Hello World</strong></p>
 <figure class="highlight arm"><table><tr><td class="code"><pre><span class="line"><span class="keyword">mov </span><span class="built_in">r0</span>,<span class="number">#9</span></span><br><span class="line"><span class="keyword">bl </span>FindTag</span><br><span class="line"><span class="keyword">ldr </span><span class="built_in">r1</span>,[<span class="built_in">r0</span>]</span><br><span class="line"><span class="keyword">lsl </span><span class="built_in">r1</span>,<span class="number">#2</span></span><br><span class="line"><span class="keyword">sub </span><span class="built_in">r1</span>,<span class="number">#8</span></span><br><span class="line"><span class="keyword">add </span><span class="built_in">r0</span>,<span class="number">#8</span></span><br><span class="line"><span class="keyword">mov </span><span class="built_in">r2</span>,<span class="number">#0</span></span><br><span class="line"><span class="keyword">mov </span><span class="built_in">r3</span>,<span class="number">#0</span></span><br><span class="line"><span class="keyword">bl </span>DrawString</span><br><span class="line"><span class="symbol">loop$</span>:</span><br><span class="line"><span class="keyword">b </span>loop$</span><br></pre></td></tr></table></figure>
-<p>利用FindTag找到9号「cmdline」标签计算出长度等信息，然后传入参数，以及初始化，画出字符，大功告成。</p>
+<p>&#x5229;&#x7528;FindTag&#x627E;&#x5230;9&#x53F7;&#x300C;cmdline&#x300D;&#x6807;&#x7B7E;&#x8BA1;&#x7B97;&#x51FA;&#x957F;&#x5EA6;&#x7B49;&#x4FE1;&#x606F;&#xFF0C;&#x7136;&#x540E;&#x4F20;&#x5165;&#x53C2;&#x6570;&#xFF0C;&#x4EE5;&#x53CA;&#x521D;&#x59CB;&#x5316;&#xFF0C;&#x753B;&#x51FA;&#x5B57;&#x7B26;&#xFF0C;&#x5927;&#x529F;&#x544A;&#x6210;&#x3002;</p>
 <hr>
 
             </div>

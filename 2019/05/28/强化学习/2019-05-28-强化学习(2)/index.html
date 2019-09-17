@@ -9,18 +9,18 @@
         <meta name="keywords" content="RL">
     
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <meta name="description" content="动态规划通过把原问题分解为相对简单的子问题来求解复杂问题  马尔可夫决策过程满足如下两个属性   贝尔曼方程具有递归形式  价值函数可以保存和重复利用  贝尔曼最优方程如下,其难点是$v_*$同时存在于等式左右两边  v_*(s)=max_a(R_s^a+\gamma \sum_{s&apos;\in S}P_{ss&apos;}^av_*(s&apos;))价值迭代的基本思路:   对$v_∗$定义一个估计函数$v$  将估">
+    <meta name="description" content="&amp;#x52A8;&amp;#x6001;&amp;#x89C4;&amp;#x5212; &amp;#x901A;&amp;#x8FC7;&amp;#x628A;&amp;#x539F;&amp;#x95EE;&amp;#x9898;&amp;#x5206;&amp;#x89E3;&amp;#x4E3A;&amp;#x76F8;&amp;#x5BF9;&amp;#x7B80;&amp;#x5355;&amp;#x7684;&amp;#x5B50;&amp;#x95EE;&amp;#x9898;&amp;#x6765;&amp;#x6C42;&amp;#x89E3;&amp;#x590D">
 <meta name="keywords" content="RL">
 <meta property="og:type" content="article">
 <meta property="og:title" content="强化学习(2)">
 <meta property="og:url" content="http://www.liufr.com/2019/05/28/强化学习/2019-05-28-强化学习(2)/index.html">
 <meta property="og:site_name" content="Fengrui Liu&#39;s Blog">
-<meta property="og:description" content="动态规划通过把原问题分解为相对简单的子问题来求解复杂问题  马尔可夫决策过程满足如下两个属性   贝尔曼方程具有递归形式  价值函数可以保存和重复利用  贝尔曼最优方程如下,其难点是$v_*$同时存在于等式左右两边  v_*(s)=max_a(R_s^a+\gamma \sum_{s&apos;\in S}P_{ss&apos;}^av_*(s&apos;))价值迭代的基本思路:   对$v_∗$定义一个估计函数$v$  将估">
+<meta property="og:description" content="&amp;#x52A8;&amp;#x6001;&amp;#x89C4;&amp;#x5212; &amp;#x901A;&amp;#x8FC7;&amp;#x628A;&amp;#x539F;&amp;#x95EE;&amp;#x9898;&amp;#x5206;&amp;#x89E3;&amp;#x4E3A;&amp;#x76F8;&amp;#x5BF9;&amp;#x7B80;&amp;#x5355;&amp;#x7684;&amp;#x5B50;&amp;#x95EE;&amp;#x9898;&amp;#x6765;&amp;#x6C42;&amp;#x89E3;&amp;#x590D">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:updated_time" content="2019-05-29T03:20:17.186Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="强化学习(2)">
-<meta name="twitter:description" content="动态规划通过把原问题分解为相对简单的子问题来求解复杂问题  马尔可夫决策过程满足如下两个属性   贝尔曼方程具有递归形式  价值函数可以保存和重复利用  贝尔曼最优方程如下,其难点是$v_*$同时存在于等式左右两边  v_*(s)=max_a(R_s^a+\gamma \sum_{s&apos;\in S}P_{ss&apos;}^av_*(s&apos;))价值迭代的基本思路:   对$v_∗$定义一个估计函数$v$  将估">
+<meta name="twitter:description" content="&amp;#x52A8;&amp;#x6001;&amp;#x89C4;&amp;#x5212; &amp;#x901A;&amp;#x8FC7;&amp;#x628A;&amp;#x539F;&amp;#x95EE;&amp;#x9898;&amp;#x5206;&amp;#x89E3;&amp;#x4E3A;&amp;#x76F8;&amp;#x5BF9;&amp;#x7B80;&amp;#x5355;&amp;#x7684;&amp;#x5B50;&amp;#x95EE;&amp;#x9898;&amp;#x6765;&amp;#x6C42;&amp;#x89E3;&amp;#x590D">
     
 
     
@@ -167,7 +167,7 @@
                             &nbsp;
                             Algorithm
                         </a>
-                         <ul class="unstyled" id="tree">  <li class="file"><a href="/2016/10/25/算法/2016-10-25-Dijkstra算法/">Dijkstra算法</a></li>  <li class="file"><a href="/2016/10/25/算法/2016-10-25-BellmanFord算法/">Bellman-Ford算法</a></li>  <li class="file"><a href="/2016/12/08/算法/2016-12-08-Bloom Filter/">Bloom Filter</a></li>  <li class="file"><a href="/2017/07/14/算法/2017-7-14-tf-idf/">tf-idf</a></li>  <li class="file"><a href="/2017/09/13/算法/2017-9-13-前缀和/">前缀和（SJTU OJ 1002）</a></li>  <li class="file"><a href="/2017/09/14/算法/2017-9-14-超大数求和/">超大数求和（SJTU OJ 1007）</a></li>  <li class="file"><a href="/2017/09/15/算法/2017-9-15-完全背包/">DP（完全背包）</a></li>  <li class="file"><a href="/2017/09/15/算法/2017-9-15-DP问题/">DP（SJTU OJ 1012）</a></li>  <li class="file"><a href="/2017/09/15/算法/2017-9-15-DP最长公共子序列/">DP（最长公共子序列）</a></li>  <li class="file"><a href="/2017/09/15/算法/2017-9-15-DP(0" 1背包) ">DP（0/1背包）</a></li>  <li class="file"><a href="/2017/09/25/算法/2017-9-25-约瑟夫问题/">约瑟夫问题(SJTU OJ 1038)</a></li>  <li class="file"><a href="/2018/04/02/算法/2018-4-2-排序(位图数据结构)/">排序(位图数据结构)</a></li>  <li class="file"><a href="/2018/10/18/算法/2018-10-15-非负矩阵分解/">非负矩阵分解</a></li>  </ul> 
+                         <ul class="unstyled" id="tree">  <li class="file"><a href="/2016/10/25/算法/2016-10-25-BellmanFord算法/">Bellman-Ford算法</a></li>  <li class="file"><a href="/2016/10/25/算法/2016-10-25-Dijkstra算法/">Dijkstra算法</a></li>  <li class="file"><a href="/2016/12/08/算法/2016-12-08-Bloom Filter/">Bloom Filter</a></li>  <li class="file"><a href="/2017/07/14/算法/2017-7-14-tf-idf/">tf-idf</a></li>  <li class="file"><a href="/2017/09/13/算法/2017-9-13-前缀和/">前缀和（SJTU OJ 1002）</a></li>  <li class="file"><a href="/2017/09/14/算法/2017-9-14-超大数求和/">超大数求和（SJTU OJ 1007）</a></li>  <li class="file"><a href="/2017/09/15/算法/2017-9-15-DP最长公共子序列/">DP（最长公共子序列）</a></li>  <li class="file"><a href="/2017/09/15/算法/2017-9-15-DP(0" 1背包) ">DP（0/1背包）</a></li>  <li class="file"><a href="/2017/09/15/算法/2017-9-15-完全背包/">DP（完全背包）</a></li>  <li class="file"><a href="/2017/09/15/算法/2017-9-15-DP问题/">DP（SJTU OJ 1012）</a></li>  <li class="file"><a href="/2017/09/25/算法/2017-9-25-约瑟夫问题/">约瑟夫问题(SJTU OJ 1038)</a></li>  <li class="file"><a href="/2018/04/02/算法/2018-4-2-排序(位图数据结构)/">排序(位图数据结构)</a></li>  <li class="file"><a href="/2018/10/18/算法/2018-10-15-非负矩阵分解/">非负矩阵分解</a></li>  </ul> 
                     </li> 
                     
                     <li class="directory">
@@ -194,7 +194,7 @@
                             &nbsp;
                             Data mining
                         </a>
-                         <ul class="unstyled" id="tree">  <li class="file"><a href="/2018/12/02/数据挖掘/2018-12-02-监督学习/">监督学习 Supervised Learning(决策树+SVM/Perceptron+AdaBoost)</a></li>  <li class="file"><a href="/2018/12/03/数据挖掘/2018-12-03-非监督学习/">无监督学习 Unsupervised Learning(聚类、矩阵分解、话题模型)</a></li>  <li class="file"><a href="/2018/12/05/数据挖掘/2018-12-05-互联网搜索与排序/">互联网搜索与排序</a></li>  <li class="file"><a href="/2018/12/05/数据挖掘/2018-12-05-大规模机器学习/">大规模机器学习</a></li>  </ul> 
+                         <ul class="unstyled" id="tree">  <li class="file"><a href="/2018/12/02/数据挖掘/2018-12-02-监督学习/">监督学习 Supervised Learning(决策树+SVM/Perceptron+AdaBoost)</a></li>  <li class="file"><a href="/2018/12/03/数据挖掘/2018-12-03-非监督学习/">无监督学习 Unsupervised Learning(聚类、矩阵分解、话题模型)</a></li>  <li class="file"><a href="/2018/12/05/数据挖掘/2018-12-05-大规模机器学习/">大规模机器学习</a></li>  <li class="file"><a href="/2018/12/05/数据挖掘/2018-12-05-互联网搜索与排序/">互联网搜索与排序</a></li>  </ul> 
                     </li> 
                     
                     <li class="directory">
@@ -203,7 +203,7 @@
                             &nbsp;
                             Database
                         </a>
-                         <ul class="unstyled" id="tree">  <li class="file"><a href="/2019/06/03/数据库/2019-06-03-关系数据库/">关系数据库</a></li>  <li class="file"><a href="/2019/06/04/数据库/2019-06-04-大数据存储系统/">大数据存储系统</a></li>  <li class="file"><a href="/2019/06/04/数据库/2019-06-04-大数据运算/">大数据存储系统</a></li>  </ul> 
+                         <ul class="unstyled" id="tree">  <li class="file"><a href="/2019/06/03/数据库/2019-06-03-关系数据库/">关系数据库</a></li>  <li class="file"><a href="/2019/06/04/数据库/2019-06-04-大数据运算/">大数据存储系统</a></li>  <li class="file"><a href="/2019/06/04/数据库/2019-06-04-大数据存储系统/">大数据存储系统</a></li>  </ul> 
                     </li> 
                     
                     <li class="directory">
@@ -221,7 +221,7 @@
                             &nbsp;
                             Linux
                         </a>
-                         <ul class="unstyled" id="tree">  <li class="file"><a href="/2017/10/05/Linux/2017-10-05-Linux-进程管理/">Linux-进程管理</a></li>  <li class="file"><a href="/2017/10/17/Linux/2017-10-17-Linux进程调度/">Linux-进程调度</a></li>  <li class="file"><a href="/2017/10/20/Linux/2017-10-20-Linux系统调用/">Linux-系统调用</a></li>  <li class="file"><a href="/2017/10/22/Linux/2017-10-22-Linux中断和中断处理/">Linux-中断和中断处理</a></li>  <li class="file"><a href="/2017/10/22/Linux/2017-11-2-Linux-下半部和推后执行的工作/">Linux-下半部和推后执行的工作"</a></li>  </ul> 
+                         <ul class="unstyled" id="tree">  <li class="file"><a href="/2017/10/05/Linux/2017-10-05-Linux-进程管理/">Linux-进程管理</a></li>  <li class="file"><a href="/2017/10/17/Linux/2017-10-17-Linux进程调度/">Linux-进程调度</a></li>  <li class="file"><a href="/2017/10/20/Linux/2017-10-20-Linux系统调用/">Linux-系统调用</a></li>  <li class="file"><a href="/2017/10/22/Linux/2017-11-2-Linux-下半部和推后执行的工作/">Linux-下半部和推后执行的工作"</a></li>  <li class="file"><a href="/2017/10/22/Linux/2017-10-22-Linux中断和中断处理/">Linux-中断和中断处理</a></li>  </ul> 
                     </li> 
                     
                     <li class="directory">
@@ -248,7 +248,7 @@
                             &nbsp;
                             Pi
                         </a>
-                         <ul class="unstyled" id="tree">  <li class="file"><a href="/2016/08/06/Pi/2016-08-06-Raspberry Pi OK02/">Raspberry Pi OK02</a></li>  <li class="file"><a href="/2016/08/06/Pi/2016-08-06-Raspberry Pi OK03/">Raspberry Pi OK03</a></li>  <li class="file"><a href="/2016/08/06/Pi/2016-08-06-Baking Pi – Operating Systems Development前言/">Raspberry Pi OS Development 前言</a></li>  <li class="file"><a href="/2016/08/06/Pi/2016-08-06-Raspberry Pi OK01/">Raspberry Pi OK01</a></li>  <li class="file"><a href="/2016/08/09/Pi/2016-08-09-Raspberry Pi OK04/">Raspberry Pi OK04</a></li>  <li class="file"><a href="/2016/08/09/Pi/2016-08-11-Raspberry Pi Screen02/">Raspberry Pi Screen02</a></li>  <li class="file"><a href="/2016/08/09/Pi/2016-08-10-Raspberry Pi Screen01/">Raspberry Pi Screen01</a></li>  <li class="file"><a href="/2016/08/09/Pi/2016-08-09-Raspberry Pi OK05/">Raspberry Pi OK05</a></li>  <li class="file"><a href="/2016/08/14/Pi/2016-08-14-Raspberry Pi Screen03/">Raspberry Pi Screen03</a></li>  <li class="file"><a href="/2016/08/16/Pi/2016-08-16-Raspberry Pi Screen04/">Raspberry Pi Screen04</a></li>  <li class="file"><a href="/2016/08/31/Pi/2016-08-31-Raspberry Pi Input01/">Raspberry Pi Input01</a></li>  <li class="file"><a href="/2016/09/01/Pi/2016-09-01-Raspberry Pi Input02/">Raspberry Pi Input02</a></li>  </ul> 
+                         <ul class="unstyled" id="tree">  <li class="file"><a href="/2016/08/06/Pi/2016-08-06-Raspberry Pi OK02/">Raspberry Pi OK02</a></li>  <li class="file"><a href="/2016/08/06/Pi/2016-08-06-Baking Pi – Operating Systems Development前言/">Raspberry Pi OS Development 前言</a></li>  <li class="file"><a href="/2016/08/06/Pi/2016-08-06-Raspberry Pi OK01/">Raspberry Pi OK01</a></li>  <li class="file"><a href="/2016/08/06/Pi/2016-08-06-Raspberry Pi OK03/">Raspberry Pi OK03</a></li>  <li class="file"><a href="/2016/08/09/Pi/2016-08-11-Raspberry Pi Screen02/">Raspberry Pi Screen02</a></li>  <li class="file"><a href="/2016/08/09/Pi/2016-08-09-Raspberry Pi OK05/">Raspberry Pi OK05</a></li>  <li class="file"><a href="/2016/08/09/Pi/2016-08-09-Raspberry Pi OK04/">Raspberry Pi OK04</a></li>  <li class="file"><a href="/2016/08/09/Pi/2016-08-10-Raspberry Pi Screen01/">Raspberry Pi Screen01</a></li>  <li class="file"><a href="/2016/08/14/Pi/2016-08-14-Raspberry Pi Screen03/">Raspberry Pi Screen03</a></li>  <li class="file"><a href="/2016/08/16/Pi/2016-08-16-Raspberry Pi Screen04/">Raspberry Pi Screen04</a></li>  <li class="file"><a href="/2016/08/31/Pi/2016-08-31-Raspberry Pi Input01/">Raspberry Pi Input01</a></li>  <li class="file"><a href="/2016/09/01/Pi/2016-09-01-Raspberry Pi Input02/">Raspberry Pi Input02</a></li>  </ul> 
                     </li> 
                     
                     <li class="directory open">
@@ -266,7 +266,7 @@
                             &nbsp;
                             Security
                         </a>
-                         <ul class="unstyled" id="tree">  <li class="file"><a href="/2018/09/02/安全/2018-09-02-蜜罐技术/">蜜罐技术</a></li>  <li class="file"><a href="/2019/06/22/安全/2019-06-22-网络异常行为检测/">网络异常行为检测</a></li>  <li class="file"><a href="/2019/07/21/安全/2019-07-21-指数加权移动平均法（EWMA）/">指数加权移动平均法（EWMA）</a></li>  <li class="file"><a href="/2019/07/21/安全/2019-07-22-孤立森林（Isolation Froest）/">孤立森林（Isolation Forest）</a></li>  <li class="file"><a href="/2019/07/21/安全/2019-07-22-xgboost/">孤立森林（Isolation Forest）</a></li>  <li class="file"><a href="/2019/07/21/安全/2019-07-21-多项式插值/">多项式插值</a></li>  <li class="file"><a href="/2019/07/21/安全/2019-07-22-利用时序决策树进行DGA僵尸检测/">利用时序决策树进行DGA僵尸检测</a></li>  <li class="file"><a href="/2019/07/21/安全/2019-07-21-梯度提升决策树(GBDT)/">梯度提升决策树（GBDT）</a></li>  </ul> 
+                         <ul class="unstyled" id="tree">  <li class="file"><a href="/2018/09/02/安全/2018-09-02-蜜罐技术/">蜜罐技术</a></li>  <li class="file"><a href="/2019/06/22/安全/2019-06-22-网络异常行为检测/">网络异常行为检测</a></li>  <li class="file"><a href="/2019/07/21/安全/2019-07-21-多项式插值/">多项式插值</a></li>  <li class="file"><a href="/2019/07/21/安全/2019-07-21-指数加权移动平均法（EWMA）/">指数加权移动平均法（EWMA）</a></li>  <li class="file"><a href="/2019/07/21/安全/2019-07-21-梯度提升决策树(GBDT)/">梯度提升决策树（GBDT）</a></li>  <li class="file"><a href="/2019/07/21/安全/2019-07-22-利用时序决策树进行DGA僵尸检测/">利用时序决策树进行DGA僵尸检测</a></li>  <li class="file"><a href="/2019/07/21/安全/2019-07-22-孤立森林（Isolation Froest）/">孤立森林（Isolation Forest）</a></li>  <li class="file"><a href="/2019/07/21/安全/2019-07-22-xgboost/">孤立森林（Isolation Forest）</a></li>  </ul> 
                     </li> 
                     
                     <li class="directory">
@@ -275,7 +275,7 @@
                             &nbsp;
                             网络
                         </a>
-                         <ul class="unstyled" id="tree">  <li class="file"><a href="/2016/12/24/网络/2016-12-24-ipv4在Linux上的实现/">学习构造用户空间的IP栈（资料总结）</a></li>  <li class="file"><a href="/2017/03/12/VANET/2017-3-12-Vanet仿真-ns3(3)/">VANET仿真-ns3(3)</a></li>  <li class="file"><a href="/2017/03/12/VANET/2017-3-12-Vanet仿真-ns3(2)/">VANET仿真-ns3(2)</a></li>  <li class="file"><a href="/2017/03/12/VANET/2017-3-12-Vanet仿真-ns3(1)/">VANET仿真-ns3(1)</a></li>  <li class="file"><a href="/2017/03/13/VANET/2017-3-13-Vanet仿真-ns3(4)/">VANET仿真-ns3(4)</a></li>  <li class="file"><a href="/2017/03/13/VANET/2017-3-13-Vanet仿真-ns3(5)/">VANET仿真-ns3(5)</a></li>  <li class="file"><a href="/2017/03/15/VANET/2017-3-15-Vanet仿真-ns3(6)/">VANET仿真-ns3(6)</a></li>  <li class="file"><a href="/2017/07/14/网络/2017-07-14-Ego networks/">Ego networks</a></li>  </ul> 
+                         <ul class="unstyled" id="tree">  <li class="file"><a href="/2016/12/24/网络/2016-12-24-ipv4在Linux上的实现/">学习构造用户空间的IP栈（资料总结）</a></li>  <li class="file"><a href="/2017/03/12/VANET/2017-3-12-Vanet仿真-ns3(1)/">VANET仿真-ns3(1)</a></li>  <li class="file"><a href="/2017/03/12/VANET/2017-3-12-Vanet仿真-ns3(2)/">VANET仿真-ns3(2)</a></li>  <li class="file"><a href="/2017/03/12/VANET/2017-3-12-Vanet仿真-ns3(3)/">VANET仿真-ns3(3)</a></li>  <li class="file"><a href="/2017/03/13/VANET/2017-3-13-Vanet仿真-ns3(5)/">VANET仿真-ns3(5)</a></li>  <li class="file"><a href="/2017/03/13/VANET/2017-3-13-Vanet仿真-ns3(4)/">VANET仿真-ns3(4)</a></li>  <li class="file"><a href="/2017/03/15/VANET/2017-3-15-Vanet仿真-ns3(6)/">VANET仿真-ns3(6)</a></li>  <li class="file"><a href="/2017/07/14/网络/2017-07-14-Ego networks/">Ego networks</a></li>  </ul> 
                     </li> 
                      <li class="file"><a href="/2019/05/30/强化学习/~$19-05-28-强化学习(2)/"></a></li>  <li class="file"><a href="/2019/09/16/数据挖掘/2019-09-16-基于注意力模型的RNN时序预测/"></a></li>  </ul> 
     </div>
@@ -418,114 +418,78 @@
             
         
         
-            <h3 id="动态规划"><a href="#动态规划" class="headerlink" title="动态规划"></a>动态规划</h3><p>通过把原问题分解为相对简单的子问题来求解复杂问题 </p>
-<p>马尔可夫决策过程满足如下两个属性 </p>
-<ul>
-<li>贝尔曼方程具有递归形式 </li>
-<li>价值函数可以保存和重复利用</li>
-</ul>
-<p>贝尔曼最优方程如下,其难点是$v_*$同时存在于等式左右两边</p>
-<script type="math/tex; mode=display">
-v_*(s)=max_a(R_s^a+\gamma \sum_{s'\in S}P_{ss'}^av_*(s'))</script><p>价值迭代的基本思路: </p>
-<ol>
-<li>对$v_∗$定义一个估计函数$v$ </li>
-<li>将估计函数代入方程右边, 等式左边得到一个新函数$v′$ </li>
-<li>$v′$ 是对 $v_∗$ 更为准确的估计</li>
-<li>将 $v′$ 代入右式继续上述过程</li>
-</ol>
-<script type="math/tex; mode=display">
-v'(s)=max_a(R_s^a+\gamma \sum_{s'\in S}P_{ss'}^av(s'))</script><p><strong>价值迭代算子</strong>定义一个以函数作为输入的算子$\tau$, 对给定的函数$v_k$计算新的函数 $v_{k+1}(s)=<a href="s">\tau(v_k)</a>$,贝尔曼最优方程写成</p>
-<script type="math/tex; mode=display">
-v_*(s)=[\tau(v_*)](s)=max_a(R_s^a+\gamma\sum_{s'\in S}P_{ss'}^av_*(s'))</script><p>$\gamma &lt; 1$ 时, 价值迭代算子是一个收缩算子($||\tau(f-g)||_{\infty}&lt;||f-g||$)</p>
-<p>确定性策略：价值迭代找到最优策略；随机性策略：机器人在所有位置以相同的概率向左或向右。</p>
-<p>策略迭代：</p>
-<ol>
-<li>给定一个初始策略 π1, k = 1 </li>
-<li>loop </li>
-<li>策略评估: 对当前策略 πk 计算它的价值函数<br>$v_{πk}(s) = \mathbb E[R_{t+1} + \gamma R_{t+2} + …|_St = s,A_t ∼ π_k(St)] =\sum_a π_k(a|s)(R^a_{ss’} + \gamma P^a_{ss′}v_{πk}(s′))$</li>
-<li>策略提升: 根据 $v_{πk}$ 提取出新的策略 $π_{k+1}(s) = argmax_{a\in A}(R^a_s + \gamma \sum_{s′\in S} P^a_{ss′}v_{πk}(s′))$</li>
-<li>k←k+ 1 </li>
+            <h3 id="&#x52A8;&#x6001;&#x89C4;&#x5212;">&#x52A8;&#x6001;&#x89C4;&#x5212;</h3>
+<p>&#x901A;&#x8FC7;&#x628A;&#x539F;&#x95EE;&#x9898;&#x5206;&#x89E3;&#x4E3A;&#x76F8;&#x5BF9;&#x7B80;&#x5355;&#x7684;&#x5B50;&#x95EE;&#x9898;&#x6765;&#x6C42;&#x89E3;&#x590D;&#x6742;&#x95EE;&#x9898;</p>
+<p>&#x9A6C;&#x5C14;&#x53EF;&#x592B;&#x51B3;&#x7B56;&#x8FC7;&#x7A0B;&#x6EE1;&#x8DB3;&#x5982;&#x4E0B;&#x4E24;&#x4E2A;&#x5C5E;&#x6027; * &#x8D1D;&#x5C14;&#x66FC;&#x65B9;&#x7A0B;&#x5177;&#x6709;&#x9012;&#x5F52;&#x5F62;&#x5F0F; * &#x4EF7;&#x503C;&#x51FD;&#x6570;&#x53EF;&#x4EE5;&#x4FDD;&#x5B58;&#x548C;&#x91CD;&#x590D;&#x5229;&#x7528;</p>
+<p>&#x8D1D;&#x5C14;&#x66FC;&#x6700;&#x4F18;&#x65B9;&#x7A0B;&#x5982;&#x4E0B;,&#x5176;&#x96BE;&#x70B9;&#x662F;<span class="math inline">\(v_*\)</span>&#x540C;&#x65F6;&#x5B58;&#x5728;&#x4E8E;&#x7B49;&#x5F0F;&#x5DE6;&#x53F3;&#x4E24;&#x8FB9; <span class="math display">\[
+v_*(s)=max_a(R_s^a+\gamma \sum_{s&apos;\in S}P_{ss&apos;}^av_*(s&apos;))
+\]</span></p>
+<p>&#x4EF7;&#x503C;&#x8FED;&#x4EE3;&#x7684;&#x57FA;&#x672C;&#x601D;&#x8DEF;: 1. &#x5BF9;<span class="math inline">\(v_&#x2217;\)</span>&#x5B9A;&#x4E49;&#x4E00;&#x4E2A;&#x4F30;&#x8BA1;&#x51FD;&#x6570;<span class="math inline">\(v\)</span> 2. &#x5C06;&#x4F30;&#x8BA1;&#x51FD;&#x6570;&#x4EE3;&#x5165;&#x65B9;&#x7A0B;&#x53F3;&#x8FB9;, &#x7B49;&#x5F0F;&#x5DE6;&#x8FB9;&#x5F97;&#x5230;&#x4E00;&#x4E2A;&#x65B0;&#x51FD;&#x6570;<span class="math inline">\(v&#x2032;\)</span> 3. <span class="math inline">\(v&#x2032;\)</span> &#x662F;&#x5BF9; <span class="math inline">\(v_&#x2217;\)</span> &#x66F4;&#x4E3A;&#x51C6;&#x786E;&#x7684;&#x4F30;&#x8BA1; 4. &#x5C06; <span class="math inline">\(v&#x2032;\)</span> &#x4EE3;&#x5165;&#x53F3;&#x5F0F;&#x7EE7;&#x7EED;&#x4E0A;&#x8FF0;&#x8FC7;&#x7A0B;</p>
+<p><span class="math display">\[
+v&apos;(s)=max_a(R_s^a+\gamma \sum_{s&apos;\in S}P_{ss&apos;}^av(s&apos;))
+\]</span></p>
+<p><strong>&#x4EF7;&#x503C;&#x8FED;&#x4EE3;&#x7B97;&#x5B50;</strong>&#x5B9A;&#x4E49;&#x4E00;&#x4E2A;&#x4EE5;&#x51FD;&#x6570;&#x4F5C;&#x4E3A;&#x8F93;&#x5165;&#x7684;&#x7B97;&#x5B50;<span class="math inline">\(\tau\)</span>, &#x5BF9;&#x7ED9;&#x5B9A;&#x7684;&#x51FD;&#x6570;<span class="math inline">\(v_k\)</span>&#x8BA1;&#x7B97;&#x65B0;&#x7684;&#x51FD;&#x6570; <span class="math inline">\(v_{k+1}(s)=[\tau(v_k)](s)\)</span>,&#x8D1D;&#x5C14;&#x66FC;&#x6700;&#x4F18;&#x65B9;&#x7A0B;&#x5199;&#x6210; <span class="math display">\[
+v_*(s)=[\tau(v_*)](s)=max_a(R_s^a+\gamma\sum_{s&apos;\in S}P_{ss&apos;}^av_*(s&apos;))
+\]</span> <span class="math inline">\(\gamma &lt; 1\)</span> &#x65F6;, &#x4EF7;&#x503C;&#x8FED;&#x4EE3;&#x7B97;&#x5B50;&#x662F;&#x4E00;&#x4E2A;&#x6536;&#x7F29;&#x7B97;&#x5B50;(<span class="math inline">\(||\tau(f-g)||_{\infty}&lt;||f-g||\)</span>)</p>
+<p>&#x786E;&#x5B9A;&#x6027;&#x7B56;&#x7565;&#xFF1A;&#x4EF7;&#x503C;&#x8FED;&#x4EE3;&#x627E;&#x5230;&#x6700;&#x4F18;&#x7B56;&#x7565;&#xFF1B;&#x968F;&#x673A;&#x6027;&#x7B56;&#x7565;&#xFF1A;&#x673A;&#x5668;&#x4EBA;&#x5728;&#x6240;&#x6709;&#x4F4D;&#x7F6E;&#x4EE5;&#x76F8;&#x540C;&#x7684;&#x6982;&#x7387;&#x5411;&#x5DE6;&#x6216;&#x5411;&#x53F3;&#x3002;</p>
+<p>&#x7B56;&#x7565;&#x8FED;&#x4EE3;&#xFF1A;</p>
+<ol type="1">
+<li>&#x7ED9;&#x5B9A;&#x4E00;&#x4E2A;&#x521D;&#x59CB;&#x7B56;&#x7565; &#x3C0;1, k = 1</li>
+<li>loop</li>
+<li>&#x7B56;&#x7565;&#x8BC4;&#x4F30;: &#x5BF9;&#x5F53;&#x524D;&#x7B56;&#x7565; &#x3C0;k &#x8BA1;&#x7B97;&#x5B83;&#x7684;&#x4EF7;&#x503C;&#x51FD;&#x6570; <span class="math inline">\(v_{&#x3C0;k}(s) = \mathbb E[R_{t+1} + \gamma R_{t+2} + ...|_St = s,A_t &#x223C; &#x3C0;_k(St)] =\sum_a &#x3C0;_k(a|s)(R^a_{ss&apos;} + \gamma P^a_{ss&#x2032;}v_{&#x3C0;k}(s&#x2032;))\)</span></li>
+<li>&#x7B56;&#x7565;&#x63D0;&#x5347;: &#x6839;&#x636E; <span class="math inline">\(v_{&#x3C0;k}\)</span> &#x63D0;&#x53D6;&#x51FA;&#x65B0;&#x7684;&#x7B56;&#x7565; <span class="math inline">\(&#x3C0;_{k+1}(s) = argmax_{a\in A}(R^a_s + \gamma \sum_{s&#x2032;\in S} P^a_{ss&#x2032;}v_{&#x3C0;k}(s&#x2032;))\)</span></li>
+<li>k&#x2190;k+ 1</li>
 <li>end loop</li>
 </ol>
-<p>价值迭代 vs 策略迭代</p>
-<p><strong>价值迭代</strong> </p>
-<ol>
-<li>只在收敛得到 $v∗$ 后计算 $π∗$, 中间过程不产生策略 </li>
-<li>涉及赋值操作, 计算量小, $O(|S|^2|A|)$ </li>
-<li>迭代次数多</li>
+<p>&#x4EF7;&#x503C;&#x8FED;&#x4EE3; vs &#x7B56;&#x7565;&#x8FED;&#x4EE3;</p>
+<p><strong>&#x4EF7;&#x503C;&#x8FED;&#x4EE3;</strong> 1. &#x53EA;&#x5728;&#x6536;&#x655B;&#x5F97;&#x5230; <span class="math inline">\(v&#x2217;\)</span> &#x540E;&#x8BA1;&#x7B97; <span class="math inline">\(&#x3C0;&#x2217;\)</span>, &#x4E2D;&#x95F4;&#x8FC7;&#x7A0B;&#x4E0D;&#x4EA7;&#x751F;&#x7B56;&#x7565; 2. &#x6D89;&#x53CA;&#x8D4B;&#x503C;&#x64CD;&#x4F5C;, &#x8BA1;&#x7B97;&#x91CF;&#x5C0F;, <span class="math inline">\(O(|S|^2|A|)\)</span> 3. &#x8FED;&#x4EE3;&#x6B21;&#x6570;&#x591A;</p>
+<p><strong>&#x7B56;&#x7565;&#x8FED;&#x4EE3;</strong> 1. &#x6BCF;&#x6B21;&#x8FED;&#x4EE3;&#x5F00;&#x59CB;&#x65F6;&#x7ED9;&#x5B9A;&#x4E00;&#x4E2A; <span class="math inline">\(&#x3C0;\)</span>, &#x7ED3;&#x675F;&#x65F6;&#x4EA7;&#x751F;&#x4E00;&#x4E2A;&#x65B0; <span class="math inline">\(&#x3C0;&#x2032;\)</span> 2. &#x6C42;&#x89E3;&#x65B9;&#x7A0B;, &#x8BA1;&#x7B97;&#x91CF;&#x5927;, &#x77E9;&#x9635;&#x6C42;&#x9006; <span class="math inline">\(O(|S|^3)\)</span>, &#x7B56;&#x7565;&#x63D0;&#x5347; <span class="math inline">\(O(|S|^2|A|)\)</span> 3. &#x8FED;&#x4EE3;&#x6B21;&#x6570;&#x5C11;</p>
+<p><strong>&#x5F02;&#x6B65;&#x52A8;&#x6001;&#x89C4;&#x5212;</strong>&#x5BF9;&#x6BCF;&#x4E2A;&#x72B6;&#x6001;&#x5355;&#x72EC;&#x66F4;&#x65B0;&#x4EF7;&#x503C;&#x51FD;&#x6570;&#x503C;, &#x53EF;&#x4EE5;&#x4EE5;&#x4EFB;&#x610F;&#x4E00;&#x79CD;&#x987A;&#x5E8F;&#x9009;&#x62E9;&#x88AB;&#x66F4;&#x65B0;&#x7684;&#x72B6;&#x6001; &#x53EA;&#x5BF9;&#x88AB;&#x9009;&#x4E2D;&#x7684;&#x72B6;&#x6001;&#x66F4;&#x65B0;&#x4EF7;&#x503C;, &#x672A;&#x9009;&#x4E2D;&#x7684;&#x4FDD;&#x6301;&#x4E0D;&#x53D8;</p>
+<ol type="1">
+<li><strong>&#x5C31;&#x5730;</strong>&#x4EF7;&#x503C;&#x8FED;&#x4EE3;&#x53EA;&#x5BF9;&#x6574;&#x4E2A;&#x72B6;&#x6001;&#x96C6;&#x5B58;&#x50A8;&#x4E00;&#x4E2A;&#x4EF7;&#x503C;&#x51FD;&#x6570;,</li>
+<li><strong>&#x4F18;&#x5316;&#x52A8;&#x6001;&#x89C4;&#x5212;</strong>&#x5BF9;&#x62E5;&#x6709;&#x6700;&#x5927;&#x8D1D;&#x5C14;&#x66FC;&#x8BEF;&#x5DEE;&#x7684;&#x72B6;&#x6001;&#x66F4;&#x65B0;&#x4EF7;&#x503C;&#x3002;</li>
+<li><strong>&#x5B9E;&#x65F6;&#x52A8;&#x6001;&#x89C4;&#x5212;</strong> &#x53EA;&#x8003;&#x8651;&#x4E0E;&#x667A;&#x80FD;&#x4F53;&#x76F4;&#x63A5;&#x76F8;&#x5173;&#x7684;&#x72B6;&#x6001;</li>
 </ol>
-<p><strong>策略迭代</strong></p>
-<ol>
-<li>每次迭代开始时给定一个 $π$, 结束时产生一个新 $π′$ </li>
-<li>求解方程, 计算量大, 矩阵求逆 $O(|S|^3)$, 策略提升 $O(|S|^2|A|)$ </li>
-<li>迭代次数少</li>
-</ol>
-<p><strong>异步动态规划</strong>对每个状态单独更新价值函数值, 可以以任意一种顺序选择被更新的状态 只对被选中的状态更新价值, 未选中的保持不变 </p>
-<ol>
-<li><strong>就地</strong>价值迭代只对整个状态集存储一个价值函数,</li>
-<li><strong>优化动态规划</strong>对拥有最大贝尔曼误差的状态更新价值。</li>
-<li><strong>实时动态规划</strong> 只考虑与智能体直接相关的状态</li>
-</ol>
-<p><strong>策略评估的不足</strong>：对模型的依赖$R,P$(MDP 问题的模型已知/智能体对环境建模)</p>
+<p><strong>&#x7B56;&#x7565;&#x8BC4;&#x4F30;&#x7684;&#x4E0D;&#x8DB3;</strong>&#xFF1A;&#x5BF9;&#x6A21;&#x578B;&#x7684;&#x4F9D;&#x8D56;<span class="math inline">\(R,P\)</span>(MDP &#x95EE;&#x9898;&#x7684;&#x6A21;&#x578B;&#x5DF2;&#x77E5;/&#x667A;&#x80FD;&#x4F53;&#x5BF9;&#x73AF;&#x5883;&#x5EFA;&#x6A21;)</p>
 <hr>
-<h3 id="蒙特卡洛方法MC"><a href="#蒙特卡洛方法MC" class="headerlink" title="蒙特卡洛方法MC"></a>蒙特卡洛方法MC</h3><ol>
-<li>MC 方法直接从经历过的事件中学习 </li>
-<li>无模型方法: 不需要 MDP 的转移/奖励函数 </li>
-<li>从完整的事件中学习: 没有自举 </li>
-<li>基于最简单的思想: 价值 = 平均回报 </li>
-<li>运行 MC 方法通常要求: 所有事件都到达终止状态或者事件的时序足够长</li>
+<h3 id="&#x8499;&#x7279;&#x5361;&#x6D1B;&#x65B9;&#x6CD5;mc">&#x8499;&#x7279;&#x5361;&#x6D1B;&#x65B9;&#x6CD5;MC</h3>
+<ol type="1">
+<li>MC &#x65B9;&#x6CD5;&#x76F4;&#x63A5;&#x4ECE;&#x7ECF;&#x5386;&#x8FC7;&#x7684;&#x4E8B;&#x4EF6;&#x4E2D;&#x5B66;&#x4E60;</li>
+<li>&#x65E0;&#x6A21;&#x578B;&#x65B9;&#x6CD5;: &#x4E0D;&#x9700;&#x8981; MDP &#x7684;&#x8F6C;&#x79FB;/&#x5956;&#x52B1;&#x51FD;&#x6570;</li>
+<li>&#x4ECE;&#x5B8C;&#x6574;&#x7684;&#x4E8B;&#x4EF6;&#x4E2D;&#x5B66;&#x4E60;: &#x6CA1;&#x6709;&#x81EA;&#x4E3E;</li>
+<li>&#x57FA;&#x4E8E;&#x6700;&#x7B80;&#x5355;&#x7684;&#x601D;&#x60F3;: &#x4EF7;&#x503C; = &#x5E73;&#x5747;&#x56DE;&#x62A5;</li>
+<li>&#x8FD0;&#x884C; MC &#x65B9;&#x6CD5;&#x901A;&#x5E38;&#x8981;&#x6C42;: &#x6240;&#x6709;&#x4E8B;&#x4EF6;&#x90FD;&#x5230;&#x8FBE;&#x7EC8;&#x6B62;&#x72B6;&#x6001;&#x6216;&#x8005;&#x4E8B;&#x4EF6;&#x7684;&#x65F6;&#x5E8F;&#x8DB3;&#x591F;&#x957F;</li>
 </ol>
 <ul>
-<li>目标: 从策略 $\pi$ 产生的事件中学习 $v_{\pi}$ $S_1,A_1,R_2,…,S_k ∼ \pi$ </li>
-<li>回忆下回报的定义是所有折扣奖励和 $G_t = R_{t+1} + \gamma R_{t+2} +···+ \gamma^{T−1}R_t$</li>
-<li>回忆下价值函数的定义是回报的期望 $v_π(s) = \mathbb E \pi[G_t|S_t = s]$ </li>
-<li>蒙特卡洛策略评估方法使用回报的经验均值作为回报的期望</li>
+<li>&#x76EE;&#x6807;: &#x4ECE;&#x7B56;&#x7565; <span class="math inline">\(\pi\)</span> &#x4EA7;&#x751F;&#x7684;&#x4E8B;&#x4EF6;&#x4E2D;&#x5B66;&#x4E60; <span class="math inline">\(v_{\pi}\)</span> <span class="math inline">\(S_1,A_1,R_2,...,S_k &#x223C; \pi\)</span></li>
+<li>&#x56DE;&#x5FC6;&#x4E0B;&#x56DE;&#x62A5;&#x7684;&#x5B9A;&#x4E49;&#x662F;&#x6240;&#x6709;&#x6298;&#x6263;&#x5956;&#x52B1;&#x548C; <span class="math inline">\(G_t = R_{t+1} + \gamma R_{t+2} +&#xB7;&#xB7;&#xB7;+ \gamma^{T&#x2212;1}R_t\)</span></li>
+<li>&#x56DE;&#x5FC6;&#x4E0B;&#x4EF7;&#x503C;&#x51FD;&#x6570;&#x7684;&#x5B9A;&#x4E49;&#x662F;&#x56DE;&#x62A5;&#x7684;&#x671F;&#x671B; <span class="math inline">\(v_&#x3C0;(s) = \mathbb E \pi[G_t|S_t = s]\)</span></li>
+<li>&#x8499;&#x7279;&#x5361;&#x6D1B;&#x7B56;&#x7565;&#x8BC4;&#x4F30;&#x65B9;&#x6CD5;&#x4F7F;&#x7528;&#x56DE;&#x62A5;&#x7684;&#x7ECF;&#x9A8C;&#x5747;&#x503C;&#x4F5C;&#x4E3A;&#x56DE;&#x62A5;&#x7684;&#x671F;&#x671B;</li>
 </ul>
-<p>每次经过的 MC 策略评估</p>
-<ul>
-<li>为了评估状态 s </li>
-<li>对一次事件中每一次经过状态 s 的时刻 t </li>
-<li>计数加一 $N(s) \leftarrow N(s) + 1$ </li>
-<li>全部回报相加 $S(s) \leftarrow S(s) +G_t$ </li>
-<li>估计的价值等于回报均值 $V(s) = S(s)/N(s)$</li>
-<li>同样当 $N(s) \rightarrow \infty$ 时, $V(s) \rightarrow v_π(s)$</li>
-</ul>
-<p>P75 怎么算？？？？</p>
-<p>MC可以使用增量计算$V(S_t)\leftarrow V(S_t)+\frac{1}{N(S_t)}(G_t-V(S_t))$</p>
+<p>&#x6BCF;&#x6B21;&#x7ECF;&#x8FC7;&#x7684; MC &#x7B56;&#x7565;&#x8BC4;&#x4F30; * &#x4E3A;&#x4E86;&#x8BC4;&#x4F30;&#x72B6;&#x6001; s * &#x5BF9;&#x4E00;&#x6B21;&#x4E8B;&#x4EF6;&#x4E2D;&#x6BCF;&#x4E00;&#x6B21;&#x7ECF;&#x8FC7;&#x72B6;&#x6001; s &#x7684;&#x65F6;&#x523B; t * &#x8BA1;&#x6570;&#x52A0;&#x4E00; <span class="math inline">\(N(s) \leftarrow N(s) + 1\)</span> * &#x5168;&#x90E8;&#x56DE;&#x62A5;&#x76F8;&#x52A0; <span class="math inline">\(S(s) \leftarrow S(s) +G_t\)</span> * &#x4F30;&#x8BA1;&#x7684;&#x4EF7;&#x503C;&#x7B49;&#x4E8E;&#x56DE;&#x62A5;&#x5747;&#x503C; <span class="math inline">\(V(s) = S(s)/N(s)\)</span> * &#x540C;&#x6837;&#x5F53; <span class="math inline">\(N(s) \rightarrow \infty\)</span> &#x65F6;, <span class="math inline">\(V(s) \rightarrow v_&#x3C0;(s)\)</span></p>
+<p>P75 &#x600E;&#x4E48;&#x7B97;&#xFF1F;&#xFF1F;&#xFF1F;&#xFF1F;</p>
+<p>MC&#x53EF;&#x4EE5;&#x4F7F;&#x7528;&#x589E;&#x91CF;&#x8BA1;&#x7B97;<span class="math inline">\(V(S_t)\leftarrow V(S_t)+\frac{1}{N(S_t)}(G_t-V(S_t))\)</span></p>
 <hr>
-<h3 id="时间差分学习TD"><a href="#时间差分学习TD" class="headerlink" title="时间差分学习TD"></a>时间差分学习TD</h3><ol>
-<li>TD 方法直接从智能体经历的事件中学习 </li>
-<li>无模型的: 不知道 MDP 问题的转移和奖励函数 </li>
-<li>可以从非完整的事件中学习, 借助自举法 </li>
-<li>根据一个猜测值更新另一个猜测值</li>
+<h3 id="&#x65F6;&#x95F4;&#x5DEE;&#x5206;&#x5B66;&#x4E60;td">&#x65F6;&#x95F4;&#x5DEE;&#x5206;&#x5B66;&#x4E60;TD</h3>
+<ol type="1">
+<li>TD &#x65B9;&#x6CD5;&#x76F4;&#x63A5;&#x4ECE;&#x667A;&#x80FD;&#x4F53;&#x7ECF;&#x5386;&#x7684;&#x4E8B;&#x4EF6;&#x4E2D;&#x5B66;&#x4E60;</li>
+<li>&#x65E0;&#x6A21;&#x578B;&#x7684;: &#x4E0D;&#x77E5;&#x9053; MDP &#x95EE;&#x9898;&#x7684;&#x8F6C;&#x79FB;&#x548C;&#x5956;&#x52B1;&#x51FD;&#x6570;</li>
+<li>&#x53EF;&#x4EE5;&#x4ECE;&#x975E;&#x5B8C;&#x6574;&#x7684;&#x4E8B;&#x4EF6;&#x4E2D;&#x5B66;&#x4E60;, &#x501F;&#x52A9;&#x81EA;&#x4E3E;&#x6CD5;</li>
+<li>&#x6839;&#x636E;&#x4E00;&#x4E2A;&#x731C;&#x6D4B;&#x503C;&#x66F4;&#x65B0;&#x53E6;&#x4E00;&#x4E2A;&#x731C;&#x6D4B;&#x503C;</li>
 </ol>
-<p>TD学习算法：</p>
-<ul>
-<li>调整价值 $(S_t)$ 向估计的回报 $R_{t+1} + \gamma V(S_{t+1})$ 逼近 $V(S_t) \leftarrow V(S_t) + α(R_{t+1} + \gamma V(S_{t+1})−V(S_t))$ </li>
-<li>$R_{t+1} + \gamma V(S_{t+1})$ 称为TD 目标 </li>
-<li>$\delta_t = R_{t+1} + \gamma V(S_{t+1})−V(S_t)$ 称为TD 误差</li>
-</ul>
-<p>MC 与 TD 对比</p>
-<ul>
-<li>TD 可以在智能体运行过程中的<strong>每一步</strong>在线学习； MC 需要<strong>完整的事件序列</strong>计算出回报后学习 </li>
-<li>TD 可以从<strong>不完整</strong>的事件序列中学习， MC 要求事件达到<strong>终止状态或序列足够长</strong></li>
-<li>TD 是 低方差, 有偏差；MC 是 高方差, 零偏差</li>
-<li>TD 能够利用马尔可夫性，因此在马尔可夫环境下更有效； MC 能利用马尔可夫性因此在非马尔可夫环境下更有效（只考虑reward）</li>
-</ul>
-<p>P90 AB问题：假如应用MC算法，由于需要完整的episode，因此，只有episode 1 能够用来计算A的状态值，所以显然，V(A) = 0；同时B状态的价值为6/8。而对于TD算法来说，由于状态A的后继有状态B（A-&gt;B是100%；B-&gt;1是75%），所以状态A的价值是通过状态B的价值来计算的。所以根据上面TD的计算公式，V(A)=V(B) = 6/8</p>
-<p>自举法 : 更新时包含一个猜测量；采样法 : 使用采样的数据计算期望</p>
-<ul>
-<li>MC 不使用自举，使用采样</li>
-<li>DP 使用自举，不使用采样</li>
-<li>TD 使用自举，使用采样</li>
-</ul>
-<p>$\lambda -回报$： 每项的权重$(1-\lambda)\lambda^{n-1}$<strong>前向更新</strong></p>
-<script type="math/tex; mode=display">
+<p>TD&#x5B66;&#x4E60;&#x7B97;&#x6CD5;&#xFF1A; * &#x8C03;&#x6574;&#x4EF7;&#x503C; <span class="math inline">\((S_t)\)</span> &#x5411;&#x4F30;&#x8BA1;&#x7684;&#x56DE;&#x62A5; <span class="math inline">\(R_{t+1} + \gamma V(S_{t+1})\)</span> &#x903C;&#x8FD1; <span class="math inline">\(V(S_t) \leftarrow V(S_t) + &#x3B1;(R_{t+1} + \gamma V(S_{t+1})&#x2212;V(S_t))\)</span> * <span class="math inline">\(R_{t+1} + \gamma V(S_{t+1})\)</span> &#x79F0;&#x4E3A;TD &#x76EE;&#x6807; * <span class="math inline">\(\delta_t = R_{t+1} + \gamma V(S_{t+1})&#x2212;V(S_t)\)</span> &#x79F0;&#x4E3A;TD &#x8BEF;&#x5DEE;</p>
+<p>MC &#x4E0E; TD &#x5BF9;&#x6BD4; * TD &#x53EF;&#x4EE5;&#x5728;&#x667A;&#x80FD;&#x4F53;&#x8FD0;&#x884C;&#x8FC7;&#x7A0B;&#x4E2D;&#x7684;<strong>&#x6BCF;&#x4E00;&#x6B65;</strong>&#x5728;&#x7EBF;&#x5B66;&#x4E60;&#xFF1B; MC &#x9700;&#x8981;<strong>&#x5B8C;&#x6574;&#x7684;&#x4E8B;&#x4EF6;&#x5E8F;&#x5217;</strong>&#x8BA1;&#x7B97;&#x51FA;&#x56DE;&#x62A5;&#x540E;&#x5B66;&#x4E60; * TD &#x53EF;&#x4EE5;&#x4ECE;<strong>&#x4E0D;&#x5B8C;&#x6574;</strong>&#x7684;&#x4E8B;&#x4EF6;&#x5E8F;&#x5217;&#x4E2D;&#x5B66;&#x4E60;&#xFF0C; MC &#x8981;&#x6C42;&#x4E8B;&#x4EF6;&#x8FBE;&#x5230;<strong>&#x7EC8;&#x6B62;&#x72B6;&#x6001;&#x6216;&#x5E8F;&#x5217;&#x8DB3;&#x591F;&#x957F;</strong> * TD &#x662F; &#x4F4E;&#x65B9;&#x5DEE;, &#x6709;&#x504F;&#x5DEE;&#xFF1B;MC &#x662F; &#x9AD8;&#x65B9;&#x5DEE;, &#x96F6;&#x504F;&#x5DEE; * TD &#x80FD;&#x591F;&#x5229;&#x7528;&#x9A6C;&#x5C14;&#x53EF;&#x592B;&#x6027;&#xFF0C;&#x56E0;&#x6B64;&#x5728;&#x9A6C;&#x5C14;&#x53EF;&#x592B;&#x73AF;&#x5883;&#x4E0B;&#x66F4;&#x6709;&#x6548;&#xFF1B; MC &#x80FD;&#x5229;&#x7528;&#x9A6C;&#x5C14;&#x53EF;&#x592B;&#x6027;&#x56E0;&#x6B64;&#x5728;&#x975E;&#x9A6C;&#x5C14;&#x53EF;&#x592B;&#x73AF;&#x5883;&#x4E0B;&#x66F4;&#x6709;&#x6548;&#xFF08;&#x53EA;&#x8003;&#x8651;reward&#xFF09;</p>
+<p>P90 AB&#x95EE;&#x9898;&#xFF1A;&#x5047;&#x5982;&#x5E94;&#x7528;MC&#x7B97;&#x6CD5;&#xFF0C;&#x7531;&#x4E8E;&#x9700;&#x8981;&#x5B8C;&#x6574;&#x7684;episode&#xFF0C;&#x56E0;&#x6B64;&#xFF0C;&#x53EA;&#x6709;episode 1 &#x80FD;&#x591F;&#x7528;&#x6765;&#x8BA1;&#x7B97;A&#x7684;&#x72B6;&#x6001;&#x503C;&#xFF0C;&#x6240;&#x4EE5;&#x663E;&#x7136;&#xFF0C;V(A) = 0&#xFF1B;&#x540C;&#x65F6;B&#x72B6;&#x6001;&#x7684;&#x4EF7;&#x503C;&#x4E3A;6/8&#x3002;&#x800C;&#x5BF9;&#x4E8E;TD&#x7B97;&#x6CD5;&#x6765;&#x8BF4;&#xFF0C;&#x7531;&#x4E8E;&#x72B6;&#x6001;A&#x7684;&#x540E;&#x7EE7;&#x6709;&#x72B6;&#x6001;B&#xFF08;A-&gt;B&#x662F;100%&#xFF1B;B-&gt;1&#x662F;75%&#xFF09;&#xFF0C;&#x6240;&#x4EE5;&#x72B6;&#x6001;A&#x7684;&#x4EF7;&#x503C;&#x662F;&#x901A;&#x8FC7;&#x72B6;&#x6001;B&#x7684;&#x4EF7;&#x503C;&#x6765;&#x8BA1;&#x7B97;&#x7684;&#x3002;&#x6240;&#x4EE5;&#x6839;&#x636E;&#x4E0A;&#x9762;TD&#x7684;&#x8BA1;&#x7B97;&#x516C;&#x5F0F;&#xFF0C;V(A)=V(B) = 6/8</p>
+<p>&#x81EA;&#x4E3E;&#x6CD5; : &#x66F4;&#x65B0;&#x65F6;&#x5305;&#x542B;&#x4E00;&#x4E2A;&#x731C;&#x6D4B;&#x91CF;&#xFF1B;&#x91C7;&#x6837;&#x6CD5; : &#x4F7F;&#x7528;&#x91C7;&#x6837;&#x7684;&#x6570;&#x636E;&#x8BA1;&#x7B97;&#x671F;&#x671B; * MC &#x4E0D;&#x4F7F;&#x7528;&#x81EA;&#x4E3E;&#xFF0C;&#x4F7F;&#x7528;&#x91C7;&#x6837; * DP &#x4F7F;&#x7528;&#x81EA;&#x4E3E;&#xFF0C;&#x4E0D;&#x4F7F;&#x7528;&#x91C7;&#x6837; * TD &#x4F7F;&#x7528;&#x81EA;&#x4E3E;&#xFF0C;&#x4F7F;&#x7528;&#x91C7;&#x6837;</p>
+<p><span class="math inline">\(\lambda -&#x56DE;&#x62A5;\)</span>&#xFF1A; &#x6BCF;&#x9879;&#x7684;&#x6743;&#x91CD;<span class="math inline">\((1-\lambda)\lambda^{n-1}\)</span><strong>&#x524D;&#x5411;&#x66F4;&#x65B0;</strong> <span class="math display">\[
 G_t^{\lambda}=(1-\lambda)\sum_{n=1}^{\infty}\lambda^{n-1}G_t^{(n)}\\
-V(S_t)\leftarrow V(S_t)+\alpha(G_t^{\lambda}-V(S_t))</script><p>资格迹：受频率启发；受近因启发（二者结合）更新量与 TD 误差 和资格迹 $E_t(s)$ 呈正比 <strong>后向更新</strong></p>
-<script type="math/tex; mode=display">
+V(S_t)\leftarrow V(S_t)+\alpha(G_t^{\lambda}-V(S_t))
+\]</span></p>
+<p>&#x8D44;&#x683C;&#x8FF9;&#xFF1A;&#x53D7;&#x9891;&#x7387;&#x542F;&#x53D1;&#xFF1B;&#x53D7;&#x8FD1;&#x56E0;&#x542F;&#x53D1;&#xFF08;&#x4E8C;&#x8005;&#x7ED3;&#x5408;&#xFF09;&#x66F4;&#x65B0;&#x91CF;&#x4E0E; TD &#x8BEF;&#x5DEE; &#x548C;&#x8D44;&#x683C;&#x8FF9; <span class="math inline">\(E_t(s)\)</span> &#x5448;&#x6B63;&#x6BD4; <strong>&#x540E;&#x5411;&#x66F4;&#x65B0;</strong> <span class="math display">\[
 \delta_t = R_{t+1}+\gamma V(S_{t+1})-V(S_t)\\
-V(s)\leftarrow V(s) + \alpha\delta_tE_t(s)</script><p>TD(1) 大致等价于每次经过的 MC 方法,误差会随在线运行逐步累积,如果价值函数只在事件结束时离线更新, 那么所有的更新量等同于 MC 方法</p>
+V(s)\leftarrow V(s) + \alpha\delta_tE_t(s)
+\]</span></p>
+<p>TD(1) &#x5927;&#x81F4;&#x7B49;&#x4EF7;&#x4E8E;&#x6BCF;&#x6B21;&#x7ECF;&#x8FC7;&#x7684; MC &#x65B9;&#x6CD5;,&#x8BEF;&#x5DEE;&#x4F1A;&#x968F;&#x5728;&#x7EBF;&#x8FD0;&#x884C;&#x9010;&#x6B65;&#x7D2F;&#x79EF;,&#x5982;&#x679C;&#x4EF7;&#x503C;&#x51FD;&#x6570;&#x53EA;&#x5728;&#x4E8B;&#x4EF6;&#x7ED3;&#x675F;&#x65F6;&#x79BB;&#x7EBF;&#x66F4;&#x65B0;, &#x90A3;&#x4E48;&#x6240;&#x6709;&#x7684;&#x66F4;&#x65B0;&#x91CF;&#x7B49;&#x540C;&#x4E8E; MC &#x65B9;&#x6CD5;</p>
 
             </div>
         

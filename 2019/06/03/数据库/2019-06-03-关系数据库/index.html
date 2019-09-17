@@ -9,23 +9,23 @@
         <meta name="keywords" content="Database">
     
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <meta name="description" content="大数据的概念(三个重要挑战)  数据量巨大(Volumn) 数据的产生 速度、更新速度快(Velocity) 数据种类繁多(Variety)  大数据管理系统：  关系型（Oracle，DB2，MS SQL） 云平台（MapReduce，Apache Hadoop，MS Dryad） 云平台+SQL（Apache Hive） No-SQL（Apache Hbase，MongoDB，Neo4j） 图">
+    <meta name="description" content="&amp;#x5927;&amp;#x6570;&amp;#x636E;&amp;#x7684;&amp;#x6982;&amp;#x5FF5;(&amp;#x4E09;&amp;#x4E2A;&amp;#x91CD;&amp;#x8981;&amp;#x6311;&amp;#x6218;) 1. &amp;#x6570;&amp;#x636E;&amp;#x91CF;&amp;#x5DE8;&amp;#x5927;(Volumn) 2. &amp;#x6570;&amp;#x636E;&amp;#x7684;&amp;#x4EA7;&amp;#x751F; &amp;#x90">
 <meta name="keywords" content="Database">
 <meta property="og:type" content="article">
 <meta property="og:title" content="关系数据库">
 <meta property="og:url" content="http://www.liufr.com/2019/06/03/数据库/2019-06-03-关系数据库/index.html">
 <meta property="og:site_name" content="Fengrui Liu&#39;s Blog">
-<meta property="og:description" content="大数据的概念(三个重要挑战)  数据量巨大(Volumn) 数据的产生 速度、更新速度快(Velocity) 数据种类繁多(Variety)  大数据管理系统：  关系型（Oracle，DB2，MS SQL） 云平台（MapReduce，Apache Hadoop，MS Dryad） 云平台+SQL（Apache Hive） No-SQL（Apache Hbase，MongoDB，Neo4j） 图">
+<meta property="og:description" content="&amp;#x5927;&amp;#x6570;&amp;#x636E;&amp;#x7684;&amp;#x6982;&amp;#x5FF5;(&amp;#x4E09;&amp;#x4E2A;&amp;#x91CD;&amp;#x8981;&amp;#x6311;&amp;#x6218;) 1. &amp;#x6570;&amp;#x636E;&amp;#x91CF;&amp;#x5DE8;&amp;#x5927;(Volumn) 2. &amp;#x6570;&amp;#x636E;&amp;#x7684;&amp;#x4EA7;&amp;#x751F; &amp;#x90">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="http://www.liufr.com/2019/06/03/数据库/2019-06-03-关系数据库/pictures/tunple.jpg">
-<meta property="og:image" content="http://www.liufr.com/2019/06/03/数据库/2019-06-03-关系数据库/pictures/tunple_example.jpg">
-<meta property="og:image" content="http://www.liufr.com/2019/06/03/数据库/2019-06-03-关系数据库/pictures/operate_tree.jpg">
-<meta property="og:image" content="http://www.liufr.com/2019/06/03/数据库/2019-06-03-关系数据库/pictures/lock.jpg">
+<meta property="og:image" content="http://www.liufr.com/2019/06/03/数据库/2019-06-03-关系数据库/tunple.jpg">
+<meta property="og:image" content="http://www.liufr.com/2019/06/03/数据库/2019-06-03-关系数据库/tunple_example.jpg">
+<meta property="og:image" content="http://www.liufr.com/2019/06/03/数据库/2019-06-03-关系数据库/operate_tree.jpg">
+<meta property="og:image" content="http://www.liufr.com/2019/06/03/数据库/2019-06-03-关系数据库/lock.jpg">
 <meta property="og:updated_time" content="2019-06-04T03:07:03.013Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="关系数据库">
-<meta name="twitter:description" content="大数据的概念(三个重要挑战)  数据量巨大(Volumn) 数据的产生 速度、更新速度快(Velocity) 数据种类繁多(Variety)  大数据管理系统：  关系型（Oracle，DB2，MS SQL） 云平台（MapReduce，Apache Hadoop，MS Dryad） 云平台+SQL（Apache Hive） No-SQL（Apache Hbase，MongoDB，Neo4j） 图">
-<meta name="twitter:image" content="http://www.liufr.com/2019/06/03/数据库/2019-06-03-关系数据库/pictures/tunple.jpg">
+<meta name="twitter:description" content="&amp;#x5927;&amp;#x6570;&amp;#x636E;&amp;#x7684;&amp;#x6982;&amp;#x5FF5;(&amp;#x4E09;&amp;#x4E2A;&amp;#x91CD;&amp;#x8981;&amp;#x6311;&amp;#x6218;) 1. &amp;#x6570;&amp;#x636E;&amp;#x91CF;&amp;#x5DE8;&amp;#x5927;(Volumn) 2. &amp;#x6570;&amp;#x636E;&amp;#x7684;&amp;#x4EA7;&amp;#x751F; &amp;#x90">
+<meta name="twitter:image" content="http://www.liufr.com/2019/06/03/数据库/2019-06-03-关系数据库/tunple.jpg">
     
 
     
@@ -172,7 +172,7 @@
                             &nbsp;
                             Algorithm
                         </a>
-                         <ul class="unstyled" id="tree">  <li class="file"><a href="/2016/10/25/算法/2016-10-25-Dijkstra算法/">Dijkstra算法</a></li>  <li class="file"><a href="/2016/10/25/算法/2016-10-25-BellmanFord算法/">Bellman-Ford算法</a></li>  <li class="file"><a href="/2016/12/08/算法/2016-12-08-Bloom Filter/">Bloom Filter</a></li>  <li class="file"><a href="/2017/07/14/算法/2017-7-14-tf-idf/">tf-idf</a></li>  <li class="file"><a href="/2017/09/13/算法/2017-9-13-前缀和/">前缀和（SJTU OJ 1002）</a></li>  <li class="file"><a href="/2017/09/14/算法/2017-9-14-超大数求和/">超大数求和（SJTU OJ 1007）</a></li>  <li class="file"><a href="/2017/09/15/算法/2017-9-15-完全背包/">DP（完全背包）</a></li>  <li class="file"><a href="/2017/09/15/算法/2017-9-15-DP问题/">DP（SJTU OJ 1012）</a></li>  <li class="file"><a href="/2017/09/15/算法/2017-9-15-DP最长公共子序列/">DP（最长公共子序列）</a></li>  <li class="file"><a href="/2017/09/15/算法/2017-9-15-DP(0" 1背包) ">DP（0/1背包）</a></li>  <li class="file"><a href="/2017/09/25/算法/2017-9-25-约瑟夫问题/">约瑟夫问题(SJTU OJ 1038)</a></li>  <li class="file"><a href="/2018/04/02/算法/2018-4-2-排序(位图数据结构)/">排序(位图数据结构)</a></li>  <li class="file"><a href="/2018/10/18/算法/2018-10-15-非负矩阵分解/">非负矩阵分解</a></li>  </ul> 
+                         <ul class="unstyled" id="tree">  <li class="file"><a href="/2016/10/25/算法/2016-10-25-BellmanFord算法/">Bellman-Ford算法</a></li>  <li class="file"><a href="/2016/10/25/算法/2016-10-25-Dijkstra算法/">Dijkstra算法</a></li>  <li class="file"><a href="/2016/12/08/算法/2016-12-08-Bloom Filter/">Bloom Filter</a></li>  <li class="file"><a href="/2017/07/14/算法/2017-7-14-tf-idf/">tf-idf</a></li>  <li class="file"><a href="/2017/09/13/算法/2017-9-13-前缀和/">前缀和（SJTU OJ 1002）</a></li>  <li class="file"><a href="/2017/09/14/算法/2017-9-14-超大数求和/">超大数求和（SJTU OJ 1007）</a></li>  <li class="file"><a href="/2017/09/15/算法/2017-9-15-DP最长公共子序列/">DP（最长公共子序列）</a></li>  <li class="file"><a href="/2017/09/15/算法/2017-9-15-DP(0" 1背包) ">DP（0/1背包）</a></li>  <li class="file"><a href="/2017/09/15/算法/2017-9-15-完全背包/">DP（完全背包）</a></li>  <li class="file"><a href="/2017/09/15/算法/2017-9-15-DP问题/">DP（SJTU OJ 1012）</a></li>  <li class="file"><a href="/2017/09/25/算法/2017-9-25-约瑟夫问题/">约瑟夫问题(SJTU OJ 1038)</a></li>  <li class="file"><a href="/2018/04/02/算法/2018-4-2-排序(位图数据结构)/">排序(位图数据结构)</a></li>  <li class="file"><a href="/2018/10/18/算法/2018-10-15-非负矩阵分解/">非负矩阵分解</a></li>  </ul> 
                     </li> 
                     
                     <li class="directory">
@@ -199,7 +199,7 @@
                             &nbsp;
                             Data mining
                         </a>
-                         <ul class="unstyled" id="tree">  <li class="file"><a href="/2018/12/02/数据挖掘/2018-12-02-监督学习/">监督学习 Supervised Learning(决策树+SVM/Perceptron+AdaBoost)</a></li>  <li class="file"><a href="/2018/12/03/数据挖掘/2018-12-03-非监督学习/">无监督学习 Unsupervised Learning(聚类、矩阵分解、话题模型)</a></li>  <li class="file"><a href="/2018/12/05/数据挖掘/2018-12-05-互联网搜索与排序/">互联网搜索与排序</a></li>  <li class="file"><a href="/2018/12/05/数据挖掘/2018-12-05-大规模机器学习/">大规模机器学习</a></li>  </ul> 
+                         <ul class="unstyled" id="tree">  <li class="file"><a href="/2018/12/02/数据挖掘/2018-12-02-监督学习/">监督学习 Supervised Learning(决策树+SVM/Perceptron+AdaBoost)</a></li>  <li class="file"><a href="/2018/12/03/数据挖掘/2018-12-03-非监督学习/">无监督学习 Unsupervised Learning(聚类、矩阵分解、话题模型)</a></li>  <li class="file"><a href="/2018/12/05/数据挖掘/2018-12-05-大规模机器学习/">大规模机器学习</a></li>  <li class="file"><a href="/2018/12/05/数据挖掘/2018-12-05-互联网搜索与排序/">互联网搜索与排序</a></li>  </ul> 
                     </li> 
                     
                     <li class="directory open">
@@ -208,7 +208,7 @@
                             &nbsp;
                             Database
                         </a>
-                         <ul class="unstyled" id="tree">  <li class="file active"><a href="/2019/06/03/数据库/2019-06-03-关系数据库/">关系数据库</a></li>  <li class="file"><a href="/2019/06/04/数据库/2019-06-04-大数据存储系统/">大数据存储系统</a></li>  <li class="file"><a href="/2019/06/04/数据库/2019-06-04-大数据运算/">大数据存储系统</a></li>  </ul> 
+                         <ul class="unstyled" id="tree">  <li class="file active"><a href="/2019/06/03/数据库/2019-06-03-关系数据库/">关系数据库</a></li>  <li class="file"><a href="/2019/06/04/数据库/2019-06-04-大数据运算/">大数据存储系统</a></li>  <li class="file"><a href="/2019/06/04/数据库/2019-06-04-大数据存储系统/">大数据存储系统</a></li>  </ul> 
                     </li> 
                     
                     <li class="directory">
@@ -226,7 +226,7 @@
                             &nbsp;
                             Linux
                         </a>
-                         <ul class="unstyled" id="tree">  <li class="file"><a href="/2017/10/05/Linux/2017-10-05-Linux-进程管理/">Linux-进程管理</a></li>  <li class="file"><a href="/2017/10/17/Linux/2017-10-17-Linux进程调度/">Linux-进程调度</a></li>  <li class="file"><a href="/2017/10/20/Linux/2017-10-20-Linux系统调用/">Linux-系统调用</a></li>  <li class="file"><a href="/2017/10/22/Linux/2017-10-22-Linux中断和中断处理/">Linux-中断和中断处理</a></li>  <li class="file"><a href="/2017/10/22/Linux/2017-11-2-Linux-下半部和推后执行的工作/">Linux-下半部和推后执行的工作"</a></li>  </ul> 
+                         <ul class="unstyled" id="tree">  <li class="file"><a href="/2017/10/05/Linux/2017-10-05-Linux-进程管理/">Linux-进程管理</a></li>  <li class="file"><a href="/2017/10/17/Linux/2017-10-17-Linux进程调度/">Linux-进程调度</a></li>  <li class="file"><a href="/2017/10/20/Linux/2017-10-20-Linux系统调用/">Linux-系统调用</a></li>  <li class="file"><a href="/2017/10/22/Linux/2017-11-2-Linux-下半部和推后执行的工作/">Linux-下半部和推后执行的工作"</a></li>  <li class="file"><a href="/2017/10/22/Linux/2017-10-22-Linux中断和中断处理/">Linux-中断和中断处理</a></li>  </ul> 
                     </li> 
                     
                     <li class="directory">
@@ -253,7 +253,7 @@
                             &nbsp;
                             Pi
                         </a>
-                         <ul class="unstyled" id="tree">  <li class="file"><a href="/2016/08/06/Pi/2016-08-06-Raspberry Pi OK02/">Raspberry Pi OK02</a></li>  <li class="file"><a href="/2016/08/06/Pi/2016-08-06-Raspberry Pi OK03/">Raspberry Pi OK03</a></li>  <li class="file"><a href="/2016/08/06/Pi/2016-08-06-Baking Pi – Operating Systems Development前言/">Raspberry Pi OS Development 前言</a></li>  <li class="file"><a href="/2016/08/06/Pi/2016-08-06-Raspberry Pi OK01/">Raspberry Pi OK01</a></li>  <li class="file"><a href="/2016/08/09/Pi/2016-08-09-Raspberry Pi OK04/">Raspberry Pi OK04</a></li>  <li class="file"><a href="/2016/08/09/Pi/2016-08-11-Raspberry Pi Screen02/">Raspberry Pi Screen02</a></li>  <li class="file"><a href="/2016/08/09/Pi/2016-08-10-Raspberry Pi Screen01/">Raspberry Pi Screen01</a></li>  <li class="file"><a href="/2016/08/09/Pi/2016-08-09-Raspberry Pi OK05/">Raspberry Pi OK05</a></li>  <li class="file"><a href="/2016/08/14/Pi/2016-08-14-Raspberry Pi Screen03/">Raspberry Pi Screen03</a></li>  <li class="file"><a href="/2016/08/16/Pi/2016-08-16-Raspberry Pi Screen04/">Raspberry Pi Screen04</a></li>  <li class="file"><a href="/2016/08/31/Pi/2016-08-31-Raspberry Pi Input01/">Raspberry Pi Input01</a></li>  <li class="file"><a href="/2016/09/01/Pi/2016-09-01-Raspberry Pi Input02/">Raspberry Pi Input02</a></li>  </ul> 
+                         <ul class="unstyled" id="tree">  <li class="file"><a href="/2016/08/06/Pi/2016-08-06-Raspberry Pi OK02/">Raspberry Pi OK02</a></li>  <li class="file"><a href="/2016/08/06/Pi/2016-08-06-Baking Pi – Operating Systems Development前言/">Raspberry Pi OS Development 前言</a></li>  <li class="file"><a href="/2016/08/06/Pi/2016-08-06-Raspberry Pi OK01/">Raspberry Pi OK01</a></li>  <li class="file"><a href="/2016/08/06/Pi/2016-08-06-Raspberry Pi OK03/">Raspberry Pi OK03</a></li>  <li class="file"><a href="/2016/08/09/Pi/2016-08-11-Raspberry Pi Screen02/">Raspberry Pi Screen02</a></li>  <li class="file"><a href="/2016/08/09/Pi/2016-08-09-Raspberry Pi OK05/">Raspberry Pi OK05</a></li>  <li class="file"><a href="/2016/08/09/Pi/2016-08-09-Raspberry Pi OK04/">Raspberry Pi OK04</a></li>  <li class="file"><a href="/2016/08/09/Pi/2016-08-10-Raspberry Pi Screen01/">Raspberry Pi Screen01</a></li>  <li class="file"><a href="/2016/08/14/Pi/2016-08-14-Raspberry Pi Screen03/">Raspberry Pi Screen03</a></li>  <li class="file"><a href="/2016/08/16/Pi/2016-08-16-Raspberry Pi Screen04/">Raspberry Pi Screen04</a></li>  <li class="file"><a href="/2016/08/31/Pi/2016-08-31-Raspberry Pi Input01/">Raspberry Pi Input01</a></li>  <li class="file"><a href="/2016/09/01/Pi/2016-09-01-Raspberry Pi Input02/">Raspberry Pi Input02</a></li>  </ul> 
                     </li> 
                     
                     <li class="directory">
@@ -271,7 +271,7 @@
                             &nbsp;
                             Security
                         </a>
-                         <ul class="unstyled" id="tree">  <li class="file"><a href="/2018/09/02/安全/2018-09-02-蜜罐技术/">蜜罐技术</a></li>  <li class="file"><a href="/2019/06/22/安全/2019-06-22-网络异常行为检测/">网络异常行为检测</a></li>  <li class="file"><a href="/2019/07/21/安全/2019-07-21-指数加权移动平均法（EWMA）/">指数加权移动平均法（EWMA）</a></li>  <li class="file"><a href="/2019/07/21/安全/2019-07-22-孤立森林（Isolation Froest）/">孤立森林（Isolation Forest）</a></li>  <li class="file"><a href="/2019/07/21/安全/2019-07-22-xgboost/">孤立森林（Isolation Forest）</a></li>  <li class="file"><a href="/2019/07/21/安全/2019-07-21-多项式插值/">多项式插值</a></li>  <li class="file"><a href="/2019/07/21/安全/2019-07-22-利用时序决策树进行DGA僵尸检测/">利用时序决策树进行DGA僵尸检测</a></li>  <li class="file"><a href="/2019/07/21/安全/2019-07-21-梯度提升决策树(GBDT)/">梯度提升决策树（GBDT）</a></li>  </ul> 
+                         <ul class="unstyled" id="tree">  <li class="file"><a href="/2018/09/02/安全/2018-09-02-蜜罐技术/">蜜罐技术</a></li>  <li class="file"><a href="/2019/06/22/安全/2019-06-22-网络异常行为检测/">网络异常行为检测</a></li>  <li class="file"><a href="/2019/07/21/安全/2019-07-21-多项式插值/">多项式插值</a></li>  <li class="file"><a href="/2019/07/21/安全/2019-07-21-指数加权移动平均法（EWMA）/">指数加权移动平均法（EWMA）</a></li>  <li class="file"><a href="/2019/07/21/安全/2019-07-21-梯度提升决策树(GBDT)/">梯度提升决策树（GBDT）</a></li>  <li class="file"><a href="/2019/07/21/安全/2019-07-22-利用时序决策树进行DGA僵尸检测/">利用时序决策树进行DGA僵尸检测</a></li>  <li class="file"><a href="/2019/07/21/安全/2019-07-22-孤立森林（Isolation Froest）/">孤立森林（Isolation Forest）</a></li>  <li class="file"><a href="/2019/07/21/安全/2019-07-22-xgboost/">孤立森林（Isolation Forest）</a></li>  </ul> 
                     </li> 
                     
                     <li class="directory">
@@ -280,7 +280,7 @@
                             &nbsp;
                             网络
                         </a>
-                         <ul class="unstyled" id="tree">  <li class="file"><a href="/2016/12/24/网络/2016-12-24-ipv4在Linux上的实现/">学习构造用户空间的IP栈（资料总结）</a></li>  <li class="file"><a href="/2017/03/12/VANET/2017-3-12-Vanet仿真-ns3(3)/">VANET仿真-ns3(3)</a></li>  <li class="file"><a href="/2017/03/12/VANET/2017-3-12-Vanet仿真-ns3(2)/">VANET仿真-ns3(2)</a></li>  <li class="file"><a href="/2017/03/12/VANET/2017-3-12-Vanet仿真-ns3(1)/">VANET仿真-ns3(1)</a></li>  <li class="file"><a href="/2017/03/13/VANET/2017-3-13-Vanet仿真-ns3(4)/">VANET仿真-ns3(4)</a></li>  <li class="file"><a href="/2017/03/13/VANET/2017-3-13-Vanet仿真-ns3(5)/">VANET仿真-ns3(5)</a></li>  <li class="file"><a href="/2017/03/15/VANET/2017-3-15-Vanet仿真-ns3(6)/">VANET仿真-ns3(6)</a></li>  <li class="file"><a href="/2017/07/14/网络/2017-07-14-Ego networks/">Ego networks</a></li>  </ul> 
+                         <ul class="unstyled" id="tree">  <li class="file"><a href="/2016/12/24/网络/2016-12-24-ipv4在Linux上的实现/">学习构造用户空间的IP栈（资料总结）</a></li>  <li class="file"><a href="/2017/03/12/VANET/2017-3-12-Vanet仿真-ns3(1)/">VANET仿真-ns3(1)</a></li>  <li class="file"><a href="/2017/03/12/VANET/2017-3-12-Vanet仿真-ns3(2)/">VANET仿真-ns3(2)</a></li>  <li class="file"><a href="/2017/03/12/VANET/2017-3-12-Vanet仿真-ns3(3)/">VANET仿真-ns3(3)</a></li>  <li class="file"><a href="/2017/03/13/VANET/2017-3-13-Vanet仿真-ns3(5)/">VANET仿真-ns3(5)</a></li>  <li class="file"><a href="/2017/03/13/VANET/2017-3-13-Vanet仿真-ns3(4)/">VANET仿真-ns3(4)</a></li>  <li class="file"><a href="/2017/03/15/VANET/2017-3-15-Vanet仿真-ns3(6)/">VANET仿真-ns3(6)</a></li>  <li class="file"><a href="/2017/07/14/网络/2017-07-14-Ego networks/">Ego networks</a></li>  </ul> 
                     </li> 
                      <li class="file"><a href="/2019/05/30/强化学习/~$19-05-28-强化学习(2)/"></a></li>  <li class="file"><a href="/2019/09/16/数据挖掘/2019-09-16-基于注意力模型的RNN时序预测/"></a></li>  </ul> 
     </div>
@@ -423,217 +423,141 @@
             
         
         
-            <p>大数据的概念(三个重要挑战)</p>
-<ol>
-<li>数据量巨大(Volumn)</li>
-<li>数据的产生 速度、更新速度快(Velocity)</li>
-<li>数据种类繁多(Variety)</li>
-</ol>
-<p>大数据管理系统：</p>
-<ol>
-<li>关系型（Oracle，DB2，MS SQL）</li>
-<li>云平台（MapReduce，Apache Hadoop，MS Dryad）</li>
-<li>云平台+SQL（Apache Hive）</li>
-<li>No-SQL（Apache Hbase，MongoDB，Neo4j）</li>
-<li>图数据处理（Google Pregel，Apache Giraph，Graphlab）</li>
-<li>内存数据处理（MMDB，Spark）</li>
-</ol>
-<p>ACID：</p>
-<ol>
-<li>原子性（Atomicity）</li>
-<li>一致性（Consistency）</li>
-<li>隔离性（Isolation）</li>
-<li>持久性（Durability）</li>
-</ol>
-<hr>
-<h2 id="关系型数据库"><a href="#关系型数据库" class="headerlink" title="关系型数据库"></a>关系型数据库</h2><h3 id="Table-Relation-表"><a href="#Table-Relation-表" class="headerlink" title="Table/Relation(表)"></a>Table/Relation(表)</h3><ul>
-<li>列：一个属性，有明确的数据类型</li>
-<li>行：一个记录</li>
-<li>通常很瘦长</li>
-<li>原子类型（无内部嵌套结构，不能用struct、class、array、list、set、map等）</li>
-</ul>
-<h3 id="Scheme-vs-Instance"><a href="#Scheme-vs-Instance" class="headerlink" title="Scheme vs Instance"></a>Scheme vs Instance</h3><ul>
-<li>Scheme：一个表的类型是由每个列的类型决定的</li>
-<li>Instance：具体取值，由具体应用决定</li>
-<li>Scheme定义一次对应多个instance</li>
-</ul>
-<h3 id="Key"><a href="#Key" class="headerlink" title="Key"></a>Key</h3><ul>
-<li>Primary key主键确定本表中的一个记录(可以是多个键的组合)；</li>
-<li>Foreign key外键唯一决定另一个表的记录；</li>
-</ul>
-<hr>
-<h2 id="SQL"><a href="#SQL" class="headerlink" title="SQL"></a>SQL</h2><figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">create</span> <span class="keyword">table</span> 表名 (</span><br><span class="line">列名 类型,</span><br><span class="line">列名 类型,</span><br><span class="line">列名 类型,</span><br><span class="line">…… ,</span><br><span class="line">primary <span class="keyword">key</span>(<span class="keyword">ID</span>) -&gt; 声明主键，可以包含多个属性</span><br><span class="line">foreign <span class="keyword">key</span>(CourseId) <span class="keyword">references</span> Course(<span class="keyword">ID</span>),</span><br><span class="line">foreign <span class="keyword">key</span>(StudentId) <span class="keyword">references</span> Student(<span class="keyword">ID</span>) -&gt; 声明外键，可以有多个</span><br><span class="line">);</span><br><span class="line"></span><br><span class="line">插入完整记录：</span><br><span class="line"><span class="keyword">insert</span> <span class="keyword">into</span> Student</span><br><span class="line"><span class="keyword">values</span> (<span class="number">131234</span>, ‘张飞’, <span class="number">1995</span>/<span class="number">1</span>/<span class="number">1</span>, M, ‘计算机’, <span class="number">2013</span>, <span class="number">85</span>);</span><br><span class="line"></span><br><span class="line">插入记录特定的列，其它列为空：</span><br><span class="line"><span class="keyword">insert</span> <span class="keyword">into</span> Student(<span class="keyword">ID</span>, <span class="keyword">Name</span>)</span><br><span class="line"><span class="keyword">values</span> (<span class="number">131234</span>, ‘张飞’);</span><br><span class="line"></span><br><span class="line">删除记录</span><br><span class="line"><span class="keyword">delete</span> <span class="keyword">from</span> Student</span><br><span class="line"><span class="keyword">where</span> <span class="keyword">ID</span> = <span class="number">131234</span>;</span><br><span class="line"></span><br><span class="line">更新</span><br><span class="line"><span class="keyword">update</span> Student</span><br><span class="line"><span class="keyword">set</span> GPA = <span class="number">86</span></span><br><span class="line"><span class="keyword">where</span> <span class="keyword">ID</span> = <span class="number">131234</span></span><br><span class="line"></span><br><span class="line">选择（从一个表中提取一些行）</span><br><span class="line"><span class="keyword">select</span> *</span><br><span class="line"><span class="keyword">from</span> 表名</span><br><span class="line"><span class="keyword">where</span> 条件（多个条件可以用<span class="keyword">and</span>,<span class="keyword">or</span>,()进行组合）</span><br><span class="line"></span><br><span class="line">投影（从一个表中提取一些列）</span><br><span class="line"><span class="keyword">select</span> 列名，...列名</span><br><span class="line"><span class="keyword">from</span> 表名</span><br><span class="line"></span><br><span class="line">选择+投影</span><br><span class="line"><span class="keyword">select</span> <span class="keyword">Name</span>,GPA</span><br><span class="line"><span class="keyword">from</span> Student</span><br><span class="line"><span class="keyword">where</span> Major=<span class="string">"计算机"</span></span><br><span class="line"></span><br><span class="line">连接(<span class="keyword">Join</span>)</span><br><span class="line"><span class="keyword">select</span> Student.Name, Course.Name</span><br><span class="line"><span class="keyword">from</span> Student, Course, TakeCourse</span><br><span class="line"><span class="keyword">where</span> TakeCourse.CourseId = Course.ID <span class="keyword">and</span> TakeCourse.StudentID = Student.ID;</span><br><span class="line"></span><br><span class="line">分组统计(group by)</span><br><span class="line"><span class="keyword">select</span> Major, <span class="keyword">count</span>(*)</span><br><span class="line"><span class="keyword">from</span> Student</span><br><span class="line"><span class="keyword">where</span> <span class="keyword">Year</span> &gt;= <span class="number">2013</span> <span class="keyword">and</span> <span class="keyword">Year</span> &lt;= <span class="number">2014</span></span><br><span class="line"><span class="keyword">group</span> <span class="keyword">by</span> Major;</span><br><span class="line"></span><br><span class="line">过滤(Having,在group by基础上选择)</span><br><span class="line"><span class="keyword">select</span> Major, <span class="keyword">count</span>(*) <span class="keyword">as</span> Cnt</span><br><span class="line"><span class="keyword">from</span> Student</span><br><span class="line"><span class="keyword">where</span> <span class="keyword">Year</span> &gt;= <span class="number">2013</span> <span class="keyword">and</span> <span class="keyword">Year</span> &lt;= <span class="number">2014</span></span><br><span class="line"><span class="keyword">group</span> <span class="keyword">by</span> Major</span><br><span class="line"><span class="keyword">having</span> Cnt &gt;= <span class="number">2</span>;</span><br><span class="line"></span><br><span class="line">排序(Order by,desc减少，asc增加)</span><br><span class="line"><span class="keyword">select</span> Major, <span class="keyword">count</span>(*) <span class="keyword">as</span> Cnt</span><br><span class="line"><span class="keyword">from</span> Student</span><br><span class="line"><span class="keyword">where</span> <span class="keyword">Year</span> &gt;= <span class="number">2013</span> <span class="keyword">and</span> <span class="keyword">Year</span> &lt;= <span class="number">2014</span></span><br><span class="line"><span class="keyword">group</span> <span class="keyword">by</span> Major</span><br><span class="line"><span class="keyword">order</span> <span class="keyword">by</span> Cnt <span class="keyword">desc</span>;</span><br></pre></td></tr></table></figure>
-<hr>
-<h3 id="RDBMS-关系型数据库系统"><a href="#RDBMS-关系型数据库系统" class="headerlink" title="RDBMS(关系型数据库系统)"></a>RDBMS(关系型数据库系统)</h3><p>系统架构</p>
+            <p>&#x5927;&#x6570;&#x636E;&#x7684;&#x6982;&#x5FF5;(&#x4E09;&#x4E2A;&#x91CD;&#x8981;&#x6311;&#x6218;) 1. &#x6570;&#x636E;&#x91CF;&#x5DE8;&#x5927;(Volumn) 2. &#x6570;&#x636E;&#x7684;&#x4EA7;&#x751F; &#x901F;&#x5EA6;&#x3001;&#x66F4;&#x65B0;&#x901F;&#x5EA6;&#x5FEB;(Velocity) 3. &#x6570;&#x636E;&#x79CD;&#x7C7B;&#x7E41;&#x591A;(Variety)</p>
+<p>&#x5927;&#x6570;&#x636E;&#x7BA1;&#x7406;&#x7CFB;&#x7EDF;&#xFF1A; 1. &#x5173;&#x7CFB;&#x578B;&#xFF08;Oracle&#xFF0C;DB2&#xFF0C;MS SQL&#xFF09; 2. &#x4E91;&#x5E73;&#x53F0;&#xFF08;MapReduce&#xFF0C;Apache Hadoop&#xFF0C;MS Dryad&#xFF09; 3. &#x4E91;&#x5E73;&#x53F0;+SQL&#xFF08;Apache Hive&#xFF09; 4. No-SQL&#xFF08;Apache Hbase&#xFF0C;MongoDB&#xFF0C;Neo4j&#xFF09; 5. &#x56FE;&#x6570;&#x636E;&#x5904;&#x7406;&#xFF08;Google Pregel&#xFF0C;Apache Giraph&#xFF0C;Graphlab&#xFF09; 6. &#x5185;&#x5B58;&#x6570;&#x636E;&#x5904;&#x7406;&#xFF08;MMDB&#xFF0C;Spark&#xFF09;</p>
+<p>ACID&#xFF1A; 1. &#x539F;&#x5B50;&#x6027;&#xFF08;Atomicity&#xFF09; 2. &#x4E00;&#x81F4;&#x6027;&#xFF08;Consistency&#xFF09; 3. &#x9694;&#x79BB;&#x6027;&#xFF08;Isolation&#xFF09; 4. &#x6301;&#x4E45;&#x6027;&#xFF08;Durability&#xFF09; -----</p>
+<h2 id="&#x5173;&#x7CFB;&#x578B;&#x6570;&#x636E;&#x5E93;">&#x5173;&#x7CFB;&#x578B;&#x6570;&#x636E;&#x5E93;</h2>
+<h3 id="tablerelation&#x8868;">Table/Relation(&#x8868;)</h3>
 <ul>
-<li>SQL Parse:SQL语句的程序（语法解析，表名，列名，类型检查）</li>
-<li>Query Optimizer：SQL内部表达（产生可行的query plan选最佳）</li>
-<li>Data storage and indexing（如何在硬盘上存储访问数据）</li>
-<li>Buffer pool：在内存中缓存硬盘数据</li>
-<li>Execution Engine：（根据query plan完成相应的运算和操作）</li>
-<li>Transaction management：事务管理（ACID，logging日志加锁，保证并行事务正确性）</li>
+<li>&#x5217;&#xFF1A;&#x4E00;&#x4E2A;&#x5C5E;&#x6027;&#xFF0C;&#x6709;&#x660E;&#x786E;&#x7684;&#x6570;&#x636E;&#x7C7B;&#x578B;</li>
+<li>&#x884C;&#xFF1A;&#x4E00;&#x4E2A;&#x8BB0;&#x5F55;</li>
+<li>&#x901A;&#x5E38;&#x5F88;&#x7626;&#x957F;</li>
+<li>&#x539F;&#x5B50;&#x7C7B;&#x578B;&#xFF08;&#x65E0;&#x5185;&#x90E8;&#x5D4C;&#x5957;&#x7ED3;&#x6784;&#xFF0C;&#x4E0D;&#x80FD;&#x7528;struct&#x3001;class&#x3001;array&#x3001;list&#x3001;set&#x3001;map&#x7B49;&#xFF09;</li>
+</ul>
+<h3 id="scheme-vs-instance">Scheme vs Instance</h3>
+<ul>
+<li>Scheme&#xFF1A;&#x4E00;&#x4E2A;&#x8868;&#x7684;&#x7C7B;&#x578B;&#x662F;&#x7531;&#x6BCF;&#x4E2A;&#x5217;&#x7684;&#x7C7B;&#x578B;&#x51B3;&#x5B9A;&#x7684;</li>
+<li>Instance&#xFF1A;&#x5177;&#x4F53;&#x53D6;&#x503C;&#xFF0C;&#x7531;&#x5177;&#x4F53;&#x5E94;&#x7528;&#x51B3;&#x5B9A;</li>
+<li>Scheme&#x5B9A;&#x4E49;&#x4E00;&#x6B21;&#x5BF9;&#x5E94;&#x591A;&#x4E2A;instance</li>
+</ul>
+<h3 id="key">Key</h3>
+<ul>
+<li>Primary key&#x4E3B;&#x952E;&#x786E;&#x5B9A;&#x672C;&#x8868;&#x4E2D;&#x7684;&#x4E00;&#x4E2A;&#x8BB0;&#x5F55;(&#x53EF;&#x4EE5;&#x662F;&#x591A;&#x4E2A;&#x952E;&#x7684;&#x7EC4;&#x5408;)&#xFF1B;</li>
+<li>Foreign key&#x5916;&#x952E;&#x552F;&#x4E00;&#x51B3;&#x5B9A;&#x53E6;&#x4E00;&#x4E2A;&#x8868;&#x7684;&#x8BB0;&#x5F55;&#xFF1B;</li>
 </ul>
 <hr>
-<h3 id="数据库-vs-文件系统"><a href="#数据库-vs-文件系统" class="headerlink" title="数据库 vs 文件系统"></a>数据库 vs 文件系统</h3><div class="table-container">
+<h2 id="sql">SQL</h2>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">create</span> <span class="keyword">table</span> &#x8868;&#x540D; (</span><br><span class="line">&#x5217;&#x540D; &#x7C7B;&#x578B;,</span><br><span class="line">&#x5217;&#x540D; &#x7C7B;&#x578B;,</span><br><span class="line">&#x5217;&#x540D; &#x7C7B;&#x578B;,</span><br><span class="line">&#x2026;&#x2026; ,</span><br><span class="line">primary <span class="keyword">key</span>(<span class="keyword">ID</span>) -&gt; &#x58F0;&#x660E;&#x4E3B;&#x952E;&#xFF0C;&#x53EF;&#x4EE5;&#x5305;&#x542B;&#x591A;&#x4E2A;&#x5C5E;&#x6027;</span><br><span class="line">foreign <span class="keyword">key</span>(CourseId) <span class="keyword">references</span> Course(<span class="keyword">ID</span>),</span><br><span class="line">foreign <span class="keyword">key</span>(StudentId) <span class="keyword">references</span> Student(<span class="keyword">ID</span>) -&gt; &#x58F0;&#x660E;&#x5916;&#x952E;&#xFF0C;&#x53EF;&#x4EE5;&#x6709;&#x591A;&#x4E2A;</span><br><span class="line">);</span><br><span class="line"></span><br><span class="line">&#x63D2;&#x5165;&#x5B8C;&#x6574;&#x8BB0;&#x5F55;&#xFF1A;</span><br><span class="line"><span class="keyword">insert</span> <span class="keyword">into</span> Student</span><br><span class="line"><span class="keyword">values</span> (<span class="number">131234</span>, &#x2018;&#x5F20;&#x98DE;&#x2019;, <span class="number">1995</span>/<span class="number">1</span>/<span class="number">1</span>, M, &#x2018;&#x8BA1;&#x7B97;&#x673A;&#x2019;, <span class="number">2013</span>, <span class="number">85</span>);</span><br><span class="line"></span><br><span class="line">&#x63D2;&#x5165;&#x8BB0;&#x5F55;&#x7279;&#x5B9A;&#x7684;&#x5217;&#xFF0C;&#x5176;&#x5B83;&#x5217;&#x4E3A;&#x7A7A;&#xFF1A;</span><br><span class="line"><span class="keyword">insert</span> <span class="keyword">into</span> Student(<span class="keyword">ID</span>, <span class="keyword">Name</span>)</span><br><span class="line"><span class="keyword">values</span> (<span class="number">131234</span>, &#x2018;&#x5F20;&#x98DE;&#x2019;);</span><br><span class="line"></span><br><span class="line">&#x5220;&#x9664;&#x8BB0;&#x5F55;</span><br><span class="line"><span class="keyword">delete</span> <span class="keyword">from</span> Student</span><br><span class="line"><span class="keyword">where</span> <span class="keyword">ID</span> = <span class="number">131234</span>;</span><br><span class="line"></span><br><span class="line">&#x66F4;&#x65B0;</span><br><span class="line"><span class="keyword">update</span> Student</span><br><span class="line"><span class="keyword">set</span> GPA = <span class="number">86</span></span><br><span class="line"><span class="keyword">where</span> <span class="keyword">ID</span> = <span class="number">131234</span></span><br><span class="line"></span><br><span class="line">&#x9009;&#x62E9;&#xFF08;&#x4ECE;&#x4E00;&#x4E2A;&#x8868;&#x4E2D;&#x63D0;&#x53D6;&#x4E00;&#x4E9B;&#x884C;&#xFF09;</span><br><span class="line"><span class="keyword">select</span> *</span><br><span class="line"><span class="keyword">from</span> &#x8868;&#x540D;</span><br><span class="line"><span class="keyword">where</span> &#x6761;&#x4EF6;&#xFF08;&#x591A;&#x4E2A;&#x6761;&#x4EF6;&#x53EF;&#x4EE5;&#x7528;<span class="keyword">and</span>,<span class="keyword">or</span>,()&#x8FDB;&#x884C;&#x7EC4;&#x5408;&#xFF09;</span><br><span class="line"></span><br><span class="line">&#x6295;&#x5F71;&#xFF08;&#x4ECE;&#x4E00;&#x4E2A;&#x8868;&#x4E2D;&#x63D0;&#x53D6;&#x4E00;&#x4E9B;&#x5217;&#xFF09;</span><br><span class="line"><span class="keyword">select</span> &#x5217;&#x540D;&#xFF0C;...&#x5217;&#x540D;</span><br><span class="line"><span class="keyword">from</span> &#x8868;&#x540D;</span><br><span class="line"></span><br><span class="line">&#x9009;&#x62E9;+&#x6295;&#x5F71;</span><br><span class="line"><span class="keyword">select</span> <span class="keyword">Name</span>,GPA</span><br><span class="line"><span class="keyword">from</span> Student</span><br><span class="line"><span class="keyword">where</span> Major=<span class="string">&quot;&#x8BA1;&#x7B97;&#x673A;&quot;</span></span><br><span class="line"></span><br><span class="line">&#x8FDE;&#x63A5;(<span class="keyword">Join</span>)</span><br><span class="line"><span class="keyword">select</span> Student.Name, Course.Name</span><br><span class="line"><span class="keyword">from</span> Student, Course, TakeCourse</span><br><span class="line"><span class="keyword">where</span> TakeCourse.CourseId = Course.ID <span class="keyword">and</span> TakeCourse.StudentID = Student.ID;</span><br><span class="line"></span><br><span class="line">&#x5206;&#x7EC4;&#x7EDF;&#x8BA1;(group by)</span><br><span class="line"><span class="keyword">select</span> Major, <span class="keyword">count</span>(*)</span><br><span class="line"><span class="keyword">from</span> Student</span><br><span class="line"><span class="keyword">where</span> <span class="keyword">Year</span> &gt;= <span class="number">2013</span> <span class="keyword">and</span> <span class="keyword">Year</span> &lt;= <span class="number">2014</span></span><br><span class="line"><span class="keyword">group</span> <span class="keyword">by</span> Major;</span><br><span class="line"></span><br><span class="line">&#x8FC7;&#x6EE4;(Having,&#x5728;group by&#x57FA;&#x7840;&#x4E0A;&#x9009;&#x62E9;)</span><br><span class="line"><span class="keyword">select</span> Major, <span class="keyword">count</span>(*) <span class="keyword">as</span> Cnt</span><br><span class="line"><span class="keyword">from</span> Student</span><br><span class="line"><span class="keyword">where</span> <span class="keyword">Year</span> &gt;= <span class="number">2013</span> <span class="keyword">and</span> <span class="keyword">Year</span> &lt;= <span class="number">2014</span></span><br><span class="line"><span class="keyword">group</span> <span class="keyword">by</span> Major</span><br><span class="line"><span class="keyword">having</span> Cnt &gt;= <span class="number">2</span>;</span><br><span class="line"></span><br><span class="line">&#x6392;&#x5E8F;(Order by,desc&#x51CF;&#x5C11;&#xFF0C;asc&#x589E;&#x52A0;)</span><br><span class="line"><span class="keyword">select</span> Major, <span class="keyword">count</span>(*) <span class="keyword">as</span> Cnt</span><br><span class="line"><span class="keyword">from</span> Student</span><br><span class="line"><span class="keyword">where</span> <span class="keyword">Year</span> &gt;= <span class="number">2013</span> <span class="keyword">and</span> <span class="keyword">Year</span> &lt;= <span class="number">2014</span></span><br><span class="line"><span class="keyword">group</span> <span class="keyword">by</span> Major</span><br><span class="line"><span class="keyword">order</span> <span class="keyword">by</span> Cnt <span class="keyword">desc</span>;</span><br></pre></td></tr></table></figure>
+<hr>
+<h3 id="rdbms&#x5173;&#x7CFB;&#x578B;&#x6570;&#x636E;&#x5E93;&#x7CFB;&#x7EDF;">RDBMS(&#x5173;&#x7CFB;&#x578B;&#x6570;&#x636E;&#x5E93;&#x7CFB;&#x7EDF;)</h3>
+<p>&#x7CFB;&#x7EDF;&#x67B6;&#x6784; * SQL Parse:SQL&#x8BED;&#x53E5;&#x7684;&#x7A0B;&#x5E8F;&#xFF08;&#x8BED;&#x6CD5;&#x89E3;&#x6790;&#xFF0C;&#x8868;&#x540D;&#xFF0C;&#x5217;&#x540D;&#xFF0C;&#x7C7B;&#x578B;&#x68C0;&#x67E5;&#xFF09; * Query Optimizer&#xFF1A;SQL&#x5185;&#x90E8;&#x8868;&#x8FBE;&#xFF08;&#x4EA7;&#x751F;&#x53EF;&#x884C;&#x7684;query plan&#x9009;&#x6700;&#x4F73;&#xFF09; * Data storage and indexing&#xFF08;&#x5982;&#x4F55;&#x5728;&#x786C;&#x76D8;&#x4E0A;&#x5B58;&#x50A8;&#x8BBF;&#x95EE;&#x6570;&#x636E;&#xFF09; * Buffer pool&#xFF1A;&#x5728;&#x5185;&#x5B58;&#x4E2D;&#x7F13;&#x5B58;&#x786C;&#x76D8;&#x6570;&#x636E; * Execution Engine&#xFF1A;&#xFF08;&#x6839;&#x636E;query plan&#x5B8C;&#x6210;&#x76F8;&#x5E94;&#x7684;&#x8FD0;&#x7B97;&#x548C;&#x64CD;&#x4F5C;&#xFF09; * Transaction management&#xFF1A;&#x4E8B;&#x52A1;&#x7BA1;&#x7406;&#xFF08;ACID&#xFF0C;logging&#x65E5;&#x5FD7;&#x52A0;&#x9501;&#xFF0C;&#x4FDD;&#x8BC1;&#x5E76;&#x884C;&#x4E8B;&#x52A1;&#x6B63;&#x786E;&#x6027;&#xFF09;</p>
+<hr>
+<h3 id="&#x6570;&#x636E;&#x5E93;-vs-&#x6587;&#x4EF6;&#x7CFB;&#x7EDF;">&#x6570;&#x636E;&#x5E93; vs &#x6587;&#x4EF6;&#x7CFB;&#x7EDF;</h3>
 <table>
 <thead>
-<tr>
-<th style="text-align:right">文件系统</th>
-<th style="text-align:right">数据库</th>
+<tr class="header">
+<th style="text-align: right;">&#x6587;&#x4EF6;&#x7CFB;&#x7EDF;</th>
+<th style="text-align: right;">&#x6570;&#x636E;&#x5E93;</th>
 </tr>
 </thead>
 <tbody>
-<tr>
-<td style="text-align:right">存储文件</td>
-<td style="text-align:right">存储数据表</td>
+<tr class="odd">
+<td style="text-align: right;">&#x5B58;&#x50A8;&#x6587;&#x4EF6;</td>
+<td style="text-align: right;">&#x5B58;&#x50A8;&#x6570;&#x636E;&#x8868;</td>
 </tr>
-<tr>
-<td style="text-align:right">通用的</td>
-<td style="text-align:right">专用的</td>
+<tr class="even">
+<td style="text-align: right;">&#x901A;&#x7528;&#x7684;</td>
+<td style="text-align: right;">&#x4E13;&#x7528;&#x7684;</td>
 </tr>
-<tr>
-<td style="text-align:right">文件无结构，由一串字节组成</td>
-<td style="text-align:right">由记录组成，每个记录有多个属性</td>
+<tr class="odd">
+<td style="text-align: right;">&#x6587;&#x4EF6;&#x65E0;&#x7ED3;&#x6784;&#xFF0C;&#x7531;&#x4E00;&#x4E32;&#x5B57;&#x8282;&#x7EC4;&#x6210;</td>
+<td style="text-align: right;">&#x7531;&#x8BB0;&#x5F55;&#x7EC4;&#x6210;&#xFF0C;&#x6BCF;&#x4E2A;&#x8BB0;&#x5F55;&#x6709;&#x591A;&#x4E2A;&#x5C5E;&#x6027;</td>
 </tr>
-<tr>
-<td style="text-align:right">操作系统实现</td>
-<td style="text-align:right">用户态程序实现</td>
+<tr class="even">
+<td style="text-align: right;">&#x64CD;&#x4F5C;&#x7CFB;&#x7EDF;&#x5B9E;&#x73B0;</td>
+<td style="text-align: right;">&#x7528;&#x6237;&#x6001;&#x7A0B;&#x5E8F;&#x5B9E;&#x73B0;</td>
 </tr>
-<tr>
-<td style="text-align:right">提供编程接口</td>
-<td style="text-align:right">提供SQL接口</td>
+<tr class="odd">
+<td style="text-align: right;">&#x63D0;&#x4F9B;&#x7F16;&#x7A0B;&#x63A5;&#x53E3;</td>
+<td style="text-align: right;">&#x63D0;&#x4F9B;SQL&#x63A5;&#x53E3;</td>
 </tr>
 </tbody>
 </table>
-</div>
-<p>相同点：数据存储在外存；数据分成定长数据块</p>
-<p>RDBMS最小存储单位database page size</p>
-<p>Tuple可以存储变长的列,主要就是利用指针把边长空间放到后面</p>
-<p><img src="pictures/tunple.jpg" alt><br><img src="pictures/tunple_example.jpg" alt></p>
-<p>数据的顺序访问会造成性能问题，所以采用有选择的访问</p>
-<p>索引</p>
-<ul>
-<li>Tree based index：有序，支持点查询和范围查询（每个叶子节点是一个page，内部节点索引用）</li>
-<li>Hash based index：无序，只支持点查询（每个bucket是一个page，$O(log_2^N)$）</li>
-<li>主索引：记录存在index中，顺序为index顺序</li>
-<li>二级索引：index存page ID和in-page tuple slot ID</li>
-</ul>
-<p>数据访问有空间和时间局部性</p>
-<p>buffer pool如果在替换时没有空闲frame，找到已缓存的page（LRU）被修改过需要写回硬盘</p>
-<p>LRU的实现：</p>
-<ol>
-<li>时间戳最小的页$O(n)$</li>
-<li>循环链表，当一个页被访问放到链表最前端，然后替换最后一个页$O(1)$(修改队列代价大且多线程需要共享队头)</li>
-<li>Clock算法：访问R=1；旋转R==1-&gt;R=0;R==0选中。（说明在旋转一圈时间里都没有被访问）</li>
-</ol>
+<p>&#x76F8;&#x540C;&#x70B9;&#xFF1A;&#x6570;&#x636E;&#x5B58;&#x50A8;&#x5728;&#x5916;&#x5B58;&#xFF1B;&#x6570;&#x636E;&#x5206;&#x6210;&#x5B9A;&#x957F;&#x6570;&#x636E;&#x5757;</p>
+<p>RDBMS&#x6700;&#x5C0F;&#x5B58;&#x50A8;&#x5355;&#x4F4D;database page size</p>
+<p>Tuple&#x53EF;&#x4EE5;&#x5B58;&#x50A8;&#x53D8;&#x957F;&#x7684;&#x5217;,&#x4E3B;&#x8981;&#x5C31;&#x662F;&#x5229;&#x7528;&#x6307;&#x9488;&#x628A;&#x8FB9;&#x957F;&#x7A7A;&#x95F4;&#x653E;&#x5230;&#x540E;&#x9762;</p>
+<p><img src="/2019/06/03/&#x6570;&#x636E;&#x5E93;/2019-06-03-&#x5173;&#x7CFB;&#x6570;&#x636E;&#x5E93;/tunple.jpg"> <img src="/2019/06/03/&#x6570;&#x636E;&#x5E93;/2019-06-03-&#x5173;&#x7CFB;&#x6570;&#x636E;&#x5E93;/tunple_example.jpg"></p>
+<p>&#x6570;&#x636E;&#x7684;&#x987A;&#x5E8F;&#x8BBF;&#x95EE;&#x4F1A;&#x9020;&#x6210;&#x6027;&#x80FD;&#x95EE;&#x9898;&#xFF0C;&#x6240;&#x4EE5;&#x91C7;&#x7528;&#x6709;&#x9009;&#x62E9;&#x7684;&#x8BBF;&#x95EE;</p>
+<p>&#x7D22;&#x5F15; * Tree based index&#xFF1A;&#x6709;&#x5E8F;&#xFF0C;&#x652F;&#x6301;&#x70B9;&#x67E5;&#x8BE2;&#x548C;&#x8303;&#x56F4;&#x67E5;&#x8BE2;&#xFF08;&#x6BCF;&#x4E2A;&#x53F6;&#x5B50;&#x8282;&#x70B9;&#x662F;&#x4E00;&#x4E2A;page&#xFF0C;&#x5185;&#x90E8;&#x8282;&#x70B9;&#x7D22;&#x5F15;&#x7528;&#xFF09; * Hash based index&#xFF1A;&#x65E0;&#x5E8F;&#xFF0C;&#x53EA;&#x652F;&#x6301;&#x70B9;&#x67E5;&#x8BE2;&#xFF08;&#x6BCF;&#x4E2A;bucket&#x662F;&#x4E00;&#x4E2A;page&#xFF0C;<span class="math inline">\(O(log_2^N)\)</span>&#xFF09; * &#x4E3B;&#x7D22;&#x5F15;&#xFF1A;&#x8BB0;&#x5F55;&#x5B58;&#x5728;index&#x4E2D;&#xFF0C;&#x987A;&#x5E8F;&#x4E3A;index&#x987A;&#x5E8F; * &#x4E8C;&#x7EA7;&#x7D22;&#x5F15;&#xFF1A;index&#x5B58;page ID&#x548C;in-page tuple slot ID</p>
+<p>&#x6570;&#x636E;&#x8BBF;&#x95EE;&#x6709;&#x7A7A;&#x95F4;&#x548C;&#x65F6;&#x95F4;&#x5C40;&#x90E8;&#x6027;</p>
+<p>buffer pool&#x5982;&#x679C;&#x5728;&#x66FF;&#x6362;&#x65F6;&#x6CA1;&#x6709;&#x7A7A;&#x95F2;frame&#xFF0C;&#x627E;&#x5230;&#x5DF2;&#x7F13;&#x5B58;&#x7684;page&#xFF08;LRU&#xFF09;&#x88AB;&#x4FEE;&#x6539;&#x8FC7;&#x9700;&#x8981;&#x5199;&#x56DE;&#x786C;&#x76D8;</p>
+<p>LRU&#x7684;&#x5B9E;&#x73B0;&#xFF1A; 1. &#x65F6;&#x95F4;&#x6233;&#x6700;&#x5C0F;&#x7684;&#x9875;<span class="math inline">\(O(n)\)</span> 2. &#x5FAA;&#x73AF;&#x94FE;&#x8868;&#xFF0C;&#x5F53;&#x4E00;&#x4E2A;&#x9875;&#x88AB;&#x8BBF;&#x95EE;&#x653E;&#x5230;&#x94FE;&#x8868;&#x6700;&#x524D;&#x7AEF;&#xFF0C;&#x7136;&#x540E;&#x66FF;&#x6362;&#x6700;&#x540E;&#x4E00;&#x4E2A;&#x9875;<span class="math inline">\(O(1)\)</span>(&#x4FEE;&#x6539;&#x961F;&#x5217;&#x4EE3;&#x4EF7;&#x5927;&#x4E14;&#x591A;&#x7EBF;&#x7A0B;&#x9700;&#x8981;&#x5171;&#x4EAB;&#x961F;&#x5934;) 3. Clock&#x7B97;&#x6CD5;&#xFF1A;&#x8BBF;&#x95EE;R=1&#xFF1B;&#x65CB;&#x8F6C;R==1-&gt;R=0;R==0&#x9009;&#x4E2D;&#x3002;&#xFF08;&#x8BF4;&#x660E;&#x5728;&#x65CB;&#x8F6C;&#x4E00;&#x5708;&#x65F6;&#x95F4;&#x91CC;&#x90FD;&#x6CA1;&#x6709;&#x88AB;&#x8BBF;&#x95EE;&#xFF09;</p>
 <hr>
-<h3 id="Operator-Tree"><a href="#Operator-Tree" class="headerlink" title="Operator Tree"></a>Operator Tree</h3><p>每个节点代表一个运算；输入来自孩子节点；输出送往父节点。<br><img src="pictures/operate_tree.jpg" alt></p>
+<h3 id="operator-tree">Operator Tree</h3>
+<p>&#x6BCF;&#x4E2A;&#x8282;&#x70B9;&#x4EE3;&#x8868;&#x4E00;&#x4E2A;&#x8FD0;&#x7B97;&#xFF1B;&#x8F93;&#x5165;&#x6765;&#x81EA;&#x5B69;&#x5B50;&#x8282;&#x70B9;&#xFF1B;&#x8F93;&#x51FA;&#x9001;&#x5F80;&#x7236;&#x8282;&#x70B9;&#x3002; <img src="/2019/06/03/&#x6570;&#x636E;&#x5E93;/2019-06-03-&#x5173;&#x7CFB;&#x6570;&#x636E;&#x5E93;/operate_tree.jpg"></p>
 <ul>
-<li>Selection:行过滤（比较操作、数学运算、逻辑运算）</li>
-<li>Projection:列提取（从记录中提取属性生成结果记录）</li>
+<li>Selection:&#x884C;&#x8FC7;&#x6EE4;&#xFF08;&#x6BD4;&#x8F83;&#x64CD;&#x4F5C;&#x3001;&#x6570;&#x5B66;&#x8FD0;&#x7B97;&#x3001;&#x903B;&#x8F91;&#x8FD0;&#x7B97;&#xFF09;</li>
+<li>Projection:&#x5217;&#x63D0;&#x53D6;&#xFF08;&#x4ECE;&#x8BB0;&#x5F55;&#x4E2D;&#x63D0;&#x53D6;&#x5C5E;&#x6027;&#x751F;&#x6210;&#x7ED3;&#x679C;&#x8BB0;&#x5F55;&#xFF09;</li>
 </ul>
 <hr>
-<h3 id="Join"><a href="#Join" class="headerlink" title="Join"></a>Join</h3><ul>
-<li>Nested loop（双重循环，总共读$M_R+BM_RM_S$）</li>
-<li>Block Nested Loop Join(在外循环每次读入M页的R而不是一条R记录，减少了内循环总共读$M_R+M_RM_S/M$)</li>
-<li>Index Nested Loop Join(设置一个中间index用来检索S表，当很少有匹配时效率较高)</li>
-<li>Hashing（读R建立Hash table，读S访问hash table找到所有的匹配；当R大于内存可以分为小块，由于匹配的记录hash值相同因此必然存在与对应的块中，块id=hash(join key)%分块数量。总共读$2M_R+2M_S$个page，写$M_R+M_S$个）</li>
-<li>Sort Merge Join（先排序，后merge）</li>
+<h3 id="join">Join</h3>
+<ul>
+<li>Nested loop&#xFF08;&#x53CC;&#x91CD;&#x5FAA;&#x73AF;&#xFF0C;&#x603B;&#x5171;&#x8BFB;<span class="math inline">\(M_R+BM_RM_S\)</span>&#xFF09;</li>
+<li>Block Nested Loop Join(&#x5728;&#x5916;&#x5FAA;&#x73AF;&#x6BCF;&#x6B21;&#x8BFB;&#x5165;M&#x9875;&#x7684;R&#x800C;&#x4E0D;&#x662F;&#x4E00;&#x6761;R&#x8BB0;&#x5F55;&#xFF0C;&#x51CF;&#x5C11;&#x4E86;&#x5185;&#x5FAA;&#x73AF;&#x603B;&#x5171;&#x8BFB;<span class="math inline">\(M_R+M_RM_S/M\)</span>)</li>
+<li>Index Nested Loop Join(&#x8BBE;&#x7F6E;&#x4E00;&#x4E2A;&#x4E2D;&#x95F4;index&#x7528;&#x6765;&#x68C0;&#x7D22;S&#x8868;&#xFF0C;&#x5F53;&#x5F88;&#x5C11;&#x6709;&#x5339;&#x914D;&#x65F6;&#x6548;&#x7387;&#x8F83;&#x9AD8;)</li>
+<li>Hashing&#xFF08;&#x8BFB;R&#x5EFA;&#x7ACB;Hash table&#xFF0C;&#x8BFB;S&#x8BBF;&#x95EE;hash table&#x627E;&#x5230;&#x6240;&#x6709;&#x7684;&#x5339;&#x914D;&#xFF1B;&#x5F53;R&#x5927;&#x4E8E;&#x5185;&#x5B58;&#x53EF;&#x4EE5;&#x5206;&#x4E3A;&#x5C0F;&#x5757;&#xFF0C;&#x7531;&#x4E8E;&#x5339;&#x914D;&#x7684;&#x8BB0;&#x5F55;hash&#x503C;&#x76F8;&#x540C;&#x56E0;&#x6B64;&#x5FC5;&#x7136;&#x5B58;&#x5728;&#x4E0E;&#x5BF9;&#x5E94;&#x7684;&#x5757;&#x4E2D;&#xFF0C;&#x5757;id=hash(join key)%&#x5206;&#x5757;&#x6570;&#x91CF;&#x3002;&#x603B;&#x5171;&#x8BFB;<span class="math inline">\(2M_R+2M_S\)</span>&#x4E2A;page&#xFF0C;&#x5199;<span class="math inline">\(M_R+M_S\)</span>&#x4E2A;&#xFF09;</li>
+<li>Sort Merge Join&#xFF08;&#x5148;&#x6392;&#x5E8F;&#xFF0C;&#x540E;merge&#xFF09;</li>
 <li>Sorting</li>
 </ul>
 <hr>
-<p>事务的正确性：存在一个顺序，按照这个顺序依次串行执行这些Transactions，得到的结果与并行执行相同。</p>
-<p>数据冲突引起的问题：</p>
+<p>&#x4E8B;&#x52A1;&#x7684;&#x6B63;&#x786E;&#x6027;&#xFF1A;&#x5B58;&#x5728;&#x4E00;&#x4E2A;&#x987A;&#x5E8F;&#xFF0C;&#x6309;&#x7167;&#x8FD9;&#x4E2A;&#x987A;&#x5E8F;&#x4F9D;&#x6B21;&#x4E32;&#x884C;&#x6267;&#x884C;&#x8FD9;&#x4E9B;Transactions&#xFF0C;&#x5F97;&#x5230;&#x7684;&#x7ED3;&#x679C;&#x4E0E;&#x5E76;&#x884C;&#x6267;&#x884C;&#x76F8;&#x540C;&#x3002;</p>
+<p>&#x6570;&#x636E;&#x51B2;&#x7A81;&#x5F15;&#x8D77;&#x7684;&#x95EE;&#x9898;&#xFF1A; * &#x8BFB;&#x810F;&#x6570;&#x636E;&#xFF08;&#x5199;&#x8BFB;&#xFF09; * &#x4E0D;&#x53EF;&#x91CD;&#x590D;&#x8BFB;&#xFF08;&#x8BFB;&#x5199;&#xFF09; * &#x66F4;&#x65B0;&#x4E22;&#x5931;&#xFF08;&#x5199;&#x5199;&#xFF09;</p>
+<p>&#x89E3;&#x51B3;&#x65B9;&#x6848;&#xFF1A; * &#x60B2;&#x89C2;&#xFF1A;&#x5047;&#x8BBE;&#x6570;&#x636E;&#x7ADE;&#x4E89;&#x53EF;&#x80FD;&#x7ECF;&#x5E38;&#x51FA;&#x73B0;&#xFF1B;&#x9632;&#x6B62;&#x7ADE;&#x4E89;&#x7684;&#x51FA;&#x73B0;&#xFF08;&#x7B49;&#x5F85;&#xFF09; * &#x4E50;&#x89C2;&#xFF1A;&#x5047;&#x8BBE;&#x6570;&#x636E;&#x7ADE;&#x4E89;&#x5F88;&#x5C11;&#x89C1;&#xFF1B;&#x5148;&#x6267;&#x884C;&#x7136;&#x540E;&#x63D0;&#x4EA4;&#x524D;&#x68C0;&#x67E5;&#x662F;&#x5426;&#x6CA1;&#x6709;&#x6570;&#x636E;&#x7ADE;&#x4E89;</p>
+<p>&#x52A0;&#x9501;&#xFF1A; &#x5BF9;&#x6BCF;&#x4E2A;&#x8BBF;&#x95EE;&#x7684;&#x6570;&#x636E;&#x90FD;&#x8981;&#x52A0;&#x9501;&#x540E;&#x624D;&#x80FD;&#x8BBF;&#x95EE;&#xFF0C;commite&#x524D;&#x96C6;&#x4E2D;&#x89E3;&#x9501;&#x3002; * &#x5171;&#x4EAB;&#x9501;(S)&#xFF1A;&#x4FDD;&#x62A4;&#x8BFB;&#x64CD;&#x4F5C; * &#x4E92;&#x65A5;&#x9501;(X)&#xFF1A;&#x4FDD;&#x62A4;&#x5199;&#x64CD;&#x4F5C; * IS(a):&#x5C06;&#x5BF9;a&#x4E0B;&#x9762;&#x66F4;&#x7EC6;&#x7C92;&#x5EA6;&#x7684;&#x6570;&#x636E;&#x5143;&#x7D20;&#x8FDB;&#x884C;&#x8BFB; * IX(a):&#x5C06;&#x5BF9;a&#x4E0B;&#x9762;&#x66F4;&#x7EC6;&#x7C92;&#x5EA6;&#x7684;&#x6570;&#x636E;&#x8FDB;&#x884C;&#x5199;</p>
+<p>&#x4E0B;&#x9762;&#x8FD9;&#x4E2A;&#x56FE;&#x5206;&#x56DB;&#x4E2A;2*2&#x89C2;&#x5BDF;&#xFF0C;&#x53EA;&#x6709;&#x5DE6;&#x4E0A;&#x89D2;&#x5168;&#x7EFF;&#xFF0C;&#x5176;&#x4F59;&#x4E09;&#x4E2A;&#x65F6;&#x4E00;&#x6837;&#x7684;&#x3002; <img src="/2019/06/03/&#x6570;&#x636E;&#x5E93;/2019-06-03-&#x5173;&#x7CFB;&#x6570;&#x636E;&#x5E93;/lock.jpg"></p>
+<p>&#x5FAA;&#x73AF;&#x7B49;&#x5F85;&#x65F6;&#x7684;deadlock(&#x6B7B;&#x9501;)</p>
 <ul>
-<li>读脏数据（写读）</li>
-<li>不可重复读（读写）</li>
-<li>更新丢失（写写）</li>
+<li>&#x6B7B;&#x9501;&#x907F;&#x514D;&#xFF1A;&#x89C4;&#x5B9A;lock&#x5BF9;&#x8C61;&#x987A;&#x5E8F;&#xFF0C;&#x6309;&#x7167;&#x987A;&#x5E8F;&#x8BF7;&#x6C42;lock&#xFF0C;&#x9002;&#x7528;&#x4E8E;lock&#x5C11;&#x7684;&#x60C5;&#x51B5;&#x3002;&#x7531;&#x4E8E;&#x6570;&#x636E;&#x5E93;lock&#x591A;&#x4E0D;&#x9002;&#x5408;&#x8BE5;&#x65B9;&#x6CD5;&#x3002;</li>
+<li>&#x6B7B;&#x9501;&#x68C0;&#x6D4B;&#xFF1A;&#x5BF9;&#x957F;&#x671F;&#x7B49;&#x5F85;&#x7684;&#x4E8B;&#x52A1;&#x68C0;&#x67E5;&#xFF0C;&#x5982;&#x679C;&#x6709;&#x6B7B;&#x9501;&#x5219;&#x5BF9;&#x73AF;&#x4E0A;&#x4EFB;&#x610F;&#x4E00;&#x4E2A;&#x4E8B;&#x52A1;&#x4E22;&#x5F03;&#x5904;&#x7406;&#x3002;</li>
 </ul>
-<p>解决方案：</p>
-<ul>
-<li>悲观：假设数据竞争可能经常出现；防止竞争的出现（等待）</li>
-<li>乐观：假设数据竞争很少见；先执行然后提交前检查是否没有数据竞争</li>
-</ul>
-<p>加锁：<br>对每个访问的数据都要加锁后才能访问，commite前集中解锁。</p>
-<ul>
-<li>共享锁(S)：保护读操作</li>
-<li>互斥锁(X)：保护写操作</li>
-<li>IS(a):将对a下面更细粒度的数据元素进行读</li>
-<li>IX(a):将对a下面更细粒度的数据进行写</li>
-</ul>
-<p>下面这个图分四个2*2观察，只有左上角全绿，其余三个时一样的。<br><img src="pictures/lock.jpg" alt></p>
-<p>循环等待时的deadlock(死锁)</p>
-<ul>
-<li>死锁避免：规定lock对象顺序，按照顺序请求lock，适用于lock少的情况。由于数据库lock多不适合该方法。</li>
-<li>死锁检测：对长期等待的事务检查，如果有死锁则对环上任意一个事务丢弃处理。</li>
-</ul>
-<p>乐观的并发控制：读；验证；写。（冲突多时可能要不断重试浪费资源）<br>Snapshot Isolation：在起始点snapshot数据先临时保存commit检查冲突。</p>
-<p>事务日志：记录一个写操作的全部信息</p>
-<ol>
-<li>写操作：产生一个事务日志记录</li>
-<li>Commit：产生一个commit日志记录</li>
-<li>Abort：产生一个abort日志记录</li>
-</ol>
-<p>Write-Ahead logging：先logging后实际操作。先记录commit日志然后在commit。</p>
-<p>WAL的持久性：出现掉电可以回溯日志，寻找commit日志。必须保证日志记录先于修改后的数据出现在硬盘上。</p>
-<p>checkpoint：使崩溃恢复时间可控。</p>
-<p>崩溃恢复：</p>
-<ol>
-<li>检查</li>
-<li>找到最后一个检查点</li>
-<li>找到日志崩溃点</li>
-<li>确定崩溃时的活跃事务和脏页</li>
-<li>REDO阶段</li>
-<li>找到脏页最早的LSN</li>
-<li>从LSN正向读取日志</li>
-<li>如果日志涉及的页不在脏页中跳过，数据页LSN&gt;=日志的LSN跳过；否则修改数据页。</li>
-<li>UNDO阶段</li>
-<li>对于所有在崩溃时活跃的事务找到最新LSN，通过反向链表读取其所有日志记录。</li>
-<li>如果数据页LSN&gt;=日志LSN，才进行undo</li>
-</ol>
+<p>&#x4E50;&#x89C2;&#x7684;&#x5E76;&#x53D1;&#x63A7;&#x5236;&#xFF1A;&#x8BFB;&#xFF1B;&#x9A8C;&#x8BC1;&#xFF1B;&#x5199;&#x3002;&#xFF08;&#x51B2;&#x7A81;&#x591A;&#x65F6;&#x53EF;&#x80FD;&#x8981;&#x4E0D;&#x65AD;&#x91CD;&#x8BD5;&#x6D6A;&#x8D39;&#x8D44;&#x6E90;&#xFF09; Snapshot Isolation&#xFF1A;&#x5728;&#x8D77;&#x59CB;&#x70B9;snapshot&#x6570;&#x636E;&#x5148;&#x4E34;&#x65F6;&#x4FDD;&#x5B58;commit&#x68C0;&#x67E5;&#x51B2;&#x7A81;&#x3002;</p>
+<p>&#x4E8B;&#x52A1;&#x65E5;&#x5FD7;&#xFF1A;&#x8BB0;&#x5F55;&#x4E00;&#x4E2A;&#x5199;&#x64CD;&#x4F5C;&#x7684;&#x5168;&#x90E8;&#x4FE1;&#x606F; 1. &#x5199;&#x64CD;&#x4F5C;&#xFF1A;&#x4EA7;&#x751F;&#x4E00;&#x4E2A;&#x4E8B;&#x52A1;&#x65E5;&#x5FD7;&#x8BB0;&#x5F55; 2. Commit&#xFF1A;&#x4EA7;&#x751F;&#x4E00;&#x4E2A;commit&#x65E5;&#x5FD7;&#x8BB0;&#x5F55; 3. Abort&#xFF1A;&#x4EA7;&#x751F;&#x4E00;&#x4E2A;abort&#x65E5;&#x5FD7;&#x8BB0;&#x5F55;</p>
+<p>Write-Ahead logging&#xFF1A;&#x5148;logging&#x540E;&#x5B9E;&#x9645;&#x64CD;&#x4F5C;&#x3002;&#x5148;&#x8BB0;&#x5F55;commit&#x65E5;&#x5FD7;&#x7136;&#x540E;&#x5728;commit&#x3002;</p>
+<p>WAL&#x7684;&#x6301;&#x4E45;&#x6027;&#xFF1A;&#x51FA;&#x73B0;&#x6389;&#x7535;&#x53EF;&#x4EE5;&#x56DE;&#x6EAF;&#x65E5;&#x5FD7;&#xFF0C;&#x5BFB;&#x627E;commit&#x65E5;&#x5FD7;&#x3002;&#x5FC5;&#x987B;&#x4FDD;&#x8BC1;&#x65E5;&#x5FD7;&#x8BB0;&#x5F55;&#x5148;&#x4E8E;&#x4FEE;&#x6539;&#x540E;&#x7684;&#x6570;&#x636E;&#x51FA;&#x73B0;&#x5728;&#x786C;&#x76D8;&#x4E0A;&#x3002;</p>
+<p>checkpoint&#xFF1A;&#x4F7F;&#x5D29;&#x6E83;&#x6062;&#x590D;&#x65F6;&#x95F4;&#x53EF;&#x63A7;&#x3002;</p>
+<p>&#x5D29;&#x6E83;&#x6062;&#x590D;&#xFF1A; 1. &#x68C0;&#x67E5; 2. &#x627E;&#x5230;&#x6700;&#x540E;&#x4E00;&#x4E2A;&#x68C0;&#x67E5;&#x70B9; 3. &#x627E;&#x5230;&#x65E5;&#x5FD7;&#x5D29;&#x6E83;&#x70B9; 4. &#x786E;&#x5B9A;&#x5D29;&#x6E83;&#x65F6;&#x7684;&#x6D3B;&#x8DC3;&#x4E8B;&#x52A1;&#x548C;&#x810F;&#x9875; 5. REDO&#x9636;&#x6BB5; 6. &#x627E;&#x5230;&#x810F;&#x9875;&#x6700;&#x65E9;&#x7684;LSN 7. &#x4ECE;LSN&#x6B63;&#x5411;&#x8BFB;&#x53D6;&#x65E5;&#x5FD7; 8. &#x5982;&#x679C;&#x65E5;&#x5FD7;&#x6D89;&#x53CA;&#x7684;&#x9875;&#x4E0D;&#x5728;&#x810F;&#x9875;&#x4E2D;&#x8DF3;&#x8FC7;&#xFF0C;&#x6570;&#x636E;&#x9875;LSN&gt;=&#x65E5;&#x5FD7;&#x7684;LSN&#x8DF3;&#x8FC7;&#xFF1B;&#x5426;&#x5219;&#x4FEE;&#x6539;&#x6570;&#x636E;&#x9875;&#x3002; 9. UNDO&#x9636;&#x6BB5; 10. &#x5BF9;&#x4E8E;&#x6240;&#x6709;&#x5728;&#x5D29;&#x6E83;&#x65F6;&#x6D3B;&#x8DC3;&#x7684;&#x4E8B;&#x52A1;&#x627E;&#x5230;&#x6700;&#x65B0;LSN&#xFF0C;&#x901A;&#x8FC7;&#x53CD;&#x5411;&#x94FE;&#x8868;&#x8BFB;&#x53D6;&#x5176;&#x6240;&#x6709;&#x65E5;&#x5FD7;&#x8BB0;&#x5F55;&#x3002; 11. &#x5982;&#x679C;&#x6570;&#x636E;&#x9875;LSN&gt;=&#x65E5;&#x5FD7;LSN&#xFF0C;&#x624D;&#x8FDB;&#x884C;undo</p>
 <hr>
-<div class="table-container">
 <table>
 <thead>
-<tr>
-<th style="text-align:right">数据仓库</th>
-<th style="text-align:right">事务处理</th>
+<tr class="header">
+<th style="text-align: right;">&#x6570;&#x636E;&#x4ED3;&#x5E93;</th>
+<th style="text-align: right;">&#x4E8B;&#x52A1;&#x5904;&#x7406;</th>
 </tr>
 </thead>
 <tbody>
-<tr>
-<td style="text-align:right">少数数据分析操作</td>
-<td style="text-align:right">大量并发transactions</td>
+<tr class="odd">
+<td style="text-align: right;">&#x5C11;&#x6570;&#x6570;&#x636E;&#x5206;&#x6790;&#x64CD;&#x4F5C;</td>
+<td style="text-align: right;">&#x5927;&#x91CF;&#x5E76;&#x53D1;transactions</td>
 </tr>
-<tr>
-<td style="text-align:right">每个操作访问大量数据</td>
-<td style="text-align:right">访问很少数据</td>
+<tr class="even">
+<td style="text-align: right;">&#x6BCF;&#x4E2A;&#x64CD;&#x4F5C;&#x8BBF;&#x95EE;&#x5927;&#x91CF;&#x6570;&#x636E;</td>
+<td style="text-align: right;">&#x8BBF;&#x95EE;&#x5F88;&#x5C11;&#x6570;&#x636E;</td>
 </tr>
-<tr>
-<td style="text-align:right">读</td>
-<td style="text-align:right">读写</td>
+<tr class="odd">
+<td style="text-align: right;">&#x8BFB;</td>
+<td style="text-align: right;">&#x8BFB;&#x5199;</td>
 </tr>
 </tbody>
 </table>
-</div>
 <hr>
-<h3 id="OLAP-联机分析处理"><a href="#OLAP-联机分析处理" class="headerlink" title="OLAP(联机分析处理)"></a>OLAP(联机分析处理)</h3><p>数据仓库的基础。基本数据模型：多维矩阵。称为数据立方。</p>
-<p>常用操作：</p>
-<ul>
-<li>rollup（上卷-&gt;在某维度从细粒度到粗粒度），</li>
-<li>drill down（下钻-&gt;从粗粒度到细粒度）</li>
-<li>slice（切片-&gt;在某一维上选一个值）</li>
-<li>dice（切块-&gt;在多维上选多个值）</li>
-</ul>
-<p>行式数据存储：每个记录中所有的列都相邻存放。多个列通过一个I/O得到<br>列式数据存储：每个列产生一个文件，（因为大部分情况只涉及一个表的少数几列，数据更容易压缩，拼装代价大）</p>
+<h3 id="olap&#x8054;&#x673A;&#x5206;&#x6790;&#x5904;&#x7406;">OLAP(&#x8054;&#x673A;&#x5206;&#x6790;&#x5904;&#x7406;)</h3>
+<p>&#x6570;&#x636E;&#x4ED3;&#x5E93;&#x7684;&#x57FA;&#x7840;&#x3002;&#x57FA;&#x672C;&#x6570;&#x636E;&#x6A21;&#x578B;&#xFF1A;&#x591A;&#x7EF4;&#x77E9;&#x9635;&#x3002;&#x79F0;&#x4E3A;&#x6570;&#x636E;&#x7ACB;&#x65B9;&#x3002;</p>
+<p>&#x5E38;&#x7528;&#x64CD;&#x4F5C;&#xFF1A; * rollup&#xFF08;&#x4E0A;&#x5377;-&gt;&#x5728;&#x67D0;&#x7EF4;&#x5EA6;&#x4ECE;&#x7EC6;&#x7C92;&#x5EA6;&#x5230;&#x7C97;&#x7C92;&#x5EA6;&#xFF09;&#xFF0C; * drill down&#xFF08;&#x4E0B;&#x94BB;-&gt;&#x4ECE;&#x7C97;&#x7C92;&#x5EA6;&#x5230;&#x7EC6;&#x7C92;&#x5EA6;&#xFF09; * slice&#xFF08;&#x5207;&#x7247;-&gt;&#x5728;&#x67D0;&#x4E00;&#x7EF4;&#x4E0A;&#x9009;&#x4E00;&#x4E2A;&#x503C;&#xFF09; * dice&#xFF08;&#x5207;&#x5757;-&gt;&#x5728;&#x591A;&#x7EF4;&#x4E0A;&#x9009;&#x591A;&#x4E2A;&#x503C;&#xFF09;</p>
+<p>&#x884C;&#x5F0F;&#x6570;&#x636E;&#x5B58;&#x50A8;&#xFF1A;&#x6BCF;&#x4E2A;&#x8BB0;&#x5F55;&#x4E2D;&#x6240;&#x6709;&#x7684;&#x5217;&#x90FD;&#x76F8;&#x90BB;&#x5B58;&#x653E;&#x3002;&#x591A;&#x4E2A;&#x5217;&#x901A;&#x8FC7;&#x4E00;&#x4E2A;I/O&#x5F97;&#x5230; &#x5217;&#x5F0F;&#x6570;&#x636E;&#x5B58;&#x50A8;&#xFF1A;&#x6BCF;&#x4E2A;&#x5217;&#x4EA7;&#x751F;&#x4E00;&#x4E2A;&#x6587;&#x4EF6;&#xFF0C;&#xFF08;&#x56E0;&#x4E3A;&#x5927;&#x90E8;&#x5206;&#x60C5;&#x51B5;&#x53EA;&#x6D89;&#x53CA;&#x4E00;&#x4E2A;&#x8868;&#x7684;&#x5C11;&#x6570;&#x51E0;&#x5217;&#xFF0C;&#x6570;&#x636E;&#x66F4;&#x5BB9;&#x6613;&#x538B;&#x7F29;&#xFF0C;&#x62FC;&#x88C5;&#x4EE3;&#x4EF7;&#x5927;&#xFF09;</p>
 <hr>
-<h3 id="系统架构"><a href="#系统架构" class="headerlink" title="系统架构"></a>系统架构</h3><p>划分：把数据分布在多台服务器上machine Id=hash(key) % MachineNumber。对与join操作，如果划分key等于join key可以直接进行；如果不是需要在join key进行一次划分然后再join。</p>
-<p>2-phase commit</p>
-<ol>
-<li>Coordinator 向每个participant 发送query to commit消息，participant根据本地情况回答yes/no。</li>
-<li>当所有回答为yes进行commit，participant发送acknowledgment</li>
-<li>至少一个回答no进行abort</li>
-</ol>
+<h3 id="&#x7CFB;&#x7EDF;&#x67B6;&#x6784;">&#x7CFB;&#x7EDF;&#x67B6;&#x6784;</h3>
+<p>&#x5212;&#x5206;&#xFF1A;&#x628A;&#x6570;&#x636E;&#x5206;&#x5E03;&#x5728;&#x591A;&#x53F0;&#x670D;&#x52A1;&#x5668;&#x4E0A;machine Id=hash(key) % MachineNumber&#x3002;&#x5BF9;&#x4E0E;join&#x64CD;&#x4F5C;&#xFF0C;&#x5982;&#x679C;&#x5212;&#x5206;key&#x7B49;&#x4E8E;join key&#x53EF;&#x4EE5;&#x76F4;&#x63A5;&#x8FDB;&#x884C;&#xFF1B;&#x5982;&#x679C;&#x4E0D;&#x662F;&#x9700;&#x8981;&#x5728;join key&#x8FDB;&#x884C;&#x4E00;&#x6B21;&#x5212;&#x5206;&#x7136;&#x540E;&#x518D;join&#x3002;</p>
+<p>2-phase commit 1. Coordinator &#x5411;&#x6BCF;&#x4E2A;participant &#x53D1;&#x9001;query to commit&#x6D88;&#x606F;&#xFF0C;participant&#x6839;&#x636E;&#x672C;&#x5730;&#x60C5;&#x51B5;&#x56DE;&#x7B54;yes/no&#x3002; 2. &#x5F53;&#x6240;&#x6709;&#x56DE;&#x7B54;&#x4E3A;yes&#x8FDB;&#x884C;commit&#xFF0C;participant&#x53D1;&#x9001;acknowledgment 3. &#x81F3;&#x5C11;&#x4E00;&#x4E2A;&#x56DE;&#x7B54;no&#x8FDB;&#x884C;abort</p>
 
             </div>
         
@@ -646,7 +570,7 @@
     
 <nav id="article-nav">
     
-        <a href="/2019/06/04/数据库/2019-06-04-大数据运算/" id="article-nav-newer" class="article-nav-link-wrap">
+        <a href="/2019/06/04/数据库/2019-06-04-大数据存储系统/" id="article-nav-newer" class="article-nav-link-wrap">
             <strong class="article-nav-caption">上一篇</strong>
             <div class="article-nav-title">
                 

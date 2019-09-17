@@ -9,18 +9,18 @@
         <meta name="keywords" content="OS,Raspberry-Pi">
     
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <meta name="description" content="树莓派操作系统这一系列的实验教程是英国剑桥大学针对计算机专业学生开设的，可以帮助学生了解基础的树莓派操作系统，官网教程已经十分详尽，我记录一些实验过程中的问题以及详细实现，避免与教程重复。  要求基本知识：  基础编程 汇编  硬件：  树莓派1代B型 SD卡  软件： 1.GNU2.交叉编译器  其它说明 树莓派1代是2011年的产品，可以在二手市场找到。我本来想尝试使用树莓派3代完成实验，但是">
+    <meta name="description" content="&amp;#x6811;&amp;#x8393;&amp;#x6D3E;&amp;#x64CD;&amp;#x4F5C;&amp;#x7CFB;&amp;#x7EDF; &amp;#x8FD9;&amp;#x4E00;&amp;#x7CFB;&amp;#x5217;&amp;#x7684;&amp;#x5B9E;&amp;#x9A8C;&amp;#x6559;&amp;#x7A0B;&amp;#x662F;&amp;#x82F1;&amp;#x56FD;&amp;#x5251;&amp;#x6865;&amp;#x5927;&amp;#x5B66;&amp;#x9488;&amp;#x5BF9">
 <meta name="keywords" content="OS,Raspberry-Pi">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Raspberry Pi OS Development 前言">
 <meta property="og:url" content="http://www.liufr.com/2016/08/06/Pi/2016-08-06-Baking Pi – Operating Systems Development前言/index.html">
 <meta property="og:site_name" content="Fengrui Liu&#39;s Blog">
-<meta property="og:description" content="树莓派操作系统这一系列的实验教程是英国剑桥大学针对计算机专业学生开设的，可以帮助学生了解基础的树莓派操作系统，官网教程已经十分详尽，我记录一些实验过程中的问题以及详细实现，避免与教程重复。  要求基本知识：  基础编程 汇编  硬件：  树莓派1代B型 SD卡  软件： 1.GNU2.交叉编译器  其它说明 树莓派1代是2011年的产品，可以在二手市场找到。我本来想尝试使用树莓派3代完成实验，但是">
+<meta property="og:description" content="&amp;#x6811;&amp;#x8393;&amp;#x6D3E;&amp;#x64CD;&amp;#x4F5C;&amp;#x7CFB;&amp;#x7EDF; &amp;#x8FD9;&amp;#x4E00;&amp;#x7CFB;&amp;#x5217;&amp;#x7684;&amp;#x5B9E;&amp;#x9A8C;&amp;#x6559;&amp;#x7A0B;&amp;#x662F;&amp;#x82F1;&amp;#x56FD;&amp;#x5251;&amp;#x6865;&amp;#x5927;&amp;#x5B66;&amp;#x9488;&amp;#x5BF9">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:updated_time" content="2017-10-20T01:30:19.460Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Raspberry Pi OS Development 前言">
-<meta name="twitter:description" content="树莓派操作系统这一系列的实验教程是英国剑桥大学针对计算机专业学生开设的，可以帮助学生了解基础的树莓派操作系统，官网教程已经十分详尽，我记录一些实验过程中的问题以及详细实现，避免与教程重复。  要求基本知识：  基础编程 汇编  硬件：  树莓派1代B型 SD卡  软件： 1.GNU2.交叉编译器  其它说明 树莓派1代是2011年的产品，可以在二手市场找到。我本来想尝试使用树莓派3代完成实验，但是">
+<meta name="twitter:description" content="&amp;#x6811;&amp;#x8393;&amp;#x6D3E;&amp;#x64CD;&amp;#x4F5C;&amp;#x7CFB;&amp;#x7EDF; &amp;#x8FD9;&amp;#x4E00;&amp;#x7CFB;&amp;#x5217;&amp;#x7684;&amp;#x5B9E;&amp;#x9A8C;&amp;#x6559;&amp;#x7A0B;&amp;#x662F;&amp;#x82F1;&amp;#x56FD;&amp;#x5251;&amp;#x6865;&amp;#x5927;&amp;#x5B66;&amp;#x9488;&amp;#x5BF9">
     
 
     
@@ -167,7 +167,7 @@
                             &nbsp;
                             Algorithm
                         </a>
-                         <ul class="unstyled" id="tree">  <li class="file"><a href="/2016/10/25/算法/2016-10-25-Dijkstra算法/">Dijkstra算法</a></li>  <li class="file"><a href="/2016/10/25/算法/2016-10-25-BellmanFord算法/">Bellman-Ford算法</a></li>  <li class="file"><a href="/2016/12/08/算法/2016-12-08-Bloom Filter/">Bloom Filter</a></li>  <li class="file"><a href="/2017/07/14/算法/2017-7-14-tf-idf/">tf-idf</a></li>  <li class="file"><a href="/2017/09/13/算法/2017-9-13-前缀和/">前缀和（SJTU OJ 1002）</a></li>  <li class="file"><a href="/2017/09/14/算法/2017-9-14-超大数求和/">超大数求和（SJTU OJ 1007）</a></li>  <li class="file"><a href="/2017/09/15/算法/2017-9-15-完全背包/">DP（完全背包）</a></li>  <li class="file"><a href="/2017/09/15/算法/2017-9-15-DP问题/">DP（SJTU OJ 1012）</a></li>  <li class="file"><a href="/2017/09/15/算法/2017-9-15-DP最长公共子序列/">DP（最长公共子序列）</a></li>  <li class="file"><a href="/2017/09/15/算法/2017-9-15-DP(0" 1背包) ">DP（0/1背包）</a></li>  <li class="file"><a href="/2017/09/25/算法/2017-9-25-约瑟夫问题/">约瑟夫问题(SJTU OJ 1038)</a></li>  <li class="file"><a href="/2018/04/02/算法/2018-4-2-排序(位图数据结构)/">排序(位图数据结构)</a></li>  <li class="file"><a href="/2018/10/18/算法/2018-10-15-非负矩阵分解/">非负矩阵分解</a></li>  </ul> 
+                         <ul class="unstyled" id="tree">  <li class="file"><a href="/2016/10/25/算法/2016-10-25-BellmanFord算法/">Bellman-Ford算法</a></li>  <li class="file"><a href="/2016/10/25/算法/2016-10-25-Dijkstra算法/">Dijkstra算法</a></li>  <li class="file"><a href="/2016/12/08/算法/2016-12-08-Bloom Filter/">Bloom Filter</a></li>  <li class="file"><a href="/2017/07/14/算法/2017-7-14-tf-idf/">tf-idf</a></li>  <li class="file"><a href="/2017/09/13/算法/2017-9-13-前缀和/">前缀和（SJTU OJ 1002）</a></li>  <li class="file"><a href="/2017/09/14/算法/2017-9-14-超大数求和/">超大数求和（SJTU OJ 1007）</a></li>  <li class="file"><a href="/2017/09/15/算法/2017-9-15-DP最长公共子序列/">DP（最长公共子序列）</a></li>  <li class="file"><a href="/2017/09/15/算法/2017-9-15-DP(0" 1背包) ">DP（0/1背包）</a></li>  <li class="file"><a href="/2017/09/15/算法/2017-9-15-完全背包/">DP（完全背包）</a></li>  <li class="file"><a href="/2017/09/15/算法/2017-9-15-DP问题/">DP（SJTU OJ 1012）</a></li>  <li class="file"><a href="/2017/09/25/算法/2017-9-25-约瑟夫问题/">约瑟夫问题(SJTU OJ 1038)</a></li>  <li class="file"><a href="/2018/04/02/算法/2018-4-2-排序(位图数据结构)/">排序(位图数据结构)</a></li>  <li class="file"><a href="/2018/10/18/算法/2018-10-15-非负矩阵分解/">非负矩阵分解</a></li>  </ul> 
                     </li> 
                     
                     <li class="directory">
@@ -194,7 +194,7 @@
                             &nbsp;
                             Data mining
                         </a>
-                         <ul class="unstyled" id="tree">  <li class="file"><a href="/2018/12/02/数据挖掘/2018-12-02-监督学习/">监督学习 Supervised Learning(决策树+SVM/Perceptron+AdaBoost)</a></li>  <li class="file"><a href="/2018/12/03/数据挖掘/2018-12-03-非监督学习/">无监督学习 Unsupervised Learning(聚类、矩阵分解、话题模型)</a></li>  <li class="file"><a href="/2018/12/05/数据挖掘/2018-12-05-互联网搜索与排序/">互联网搜索与排序</a></li>  <li class="file"><a href="/2018/12/05/数据挖掘/2018-12-05-大规模机器学习/">大规模机器学习</a></li>  </ul> 
+                         <ul class="unstyled" id="tree">  <li class="file"><a href="/2018/12/02/数据挖掘/2018-12-02-监督学习/">监督学习 Supervised Learning(决策树+SVM/Perceptron+AdaBoost)</a></li>  <li class="file"><a href="/2018/12/03/数据挖掘/2018-12-03-非监督学习/">无监督学习 Unsupervised Learning(聚类、矩阵分解、话题模型)</a></li>  <li class="file"><a href="/2018/12/05/数据挖掘/2018-12-05-大规模机器学习/">大规模机器学习</a></li>  <li class="file"><a href="/2018/12/05/数据挖掘/2018-12-05-互联网搜索与排序/">互联网搜索与排序</a></li>  </ul> 
                     </li> 
                     
                     <li class="directory">
@@ -203,7 +203,7 @@
                             &nbsp;
                             Database
                         </a>
-                         <ul class="unstyled" id="tree">  <li class="file"><a href="/2019/06/03/数据库/2019-06-03-关系数据库/">关系数据库</a></li>  <li class="file"><a href="/2019/06/04/数据库/2019-06-04-大数据存储系统/">大数据存储系统</a></li>  <li class="file"><a href="/2019/06/04/数据库/2019-06-04-大数据运算/">大数据存储系统</a></li>  </ul> 
+                         <ul class="unstyled" id="tree">  <li class="file"><a href="/2019/06/03/数据库/2019-06-03-关系数据库/">关系数据库</a></li>  <li class="file"><a href="/2019/06/04/数据库/2019-06-04-大数据运算/">大数据存储系统</a></li>  <li class="file"><a href="/2019/06/04/数据库/2019-06-04-大数据存储系统/">大数据存储系统</a></li>  </ul> 
                     </li> 
                     
                     <li class="directory">
@@ -221,7 +221,7 @@
                             &nbsp;
                             Linux
                         </a>
-                         <ul class="unstyled" id="tree">  <li class="file"><a href="/2017/10/05/Linux/2017-10-05-Linux-进程管理/">Linux-进程管理</a></li>  <li class="file"><a href="/2017/10/17/Linux/2017-10-17-Linux进程调度/">Linux-进程调度</a></li>  <li class="file"><a href="/2017/10/20/Linux/2017-10-20-Linux系统调用/">Linux-系统调用</a></li>  <li class="file"><a href="/2017/10/22/Linux/2017-10-22-Linux中断和中断处理/">Linux-中断和中断处理</a></li>  <li class="file"><a href="/2017/10/22/Linux/2017-11-2-Linux-下半部和推后执行的工作/">Linux-下半部和推后执行的工作"</a></li>  </ul> 
+                         <ul class="unstyled" id="tree">  <li class="file"><a href="/2017/10/05/Linux/2017-10-05-Linux-进程管理/">Linux-进程管理</a></li>  <li class="file"><a href="/2017/10/17/Linux/2017-10-17-Linux进程调度/">Linux-进程调度</a></li>  <li class="file"><a href="/2017/10/20/Linux/2017-10-20-Linux系统调用/">Linux-系统调用</a></li>  <li class="file"><a href="/2017/10/22/Linux/2017-11-2-Linux-下半部和推后执行的工作/">Linux-下半部和推后执行的工作"</a></li>  <li class="file"><a href="/2017/10/22/Linux/2017-10-22-Linux中断和中断处理/">Linux-中断和中断处理</a></li>  </ul> 
                     </li> 
                     
                     <li class="directory">
@@ -248,7 +248,7 @@
                             &nbsp;
                             Pi
                         </a>
-                         <ul class="unstyled" id="tree">  <li class="file"><a href="/2016/08/06/Pi/2016-08-06-Raspberry Pi OK02/">Raspberry Pi OK02</a></li>  <li class="file"><a href="/2016/08/06/Pi/2016-08-06-Raspberry Pi OK03/">Raspberry Pi OK03</a></li>  <li class="file active"><a href="/2016/08/06/Pi/2016-08-06-Baking Pi – Operating Systems Development前言/">Raspberry Pi OS Development 前言</a></li>  <li class="file"><a href="/2016/08/06/Pi/2016-08-06-Raspberry Pi OK01/">Raspberry Pi OK01</a></li>  <li class="file"><a href="/2016/08/09/Pi/2016-08-09-Raspberry Pi OK04/">Raspberry Pi OK04</a></li>  <li class="file"><a href="/2016/08/09/Pi/2016-08-11-Raspberry Pi Screen02/">Raspberry Pi Screen02</a></li>  <li class="file"><a href="/2016/08/09/Pi/2016-08-10-Raspberry Pi Screen01/">Raspberry Pi Screen01</a></li>  <li class="file"><a href="/2016/08/09/Pi/2016-08-09-Raspberry Pi OK05/">Raspberry Pi OK05</a></li>  <li class="file"><a href="/2016/08/14/Pi/2016-08-14-Raspberry Pi Screen03/">Raspberry Pi Screen03</a></li>  <li class="file"><a href="/2016/08/16/Pi/2016-08-16-Raspberry Pi Screen04/">Raspberry Pi Screen04</a></li>  <li class="file"><a href="/2016/08/31/Pi/2016-08-31-Raspberry Pi Input01/">Raspberry Pi Input01</a></li>  <li class="file"><a href="/2016/09/01/Pi/2016-09-01-Raspberry Pi Input02/">Raspberry Pi Input02</a></li>  </ul> 
+                         <ul class="unstyled" id="tree">  <li class="file"><a href="/2016/08/06/Pi/2016-08-06-Raspberry Pi OK02/">Raspberry Pi OK02</a></li>  <li class="file active"><a href="/2016/08/06/Pi/2016-08-06-Baking Pi – Operating Systems Development前言/">Raspberry Pi OS Development 前言</a></li>  <li class="file"><a href="/2016/08/06/Pi/2016-08-06-Raspberry Pi OK01/">Raspberry Pi OK01</a></li>  <li class="file"><a href="/2016/08/06/Pi/2016-08-06-Raspberry Pi OK03/">Raspberry Pi OK03</a></li>  <li class="file"><a href="/2016/08/09/Pi/2016-08-11-Raspberry Pi Screen02/">Raspberry Pi Screen02</a></li>  <li class="file"><a href="/2016/08/09/Pi/2016-08-09-Raspberry Pi OK05/">Raspberry Pi OK05</a></li>  <li class="file"><a href="/2016/08/09/Pi/2016-08-09-Raspberry Pi OK04/">Raspberry Pi OK04</a></li>  <li class="file"><a href="/2016/08/09/Pi/2016-08-10-Raspberry Pi Screen01/">Raspberry Pi Screen01</a></li>  <li class="file"><a href="/2016/08/14/Pi/2016-08-14-Raspberry Pi Screen03/">Raspberry Pi Screen03</a></li>  <li class="file"><a href="/2016/08/16/Pi/2016-08-16-Raspberry Pi Screen04/">Raspberry Pi Screen04</a></li>  <li class="file"><a href="/2016/08/31/Pi/2016-08-31-Raspberry Pi Input01/">Raspberry Pi Input01</a></li>  <li class="file"><a href="/2016/09/01/Pi/2016-09-01-Raspberry Pi Input02/">Raspberry Pi Input02</a></li>  </ul> 
                     </li> 
                     
                     <li class="directory">
@@ -266,7 +266,7 @@
                             &nbsp;
                             Security
                         </a>
-                         <ul class="unstyled" id="tree">  <li class="file"><a href="/2018/09/02/安全/2018-09-02-蜜罐技术/">蜜罐技术</a></li>  <li class="file"><a href="/2019/06/22/安全/2019-06-22-网络异常行为检测/">网络异常行为检测</a></li>  <li class="file"><a href="/2019/07/21/安全/2019-07-21-指数加权移动平均法（EWMA）/">指数加权移动平均法（EWMA）</a></li>  <li class="file"><a href="/2019/07/21/安全/2019-07-22-孤立森林（Isolation Froest）/">孤立森林（Isolation Forest）</a></li>  <li class="file"><a href="/2019/07/21/安全/2019-07-22-xgboost/">孤立森林（Isolation Forest）</a></li>  <li class="file"><a href="/2019/07/21/安全/2019-07-21-多项式插值/">多项式插值</a></li>  <li class="file"><a href="/2019/07/21/安全/2019-07-22-利用时序决策树进行DGA僵尸检测/">利用时序决策树进行DGA僵尸检测</a></li>  <li class="file"><a href="/2019/07/21/安全/2019-07-21-梯度提升决策树(GBDT)/">梯度提升决策树（GBDT）</a></li>  </ul> 
+                         <ul class="unstyled" id="tree">  <li class="file"><a href="/2018/09/02/安全/2018-09-02-蜜罐技术/">蜜罐技术</a></li>  <li class="file"><a href="/2019/06/22/安全/2019-06-22-网络异常行为检测/">网络异常行为检测</a></li>  <li class="file"><a href="/2019/07/21/安全/2019-07-21-多项式插值/">多项式插值</a></li>  <li class="file"><a href="/2019/07/21/安全/2019-07-21-指数加权移动平均法（EWMA）/">指数加权移动平均法（EWMA）</a></li>  <li class="file"><a href="/2019/07/21/安全/2019-07-21-梯度提升决策树(GBDT)/">梯度提升决策树（GBDT）</a></li>  <li class="file"><a href="/2019/07/21/安全/2019-07-22-利用时序决策树进行DGA僵尸检测/">利用时序决策树进行DGA僵尸检测</a></li>  <li class="file"><a href="/2019/07/21/安全/2019-07-22-孤立森林（Isolation Froest）/">孤立森林（Isolation Forest）</a></li>  <li class="file"><a href="/2019/07/21/安全/2019-07-22-xgboost/">孤立森林（Isolation Forest）</a></li>  </ul> 
                     </li> 
                     
                     <li class="directory">
@@ -275,7 +275,7 @@
                             &nbsp;
                             网络
                         </a>
-                         <ul class="unstyled" id="tree">  <li class="file"><a href="/2016/12/24/网络/2016-12-24-ipv4在Linux上的实现/">学习构造用户空间的IP栈（资料总结）</a></li>  <li class="file"><a href="/2017/03/12/VANET/2017-3-12-Vanet仿真-ns3(3)/">VANET仿真-ns3(3)</a></li>  <li class="file"><a href="/2017/03/12/VANET/2017-3-12-Vanet仿真-ns3(2)/">VANET仿真-ns3(2)</a></li>  <li class="file"><a href="/2017/03/12/VANET/2017-3-12-Vanet仿真-ns3(1)/">VANET仿真-ns3(1)</a></li>  <li class="file"><a href="/2017/03/13/VANET/2017-3-13-Vanet仿真-ns3(4)/">VANET仿真-ns3(4)</a></li>  <li class="file"><a href="/2017/03/13/VANET/2017-3-13-Vanet仿真-ns3(5)/">VANET仿真-ns3(5)</a></li>  <li class="file"><a href="/2017/03/15/VANET/2017-3-15-Vanet仿真-ns3(6)/">VANET仿真-ns3(6)</a></li>  <li class="file"><a href="/2017/07/14/网络/2017-07-14-Ego networks/">Ego networks</a></li>  </ul> 
+                         <ul class="unstyled" id="tree">  <li class="file"><a href="/2016/12/24/网络/2016-12-24-ipv4在Linux上的实现/">学习构造用户空间的IP栈（资料总结）</a></li>  <li class="file"><a href="/2017/03/12/VANET/2017-3-12-Vanet仿真-ns3(1)/">VANET仿真-ns3(1)</a></li>  <li class="file"><a href="/2017/03/12/VANET/2017-3-12-Vanet仿真-ns3(2)/">VANET仿真-ns3(2)</a></li>  <li class="file"><a href="/2017/03/12/VANET/2017-3-12-Vanet仿真-ns3(3)/">VANET仿真-ns3(3)</a></li>  <li class="file"><a href="/2017/03/13/VANET/2017-3-13-Vanet仿真-ns3(5)/">VANET仿真-ns3(5)</a></li>  <li class="file"><a href="/2017/03/13/VANET/2017-3-13-Vanet仿真-ns3(4)/">VANET仿真-ns3(4)</a></li>  <li class="file"><a href="/2017/03/15/VANET/2017-3-15-Vanet仿真-ns3(6)/">VANET仿真-ns3(6)</a></li>  <li class="file"><a href="/2017/07/14/网络/2017-07-14-Ego networks/">Ego networks</a></li>  </ul> 
                     </li> 
                      <li class="file"><a href="/2019/05/30/强化学习/~$19-05-28-强化学习(2)/"></a></li>  <li class="file"><a href="/2019/09/16/数据挖掘/2019-09-16-基于注意力模型的RNN时序预测/"></a></li>  </ul> 
     </div>
@@ -418,26 +418,29 @@
             
         
         
-            <h3 id="树莓派操作系统"><a href="#树莓派操作系统" class="headerlink" title="树莓派操作系统"></a><a href="http://www.cl.cam.ac.uk/projects/raspberrypi/tutorials/os/index.html" target="_blank" rel="noopener">树莓派操作系统</a></h3><p>这一系列的实验教程是英国剑桥大学针对计算机专业学生开设的，可以帮助学生了解基础的树莓派操作系统，官网教程已经十分详尽，我记录一些实验过程中的问题以及详细实现，避免与教程重复。</p>
+            <h3 id="&#x6811;&#x8393;&#x6D3E;&#x64CD;&#x4F5C;&#x7CFB;&#x7EDF;"><a href="http://www.cl.cam.ac.uk/projects/raspberrypi/tutorials/os/index.html" target="_blank" rel="noopener">&#x6811;&#x8393;&#x6D3E;&#x64CD;&#x4F5C;&#x7CFB;&#x7EDF;</a></h3>
+<p>&#x8FD9;&#x4E00;&#x7CFB;&#x5217;&#x7684;&#x5B9E;&#x9A8C;&#x6559;&#x7A0B;&#x662F;&#x82F1;&#x56FD;&#x5251;&#x6865;&#x5927;&#x5B66;&#x9488;&#x5BF9;&#x8BA1;&#x7B97;&#x673A;&#x4E13;&#x4E1A;&#x5B66;&#x751F;&#x5F00;&#x8BBE;&#x7684;&#xFF0C;&#x53EF;&#x4EE5;&#x5E2E;&#x52A9;&#x5B66;&#x751F;&#x4E86;&#x89E3;&#x57FA;&#x7840;&#x7684;&#x6811;&#x8393;&#x6D3E;&#x64CD;&#x4F5C;&#x7CFB;&#x7EDF;&#xFF0C;&#x5B98;&#x7F51;&#x6559;&#x7A0B;&#x5DF2;&#x7ECF;&#x5341;&#x5206;&#x8BE6;&#x5C3D;&#xFF0C;&#x6211;&#x8BB0;&#x5F55;&#x4E00;&#x4E9B;&#x5B9E;&#x9A8C;&#x8FC7;&#x7A0B;&#x4E2D;&#x7684;&#x95EE;&#x9898;&#x4EE5;&#x53CA;&#x8BE6;&#x7EC6;&#x5B9E;&#x73B0;&#xFF0C;&#x907F;&#x514D;&#x4E0E;&#x6559;&#x7A0B;&#x91CD;&#x590D;&#x3002;</p>
 <hr>
-<h3 id="要求"><a href="#要求" class="headerlink" title="要求"></a>要求</h3><p>基本知识：</p>
-<ol>
-<li>基础编程</li>
-<li>汇编</li>
+<h3 id="&#x8981;&#x6C42;">&#x8981;&#x6C42;</h3>
+<p>&#x57FA;&#x672C;&#x77E5;&#x8BC6;&#xFF1A;</p>
+<ol type="1">
+<li>&#x57FA;&#x7840;&#x7F16;&#x7A0B;</li>
+<li>&#x6C47;&#x7F16;</li>
 </ol>
-<p>硬件：</p>
-<ol>
-<li>树莓派1代B型</li>
-<li>SD卡</li>
+<p>&#x786C;&#x4EF6;&#xFF1A;</p>
+<ol type="1">
+<li>&#x6811;&#x8393;&#x6D3E;1&#x4EE3;B&#x578B;</li>
+<li>SD&#x5361;</li>
 </ol>
-<p>软件：</p>
-<p>1.GNU<br>2.交叉编译器</p>
+<p>&#x8F6F;&#x4EF6;&#xFF1A;</p>
+<p>1.GNU 2.&#x4EA4;&#x53C9;&#x7F16;&#x8BD1;&#x5668;</p>
 <hr>
-<h3 id="其它说明"><a href="#其它说明" class="headerlink" title="其它说明"></a>其它说明</h3><ol>
-<li>树莓派1代是2011年的产品，可以在二手市场找到。我本来想尝试使用树莓派3代完成实验，但是在进行实验过程中，发现layout布局已经相比1代有明显改动，实验中要求进行写入的地址发生了变化，在Github开源项目中issue提交可以查到相关问题描述，但是开发者还未正式公布layout的接口布局，故只能作罢，后续如果开发者有更新可以继续尝试。</li>
-<li><a href="https://www.raspberrypi.org" target="_blank" rel="noopener">树莓派官网以及操作系统安装教程。</a></li>
-<li>根据实际使用操作系统下载相关软件，详情见<a href="http://www.cl.cam.ac.uk/projects/raspberrypi/tutorials/os/downloads.html" target="_blank" rel="noopener">Download</a></li>
-<li>推荐使用一台hdmi接口的显示器</li>
+<h3 id="&#x5176;&#x5B83;&#x8BF4;&#x660E;">&#x5176;&#x5B83;&#x8BF4;&#x660E;</h3>
+<ol type="1">
+<li>&#x6811;&#x8393;&#x6D3E;1&#x4EE3;&#x662F;2011&#x5E74;&#x7684;&#x4EA7;&#x54C1;&#xFF0C;&#x53EF;&#x4EE5;&#x5728;&#x4E8C;&#x624B;&#x5E02;&#x573A;&#x627E;&#x5230;&#x3002;&#x6211;&#x672C;&#x6765;&#x60F3;&#x5C1D;&#x8BD5;&#x4F7F;&#x7528;&#x6811;&#x8393;&#x6D3E;3&#x4EE3;&#x5B8C;&#x6210;&#x5B9E;&#x9A8C;&#xFF0C;&#x4F46;&#x662F;&#x5728;&#x8FDB;&#x884C;&#x5B9E;&#x9A8C;&#x8FC7;&#x7A0B;&#x4E2D;&#xFF0C;&#x53D1;&#x73B0;layout&#x5E03;&#x5C40;&#x5DF2;&#x7ECF;&#x76F8;&#x6BD4;1&#x4EE3;&#x6709;&#x660E;&#x663E;&#x6539;&#x52A8;&#xFF0C;&#x5B9E;&#x9A8C;&#x4E2D;&#x8981;&#x6C42;&#x8FDB;&#x884C;&#x5199;&#x5165;&#x7684;&#x5730;&#x5740;&#x53D1;&#x751F;&#x4E86;&#x53D8;&#x5316;&#xFF0C;&#x5728;Github&#x5F00;&#x6E90;&#x9879;&#x76EE;&#x4E2D;issue&#x63D0;&#x4EA4;&#x53EF;&#x4EE5;&#x67E5;&#x5230;&#x76F8;&#x5173;&#x95EE;&#x9898;&#x63CF;&#x8FF0;&#xFF0C;&#x4F46;&#x662F;&#x5F00;&#x53D1;&#x8005;&#x8FD8;&#x672A;&#x6B63;&#x5F0F;&#x516C;&#x5E03;layout&#x7684;&#x63A5;&#x53E3;&#x5E03;&#x5C40;&#xFF0C;&#x6545;&#x53EA;&#x80FD;&#x4F5C;&#x7F62;&#xFF0C;&#x540E;&#x7EED;&#x5982;&#x679C;&#x5F00;&#x53D1;&#x8005;&#x6709;&#x66F4;&#x65B0;&#x53EF;&#x4EE5;&#x7EE7;&#x7EED;&#x5C1D;&#x8BD5;&#x3002;</li>
+<li><a href="https://www.raspberrypi.org" target="_blank" rel="noopener">&#x6811;&#x8393;&#x6D3E;&#x5B98;&#x7F51;&#x4EE5;&#x53CA;&#x64CD;&#x4F5C;&#x7CFB;&#x7EDF;&#x5B89;&#x88C5;&#x6559;&#x7A0B;&#x3002;</a></li>
+<li>&#x6839;&#x636E;&#x5B9E;&#x9645;&#x4F7F;&#x7528;&#x64CD;&#x4F5C;&#x7CFB;&#x7EDF;&#x4E0B;&#x8F7D;&#x76F8;&#x5173;&#x8F6F;&#x4EF6;&#xFF0C;&#x8BE6;&#x60C5;&#x89C1;<a href="http://www.cl.cam.ac.uk/projects/raspberrypi/tutorials/os/downloads.html" target="_blank" rel="noopener">Download</a></li>
+<li>&#x63A8;&#x8350;&#x4F7F;&#x7528;&#x4E00;&#x53F0;hdmi&#x63A5;&#x53E3;&#x7684;&#x663E;&#x793A;&#x5668;</li>
 </ol>
 
             </div>
@@ -451,19 +454,19 @@
     
 <nav id="article-nav">
     
-        <a href="/2016/08/06/Pi/2016-08-06-Raspberry Pi OK01/" id="article-nav-newer" class="article-nav-link-wrap">
+        <a href="/2016/08/06/Pi/2016-08-06-Raspberry Pi OK02/" id="article-nav-newer" class="article-nav-link-wrap">
             <strong class="article-nav-caption">上一篇</strong>
             <div class="article-nav-title">
                 
-                    Raspberry Pi OK01
+                    Raspberry Pi OK02
                 
             </div>
         </a>
     
     
-        <a href="/2016/08/06/Pi/2016-08-06-Raspberry Pi OK02/" id="article-nav-older" class="article-nav-link-wrap">
+        <a href="/2016/08/06/Pi/2016-08-06-Raspberry Pi OK03/" id="article-nav-older" class="article-nav-link-wrap">
             <strong class="article-nav-caption">下一篇</strong>
-            <div class="article-nav-title">Raspberry Pi OK02</div>
+            <div class="article-nav-title">Raspberry Pi OK03</div>
         </a>
     
 </nav>
