@@ -9,18 +9,18 @@
         <meta name="keywords" content="Linux,OS">
     
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <meta name="description" content="中断机制有一些局限，包括： 1. 中断以异步方式执行，并且有可能会打断其他重要代码。为了避免被打断的代码停止过长时间，中断处理应该执行得越快越好。 2. 如果当前有一个中断处理程序正在执行，最好情况下该中断同级的其他中断会被屏蔽；最坏情况下当前处理器上所有的其他中断都会被屏蔽。因为禁止中断后硬件与操作系统无法通信，所以中断处理程序执行得越快越好。 3. 中断往往需要对硬件进行操作，所以它们通常有很">
+    <meta name="description" content="中断机制有一些局限，包括：  中断以异步方式执行，并且有可能会打断其他重要代码。为了避免被打断的代码停止过长时间，中断处理应该执行得越快越好。 如果当前有一个中断处理程序正在执行，最好情况下该中断同级的其他中断会被屏蔽；最坏情况下当前处理器上所有的其他中断都会被屏蔽。因为禁止中断后硬件与操作系统无法通信，所以中断处理程序执行得越快越好。 中断往往需要对硬件进行操作，所以它们通常有很高的时限要求。">
 <meta name="keywords" content="Linux,OS">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Linux-下半部和推后执行的工作&quot;">
 <meta property="og:url" content="http://www.liufr.com/2017/10/22/Linux/2017-11-2-Linux-下半部和推后执行的工作/index.html">
 <meta property="og:site_name" content="Fengrui Liu&#39;s Blog">
-<meta property="og:description" content="中断机制有一些局限，包括： 1. 中断以异步方式执行，并且有可能会打断其他重要代码。为了避免被打断的代码停止过长时间，中断处理应该执行得越快越好。 2. 如果当前有一个中断处理程序正在执行，最好情况下该中断同级的其他中断会被屏蔽；最坏情况下当前处理器上所有的其他中断都会被屏蔽。因为禁止中断后硬件与操作系统无法通信，所以中断处理程序执行得越快越好。 3. 中断往往需要对硬件进行操作，所以它们通常有很">
+<meta property="og:description" content="中断机制有一些局限，包括：  中断以异步方式执行，并且有可能会打断其他重要代码。为了避免被打断的代码停止过长时间，中断处理应该执行得越快越好。 如果当前有一个中断处理程序正在执行，最好情况下该中断同级的其他中断会被屏蔽；最坏情况下当前处理器上所有的其他中断都会被屏蔽。因为禁止中断后硬件与操作系统无法通信，所以中断处理程序执行得越快越好。 中断往往需要对硬件进行操作，所以它们通常有很高的时限要求。">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:updated_time" content="2017-11-03T09:00:04.880Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Linux-下半部和推后执行的工作&quot;">
-<meta name="twitter:description" content="中断机制有一些局限，包括： 1. 中断以异步方式执行，并且有可能会打断其他重要代码。为了避免被打断的代码停止过长时间，中断处理应该执行得越快越好。 2. 如果当前有一个中断处理程序正在执行，最好情况下该中断同级的其他中断会被屏蔽；最坏情况下当前处理器上所有的其他中断都会被屏蔽。因为禁止中断后硬件与操作系统无法通信，所以中断处理程序执行得越快越好。 3. 中断往往需要对硬件进行操作，所以它们通常有很">
+<meta name="twitter:description" content="中断机制有一些局限，包括：  中断以异步方式执行，并且有可能会打断其他重要代码。为了避免被打断的代码停止过长时间，中断处理应该执行得越快越好。 如果当前有一个中断处理程序正在执行，最好情况下该中断同级的其他中断会被屏蔽；最坏情况下当前处理器上所有的其他中断都会被屏蔽。因为禁止中断后硬件与操作系统无法通信，所以中断处理程序执行得越快越好。 中断往往需要对硬件进行操作，所以它们通常有很高的时限要求。">
     
 
     
@@ -167,7 +167,7 @@
                             &nbsp;
                             Algorithm
                         </a>
-                         <ul class="unstyled" id="tree">  <li class="file"><a href="/2016/10/25/算法/2016-10-25-Dijkstra算法/">Dijkstra算法</a></li>  <li class="file"><a href="/2016/10/25/算法/2016-10-25-BellmanFord算法/">Bellman-Ford算法</a></li>  <li class="file"><a href="/2016/12/08/算法/2016-12-08-Bloom Filter/">Bloom Filter</a></li>  <li class="file"><a href="/2017/07/14/算法/2017-7-14-tf-idf/">tf-idf</a></li>  <li class="file"><a href="/2017/09/13/算法/2017-9-13-前缀和/">前缀和（SJTU OJ 1002）</a></li>  <li class="file"><a href="/2017/09/14/算法/2017-9-14-超大数求和/">超大数求和（SJTU OJ 1007）</a></li>  <li class="file"><a href="/2017/09/15/算法/2017-9-15-DP(0" 1背包) ">DP（0/1背包）</a></li>  <li class="file"><a href="/2017/09/15/算法/2017-9-15-DP问题/">DP（SJTU OJ 1012）</a></li>  <li class="file"><a href="/2017/09/15/算法/2017-9-15-DP最长公共子序列/">DP（最长公共子序列）</a></li>  <li class="file"><a href="/2017/09/15/算法/2017-9-15-完全背包/">DP（完全背包）</a></li>  <li class="file"><a href="/2017/09/25/算法/2017-9-25-约瑟夫问题/">约瑟夫问题(SJTU OJ 1038)</a></li>  <li class="file"><a href="/2018/04/02/算法/2018-4-2-排序(位图数据结构)/">排序(位图数据结构)</a></li>  <li class="file"><a href="/2018/10/18/算法/2018-10-15-非负矩阵分解/">非负矩阵分解</a></li>  </ul> 
+                         <ul class="unstyled" id="tree">  <li class="file"><a href="/2016/10/25/算法/2016-10-25-Dijkstra算法/">Dijkstra算法</a></li>  <li class="file"><a href="/2016/10/25/算法/2016-10-25-BellmanFord算法/">Bellman-Ford算法</a></li>  <li class="file"><a href="/2016/12/08/算法/2016-12-08-Bloom Filter/">Bloom Filter</a></li>  <li class="file"><a href="/2017/07/14/算法/2017-7-14-tf-idf/">tf-idf</a></li>  <li class="file"><a href="/2017/09/13/算法/2017-9-13-前缀和/">前缀和（SJTU OJ 1002）</a></li>  <li class="file"><a href="/2017/09/14/算法/2017-9-14-超大数求和/">超大数求和（SJTU OJ 1007）</a></li>  <li class="file"><a href="/2017/09/15/算法/2017-9-15-完全背包/">DP（完全背包）</a></li>  <li class="file"><a href="/2017/09/15/算法/2017-9-15-DP问题/">DP（SJTU OJ 1012）</a></li>  <li class="file"><a href="/2017/09/15/算法/2017-9-15-DP最长公共子序列/">DP（最长公共子序列）</a></li>  <li class="file"><a href="/2017/09/15/算法/2017-9-15-DP(0" 1背包) ">DP（0/1背包）</a></li>  <li class="file"><a href="/2017/09/25/算法/2017-9-25-约瑟夫问题/">约瑟夫问题(SJTU OJ 1038)</a></li>  <li class="file"><a href="/2018/04/02/算法/2018-4-2-排序(位图数据结构)/">排序(位图数据结构)</a></li>  <li class="file"><a href="/2018/10/18/算法/2018-10-15-非负矩阵分解/">非负矩阵分解</a></li>  </ul> 
                     </li> 
                     
                     <li class="directory">
@@ -194,7 +194,7 @@
                             &nbsp;
                             Data mining
                         </a>
-                         <ul class="unstyled" id="tree">  <li class="file"><a href="/2018/12/02/数据挖掘/2018-12-02-监督学习/">监督学习 Supervised Learning(决策树+SVM/Perceptron+AdaBoost)</a></li>  <li class="file"><a href="/2018/12/03/数据挖掘/2018-12-03-非监督学习/">无监督学习 Unsupervised Learning(聚类、矩阵分解、话题模型)</a></li>  <li class="file"><a href="/2018/12/05/数据挖掘/2018-12-05-大规模机器学习/">大规模机器学习</a></li>  <li class="file"><a href="/2018/12/05/数据挖掘/2018-12-05-互联网搜索与排序/">互联网搜索与排序</a></li>  </ul> 
+                         <ul class="unstyled" id="tree">  <li class="file"><a href="/2018/12/02/数据挖掘/2018-12-02-监督学习/">监督学习 Supervised Learning(决策树+SVM/Perceptron+AdaBoost)</a></li>  <li class="file"><a href="/2018/12/03/数据挖掘/2018-12-03-非监督学习/">无监督学习 Unsupervised Learning(聚类、矩阵分解、话题模型)</a></li>  <li class="file"><a href="/2018/12/05/数据挖掘/2018-12-05-互联网搜索与排序/">互联网搜索与排序</a></li>  <li class="file"><a href="/2018/12/05/数据挖掘/2018-12-05-大规模机器学习/">大规模机器学习</a></li>  </ul> 
                     </li> 
                     
                     <li class="directory">
@@ -203,7 +203,7 @@
                             &nbsp;
                             Database
                         </a>
-                         <ul class="unstyled" id="tree">  <li class="file"><a href="/2019/06/03/数据库/2019-06-03-关系数据库/">关系数据库</a></li>  <li class="file"><a href="/2019/06/04/数据库/2019-06-04-大数据运算/">大数据存储系统</a></li>  <li class="file"><a href="/2019/06/04/数据库/2019-06-04-大数据存储系统/">大数据存储系统</a></li>  </ul> 
+                         <ul class="unstyled" id="tree">  <li class="file"><a href="/2019/06/03/数据库/2019-06-03-关系数据库/">关系数据库</a></li>  <li class="file"><a href="/2019/06/04/数据库/2019-06-04-大数据存储系统/">大数据存储系统</a></li>  <li class="file"><a href="/2019/06/04/数据库/2019-06-04-大数据运算/">大数据存储系统</a></li>  </ul> 
                     </li> 
                     
                     <li class="directory">
@@ -230,7 +230,7 @@
                             &nbsp;
                             Networking
                         </a>
-                         <ul class="unstyled" id="tree">  <li class="file"><a href="/2017/11/28/网络/2017-11-28-路由协议汇总整理/">路由协议汇总整理</a></li>  <li class="file"><a href="/2018/04/24/网络/2018-4-24-Mininet拓扑学习/">Mininet拓扑学习</a></li>  <li class="file"><a href="/2018/08/23/网络/2018-8-24-SketchLearn/">SketchLearn: Relieving User Burdens in Approximate Measurement with Automated Statistical Inference</a></li>  <li class="file"><a href="/2018/08/23/网络/2018-8-23-Elastic Sketch/">Elastic Sketch: Adaptive and Fast Network-wide Measurements</a></li>  <li class="file"><a href="/2018/08/23/网络/2018-8-23-SketchVisor/">SketchVisor: Robust Network Measurement for Soware Packet Processing</a></li>  </ul> 
+                         <ul class="unstyled" id="tree">  <li class="file"><a href="/2017/11/28/网络/2017-11-28-路由协议汇总整理/">路由协议汇总整理</a></li>  <li class="file"><a href="/2018/04/24/网络/2018-4-24-Mininet拓扑学习/">Mininet拓扑学习</a></li>  <li class="file"><a href="/2018/08/23/网络/2018-8-24-SketchLearn/">SketchLearn: Relieving User Burdens in Approximate Measurement with Automated Statistical Inference</a></li>  <li class="file"><a href="/2018/08/23/网络/2018-8-23-SketchVisor/">SketchVisor: Robust Network Measurement for Soware Packet Processing</a></li>  <li class="file"><a href="/2018/08/23/网络/2018-8-23-Elastic Sketch/">Elastic Sketch: Adaptive and Fast Network-wide Measurements</a></li>  </ul> 
                     </li> 
                     
                     <li class="directory">
@@ -248,7 +248,7 @@
                             &nbsp;
                             Pi
                         </a>
-                         <ul class="unstyled" id="tree">  <li class="file"><a href="/2016/08/06/Pi/2016-08-06-Raspberry Pi OK01/">Raspberry Pi OK01</a></li>  <li class="file"><a href="/2016/08/06/Pi/2016-08-06-Raspberry Pi OK02/">Raspberry Pi OK02</a></li>  <li class="file"><a href="/2016/08/06/Pi/2016-08-06-Raspberry Pi OK03/">Raspberry Pi OK03</a></li>  <li class="file"><a href="/2016/08/06/Pi/2016-08-06-Baking Pi – Operating Systems Development前言/">Raspberry Pi OS Development 前言</a></li>  <li class="file"><a href="/2016/08/09/Pi/2016-08-09-Raspberry Pi OK05/">Raspberry Pi OK05</a></li>  <li class="file"><a href="/2016/08/09/Pi/2016-08-10-Raspberry Pi Screen01/">Raspberry Pi Screen01</a></li>  <li class="file"><a href="/2016/08/09/Pi/2016-08-09-Raspberry Pi OK04/">Raspberry Pi OK04</a></li>  <li class="file"><a href="/2016/08/09/Pi/2016-08-11-Raspberry Pi Screen02/">Raspberry Pi Screen02</a></li>  <li class="file"><a href="/2016/08/14/Pi/2016-08-14-Raspberry Pi Screen03/">Raspberry Pi Screen03</a></li>  <li class="file"><a href="/2016/08/16/Pi/2016-08-16-Raspberry Pi Screen04/">Raspberry Pi Screen04</a></li>  <li class="file"><a href="/2016/08/31/Pi/2016-08-31-Raspberry Pi Input01/">Raspberry Pi Input01</a></li>  <li class="file"><a href="/2016/09/01/Pi/2016-09-01-Raspberry Pi Input02/">Raspberry Pi Input02</a></li>  </ul> 
+                         <ul class="unstyled" id="tree">  <li class="file"><a href="/2016/08/06/Pi/2016-08-06-Raspberry Pi OK02/">Raspberry Pi OK02</a></li>  <li class="file"><a href="/2016/08/06/Pi/2016-08-06-Raspberry Pi OK03/">Raspberry Pi OK03</a></li>  <li class="file"><a href="/2016/08/06/Pi/2016-08-06-Baking Pi – Operating Systems Development前言/">Raspberry Pi OS Development 前言</a></li>  <li class="file"><a href="/2016/08/06/Pi/2016-08-06-Raspberry Pi OK01/">Raspberry Pi OK01</a></li>  <li class="file"><a href="/2016/08/09/Pi/2016-08-09-Raspberry Pi OK04/">Raspberry Pi OK04</a></li>  <li class="file"><a href="/2016/08/09/Pi/2016-08-11-Raspberry Pi Screen02/">Raspberry Pi Screen02</a></li>  <li class="file"><a href="/2016/08/09/Pi/2016-08-10-Raspberry Pi Screen01/">Raspberry Pi Screen01</a></li>  <li class="file"><a href="/2016/08/09/Pi/2016-08-09-Raspberry Pi OK05/">Raspberry Pi OK05</a></li>  <li class="file"><a href="/2016/08/14/Pi/2016-08-14-Raspberry Pi Screen03/">Raspberry Pi Screen03</a></li>  <li class="file"><a href="/2016/08/16/Pi/2016-08-16-Raspberry Pi Screen04/">Raspberry Pi Screen04</a></li>  <li class="file"><a href="/2016/08/31/Pi/2016-08-31-Raspberry Pi Input01/">Raspberry Pi Input01</a></li>  <li class="file"><a href="/2016/09/01/Pi/2016-09-01-Raspberry Pi Input02/">Raspberry Pi Input02</a></li>  </ul> 
                     </li> 
                     
                     <li class="directory">
@@ -266,7 +266,7 @@
                             &nbsp;
                             Security
                         </a>
-                         <ul class="unstyled" id="tree">  <li class="file"><a href="/2018/09/02/安全/2018-09-02-蜜罐技术/">蜜罐技术</a></li>  <li class="file"><a href="/2019/06/22/安全/2019-06-22-网络异常行为检测/">网络异常行为检测</a></li>  <li class="file"><a href="/2019/07/21/安全/2019-07-22-xgboost/">孤立森林（Isolation Forest）</a></li>  <li class="file"><a href="/2019/07/21/安全/2019-07-22-利用时序决策树进行DGA僵尸检测/">利用时序决策树进行DGA僵尸检测</a></li>  <li class="file"><a href="/2019/07/21/安全/2019-07-22-孤立森林（Isolation Froest）/">孤立森林（Isolation Forest）</a></li>  <li class="file"><a href="/2019/07/21/安全/2019-07-21-多项式插值/">多项式插值</a></li>  <li class="file"><a href="/2019/07/21/安全/2019-07-21-梯度提升决策树(GBDT)/">梯度提升决策树（GBDT）</a></li>  <li class="file"><a href="/2019/07/21/安全/2019-07-21-指数加权移动平均法（EWMA）/">指数加权移动平均法（EWMA）</a></li>  </ul> 
+                         <ul class="unstyled" id="tree">  <li class="file"><a href="/2018/09/02/安全/2018-09-02-蜜罐技术/">蜜罐技术</a></li>  <li class="file"><a href="/2019/06/22/安全/2019-06-22-网络异常行为检测/">网络异常行为检测</a></li>  <li class="file"><a href="/2019/07/21/安全/2019-07-21-指数加权移动平均法（EWMA）/">指数加权移动平均法（EWMA）</a></li>  <li class="file"><a href="/2019/07/21/安全/2019-07-22-孤立森林（Isolation Froest）/">孤立森林（Isolation Forest）</a></li>  <li class="file"><a href="/2019/07/21/安全/2019-07-22-xgboost/">孤立森林（Isolation Forest）</a></li>  <li class="file"><a href="/2019/07/21/安全/2019-07-21-多项式插值/">多项式插值</a></li>  <li class="file"><a href="/2019/07/21/安全/2019-07-22-利用时序决策树进行DGA僵尸检测/">利用时序决策树进行DGA僵尸检测</a></li>  <li class="file"><a href="/2019/07/21/安全/2019-07-21-梯度提升决策树(GBDT)/">梯度提升决策树（GBDT）</a></li>  </ul> 
                     </li> 
                     
                     <li class="directory">
@@ -275,7 +275,7 @@
                             &nbsp;
                             网络
                         </a>
-                         <ul class="unstyled" id="tree">  <li class="file"><a href="/2016/12/24/网络/2016-12-24-ipv4在Linux上的实现/">学习构造用户空间的IP栈（资料总结）</a></li>  <li class="file"><a href="/2017/03/12/VANET/2017-3-12-Vanet仿真-ns3(1)/">VANET仿真-ns3(1)</a></li>  <li class="file"><a href="/2017/03/12/VANET/2017-3-12-Vanet仿真-ns3(2)/">VANET仿真-ns3(2)</a></li>  <li class="file"><a href="/2017/03/12/VANET/2017-3-12-Vanet仿真-ns3(3)/">VANET仿真-ns3(3)</a></li>  <li class="file"><a href="/2017/03/13/VANET/2017-3-13-Vanet仿真-ns3(4)/">VANET仿真-ns3(4)</a></li>  <li class="file"><a href="/2017/03/13/VANET/2017-3-13-Vanet仿真-ns3(5)/">VANET仿真-ns3(5)</a></li>  <li class="file"><a href="/2017/03/15/VANET/2017-3-15-Vanet仿真-ns3(6)/">VANET仿真-ns3(6)</a></li>  <li class="file"><a href="/2017/07/14/网络/2017-07-14-Ego networks/">Ego networks</a></li>  </ul> 
+                         <ul class="unstyled" id="tree">  <li class="file"><a href="/2016/12/24/网络/2016-12-24-ipv4在Linux上的实现/">学习构造用户空间的IP栈（资料总结）</a></li>  <li class="file"><a href="/2017/03/12/VANET/2017-3-12-Vanet仿真-ns3(3)/">VANET仿真-ns3(3)</a></li>  <li class="file"><a href="/2017/03/12/VANET/2017-3-12-Vanet仿真-ns3(2)/">VANET仿真-ns3(2)</a></li>  <li class="file"><a href="/2017/03/12/VANET/2017-3-12-Vanet仿真-ns3(1)/">VANET仿真-ns3(1)</a></li>  <li class="file"><a href="/2017/03/13/VANET/2017-3-13-Vanet仿真-ns3(4)/">VANET仿真-ns3(4)</a></li>  <li class="file"><a href="/2017/03/13/VANET/2017-3-13-Vanet仿真-ns3(5)/">VANET仿真-ns3(5)</a></li>  <li class="file"><a href="/2017/03/15/VANET/2017-3-15-Vanet仿真-ns3(6)/">VANET仿真-ns3(6)</a></li>  <li class="file"><a href="/2017/07/14/网络/2017-07-14-Ego networks/">Ego networks</a></li>  </ul> 
                     </li> 
                      <li class="file"><a href="/2019/05/30/强化学习/~$19-05-28-强化学习(2)/"></a></li>  <li class="file"><a href="/2019/09/16/数据挖掘/2019-09-16-基于注意力模型的RNN时序预测/"></a></li>  </ul> 
     </div>
@@ -418,52 +418,62 @@
             
         
         
-            <p>中断机制有一些局限，包括： 1. 中断以异步方式执行，并且有可能会打断其他重要代码。为了避免被打断的代码停止过长时间，中断处理应该执行得越快越好。 2. 如果当前有一个中断处理程序正在执行，最好情况下该中断同级的其他中断会被屏蔽；最坏情况下当前处理器上所有的其他中断都会被屏蔽。因为禁止中断后硬件与操作系统无法通信，所以中断处理程序执行得越快越好。 3. 中断往往需要对硬件进行操作，所以它们通常有很高的时限要求。 4. 中断不能再进程上下文中进行，所以不能阻塞。</p>
+            <p>中断机制有一些局限，包括：</p>
+<ol>
+<li>中断以异步方式执行，并且有可能会打断其他重要代码。为了避免被打断的代码停止过长时间，中断处理应该执行得越快越好。</li>
+<li>如果当前有一个中断处理程序正在执行，最好情况下该中断同级的其他中断会被屏蔽；最坏情况下当前处理器上所有的其他中断都会被屏蔽。因为禁止中断后硬件与操作系统无法通信，所以中断处理程序执行得越快越好。</li>
+<li>中断往往需要对硬件进行操作，所以它们通常有很高的时限要求。</li>
+<li>中断不能再进程上下文中进行，所以不能阻塞。</li>
+</ol>
 <p>正因如此，中断处理流程被分为两部分，第一部分是中断处理程序(上半部)，内核对它的异步执行完成对硬件中断的及时响应。另一部分就是下半部。</p>
-<h3 id="下半部">下半部</h3>
-<p>理想情况下中断(上半部)完成的工作越少越好，将所需处理的工作都留给下半部，但是中断程序注定要做一些工作，虽然不是严格要求，但是可以参考如下： 1. 对时间非常敏感，将其放在中断处理程序中执行。 2. 和硬件相关，将其放在中断处理程序中执行。 3. 要保证不被其他中断打断，将其放在中断处理程序中执行。 4. 其他所有任务都放在下半部执行。</p>
-<h3 id="软中断">软中断</h3>
-<h4 id="软中断的实现">软中断的实现</h4>
-<p>软中断是在编译期间静态分配的。有<strong>softirq_action</strong>结构表示，总共有32个该结构体的数组。</p>
+<h3 id="下半部"><a href="#下半部" class="headerlink" title="下半部"></a>下半部</h3><p>理想情况下中断(上半部)完成的工作越少越好，将所需处理的工作都留给下半部，但是中断程序注定要做一些工作，虽然不是严格要求，但是可以参考如下：</p>
+<ol>
+<li>对时间非常敏感，将其放在中断处理程序中执行。</li>
+<li>和硬件相关，将其放在中断处理程序中执行。</li>
+<li>要保证不被其他中断打断，将其放在中断处理程序中执行。</li>
+<li>其他所有任务都放在下半部执行。</li>
+</ol>
+<h3 id="软中断"><a href="#软中断" class="headerlink" title="软中断"></a>软中断</h3><h4 id="软中断的实现"><a href="#软中断的实现" class="headerlink" title="软中断的实现"></a>软中断的实现</h4><p>软中断是在编译期间静态分配的。有<strong>softirq_action</strong>结构表示，总共有32个该结构体的数组。</p>
 <figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="comment">// linux/interrupt.h</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">softirq_action</span>&#123;</span></span><br><span class="line">	<span class="keyword">void</span> (*action)(struct softirq_action *);</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
 <p>每个被注册的软中断都占据一项，最多有32个软中断。</p>
-<h5 id="软中断处理程序">软中断处理程序</h5>
-<p>action的函数原型如下： <figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">softirq_handler</span><span class="params">(struct softirq_action *)</span></span></span><br></pre></td></tr></table></figure></p>
+<h5 id="软中断处理程序"><a href="#软中断处理程序" class="headerlink" title="软中断处理程序"></a>软中断处理程序</h5><p>action的函数原型如下：<br><figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">softirq_handler</span><span class="params">(struct softirq_action *)</span></span></span><br></pre></td></tr></table></figure></p>
 <p>一个软中断不会抢占另外一个软中断，只有中断处理程序才会抢占软中断，不过多个软中断可以在其他处理器上同时执行。</p>
-<h5 id="执行软中断">执行软中断</h5>
-<p>通常中断处理程序会在返回前标记它的软中断，使其稍后执行(触发软中断)。在以下情况，待处理的软中断会被检查和执行： 1. 从一个硬件中断代码处返回 2. 在ksoftirqd内核线程中 3. 在那些显示检查和执行待处理的软中断的代码中，如网络子系统中</p>
-<h3 id="tasklet">tasklet</h3>
-<p>tasklet是利用软中断实现的一种下半部机制，他和进程没有任何关系。tasklet的接口更简单，锁保护也要求比较低。通常情况下应该选用tasklet而非软中断。</p>
-<h4 id="tasklet的实现">tasklet的实现</h4>
-<p>因为tasklet是通过软中断实现的，所以它本身也是软中断，由两类软中断代表：HI_SOFIRQ和TASKLET_SOFTIRQ。其中HI_SOFTIRQ类型软中断要优先于TASKLET_SOFTIRQ。</p>
-<h5 id="tasklet结构体">tasklet结构体</h5>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="comment">// linux/interrupt.h</span></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">tasklet_struct</span>&#123;</span></span><br><span class="line">	<span class="class"><span class="keyword">struct</span> <span class="title">tasklet_struct</span> *<span class="title">next</span>;</span>  <span class="comment">//链表中的下一个tasklet</span></span><br><span class="line">	<span class="keyword">unsigned</span> <span class="keyword">long</span> state;          <span class="comment">//tasklet 的状态</span></span><br><span class="line">	<span class="keyword">atomic_t</span> count;               <span class="comment">//引用计数器</span></span><br><span class="line">	<span class="keyword">void</span> (*func)(<span class="keyword">unsigned</span> <span class="keyword">long</span>);  <span class="comment">//tasklet 处理函数</span></span><br><span class="line">	<span class="keyword">unsigned</span> <span class="keyword">long</span> data;			  <span class="comment">//给tasklet处理函数的参数</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p><strong>func</strong>是tasklet的处理程序，data是它唯一的参数。 <strong>state</strong>只能在0，TASKLET_STATE_SCHED和TASKLET_STATE_RUN之间取值。TASKLET_STATE-SCHED表示tasklet已被调度准备投入运行；TASKLET_STATE_RUN表明tasklet正在运行(多用在多处理器上)。 <strong>count</strong>如果不是0，则tasklet被禁止不允许执行；当他为0时tasklet才允许被激活，并且被设置为挂起状态。</p>
-<h5 id="调度tasklet">调度tasklet</h5>
-<p>已调度的tasklet存放在两个单处理器数据结构：tasklet_vec(普通tasklet)和tasklet_hi_vec(高优先级的tasklet)，这两个tasklet_struct结构体构成的链表。</p>
-<p>执行步骤如下： 1. 检查tasklet的状态是否为TASKLET_STATE_SCHED。如果是则说明已经被调度过了，函数立即返回。 2. 调用_tasklet_schedule()。 3. 保存中断状态，然后禁止本地中断。在我们执行tasklet代码时，这么做能够保证当tasklet_schedule()处理这些tasklet时，处理器上的数据不会乱。 4. 把需要调度的tasklet加到每个处理器一个的tasklet_vec链表或tasklet_hi_vec链表的表头上去。 5. 唤起TASKLET_SOFTIRQ或HI_SOFTIRQ软中断，这样在下一次调用do_softirq()时就会执行tasklet。 6. 恢复中断到原状态并返回。</p>
-<h3 id="工作队列">工作队列</h3>
-<p>工作队列可以把工作推后，交由一个内核线程去执行，这样工作队列执行的代码能占尽进程上下文的所有优势。工作队列允许重新调度甚至是睡眠。</p>
+<h5 id="执行软中断"><a href="#执行软中断" class="headerlink" title="执行软中断"></a>执行软中断</h5><p>通常中断处理程序会在返回前标记它的软中断，使其稍后执行(触发软中断)。在以下情况，待处理的软中断会被检查和执行：</p>
+<ol>
+<li>从一个硬件中断代码处返回</li>
+<li>在ksoftirqd内核线程中</li>
+<li>在那些显示检查和执行待处理的软中断的代码中，如网络子系统中</li>
+</ol>
+<h3 id="tasklet"><a href="#tasklet" class="headerlink" title="tasklet"></a>tasklet</h3><p>tasklet是利用软中断实现的一种下半部机制，他和进程没有任何关系。tasklet的接口更简单，锁保护也要求比较低。通常情况下应该选用tasklet而非软中断。</p>
+<h4 id="tasklet的实现"><a href="#tasklet的实现" class="headerlink" title="tasklet的实现"></a>tasklet的实现</h4><p>因为tasklet是通过软中断实现的，所以它本身也是软中断，由两类软中断代表：HI_SOFIRQ和TASKLET_SOFTIRQ。其中HI_SOFTIRQ类型软中断要优先于TASKLET_SOFTIRQ。</p>
+<h5 id="tasklet结构体"><a href="#tasklet结构体" class="headerlink" title="tasklet结构体"></a>tasklet结构体</h5><figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="comment">// linux/interrupt.h</span></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">tasklet_struct</span>&#123;</span></span><br><span class="line">	<span class="class"><span class="keyword">struct</span> <span class="title">tasklet_struct</span> *<span class="title">next</span>;</span>  <span class="comment">//链表中的下一个tasklet</span></span><br><span class="line">	<span class="keyword">unsigned</span> <span class="keyword">long</span> state;          <span class="comment">//tasklet 的状态</span></span><br><span class="line">	<span class="keyword">atomic_t</span> count;               <span class="comment">//引用计数器</span></span><br><span class="line">	<span class="keyword">void</span> (*func)(<span class="keyword">unsigned</span> <span class="keyword">long</span>);  <span class="comment">//tasklet 处理函数</span></span><br><span class="line">	<span class="keyword">unsigned</span> <span class="keyword">long</span> data;			  <span class="comment">//给tasklet处理函数的参数</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>func</strong>是tasklet的处理程序，data是它唯一的参数。<br><strong>state</strong>只能在0，TASKLET_STATE_SCHED和TASKLET_STATE_RUN之间取值。TASKLET_STATE-SCHED表示tasklet已被调度准备投入运行；TASKLET_STATE_RUN表明tasklet正在运行(多用在多处理器上)。<br><strong>count</strong>如果不是0，则tasklet被禁止不允许执行；当他为0时tasklet才允许被激活，并且被设置为挂起状态。</p>
+<h5 id="调度tasklet"><a href="#调度tasklet" class="headerlink" title="调度tasklet"></a>调度tasklet</h5><p>已调度的tasklet存放在两个单处理器数据结构：tasklet_vec(普通tasklet)和tasklet_hi_vec(高优先级的tasklet)，这两个tasklet_struct结构体构成的链表。</p>
+<p>执行步骤如下：</p>
+<ol>
+<li>检查tasklet的状态是否为TASKLET_STATE_SCHED。如果是则说明已经被调度过了，函数立即返回。</li>
+<li>调用_tasklet_schedule()。</li>
+<li>保存中断状态，然后禁止本地中断。在我们执行tasklet代码时，这么做能够保证当tasklet_schedule()处理这些tasklet时，处理器上的数据不会乱。</li>
+<li>把需要调度的tasklet加到每个处理器一个的tasklet_vec链表或tasklet_hi_vec链表的表头上去。</li>
+<li>唤起TASKLET_SOFTIRQ或HI_SOFTIRQ软中断，这样在下一次调用do_softirq()时就会执行tasklet。</li>
+<li>恢复中断到原状态并返回。</li>
+</ol>
+<h3 id="工作队列"><a href="#工作队列" class="headerlink" title="工作队列"></a>工作队列</h3><p>工作队列可以把工作推后，交由一个内核线程去执行，这样工作队列执行的代码能占尽进程上下文的所有优势。工作队列允许重新调度甚至是睡眠。</p>
 <ul>
 <li>工作队列：推后执行的任务需要睡眠，且需要用一个内核线程来推后执行工作。</li>
 <li>tasklet：推后执行的任务不需要睡眠</li>
 </ul>
-<h4 id="工作队列的实现">工作队列的实现</h4>
-<p>工作队列可以让你的驱动程序创建一个专门的工作者线程来处理需要推后的工作，不过工作队列子系统提供了一个缺省的工作者线程 <strong>events/n</strong>来处理上述过程。这里的n是处理器的编号，每个处理器对应一个线程。例如单处理器系统就是有 <strong>events/0</strong> 线程，双处理器就多了 <strong>events/1</strong> 线程。许多内核驱动程序都把下半部交给缺省的工作者线程去做。</p>
-<h4 id="使用工作队列">使用工作队列</h4>
-<p>首先就是创建一些需要推后完成的工作：</p>
+<h4 id="工作队列的实现"><a href="#工作队列的实现" class="headerlink" title="工作队列的实现"></a>工作队列的实现</h4><p>工作队列可以让你的驱动程序创建一个专门的工作者线程来处理需要推后的工作，不过工作队列子系统提供了一个缺省的工作者线程 <strong>events/n</strong>来处理上述过程。这里的n是处理器的编号，每个处理器对应一个线程。例如单处理器系统就是有 <strong>events/0</strong> 线程，双处理器就多了 <strong>events/1</strong> 线程。许多内核驱动程序都把下半部交给缺省的工作者线程去做。</p>
+<h4 id="使用工作队列"><a href="#使用工作队列" class="headerlink" title="使用工作队列"></a>使用工作队列</h4><p>首先就是创建一些需要推后完成的工作：</p>
 <figure class="highlight c"><table><tr><td class="code"><pre><span class="line">DECLARE_WORK(name, <span class="keyword">void</span>(*func) (<span class="keyword">void</span> *), <span class="keyword">void</span> *data);</span><br></pre></td></tr></table></figure>
 <p>以上代码创建一个名为name，处理函数func，参数为data的work_struct结构体。</p>
-<h4 id="工作队列处理函数">工作队列处理函数</h4>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">work_handler</span><span class="params">(<span class="keyword">void</span> *data)</span></span></span><br></pre></td></tr></table></figure>
+<h4 id="工作队列处理函数"><a href="#工作队列处理函数" class="headerlink" title="工作队列处理函数"></a>工作队列处理函数</h4><figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">work_handler</span><span class="params">(<span class="keyword">void</span> *data)</span></span></span><br></pre></td></tr></table></figure>
 <p>这个函数由一个工作者线程执行。默认情况下会响应中断，并且不持有任何锁。</p>
-<h4 id="对工作进行调度">对工作进行调度</h4>
-<p>想要把给定的工作的处理函数提交给缺省的events工作线程，只需调用：</p>
+<h4 id="对工作进行调度"><a href="#对工作进行调度" class="headerlink" title="对工作进行调度"></a>对工作进行调度</h4><p>想要把给定的工作的处理函数提交给缺省的events工作线程，只需调用：</p>
 <figure class="highlight c"><table><tr><td class="code"><pre><span class="line">schedule_work(&amp;work);</span><br></pre></td></tr></table></figure>
 <p>work就会马上调度，一旦其所在的处理器上的工作者线程唤醒，他就会执行。如果需要在一定的延时之后再进行调度：</p>
 <figure class="highlight c"><table><tr><td class="code"><pre><span class="line">schedule_delayed_work(&amp;work, delay)；</span><br></pre></td></tr></table></figure>
-<h4 id="刷新操作">刷新操作</h4>
-<p>排入队列的工作会在工作者线程的下一次被唤醒时执行，有时，为了防止竞争条件的出现，可能需要确保不再有待处理的工作。出于以上目的，内核准备了一个用于刷新指定工作队列的函数：</p>
+<h4 id="刷新操作"><a href="#刷新操作" class="headerlink" title="刷新操作"></a>刷新操作</h4><p>排入队列的工作会在工作者线程的下一次被唤醒时执行，有时，为了防止竞争条件的出现，可能需要确保不再有待处理的工作。出于以上目的，内核准备了一个用于刷新指定工作队列的函数：</p>
 <figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">flush_scheduled_work</span><span class="params">(<span class="keyword">void</span>)</span></span></span><br></pre></td></tr></table></figure>
 <p>该函数会一直等待直到队列中所有对象都被执行以后返回，在等待过程中所有待处理的工作时，该函数会进入休眠状态</p>
 
@@ -478,19 +488,19 @@
     
 <nav id="article-nav">
     
-        <a href="/2017/10/22/Linux/2017-10-22-Linux中断和中断处理/" id="article-nav-newer" class="article-nav-link-wrap">
+        <a href="/2017/10/31/概念/2017-10-31-张量(Tensor)/" id="article-nav-newer" class="article-nav-link-wrap">
             <strong class="article-nav-caption">上一篇</strong>
             <div class="article-nav-title">
                 
-                    Linux-中断和中断处理
+                    张量(Tensor)
                 
             </div>
         </a>
     
     
-        <a href="/2017/10/20/Linux/2017-10-20-Linux系统调用/" id="article-nav-older" class="article-nav-link-wrap">
+        <a href="/2017/10/22/Linux/2017-10-22-Linux中断和中断处理/" id="article-nav-older" class="article-nav-link-wrap">
             <strong class="article-nav-caption">下一篇</strong>
-            <div class="article-nav-title">Linux-系统调用</div>
+            <div class="article-nav-title">Linux-中断和中断处理</div>
         </a>
     
 </nav>
@@ -572,20 +582,5 @@
 <script src="/js/main.js"></script>
 
     </div>
-<script type="text/x-mathjax-config">
-    MathJax.Hub.Config({
-        tex2jax: {
-            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
-            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
-            processEscapes: true
-        }
-    });
-    MathJax.Hub.Queue(function() {
-        var all = MathJax.Hub.getAllJax();
-        for (var i = 0; i < all.length; ++i)
-            all[i].SourceElement().parentNode.className += ' has-jax';
-    });
-</script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
 </body>
 </html>

@@ -6,23 +6,23 @@
     <title>利用时序决策树进行DGA僵尸检测 | Fengrui Liu&#39;s Blog</title>
     
     
-        <meta name="keywords" content="Anomaly detection,Security">
+        <meta name="keywords" content="Security,Anomaly detection">
     
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <meta name="description" content="DGA Bot Detection with Time Series Decision Trees 主要思路  标签模块依赖分类技术，该模块可以对训练模型生成有标签的数据，并对每一个已经检测到的僵尸网络提供一系列的感染IP 训练模块使用对生成的标签数据进行有监督的学习，对每一个僵尸网络家族都构造一个检测模型。利用典型的IP时间轮廓评估。 检测模块在短时间内检测受到影响的IP。  标签模块 给有监督">
-<meta name="keywords" content="Anomaly detection,Security">
+    <meta name="description" content="DGA Bot Detection with Time Series Decision Trees 主要思路 标签模块依赖分类技术，该模块可以对训练模型生成有标签的数据，并对每一个已经检测到的僵尸网络提供一系列的感染IP 训练模块使用对生成的标签数据进行有监督的学习，对每一个僵尸网络家族都构造一个检测模型。利用典型的IP时间轮廓评估。 检测模块在短时间内检测受到影响的IP。  标签模块给有监督训练">
+<meta name="keywords" content="Security,Anomaly detection">
 <meta property="og:type" content="article">
 <meta property="og:title" content="利用时序决策树进行DGA僵尸检测">
 <meta property="og:url" content="http://www.liufr.com/2019/07/21/安全/2019-07-22-利用时序决策树进行DGA僵尸检测/index.html">
 <meta property="og:site_name" content="Fengrui Liu&#39;s Blog">
-<meta property="og:description" content="DGA Bot Detection with Time Series Decision Trees 主要思路  标签模块依赖分类技术，该模块可以对训练模型生成有标签的数据，并对每一个已经检测到的僵尸网络提供一系列的感染IP 训练模块使用对生成的标签数据进行有监督的学习，对每一个僵尸网络家族都构造一个检测模型。利用典型的IP时间轮廓评估。 检测模块在短时间内检测受到影响的IP。  标签模块 给有监督">
+<meta property="og:description" content="DGA Bot Detection with Time Series Decision Trees 主要思路 标签模块依赖分类技术，该模块可以对训练模型生成有标签的数据，并对每一个已经检测到的僵尸网络提供一系列的感染IP 训练模块使用对生成的标签数据进行有监督的学习，对每一个僵尸网络家族都构造一个检测模型。利用典型的IP时间轮廓评估。 检测模块在短时间内检测受到影响的IP。  标签模块给有监督训练">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http://www.liufr.com/2019/07/21/安全/2019-07-22-利用时序决策树进行DGA僵尸检测/pictures/DGA.jpg">
 <meta property="og:image" content="http://www.liufr.com/2019/07/21/安全/2019-07-22-利用时序决策树进行DGA僵尸检测/pictures/DGA1.jpg">
 <meta property="og:updated_time" content="2019-07-22T07:12:27.904Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="利用时序决策树进行DGA僵尸检测">
-<meta name="twitter:description" content="DGA Bot Detection with Time Series Decision Trees 主要思路  标签模块依赖分类技术，该模块可以对训练模型生成有标签的数据，并对每一个已经检测到的僵尸网络提供一系列的感染IP 训练模块使用对生成的标签数据进行有监督的学习，对每一个僵尸网络家族都构造一个检测模型。利用典型的IP时间轮廓评估。 检测模块在短时间内检测受到影响的IP。  标签模块 给有监督">
+<meta name="twitter:description" content="DGA Bot Detection with Time Series Decision Trees 主要思路 标签模块依赖分类技术，该模块可以对训练模型生成有标签的数据，并对每一个已经检测到的僵尸网络提供一系列的感染IP 训练模块使用对生成的标签数据进行有监督的学习，对每一个僵尸网络家族都构造一个检测模型。利用典型的IP时间轮廓评估。 检测模块在短时间内检测受到影响的IP。  标签模块给有监督训练">
 <meta name="twitter:image" content="http://www.liufr.com/2019/07/21/安全/2019-07-22-利用时序决策树进行DGA僵尸检测/pictures/DGA.jpg">
     
 
@@ -170,7 +170,7 @@
                             &nbsp;
                             Algorithm
                         </a>
-                         <ul class="unstyled" id="tree">  <li class="file"><a href="/2016/10/25/算法/2016-10-25-Dijkstra算法/">Dijkstra算法</a></li>  <li class="file"><a href="/2016/10/25/算法/2016-10-25-BellmanFord算法/">Bellman-Ford算法</a></li>  <li class="file"><a href="/2016/12/08/算法/2016-12-08-Bloom Filter/">Bloom Filter</a></li>  <li class="file"><a href="/2017/07/14/算法/2017-7-14-tf-idf/">tf-idf</a></li>  <li class="file"><a href="/2017/09/13/算法/2017-9-13-前缀和/">前缀和（SJTU OJ 1002）</a></li>  <li class="file"><a href="/2017/09/14/算法/2017-9-14-超大数求和/">超大数求和（SJTU OJ 1007）</a></li>  <li class="file"><a href="/2017/09/15/算法/2017-9-15-DP(0" 1背包) ">DP（0/1背包）</a></li>  <li class="file"><a href="/2017/09/15/算法/2017-9-15-DP问题/">DP（SJTU OJ 1012）</a></li>  <li class="file"><a href="/2017/09/15/算法/2017-9-15-DP最长公共子序列/">DP（最长公共子序列）</a></li>  <li class="file"><a href="/2017/09/15/算法/2017-9-15-完全背包/">DP（完全背包）</a></li>  <li class="file"><a href="/2017/09/25/算法/2017-9-25-约瑟夫问题/">约瑟夫问题(SJTU OJ 1038)</a></li>  <li class="file"><a href="/2018/04/02/算法/2018-4-2-排序(位图数据结构)/">排序(位图数据结构)</a></li>  <li class="file"><a href="/2018/10/18/算法/2018-10-15-非负矩阵分解/">非负矩阵分解</a></li>  </ul> 
+                         <ul class="unstyled" id="tree">  <li class="file"><a href="/2016/10/25/算法/2016-10-25-Dijkstra算法/">Dijkstra算法</a></li>  <li class="file"><a href="/2016/10/25/算法/2016-10-25-BellmanFord算法/">Bellman-Ford算法</a></li>  <li class="file"><a href="/2016/12/08/算法/2016-12-08-Bloom Filter/">Bloom Filter</a></li>  <li class="file"><a href="/2017/07/14/算法/2017-7-14-tf-idf/">tf-idf</a></li>  <li class="file"><a href="/2017/09/13/算法/2017-9-13-前缀和/">前缀和（SJTU OJ 1002）</a></li>  <li class="file"><a href="/2017/09/14/算法/2017-9-14-超大数求和/">超大数求和（SJTU OJ 1007）</a></li>  <li class="file"><a href="/2017/09/15/算法/2017-9-15-完全背包/">DP（完全背包）</a></li>  <li class="file"><a href="/2017/09/15/算法/2017-9-15-DP问题/">DP（SJTU OJ 1012）</a></li>  <li class="file"><a href="/2017/09/15/算法/2017-9-15-DP最长公共子序列/">DP（最长公共子序列）</a></li>  <li class="file"><a href="/2017/09/15/算法/2017-9-15-DP(0" 1背包) ">DP（0/1背包）</a></li>  <li class="file"><a href="/2017/09/25/算法/2017-9-25-约瑟夫问题/">约瑟夫问题(SJTU OJ 1038)</a></li>  <li class="file"><a href="/2018/04/02/算法/2018-4-2-排序(位图数据结构)/">排序(位图数据结构)</a></li>  <li class="file"><a href="/2018/10/18/算法/2018-10-15-非负矩阵分解/">非负矩阵分解</a></li>  </ul> 
                     </li> 
                     
                     <li class="directory">
@@ -197,7 +197,7 @@
                             &nbsp;
                             Data mining
                         </a>
-                         <ul class="unstyled" id="tree">  <li class="file"><a href="/2018/12/02/数据挖掘/2018-12-02-监督学习/">监督学习 Supervised Learning(决策树+SVM/Perceptron+AdaBoost)</a></li>  <li class="file"><a href="/2018/12/03/数据挖掘/2018-12-03-非监督学习/">无监督学习 Unsupervised Learning(聚类、矩阵分解、话题模型)</a></li>  <li class="file"><a href="/2018/12/05/数据挖掘/2018-12-05-大规模机器学习/">大规模机器学习</a></li>  <li class="file"><a href="/2018/12/05/数据挖掘/2018-12-05-互联网搜索与排序/">互联网搜索与排序</a></li>  </ul> 
+                         <ul class="unstyled" id="tree">  <li class="file"><a href="/2018/12/02/数据挖掘/2018-12-02-监督学习/">监督学习 Supervised Learning(决策树+SVM/Perceptron+AdaBoost)</a></li>  <li class="file"><a href="/2018/12/03/数据挖掘/2018-12-03-非监督学习/">无监督学习 Unsupervised Learning(聚类、矩阵分解、话题模型)</a></li>  <li class="file"><a href="/2018/12/05/数据挖掘/2018-12-05-互联网搜索与排序/">互联网搜索与排序</a></li>  <li class="file"><a href="/2018/12/05/数据挖掘/2018-12-05-大规模机器学习/">大规模机器学习</a></li>  </ul> 
                     </li> 
                     
                     <li class="directory">
@@ -206,7 +206,7 @@
                             &nbsp;
                             Database
                         </a>
-                         <ul class="unstyled" id="tree">  <li class="file"><a href="/2019/06/03/数据库/2019-06-03-关系数据库/">关系数据库</a></li>  <li class="file"><a href="/2019/06/04/数据库/2019-06-04-大数据运算/">大数据存储系统</a></li>  <li class="file"><a href="/2019/06/04/数据库/2019-06-04-大数据存储系统/">大数据存储系统</a></li>  </ul> 
+                         <ul class="unstyled" id="tree">  <li class="file"><a href="/2019/06/03/数据库/2019-06-03-关系数据库/">关系数据库</a></li>  <li class="file"><a href="/2019/06/04/数据库/2019-06-04-大数据存储系统/">大数据存储系统</a></li>  <li class="file"><a href="/2019/06/04/数据库/2019-06-04-大数据运算/">大数据存储系统</a></li>  </ul> 
                     </li> 
                     
                     <li class="directory">
@@ -233,7 +233,7 @@
                             &nbsp;
                             Networking
                         </a>
-                         <ul class="unstyled" id="tree">  <li class="file"><a href="/2017/11/28/网络/2017-11-28-路由协议汇总整理/">路由协议汇总整理</a></li>  <li class="file"><a href="/2018/04/24/网络/2018-4-24-Mininet拓扑学习/">Mininet拓扑学习</a></li>  <li class="file"><a href="/2018/08/23/网络/2018-8-24-SketchLearn/">SketchLearn: Relieving User Burdens in Approximate Measurement with Automated Statistical Inference</a></li>  <li class="file"><a href="/2018/08/23/网络/2018-8-23-Elastic Sketch/">Elastic Sketch: Adaptive and Fast Network-wide Measurements</a></li>  <li class="file"><a href="/2018/08/23/网络/2018-8-23-SketchVisor/">SketchVisor: Robust Network Measurement for Soware Packet Processing</a></li>  </ul> 
+                         <ul class="unstyled" id="tree">  <li class="file"><a href="/2017/11/28/网络/2017-11-28-路由协议汇总整理/">路由协议汇总整理</a></li>  <li class="file"><a href="/2018/04/24/网络/2018-4-24-Mininet拓扑学习/">Mininet拓扑学习</a></li>  <li class="file"><a href="/2018/08/23/网络/2018-8-24-SketchLearn/">SketchLearn: Relieving User Burdens in Approximate Measurement with Automated Statistical Inference</a></li>  <li class="file"><a href="/2018/08/23/网络/2018-8-23-SketchVisor/">SketchVisor: Robust Network Measurement for Soware Packet Processing</a></li>  <li class="file"><a href="/2018/08/23/网络/2018-8-23-Elastic Sketch/">Elastic Sketch: Adaptive and Fast Network-wide Measurements</a></li>  </ul> 
                     </li> 
                     
                     <li class="directory">
@@ -251,7 +251,7 @@
                             &nbsp;
                             Pi
                         </a>
-                         <ul class="unstyled" id="tree">  <li class="file"><a href="/2016/08/06/Pi/2016-08-06-Raspberry Pi OK01/">Raspberry Pi OK01</a></li>  <li class="file"><a href="/2016/08/06/Pi/2016-08-06-Raspberry Pi OK02/">Raspberry Pi OK02</a></li>  <li class="file"><a href="/2016/08/06/Pi/2016-08-06-Raspberry Pi OK03/">Raspberry Pi OK03</a></li>  <li class="file"><a href="/2016/08/06/Pi/2016-08-06-Baking Pi – Operating Systems Development前言/">Raspberry Pi OS Development 前言</a></li>  <li class="file"><a href="/2016/08/09/Pi/2016-08-09-Raspberry Pi OK05/">Raspberry Pi OK05</a></li>  <li class="file"><a href="/2016/08/09/Pi/2016-08-10-Raspberry Pi Screen01/">Raspberry Pi Screen01</a></li>  <li class="file"><a href="/2016/08/09/Pi/2016-08-09-Raspberry Pi OK04/">Raspberry Pi OK04</a></li>  <li class="file"><a href="/2016/08/09/Pi/2016-08-11-Raspberry Pi Screen02/">Raspberry Pi Screen02</a></li>  <li class="file"><a href="/2016/08/14/Pi/2016-08-14-Raspberry Pi Screen03/">Raspberry Pi Screen03</a></li>  <li class="file"><a href="/2016/08/16/Pi/2016-08-16-Raspberry Pi Screen04/">Raspberry Pi Screen04</a></li>  <li class="file"><a href="/2016/08/31/Pi/2016-08-31-Raspberry Pi Input01/">Raspberry Pi Input01</a></li>  <li class="file"><a href="/2016/09/01/Pi/2016-09-01-Raspberry Pi Input02/">Raspberry Pi Input02</a></li>  </ul> 
+                         <ul class="unstyled" id="tree">  <li class="file"><a href="/2016/08/06/Pi/2016-08-06-Raspberry Pi OK02/">Raspberry Pi OK02</a></li>  <li class="file"><a href="/2016/08/06/Pi/2016-08-06-Raspberry Pi OK03/">Raspberry Pi OK03</a></li>  <li class="file"><a href="/2016/08/06/Pi/2016-08-06-Baking Pi – Operating Systems Development前言/">Raspberry Pi OS Development 前言</a></li>  <li class="file"><a href="/2016/08/06/Pi/2016-08-06-Raspberry Pi OK01/">Raspberry Pi OK01</a></li>  <li class="file"><a href="/2016/08/09/Pi/2016-08-09-Raspberry Pi OK04/">Raspberry Pi OK04</a></li>  <li class="file"><a href="/2016/08/09/Pi/2016-08-11-Raspberry Pi Screen02/">Raspberry Pi Screen02</a></li>  <li class="file"><a href="/2016/08/09/Pi/2016-08-10-Raspberry Pi Screen01/">Raspberry Pi Screen01</a></li>  <li class="file"><a href="/2016/08/09/Pi/2016-08-09-Raspberry Pi OK05/">Raspberry Pi OK05</a></li>  <li class="file"><a href="/2016/08/14/Pi/2016-08-14-Raspberry Pi Screen03/">Raspberry Pi Screen03</a></li>  <li class="file"><a href="/2016/08/16/Pi/2016-08-16-Raspberry Pi Screen04/">Raspberry Pi Screen04</a></li>  <li class="file"><a href="/2016/08/31/Pi/2016-08-31-Raspberry Pi Input01/">Raspberry Pi Input01</a></li>  <li class="file"><a href="/2016/09/01/Pi/2016-09-01-Raspberry Pi Input02/">Raspberry Pi Input02</a></li>  </ul> 
                     </li> 
                     
                     <li class="directory">
@@ -269,7 +269,7 @@
                             &nbsp;
                             Security
                         </a>
-                         <ul class="unstyled" id="tree">  <li class="file"><a href="/2018/09/02/安全/2018-09-02-蜜罐技术/">蜜罐技术</a></li>  <li class="file"><a href="/2019/06/22/安全/2019-06-22-网络异常行为检测/">网络异常行为检测</a></li>  <li class="file"><a href="/2019/07/21/安全/2019-07-22-xgboost/">孤立森林（Isolation Forest）</a></li>  <li class="file active"><a href="/2019/07/21/安全/2019-07-22-利用时序决策树进行DGA僵尸检测/">利用时序决策树进行DGA僵尸检测</a></li>  <li class="file"><a href="/2019/07/21/安全/2019-07-22-孤立森林（Isolation Froest）/">孤立森林（Isolation Forest）</a></li>  <li class="file"><a href="/2019/07/21/安全/2019-07-21-多项式插值/">多项式插值</a></li>  <li class="file"><a href="/2019/07/21/安全/2019-07-21-梯度提升决策树(GBDT)/">梯度提升决策树（GBDT）</a></li>  <li class="file"><a href="/2019/07/21/安全/2019-07-21-指数加权移动平均法（EWMA）/">指数加权移动平均法（EWMA）</a></li>  </ul> 
+                         <ul class="unstyled" id="tree">  <li class="file"><a href="/2018/09/02/安全/2018-09-02-蜜罐技术/">蜜罐技术</a></li>  <li class="file"><a href="/2019/06/22/安全/2019-06-22-网络异常行为检测/">网络异常行为检测</a></li>  <li class="file"><a href="/2019/07/21/安全/2019-07-21-指数加权移动平均法（EWMA）/">指数加权移动平均法（EWMA）</a></li>  <li class="file"><a href="/2019/07/21/安全/2019-07-22-孤立森林（Isolation Froest）/">孤立森林（Isolation Forest）</a></li>  <li class="file"><a href="/2019/07/21/安全/2019-07-22-xgboost/">孤立森林（Isolation Forest）</a></li>  <li class="file"><a href="/2019/07/21/安全/2019-07-21-多项式插值/">多项式插值</a></li>  <li class="file active"><a href="/2019/07/21/安全/2019-07-22-利用时序决策树进行DGA僵尸检测/">利用时序决策树进行DGA僵尸检测</a></li>  <li class="file"><a href="/2019/07/21/安全/2019-07-21-梯度提升决策树(GBDT)/">梯度提升决策树（GBDT）</a></li>  </ul> 
                     </li> 
                     
                     <li class="directory">
@@ -278,7 +278,7 @@
                             &nbsp;
                             网络
                         </a>
-                         <ul class="unstyled" id="tree">  <li class="file"><a href="/2016/12/24/网络/2016-12-24-ipv4在Linux上的实现/">学习构造用户空间的IP栈（资料总结）</a></li>  <li class="file"><a href="/2017/03/12/VANET/2017-3-12-Vanet仿真-ns3(1)/">VANET仿真-ns3(1)</a></li>  <li class="file"><a href="/2017/03/12/VANET/2017-3-12-Vanet仿真-ns3(2)/">VANET仿真-ns3(2)</a></li>  <li class="file"><a href="/2017/03/12/VANET/2017-3-12-Vanet仿真-ns3(3)/">VANET仿真-ns3(3)</a></li>  <li class="file"><a href="/2017/03/13/VANET/2017-3-13-Vanet仿真-ns3(4)/">VANET仿真-ns3(4)</a></li>  <li class="file"><a href="/2017/03/13/VANET/2017-3-13-Vanet仿真-ns3(5)/">VANET仿真-ns3(5)</a></li>  <li class="file"><a href="/2017/03/15/VANET/2017-3-15-Vanet仿真-ns3(6)/">VANET仿真-ns3(6)</a></li>  <li class="file"><a href="/2017/07/14/网络/2017-07-14-Ego networks/">Ego networks</a></li>  </ul> 
+                         <ul class="unstyled" id="tree">  <li class="file"><a href="/2016/12/24/网络/2016-12-24-ipv4在Linux上的实现/">学习构造用户空间的IP栈（资料总结）</a></li>  <li class="file"><a href="/2017/03/12/VANET/2017-3-12-Vanet仿真-ns3(3)/">VANET仿真-ns3(3)</a></li>  <li class="file"><a href="/2017/03/12/VANET/2017-3-12-Vanet仿真-ns3(2)/">VANET仿真-ns3(2)</a></li>  <li class="file"><a href="/2017/03/12/VANET/2017-3-12-Vanet仿真-ns3(1)/">VANET仿真-ns3(1)</a></li>  <li class="file"><a href="/2017/03/13/VANET/2017-3-13-Vanet仿真-ns3(4)/">VANET仿真-ns3(4)</a></li>  <li class="file"><a href="/2017/03/13/VANET/2017-3-13-Vanet仿真-ns3(5)/">VANET仿真-ns3(5)</a></li>  <li class="file"><a href="/2017/03/15/VANET/2017-3-15-Vanet仿真-ns3(6)/">VANET仿真-ns3(6)</a></li>  <li class="file"><a href="/2017/07/14/网络/2017-07-14-Ego networks/">Ego networks</a></li>  </ul> 
                     </li> 
                      <li class="file"><a href="/2019/05/30/强化学习/~$19-05-28-强化学习(2)/"></a></li>  <li class="file"><a href="/2019/09/16/数据挖掘/2019-09-16-基于注意力模型的RNN时序预测/"></a></li>  </ul> 
     </div>
@@ -422,48 +422,39 @@
         
         
             <p>DGA Bot Detection with Time Series Decision Trees</p>
-<h2 id="主要思路">主要思路</h2>
-<ol type="1">
+<h2 id="主要思路"><a href="#主要思路" class="headerlink" title="主要思路"></a>主要思路</h2><ol>
 <li>标签模块依赖分类技术，该模块可以对训练模型生成有标签的数据，并对每一个已经检测到的僵尸网络提供一系列的感染IP</li>
 <li>训练模块使用对生成的标签数据进行有监督的学习，对每一个僵尸网络家族都构造一个检测模型。利用典型的IP时间轮廓评估。</li>
 <li>检测模块在短时间内检测受到影响的IP。</li>
 </ol>
-<h2 id="标签模块">标签模块</h2>
-<p>给有监督训练模型提供受感染IP的实例，该模块只处理在DNS服务器中不存在的域名，利用的原理是通过将相同DGA僵尸网络的子集请求进行聚类。</p>
-<ol type="1">
+<h2 id="标签模块"><a href="#标签模块" class="headerlink" title="标签模块"></a>标签模块</h2><p>给有监督训练模型提供受感染IP的实例，该模块只处理在DNS服务器中不存在的域名，利用的原理是通过将相同DGA僵尸网络的子集请求进行聚类。</p>
+<ol>
 <li><strong>数据预处理</strong> 通过启发式方法减小数据量，减少良性的DNS流量，只保留可疑的NXDOMAIN来进行后续的聚类。（根据域名进行判断）</li>
 <li><strong>分级聚类</strong> D作为一系列的域名，每一个域名d都由一组IP代表，这组IP可以至少区分一个不成功的DNS请求。聚类结果C可以代表D的一种划分，对于每一个类别c都是自底向上聚类的结果。两个类可以计算相似度，如果相似度在限制内可以进行合并；该限制也可以防止没有共享足够IP的两个类进行合并。</li>
 </ol>
-<p>相似度计算公式： <span class="math display">\[
-\forall(c_i,c_j) \in C^2, sim(c_i.c_j) = |IP^{c_i}\cap IP^{c_j} |
-\]</span></p>
-<p>相似度限制公式： <span class="math display">\[
-sim(c_1^*,c_2^*) &gt; \alpha \cdot min(|IP^{c_1^*}|,|IP^{c_2^*}|) 
-\]</span></p>
-<p><img src="pictures/DGA.jpg"></p>
-<ol start="3" type="1">
+<p>相似度计算公式：</p>
+<script type="math/tex; mode=display">
+\forall(c_i,c_j) \in C^2, sim(c_i.c_j) = |IP^{c_i}\cap IP^{c_j} |</script><p>相似度限制公式：</p>
+<script type="math/tex; mode=display">
+sim(c_1^*,c_2^*) > \alpha \cdot min(|IP^{c_1^*}|,|IP^{c_2^*}|)</script><p><img src="pictures/DGA.jpg" alt></p>
+<ol>
 <li><strong>得到受感染的IP</strong> 往往丢弃与恶意行为不相干的类别，对已识别的DGA僵尸网络命名，</li>
 </ol>
-<h2 id="检测模块时序决策树">检测模块：时序决策树</h2>
-<p>输入：DNS时序，每个IP都有标签{Infected，NonInfected}</p>
-<p>在CART决策树的基础上训练，根节点包含所有的训练实例。每个内部节点都包含一系列的训练实例<span class="math inline">\(\tau\)</span>以及根据输入特征确定的分割条件s</p>
-<ol type="1">
-<li>所有的实例拥有相同的标签 <span class="math display">\[\forall(T_0,T_1) \in \tau^2, label(T_0)=label(T_1)\]</span></li>
-<li>所有的实例根据距离公式都是相等的 <span class="math display">\[\forall(T_0,T_1) \in \tau^2, dist(T_0,T_1)=0\]</span></li>
+<h2 id="检测模块：时序决策树"><a href="#检测模块：时序决策树" class="headerlink" title="检测模块：时序决策树"></a>检测模块：时序决策树</h2><p>输入：DNS时序，每个IP都有标签{Infected，NonInfected}</p>
+<p>在CART决策树的基础上训练，根节点包含所有的训练实例。每个内部节点都包含一系列的训练实例$\tau$以及根据输入特征确定的分割条件s</p>
+<ol>
+<li>所有的实例拥有相同的标签<script type="math/tex; mode=display">\forall(T_0,T_1) \in \tau^2, label(T_0)=label(T_1)</script></li>
+<li>所有的实例根据距离公式都是相等的<script type="math/tex; mode=display">\forall(T_0,T_1) \in \tau^2, dist(T_0,T_1)=0</script></li>
 </ol>
-<h3 id="训练模块">训练模块</h3>
-<p>分治算法进行决策树的处理，一条子树持续划分直到满足上述两个限制。</p>
+<h3 id="训练模块"><a href="#训练模块" class="headerlink" title="训练模块"></a>训练模块</h3><p>分治算法进行决策树的处理，一条子树持续划分直到满足上述两个限制。</p>
 <p>对于一个训练集，首先计算分裂的候选值，要求分裂结果使得子树最干净，干净可以用标签的定义来进行判断。最不干净的结果就是一半为{Infected}另一半为{NonInfected}</p>
-<h3 id="检测模块">检测模块</h3>
-<p>当决策树构建结束后，就可以通过从根节点到叶子节点的一条路径上的划分来区分其属于哪一个类。</p>
-<h3 id="时序划分候选">时序划分候选</h3>
-<ul>
+<h3 id="检测模块"><a href="#检测模块" class="headerlink" title="检测模块"></a>检测模块</h3><p>当决策树构建结束后，就可以通过从根节点到叶子节点的一条路径上的划分来区分其属于哪一个类。</p>
+<h3 id="时序划分候选"><a href="#时序划分候选" class="headerlink" title="时序划分候选"></a>时序划分候选</h3><ul>
 <li>标准划分：通过半径划分</li>
 <li>聚类划分：根据到中心的的距离进行划分</li>
 </ul>
-<p><img src="pictures/DGA1.jpg"></p>
-<h3 id="时序距离">时序距离</h3>
-<p>DTW距离（很好的分析时序距离的方法）</p>
+<p><img src="pictures/DGA1.jpg" alt></p>
+<h3 id="时序距离"><a href="#时序距离" class="headerlink" title="时序距离"></a>时序距离</h3><p>DTW距离（很好的分析时序距离的方法）</p>
 
             </div>
         
@@ -476,19 +467,19 @@ sim(c_1^*,c_2^*) &gt; \alpha \cdot min(|IP^{c_1^*}|,|IP^{c_2^*}|)
     
 <nav id="article-nav">
     
-        <a href="/2019/07/21/安全/2019-07-22-孤立森林（Isolation Froest）/" id="article-nav-newer" class="article-nav-link-wrap">
+        <a href="/2019/07/21/安全/2019-07-21-指数加权移动平均法（EWMA）/" id="article-nav-newer" class="article-nav-link-wrap">
             <strong class="article-nav-caption">上一篇</strong>
             <div class="article-nav-title">
                 
-                    孤立森林（Isolation Forest）
+                    指数加权移动平均法（EWMA）
                 
             </div>
         </a>
     
     
-        <a href="/2019/07/21/安全/2019-07-22-xgboost/" id="article-nav-older" class="article-nav-link-wrap">
+        <a href="/2019/07/21/数据挖掘/2019-08-13-实时异常检测/" id="article-nav-older" class="article-nav-link-wrap">
             <strong class="article-nav-caption">下一篇</strong>
-            <div class="article-nav-title">孤立森林（Isolation Forest）</div>
+            <div class="article-nav-title">实时异常检测（xStream，KDD&#39;18）</div>
         </a>
     
 </nav>
@@ -570,20 +561,5 @@ sim(c_1^*,c_2^*) &gt; \alpha \cdot min(|IP^{c_1^*}|,|IP^{c_2^*}|)
 <script src="/js/main.js"></script>
 
     </div>
-<script type="text/x-mathjax-config">
-    MathJax.Hub.Config({
-        tex2jax: {
-            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
-            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
-            processEscapes: true
-        }
-    });
-    MathJax.Hub.Queue(function() {
-        var all = MathJax.Hub.getAllJax();
-        for (var i = 0; i < all.length; ++i)
-            all[i].SourceElement().parentNode.className += ' has-jax';
-    });
-</script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
 </body>
 </html>

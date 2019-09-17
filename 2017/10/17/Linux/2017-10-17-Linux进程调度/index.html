@@ -9,19 +9,19 @@
         <meta name="keywords" content="Linux,OS">
     
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <meta name="description" content="多任务 多任务OS可以使得多个进程处于堵塞或者睡眠状态，也就是说，实际上不被投入运行直到工作确实就绪。这些任务尽管位于内存，但并不处于可运行状态。相反，这些进程利用内核阻塞自己，直到某一事件触发。 抢占式任务 &amp;amp; 非抢占式任务 抢占式任务有调度程序来决定什么时候停止一个进程的运行，以便其他进程可以得到执行机会。在这样的系统下，进程可以运行的时间都是被提前预设好的，这一段时间被称作时间片(t">
+    <meta name="description" content="多任务多任务OS可以使得多个进程处于堵塞或者睡眠状态，也就是说，实际上不被投入运行直到工作确实就绪。这些任务尽管位于内存，但并不处于可运行状态。相反，这些进程利用内核阻塞自己，直到某一事件触发。 抢占式任务 &amp;amp; 非抢占式任务抢占式任务有调度程序来决定什么时候停止一个进程的运行，以便其他进程可以得到执行机会。在这样的系统下，进程可以运行的时间都是被提前预设好的，这一段时间被称作时间片(tim">
 <meta name="keywords" content="Linux,OS">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Linux-进程调度">
 <meta property="og:url" content="http://www.liufr.com/2017/10/17/Linux/2017-10-17-Linux进程调度/index.html">
 <meta property="og:site_name" content="Fengrui Liu&#39;s Blog">
-<meta property="og:description" content="多任务 多任务OS可以使得多个进程处于堵塞或者睡眠状态，也就是说，实际上不被投入运行直到工作确实就绪。这些任务尽管位于内存，但并不处于可运行状态。相反，这些进程利用内核阻塞自己，直到某一事件触发。 抢占式任务 &amp;amp; 非抢占式任务 抢占式任务有调度程序来决定什么时候停止一个进程的运行，以便其他进程可以得到执行机会。在这样的系统下，进程可以运行的时间都是被提前预设好的，这一段时间被称作时间片(t">
+<meta property="og:description" content="多任务多任务OS可以使得多个进程处于堵塞或者睡眠状态，也就是说，实际上不被投入运行直到工作确实就绪。这些任务尽管位于内存，但并不处于可运行状态。相反，这些进程利用内核阻塞自己，直到某一事件触发。 抢占式任务 &amp;amp; 非抢占式任务抢占式任务有调度程序来决定什么时候停止一个进程的运行，以便其他进程可以得到执行机会。在这样的系统下，进程可以运行的时间都是被提前预设好的，这一段时间被称作时间片(tim">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://ws2.sinaimg.cn/large/006tKfTcly1fknr172349j30oi0g0jw3.jpg">
 <meta property="og:updated_time" content="2017-10-20T01:30:00.120Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Linux-进程调度">
-<meta name="twitter:description" content="多任务 多任务OS可以使得多个进程处于堵塞或者睡眠状态，也就是说，实际上不被投入运行直到工作确实就绪。这些任务尽管位于内存，但并不处于可运行状态。相反，这些进程利用内核阻塞自己，直到某一事件触发。 抢占式任务 &amp;amp; 非抢占式任务 抢占式任务有调度程序来决定什么时候停止一个进程的运行，以便其他进程可以得到执行机会。在这样的系统下，进程可以运行的时间都是被提前预设好的，这一段时间被称作时间片(t">
+<meta name="twitter:description" content="多任务多任务OS可以使得多个进程处于堵塞或者睡眠状态，也就是说，实际上不被投入运行直到工作确实就绪。这些任务尽管位于内存，但并不处于可运行状态。相反，这些进程利用内核阻塞自己，直到某一事件触发。 抢占式任务 &amp;amp; 非抢占式任务抢占式任务有调度程序来决定什么时候停止一个进程的运行，以便其他进程可以得到执行机会。在这样的系统下，进程可以运行的时间都是被提前预设好的，这一段时间被称作时间片(tim">
 <meta name="twitter:image" content="https://ws2.sinaimg.cn/large/006tKfTcly1fknr172349j30oi0g0jw3.jpg">
     
 
@@ -169,7 +169,7 @@
                             &nbsp;
                             Algorithm
                         </a>
-                         <ul class="unstyled" id="tree">  <li class="file"><a href="/2016/10/25/算法/2016-10-25-Dijkstra算法/">Dijkstra算法</a></li>  <li class="file"><a href="/2016/10/25/算法/2016-10-25-BellmanFord算法/">Bellman-Ford算法</a></li>  <li class="file"><a href="/2016/12/08/算法/2016-12-08-Bloom Filter/">Bloom Filter</a></li>  <li class="file"><a href="/2017/07/14/算法/2017-7-14-tf-idf/">tf-idf</a></li>  <li class="file"><a href="/2017/09/13/算法/2017-9-13-前缀和/">前缀和（SJTU OJ 1002）</a></li>  <li class="file"><a href="/2017/09/14/算法/2017-9-14-超大数求和/">超大数求和（SJTU OJ 1007）</a></li>  <li class="file"><a href="/2017/09/15/算法/2017-9-15-DP(0" 1背包) ">DP（0/1背包）</a></li>  <li class="file"><a href="/2017/09/15/算法/2017-9-15-DP问题/">DP（SJTU OJ 1012）</a></li>  <li class="file"><a href="/2017/09/15/算法/2017-9-15-DP最长公共子序列/">DP（最长公共子序列）</a></li>  <li class="file"><a href="/2017/09/15/算法/2017-9-15-完全背包/">DP（完全背包）</a></li>  <li class="file"><a href="/2017/09/25/算法/2017-9-25-约瑟夫问题/">约瑟夫问题(SJTU OJ 1038)</a></li>  <li class="file"><a href="/2018/04/02/算法/2018-4-2-排序(位图数据结构)/">排序(位图数据结构)</a></li>  <li class="file"><a href="/2018/10/18/算法/2018-10-15-非负矩阵分解/">非负矩阵分解</a></li>  </ul> 
+                         <ul class="unstyled" id="tree">  <li class="file"><a href="/2016/10/25/算法/2016-10-25-Dijkstra算法/">Dijkstra算法</a></li>  <li class="file"><a href="/2016/10/25/算法/2016-10-25-BellmanFord算法/">Bellman-Ford算法</a></li>  <li class="file"><a href="/2016/12/08/算法/2016-12-08-Bloom Filter/">Bloom Filter</a></li>  <li class="file"><a href="/2017/07/14/算法/2017-7-14-tf-idf/">tf-idf</a></li>  <li class="file"><a href="/2017/09/13/算法/2017-9-13-前缀和/">前缀和（SJTU OJ 1002）</a></li>  <li class="file"><a href="/2017/09/14/算法/2017-9-14-超大数求和/">超大数求和（SJTU OJ 1007）</a></li>  <li class="file"><a href="/2017/09/15/算法/2017-9-15-完全背包/">DP（完全背包）</a></li>  <li class="file"><a href="/2017/09/15/算法/2017-9-15-DP问题/">DP（SJTU OJ 1012）</a></li>  <li class="file"><a href="/2017/09/15/算法/2017-9-15-DP最长公共子序列/">DP（最长公共子序列）</a></li>  <li class="file"><a href="/2017/09/15/算法/2017-9-15-DP(0" 1背包) ">DP（0/1背包）</a></li>  <li class="file"><a href="/2017/09/25/算法/2017-9-25-约瑟夫问题/">约瑟夫问题(SJTU OJ 1038)</a></li>  <li class="file"><a href="/2018/04/02/算法/2018-4-2-排序(位图数据结构)/">排序(位图数据结构)</a></li>  <li class="file"><a href="/2018/10/18/算法/2018-10-15-非负矩阵分解/">非负矩阵分解</a></li>  </ul> 
                     </li> 
                     
                     <li class="directory">
@@ -196,7 +196,7 @@
                             &nbsp;
                             Data mining
                         </a>
-                         <ul class="unstyled" id="tree">  <li class="file"><a href="/2018/12/02/数据挖掘/2018-12-02-监督学习/">监督学习 Supervised Learning(决策树+SVM/Perceptron+AdaBoost)</a></li>  <li class="file"><a href="/2018/12/03/数据挖掘/2018-12-03-非监督学习/">无监督学习 Unsupervised Learning(聚类、矩阵分解、话题模型)</a></li>  <li class="file"><a href="/2018/12/05/数据挖掘/2018-12-05-大规模机器学习/">大规模机器学习</a></li>  <li class="file"><a href="/2018/12/05/数据挖掘/2018-12-05-互联网搜索与排序/">互联网搜索与排序</a></li>  </ul> 
+                         <ul class="unstyled" id="tree">  <li class="file"><a href="/2018/12/02/数据挖掘/2018-12-02-监督学习/">监督学习 Supervised Learning(决策树+SVM/Perceptron+AdaBoost)</a></li>  <li class="file"><a href="/2018/12/03/数据挖掘/2018-12-03-非监督学习/">无监督学习 Unsupervised Learning(聚类、矩阵分解、话题模型)</a></li>  <li class="file"><a href="/2018/12/05/数据挖掘/2018-12-05-互联网搜索与排序/">互联网搜索与排序</a></li>  <li class="file"><a href="/2018/12/05/数据挖掘/2018-12-05-大规模机器学习/">大规模机器学习</a></li>  </ul> 
                     </li> 
                     
                     <li class="directory">
@@ -205,7 +205,7 @@
                             &nbsp;
                             Database
                         </a>
-                         <ul class="unstyled" id="tree">  <li class="file"><a href="/2019/06/03/数据库/2019-06-03-关系数据库/">关系数据库</a></li>  <li class="file"><a href="/2019/06/04/数据库/2019-06-04-大数据运算/">大数据存储系统</a></li>  <li class="file"><a href="/2019/06/04/数据库/2019-06-04-大数据存储系统/">大数据存储系统</a></li>  </ul> 
+                         <ul class="unstyled" id="tree">  <li class="file"><a href="/2019/06/03/数据库/2019-06-03-关系数据库/">关系数据库</a></li>  <li class="file"><a href="/2019/06/04/数据库/2019-06-04-大数据存储系统/">大数据存储系统</a></li>  <li class="file"><a href="/2019/06/04/数据库/2019-06-04-大数据运算/">大数据存储系统</a></li>  </ul> 
                     </li> 
                     
                     <li class="directory">
@@ -232,7 +232,7 @@
                             &nbsp;
                             Networking
                         </a>
-                         <ul class="unstyled" id="tree">  <li class="file"><a href="/2017/11/28/网络/2017-11-28-路由协议汇总整理/">路由协议汇总整理</a></li>  <li class="file"><a href="/2018/04/24/网络/2018-4-24-Mininet拓扑学习/">Mininet拓扑学习</a></li>  <li class="file"><a href="/2018/08/23/网络/2018-8-24-SketchLearn/">SketchLearn: Relieving User Burdens in Approximate Measurement with Automated Statistical Inference</a></li>  <li class="file"><a href="/2018/08/23/网络/2018-8-23-Elastic Sketch/">Elastic Sketch: Adaptive and Fast Network-wide Measurements</a></li>  <li class="file"><a href="/2018/08/23/网络/2018-8-23-SketchVisor/">SketchVisor: Robust Network Measurement for Soware Packet Processing</a></li>  </ul> 
+                         <ul class="unstyled" id="tree">  <li class="file"><a href="/2017/11/28/网络/2017-11-28-路由协议汇总整理/">路由协议汇总整理</a></li>  <li class="file"><a href="/2018/04/24/网络/2018-4-24-Mininet拓扑学习/">Mininet拓扑学习</a></li>  <li class="file"><a href="/2018/08/23/网络/2018-8-24-SketchLearn/">SketchLearn: Relieving User Burdens in Approximate Measurement with Automated Statistical Inference</a></li>  <li class="file"><a href="/2018/08/23/网络/2018-8-23-SketchVisor/">SketchVisor: Robust Network Measurement for Soware Packet Processing</a></li>  <li class="file"><a href="/2018/08/23/网络/2018-8-23-Elastic Sketch/">Elastic Sketch: Adaptive and Fast Network-wide Measurements</a></li>  </ul> 
                     </li> 
                     
                     <li class="directory">
@@ -250,7 +250,7 @@
                             &nbsp;
                             Pi
                         </a>
-                         <ul class="unstyled" id="tree">  <li class="file"><a href="/2016/08/06/Pi/2016-08-06-Raspberry Pi OK01/">Raspberry Pi OK01</a></li>  <li class="file"><a href="/2016/08/06/Pi/2016-08-06-Raspberry Pi OK02/">Raspberry Pi OK02</a></li>  <li class="file"><a href="/2016/08/06/Pi/2016-08-06-Raspberry Pi OK03/">Raspberry Pi OK03</a></li>  <li class="file"><a href="/2016/08/06/Pi/2016-08-06-Baking Pi – Operating Systems Development前言/">Raspberry Pi OS Development 前言</a></li>  <li class="file"><a href="/2016/08/09/Pi/2016-08-09-Raspberry Pi OK05/">Raspberry Pi OK05</a></li>  <li class="file"><a href="/2016/08/09/Pi/2016-08-10-Raspberry Pi Screen01/">Raspberry Pi Screen01</a></li>  <li class="file"><a href="/2016/08/09/Pi/2016-08-09-Raspberry Pi OK04/">Raspberry Pi OK04</a></li>  <li class="file"><a href="/2016/08/09/Pi/2016-08-11-Raspberry Pi Screen02/">Raspberry Pi Screen02</a></li>  <li class="file"><a href="/2016/08/14/Pi/2016-08-14-Raspberry Pi Screen03/">Raspberry Pi Screen03</a></li>  <li class="file"><a href="/2016/08/16/Pi/2016-08-16-Raspberry Pi Screen04/">Raspberry Pi Screen04</a></li>  <li class="file"><a href="/2016/08/31/Pi/2016-08-31-Raspberry Pi Input01/">Raspberry Pi Input01</a></li>  <li class="file"><a href="/2016/09/01/Pi/2016-09-01-Raspberry Pi Input02/">Raspberry Pi Input02</a></li>  </ul> 
+                         <ul class="unstyled" id="tree">  <li class="file"><a href="/2016/08/06/Pi/2016-08-06-Raspberry Pi OK02/">Raspberry Pi OK02</a></li>  <li class="file"><a href="/2016/08/06/Pi/2016-08-06-Raspberry Pi OK03/">Raspberry Pi OK03</a></li>  <li class="file"><a href="/2016/08/06/Pi/2016-08-06-Baking Pi – Operating Systems Development前言/">Raspberry Pi OS Development 前言</a></li>  <li class="file"><a href="/2016/08/06/Pi/2016-08-06-Raspberry Pi OK01/">Raspberry Pi OK01</a></li>  <li class="file"><a href="/2016/08/09/Pi/2016-08-09-Raspberry Pi OK04/">Raspberry Pi OK04</a></li>  <li class="file"><a href="/2016/08/09/Pi/2016-08-11-Raspberry Pi Screen02/">Raspberry Pi Screen02</a></li>  <li class="file"><a href="/2016/08/09/Pi/2016-08-10-Raspberry Pi Screen01/">Raspberry Pi Screen01</a></li>  <li class="file"><a href="/2016/08/09/Pi/2016-08-09-Raspberry Pi OK05/">Raspberry Pi OK05</a></li>  <li class="file"><a href="/2016/08/14/Pi/2016-08-14-Raspberry Pi Screen03/">Raspberry Pi Screen03</a></li>  <li class="file"><a href="/2016/08/16/Pi/2016-08-16-Raspberry Pi Screen04/">Raspberry Pi Screen04</a></li>  <li class="file"><a href="/2016/08/31/Pi/2016-08-31-Raspberry Pi Input01/">Raspberry Pi Input01</a></li>  <li class="file"><a href="/2016/09/01/Pi/2016-09-01-Raspberry Pi Input02/">Raspberry Pi Input02</a></li>  </ul> 
                     </li> 
                     
                     <li class="directory">
@@ -268,7 +268,7 @@
                             &nbsp;
                             Security
                         </a>
-                         <ul class="unstyled" id="tree">  <li class="file"><a href="/2018/09/02/安全/2018-09-02-蜜罐技术/">蜜罐技术</a></li>  <li class="file"><a href="/2019/06/22/安全/2019-06-22-网络异常行为检测/">网络异常行为检测</a></li>  <li class="file"><a href="/2019/07/21/安全/2019-07-22-xgboost/">孤立森林（Isolation Forest）</a></li>  <li class="file"><a href="/2019/07/21/安全/2019-07-22-利用时序决策树进行DGA僵尸检测/">利用时序决策树进行DGA僵尸检测</a></li>  <li class="file"><a href="/2019/07/21/安全/2019-07-22-孤立森林（Isolation Froest）/">孤立森林（Isolation Forest）</a></li>  <li class="file"><a href="/2019/07/21/安全/2019-07-21-多项式插值/">多项式插值</a></li>  <li class="file"><a href="/2019/07/21/安全/2019-07-21-梯度提升决策树(GBDT)/">梯度提升决策树（GBDT）</a></li>  <li class="file"><a href="/2019/07/21/安全/2019-07-21-指数加权移动平均法（EWMA）/">指数加权移动平均法（EWMA）</a></li>  </ul> 
+                         <ul class="unstyled" id="tree">  <li class="file"><a href="/2018/09/02/安全/2018-09-02-蜜罐技术/">蜜罐技术</a></li>  <li class="file"><a href="/2019/06/22/安全/2019-06-22-网络异常行为检测/">网络异常行为检测</a></li>  <li class="file"><a href="/2019/07/21/安全/2019-07-21-指数加权移动平均法（EWMA）/">指数加权移动平均法（EWMA）</a></li>  <li class="file"><a href="/2019/07/21/安全/2019-07-22-孤立森林（Isolation Froest）/">孤立森林（Isolation Forest）</a></li>  <li class="file"><a href="/2019/07/21/安全/2019-07-22-xgboost/">孤立森林（Isolation Forest）</a></li>  <li class="file"><a href="/2019/07/21/安全/2019-07-21-多项式插值/">多项式插值</a></li>  <li class="file"><a href="/2019/07/21/安全/2019-07-22-利用时序决策树进行DGA僵尸检测/">利用时序决策树进行DGA僵尸检测</a></li>  <li class="file"><a href="/2019/07/21/安全/2019-07-21-梯度提升决策树(GBDT)/">梯度提升决策树（GBDT）</a></li>  </ul> 
                     </li> 
                     
                     <li class="directory">
@@ -277,7 +277,7 @@
                             &nbsp;
                             网络
                         </a>
-                         <ul class="unstyled" id="tree">  <li class="file"><a href="/2016/12/24/网络/2016-12-24-ipv4在Linux上的实现/">学习构造用户空间的IP栈（资料总结）</a></li>  <li class="file"><a href="/2017/03/12/VANET/2017-3-12-Vanet仿真-ns3(1)/">VANET仿真-ns3(1)</a></li>  <li class="file"><a href="/2017/03/12/VANET/2017-3-12-Vanet仿真-ns3(2)/">VANET仿真-ns3(2)</a></li>  <li class="file"><a href="/2017/03/12/VANET/2017-3-12-Vanet仿真-ns3(3)/">VANET仿真-ns3(3)</a></li>  <li class="file"><a href="/2017/03/13/VANET/2017-3-13-Vanet仿真-ns3(4)/">VANET仿真-ns3(4)</a></li>  <li class="file"><a href="/2017/03/13/VANET/2017-3-13-Vanet仿真-ns3(5)/">VANET仿真-ns3(5)</a></li>  <li class="file"><a href="/2017/03/15/VANET/2017-3-15-Vanet仿真-ns3(6)/">VANET仿真-ns3(6)</a></li>  <li class="file"><a href="/2017/07/14/网络/2017-07-14-Ego networks/">Ego networks</a></li>  </ul> 
+                         <ul class="unstyled" id="tree">  <li class="file"><a href="/2016/12/24/网络/2016-12-24-ipv4在Linux上的实现/">学习构造用户空间的IP栈（资料总结）</a></li>  <li class="file"><a href="/2017/03/12/VANET/2017-3-12-Vanet仿真-ns3(3)/">VANET仿真-ns3(3)</a></li>  <li class="file"><a href="/2017/03/12/VANET/2017-3-12-Vanet仿真-ns3(2)/">VANET仿真-ns3(2)</a></li>  <li class="file"><a href="/2017/03/12/VANET/2017-3-12-Vanet仿真-ns3(1)/">VANET仿真-ns3(1)</a></li>  <li class="file"><a href="/2017/03/13/VANET/2017-3-13-Vanet仿真-ns3(4)/">VANET仿真-ns3(4)</a></li>  <li class="file"><a href="/2017/03/13/VANET/2017-3-13-Vanet仿真-ns3(5)/">VANET仿真-ns3(5)</a></li>  <li class="file"><a href="/2017/03/15/VANET/2017-3-15-Vanet仿真-ns3(6)/">VANET仿真-ns3(6)</a></li>  <li class="file"><a href="/2017/07/14/网络/2017-07-14-Ego networks/">Ego networks</a></li>  </ul> 
                     </li> 
                      <li class="file"><a href="/2019/05/30/强化学习/~$19-05-28-强化学习(2)/"></a></li>  <li class="file"><a href="/2019/09/16/数据挖掘/2019-09-16-基于注意力模型的RNN时序预测/"></a></li>  </ul> 
     </div>
@@ -420,49 +420,32 @@
             
         
         
-            <h3 id="多任务">多任务</h3>
-<p>多任务OS可以使得多个进程处于堵塞或者睡眠状态，也就是说，实际上不被投入运行直到工作确实就绪。这些任务尽管位于内存，但并不处于可运行状态。相反，这些进程利用内核阻塞自己，直到某一事件触发。</p>
-<h4 id="抢占式任务-非抢占式任务">抢占式任务 &amp; 非抢占式任务</h4>
-<p>抢占式任务有调度程序来决定什么时候停止一个进程的运行，以便其他进程可以得到执行机会。在这样的系统下，进程可以运行的时间都是被提前预设好的，这一段时间被称作时间片(timeslice)。现代操作系统中系统对程序运行都采用动态时间片计算的方式。</p>
+            <h3 id="多任务"><a href="#多任务" class="headerlink" title="多任务"></a>多任务</h3><p>多任务OS可以使得多个进程处于堵塞或者睡眠状态，也就是说，实际上不被投入运行直到工作确实就绪。这些任务尽管位于内存，但并不处于可运行状态。相反，这些进程利用内核阻塞自己，直到某一事件触发。</p>
+<h4 id="抢占式任务-amp-非抢占式任务"><a href="#抢占式任务-amp-非抢占式任务" class="headerlink" title="抢占式任务 &amp; 非抢占式任务"></a>抢占式任务 &amp; 非抢占式任务</h4><p>抢占式任务有调度程序来决定什么时候停止一个进程的运行，以便其他进程可以得到执行机会。在这样的系统下，进程可以运行的时间都是被提前预设好的，这一段时间被称作时间片(timeslice)。现代操作系统中系统对程序运行都采用动态时间片计算的方式。</p>
 <p>在非抢占式任务模式下，除非程序自己停止，否则它会持续运行。进程主动挂起被称作让步，但是可能会有很多问题超出用户的预料。Linux 使用的是抢占式的多任务模式。</p>
-<h3 id="linux进程调度">Linux进程调度</h3>
-<h4 id="io消耗型-处理器消耗型进程">I/O消耗型 &amp; 处理器消耗型进程</h4>
-<p>I/O消耗型：进程大部分时间用来提交I/O请求或者等待I/O请求。这样的进程经常处于可运行状态，但通常都是运行时间较短，因为他们在等待I/O时总是会阻塞。</p>
+<h3 id="Linux进程调度"><a href="#Linux进程调度" class="headerlink" title="Linux进程调度"></a>Linux进程调度</h3><h4 id="I-O消耗型-amp-处理器消耗型进程"><a href="#I-O消耗型-amp-处理器消耗型进程" class="headerlink" title="I/O消耗型 &amp; 处理器消耗型进程"></a>I/O消耗型 &amp; 处理器消耗型进程</h4><p>I/O消耗型：进程大部分时间用来提交I/O请求或者等待I/O请求。这样的进程经常处于可运行状态，但通常都是运行时间较短，因为他们在等待I/O时总是会阻塞。</p>
 <p>处理器消耗型：进程时间大多用于执行代码。除非被抢占否则这部分进程总是在运行。从相应速度考虑，操作系统尽量降低这部分进程的调度频率，从而延长其运行时间。</p>
 <p>当然，上述划分并不绝对，有些进程满足以上两个特点，在不同时刻对处理器的要求完全不同。</p>
-<h4 id="进程优先级">进程优先级</h4>
-<p>Linux采用了两种不同的优先级:</p>
+<h4 id="进程优先级"><a href="#进程优先级" class="headerlink" title="进程优先级"></a>进程优先级</h4><p>Linux采用了两种不同的优先级:</p>
 <p>第一种是nice值(-20 到 +19)，默认为0；<strong>越大的nice值意味着更低的优先级</strong>，nice绝对值代表时间片的比例。</p>
 <p>第二种是实时优先级(默认情况是0到99)。<strong>越高的实时优先级</strong>意味着进程优先级越高。任何实时进程的优先级都高于普通的进程，也就是说实时优先级和nice优先级处于互不相交的范畴。</p>
-<h4 id="时间片">时间片</h4>
-<p>时间片标明进程在被抢占前所能持续运行的时间。Linux没有直接分配时间片到进程，它是将处理器的<strong>使用比</strong>划分给进程，这样，进程所获得的处理器时间其实和系统负载密切相关。</p>
+<h4 id="时间片"><a href="#时间片" class="headerlink" title="时间片"></a>时间片</h4><p>时间片标明进程在被抢占前所能持续运行的时间。Linux没有直接分配时间片到进程，它是将处理器的<strong>使用比</strong>划分给进程，这样，进程所获得的处理器时间其实和系统负载密切相关。</p>
 <p>在Linux中的CFS抢占时机完全由进程优先级和是否有时间片决定，取决于新的可运行程序消耗了多少处理器使用比。如果消耗的使用比比当前进程小，则新进程立刻投入运行，抢占当前进程。否则推迟运行。</p>
-<h3 id="linux调度算法">Linux调度算法</h3>
-<h4 id="cfs完全公平调度算法">CFS(完全公平调度算法)</h4>
-<p>CFS:允许每个进程运行一段时间、循环轮转、选择运行最少的进程作为下一个运行进程，而不再采用分配给每个进程时间片的做法。CFS在所有可运行进程总数基础上计算出一个进程应该运行多久，而不是依靠nice值计算时间片。nice值在CFS中变为一个权重，<strong>越低的nice值获得更高的处理器使用权重</strong>。</p>
+<h3 id="Linux调度算法"><a href="#Linux调度算法" class="headerlink" title="Linux调度算法"></a>Linux调度算法</h3><h4 id="CFS-完全公平调度算法"><a href="#CFS-完全公平调度算法" class="headerlink" title="CFS(完全公平调度算法)"></a>CFS(完全公平调度算法)</h4><p>CFS:允许每个进程运行一段时间、循环轮转、选择运行最少的进程作为下一个运行进程，而不再采用分配给每个进程时间片的做法。CFS在所有可运行进程总数基础上计算出一个进程应该运行多久，而不是依靠nice值计算时间片。nice值在CFS中变为一个权重，<strong>越低的nice值获得更高的处理器使用权重</strong>。</p>
 <p>为了防止运行任务数量趋于无限大时，所造成的不可接受的切换损耗，CFS为每个进程设置了时间片最小粒度(默认1ms)。</p>
-<h3 id="linux调度实现">Linux调度实现</h3>
-<h4 id="时间记账">时间记账</h4>
-<p>所有的调度器都必须对进程运行时间做记账。当每次系统时钟节拍发生时，时间片都会被减少一个街拍周期，当时间片减少到0时，他就会被其它可运行进程抢占。</p>
-<h4 id="进程选择">进程选择</h4>
-<p>由于没有完美的多任务处理器，CFS试图利用一个简单的规则去均衡进程的虚拟运行时间：当CFS需要选择下一个运行进程时，他会挑选一个具有最小vruntime的进程。</p>
+<h3 id="Linux调度实现"><a href="#Linux调度实现" class="headerlink" title="Linux调度实现"></a>Linux调度实现</h3><h4 id="时间记账"><a href="#时间记账" class="headerlink" title="时间记账"></a>时间记账</h4><p>所有的调度器都必须对进程运行时间做记账。当每次系统时钟节拍发生时，时间片都会被减少一个街拍周期，当时间片减少到0时，他就会被其它可运行进程抢占。</p>
+<h4 id="进程选择"><a href="#进程选择" class="headerlink" title="进程选择"></a>进程选择</h4><p>由于没有完美的多任务处理器，CFS试图利用一个简单的规则去均衡进程的虚拟运行时间：当CFS需要选择下一个运行进程时，他会挑选一个具有最小vruntime的进程。</p>
 <p>CFS利用红黑树来组织可运行进程队列，并利用其迅速找到最小vruntime值的进程。</p>
-<h5 id="挑选下一个任务">挑选下一个任务</h5>
-<p>假设一个红黑树上存储了系统中所有的可运行进程，其中节点的键值是可运行进程的虚拟运行时间。这时，CFS需要调度的是vruntime最小的那个，它对应的便是树中最左侧的叶子节点,实际上在代码实现中，最左边叶子节点缓存起来了。</p>
-<h5 id="向树中加入进程">向树中加入进程</h5>
-<p>这一步骤发生在进程变为可运行状态，或者通过fork()调用第一次创建进程时。通过遍历红黑树，如果键值小于当前节点键值，则需要转向树的左分支；相反如果大于当前节点键值，则会转向右分支。一旦发现转入右分支，则leftmost就绝对不会是新加入的节点，leftmost=0，否则leftmost=1，到最后要更新缓存。</p>
-<h5 id="从树中删除进程">从树中删除进程</h5>
-<p>删除动作发生在进程堵塞或者终止时，通过红黑树操作可以删除进程，然后检查是否删除的是最左节点，从而判断是否要更新rb_leftmost的缓存。</p>
-<h4 id="调整入口">调整入口</h4>
-<p>进程调度主要入口是schedule(),他会调用pick_next_task()，以优先级为序，从高到低，依次检查每一个类，从而选择最高优先级的进程。</p>
+<h5 id="挑选下一个任务"><a href="#挑选下一个任务" class="headerlink" title="挑选下一个任务"></a>挑选下一个任务</h5><p>假设一个红黑树上存储了系统中所有的可运行进程，其中节点的键值是可运行进程的虚拟运行时间。这时，CFS需要调度的是vruntime最小的那个，它对应的便是树中最左侧的叶子节点,实际上在代码实现中，最左边叶子节点缓存起来了。</p>
+<h5 id="向树中加入进程"><a href="#向树中加入进程" class="headerlink" title="向树中加入进程"></a>向树中加入进程</h5><p>这一步骤发生在进程变为可运行状态，或者通过fork()调用第一次创建进程时。通过遍历红黑树，如果键值小于当前节点键值，则需要转向树的左分支；相反如果大于当前节点键值，则会转向右分支。一旦发现转入右分支，则leftmost就绝对不会是新加入的节点，leftmost=0，否则leftmost=1，到最后要更新缓存。</p>
+<h5 id="从树中删除进程"><a href="#从树中删除进程" class="headerlink" title="从树中删除进程"></a>从树中删除进程</h5><p>删除动作发生在进程堵塞或者终止时，通过红黑树操作可以删除进程，然后检查是否删除的是最左节点，从而判断是否要更新rb_leftmost的缓存。</p>
+<h4 id="调整入口"><a href="#调整入口" class="headerlink" title="调整入口"></a>调整入口</h4><p>进程调度主要入口是schedule(),他会调用pick_next_task()，以优先级为序，从高到低，依次检查每一个类，从而选择最高优先级的进程。</p>
 <figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="comment">// kernel/sched.c</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//挑选最高优先级的任务</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">static</span> <span class="keyword">inline</span> <span class="class"><span class="keyword">struct</span> <span class="title">task_struct</span> *</span></span><br><span class="line"><span class="class"><span class="title">pick_next_task</span>(<span class="title">struct</span> <span class="title">rq</span> *<span class="title">rq</span>)&#123;</span></span><br><span class="line">	<span class="keyword">const</span> <span class="class"><span class="keyword">struct</span> <span class="title">sched_class</span> *<span class="title">class</span>;</span></span><br><span class="line">	<span class="class"><span class="keyword">struct</span> <span class="title">task_struct</span> *<span class="title">p</span>;</span></span><br><span class="line"></span><br><span class="line">	<span class="comment">//如果我们知道所有任务都在公平类中，那么可以直接调用该函数(所有可运行进程数量等于CFS类对应的可运行进程数，也就是说所有的可运行进程都是CFS类)</span></span><br><span class="line"></span><br><span class="line">	<span class="keyword">if</span> (likely(rq-&gt;nr_running == rq-&gt;cfs.nr_running)) &#123;</span><br><span class="line">		p = fair_sched_class.pick_next_task(rq);</span><br><span class="line">		<span class="keyword">if</span> (likely(p)) &#123;</span><br><span class="line">			<span class="keyword">return</span> p;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="class"><span class="keyword">class</span> = <span class="title">sched_class_highest</span>;</span></span><br><span class="line">	<span class="keyword">for</span> (; ;) &#123;</span><br><span class="line">		p = class-&gt;pick_next_task(rq);</span><br><span class="line">		<span class="keyword">if</span> (p) &#123;</span><br><span class="line">			<span class="keyword">return</span> p;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="comment">//p永远不会为NULL,因为idle类总会返回非NULL的p。</span></span><br><span class="line">		<span class="class"><span class="keyword">class</span> = <span class="title">class</span>-&gt;<span class="title">next</span>;</span></span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h4 id="睡眠和唤醒">睡眠和唤醒</h4>
-<p>休眠的进程处于一个特殊的不可执行的状态，进程把自己标记成休眠状态，从可执行红黑树中移除，放入等待队列，然后调用schedule()选择和执行一个其他进程。</p>
+<h4 id="睡眠和唤醒"><a href="#睡眠和唤醒" class="headerlink" title="睡眠和唤醒"></a>睡眠和唤醒</h4><p>休眠的进程处于一个特殊的不可执行的状态，进程把自己标记成休眠状态，从可执行红黑树中移除，放入等待队列，然后调用schedule()选择和执行一个其他进程。</p>
 <p>唤醒的过程与睡眠相反，进程被设置为可执行状态，然后从等待队列移到可执行红黑树中。</p>
-<h5 id="等待队列">等待队列</h5>
-<p>等待队列是由某些事件发生的进程组成的简单链表(wake_queue_head_t)，</p>
+<h5 id="等待队列"><a href="#等待队列" class="headerlink" title="等待队列"></a>等待队列</h5><p>等待队列是由某些事件发生的进程组成的简单链表(wake_queue_head_t)，</p>
 <figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="comment">// q 是我们希望休眠的等待队列</span></span><br><span class="line"></span><br><span class="line">DEFINE_WAIT(wait)；</span><br><span class="line"></span><br><span class="line">add_wait_queue(q, &amp;wait)；</span><br><span class="line"><span class="keyword">while</span>(!condition) &#123;</span><br><span class="line">	prepare_to_wait(&amp;q, &amp;wait, TASK_INTERPUPTIBLE);</span><br><span class="line">	<span class="keyword">if</span> (signal_pending(current)) &#123;</span><br><span class="line">		<span class="comment">/* 处理信号 */</span></span><br><span class="line">	&#125;</span><br><span class="line">	schedule();</span><br><span class="line">&#125;</span><br><span class="line">finish_wait(&amp;q, &amp;wait);</span><br></pre></td></tr></table></figure>
-<ol type="1">
+<ol>
 <li>调用宏DEFINE_WAIT()创建一个等待队列的项。</li>
 <li>调用add_wait_queue()把自己加入到队列中。该队列会在进程等待的条件满足时唤醒它。当然我们必须在其他地方撰写相关代码，在事件发生时，对等待队列执行wake_up()操作</li>
 <li>调用prepare_to_wait()方法将进程的状态变更为TASK_INTERRUPTIBLE 或者 TASK_UNINTERRUPTIBLE。</li>
@@ -470,21 +453,21 @@
 <li>当进程被唤醒，再一次检查条件是否为真，如果是则退出循环；如果不是则再次调用schedule()并重复该操作。</li>
 <li>当条件满足，进程将自己设置成TASK_RUNNING,调用finish_wait()并将自己移除等待队列。</li>
 </ol>
-<h5 id="唤醒">唤醒</h5>
-<p>wake_up(),它会唤醒指定的等待队列上的所有进程。他调用函数try_to_wake_up(),该函数负责将进程设置成TASK_RUNNING状态，调用enqueue_task()将此进程放入红黑树中，如果被唤醒的进程优先级比较高还要设置need_resched状态。</p>
-<h3 id="抢占和上下文切换">抢占和上下文切换</h3>
-<p>上下文切换就是从一个可执行进程切换到另一个可执行进程，完成的操作内容如下：</p>
+<h5 id="唤醒"><a href="#唤醒" class="headerlink" title="唤醒"></a>唤醒</h5><p>wake_up(),它会唤醒指定的等待队列上的所有进程。他调用函数try_to_wake_up(),该函数负责将进程设置成TASK_RUNNING状态，调用enqueue_task()将此进程放入红黑树中，如果被唤醒的进程优先级比较高还要设置need_resched状态。</p>
+<h3 id="抢占和上下文切换"><a href="#抢占和上下文切换" class="headerlink" title="抢占和上下文切换"></a>抢占和上下文切换</h3><p>上下文切换就是从一个可执行进程切换到另一个可执行进程，完成的操作内容如下：</p>
 <ul>
 <li>调用声明switch_mm(),该函数负责把虚拟内存从上一个进程映射切换到新进程中。</li>
 <li>调用声明中的switch_to(),该函数负责从上一个进程的处理器状态切换到新进程的处理器状态。这包括保存、恢复栈信息和寄存器信息，还有其他任何与体系结构相关的状态信息，都必须以每个进程为对象进行管理保存。</li>
 </ul>
-<p><img src="https://ws2.sinaimg.cn/large/006tKfTcly1fknr172349j30oi0g0jw3.jpg"></p>
+<p><img src="https://ws2.sinaimg.cn/large/006tKfTcly1fknr172349j30oi0g0jw3.jpg" alt></p>
 <p>内核提供了一个need_resched标志来标明是否需要重新执行一次调度。当某个进程应该被抢占时，scheduler_tick()就会设置这个标志，当一个优先级高的进程进入可执行状态时，try_to_wake_up()也会设置这个标志，内核检查该标志，确认位置，调用schedule()来切换到一个新的进程，该标志对于内核来讲是一个信息，它表示有其他进程应当被运行。</p>
-<h4 id="用户抢占">用户抢占</h4>
-<p>内核即将返回用户空间时，检查need_resched标志是否被设置，如果被设置则会调用schedule()，此时发生用户抢占。</p>
-<p>总结用户抢占发生在以下情况： * 从系统返回用户空间时。 * 从中断处理程序返回用户空间时。</p>
-<h4 id="内核抢占">内核抢占</h4>
-<p>只要重新调度是安全的，内核就可以在任何时间抢占正在执行的任务。只要没有持有锁，内核就可以进行抢占，锁是非抢占区域的标志。</p>
+<h4 id="用户抢占"><a href="#用户抢占" class="headerlink" title="用户抢占"></a>用户抢占</h4><p>内核即将返回用户空间时，检查need_resched标志是否被设置，如果被设置则会调用schedule()，此时发生用户抢占。</p>
+<p>总结用户抢占发生在以下情况：</p>
+<ul>
+<li>从系统返回用户空间时。</li>
+<li>从中断处理程序返回用户空间时。</li>
+</ul>
+<h4 id="内核抢占"><a href="#内核抢占" class="headerlink" title="内核抢占"></a>内核抢占</h4><p>只要重新调度是安全的，内核就可以在任何时间抢占正在执行的任务。只要没有持有锁，内核就可以进行抢占，锁是非抢占区域的标志。</p>
 <p>每个进程的thread_info都可以引入preempt_count计数器，该计数器初始值为0，每当使用锁就加1，释放锁数值减1。当数值为0时，内核就可以执行抢占。从中断返回内核空间时，内核检查need_resched和preempt_count的值，如果need_resched被设置，并且preempt_count为0，说明有一个更为重要的任务需要执行并且可以安全地抢占；如果preempt_count不为0，那么说明当前任务有锁，那么抢占不安全，内核直接从中断返回当前执行进程。如果所有的所都被释放了，preempt_count就会是0，此时，释放锁的代码会检查need_resched是否会被设置，如果是的话，就会调度程序。</p>
 <p>总结内核抢占发生在以下情况：</p>
 <ul>
@@ -493,11 +476,8 @@
 <li>如果内核中的任务显示地调用schedule()。</li>
 <li>如果内核中的任务阻塞。</li>
 </ul>
-<h3 id="实时调度策略">实时调度策略</h3>
-<h4 id="sched_fifo先进先出">SCHED_FIFO(先进先出)</h4>
-<p>不使用时间片。处于可运行状态的SCHED_FIFO级的进程会比任何SCHED_NORMAL级的进程都先得到调度。一旦一个SCHED_FIFO级进程处于可执行状态，就会一直执行，直到它自己受阻塞或显式地释放处理器为止。只有更高优先级的SCHED_FIFO或者SCHED_RR任务才能抢占。</p>
-<h4 id="sched_rr时间片轮转">SCHED_RR(时间片轮转)</h4>
-<p>在耗尽事先分配给它的时间后就不能再继续执行了，这是一种实时轮流调度算法。当SCHED_RR任务耗尽它的时间片时，在同一优先级的其他实时进程被轮流调度。时间片只用来重新调度同一优先级的进程。</p>
+<h3 id="实时调度策略"><a href="#实时调度策略" class="headerlink" title="实时调度策略"></a>实时调度策略</h3><h4 id="SCHED-FIFO-先进先出"><a href="#SCHED-FIFO-先进先出" class="headerlink" title="SCHED_FIFO(先进先出)"></a>SCHED_FIFO(先进先出)</h4><p>不使用时间片。处于可运行状态的SCHED_FIFO级的进程会比任何SCHED_NORMAL级的进程都先得到调度。一旦一个SCHED_FIFO级进程处于可执行状态，就会一直执行，直到它自己受阻塞或显式地释放处理器为止。只有更高优先级的SCHED_FIFO或者SCHED_RR任务才能抢占。</p>
+<h4 id="SCHED-RR-时间片轮转"><a href="#SCHED-RR-时间片轮转" class="headerlink" title="SCHED_RR(时间片轮转)"></a>SCHED_RR(时间片轮转)</h4><p>在耗尽事先分配给它的时间后就不能再继续执行了，这是一种实时轮流调度算法。当SCHED_RR任务耗尽它的时间片时，在同一优先级的其他实时进程被轮流调度。时间片只用来重新调度同一优先级的进程。</p>
 
             </div>
         
@@ -604,20 +584,5 @@
 <script src="/js/main.js"></script>
 
     </div>
-<script type="text/x-mathjax-config">
-    MathJax.Hub.Config({
-        tex2jax: {
-            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
-            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
-            processEscapes: true
-        }
-    });
-    MathJax.Hub.Queue(function() {
-        var all = MathJax.Hub.getAllJax();
-        for (var i = 0; i < all.length; ++i)
-            all[i].SourceElement().parentNode.className += ' has-jax';
-    });
-</script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
 </body>
 </html>

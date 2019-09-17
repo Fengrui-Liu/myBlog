@@ -9,20 +9,20 @@
         <meta name="keywords" content="OS,Raspberry-Pi">
     
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <meta name="description" content="实验目标 在实验Input 01的基础上建立一个命令行接口，计算机可以中断并显示它们。 终端 具体操作行为步骤如下： 1. 启动计算机，显示欢迎信息 2. 计算机表明它准备好工作 3. 使用者在键盘上键入指令和参数 4. 当敲下回车键时表示提交一条指令 5. 计算机解析并执行指令如果该指令没有错误 6. 计算机显示指令正确以及接下来发生了什么 7. 返回到步骤2 在终端的命令行输入输出操作都具有一">
+    <meta name="description" content="实验目标在实验Input 01的基础上建立一个命令行接口，计算机可以中断并显示它们。 终端具体操作行为步骤如下：  启动计算机，显示欢迎信息 计算机表明它准备好工作 使用者在键盘上键入指令和参数 当敲下回车键时表示提交一条指令 计算机解析并执行指令如果该指令没有错误 计算机显示指令正确以及接下来发生了什么 返回到步骤2  在终端的命令行输入输出操作都具有一定的统一性，因此我们不再需要去绘制出每一个">
 <meta name="keywords" content="OS,Raspberry-Pi">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Raspberry Pi Input02">
 <meta property="og:url" content="http://www.liufr.com/2016/09/01/Pi/2016-09-01-Raspberry Pi Input02/index.html">
 <meta property="og:site_name" content="Fengrui Liu&#39;s Blog">
-<meta property="og:description" content="实验目标 在实验Input 01的基础上建立一个命令行接口，计算机可以中断并显示它们。 终端 具体操作行为步骤如下： 1. 启动计算机，显示欢迎信息 2. 计算机表明它准备好工作 3. 使用者在键盘上键入指令和参数 4. 当敲下回车键时表示提交一条指令 5. 计算机解析并执行指令如果该指令没有错误 6. 计算机显示指令正确以及接下来发生了什么 7. 返回到步骤2 在终端的命令行输入输出操作都具有一">
+<meta property="og:description" content="实验目标在实验Input 01的基础上建立一个命令行接口，计算机可以中断并显示它们。 终端具体操作行为步骤如下：  启动计算机，显示欢迎信息 计算机表明它准备好工作 使用者在键盘上键入指令和参数 当敲下回车键时表示提交一条指令 计算机解析并执行指令如果该指令没有错误 计算机显示指令正确以及接下来发生了什么 返回到步骤2  在终端的命令行输入输出操作都具有一定的统一性，因此我们不再需要去绘制出每一个">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http://ww4.sinaimg.cn/large/72f96cbagw1f7k7zyu73uj20fc0lsdhr.jpg">
 <meta property="og:image" content="http://ww3.sinaimg.cn/large/72f96cbagw1f7k8dp1268j208c0jbwh4.jpg">
 <meta property="og:updated_time" content="2017-10-20T01:31:26.860Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Raspberry Pi Input02">
-<meta name="twitter:description" content="实验目标 在实验Input 01的基础上建立一个命令行接口，计算机可以中断并显示它们。 终端 具体操作行为步骤如下： 1. 启动计算机，显示欢迎信息 2. 计算机表明它准备好工作 3. 使用者在键盘上键入指令和参数 4. 当敲下回车键时表示提交一条指令 5. 计算机解析并执行指令如果该指令没有错误 6. 计算机显示指令正确以及接下来发生了什么 7. 返回到步骤2 在终端的命令行输入输出操作都具有一">
+<meta name="twitter:description" content="实验目标在实验Input 01的基础上建立一个命令行接口，计算机可以中断并显示它们。 终端具体操作行为步骤如下：  启动计算机，显示欢迎信息 计算机表明它准备好工作 使用者在键盘上键入指令和参数 当敲下回车键时表示提交一条指令 计算机解析并执行指令如果该指令没有错误 计算机显示指令正确以及接下来发生了什么 返回到步骤2  在终端的命令行输入输出操作都具有一定的统一性，因此我们不再需要去绘制出每一个">
 <meta name="twitter:image" content="http://ww4.sinaimg.cn/large/72f96cbagw1f7k7zyu73uj20fc0lsdhr.jpg">
     
 
@@ -170,7 +170,7 @@
                             &nbsp;
                             Algorithm
                         </a>
-                         <ul class="unstyled" id="tree">  <li class="file"><a href="/2016/10/25/算法/2016-10-25-Dijkstra算法/">Dijkstra算法</a></li>  <li class="file"><a href="/2016/10/25/算法/2016-10-25-BellmanFord算法/">Bellman-Ford算法</a></li>  <li class="file"><a href="/2016/12/08/算法/2016-12-08-Bloom Filter/">Bloom Filter</a></li>  <li class="file"><a href="/2017/07/14/算法/2017-7-14-tf-idf/">tf-idf</a></li>  <li class="file"><a href="/2017/09/13/算法/2017-9-13-前缀和/">前缀和（SJTU OJ 1002）</a></li>  <li class="file"><a href="/2017/09/14/算法/2017-9-14-超大数求和/">超大数求和（SJTU OJ 1007）</a></li>  <li class="file"><a href="/2017/09/15/算法/2017-9-15-DP(0" 1背包) ">DP（0/1背包）</a></li>  <li class="file"><a href="/2017/09/15/算法/2017-9-15-DP问题/">DP（SJTU OJ 1012）</a></li>  <li class="file"><a href="/2017/09/15/算法/2017-9-15-DP最长公共子序列/">DP（最长公共子序列）</a></li>  <li class="file"><a href="/2017/09/15/算法/2017-9-15-完全背包/">DP（完全背包）</a></li>  <li class="file"><a href="/2017/09/25/算法/2017-9-25-约瑟夫问题/">约瑟夫问题(SJTU OJ 1038)</a></li>  <li class="file"><a href="/2018/04/02/算法/2018-4-2-排序(位图数据结构)/">排序(位图数据结构)</a></li>  <li class="file"><a href="/2018/10/18/算法/2018-10-15-非负矩阵分解/">非负矩阵分解</a></li>  </ul> 
+                         <ul class="unstyled" id="tree">  <li class="file"><a href="/2016/10/25/算法/2016-10-25-Dijkstra算法/">Dijkstra算法</a></li>  <li class="file"><a href="/2016/10/25/算法/2016-10-25-BellmanFord算法/">Bellman-Ford算法</a></li>  <li class="file"><a href="/2016/12/08/算法/2016-12-08-Bloom Filter/">Bloom Filter</a></li>  <li class="file"><a href="/2017/07/14/算法/2017-7-14-tf-idf/">tf-idf</a></li>  <li class="file"><a href="/2017/09/13/算法/2017-9-13-前缀和/">前缀和（SJTU OJ 1002）</a></li>  <li class="file"><a href="/2017/09/14/算法/2017-9-14-超大数求和/">超大数求和（SJTU OJ 1007）</a></li>  <li class="file"><a href="/2017/09/15/算法/2017-9-15-完全背包/">DP（完全背包）</a></li>  <li class="file"><a href="/2017/09/15/算法/2017-9-15-DP问题/">DP（SJTU OJ 1012）</a></li>  <li class="file"><a href="/2017/09/15/算法/2017-9-15-DP最长公共子序列/">DP（最长公共子序列）</a></li>  <li class="file"><a href="/2017/09/15/算法/2017-9-15-DP(0" 1背包) ">DP（0/1背包）</a></li>  <li class="file"><a href="/2017/09/25/算法/2017-9-25-约瑟夫问题/">约瑟夫问题(SJTU OJ 1038)</a></li>  <li class="file"><a href="/2018/04/02/算法/2018-4-2-排序(位图数据结构)/">排序(位图数据结构)</a></li>  <li class="file"><a href="/2018/10/18/算法/2018-10-15-非负矩阵分解/">非负矩阵分解</a></li>  </ul> 
                     </li> 
                     
                     <li class="directory">
@@ -197,7 +197,7 @@
                             &nbsp;
                             Data mining
                         </a>
-                         <ul class="unstyled" id="tree">  <li class="file"><a href="/2018/12/02/数据挖掘/2018-12-02-监督学习/">监督学习 Supervised Learning(决策树+SVM/Perceptron+AdaBoost)</a></li>  <li class="file"><a href="/2018/12/03/数据挖掘/2018-12-03-非监督学习/">无监督学习 Unsupervised Learning(聚类、矩阵分解、话题模型)</a></li>  <li class="file"><a href="/2018/12/05/数据挖掘/2018-12-05-大规模机器学习/">大规模机器学习</a></li>  <li class="file"><a href="/2018/12/05/数据挖掘/2018-12-05-互联网搜索与排序/">互联网搜索与排序</a></li>  </ul> 
+                         <ul class="unstyled" id="tree">  <li class="file"><a href="/2018/12/02/数据挖掘/2018-12-02-监督学习/">监督学习 Supervised Learning(决策树+SVM/Perceptron+AdaBoost)</a></li>  <li class="file"><a href="/2018/12/03/数据挖掘/2018-12-03-非监督学习/">无监督学习 Unsupervised Learning(聚类、矩阵分解、话题模型)</a></li>  <li class="file"><a href="/2018/12/05/数据挖掘/2018-12-05-互联网搜索与排序/">互联网搜索与排序</a></li>  <li class="file"><a href="/2018/12/05/数据挖掘/2018-12-05-大规模机器学习/">大规模机器学习</a></li>  </ul> 
                     </li> 
                     
                     <li class="directory">
@@ -206,7 +206,7 @@
                             &nbsp;
                             Database
                         </a>
-                         <ul class="unstyled" id="tree">  <li class="file"><a href="/2019/06/03/数据库/2019-06-03-关系数据库/">关系数据库</a></li>  <li class="file"><a href="/2019/06/04/数据库/2019-06-04-大数据运算/">大数据存储系统</a></li>  <li class="file"><a href="/2019/06/04/数据库/2019-06-04-大数据存储系统/">大数据存储系统</a></li>  </ul> 
+                         <ul class="unstyled" id="tree">  <li class="file"><a href="/2019/06/03/数据库/2019-06-03-关系数据库/">关系数据库</a></li>  <li class="file"><a href="/2019/06/04/数据库/2019-06-04-大数据存储系统/">大数据存储系统</a></li>  <li class="file"><a href="/2019/06/04/数据库/2019-06-04-大数据运算/">大数据存储系统</a></li>  </ul> 
                     </li> 
                     
                     <li class="directory">
@@ -233,7 +233,7 @@
                             &nbsp;
                             Networking
                         </a>
-                         <ul class="unstyled" id="tree">  <li class="file"><a href="/2017/11/28/网络/2017-11-28-路由协议汇总整理/">路由协议汇总整理</a></li>  <li class="file"><a href="/2018/04/24/网络/2018-4-24-Mininet拓扑学习/">Mininet拓扑学习</a></li>  <li class="file"><a href="/2018/08/23/网络/2018-8-24-SketchLearn/">SketchLearn: Relieving User Burdens in Approximate Measurement with Automated Statistical Inference</a></li>  <li class="file"><a href="/2018/08/23/网络/2018-8-23-Elastic Sketch/">Elastic Sketch: Adaptive and Fast Network-wide Measurements</a></li>  <li class="file"><a href="/2018/08/23/网络/2018-8-23-SketchVisor/">SketchVisor: Robust Network Measurement for Soware Packet Processing</a></li>  </ul> 
+                         <ul class="unstyled" id="tree">  <li class="file"><a href="/2017/11/28/网络/2017-11-28-路由协议汇总整理/">路由协议汇总整理</a></li>  <li class="file"><a href="/2018/04/24/网络/2018-4-24-Mininet拓扑学习/">Mininet拓扑学习</a></li>  <li class="file"><a href="/2018/08/23/网络/2018-8-24-SketchLearn/">SketchLearn: Relieving User Burdens in Approximate Measurement with Automated Statistical Inference</a></li>  <li class="file"><a href="/2018/08/23/网络/2018-8-23-SketchVisor/">SketchVisor: Robust Network Measurement for Soware Packet Processing</a></li>  <li class="file"><a href="/2018/08/23/网络/2018-8-23-Elastic Sketch/">Elastic Sketch: Adaptive and Fast Network-wide Measurements</a></li>  </ul> 
                     </li> 
                     
                     <li class="directory">
@@ -251,7 +251,7 @@
                             &nbsp;
                             Pi
                         </a>
-                         <ul class="unstyled" id="tree">  <li class="file"><a href="/2016/08/06/Pi/2016-08-06-Raspberry Pi OK01/">Raspberry Pi OK01</a></li>  <li class="file"><a href="/2016/08/06/Pi/2016-08-06-Raspberry Pi OK02/">Raspberry Pi OK02</a></li>  <li class="file"><a href="/2016/08/06/Pi/2016-08-06-Raspberry Pi OK03/">Raspberry Pi OK03</a></li>  <li class="file"><a href="/2016/08/06/Pi/2016-08-06-Baking Pi – Operating Systems Development前言/">Raspberry Pi OS Development 前言</a></li>  <li class="file"><a href="/2016/08/09/Pi/2016-08-09-Raspberry Pi OK05/">Raspberry Pi OK05</a></li>  <li class="file"><a href="/2016/08/09/Pi/2016-08-10-Raspberry Pi Screen01/">Raspberry Pi Screen01</a></li>  <li class="file"><a href="/2016/08/09/Pi/2016-08-09-Raspberry Pi OK04/">Raspberry Pi OK04</a></li>  <li class="file"><a href="/2016/08/09/Pi/2016-08-11-Raspberry Pi Screen02/">Raspberry Pi Screen02</a></li>  <li class="file"><a href="/2016/08/14/Pi/2016-08-14-Raspberry Pi Screen03/">Raspberry Pi Screen03</a></li>  <li class="file"><a href="/2016/08/16/Pi/2016-08-16-Raspberry Pi Screen04/">Raspberry Pi Screen04</a></li>  <li class="file"><a href="/2016/08/31/Pi/2016-08-31-Raspberry Pi Input01/">Raspberry Pi Input01</a></li>  <li class="file active"><a href="/2016/09/01/Pi/2016-09-01-Raspberry Pi Input02/">Raspberry Pi Input02</a></li>  </ul> 
+                         <ul class="unstyled" id="tree">  <li class="file"><a href="/2016/08/06/Pi/2016-08-06-Raspberry Pi OK02/">Raspberry Pi OK02</a></li>  <li class="file"><a href="/2016/08/06/Pi/2016-08-06-Raspberry Pi OK03/">Raspberry Pi OK03</a></li>  <li class="file"><a href="/2016/08/06/Pi/2016-08-06-Baking Pi – Operating Systems Development前言/">Raspberry Pi OS Development 前言</a></li>  <li class="file"><a href="/2016/08/06/Pi/2016-08-06-Raspberry Pi OK01/">Raspberry Pi OK01</a></li>  <li class="file"><a href="/2016/08/09/Pi/2016-08-09-Raspberry Pi OK04/">Raspberry Pi OK04</a></li>  <li class="file"><a href="/2016/08/09/Pi/2016-08-11-Raspberry Pi Screen02/">Raspberry Pi Screen02</a></li>  <li class="file"><a href="/2016/08/09/Pi/2016-08-10-Raspberry Pi Screen01/">Raspberry Pi Screen01</a></li>  <li class="file"><a href="/2016/08/09/Pi/2016-08-09-Raspberry Pi OK05/">Raspberry Pi OK05</a></li>  <li class="file"><a href="/2016/08/14/Pi/2016-08-14-Raspberry Pi Screen03/">Raspberry Pi Screen03</a></li>  <li class="file"><a href="/2016/08/16/Pi/2016-08-16-Raspberry Pi Screen04/">Raspberry Pi Screen04</a></li>  <li class="file"><a href="/2016/08/31/Pi/2016-08-31-Raspberry Pi Input01/">Raspberry Pi Input01</a></li>  <li class="file active"><a href="/2016/09/01/Pi/2016-09-01-Raspberry Pi Input02/">Raspberry Pi Input02</a></li>  </ul> 
                     </li> 
                     
                     <li class="directory">
@@ -269,7 +269,7 @@
                             &nbsp;
                             Security
                         </a>
-                         <ul class="unstyled" id="tree">  <li class="file"><a href="/2018/09/02/安全/2018-09-02-蜜罐技术/">蜜罐技术</a></li>  <li class="file"><a href="/2019/06/22/安全/2019-06-22-网络异常行为检测/">网络异常行为检测</a></li>  <li class="file"><a href="/2019/07/21/安全/2019-07-22-xgboost/">孤立森林（Isolation Forest）</a></li>  <li class="file"><a href="/2019/07/21/安全/2019-07-22-利用时序决策树进行DGA僵尸检测/">利用时序决策树进行DGA僵尸检测</a></li>  <li class="file"><a href="/2019/07/21/安全/2019-07-22-孤立森林（Isolation Froest）/">孤立森林（Isolation Forest）</a></li>  <li class="file"><a href="/2019/07/21/安全/2019-07-21-多项式插值/">多项式插值</a></li>  <li class="file"><a href="/2019/07/21/安全/2019-07-21-梯度提升决策树(GBDT)/">梯度提升决策树（GBDT）</a></li>  <li class="file"><a href="/2019/07/21/安全/2019-07-21-指数加权移动平均法（EWMA）/">指数加权移动平均法（EWMA）</a></li>  </ul> 
+                         <ul class="unstyled" id="tree">  <li class="file"><a href="/2018/09/02/安全/2018-09-02-蜜罐技术/">蜜罐技术</a></li>  <li class="file"><a href="/2019/06/22/安全/2019-06-22-网络异常行为检测/">网络异常行为检测</a></li>  <li class="file"><a href="/2019/07/21/安全/2019-07-21-指数加权移动平均法（EWMA）/">指数加权移动平均法（EWMA）</a></li>  <li class="file"><a href="/2019/07/21/安全/2019-07-22-孤立森林（Isolation Froest）/">孤立森林（Isolation Forest）</a></li>  <li class="file"><a href="/2019/07/21/安全/2019-07-22-xgboost/">孤立森林（Isolation Forest）</a></li>  <li class="file"><a href="/2019/07/21/安全/2019-07-21-多项式插值/">多项式插值</a></li>  <li class="file"><a href="/2019/07/21/安全/2019-07-22-利用时序决策树进行DGA僵尸检测/">利用时序决策树进行DGA僵尸检测</a></li>  <li class="file"><a href="/2019/07/21/安全/2019-07-21-梯度提升决策树(GBDT)/">梯度提升决策树（GBDT）</a></li>  </ul> 
                     </li> 
                     
                     <li class="directory">
@@ -278,7 +278,7 @@
                             &nbsp;
                             网络
                         </a>
-                         <ul class="unstyled" id="tree">  <li class="file"><a href="/2016/12/24/网络/2016-12-24-ipv4在Linux上的实现/">学习构造用户空间的IP栈（资料总结）</a></li>  <li class="file"><a href="/2017/03/12/VANET/2017-3-12-Vanet仿真-ns3(1)/">VANET仿真-ns3(1)</a></li>  <li class="file"><a href="/2017/03/12/VANET/2017-3-12-Vanet仿真-ns3(2)/">VANET仿真-ns3(2)</a></li>  <li class="file"><a href="/2017/03/12/VANET/2017-3-12-Vanet仿真-ns3(3)/">VANET仿真-ns3(3)</a></li>  <li class="file"><a href="/2017/03/13/VANET/2017-3-13-Vanet仿真-ns3(4)/">VANET仿真-ns3(4)</a></li>  <li class="file"><a href="/2017/03/13/VANET/2017-3-13-Vanet仿真-ns3(5)/">VANET仿真-ns3(5)</a></li>  <li class="file"><a href="/2017/03/15/VANET/2017-3-15-Vanet仿真-ns3(6)/">VANET仿真-ns3(6)</a></li>  <li class="file"><a href="/2017/07/14/网络/2017-07-14-Ego networks/">Ego networks</a></li>  </ul> 
+                         <ul class="unstyled" id="tree">  <li class="file"><a href="/2016/12/24/网络/2016-12-24-ipv4在Linux上的实现/">学习构造用户空间的IP栈（资料总结）</a></li>  <li class="file"><a href="/2017/03/12/VANET/2017-3-12-Vanet仿真-ns3(3)/">VANET仿真-ns3(3)</a></li>  <li class="file"><a href="/2017/03/12/VANET/2017-3-12-Vanet仿真-ns3(2)/">VANET仿真-ns3(2)</a></li>  <li class="file"><a href="/2017/03/12/VANET/2017-3-12-Vanet仿真-ns3(1)/">VANET仿真-ns3(1)</a></li>  <li class="file"><a href="/2017/03/13/VANET/2017-3-13-Vanet仿真-ns3(4)/">VANET仿真-ns3(4)</a></li>  <li class="file"><a href="/2017/03/13/VANET/2017-3-13-Vanet仿真-ns3(5)/">VANET仿真-ns3(5)</a></li>  <li class="file"><a href="/2017/03/15/VANET/2017-3-15-Vanet仿真-ns3(6)/">VANET仿真-ns3(6)</a></li>  <li class="file"><a href="/2017/07/14/网络/2017-07-14-Ego networks/">Ego networks</a></li>  </ul> 
                     </li> 
                      <li class="file"><a href="/2019/05/30/强化学习/~$19-05-28-强化学习(2)/"></a></li>  <li class="file"><a href="/2019/09/16/数据挖掘/2019-09-16-基于注意力模型的RNN时序预测/"></a></li>  </ul> 
     </div>
@@ -421,31 +421,39 @@
             
         
         
-            <h3 id="实验目标">实验目标</h3>
-<p>在实验Input 01的基础上建立一个命令行接口，计算机可以中断并显示它们。</p>
-<h4 id="终端">终端</h4>
-<p>具体操作行为步骤如下： 1. 启动计算机，显示欢迎信息 2. 计算机表明它准备好工作 3. 使用者在键盘上键入指令和参数 4. 当敲下回车键时表示提交一条指令 5. 计算机解析并执行指令如果该指令没有错误 6. 计算机显示指令正确以及接下来发生了什么 7. 返回到步骤2</p>
+            <h3 id="实验目标"><a href="#实验目标" class="headerlink" title="实验目标"></a>实验目标</h3><p>在实验Input 01的基础上建立一个命令行接口，计算机可以中断并显示它们。</p>
+<h4 id="终端"><a href="#终端" class="headerlink" title="终端"></a>终端</h4><p>具体操作行为步骤如下：</p>
+<ol>
+<li>启动计算机，显示欢迎信息</li>
+<li>计算机表明它准备好工作</li>
+<li>使用者在键盘上键入指令和参数</li>
+<li>当敲下回车键时表示提交一条指令</li>
+<li>计算机解析并执行指令如果该指令没有错误</li>
+<li>计算机显示指令正确以及接下来发生了什么</li>
+<li>返回到步骤2</li>
+</ol>
 <p>在终端的命令行输入输出操作都具有一定的统一性，因此我们不再需要去绘制出每一个像素点（计算机在此处的额操作是以字符为单位的），我们将每一个字符的图案信息、颜色信息等都保存起来，再按照需要通过<strong>DrawCharacter</strong>函数调用每一个字符即可。</p>
 <figure class="highlight arm"><table><tr><td class="code"><pre><span class="line"><span class="symbol">.section</span> <span class="meta">.data</span></span><br><span class="line"><span class="symbol">.align</span> <span class="number">4</span></span><br><span class="line"><span class="symbol">terminalStart</span>:</span><br><span class="line"><span class="symbol">.int</span> terminalBuffer</span><br><span class="line"><span class="symbol">terminalStop</span>:</span><br><span class="line"><span class="symbol">.int</span> terminalBuffer</span><br><span class="line"><span class="symbol">terminalView</span>:</span><br><span class="line"><span class="symbol">.int</span> terminalBuffer</span><br><span class="line"><span class="symbol">terminalColour</span>:</span><br><span class="line"><span class="symbol">.byte</span> <span class="number">0xf</span></span><br><span class="line"><span class="symbol">.align</span> <span class="number">8</span></span><br><span class="line"><span class="symbol">terminalBuffer</span>:</span><br><span class="line"><span class="symbol">.rept</span> <span class="number">128</span>*<span class="number">128</span></span><br><span class="line"><span class="symbol">.byte</span> <span class="number">0x7f</span></span><br><span class="line"><span class="symbol">.byte</span> <span class="number">0x0</span></span><br><span class="line"><span class="symbol">.endr</span></span><br><span class="line"><span class="symbol">terminalScreen</span>:</span><br><span class="line"><span class="symbol">.rept</span> <span class="number">1024</span>/<span class="number">8</span> * <span class="number">768</span>/<span class="number">16</span></span><br><span class="line"><span class="symbol">.byte</span> <span class="number">0x7f</span></span><br><span class="line"><span class="symbol">.byte</span> <span class="number">0x0</span></span><br><span class="line"><span class="symbol">.endr</span></span><br></pre></td></tr></table></figure>
 <p><strong>terminalBuffer</strong></p>
-<p>可以保存我们所有需要显示的文本信息，这里定义了最多可以保存128行并且每个保存了128个字符，每个字符又保存了ASCII字符以及颜色信息，使用buffer的优点如下： 1. 我们可以轻易看哪个字符不同，从而区分出来 2. 我们可以回滚到历史版本因为buffer里面可以保存到历史信息</p>
+<p>可以保存我们所有需要显示的文本信息，这里定义了最多可以保存128行并且每个保存了128个字符，每个字符又保存了ASCII字符以及颜色信息，使用buffer的优点如下：</p>
+<ol>
+<li>我们可以轻易看哪个字符不同，从而区分出来</li>
+<li>我们可以回滚到历史版本因为buffer里面可以保存到历史信息</li>
+</ol>
 <p><strong>terminalScreen</strong></p>
 <p>保存当前显示的文本信息</p>
 <p><strong>terminalStart terminalStop</strong></p>
 <p>由于在这里的buffer是环形结构的，类似于数据结构的循环链表，因此需要用Start和Stop来进行标识起始于中止位置，因此当中止超过起始的时候就能发觉是否要更替字母或者其它操作</p>
-<p>.<img src="http://ww4.sinaimg.cn/large/72f96cbagw1f7k7zyu73uj20fc0lsdhr.jpg"></p>
+<p>.<img src="http://ww4.sinaimg.cn/large/72f96cbagw1f7k7zyu73uj20fc0lsdhr.jpg" alt></p>
 <p><strong>terminalColor</strong></p>
 <p>综合前景文字与背景各16种颜色，一共256组合,每个字符中低位保存的是前景颜色，高位保存的是背景颜色，</p>
-<p><img src="http://ww3.sinaimg.cn/large/72f96cbagw1f7k8dp1268j208c0jbwh4.jpg"></p>
-<h4 id="文本显示">文本显示</h4>
-<p><strong>terminalDisplay</strong></p>
+<p><img src="http://ww3.sinaimg.cn/large/72f96cbagw1f7k8dp1268j208c0jbwh4.jpg" alt></p>
+<h4 id="文本显示"><a href="#文本显示" class="headerlink" title="文本显示"></a>文本显示</h4><p><strong>terminalDisplay</strong></p>
 <p>该函数是从terminalBuffer中复制当前的数据到terminalScreen中，首先要比较二者是否不同，如果不同要数据更新。</p>
-<ol type="1">
+<ol>
 <li>加载 <strong>terminalView</strong> <strong>terminalStop</strong> <strong>terminalDisplay</strong> 函数</li>
-<li>对于每一行来说（先行遍历）
-<ol type="1">
-<li>对于每一列来说（再列遍历）
-<ol type="1">
+<li>对于每一行来说（先行遍历）<ol>
+<li>对于每一列来说（再列遍历）<ol>
 <li>如果view视图中不为stop，则加载view当前字符与颜色</li>
 <li>否在加载字符0x7f与颜色0</li>
 <li>从<strong>terminalDisplay</strong>加载当前字符</li>
@@ -459,18 +467,18 @@
 <li>如果view 与 stop 不相同（没有将所有空间填满），view的位置也加2</li>
 <li>否则要将end替换掉start的位置</li>
 <li>x的坐标要加8</li>
-</ol></li>
-<li>y的坐标要加16</li>
-</ol></li>
 </ol>
-<h4 id="打印行信息">打印行信息</h4>
-<p>该函数在r0寄存器中保存了串地址，在r1中保存了串长度，然后将内容写出到当前的地址中，并显示到显示器上。</p>
-<ol type="1">
+</li>
+<li>y的坐标要加16</li>
+</ol>
+</li>
+</ol>
+<h4 id="打印行信息"><a href="#打印行信息" class="headerlink" title="打印行信息"></a>打印行信息</h4><p>该函数在r0寄存器中保存了串地址，在r1中保存了串长度，然后将内容写出到当前的地址中，并显示到显示器上。</p>
+<ol>
 <li>检测串长度是否为0，如果为0则返回</li>
 <li>加载 <strong>terminalStop</strong> 和 <strong>terminalView</strong> 函数</li>
 <li>计算并确认x坐标的位置（目的是为了确定要显示串的位置）</li>
-<li>对于每一个字符有以下操作
-<ol start="5" type="1">
+<li>对于每一个字符有以下操作<ol>
 <li>检查换行符</li>
 <li>如果需要换行将bufferStop标识更新到行尾</li>
 <li>如果不需要换行将字符复制到当前的terminalColour中</li>
@@ -481,12 +489,12 @@
 <li>检查 <strong>terminalStop</strong> 如果在buffer尾，则需要将start更新</li>
 <li>检查 <strong>terminalStop</strong> 与 <strong>terminalStart</strong> 是否相等，如果相等则需要增加 terminalStart的值来换行</li>
 <li>检查 <strong>terminalStart</strong> 是否在buffer尾，如果是这样则用start来更新当前值</li>
-</ol></li>
+</ol>
+</li>
 <li>保存 <strong>terminalStop</strong> 与 <strong>terminalView</strong></li>
 </ol>
-<h4 id="标准输入">标准输入</h4>
-<p><strong>ReadLine</strong></p>
-<ol type="1">
+<h4 id="标准输入"><a href="#标准输入" class="headerlink" title="标准输入"></a>标准输入</h4><p><strong>ReadLine</strong></p>
+<ol>
 <li>如果最大长度是0（即没有输入），那么返回0</li>
 <li>取回 <strong>terminalStop</strong> 和 <strong>terminalView</strong> 当前值</li>
 <li>如果最大长度大于buffer大小的一半，将长度置为buffer大小的一半</li>
@@ -519,11 +527,11 @@
     
 <nav id="article-nav">
     
-        <a href="/2016/10/25/算法/2016-10-25-BellmanFord算法/" id="article-nav-newer" class="article-nav-link-wrap">
+        <a href="/2016/10/25/算法/2016-10-25-Dijkstra算法/" id="article-nav-newer" class="article-nav-link-wrap">
             <strong class="article-nav-caption">上一篇</strong>
             <div class="article-nav-title">
                 
-                    Bellman-Ford算法
+                    Dijkstra算法
                 
             </div>
         </a>
@@ -613,20 +621,5 @@
 <script src="/js/main.js"></script>
 
     </div>
-<script type="text/x-mathjax-config">
-    MathJax.Hub.Config({
-        tex2jax: {
-            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
-            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
-            processEscapes: true
-        }
-    });
-    MathJax.Hub.Queue(function() {
-        var all = MathJax.Hub.getAllJax();
-        for (var i = 0; i < all.length; ++i)
-            all[i].SourceElement().parentNode.className += ' has-jax';
-    });
-</script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
 </body>
 </html>

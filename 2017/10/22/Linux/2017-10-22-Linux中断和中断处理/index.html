@@ -9,19 +9,19 @@
         <meta name="keywords" content="Linux,OS">
     
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <meta name="description" content="中断 不同的设备对应的中断不同，而每个中断都通过一个唯一的数字标志，从而使得操作系统能够对中断进行区分，并且知道哪个硬件设备产生了哪个中断。 每个中断值通常被称作中断请求(IRQ)线。每个IRQ县都会被关联一个数值量(例如 IRQ 0 是时钟中断，IRQ 1是键盘中断)。对于连接在PCI总线上的设备而言，中断是动态分配的。 异常 异常与中断不同，它在产生时必须考虑与处理器时钟同步，因此异常也被称作">
+    <meta name="description" content="中断不同的设备对应的中断不同，而每个中断都通过一个唯一的数字标志，从而使得操作系统能够对中断进行区分，并且知道哪个硬件设备产生了哪个中断。 每个中断值通常被称作中断请求(IRQ)线。每个IRQ县都会被关联一个数值量(例如 IRQ 0 是时钟中断，IRQ 1是键盘中断)。对于连接在PCI总线上的设备而言，中断是动态分配的。 异常异常与中断不同，它在产生时必须考虑与处理器时钟同步，因此异常也被称作同步">
 <meta name="keywords" content="Linux,OS">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Linux-中断和中断处理">
 <meta property="og:url" content="http://www.liufr.com/2017/10/22/Linux/2017-10-22-Linux中断和中断处理/index.html">
 <meta property="og:site_name" content="Fengrui Liu&#39;s Blog">
-<meta property="og:description" content="中断 不同的设备对应的中断不同，而每个中断都通过一个唯一的数字标志，从而使得操作系统能够对中断进行区分，并且知道哪个硬件设备产生了哪个中断。 每个中断值通常被称作中断请求(IRQ)线。每个IRQ县都会被关联一个数值量(例如 IRQ 0 是时钟中断，IRQ 1是键盘中断)。对于连接在PCI总线上的设备而言，中断是动态分配的。 异常 异常与中断不同，它在产生时必须考虑与处理器时钟同步，因此异常也被称作">
+<meta property="og:description" content="中断不同的设备对应的中断不同，而每个中断都通过一个唯一的数字标志，从而使得操作系统能够对中断进行区分，并且知道哪个硬件设备产生了哪个中断。 每个中断值通常被称作中断请求(IRQ)线。每个IRQ县都会被关联一个数值量(例如 IRQ 0 是时钟中断，IRQ 1是键盘中断)。对于连接在PCI总线上的设备而言，中断是动态分配的。 异常异常与中断不同，它在产生时必须考虑与处理器时钟同步，因此异常也被称作同步">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://ws1.sinaimg.cn/large/006tKfTcgy1fkvm1pgthzj30r40dota3.jpg">
 <meta property="og:updated_time" content="2017-10-26T09:05:41.750Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Linux-中断和中断处理">
-<meta name="twitter:description" content="中断 不同的设备对应的中断不同，而每个中断都通过一个唯一的数字标志，从而使得操作系统能够对中断进行区分，并且知道哪个硬件设备产生了哪个中断。 每个中断值通常被称作中断请求(IRQ)线。每个IRQ县都会被关联一个数值量(例如 IRQ 0 是时钟中断，IRQ 1是键盘中断)。对于连接在PCI总线上的设备而言，中断是动态分配的。 异常 异常与中断不同，它在产生时必须考虑与处理器时钟同步，因此异常也被称作">
+<meta name="twitter:description" content="中断不同的设备对应的中断不同，而每个中断都通过一个唯一的数字标志，从而使得操作系统能够对中断进行区分，并且知道哪个硬件设备产生了哪个中断。 每个中断值通常被称作中断请求(IRQ)线。每个IRQ县都会被关联一个数值量(例如 IRQ 0 是时钟中断，IRQ 1是键盘中断)。对于连接在PCI总线上的设备而言，中断是动态分配的。 异常异常与中断不同，它在产生时必须考虑与处理器时钟同步，因此异常也被称作同步">
 <meta name="twitter:image" content="https://ws1.sinaimg.cn/large/006tKfTcgy1fkvm1pgthzj30r40dota3.jpg">
     
 
@@ -169,7 +169,7 @@
                             &nbsp;
                             Algorithm
                         </a>
-                         <ul class="unstyled" id="tree">  <li class="file"><a href="/2016/10/25/算法/2016-10-25-Dijkstra算法/">Dijkstra算法</a></li>  <li class="file"><a href="/2016/10/25/算法/2016-10-25-BellmanFord算法/">Bellman-Ford算法</a></li>  <li class="file"><a href="/2016/12/08/算法/2016-12-08-Bloom Filter/">Bloom Filter</a></li>  <li class="file"><a href="/2017/07/14/算法/2017-7-14-tf-idf/">tf-idf</a></li>  <li class="file"><a href="/2017/09/13/算法/2017-9-13-前缀和/">前缀和（SJTU OJ 1002）</a></li>  <li class="file"><a href="/2017/09/14/算法/2017-9-14-超大数求和/">超大数求和（SJTU OJ 1007）</a></li>  <li class="file"><a href="/2017/09/15/算法/2017-9-15-DP(0" 1背包) ">DP（0/1背包）</a></li>  <li class="file"><a href="/2017/09/15/算法/2017-9-15-DP问题/">DP（SJTU OJ 1012）</a></li>  <li class="file"><a href="/2017/09/15/算法/2017-9-15-DP最长公共子序列/">DP（最长公共子序列）</a></li>  <li class="file"><a href="/2017/09/15/算法/2017-9-15-完全背包/">DP（完全背包）</a></li>  <li class="file"><a href="/2017/09/25/算法/2017-9-25-约瑟夫问题/">约瑟夫问题(SJTU OJ 1038)</a></li>  <li class="file"><a href="/2018/04/02/算法/2018-4-2-排序(位图数据结构)/">排序(位图数据结构)</a></li>  <li class="file"><a href="/2018/10/18/算法/2018-10-15-非负矩阵分解/">非负矩阵分解</a></li>  </ul> 
+                         <ul class="unstyled" id="tree">  <li class="file"><a href="/2016/10/25/算法/2016-10-25-Dijkstra算法/">Dijkstra算法</a></li>  <li class="file"><a href="/2016/10/25/算法/2016-10-25-BellmanFord算法/">Bellman-Ford算法</a></li>  <li class="file"><a href="/2016/12/08/算法/2016-12-08-Bloom Filter/">Bloom Filter</a></li>  <li class="file"><a href="/2017/07/14/算法/2017-7-14-tf-idf/">tf-idf</a></li>  <li class="file"><a href="/2017/09/13/算法/2017-9-13-前缀和/">前缀和（SJTU OJ 1002）</a></li>  <li class="file"><a href="/2017/09/14/算法/2017-9-14-超大数求和/">超大数求和（SJTU OJ 1007）</a></li>  <li class="file"><a href="/2017/09/15/算法/2017-9-15-完全背包/">DP（完全背包）</a></li>  <li class="file"><a href="/2017/09/15/算法/2017-9-15-DP问题/">DP（SJTU OJ 1012）</a></li>  <li class="file"><a href="/2017/09/15/算法/2017-9-15-DP最长公共子序列/">DP（最长公共子序列）</a></li>  <li class="file"><a href="/2017/09/15/算法/2017-9-15-DP(0" 1背包) ">DP（0/1背包）</a></li>  <li class="file"><a href="/2017/09/25/算法/2017-9-25-约瑟夫问题/">约瑟夫问题(SJTU OJ 1038)</a></li>  <li class="file"><a href="/2018/04/02/算法/2018-4-2-排序(位图数据结构)/">排序(位图数据结构)</a></li>  <li class="file"><a href="/2018/10/18/算法/2018-10-15-非负矩阵分解/">非负矩阵分解</a></li>  </ul> 
                     </li> 
                     
                     <li class="directory">
@@ -196,7 +196,7 @@
                             &nbsp;
                             Data mining
                         </a>
-                         <ul class="unstyled" id="tree">  <li class="file"><a href="/2018/12/02/数据挖掘/2018-12-02-监督学习/">监督学习 Supervised Learning(决策树+SVM/Perceptron+AdaBoost)</a></li>  <li class="file"><a href="/2018/12/03/数据挖掘/2018-12-03-非监督学习/">无监督学习 Unsupervised Learning(聚类、矩阵分解、话题模型)</a></li>  <li class="file"><a href="/2018/12/05/数据挖掘/2018-12-05-大规模机器学习/">大规模机器学习</a></li>  <li class="file"><a href="/2018/12/05/数据挖掘/2018-12-05-互联网搜索与排序/">互联网搜索与排序</a></li>  </ul> 
+                         <ul class="unstyled" id="tree">  <li class="file"><a href="/2018/12/02/数据挖掘/2018-12-02-监督学习/">监督学习 Supervised Learning(决策树+SVM/Perceptron+AdaBoost)</a></li>  <li class="file"><a href="/2018/12/03/数据挖掘/2018-12-03-非监督学习/">无监督学习 Unsupervised Learning(聚类、矩阵分解、话题模型)</a></li>  <li class="file"><a href="/2018/12/05/数据挖掘/2018-12-05-互联网搜索与排序/">互联网搜索与排序</a></li>  <li class="file"><a href="/2018/12/05/数据挖掘/2018-12-05-大规模机器学习/">大规模机器学习</a></li>  </ul> 
                     </li> 
                     
                     <li class="directory">
@@ -205,7 +205,7 @@
                             &nbsp;
                             Database
                         </a>
-                         <ul class="unstyled" id="tree">  <li class="file"><a href="/2019/06/03/数据库/2019-06-03-关系数据库/">关系数据库</a></li>  <li class="file"><a href="/2019/06/04/数据库/2019-06-04-大数据运算/">大数据存储系统</a></li>  <li class="file"><a href="/2019/06/04/数据库/2019-06-04-大数据存储系统/">大数据存储系统</a></li>  </ul> 
+                         <ul class="unstyled" id="tree">  <li class="file"><a href="/2019/06/03/数据库/2019-06-03-关系数据库/">关系数据库</a></li>  <li class="file"><a href="/2019/06/04/数据库/2019-06-04-大数据存储系统/">大数据存储系统</a></li>  <li class="file"><a href="/2019/06/04/数据库/2019-06-04-大数据运算/">大数据存储系统</a></li>  </ul> 
                     </li> 
                     
                     <li class="directory">
@@ -232,7 +232,7 @@
                             &nbsp;
                             Networking
                         </a>
-                         <ul class="unstyled" id="tree">  <li class="file"><a href="/2017/11/28/网络/2017-11-28-路由协议汇总整理/">路由协议汇总整理</a></li>  <li class="file"><a href="/2018/04/24/网络/2018-4-24-Mininet拓扑学习/">Mininet拓扑学习</a></li>  <li class="file"><a href="/2018/08/23/网络/2018-8-24-SketchLearn/">SketchLearn: Relieving User Burdens in Approximate Measurement with Automated Statistical Inference</a></li>  <li class="file"><a href="/2018/08/23/网络/2018-8-23-Elastic Sketch/">Elastic Sketch: Adaptive and Fast Network-wide Measurements</a></li>  <li class="file"><a href="/2018/08/23/网络/2018-8-23-SketchVisor/">SketchVisor: Robust Network Measurement for Soware Packet Processing</a></li>  </ul> 
+                         <ul class="unstyled" id="tree">  <li class="file"><a href="/2017/11/28/网络/2017-11-28-路由协议汇总整理/">路由协议汇总整理</a></li>  <li class="file"><a href="/2018/04/24/网络/2018-4-24-Mininet拓扑学习/">Mininet拓扑学习</a></li>  <li class="file"><a href="/2018/08/23/网络/2018-8-24-SketchLearn/">SketchLearn: Relieving User Burdens in Approximate Measurement with Automated Statistical Inference</a></li>  <li class="file"><a href="/2018/08/23/网络/2018-8-23-SketchVisor/">SketchVisor: Robust Network Measurement for Soware Packet Processing</a></li>  <li class="file"><a href="/2018/08/23/网络/2018-8-23-Elastic Sketch/">Elastic Sketch: Adaptive and Fast Network-wide Measurements</a></li>  </ul> 
                     </li> 
                     
                     <li class="directory">
@@ -250,7 +250,7 @@
                             &nbsp;
                             Pi
                         </a>
-                         <ul class="unstyled" id="tree">  <li class="file"><a href="/2016/08/06/Pi/2016-08-06-Raspberry Pi OK01/">Raspberry Pi OK01</a></li>  <li class="file"><a href="/2016/08/06/Pi/2016-08-06-Raspberry Pi OK02/">Raspberry Pi OK02</a></li>  <li class="file"><a href="/2016/08/06/Pi/2016-08-06-Raspberry Pi OK03/">Raspberry Pi OK03</a></li>  <li class="file"><a href="/2016/08/06/Pi/2016-08-06-Baking Pi – Operating Systems Development前言/">Raspberry Pi OS Development 前言</a></li>  <li class="file"><a href="/2016/08/09/Pi/2016-08-09-Raspberry Pi OK05/">Raspberry Pi OK05</a></li>  <li class="file"><a href="/2016/08/09/Pi/2016-08-10-Raspberry Pi Screen01/">Raspberry Pi Screen01</a></li>  <li class="file"><a href="/2016/08/09/Pi/2016-08-09-Raspberry Pi OK04/">Raspberry Pi OK04</a></li>  <li class="file"><a href="/2016/08/09/Pi/2016-08-11-Raspberry Pi Screen02/">Raspberry Pi Screen02</a></li>  <li class="file"><a href="/2016/08/14/Pi/2016-08-14-Raspberry Pi Screen03/">Raspberry Pi Screen03</a></li>  <li class="file"><a href="/2016/08/16/Pi/2016-08-16-Raspberry Pi Screen04/">Raspberry Pi Screen04</a></li>  <li class="file"><a href="/2016/08/31/Pi/2016-08-31-Raspberry Pi Input01/">Raspberry Pi Input01</a></li>  <li class="file"><a href="/2016/09/01/Pi/2016-09-01-Raspberry Pi Input02/">Raspberry Pi Input02</a></li>  </ul> 
+                         <ul class="unstyled" id="tree">  <li class="file"><a href="/2016/08/06/Pi/2016-08-06-Raspberry Pi OK02/">Raspberry Pi OK02</a></li>  <li class="file"><a href="/2016/08/06/Pi/2016-08-06-Raspberry Pi OK03/">Raspberry Pi OK03</a></li>  <li class="file"><a href="/2016/08/06/Pi/2016-08-06-Baking Pi – Operating Systems Development前言/">Raspberry Pi OS Development 前言</a></li>  <li class="file"><a href="/2016/08/06/Pi/2016-08-06-Raspberry Pi OK01/">Raspberry Pi OK01</a></li>  <li class="file"><a href="/2016/08/09/Pi/2016-08-09-Raspberry Pi OK04/">Raspberry Pi OK04</a></li>  <li class="file"><a href="/2016/08/09/Pi/2016-08-11-Raspberry Pi Screen02/">Raspberry Pi Screen02</a></li>  <li class="file"><a href="/2016/08/09/Pi/2016-08-10-Raspberry Pi Screen01/">Raspberry Pi Screen01</a></li>  <li class="file"><a href="/2016/08/09/Pi/2016-08-09-Raspberry Pi OK05/">Raspberry Pi OK05</a></li>  <li class="file"><a href="/2016/08/14/Pi/2016-08-14-Raspberry Pi Screen03/">Raspberry Pi Screen03</a></li>  <li class="file"><a href="/2016/08/16/Pi/2016-08-16-Raspberry Pi Screen04/">Raspberry Pi Screen04</a></li>  <li class="file"><a href="/2016/08/31/Pi/2016-08-31-Raspberry Pi Input01/">Raspberry Pi Input01</a></li>  <li class="file"><a href="/2016/09/01/Pi/2016-09-01-Raspberry Pi Input02/">Raspberry Pi Input02</a></li>  </ul> 
                     </li> 
                     
                     <li class="directory">
@@ -268,7 +268,7 @@
                             &nbsp;
                             Security
                         </a>
-                         <ul class="unstyled" id="tree">  <li class="file"><a href="/2018/09/02/安全/2018-09-02-蜜罐技术/">蜜罐技术</a></li>  <li class="file"><a href="/2019/06/22/安全/2019-06-22-网络异常行为检测/">网络异常行为检测</a></li>  <li class="file"><a href="/2019/07/21/安全/2019-07-22-xgboost/">孤立森林（Isolation Forest）</a></li>  <li class="file"><a href="/2019/07/21/安全/2019-07-22-利用时序决策树进行DGA僵尸检测/">利用时序决策树进行DGA僵尸检测</a></li>  <li class="file"><a href="/2019/07/21/安全/2019-07-22-孤立森林（Isolation Froest）/">孤立森林（Isolation Forest）</a></li>  <li class="file"><a href="/2019/07/21/安全/2019-07-21-多项式插值/">多项式插值</a></li>  <li class="file"><a href="/2019/07/21/安全/2019-07-21-梯度提升决策树(GBDT)/">梯度提升决策树（GBDT）</a></li>  <li class="file"><a href="/2019/07/21/安全/2019-07-21-指数加权移动平均法（EWMA）/">指数加权移动平均法（EWMA）</a></li>  </ul> 
+                         <ul class="unstyled" id="tree">  <li class="file"><a href="/2018/09/02/安全/2018-09-02-蜜罐技术/">蜜罐技术</a></li>  <li class="file"><a href="/2019/06/22/安全/2019-06-22-网络异常行为检测/">网络异常行为检测</a></li>  <li class="file"><a href="/2019/07/21/安全/2019-07-21-指数加权移动平均法（EWMA）/">指数加权移动平均法（EWMA）</a></li>  <li class="file"><a href="/2019/07/21/安全/2019-07-22-孤立森林（Isolation Froest）/">孤立森林（Isolation Forest）</a></li>  <li class="file"><a href="/2019/07/21/安全/2019-07-22-xgboost/">孤立森林（Isolation Forest）</a></li>  <li class="file"><a href="/2019/07/21/安全/2019-07-21-多项式插值/">多项式插值</a></li>  <li class="file"><a href="/2019/07/21/安全/2019-07-22-利用时序决策树进行DGA僵尸检测/">利用时序决策树进行DGA僵尸检测</a></li>  <li class="file"><a href="/2019/07/21/安全/2019-07-21-梯度提升决策树(GBDT)/">梯度提升决策树（GBDT）</a></li>  </ul> 
                     </li> 
                     
                     <li class="directory">
@@ -277,7 +277,7 @@
                             &nbsp;
                             网络
                         </a>
-                         <ul class="unstyled" id="tree">  <li class="file"><a href="/2016/12/24/网络/2016-12-24-ipv4在Linux上的实现/">学习构造用户空间的IP栈（资料总结）</a></li>  <li class="file"><a href="/2017/03/12/VANET/2017-3-12-Vanet仿真-ns3(1)/">VANET仿真-ns3(1)</a></li>  <li class="file"><a href="/2017/03/12/VANET/2017-3-12-Vanet仿真-ns3(2)/">VANET仿真-ns3(2)</a></li>  <li class="file"><a href="/2017/03/12/VANET/2017-3-12-Vanet仿真-ns3(3)/">VANET仿真-ns3(3)</a></li>  <li class="file"><a href="/2017/03/13/VANET/2017-3-13-Vanet仿真-ns3(4)/">VANET仿真-ns3(4)</a></li>  <li class="file"><a href="/2017/03/13/VANET/2017-3-13-Vanet仿真-ns3(5)/">VANET仿真-ns3(5)</a></li>  <li class="file"><a href="/2017/03/15/VANET/2017-3-15-Vanet仿真-ns3(6)/">VANET仿真-ns3(6)</a></li>  <li class="file"><a href="/2017/07/14/网络/2017-07-14-Ego networks/">Ego networks</a></li>  </ul> 
+                         <ul class="unstyled" id="tree">  <li class="file"><a href="/2016/12/24/网络/2016-12-24-ipv4在Linux上的实现/">学习构造用户空间的IP栈（资料总结）</a></li>  <li class="file"><a href="/2017/03/12/VANET/2017-3-12-Vanet仿真-ns3(3)/">VANET仿真-ns3(3)</a></li>  <li class="file"><a href="/2017/03/12/VANET/2017-3-12-Vanet仿真-ns3(2)/">VANET仿真-ns3(2)</a></li>  <li class="file"><a href="/2017/03/12/VANET/2017-3-12-Vanet仿真-ns3(1)/">VANET仿真-ns3(1)</a></li>  <li class="file"><a href="/2017/03/13/VANET/2017-3-13-Vanet仿真-ns3(4)/">VANET仿真-ns3(4)</a></li>  <li class="file"><a href="/2017/03/13/VANET/2017-3-13-Vanet仿真-ns3(5)/">VANET仿真-ns3(5)</a></li>  <li class="file"><a href="/2017/03/15/VANET/2017-3-15-Vanet仿真-ns3(6)/">VANET仿真-ns3(6)</a></li>  <li class="file"><a href="/2017/07/14/网络/2017-07-14-Ego networks/">Ego networks</a></li>  </ul> 
                     </li> 
                      <li class="file"><a href="/2019/05/30/强化学习/~$19-05-28-强化学习(2)/"></a></li>  <li class="file"><a href="/2019/09/16/数据挖掘/2019-09-16-基于注意力模型的RNN时序预测/"></a></li>  </ul> 
     </div>
@@ -420,48 +420,38 @@
             
         
         
-            <h3 id="中断">中断</h3>
-<p>不同的设备对应的中断不同，而每个中断都通过一个唯一的数字标志，从而使得操作系统能够对中断进行区分，并且知道哪个硬件设备产生了哪个中断。</p>
+            <h3 id="中断"><a href="#中断" class="headerlink" title="中断"></a>中断</h3><p>不同的设备对应的中断不同，而每个中断都通过一个唯一的数字标志，从而使得操作系统能够对中断进行区分，并且知道哪个硬件设备产生了哪个中断。</p>
 <p>每个中断值通常被称作中断请求(IRQ)线。每个IRQ县都会被关联一个数值量(例如 IRQ 0 是时钟中断，IRQ 1是键盘中断)。对于连接在PCI总线上的设备而言，中断是动态分配的。</p>
-<h3 id="异常">异常</h3>
-<p>异常与中断不同，它在产生时必须考虑与处理器时钟同步，因此异常也被称作同步中断。内核对于中断与异常的处理比较类似。</p>
-<h3 id="中断处理程序">中断处理程序</h3>
-<p>在响应一个特定中断的时候，内核会执行一个函数，该函数叫做中断处理程序或者中断服务例程(interrupt service routine, ISR)。产生中断的每个设备都有一个相应的中断处理程序。</p>
+<h3 id="异常"><a href="#异常" class="headerlink" title="异常"></a>异常</h3><p>异常与中断不同，它在产生时必须考虑与处理器时钟同步，因此异常也被称作同步中断。内核对于中断与异常的处理比较类似。</p>
+<h3 id="中断处理程序"><a href="#中断处理程序" class="headerlink" title="中断处理程序"></a>中断处理程序</h3><p>在响应一个特定中断的时候，内核会执行一个函数，该函数叫做中断处理程序或者中断服务例程(interrupt service routine, ISR)。产生中断的每个设备都有一个相应的中断处理程序。</p>
 <p>在Linux中，中断处理程序就是C函数，只不过这些函数必须按照特定的类型声明。ISR与其他内核函数的区别就是ISR是被内核调用来响应中断的，而它们运行于我们称之为中断上下文的特殊上下文中。</p>
-<h3 id="上半部与下半部的对比">上半部与下半部的对比</h3>
-<p>中断处理程序是上半部(top half)——接收到一个中断，就开始立即执行，但是只做有严格时限的工作，例如对接收的中断进行应答或者复位。此后，在合适的时机，下半部会被开中断执行。</p>
-<h3 id="注册中断处理程序">注册中断处理程序</h3>
-<p>中断处理程序是管理硬件的驱动程序的组成部分。每一设备都有相关的驱动程序，如果设备使用中断，那么相应的驱动程序就注册一个中断处理程序。</p>
-<p>驱动程序可以通过request_irq()函数注册一个中断处理程序。 <figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="comment">//  arch/sparc/kernel/irq.c</span></span><br><span class="line"><span class="comment">//</span></span><br><span class="line"><span class="comment">//  irq: 要分配的中断号，对于系统时钟或者键盘等，这个值是确定的，但是对于其他设备这个值可以探测获取或者编程动态确定。</span></span><br><span class="line"><span class="comment">//  handler：指针指向处理这个中断的实际中断处理程序。</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">request_irq</span><span class="params">(<span class="keyword">unsigned</span> <span class="keyword">int</span> irq,</span></span></span><br><span class="line">		irqreturn_t (*handler)(int, void *, struct pt_regs *),</span><br><span class="line">		<span class="keyword">unsigned</span> <span class="keyword">long</span> irqflags, <span class="keyword">const</span> <span class="keyword">char</span> * devname, <span class="keyword">void</span> *dev_id)</span><br></pre></td></tr></table></figure></p>
-<h4 id="中断处理程序标志">中断处理程序标志</h4>
-<p>request_irq第三个参数flags可以为0，也可能是下列一个或多个标志的位掩码。这些标志中最重要的是：</p>
+<h3 id="上半部与下半部的对比"><a href="#上半部与下半部的对比" class="headerlink" title="上半部与下半部的对比"></a>上半部与下半部的对比</h3><p>中断处理程序是上半部(top half)——接收到一个中断，就开始立即执行，但是只做有严格时限的工作，例如对接收的中断进行应答或者复位。此后，在合适的时机，下半部会被开中断执行。</p>
+<h3 id="注册中断处理程序"><a href="#注册中断处理程序" class="headerlink" title="注册中断处理程序"></a>注册中断处理程序</h3><p>中断处理程序是管理硬件的驱动程序的组成部分。每一设备都有相关的驱动程序，如果设备使用中断，那么相应的驱动程序就注册一个中断处理程序。</p>
+<p>驱动程序可以通过request_irq()函数注册一个中断处理程序。<br><figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="comment">//  arch/sparc/kernel/irq.c</span></span><br><span class="line"><span class="comment">//</span></span><br><span class="line"><span class="comment">//  irq: 要分配的中断号，对于系统时钟或者键盘等，这个值是确定的，但是对于其他设备这个值可以探测获取或者编程动态确定。</span></span><br><span class="line"><span class="comment">//  handler：指针指向处理这个中断的实际中断处理程序。</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">request_irq</span><span class="params">(<span class="keyword">unsigned</span> <span class="keyword">int</span> irq,</span></span></span><br><span class="line">		irqreturn_t (*handler)(int, void *, struct pt_regs *),</span><br><span class="line">		<span class="keyword">unsigned</span> <span class="keyword">long</span> irqflags, <span class="keyword">const</span> <span class="keyword">char</span> * devname, <span class="keyword">void</span> *dev_id)</span><br></pre></td></tr></table></figure></p>
+<h4 id="中断处理程序标志"><a href="#中断处理程序标志" class="headerlink" title="中断处理程序标志"></a>中断处理程序标志</h4><p>request_irq第三个参数flags可以为0，也可能是下列一个或多个标志的位掩码。这些标志中最重要的是：</p>
 <ul>
 <li>IRQF_DISABLED——该标志被设置后，意味着内核在处理中断处理程序本身期间，要禁用所有其他中断。如果不设置，中断处理程序可以与其它任何中断同时运行。</li>
 <li>IRQF_SAMPLE_RANDOM——表明这个设备产生的中断对内核熵池(提供从各种随机事件导出的真正的随机数)有贡献。</li>
 <li>IRQF_TIMER——该标志是特别为系统定时器的中断处理而准备的。</li>
 <li>IRQF_SHARED——表明可以在多个中断处理程序之间共享中断线。在同一个给定线上注册的每个处理程序必须指定这个标志，否则每条线上只能有一个处理程序。</li>
 </ul>
-<p>第四个参数name是与中断相关的设备的ASCII文本，例如PC机上键盘中断对应的这个值为"keyboard"。</p>
+<p>第四个参数name是与中断相关的设备的ASCII文本，例如PC机上键盘中断对应的这个值为”keyboard”。</p>
 <p>第五个参数dev_id用于共享中断线。当一个中断处理程序需要释放时，dev将提供唯一的标志信息，以便从共享中断线的诸多中断处理程序中删除指定的那一个。如果没有这个参数，那么内核不可能知道在给定的中断线上到底删除哪一个处理程序。</p>
 <p>注意 <strong>request_irq</strong> 成功执行会返回0.如果返回非0就代表有错误发生，在这种情况下，指定的中断处理程序不会被注册。常见的错误如 <strong>-EBUSY</strong> 表示给定的中断线已经在使用。</p>
 <p><strong>request_irq</strong> 函数可能会睡眠，因此不能再中断上下文或其他不允许阻塞的代码中调用该函数。在注册的过程中，内核需要在/proc/irq 文件中创建一个与中断对应的项。函数proc_mkdir()就是用来创建这个新的procfs项的，其中调用函数proc_create()对这个新的profs进行设置，而proc_create()会调用函数kmalloc()来请求分配内存，这里的kmalloc()是可以睡眠的。</p>
-<h4 id="释放中断处理程序">释放中断处理程序</h4>
-<p>卸载驱动程序时，调用：</p>
+<h4 id="释放中断处理程序"><a href="#释放中断处理程序" class="headerlink" title="释放中断处理程序"></a>释放中断处理程序</h4><p>卸载驱动程序时，调用：</p>
 <figure class="highlight c"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> *	free_irq - free an interrupt</span></span><br><span class="line"><span class="comment"> *	@irq: Interrupt line to free</span></span><br><span class="line"><span class="comment"> *	@dev_id: Device identity to free</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> *	Remove an interrupt handler. The handler is removed and if the</span></span><br><span class="line"><span class="comment"> *	interrupt line is no longer in use by any driver it is disabled.</span></span><br><span class="line"><span class="comment"> *	On a shared IRQ the caller must ensure the interrupt is disabled</span></span><br><span class="line"><span class="comment"> *	on the card it drives before calling this function. The function</span></span><br><span class="line"><span class="comment"> *	does not return until any executing interrupts for this IRQ</span></span><br><span class="line"><span class="comment"> *	have completed.</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> *	This function must not be called from interrupt context.</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">free_irq</span><span class="params">(<span class="keyword">unsigned</span> <span class="keyword">int</span> irq, <span class="keyword">void</span> *dev_id)</span></span>&#123;</span><br><span class="line">	...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>如果指定的中断线不是共享的，那么该函数删除处理程序的同时将禁用这条中断线,如果是共享的则删除dev_id所对应的处理程序，而这条中断线本身只有在删除了最后一个处理程序时才会被禁用。</p>
-<h3 id="中断上下文">中断上下文</h3>
-<p>当执行一个中断处理程序时，内核处于中断上下文(interrput context)中。</p>
+<h3 id="中断上下文"><a href="#中断上下文" class="headerlink" title="中断上下文"></a>中断上下文</h3><p>当执行一个中断处理程序时，内核处于中断上下文(interrput context)中。</p>
 <p>注意进程上下文是一种操作模式，此时内核代表进程执行——执行系统调用或运行内核线程。进程上下文可以睡眠也可以调度程序。</p>
 <p>然而中断上下文与之相反，二者没有什么瓜葛。与current宏也是不相干的。中断上下文不可以睡眠，因此不能从中断上下文中调用某些函数。如果一个函数睡眠，就不能在你的中断处理程序中使用它。</p>
 <p>中断上下文具有较为严格的时间限制，因为他打断了其他代码。代码应当迅速简洁尽量不要使用循环去处理繁重的工作。</p>
-<h3 id="中断处理机制的实现">中断处理机制的实现</h3>
-<p><img src="https://ws1.sinaimg.cn/large/006tKfTcgy1fkvm1pgthzj30r40dota3.jpg"></p>
+<h3 id="中断处理机制的实现"><a href="#中断处理机制的实现" class="headerlink" title="中断处理机制的实现"></a>中断处理机制的实现</h3><p><img src="https://ws1.sinaimg.cn/large/006tKfTcgy1fkvm1pgthzj30r40dota3.jpg" alt></p>
 <p>设备产生中断，通过总线把电信号发送给中断控制器。如果中断线是激活的(它们允许被屏蔽)，那么中断控制器就会把中断发往处理器。在大多数的体系结构中，这个工作就是通过电信号给处理器的特定管脚发送一个信号。除非在处理器上禁止该中断，否则处理器会立即停止他正在做的事情，关闭中断系统，跳到内存中预定义的位置开始执行那里的代码，这个预定义的位置由内核设置，是中端处理程序的入口点。</p>
 <p>由于每条中断线处理器都会跳到对应的一个唯一的位置，这样内核就可以知道所接收中断的IRQ号。初始入口点只是在栈中保存这个号，并存放当前寄存器的值(被中断的任务)，然后内核调用do_IRQ()</p>
-<pre><code>    unsigned int do_IRQ(struct pt_regs regs)</code></pre>
-<p>接下来do_IRQ()需要确保在这条中断线上有一个有效的处理程序，而且这个程序已经启动，当时当前并没有执行。do_IRQ()调用handle_IRQ_event()来运行为这条中断线所安装的中断处理程序。</p>
-<h3 id="中断控制">中断控制</h3>
-<p>Linux 内核提供了一组接口用于操作机器上的中断状态。这些接口提供了能够禁止当前处理器的中断系统，或者屏蔽掉整个机器的一条中断线的能力。</p>
+<pre><code>    unsigned int do_IRQ(struct pt_regs regs)
+</code></pre><p>接下来do_IRQ()需要确保在这条中断线上有一个有效的处理程序，而且这个程序已经启动，当时当前并没有执行。do_IRQ()调用handle_IRQ_event()来运行为这条中断线所安装的中断处理程序。</p>
+<h3 id="中断控制"><a href="#中断控制" class="headerlink" title="中断控制"></a>中断控制</h3><p>Linux 内核提供了一组接口用于操作机器上的中断状态。这些接口提供了能够禁止当前处理器的中断系统，或者屏蔽掉整个机器的一条中断线的能力。</p>
 <p>一般控制中断系统的原因就是需要提供同步。通过禁止中断，可以确保某个中断处理程序不会抢占当前的代码，此外还可以禁止内核抢占。由于Linux支持多处理器，因此内核代码会用锁保护机制，防止多个处理器的并发访问，而禁止中断提供保护机制。</p>
 
             </div>
@@ -475,19 +465,19 @@
     
 <nav id="article-nav">
     
-        <a href="/2017/10/31/概念/2017-10-31-张量(Tensor)/" id="article-nav-newer" class="article-nav-link-wrap">
+        <a href="/2017/10/22/Linux/2017-11-2-Linux-下半部和推后执行的工作/" id="article-nav-newer" class="article-nav-link-wrap">
             <strong class="article-nav-caption">上一篇</strong>
             <div class="article-nav-title">
                 
-                    张量(Tensor)
+                    Linux-下半部和推后执行的工作&#34;
                 
             </div>
         </a>
     
     
-        <a href="/2017/10/22/Linux/2017-11-2-Linux-下半部和推后执行的工作/" id="article-nav-older" class="article-nav-link-wrap">
+        <a href="/2017/10/20/Linux/2017-10-20-Linux系统调用/" id="article-nav-older" class="article-nav-link-wrap">
             <strong class="article-nav-caption">下一篇</strong>
-            <div class="article-nav-title">Linux-下半部和推后执行的工作&#34;</div>
+            <div class="article-nav-title">Linux-系统调用</div>
         </a>
     
 </nav>
@@ -569,20 +559,5 @@
 <script src="/js/main.js"></script>
 
     </div>
-<script type="text/x-mathjax-config">
-    MathJax.Hub.Config({
-        tex2jax: {
-            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
-            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
-            processEscapes: true
-        }
-    });
-    MathJax.Hub.Queue(function() {
-        var all = MathJax.Hub.getAllJax();
-        for (var i = 0; i < all.length; ++i)
-            all[i].SourceElement().parentNode.className += ' has-jax';
-    });
-</script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
 </body>
 </html>

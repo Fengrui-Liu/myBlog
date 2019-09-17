@@ -9,19 +9,19 @@
         <meta name="keywords" content="Linux,OS">
     
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <meta name="description" content="与内核通信 系统调用在用户空间进程和硬件设备之间添加了一个中间层，作用如下： 1. 为用户空间提供了一种硬件的抽象接口。当需要读写文件时，程序可以不去管磁盘类型和介质，甚至不用管文件所在文件系统到底是哪种类型。 2. 保证系统的稳定和安全。内核可以基于权限、用户类型和其他一些规则对需要进行的访问进行裁决。 3. 每个进程都运行在虚拟系统中。 API &amp;amp; POSIX &amp;amp; C库 API">
+    <meta name="description" content="与内核通信系统调用在用户空间进程和硬件设备之间添加了一个中间层，作用如下：  为用户空间提供了一种硬件的抽象接口。当需要读写文件时，程序可以不去管磁盘类型和介质，甚至不用管文件所在文件系统到底是哪种类型。 保证系统的稳定和安全。内核可以基于权限、用户类型和其他一些规则对需要进行的访问进行裁决。 每个进程都运行在虚拟系统中。  API &amp;amp; POSIX &amp;amp; C库API: 定义了一组应用">
 <meta name="keywords" content="Linux,OS">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Linux-系统调用">
 <meta property="og:url" content="http://www.liufr.com/2017/10/20/Linux/2017-10-20-Linux系统调用/index.html">
 <meta property="og:site_name" content="Fengrui Liu&#39;s Blog">
-<meta property="og:description" content="与内核通信 系统调用在用户空间进程和硬件设备之间添加了一个中间层，作用如下： 1. 为用户空间提供了一种硬件的抽象接口。当需要读写文件时，程序可以不去管磁盘类型和介质，甚至不用管文件所在文件系统到底是哪种类型。 2. 保证系统的稳定和安全。内核可以基于权限、用户类型和其他一些规则对需要进行的访问进行裁决。 3. 每个进程都运行在虚拟系统中。 API &amp;amp; POSIX &amp;amp; C库 API">
+<meta property="og:description" content="与内核通信系统调用在用户空间进程和硬件设备之间添加了一个中间层，作用如下：  为用户空间提供了一种硬件的抽象接口。当需要读写文件时，程序可以不去管磁盘类型和介质，甚至不用管文件所在文件系统到底是哪种类型。 保证系统的稳定和安全。内核可以基于权限、用户类型和其他一些规则对需要进行的访问进行裁决。 每个进程都运行在虚拟系统中。  API &amp;amp; POSIX &amp;amp; C库API: 定义了一组应用">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://ws4.sinaimg.cn/large/006tNc79gy1fkojdob180j31d0078q4k.jpg">
 <meta property="og:updated_time" content="2017-10-22T08:35:41.480Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Linux-系统调用">
-<meta name="twitter:description" content="与内核通信 系统调用在用户空间进程和硬件设备之间添加了一个中间层，作用如下： 1. 为用户空间提供了一种硬件的抽象接口。当需要读写文件时，程序可以不去管磁盘类型和介质，甚至不用管文件所在文件系统到底是哪种类型。 2. 保证系统的稳定和安全。内核可以基于权限、用户类型和其他一些规则对需要进行的访问进行裁决。 3. 每个进程都运行在虚拟系统中。 API &amp;amp; POSIX &amp;amp; C库 API">
+<meta name="twitter:description" content="与内核通信系统调用在用户空间进程和硬件设备之间添加了一个中间层，作用如下：  为用户空间提供了一种硬件的抽象接口。当需要读写文件时，程序可以不去管磁盘类型和介质，甚至不用管文件所在文件系统到底是哪种类型。 保证系统的稳定和安全。内核可以基于权限、用户类型和其他一些规则对需要进行的访问进行裁决。 每个进程都运行在虚拟系统中。  API &amp;amp; POSIX &amp;amp; C库API: 定义了一组应用">
 <meta name="twitter:image" content="https://ws4.sinaimg.cn/large/006tNc79gy1fkojdob180j31d0078q4k.jpg">
     
 
@@ -169,7 +169,7 @@
                             &nbsp;
                             Algorithm
                         </a>
-                         <ul class="unstyled" id="tree">  <li class="file"><a href="/2016/10/25/算法/2016-10-25-Dijkstra算法/">Dijkstra算法</a></li>  <li class="file"><a href="/2016/10/25/算法/2016-10-25-BellmanFord算法/">Bellman-Ford算法</a></li>  <li class="file"><a href="/2016/12/08/算法/2016-12-08-Bloom Filter/">Bloom Filter</a></li>  <li class="file"><a href="/2017/07/14/算法/2017-7-14-tf-idf/">tf-idf</a></li>  <li class="file"><a href="/2017/09/13/算法/2017-9-13-前缀和/">前缀和（SJTU OJ 1002）</a></li>  <li class="file"><a href="/2017/09/14/算法/2017-9-14-超大数求和/">超大数求和（SJTU OJ 1007）</a></li>  <li class="file"><a href="/2017/09/15/算法/2017-9-15-DP(0" 1背包) ">DP（0/1背包）</a></li>  <li class="file"><a href="/2017/09/15/算法/2017-9-15-DP问题/">DP（SJTU OJ 1012）</a></li>  <li class="file"><a href="/2017/09/15/算法/2017-9-15-DP最长公共子序列/">DP（最长公共子序列）</a></li>  <li class="file"><a href="/2017/09/15/算法/2017-9-15-完全背包/">DP（完全背包）</a></li>  <li class="file"><a href="/2017/09/25/算法/2017-9-25-约瑟夫问题/">约瑟夫问题(SJTU OJ 1038)</a></li>  <li class="file"><a href="/2018/04/02/算法/2018-4-2-排序(位图数据结构)/">排序(位图数据结构)</a></li>  <li class="file"><a href="/2018/10/18/算法/2018-10-15-非负矩阵分解/">非负矩阵分解</a></li>  </ul> 
+                         <ul class="unstyled" id="tree">  <li class="file"><a href="/2016/10/25/算法/2016-10-25-Dijkstra算法/">Dijkstra算法</a></li>  <li class="file"><a href="/2016/10/25/算法/2016-10-25-BellmanFord算法/">Bellman-Ford算法</a></li>  <li class="file"><a href="/2016/12/08/算法/2016-12-08-Bloom Filter/">Bloom Filter</a></li>  <li class="file"><a href="/2017/07/14/算法/2017-7-14-tf-idf/">tf-idf</a></li>  <li class="file"><a href="/2017/09/13/算法/2017-9-13-前缀和/">前缀和（SJTU OJ 1002）</a></li>  <li class="file"><a href="/2017/09/14/算法/2017-9-14-超大数求和/">超大数求和（SJTU OJ 1007）</a></li>  <li class="file"><a href="/2017/09/15/算法/2017-9-15-完全背包/">DP（完全背包）</a></li>  <li class="file"><a href="/2017/09/15/算法/2017-9-15-DP问题/">DP（SJTU OJ 1012）</a></li>  <li class="file"><a href="/2017/09/15/算法/2017-9-15-DP最长公共子序列/">DP（最长公共子序列）</a></li>  <li class="file"><a href="/2017/09/15/算法/2017-9-15-DP(0" 1背包) ">DP（0/1背包）</a></li>  <li class="file"><a href="/2017/09/25/算法/2017-9-25-约瑟夫问题/">约瑟夫问题(SJTU OJ 1038)</a></li>  <li class="file"><a href="/2018/04/02/算法/2018-4-2-排序(位图数据结构)/">排序(位图数据结构)</a></li>  <li class="file"><a href="/2018/10/18/算法/2018-10-15-非负矩阵分解/">非负矩阵分解</a></li>  </ul> 
                     </li> 
                     
                     <li class="directory">
@@ -196,7 +196,7 @@
                             &nbsp;
                             Data mining
                         </a>
-                         <ul class="unstyled" id="tree">  <li class="file"><a href="/2018/12/02/数据挖掘/2018-12-02-监督学习/">监督学习 Supervised Learning(决策树+SVM/Perceptron+AdaBoost)</a></li>  <li class="file"><a href="/2018/12/03/数据挖掘/2018-12-03-非监督学习/">无监督学习 Unsupervised Learning(聚类、矩阵分解、话题模型)</a></li>  <li class="file"><a href="/2018/12/05/数据挖掘/2018-12-05-大规模机器学习/">大规模机器学习</a></li>  <li class="file"><a href="/2018/12/05/数据挖掘/2018-12-05-互联网搜索与排序/">互联网搜索与排序</a></li>  </ul> 
+                         <ul class="unstyled" id="tree">  <li class="file"><a href="/2018/12/02/数据挖掘/2018-12-02-监督学习/">监督学习 Supervised Learning(决策树+SVM/Perceptron+AdaBoost)</a></li>  <li class="file"><a href="/2018/12/03/数据挖掘/2018-12-03-非监督学习/">无监督学习 Unsupervised Learning(聚类、矩阵分解、话题模型)</a></li>  <li class="file"><a href="/2018/12/05/数据挖掘/2018-12-05-互联网搜索与排序/">互联网搜索与排序</a></li>  <li class="file"><a href="/2018/12/05/数据挖掘/2018-12-05-大规模机器学习/">大规模机器学习</a></li>  </ul> 
                     </li> 
                     
                     <li class="directory">
@@ -205,7 +205,7 @@
                             &nbsp;
                             Database
                         </a>
-                         <ul class="unstyled" id="tree">  <li class="file"><a href="/2019/06/03/数据库/2019-06-03-关系数据库/">关系数据库</a></li>  <li class="file"><a href="/2019/06/04/数据库/2019-06-04-大数据运算/">大数据存储系统</a></li>  <li class="file"><a href="/2019/06/04/数据库/2019-06-04-大数据存储系统/">大数据存储系统</a></li>  </ul> 
+                         <ul class="unstyled" id="tree">  <li class="file"><a href="/2019/06/03/数据库/2019-06-03-关系数据库/">关系数据库</a></li>  <li class="file"><a href="/2019/06/04/数据库/2019-06-04-大数据存储系统/">大数据存储系统</a></li>  <li class="file"><a href="/2019/06/04/数据库/2019-06-04-大数据运算/">大数据存储系统</a></li>  </ul> 
                     </li> 
                     
                     <li class="directory">
@@ -232,7 +232,7 @@
                             &nbsp;
                             Networking
                         </a>
-                         <ul class="unstyled" id="tree">  <li class="file"><a href="/2017/11/28/网络/2017-11-28-路由协议汇总整理/">路由协议汇总整理</a></li>  <li class="file"><a href="/2018/04/24/网络/2018-4-24-Mininet拓扑学习/">Mininet拓扑学习</a></li>  <li class="file"><a href="/2018/08/23/网络/2018-8-24-SketchLearn/">SketchLearn: Relieving User Burdens in Approximate Measurement with Automated Statistical Inference</a></li>  <li class="file"><a href="/2018/08/23/网络/2018-8-23-Elastic Sketch/">Elastic Sketch: Adaptive and Fast Network-wide Measurements</a></li>  <li class="file"><a href="/2018/08/23/网络/2018-8-23-SketchVisor/">SketchVisor: Robust Network Measurement for Soware Packet Processing</a></li>  </ul> 
+                         <ul class="unstyled" id="tree">  <li class="file"><a href="/2017/11/28/网络/2017-11-28-路由协议汇总整理/">路由协议汇总整理</a></li>  <li class="file"><a href="/2018/04/24/网络/2018-4-24-Mininet拓扑学习/">Mininet拓扑学习</a></li>  <li class="file"><a href="/2018/08/23/网络/2018-8-24-SketchLearn/">SketchLearn: Relieving User Burdens in Approximate Measurement with Automated Statistical Inference</a></li>  <li class="file"><a href="/2018/08/23/网络/2018-8-23-SketchVisor/">SketchVisor: Robust Network Measurement for Soware Packet Processing</a></li>  <li class="file"><a href="/2018/08/23/网络/2018-8-23-Elastic Sketch/">Elastic Sketch: Adaptive and Fast Network-wide Measurements</a></li>  </ul> 
                     </li> 
                     
                     <li class="directory">
@@ -250,7 +250,7 @@
                             &nbsp;
                             Pi
                         </a>
-                         <ul class="unstyled" id="tree">  <li class="file"><a href="/2016/08/06/Pi/2016-08-06-Raspberry Pi OK01/">Raspberry Pi OK01</a></li>  <li class="file"><a href="/2016/08/06/Pi/2016-08-06-Raspberry Pi OK02/">Raspberry Pi OK02</a></li>  <li class="file"><a href="/2016/08/06/Pi/2016-08-06-Raspberry Pi OK03/">Raspberry Pi OK03</a></li>  <li class="file"><a href="/2016/08/06/Pi/2016-08-06-Baking Pi – Operating Systems Development前言/">Raspberry Pi OS Development 前言</a></li>  <li class="file"><a href="/2016/08/09/Pi/2016-08-09-Raspberry Pi OK05/">Raspberry Pi OK05</a></li>  <li class="file"><a href="/2016/08/09/Pi/2016-08-10-Raspberry Pi Screen01/">Raspberry Pi Screen01</a></li>  <li class="file"><a href="/2016/08/09/Pi/2016-08-09-Raspberry Pi OK04/">Raspberry Pi OK04</a></li>  <li class="file"><a href="/2016/08/09/Pi/2016-08-11-Raspberry Pi Screen02/">Raspberry Pi Screen02</a></li>  <li class="file"><a href="/2016/08/14/Pi/2016-08-14-Raspberry Pi Screen03/">Raspberry Pi Screen03</a></li>  <li class="file"><a href="/2016/08/16/Pi/2016-08-16-Raspberry Pi Screen04/">Raspberry Pi Screen04</a></li>  <li class="file"><a href="/2016/08/31/Pi/2016-08-31-Raspberry Pi Input01/">Raspberry Pi Input01</a></li>  <li class="file"><a href="/2016/09/01/Pi/2016-09-01-Raspberry Pi Input02/">Raspberry Pi Input02</a></li>  </ul> 
+                         <ul class="unstyled" id="tree">  <li class="file"><a href="/2016/08/06/Pi/2016-08-06-Raspberry Pi OK02/">Raspberry Pi OK02</a></li>  <li class="file"><a href="/2016/08/06/Pi/2016-08-06-Raspberry Pi OK03/">Raspberry Pi OK03</a></li>  <li class="file"><a href="/2016/08/06/Pi/2016-08-06-Baking Pi – Operating Systems Development前言/">Raspberry Pi OS Development 前言</a></li>  <li class="file"><a href="/2016/08/06/Pi/2016-08-06-Raspberry Pi OK01/">Raspberry Pi OK01</a></li>  <li class="file"><a href="/2016/08/09/Pi/2016-08-09-Raspberry Pi OK04/">Raspberry Pi OK04</a></li>  <li class="file"><a href="/2016/08/09/Pi/2016-08-11-Raspberry Pi Screen02/">Raspberry Pi Screen02</a></li>  <li class="file"><a href="/2016/08/09/Pi/2016-08-10-Raspberry Pi Screen01/">Raspberry Pi Screen01</a></li>  <li class="file"><a href="/2016/08/09/Pi/2016-08-09-Raspberry Pi OK05/">Raspberry Pi OK05</a></li>  <li class="file"><a href="/2016/08/14/Pi/2016-08-14-Raspberry Pi Screen03/">Raspberry Pi Screen03</a></li>  <li class="file"><a href="/2016/08/16/Pi/2016-08-16-Raspberry Pi Screen04/">Raspberry Pi Screen04</a></li>  <li class="file"><a href="/2016/08/31/Pi/2016-08-31-Raspberry Pi Input01/">Raspberry Pi Input01</a></li>  <li class="file"><a href="/2016/09/01/Pi/2016-09-01-Raspberry Pi Input02/">Raspberry Pi Input02</a></li>  </ul> 
                     </li> 
                     
                     <li class="directory">
@@ -268,7 +268,7 @@
                             &nbsp;
                             Security
                         </a>
-                         <ul class="unstyled" id="tree">  <li class="file"><a href="/2018/09/02/安全/2018-09-02-蜜罐技术/">蜜罐技术</a></li>  <li class="file"><a href="/2019/06/22/安全/2019-06-22-网络异常行为检测/">网络异常行为检测</a></li>  <li class="file"><a href="/2019/07/21/安全/2019-07-22-xgboost/">孤立森林（Isolation Forest）</a></li>  <li class="file"><a href="/2019/07/21/安全/2019-07-22-利用时序决策树进行DGA僵尸检测/">利用时序决策树进行DGA僵尸检测</a></li>  <li class="file"><a href="/2019/07/21/安全/2019-07-22-孤立森林（Isolation Froest）/">孤立森林（Isolation Forest）</a></li>  <li class="file"><a href="/2019/07/21/安全/2019-07-21-多项式插值/">多项式插值</a></li>  <li class="file"><a href="/2019/07/21/安全/2019-07-21-梯度提升决策树(GBDT)/">梯度提升决策树（GBDT）</a></li>  <li class="file"><a href="/2019/07/21/安全/2019-07-21-指数加权移动平均法（EWMA）/">指数加权移动平均法（EWMA）</a></li>  </ul> 
+                         <ul class="unstyled" id="tree">  <li class="file"><a href="/2018/09/02/安全/2018-09-02-蜜罐技术/">蜜罐技术</a></li>  <li class="file"><a href="/2019/06/22/安全/2019-06-22-网络异常行为检测/">网络异常行为检测</a></li>  <li class="file"><a href="/2019/07/21/安全/2019-07-21-指数加权移动平均法（EWMA）/">指数加权移动平均法（EWMA）</a></li>  <li class="file"><a href="/2019/07/21/安全/2019-07-22-孤立森林（Isolation Froest）/">孤立森林（Isolation Forest）</a></li>  <li class="file"><a href="/2019/07/21/安全/2019-07-22-xgboost/">孤立森林（Isolation Forest）</a></li>  <li class="file"><a href="/2019/07/21/安全/2019-07-21-多项式插值/">多项式插值</a></li>  <li class="file"><a href="/2019/07/21/安全/2019-07-22-利用时序决策树进行DGA僵尸检测/">利用时序决策树进行DGA僵尸检测</a></li>  <li class="file"><a href="/2019/07/21/安全/2019-07-21-梯度提升决策树(GBDT)/">梯度提升决策树（GBDT）</a></li>  </ul> 
                     </li> 
                     
                     <li class="directory">
@@ -277,7 +277,7 @@
                             &nbsp;
                             网络
                         </a>
-                         <ul class="unstyled" id="tree">  <li class="file"><a href="/2016/12/24/网络/2016-12-24-ipv4在Linux上的实现/">学习构造用户空间的IP栈（资料总结）</a></li>  <li class="file"><a href="/2017/03/12/VANET/2017-3-12-Vanet仿真-ns3(1)/">VANET仿真-ns3(1)</a></li>  <li class="file"><a href="/2017/03/12/VANET/2017-3-12-Vanet仿真-ns3(2)/">VANET仿真-ns3(2)</a></li>  <li class="file"><a href="/2017/03/12/VANET/2017-3-12-Vanet仿真-ns3(3)/">VANET仿真-ns3(3)</a></li>  <li class="file"><a href="/2017/03/13/VANET/2017-3-13-Vanet仿真-ns3(4)/">VANET仿真-ns3(4)</a></li>  <li class="file"><a href="/2017/03/13/VANET/2017-3-13-Vanet仿真-ns3(5)/">VANET仿真-ns3(5)</a></li>  <li class="file"><a href="/2017/03/15/VANET/2017-3-15-Vanet仿真-ns3(6)/">VANET仿真-ns3(6)</a></li>  <li class="file"><a href="/2017/07/14/网络/2017-07-14-Ego networks/">Ego networks</a></li>  </ul> 
+                         <ul class="unstyled" id="tree">  <li class="file"><a href="/2016/12/24/网络/2016-12-24-ipv4在Linux上的实现/">学习构造用户空间的IP栈（资料总结）</a></li>  <li class="file"><a href="/2017/03/12/VANET/2017-3-12-Vanet仿真-ns3(3)/">VANET仿真-ns3(3)</a></li>  <li class="file"><a href="/2017/03/12/VANET/2017-3-12-Vanet仿真-ns3(2)/">VANET仿真-ns3(2)</a></li>  <li class="file"><a href="/2017/03/12/VANET/2017-3-12-Vanet仿真-ns3(1)/">VANET仿真-ns3(1)</a></li>  <li class="file"><a href="/2017/03/13/VANET/2017-3-13-Vanet仿真-ns3(4)/">VANET仿真-ns3(4)</a></li>  <li class="file"><a href="/2017/03/13/VANET/2017-3-13-Vanet仿真-ns3(5)/">VANET仿真-ns3(5)</a></li>  <li class="file"><a href="/2017/03/15/VANET/2017-3-15-Vanet仿真-ns3(6)/">VANET仿真-ns3(6)</a></li>  <li class="file"><a href="/2017/07/14/网络/2017-07-14-Ego networks/">Ego networks</a></li>  </ul> 
                     </li> 
                      <li class="file"><a href="/2019/05/30/强化学习/~$19-05-28-强化学习(2)/"></a></li>  <li class="file"><a href="/2019/09/16/数据挖掘/2019-09-16-基于注意力模型的RNN时序预测/"></a></li>  </ul> 
     </div>
@@ -420,37 +420,36 @@
             
         
         
-            <h3 id="与内核通信">与内核通信</h3>
-<p>系统调用在用户空间进程和硬件设备之间添加了一个中间层，作用如下： 1. 为用户空间提供了一种硬件的抽象接口。当需要读写文件时，程序可以不去管磁盘类型和介质，甚至不用管文件所在文件系统到底是哪种类型。 2. 保证系统的稳定和安全。内核可以基于权限、用户类型和其他一些规则对需要进行的访问进行裁决。 3. 每个进程都运行在虚拟系统中。</p>
-<h3 id="api-posix-c库">API &amp; POSIX &amp; C库</h3>
-<p>API: 定义了一组应用程序使用的编程接口，可以用一个系统调用实现，也可以通过调用多个系统调用来实现，也可以完全不使用系统调用。下图即为一个例子。</p>
-<p><img src="https://ws4.sinaimg.cn/large/006tNc79gy1fkojdob180j31d0078q4k.jpg"></p>
+            <h3 id="与内核通信"><a href="#与内核通信" class="headerlink" title="与内核通信"></a>与内核通信</h3><p>系统调用在用户空间进程和硬件设备之间添加了一个中间层，作用如下：</p>
+<ol>
+<li>为用户空间提供了一种硬件的抽象接口。当需要读写文件时，程序可以不去管磁盘类型和介质，甚至不用管文件所在文件系统到底是哪种类型。</li>
+<li>保证系统的稳定和安全。内核可以基于权限、用户类型和其他一些规则对需要进行的访问进行裁决。</li>
+<li>每个进程都运行在虚拟系统中。</li>
+</ol>
+<h3 id="API-amp-POSIX-amp-C库"><a href="#API-amp-POSIX-amp-C库" class="headerlink" title="API &amp; POSIX &amp; C库"></a>API &amp; POSIX &amp; C库</h3><p>API: 定义了一组应用程序使用的编程接口，可以用一个系统调用实现，也可以通过调用多个系统调用来实现，也可以完全不使用系统调用。下图即为一个例子。</p>
+<p><img src="https://ws4.sinaimg.cn/large/006tNc79gy1fkojdob180j31d0078q4k.jpg" alt></p>
 <p>POSIX定义的API函数和系统调用之间有着直接关系，且C库提供了POSIX的绝大部分的API。</p>
-<h3 id="系统调用">系统调用</h3>
-<p>在Linux中访问系统调用(syscall)，通常要用C库中定义的函数调用来进行。他们通常要定义几个参数。</p>
-<h4 id="系统调用号">系统调用号</h4>
-<p>在Linux中，每个系统调用被赋予一个系统调用号。当用户空间的进程执行一个系统调用的时候，这个系统调用号就用来指明到底是要执行哪个系统调用：进程不会提及系统调用的名称。</p>
-<p>系统调用号一旦被分配就不会再有任何改变，否则编译好的应用就会崩溃。此外如果一个系统调用被删除，他所占用的系统调用号也不允许被回收利用，否则以前编译过的代码会调用这个系统调用。在Linux中有一个"未实现"系统调用sys_ni_syscall()，它除了返回-ENOSYS外不做任何工作，这个错误号就是专门针对这个无效的系统调用而设。</p>
+<h3 id="系统调用"><a href="#系统调用" class="headerlink" title="系统调用"></a>系统调用</h3><p>在Linux中访问系统调用(syscall)，通常要用C库中定义的函数调用来进行。他们通常要定义几个参数。</p>
+<h4 id="系统调用号"><a href="#系统调用号" class="headerlink" title="系统调用号"></a>系统调用号</h4><p>在Linux中，每个系统调用被赋予一个系统调用号。当用户空间的进程执行一个系统调用的时候，这个系统调用号就用来指明到底是要执行哪个系统调用：进程不会提及系统调用的名称。</p>
+<p>系统调用号一旦被分配就不会再有任何改变，否则编译好的应用就会崩溃。此外如果一个系统调用被删除，他所占用的系统调用号也不允许被回收利用，否则以前编译过的代码会调用这个系统调用。在Linux中有一个”未实现”系统调用sys_ni_syscall()，它除了返回-ENOSYS外不做任何工作，这个错误号就是专门针对这个无效的系统调用而设。</p>
 <p>内核记录了系统调用表中的所有已注册的系统调用的列表，存储在sys_call_table中。</p>
-<h4 id="系统调用的性能">系统调用的性能</h4>
-<p>快速高效</p>
-<h3 id="系统调用处理程序">系统调用处理程序</h3>
-<p>用户空间的程序无法直接执行内核代码。</p>
+<h4 id="系统调用的性能"><a href="#系统调用的性能" class="headerlink" title="系统调用的性能"></a>系统调用的性能</h4><p>快速高效</p>
+<h3 id="系统调用处理程序"><a href="#系统调用处理程序" class="headerlink" title="系统调用处理程序"></a>系统调用处理程序</h3><p>用户空间的程序无法直接执行内核代码。</p>
 <p>通知内核的机制是靠软中断实现的：通过引发一个异常来促使系统切换到内核态去执行异常处理程序。此时的异常处理程序实际上就是系统调用处理程序。在x86系统上预定义的软中断是中断号128，通过 <strong>int $0x80</strong> 指令触发该终端。</p>
-<h4 id="指定恰当的系统调用">指定恰当的系统调用</h4>
-<p>因为所有的系统调用陷入内核的方式都一样，因此还需要将系统调用号一并传给内核。在x86，系统调用号通过eax寄存器传递给内核。</p>
+<h4 id="指定恰当的系统调用"><a href="#指定恰当的系统调用" class="headerlink" title="指定恰当的系统调用"></a>指定恰当的系统调用</h4><p>因为所有的系统调用陷入内核的方式都一样，因此还需要将系统调用号一并传给内核。在x86，系统调用号通过eax寄存器传递给内核。</p>
 <p>system_call()函数通过将给定的系统调用号与NR_syscalls做比较来检查其有效性。如果它大于或者等于NR_syscalls,将函数就返回-ENOSYS。否则，就执行相应的系统调用：</p>
-<pre><code>    call *sys_call_table(,%rax,8)</code></pre>
-<h4 id="参数传递">参数传递</h4>
-<p>除了系统调用号以外，大部分系统调用都还需要一些外部的参数输入。所以，在发生陷入的时候，应该把这些参数从用户空间传给内核。最简单的办法就是把这些参数也存放到寄存器中。在x86-32系统上，ebx，ecx，edx，esi，edi按照顺序存放前5个参数。需要六个或以上的情况时，需要一个单独的寄存器存放指向所有这些参数在用户空间地址的指针。</p>
+<pre><code>    call *sys_call_table(,%rax,8)
+</code></pre><h4 id="参数传递"><a href="#参数传递" class="headerlink" title="参数传递"></a>参数传递</h4><p>除了系统调用号以外，大部分系统调用都还需要一些外部的参数输入。所以，在发生陷入的时候，应该把这些参数从用户空间传给内核。最简单的办法就是把这些参数也存放到寄存器中。在x86-32系统上，ebx，ecx，edx，esi，edi按照顺序存放前5个参数。需要六个或以上的情况时，需要一个单独的寄存器存放指向所有这些参数在用户空间地址的指针。</p>
 <p>用户空间的返回值也通过寄存器传递。在x86系统上，他存放在eax寄存器中。</p>
-<h3 id="系统调用的实现">系统调用的实现</h3>
-<h4 id="实现系统调用">实现系统调用</h4>
-<p>Linux 不提倡采用多用途的系统调用(一个系统调用通过传递不同的参数值来选择完成不同的工作)。很多系统共了标志参数确保向前兼容。标志并不是用来让单个系统调用具有多个不同的行为，而是为了即使增加新的功能和选项，也不破坏向后兼容或不需要增加新的系统调用。</p>
-<h4 id="参数验证">参数验证</h4>
-<p>系统调用必须检查所有的参数是否合法有效。</p>
+<h3 id="系统调用的实现"><a href="#系统调用的实现" class="headerlink" title="系统调用的实现"></a>系统调用的实现</h3><h4 id="实现系统调用"><a href="#实现系统调用" class="headerlink" title="实现系统调用"></a>实现系统调用</h4><p>Linux 不提倡采用多用途的系统调用(一个系统调用通过传递不同的参数值来选择完成不同的工作)。很多系统共了标志参数确保向前兼容。标志并不是用来让单个系统调用具有多个不同的行为，而是为了即使增加新的功能和选项，也不破坏向后兼容或不需要增加新的系统调用。</p>
+<h4 id="参数验证"><a href="#参数验证" class="headerlink" title="参数验证"></a>参数验证</h4><p>系统调用必须检查所有的参数是否合法有效。</p>
 <p>举例来说，与文件I/O相关的系统调用必须检查文件描述符是否有效。与进程相关的函数必须检查提供的PID是否有效。</p>
-<p>最重要的一种检查就是检查用户提供的指针是否有效。内核必须保证： * 指针指向的内存区属于用户区域，进程决不能哄骗内核去读内核空间的数据。 * 指针指向的内存区在进程的地址空间里。进程决不能哄骗内核去读其他进程的数据。 * 如果是读，该内存应被标记为可读；如果是写，该内存被标记为可写；如果是可执行，该内存应该被标记为可执行。进程决不能绕过内存访问限制。</p>
+<p>最重要的一种检查就是检查用户提供的指针是否有效。内核必须保证：</p>
+<ul>
+<li>指针指向的内存区属于用户区域，进程决不能哄骗内核去读内核空间的数据。</li>
+<li>指针指向的内存区在进程的地址空间里。进程决不能哄骗内核去读其他进程的数据。</li>
+<li>如果是读，该内存应被标记为可读；如果是写，该内存被标记为可写；如果是可执行，该内存应该被标记为可执行。进程决不能绕过内存访问限制。</li>
+</ul>
 <figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="comment">//Copy a block of data into user space, with less checking.</span></span><br><span class="line"><span class="comment">//void __user * to</span></span><br><span class="line"><span class="comment">//Destination address, in user space.</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//const void * from</span></span><br><span class="line"><span class="comment">//Source address, in kernel space.</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//unsigned long n</span></span><br><span class="line"><span class="comment">//Number of bytes to copy.</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">unsigned</span> <span class="keyword">long</span> __copy_to_user (	<span class="keyword">void</span> __user * to,</span><br><span class="line"> 	<span class="keyword">const</span> <span class="keyword">void</span> * from,</span><br><span class="line"> 	<span class="keyword">unsigned</span> <span class="keyword">long</span> n);</span><br></pre></td></tr></table></figure>
 <figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="comment">//Name: Copy a block of data from user space, with less checking.</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//Arguments</span></span><br><span class="line"><span class="comment">//void * to</span></span><br><span class="line"><span class="comment">//Destination address, in kernel space.</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//const void __user * from</span></span><br><span class="line"><span class="comment">//Source address, in user space.</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//unsigned long n</span></span><br><span class="line"><span class="comment">//Number of bytes to copy.</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">unsigned</span> <span class="keyword">long</span> __copy_from_user (	<span class="keyword">void</span> * to,</span><br><span class="line"> 	<span class="keyword">const</span> <span class="keyword">void</span> __user * from,</span><br><span class="line"> 	<span class="keyword">unsigned</span> <span class="keyword">long</span> n);</span><br></pre></td></tr></table></figure>
 <p>上述两个函数都有可能引起阻塞。当包含用户数据的页被换出到硬盘上而不是在物理内存上的时候，这种情况就会发生。此时，进程就会休眠，直到缺页处理程序将该页从硬盘重新换回物理内存。</p>
@@ -466,11 +465,11 @@
     
 <nav id="article-nav">
     
-        <a href="/2017/10/22/Linux/2017-11-2-Linux-下半部和推后执行的工作/" id="article-nav-newer" class="article-nav-link-wrap">
+        <a href="/2017/10/22/Linux/2017-10-22-Linux中断和中断处理/" id="article-nav-newer" class="article-nav-link-wrap">
             <strong class="article-nav-caption">上一篇</strong>
             <div class="article-nav-title">
                 
-                    Linux-下半部和推后执行的工作&#34;
+                    Linux-中断和中断处理
                 
             </div>
         </a>
@@ -560,20 +559,5 @@
 <script src="/js/main.js"></script>
 
     </div>
-<script type="text/x-mathjax-config">
-    MathJax.Hub.Config({
-        tex2jax: {
-            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
-            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
-            processEscapes: true
-        }
-    });
-    MathJax.Hub.Queue(function() {
-        var all = MathJax.Hub.getAllJax();
-        for (var i = 0; i < all.length; ++i)
-            all[i].SourceElement().parentNode.className += ' has-jax';
-    });
-</script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
 </body>
 </html>
