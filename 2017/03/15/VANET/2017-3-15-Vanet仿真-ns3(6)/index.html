@@ -1,1735 +1,524 @@
 <!DOCTYPE html>
-<html  lang="zh">
-<head>
-    <meta charset="utf-8" />
-
-<meta name="generator" content="Hexo 3.8.0" />
-
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
-
-<title>VANET仿真-ns3(6) - Fengrui Liu&#39;s Blog</title>
-
-
-    <meta name="description" content="VANET 仿真ns3/examples/routing/manet-routing-compare.cc 该代码是在ns-3上运行DSDV，AODV，OLSR，仿真场景是典型的随机运动模型。默认情况下，模拟共200s，前50s是启动时间；共50个节点，节点遵从RandomWaypointMobilityModel模型，运动速度20m/s，无暂停，运动范围300*1500 m的区域范围之内。WiF">
+<html lang="zh">
+<head><meta name="generator" content="Hexo 3.8.0">
+    <meta charset="utf-8">
+    
+    <title>VANET仿真-ns3(6) | Fengrui Liu&#39;s Blog</title>
+    
+    
+        <meta name="keywords" content="VANET,ns3">
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="description" content="VANET 仿真 ns3/examples/routing/manet-routing-compare.cc 该代码是在ns-3上运行DSDV，AODV，OLSR，仿真场景是典型的随机运动模型。 默认情况下，模拟共200s，前50s是启动时间；共50个节点，节点遵从RandomWaypointMobilityModel模型，运动速度20m/s，无暂停，运动范围300*1500 m的区域范围之内。W">
 <meta name="keywords" content="VANET,ns3">
 <meta property="og:type" content="article">
 <meta property="og:title" content="VANET仿真-ns3(6)">
 <meta property="og:url" content="http://www.liufr.com/2017/03/15/VANET/2017-3-15-Vanet仿真-ns3(6)/index.html">
 <meta property="og:site_name" content="Fengrui Liu&#39;s Blog">
-<meta property="og:description" content="VANET 仿真ns3/examples/routing/manet-routing-compare.cc 该代码是在ns-3上运行DSDV，AODV，OLSR，仿真场景是典型的随机运动模型。默认情况下，模拟共200s，前50s是启动时间；共50个节点，节点遵从RandomWaypointMobilityModel模型，运动速度20m/s，无暂停，运动范围300*1500 m的区域范围之内。WiF">
+<meta property="og:description" content="VANET 仿真 ns3/examples/routing/manet-routing-compare.cc 该代码是在ns-3上运行DSDV，AODV，OLSR，仿真场景是典型的随机运动模型。 默认情况下，模拟共200s，前50s是启动时间；共50个节点，节点遵从RandomWaypointMobilityModel模型，运动速度20m/s，无暂停，运动范围300*1500 m的区域范围之内。W">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="http://www.liufr.com/images/og_image.png">
+<meta property="og:image" content="https://ww4.sinaimg.cn/large/006tNc79gy1fdntmd2lvkj31kw0zknda.jpg">
 <meta property="og:updated_time" content="2018-03-30T08:14:17.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="VANET仿真-ns3(6)">
-<meta name="twitter:description" content="VANET 仿真ns3/examples/routing/manet-routing-compare.cc 该代码是在ns-3上运行DSDV，AODV，OLSR，仿真场景是典型的随机运动模型。默认情况下，模拟共200s，前50s是启动时间；共50个节点，节点遵从RandomWaypointMobilityModel模型，运动速度20m/s，无暂停，运动范围300*1500 m的区域范围之内。WiF">
-<meta name="twitter:image" content="http://www.liufr.com/images/og_image.png">
-
-
-
-
-
-
-
-<link rel="icon" href="/images/favicon.svg">
-
-
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.7.2/css/bulma.css">
-<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Ubuntu:400,600|Source+Code+Pro">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@9.12.0/styles/atom-one-light.css">
-
-
-    
-    
-    
-    <style>body>.footer,body>.navbar,body>.section{opacity:0}</style>
+<meta name="twitter:description" content="VANET 仿真 ns3/examples/routing/manet-routing-compare.cc 该代码是在ns-3上运行DSDV，AODV，OLSR，仿真场景是典型的随机运动模型。 默认情况下，模拟共200s，前50s是启动时间；共50个节点，节点遵从RandomWaypointMobilityModel模型，运动速度20m/s，无暂停，运动范围300*1500 m的区域范围之内。W">
+<meta name="twitter:image" content="https://ww4.sinaimg.cn/large/006tNc79gy1fdntmd2lvkj31kw0zknda.jpg">
     
 
     
-    
-    
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@1.6.8/dist/css/lightgallery.min.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/css/justifiedGallery.min.css">
+        <link rel="alternate" href="/atom.xml" title="Fengrui Liu&#39;s Blog" type="application/atom+xml">
     
 
     
+        <link rel="icon" href="/favicon.ico">
     
 
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/outdatedbrowser@1.1.5/outdatedbrowser/outdatedbrowser.min.css">
+    <link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/libs/open-sans/styles.css">
+    <link rel="stylesheet" href="/libs/source-code-pro/styles.css">
 
-
+    <link rel="stylesheet" href="/css/style.css">
+    <script src="/libs/jquery/2.1.3/jquery.min.js"></script>
+    <script src="/libs/jquery/plugins/cookie/1.4.1/jquery.cookie.js"></script>
+    
+    
+        <link rel="stylesheet" href="/libs/lightgallery/css/lightgallery.min.css">
+    
+    
+        <link rel="stylesheet" href="/libs/justified-gallery/justifiedGallery.min.css">
     
     
     
     
 
-<link rel="stylesheet" href="/css/back-to-top.css">
-
 
     
+        <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
     
-
-    
-    
-    
-    
-
-    
-    
-<link rel="stylesheet" href="/css/progressbar.css">
-<script src="https://cdn.jsdelivr.net/npm/pace-js@1.0.2/pace.min.js"></script>
-
-    
-    
-    
-
-
-<link rel="stylesheet" href="/css/style.css">
 </head>
-<body class="is-3-column">
-    <nav class="navbar navbar-main">
-    <div class="container">
-        <div class="navbar-brand is-flex-center">
-            <a class="navbar-item navbar-logo" href="/">
-            
-                <img src="/images/logo.svg" alt="VANET仿真-ns3(6)" height="28">
-            
+</html>
+<body>
+    <div id="container">
+        <header id="header">
+    <div id="header-main" class="header-inner">
+        <div class="outer">
+            <a href="/" id="logo">
+                <i class="logo"></i>
+                <span class="site-title">Fengrui Liu&#39;s Blog</span>
             </a>
+            <nav id="main-nav">
+                
+                    <a class="main-nav-link" href="/">首页</a>
+                
+                    <a class="main-nav-link" href="/archives">归档</a>
+                
+                    <a class="main-nav-link" href="/categories">分类</a>
+                
+                    <a class="main-nav-link" href="/tags">标签</a>
+                
+                    <a class="main-nav-link" href="/about">关于</a>
+                
+            </nav>
+            
+            <div id="search-form-wrap">
+
+    <form class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="搜索">
+        <button type="submit" class="search-form-submit"></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="想要查找什么...">
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
         </div>
-        <div class="navbar-menu">
-            
-            <div class="navbar-start">
-                
-                <a class="navbar-item"
-                href="/">Home</a>
-                
-                <a class="navbar-item"
-                href="/archives">Archives</a>
-                
-                <a class="navbar-item"
-                href="/categories">Categories</a>
-                
-                <a class="navbar-item"
-                href="/tags">Tags</a>
-                
-                <a class="navbar-item"
-                href="/about">About</a>
-                
-            </div>
-            
-            <div class="navbar-end">
-                
-                    
-                    
-                    <a class="navbar-item" target="_blank" title="Download on GitHub" href="https://github.com/ppoffice/hexo-theme-icarus">
-                        
-                        <i class="fab fa-github"></i>
-                        
-                    </a>
-                    
-                
-                
-                
-                <a class="navbar-item search" title="搜索" href="javascript:;">
-                    <i class="fas fa-search"></i>
-                </a>
-                
-            </div>
-        </div>
-    </div>
-</nav>
-    
-    <section class="section">
-        <div class="container">
-            <div class="columns">
-                <div class="column is-8-tablet is-8-desktop is-6-widescreen has-order-2 column-main"><div class="card">
-    
-    <div class="card-content article ">
-        
-        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
-            <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2017-03-14T16:00:00.000Z">2017-03-15</time>
-                
-                <div class="level-item">
-                <a class="has-link-grey -link" href="/categories/网络/">网络</a>
-                </div>
-                
-                
-                <span class="level-item has-text-grey">
-                    
-                    
-                    10 分钟 读完 (大约 1525 个字)
-                </span>
-                
-                
-            </div>
-        </div>
-        
-        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
-            
-                VANET仿真-ns3(6)
-            
-        </h1>
-        <div class="content">
-            <h2 id="VANET-仿真"><a href="#VANET-仿真" class="headerlink" title="VANET 仿真"></a>VANET 仿真</h2><p>ns3/examples/routing/manet-routing-compare.cc</p>
-<p>该代码是在ns-3上运行DSDV，AODV，OLSR，仿真场景是典型的随机运动模型。<br>默认情况下，模拟共200s，前50s是启动时间；共50个节点，节点遵从RandomWaypointMobilityModel模型，运动速度20m/s，无暂停，运动范围300*1500 m的区域范围之内。WiFi的传播速度为2Mb/s，遵守Friis loss model(认为是ns-3中的一个模型)，广播发射功率为7.5dBm。</p>
-<p>在这里，运动与密度模型、可以通过速度和节点数量被直接修改，也可以改变发射功率（很显然，当发射功率增加时，运动所造成的影响就减少了，密度造成的影响相应增大）。</p>
-<p>默认是OLSR路由协议，参数2是AODV，3是DSDV。</p>
-<p>默认状态下，有10对源数据对发送UDP，速度为2.048 kbps。均在50~51s内开始发送。</p>
-<p>标准输出</p>
-<ol>
-<li>包接收：<timestamp> <node-id> received one packet from <src-address></src-address></node-id></timestamp></li>
-<li>每秒数据接收都会制表并输出成csv文件</li>
-<li>一些追踪和流监视器会在程序运行时输出一些状态信息</li>
-</ol>
-<figure class="highlight c++ hljs"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;fstream&gt;</span></span></span><br><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">"ns3/core-module.h"</span></span></span><br><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">"ns3/network-module.h"</span></span></span><br><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">"ns3/internet-module.h"</span></span></span><br><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">"ns3/mobility-module.h"</span></span></span><br><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">"ns3/wifi-module.h"</span></span></span><br><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">"ns3/aodv-module.h"</span></span></span><br><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">"ns3/olsr-module.h"</span></span></span><br><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">"ns3/dsdv-module.h"</span></span></span><br><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">"ns3/dsr-module.h"</span></span></span><br><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">"ns3/applications-module.h"</span></span></span><br><span class="line"></span><br><span class="line"><span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> ns3;</span><br><span class="line"><span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> dsr;</span><br><span class="line"></span><br><span class="line">NS_LOG_COMPONENT_DEFINE (<span class="hljs-string">"manet-routing-compare"</span>);</span><br><span class="line"></span><br><span class="line"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">RoutingExperiment</span></span></span><br><span class="line"><span class="hljs-class">&#123;</span></span><br><span class="line"><span class="hljs-keyword">public</span>:</span><br><span class="line">  RoutingExperiment ();</span><br><span class="line">  <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">Run</span> <span class="hljs-params">(<span class="hljs-keyword">int</span> nSinks, <span class="hljs-keyword">double</span> txp, <span class="hljs-built_in">std</span>::<span class="hljs-built_in">string</span> CSVfileName)</span></span>;</span><br><span class="line">  <span class="hljs-comment">//static void SetMACParam (ns3::NetDeviceContainer &amp; devices,</span></span><br><span class="line">  <span class="hljs-comment">//                                 int slotDistance);</span></span><br><span class="line">  <span class="hljs-built_in">std</span>::<span class="hljs-function"><span class="hljs-built_in">string</span> <span class="hljs-title">CommandSetup</span> <span class="hljs-params">(<span class="hljs-keyword">int</span> argc, <span class="hljs-keyword">char</span> \**argv)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="hljs-keyword">private</span>:</span><br><span class="line">  Ptr&lt;Socket&gt; SetupPacketReceive (Ipv4Address addr, Ptr&lt;Node&gt; node);</span><br><span class="line">  <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">ReceivePacket</span> <span class="hljs-params">(Ptr&lt;Socket&gt; socket)</span></span>;</span><br><span class="line">  <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">CheckThroughput</span> <span class="hljs-params">()</span></span>;</span><br><span class="line"></span><br><span class="line">  <span class="hljs-keyword">uint32_t</span> port;</span><br><span class="line">  <span class="hljs-keyword">uint32_t</span> bytesTotal;</span><br><span class="line">  <span class="hljs-keyword">uint32_t</span> packetsReceived;</span><br><span class="line"></span><br><span class="line">  <span class="hljs-built_in">std</span>::<span class="hljs-built_in">string</span> m_CSVfileName;</span><br><span class="line">  <span class="hljs-keyword">int</span> m_nSinks;</span><br><span class="line">  <span class="hljs-built_in">std</span>::<span class="hljs-built_in">string</span> m_protocolName;</span><br><span class="line">  <span class="hljs-keyword">double</span> m_txp;</span><br><span class="line">  <span class="hljs-keyword">bool</span> m_traceMobility;</span><br><span class="line">  <span class="hljs-keyword">uint32_t</span> m_protocol;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="hljs-comment">//设置端口号、字节数、接收包的个数、CSV文件名、移动追踪、协议等</span></span><br><span class="line">RoutingExperiment::RoutingExperiment ()</span><br><span class="line">  : port (<span class="hljs-number">9</span>),</span><br><span class="line">    bytesTotal (<span class="hljs-number">0</span>),</span><br><span class="line">    packetsReceived (<span class="hljs-number">0</span>),</span><br><span class="line">    m_CSVfileName (<span class="hljs-string">"manet-routing.output.csv"</span>),</span><br><span class="line">    m_traceMobility (<span class="hljs-literal">false</span>),</span><br><span class="line">    m_protocol (<span class="hljs-number">2</span>) <span class="hljs-comment">// AODV</span></span><br><span class="line">&#123;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="hljs-comment">//在RoutingExperiment::ReceivePacket中使用</span></span><br><span class="line"><span class="hljs-keyword">static</span> <span class="hljs-keyword">inline</span> <span class="hljs-built_in">std</span>::<span class="hljs-built_in">string</span></span><br><span class="line">PrintReceivedPacket (Ptr&lt;Socket&gt; socket, Ptr&lt;Packet&gt; packet, Address senderAddress)</span><br><span class="line">&#123;</span><br><span class="line">	<span class="hljs-comment">//自动分配缓冲区，格式化字符串</span></span><br><span class="line">  <span class="hljs-built_in">std</span>::<span class="hljs-built_in">ostringstream</span> oss;</span><br><span class="line"></span><br><span class="line">  oss &lt;&lt; Simulator::Now ().GetSeconds () &lt;&lt; <span class="hljs-string">" "</span> &lt;&lt; socket-&gt;GetNode ()-&gt;GetId ();</span><br><span class="line"></span><br><span class="line">	<span class="hljs-comment">//如果找到匹配的地址，那么就把地址也表示出来</span></span><br><span class="line">  <span class="hljs-keyword">if</span> (InetSocketAddress::IsMatchingType (senderAddress))</span><br><span class="line">    &#123;</span><br><span class="line">      InetSocketAddress addr = InetSocketAddress::ConvertFrom (senderAddress);</span><br><span class="line">      oss &lt;&lt; <span class="hljs-string">" received one packet from "</span> &lt;&lt; addr.GetIpv4 ();</span><br><span class="line">    &#125;</span><br><span class="line">  <span class="hljs-keyword">else</span></span><br><span class="line">    &#123;</span><br><span class="line">      oss &lt;&lt; <span class="hljs-string">" received one packet!"</span>;</span><br><span class="line">    &#125;</span><br><span class="line">  <span class="hljs-keyword">return</span> oss.str ();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="hljs-keyword">void</span></span><br><span class="line">RoutingExperiment::ReceivePacket (Ptr&lt;Socket&gt; socket)</span><br><span class="line">&#123;</span><br><span class="line">  Ptr&lt;Packet&gt; packet;</span><br><span class="line">  Address senderAddress;</span><br><span class="line">  <span class="hljs-comment">//从socket中读取一个数据包packet，并且检索发送地址，保存到变量senderAddress中</span></span><br><span class="line">  <span class="hljs-keyword">while</span> ((packet = socket-&gt;RecvFrom (senderAddress)))</span><br><span class="line">    &#123;</span><br><span class="line">      bytesTotal += packet-&gt;GetSize ();</span><br><span class="line">      packetsReceived += <span class="hljs-number">1</span>;</span><br><span class="line">      NS_LOG_UNCOND (PrintReceivedPacket (socket, packet, senderAddress));</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="hljs-keyword">void</span></span><br><span class="line">RoutingExperiment::CheckThroughput ()</span><br><span class="line">&#123;</span><br><span class="line">	<span class="hljs-comment">//先计算kbs，然后再把bytesTotal清零，用于计算下一次的kbs</span></span><br><span class="line">  <span class="hljs-keyword">double</span> kbs = (bytesTotal * <span class="hljs-number">8.0</span>) / <span class="hljs-number">1000</span>;</span><br><span class="line">  bytesTotal = <span class="hljs-number">0</span>;</span><br><span class="line"></span><br><span class="line">  <span class="hljs-comment">//写操作到csv文件中</span></span><br><span class="line">  std::ofstream out (m_CSVfileName.c_str (), std::ios::app);</span><br><span class="line"></span><br><span class="line">  out &lt;&lt; (Simulator::Now ()).GetSeconds () &lt;&lt; <span class="hljs-string">","</span></span><br><span class="line">      &lt;&lt; kbs &lt;&lt; <span class="hljs-string">","</span></span><br><span class="line">      &lt;&lt; packetsReceived &lt;&lt; <span class="hljs-string">","</span></span><br><span class="line">      &lt;&lt; m_nSinks &lt;&lt; <span class="hljs-string">","</span></span><br><span class="line">      &lt;&lt; m_protocolName &lt;&lt; <span class="hljs-string">","</span></span><br><span class="line">      &lt;&lt; m_txp &lt;&lt; <span class="hljs-string">""</span></span><br><span class="line">      &lt;&lt; <span class="hljs-built_in">std</span>::<span class="hljs-built_in">endl</span>;</span><br><span class="line"></span><br><span class="line">  out.close ();</span><br><span class="line">  <span class="hljs-comment">//同理，这里packetsReceived也需要清零</span></span><br><span class="line">  packetsReceived = <span class="hljs-number">0</span>;</span><br><span class="line">  <span class="hljs-comment">//设置1s延时之后执行CheckThroughput，this标明是谁唤醒成员函数</span></span><br><span class="line">  Simulator::Schedule (Seconds (<span class="hljs-number">1.0</span>), &amp;RoutingExperiment::CheckThroughput, <span class="hljs-keyword">this</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">Ptr&lt;Socket&gt;</span><br><span class="line">RoutingExperiment::SetupPacketReceive (Ipv4Address addr, Ptr&lt;Node&gt; node)</span><br><span class="line">&#123;</span><br><span class="line">	<span class="hljs-comment">//通过名字返回一个TypeId</span></span><br><span class="line">  TypeId tid = TypeId::LookupByName (<span class="hljs-string">"ns3::UdpSocketFactory"</span>);</span><br><span class="line">  Ptr&lt;Socket&gt; sink = Socket::CreateSocket (node, tid);</span><br><span class="line">  InetSocketAddress local = InetSocketAddress (addr, port);</span><br><span class="line">  sink-&gt;Bind (local);</span><br><span class="line">  <span class="hljs-comment">//设置回调</span></span><br><span class="line">  sink-&gt;SetRecvCallback (MakeCallback (&amp;RoutingExperiment::ReceivePacket, <span class="hljs-keyword">this</span>));</span><br><span class="line"></span><br><span class="line">  <span class="hljs-keyword">return</span> sink;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="hljs-built_in">std</span>::<span class="hljs-built_in">string</span></span><br><span class="line">RoutingExperiment::CommandSetup (<span class="hljs-keyword">int</span> argc, <span class="hljs-keyword">char</span> \**argv)</span><br><span class="line">&#123;</span><br><span class="line">  CommandLine cmd;</span><br><span class="line">  cmd.AddValue (<span class="hljs-string">"CSVfileName"</span>, <span class="hljs-string">"The name of the CSV output file name"</span>, m_CSVfileName);</span><br><span class="line">  cmd.AddValue (<span class="hljs-string">"traceMobility"</span>, <span class="hljs-string">"Enable mobility tracing"</span>, m_traceMobility);</span><br><span class="line">  cmd.AddValue (<span class="hljs-string">"protocol"</span>, <span class="hljs-string">"1=OLSR;2=AODV;3=DSDV;4=DSR"</span>, m_protocol);</span><br><span class="line">  cmd.Parse (argc, argv);</span><br><span class="line">  <span class="hljs-keyword">return</span> m_CSVfileName;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="hljs-keyword">int</span></span><br><span class="line">main (<span class="hljs-keyword">int</span> argc, <span class="hljs-keyword">char</span> \*argv[])</span><br><span class="line">&#123;</span><br><span class="line">  RoutingExperiment experiment;</span><br><span class="line">  <span class="hljs-built_in">std</span>::<span class="hljs-built_in">string</span> CSVfileName = experiment.CommandSetup (argc,argv);</span><br><span class="line"></span><br><span class="line">  <span class="hljs-comment">//blank out the last output file and write the column headers</span></span><br><span class="line">  std::ofstream out (CSVfileName.c_str ());</span><br><span class="line">  out &lt;&lt; <span class="hljs-string">"SimulationSecond,"</span> &lt;&lt;</span><br><span class="line">  <span class="hljs-string">"ReceiveRate,"</span> &lt;&lt;</span><br><span class="line">  <span class="hljs-string">"PacketsReceived,"</span> &lt;&lt;</span><br><span class="line">  <span class="hljs-string">"NumberOfSinks,"</span> &lt;&lt;</span><br><span class="line">  <span class="hljs-string">"RoutingProtocol,"</span> &lt;&lt;</span><br><span class="line">  <span class="hljs-string">"TransmissionPower"</span> &lt;&lt;</span><br><span class="line">  <span class="hljs-built_in">std</span>::<span class="hljs-built_in">endl</span>;</span><br><span class="line">  out.close ();</span><br><span class="line"></span><br><span class="line">  <span class="hljs-keyword">int</span> nSinks = <span class="hljs-number">10</span>;</span><br><span class="line">  <span class="hljs-keyword">double</span> txp = <span class="hljs-number">7.5</span>;</span><br><span class="line"></span><br><span class="line">  <span class="hljs-comment">//节点数10，传播功率7.5</span></span><br><span class="line">  experiment.Run (nSinks, txp, CSVfileName);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="hljs-keyword">void</span></span><br><span class="line">RoutingExperiment::Run (<span class="hljs-keyword">int</span> nSinks, <span class="hljs-keyword">double</span> txp, <span class="hljs-built_in">std</span>::<span class="hljs-built_in">string</span> CSVfileName)</span><br><span class="line">&#123;</span><br><span class="line">  Packet::EnablePrinting ();</span><br><span class="line">  m_nSinks = nSinks;</span><br><span class="line">  m_txp = txp;</span><br><span class="line">  m_CSVfileName = CSVfileName;</span><br><span class="line"></span><br><span class="line">  <span class="hljs-keyword">int</span> nWifis = <span class="hljs-number">50</span>;</span><br><span class="line"></span><br><span class="line">  <span class="hljs-keyword">double</span> TotalTime = <span class="hljs-number">200.0</span>;</span><br><span class="line">  <span class="hljs-built_in">std</span>::<span class="hljs-function"><span class="hljs-built_in">string</span> <span class="hljs-title">rate</span> <span class="hljs-params">(<span class="hljs-string">"2048bps"</span>)</span></span>;</span><br><span class="line">  <span class="hljs-built_in">std</span>::<span class="hljs-function"><span class="hljs-built_in">string</span> <span class="hljs-title">phyMode</span> <span class="hljs-params">(<span class="hljs-string">"DsssRate11Mbps"</span>)</span></span>;</span><br><span class="line">  <span class="hljs-built_in">std</span>::<span class="hljs-function"><span class="hljs-built_in">string</span> <span class="hljs-title">tr_name</span> <span class="hljs-params">(<span class="hljs-string">"manet-routing-compare"</span>)</span></span>;</span><br><span class="line">  <span class="hljs-keyword">int</span> nodeSpeed = <span class="hljs-number">20</span>; <span class="hljs-comment">//in m/s</span></span><br><span class="line">  <span class="hljs-keyword">int</span> nodePause = <span class="hljs-number">0</span>; <span class="hljs-comment">//in s</span></span><br><span class="line">  m_protocolName = <span class="hljs-string">"protocol"</span>;</span><br><span class="line"></span><br><span class="line">	<span class="hljs-comment">//这里OnOffApplication生成了一个单向的交通流，有以下两个属性可以设置</span></span><br><span class="line">  Config::SetDefault  (<span class="hljs-string">"ns3::OnOffApplication::PacketSize"</span>,StringValue (<span class="hljs-string">"64"</span>));</span><br><span class="line">  Config::SetDefault (<span class="hljs-string">"ns3::OnOffApplication::DataRate"</span>,  StringValue (rate));</span><br><span class="line"></span><br><span class="line">  <span class="hljs-comment">//将非单播模式设置成单播</span></span><br><span class="line">  Config::SetDefault (<span class="hljs-string">"ns3::WifiRemoteStationManager::NonUnicastMode"</span>,StringValue (phyMode));</span><br><span class="line"></span><br><span class="line">  NodeContainer adhocNodes;</span><br><span class="line">  adhocNodes.Create (nWifis);</span><br><span class="line"></span><br><span class="line">  <span class="hljs-comment">// setting up wifi phy and channel using helpers</span></span><br><span class="line">  WifiHelper wifi;</span><br><span class="line">  wifi.SetStandard (WIFI_PHY_STANDARD_80211b);</span><br><span class="line"></span><br><span class="line">  YansWifiPhyHelper wifiPhy =  YansWifiPhyHelper::Default ();</span><br><span class="line">  YansWifiChannelHelper wifiChannel;</span><br><span class="line">  wifiChannel.SetPropagationDelay (<span class="hljs-string">"ns3::ConstantSpeedPropagationDelayModel"</span>);</span><br><span class="line">  wifiChannel.AddPropagationLoss (<span class="hljs-string">"ns3::FriisPropagationLossModel"</span>);</span><br><span class="line">  wifiPhy.SetChannel (wifiChannel.Create ());</span><br><span class="line"></span><br><span class="line">  <span class="hljs-comment">// Add a mac and disable rate control</span></span><br><span class="line">  WifiMacHelper wifiMac;</span><br><span class="line">  wifi.SetRemoteStationManager (<span class="hljs-string">"ns3::ConstantRateWifiManager"</span>,</span><br><span class="line">                                <span class="hljs-string">"DataMode"</span>,StringValue (phyMode),</span><br><span class="line">                                <span class="hljs-string">"ControlMode"</span>,StringValue (phyMode));</span><br><span class="line"></span><br><span class="line">  wifiPhy.Set (<span class="hljs-string">"TxPowerStart"</span>,DoubleValue (txp));</span><br><span class="line">  wifiPhy.Set (<span class="hljs-string">"TxPowerEnd"</span>, DoubleValue (txp));</span><br><span class="line"></span><br><span class="line">  wifiMac.SetType (<span class="hljs-string">"ns3::AdhocWifiMac"</span>);</span><br><span class="line">  NetDeviceContainer adhocDevices = wifi.Install (wifiPhy, wifiMac, adhocNodes);</span><br><span class="line"></span><br><span class="line">  MobilityHelper mobilityAdhoc;</span><br><span class="line">  <span class="hljs-comment">//为了能持续性地得到移动交叉场景</span></span><br><span class="line">  <span class="hljs-keyword">int64_t</span> streamIndex = <span class="hljs-number">0</span>; <span class="hljs-comment">// used to get consistent mobility across scenarios</span></span><br><span class="line"></span><br><span class="line">  <span class="hljs-comment">//设置运动范围</span></span><br><span class="line">  ObjectFactory pos;</span><br><span class="line">  pos.SetTypeId (<span class="hljs-string">"ns3::RandomRectanglePositionAllocator"</span>);</span><br><span class="line">  pos.Set (<span class="hljs-string">"X"</span>, StringValue (<span class="hljs-string">"ns3::UniformRandomVariable[Min=0.0|Max=300.0]"</span>));</span><br><span class="line">  pos.Set (<span class="hljs-string">"Y"</span>, StringValue (<span class="hljs-string">"ns3::UniformRandomVariable[Min=0.0|Max=1500.0]"</span>));</span><br><span class="line"></span><br><span class="line">  Ptr&lt;PositionAllocator&gt; taPositionAlloc = pos.Create ()-&gt;GetObject&lt;PositionAllocator&gt; ();</span><br><span class="line">  streamIndex += taPositionAlloc-&gt;AssignStreams (streamIndex);</span><br><span class="line"></span><br><span class="line">  <span class="hljs-built_in">std</span>::<span class="hljs-built_in">stringstream</span> ssSpeed;</span><br><span class="line">  ssSpeed &lt;&lt; <span class="hljs-string">"ns3::UniformRandomVariable[Min=0.0|Max="</span> &lt;&lt; nodeSpeed &lt;&lt; <span class="hljs-string">"]"</span>;</span><br><span class="line">  <span class="hljs-built_in">std</span>::<span class="hljs-built_in">stringstream</span> ssPause;</span><br><span class="line">  ssPause &lt;&lt; <span class="hljs-string">"ns3::ConstantRandomVariable[Constant="</span> &lt;&lt; nodePause &lt;&lt; <span class="hljs-string">"]"</span>;</span><br><span class="line">  mobilityAdhoc.SetMobilityModel (<span class="hljs-string">"ns3::RandomWaypointMobilityModel"</span>,</span><br><span class="line">                                  <span class="hljs-string">"Speed"</span>, StringValue (ssSpeed.str ()),</span><br><span class="line">                                  <span class="hljs-string">"Pause"</span>, StringValue (ssPause.str ()),</span><br><span class="line">                                  <span class="hljs-string">"PositionAllocator"</span>, PointerValue (taPositionAlloc));</span><br><span class="line">  mobilityAdhoc.SetPositionAllocator (taPositionAlloc);</span><br><span class="line">  mobilityAdhoc.Install (adhocNodes);</span><br><span class="line">  streamIndex += mobilityAdhoc.AssignStreams (adhocNodes, streamIndex);</span><br><span class="line"></span><br><span class="line">  AodvHelper aodv;</span><br><span class="line">  OlsrHelper olsr;</span><br><span class="line">  DsdvHelper dsdv;</span><br><span class="line">  DsrHelper dsr;</span><br><span class="line">  DsrMainHelper dsrMain;</span><br><span class="line">  Ipv4ListRoutingHelper <span class="hljs-built_in">list</span>;</span><br><span class="line">  InternetStackHelper internet;</span><br><span class="line"></span><br><span class="line">  <span class="hljs-keyword">switch</span> (m_protocol)</span><br><span class="line">    &#123;</span><br><span class="line">    <span class="hljs-keyword">case</span> <span class="hljs-number">1</span>:</span><br><span class="line">      <span class="hljs-built_in">list</span>.Add (olsr, <span class="hljs-number">100</span>);</span><br><span class="line">      m_protocolName = <span class="hljs-string">"OLSR"</span>;</span><br><span class="line">      <span class="hljs-keyword">break</span>;</span><br><span class="line">    <span class="hljs-keyword">case</span> <span class="hljs-number">2</span>:</span><br><span class="line">      <span class="hljs-built_in">list</span>.Add (aodv, <span class="hljs-number">100</span>);</span><br><span class="line">      m_protocolName = <span class="hljs-string">"AODV"</span>;</span><br><span class="line">      <span class="hljs-keyword">break</span>;</span><br><span class="line">    <span class="hljs-keyword">case</span> <span class="hljs-number">3</span>:</span><br><span class="line">      <span class="hljs-built_in">list</span>.Add (dsdv, <span class="hljs-number">100</span>);</span><br><span class="line">      m_protocolName = <span class="hljs-string">"DSDV"</span>;</span><br><span class="line">      <span class="hljs-keyword">break</span>;</span><br><span class="line">    <span class="hljs-keyword">case</span> <span class="hljs-number">4</span>:</span><br><span class="line">      m_protocolName = <span class="hljs-string">"DSR"</span>;</span><br><span class="line">      <span class="hljs-keyword">break</span>;</span><br><span class="line">    <span class="hljs-keyword">default</span>:</span><br><span class="line">      NS_FATAL_ERROR (<span class="hljs-string">"No such protocol:"</span> &lt;&lt; m_protocol);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">  <span class="hljs-keyword">if</span> (m_protocol &lt; <span class="hljs-number">4</span>)</span><br><span class="line">    &#123;</span><br><span class="line">      internet.SetRoutingHelper (<span class="hljs-built_in">list</span>);</span><br><span class="line">      internet.Install (adhocNodes);</span><br><span class="line">    &#125;</span><br><span class="line">  <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (m_protocol == <span class="hljs-number">4</span>)</span><br><span class="line">    &#123;</span><br><span class="line">      internet.Install (adhocNodes);</span><br><span class="line">      dsrMain.Install (dsr, adhocNodes);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">  NS_LOG_INFO (<span class="hljs-string">"assigning ip address"</span>);</span><br><span class="line"></span><br><span class="line">  Ipv4AddressHelper addressAdhoc;</span><br><span class="line">  addressAdhoc.SetBase (<span class="hljs-string">"10.1.1.0"</span>, <span class="hljs-string">"255.255.255.0"</span>);</span><br><span class="line">  Ipv4InterfaceContainer adhocInterfaces;</span><br><span class="line">  adhocInterfaces = addressAdhoc.Assign (adhocDevices);</span><br><span class="line"></span><br><span class="line">  OnOffHelper onoff1 ("ns3::UdpSocketFactory",Address ());</span><br><span class="line">  onoff1.SetAttribute (<span class="hljs-string">"OnTime"</span>, StringValue (<span class="hljs-string">"ns3::ConstantRandomVariable[Constant=1.0]"</span>));</span><br><span class="line">  onoff1.SetAttribute (<span class="hljs-string">"OffTime"</span>, StringValue (<span class="hljs-string">"ns3::ConstantRandomVariable[Constant=0.0]"</span>));</span><br><span class="line"></span><br><span class="line">  <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; nSinks; i++)</span><br><span class="line">    &#123;</span><br><span class="line">      Ptr&lt;Socket&gt; sink = SetupPacketReceive (adhocInterfaces.GetAddress (i), adhocNodes.Get (i));</span><br><span class="line"></span><br><span class="line">      AddressValue remoteAddress (InetSocketAddress (adhocInterfaces.GetAddress (i), port));</span><br><span class="line">      onoff1.SetAttribute (<span class="hljs-string">"Remote"</span>, remoteAddress);</span><br><span class="line"></span><br><span class="line">      Ptr&lt;UniformRandomVariable&gt; var = CreateObject&lt;UniformRandomVariable&gt; ();</span><br><span class="line">      ApplicationContainer temp = onoff1.Install (adhocNodes.Get (i + nSinks));</span><br><span class="line">      temp.Start (Seconds (var-&gt;GetValue (<span class="hljs-number">100.0</span>,<span class="hljs-number">101.0</span>)));</span><br><span class="line">      temp.Stop (Seconds (TotalTime));</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">  <span class="hljs-built_in">std</span>::<span class="hljs-built_in">stringstream</span> ss;</span><br><span class="line">  ss &lt;&lt; nWifis;</span><br><span class="line">  <span class="hljs-built_in">std</span>::<span class="hljs-built_in">string</span> nodes = ss.str ();</span><br><span class="line"></span><br><span class="line">  <span class="hljs-built_in">std</span>::<span class="hljs-built_in">stringstream</span> ss2;</span><br><span class="line">  ss2 &lt;&lt; nodeSpeed;</span><br><span class="line">  <span class="hljs-built_in">std</span>::<span class="hljs-built_in">string</span> sNodeSpeed = ss2.str ();</span><br><span class="line"></span><br><span class="line">  <span class="hljs-built_in">std</span>::<span class="hljs-built_in">stringstream</span> ss3;</span><br><span class="line">  ss3 &lt;&lt; nodePause;</span><br><span class="line">  <span class="hljs-built_in">std</span>::<span class="hljs-built_in">string</span> sNodePause = ss3.str ();</span><br><span class="line"></span><br><span class="line">  <span class="hljs-built_in">std</span>::<span class="hljs-built_in">stringstream</span> ss4;</span><br><span class="line">  ss4 &lt;&lt; rate;</span><br><span class="line">  <span class="hljs-built_in">std</span>::<span class="hljs-built_in">string</span> sRate = ss4.str ();</span><br><span class="line"></span><br><span class="line">  <span class="hljs-comment">//NS_LOG_INFO ("Configure Tracing.");</span></span><br><span class="line">  <span class="hljs-comment">//tr_name = tr_name + "_" + m_protocolName +"_" + nodes + "nodes_" + sNodeSpeed + "speed_" + sNodePause + "pause_" + sRate + "rate";</span></span><br><span class="line"></span><br><span class="line">  <span class="hljs-comment">//AsciiTraceHelper ascii;</span></span><br><span class="line">  <span class="hljs-comment">//Ptr&lt;OutputStreamWrapper&gt; osw = ascii.CreateFileStream ( (tr_name + ".tr").c_str());</span></span><br><span class="line">  <span class="hljs-comment">//wifiPhy.EnableAsciiAll (osw);</span></span><br><span class="line">  AsciiTraceHelper ascii;</span><br><span class="line">  MobilityHelper::EnableAsciiAll (ascii.CreateFileStream (tr_name + <span class="hljs-string">".mob"</span>));</span><br><span class="line"></span><br><span class="line">  <span class="hljs-comment">//Ptr&lt;FlowMonitor&gt; flowmon;</span></span><br><span class="line">  <span class="hljs-comment">//FlowMonitorHelper flowmonHelper;</span></span><br><span class="line">  <span class="hljs-comment">//flowmon = flowmonHelper.InstallAll ();</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">  NS_LOG_INFO (<span class="hljs-string">"Run Simulation."</span>);</span><br><span class="line"></span><br><span class="line">  CheckThroughput ();</span><br><span class="line"></span><br><span class="line">  Simulator::Stop (Seconds (TotalTime));</span><br><span class="line">  Simulator::Run ();</span><br><span class="line"></span><br><span class="line">  <span class="hljs-comment">//flowmon-&gt;SerializeToXmlFile ((tr_name + ".flowmon").c_str(), false, false);</span></span><br><span class="line"></span><br><span class="line">  Simulator::Destroy ();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>仿真结果如下：</p>
-<p><img src="https://ww4.sinaimg.cn/large/006tNc79gy1fdntmd2lvkj31kw0zknda.jpg" alt></p>
-<p>注意，如果需要使用netanim来导出xml文件的时候，一定要把asciihelper注释掉，否则有冲突，不能正常工作！！！！！！</p>
-
-        </div>
-        
-        <div class="level is-size-7 is-uppercase">
-            <div class="level-start">
-                <div class="level-item">
-                    <span class="is-size-6 has-text-grey has-mr-7">#</span>
-                    <a class="has-link-grey -link" href="/tags/VANET/">VANET</a>, <a class="has-link-grey -link" href="/tags/ns3/">ns3</a>
-                </div>
-            </div>
-        </div>
-        
-        
-        
-    </div>
-</div>
-
-
-
-<div class="card">
-    <div class="card-content">
-        <h3 class="menu-label has-text-centered">喜欢这篇文章？打赏一下作者吧</h3>
-        <div class="buttons is-centered">
-            
-                
-<div class="notification is-danger">
-    You forgot to set the <code>qrcode</code> for Alipay. Please set it in <code>_config.yml</code>.
-</div>
-
-                
-                
-<div class="notification is-danger">
-    You forgot to set the <code>qrcode</code> for Wechat. Please set it in <code>_config.yml</code>.
-</div>
-
-                
-                <!-- Visit https://www.paypal.com/donate/buttons/ to get your donate button -->
-
-<div class="notification is-danger">
-    You forgot to set the <code>business</code> and <code>currency_code</code> for Paypal. Please set it in <code>_config.yml</code>.
-</div>
-
-                
-                
-<div class="notification is-danger">
-    You forgot to set the <code>url</code> Patreon. Please set it in <code>_config.yml</code>.
-</div>
-
-                
-        </div>
-    </div>
-</div>
-
-
-
-<div class="card card-transparent">
-    <div class="level post-navigation is-flex-wrap is-mobile">
-        
-        <div class="level-start">
-            <a class="level level-item has-link-grey  article-nav-prev" href="/2017/07/14/网络/2017-07-14-Ego networks/">
-                <i class="level-item fas fa-chevron-left"></i>
-                <span class="level-item">Ego networks</span>
-            </a>
-        </div>
-        
-        
-        <div class="level-end">
-            <a class="level level-item has-link-grey  article-nav-next" href="/2017/03/13/VANET/2017-3-13-Vanet仿真-ns3(4)/">
-                <span class="level-item">VANET仿真-ns3(4)</span>
-                <i class="level-item fas fa-chevron-right"></i>
-            </a>
-        </div>
-        
-    </div>
-</div>
-
-
-</div>
-                
-
-
-
-
-<div class="column is-4-tablet is-4-desktop is-3-widescreen  has-order-1 column-left ">
-    
-        
-<div class="card widget">
-    <div class="card-content">
-        <nav class="level">
-            <div class="level-item has-text-centered" style="flex-shrink: 1">
-                <div>
-                    
-                    <figure class="image is-128x128 has-mb-6">
-                        <img class="" src="/images/avatar.png" alt="Your name">
-                    </figure>
-                    
-                    <p class="is-size-4 is-block">
-                        Your name
-                    </p>
-                    
-                    
-                    <p class="is-size-6 is-block">
-                        Your title
-                    </p>
-                    
-                    
-                    <p class="is-size-6 is-flex is-flex-center has-text-grey">
-                        <i class="fas fa-map-marker-alt has-mr-7"></i>
-                        <span>Your location</span>
-                    </p>
-                    
-                </div>
-            </div>
-        </nav>
-        <nav class="level is-mobile">
-            <div class="level-item has-text-centered is-marginless">
-                <div>
-                    <p class="heading">
-                        文章
-                    </p>
-                    <p class="title has-text-weight-normal">
-                        73
-                    </p>
-                </div>
-            </div>
-            <div class="level-item has-text-centered is-marginless">
-                <div>
-                    <p class="heading">
-                        分类
-                    </p>
-                    <p class="title has-text-weight-normal">
-                        12
-                    </p>
-                </div>
-            </div>
-            <div class="level-item has-text-centered is-marginless">
-                <div>
-                    <p class="heading">
-                        标签
-                    </p>
-                    <p class="title has-text-weight-normal">
-                        18
-                    </p>
-                </div>
-            </div>
-        </nav>
-        <div class="level">
-            <a class="level-item button is-link is-rounded" href="https://github.com/ppoffice" target="_blank">
-                关注我</a>
-        </div>
-        
-        
-        <div class="level is-mobile">
-            
-            <a class="level-item button is-white is-marginless" target="_blank"
-                title="Github" href="https://github.com/ppoffice">
-                
-                <i class="fab fa-github"></i>
-                
-            </a>
-            
-            <a class="level-item button is-white is-marginless" target="_blank"
-                title="Facebook" href="https://facebook.com">
-                
-                <i class="fab fa-facebook"></i>
-                
-            </a>
-            
-            <a class="level-item button is-white is-marginless" target="_blank"
-                title="Twitter" href="https://twitter.com">
-                
-                <i class="fab fa-twitter"></i>
-                
-            </a>
-            
-            <a class="level-item button is-white is-marginless" target="_blank"
-                title="Dribbble" href="https://dribbble.com">
-                
-                <i class="fab fa-dribbble"></i>
-                
-            </a>
-            
-            <a class="level-item button is-white is-marginless" target="_blank"
-                title="RSS" href="/">
-                
-                <i class="fas fa-rss"></i>
-                
-            </a>
-            
-        </div>
-        
-    </div>
-</div>
-    
-        
-    
-        
-
-<div class="card widget">
-    <div class="card-content">
-        <div class="menu">
-        <h3 class="menu-label">
-            链接
-        </h3>
-        <ul class="menu-list">
-        
-            <li>
-                <a class="level is-mobile" href="https://hexo.io" target="_blank">
-                    <span class="level-left">
-                        <span class="level-item">Hexo</span>
-                    </span>
-                    <span class="level-right">
-                        <span class="level-item tag">hexo.io</span>
-                    </span>
-                </a>
-            </li>
-        
-            <li>
-                <a class="level is-mobile" href="https://github.com/ppoffice" target="_blank">
-                    <span class="level-left">
-                        <span class="level-item">PPOffice</span>
-                    </span>
-                    <span class="level-right">
-                        <span class="level-item tag">github.com</span>
-                    </span>
-                </a>
-            </li>
-        
-        </ul>
-        </div>
-    </div>
-</div>
-
-
-    
-        
-<div class="card widget">
-    <div class="card-content">
-        <div class="menu">
-            <h3 class="menu-label">
-                分类
-            </h3>
-            <ul class="menu-list">
-            <li>
-        <a class="level is-marginless" href="/categories/Anomaly-detection/">
-            <span class="level-start">
-                <span class="level-item">Anomaly detection</span>
-            </span>
-            <span class="level-end">
-                <span class="level-item tag">4</span>
-            </span>
-        </a></li><li>
-        <a class="level is-marginless" href="/categories/Concept/">
-            <span class="level-start">
-                <span class="level-item">Concept</span>
-            </span>
-            <span class="level-end">
-                <span class="level-item tag">4</span>
-            </span>
-        </a></li><li>
-        <a class="level is-marginless" href="/categories/Data-mining/">
-            <span class="level-start">
-                <span class="level-item">Data mining</span>
-            </span>
-            <span class="level-end">
-                <span class="level-item tag">4</span>
-            </span>
-        </a></li><li>
-        <a class="level is-marginless" href="/categories/Database/">
-            <span class="level-start">
-                <span class="level-item">Database</span>
-            </span>
-            <span class="level-end">
-                <span class="level-item tag">3</span>
-            </span>
-        </a></li><li>
-        <a class="level is-marginless" href="/categories/Information-Retrieval/">
-            <span class="level-start">
-                <span class="level-item">Information Retrieval</span>
-            </span>
-            <span class="level-end">
-                <span class="level-item tag">1</span>
-            </span>
-        </a></li><li>
-        <a class="level is-marginless" href="/categories/Linux/">
-            <span class="level-start">
-                <span class="level-item">Linux</span>
-            </span>
-            <span class="level-end">
-                <span class="level-item tag">5</span>
-            </span>
-        </a></li><li>
-        <a class="level is-marginless" href="/categories/Pattern-recognition/">
-            <span class="level-start">
-                <span class="level-item">Pattern recognition</span>
-            </span>
-            <span class="level-end">
-                <span class="level-item tag">1</span>
-            </span>
-        </a></li><li>
-        <a class="level is-marginless" href="/categories/Pi/">
-            <span class="level-start">
-                <span class="level-item">Pi</span>
-            </span>
-            <span class="level-end">
-                <span class="level-item tag">12</span>
-            </span>
-        </a></li><li>
-        <a class="level is-marginless" href="/categories/RL/">
-            <span class="level-start">
-                <span class="level-item">RL</span>
-            </span>
-            <span class="level-end">
-                <span class="level-item tag">3</span>
-            </span>
-        </a></li><li>
-        <a class="level is-marginless" href="/categories/Security/">
-            <span class="level-start">
-                <span class="level-item">Security</span>
-            </span>
-            <span class="level-end">
-                <span class="level-item tag">8</span>
-            </span>
-        </a></li><li>
-        <a class="level is-marginless" href="/categories/算法/">
-            <span class="level-start">
-                <span class="level-item">算法</span>
-            </span>
-            <span class="level-end">
-                <span class="level-item tag">13</span>
-            </span>
-        </a></li><li>
-        <a class="level is-marginless" href="/categories/网络/">
-            <span class="level-start">
-                <span class="level-item">网络</span>
-            </span>
-            <span class="level-end">
-                <span class="level-item tag">13</span>
-            </span>
-        </a></li>
-            </ul>
-        </div>
-    </div>
-</div>
-    
-        
-<div class="card widget">
-    <div class="card-content">
-        <h3 class="menu-label">
-            标签云
-        </h3>
-        <a href="/tags/Algorithm/" style="font-size: 18.89px;">Algorithm</a> <a href="/tags/Anomaly-detection/" style="font-size: 16.67px;">Anomaly detection</a> <a href="/tags/Concept/" style="font-size: 12.22px;">Concept</a> <a href="/tags/Data-mining/" style="font-size: 12.22px;">Data mining</a> <a href="/tags/Database/" style="font-size: 11.11px;">Database</a> <a href="/tags/IPv4/" style="font-size: 10px;">IPv4</a> <a href="/tags/Information-Retrieval/" style="font-size: 10px;">Information Retrieval</a> <a href="/tags/Linux/" style="font-size: 13.33px;">Linux</a> <a href="/tags/Mininet/" style="font-size: 10px;">Mininet</a> <a href="/tags/Networking/" style="font-size: 15.56px;">Networking</a> <a href="/tags/OS/" style="font-size: 20px;">OS</a> <a href="/tags/Pattern-recognition/" style="font-size: 10px;">Pattern recognition</a> <a href="/tags/RL/" style="font-size: 11.11px;">RL</a> <a href="/tags/Raspberry-Pi/" style="font-size: 17.78px;">Raspberry-Pi</a> <a href="/tags/Security/" style="font-size: 15.56px;">Security</a> <a href="/tags/VANET/" style="font-size: 14.44px;">VANET</a> <a href="/tags/ns3/" style="font-size: 14.44px;">ns3</a> <a href="/tags/time-series/" style="font-size: 10px;">time series</a>
-    </div>
-</div>
-
-    
-    
-        <div class="column-right-shadow is-hidden-widescreen ">
-        
-            
-<div class="card widget">
-    <div class="card-content">
-        <h3 class="menu-label">
-            最新文章
-        </h3>
-        
-        <article class="media">
-            
-            <a href="/2019/09/16/数据挖掘/2019-09-16-基于注意力模型的RNN时序预测/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-09-16T08:29:00.668Z">2019-09-16</time></div>
-                    <a href="/2019/09/16/数据挖掘/2019-09-16-基于注意力模型的RNN时序预测/" class="title has-link-black-ter is-size-6 has-text-weight-normal"></a>
-                    <p class="is-size-7 is-uppercase">
-                        
-                    </p>
-                </div>
-            </div>
-        </article>
-        
-        <article class="media">
-            
-            <a href="/2019/09/12/数据挖掘/2019-09-12-时间注意力模型下的时序预测/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="时间注意力模型下的时序预测.md">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-09-11T16:00:00.000Z">2019-09-12</time></div>
-                    <a href="/2019/09/12/数据挖掘/2019-09-12-时间注意力模型下的时序预测/" class="title has-link-black-ter is-size-6 has-text-weight-normal">时间注意力模型下的时序预测.md</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/Anomaly-detection/">Anomaly detection</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
-        <article class="media">
-            
-            <a href="/2019/09/09/数据挖掘/2019-09-09-DNN多维时序无监督异常检测/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="多维时序无监督异常检测.md">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-09-08T16:00:00.000Z">2019-09-09</time></div>
-                    <a href="/2019/09/09/数据挖掘/2019-09-09-DNN多维时序无监督异常检测/" class="title has-link-black-ter is-size-6 has-text-weight-normal">多维时序无监督异常检测.md</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/Anomaly-detection/">Anomaly detection</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
-        <article class="media">
-            
-            <a href="/2019/08/14/数据挖掘/2019-08-14-异常检测（MSRA KDD'19）/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="异常检测（MSRA，KDD&#39;19）">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-08-13T16:00:00.000Z">2019-08-14</time></div>
-                    <a href="/2019/08/14/数据挖掘/2019-08-14-异常检测（MSRA KDD'19）/" class="title has-link-black-ter is-size-6 has-text-weight-normal">异常检测（MSRA，KDD&#39;19）</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/Anomaly-detection/">Anomaly detection</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
-        <article class="media">
-            
-            <a href="/2019/07/21/安全/2019-07-22-xgboost/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="孤立森林（Isolation Forest）">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-07-20T16:00:00.000Z">2019-07-21</time></div>
-                    <a href="/2019/07/21/安全/2019-07-22-xgboost/" class="title has-link-black-ter is-size-6 has-text-weight-normal">孤立森林（Isolation Forest）</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/Security/">Security</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
-    </div>
-</div>
-
-        
-            <div class="card widget">
-    <div class="card-content">
-        <div class="menu">
-        <h3 class="menu-label">
-            归档
-        </h3>
-        <ul class="menu-list">
-        
-        <li>
-            <a class="level is-marginless" href="/archives/2019/09/">
-                <span class="level-start">
-                    <span class="level-item">九月 2019</span>
-                </span>
-                <span class="level-end">
-                    <span class="level-item tag">3</span>
-                </span>
-            </a>
-        </li>
-        
-        <li>
-            <a class="level is-marginless" href="/archives/2019/08/">
-                <span class="level-start">
-                    <span class="level-item">八月 2019</span>
-                </span>
-                <span class="level-end">
-                    <span class="level-item tag">1</span>
-                </span>
-            </a>
-        </li>
-        
-        <li>
-            <a class="level is-marginless" href="/archives/2019/07/">
-                <span class="level-start">
-                    <span class="level-item">七月 2019</span>
-                </span>
-                <span class="level-end">
-                    <span class="level-item tag">7</span>
-                </span>
-            </a>
-        </li>
-        
-        <li>
-            <a class="level is-marginless" href="/archives/2019/06/">
-                <span class="level-start">
-                    <span class="level-item">六月 2019</span>
-                </span>
-                <span class="level-end">
-                    <span class="level-item tag">4</span>
-                </span>
-            </a>
-        </li>
-        
-        <li>
-            <a class="level is-marginless" href="/archives/2019/05/">
-                <span class="level-start">
-                    <span class="level-item">五月 2019</span>
-                </span>
-                <span class="level-end">
-                    <span class="level-item tag">4</span>
-                </span>
-            </a>
-        </li>
-        
-        <li>
-            <a class="level is-marginless" href="/archives/2018/12/">
-                <span class="level-start">
-                    <span class="level-item">十二月 2018</span>
-                </span>
-                <span class="level-end">
-                    <span class="level-item tag">4</span>
-                </span>
-            </a>
-        </li>
-        
-        <li>
-            <a class="level is-marginless" href="/archives/2018/11/">
-                <span class="level-start">
-                    <span class="level-item">十一月 2018</span>
-                </span>
-                <span class="level-end">
-                    <span class="level-item tag">2</span>
-                </span>
-            </a>
-        </li>
-        
-        <li>
-            <a class="level is-marginless" href="/archives/2018/10/">
-                <span class="level-start">
-                    <span class="level-item">十月 2018</span>
-                </span>
-                <span class="level-end">
-                    <span class="level-item tag">1</span>
-                </span>
-            </a>
-        </li>
-        
-        <li>
-            <a class="level is-marginless" href="/archives/2018/09/">
-                <span class="level-start">
-                    <span class="level-item">九月 2018</span>
-                </span>
-                <span class="level-end">
-                    <span class="level-item tag">1</span>
-                </span>
-            </a>
-        </li>
-        
-        <li>
-            <a class="level is-marginless" href="/archives/2018/08/">
-                <span class="level-start">
-                    <span class="level-item">八月 2018</span>
-                </span>
-                <span class="level-end">
-                    <span class="level-item tag">3</span>
-                </span>
-            </a>
-        </li>
-        
-        <li>
-            <a class="level is-marginless" href="/archives/2018/04/">
-                <span class="level-start">
-                    <span class="level-item">四月 2018</span>
-                </span>
-                <span class="level-end">
-                    <span class="level-item tag">2</span>
-                </span>
-            </a>
-        </li>
-        
-        <li>
-            <a class="level is-marginless" href="/archives/2017/11/">
-                <span class="level-start">
-                    <span class="level-item">十一月 2017</span>
-                </span>
-                <span class="level-end">
-                    <span class="level-item tag">3</span>
-                </span>
-            </a>
-        </li>
-        
-        <li>
-            <a class="level is-marginless" href="/archives/2017/10/">
-                <span class="level-start">
-                    <span class="level-item">十月 2017</span>
-                </span>
-                <span class="level-end">
-                    <span class="level-item tag">6</span>
-                </span>
-            </a>
-        </li>
-        
-        <li>
-            <a class="level is-marginless" href="/archives/2017/09/">
-                <span class="level-start">
-                    <span class="level-item">九月 2017</span>
-                </span>
-                <span class="level-end">
-                    <span class="level-item tag">7</span>
-                </span>
-            </a>
-        </li>
-        
-        <li>
-            <a class="level is-marginless" href="/archives/2017/07/">
-                <span class="level-start">
-                    <span class="level-item">七月 2017</span>
-                </span>
-                <span class="level-end">
-                    <span class="level-item tag">2</span>
-                </span>
-            </a>
-        </li>
-        
-        <li>
-            <a class="level is-marginless" href="/archives/2017/03/">
-                <span class="level-start">
-                    <span class="level-item">三月 2017</span>
-                </span>
-                <span class="level-end">
-                    <span class="level-item tag">6</span>
-                </span>
-            </a>
-        </li>
-        
-        <li>
-            <a class="level is-marginless" href="/archives/2016/12/">
-                <span class="level-start">
-                    <span class="level-item">十二月 2016</span>
-                </span>
-                <span class="level-end">
-                    <span class="level-item tag">2</span>
-                </span>
-            </a>
-        </li>
-        
-        <li>
-            <a class="level is-marginless" href="/archives/2016/10/">
-                <span class="level-start">
-                    <span class="level-item">十月 2016</span>
-                </span>
-                <span class="level-end">
-                    <span class="level-item tag">2</span>
-                </span>
-            </a>
-        </li>
-        
-        <li>
-            <a class="level is-marginless" href="/archives/2016/09/">
-                <span class="level-start">
-                    <span class="level-item">九月 2016</span>
-                </span>
-                <span class="level-end">
-                    <span class="level-item tag">1</span>
-                </span>
-            </a>
-        </li>
-        
-        <li>
-            <a class="level is-marginless" href="/archives/2016/08/">
-                <span class="level-start">
-                    <span class="level-item">八月 2016</span>
-                </span>
-                <span class="level-end">
-                    <span class="level-item tag">11</span>
-                </span>
-            </a>
-        </li>
-        
-        <li>
-            <a class="level is-marginless" href="/archives/2016/05/">
-                <span class="level-start">
-                    <span class="level-item">五月 2016</span>
-                </span>
-                <span class="level-end">
-                    <span class="level-item tag">1</span>
-                </span>
-            </a>
-        </li>
-        
-        </ul>
-        </div>
-    </div>
-</div>
-        
-            <div class="card widget">
-    <div class="card-content">
-        <div class="menu">
-            <h3 class="menu-label">
-                标签
-            </h3>
-            <div class="field is-grouped is-grouped-multiline">
-                
-                <div class="control">
-                    <a class="tags has-addons" href="/tags/Algorithm/">
-                        <span class="tag">Algorithm</span>
-                        <span class="tag is-grey">13</span>
-                    </a>
-                </div>
-                
-                <div class="control">
-                    <a class="tags has-addons" href="/tags/Anomaly-detection/">
-                        <span class="tag">Anomaly detection</span>
-                        <span class="tag is-grey">10</span>
-                    </a>
-                </div>
-                
-                <div class="control">
-                    <a class="tags has-addons" href="/tags/Concept/">
-                        <span class="tag">Concept</span>
-                        <span class="tag is-grey">4</span>
-                    </a>
-                </div>
-                
-                <div class="control">
-                    <a class="tags has-addons" href="/tags/Data-mining/">
-                        <span class="tag">Data mining</span>
-                        <span class="tag is-grey">4</span>
-                    </a>
-                </div>
-                
-                <div class="control">
-                    <a class="tags has-addons" href="/tags/Database/">
-                        <span class="tag">Database</span>
-                        <span class="tag is-grey">3</span>
-                    </a>
-                </div>
-                
-                <div class="control">
-                    <a class="tags has-addons" href="/tags/IPv4/">
-                        <span class="tag">IPv4</span>
-                        <span class="tag is-grey">1</span>
-                    </a>
-                </div>
-                
-                <div class="control">
-                    <a class="tags has-addons" href="/tags/Information-Retrieval/">
-                        <span class="tag">Information Retrieval</span>
-                        <span class="tag is-grey">1</span>
-                    </a>
-                </div>
-                
-                <div class="control">
-                    <a class="tags has-addons" href="/tags/Linux/">
-                        <span class="tag">Linux</span>
-                        <span class="tag is-grey">5</span>
-                    </a>
-                </div>
-                
-                <div class="control">
-                    <a class="tags has-addons" href="/tags/Mininet/">
-                        <span class="tag">Mininet</span>
-                        <span class="tag is-grey">1</span>
-                    </a>
-                </div>
-                
-                <div class="control">
-                    <a class="tags has-addons" href="/tags/Networking/">
-                        <span class="tag">Networking</span>
-                        <span class="tag is-grey">8</span>
-                    </a>
-                </div>
-                
-                <div class="control">
-                    <a class="tags has-addons" href="/tags/OS/">
-                        <span class="tag">OS</span>
-                        <span class="tag is-grey">17</span>
-                    </a>
-                </div>
-                
-                <div class="control">
-                    <a class="tags has-addons" href="/tags/Pattern-recognition/">
-                        <span class="tag">Pattern recognition</span>
-                        <span class="tag is-grey">1</span>
-                    </a>
-                </div>
-                
-                <div class="control">
-                    <a class="tags has-addons" href="/tags/RL/">
-                        <span class="tag">RL</span>
-                        <span class="tag is-grey">3</span>
-                    </a>
-                </div>
-                
-                <div class="control">
-                    <a class="tags has-addons" href="/tags/Raspberry-Pi/">
-                        <span class="tag">Raspberry-Pi</span>
-                        <span class="tag is-grey">12</span>
-                    </a>
-                </div>
-                
-                <div class="control">
-                    <a class="tags has-addons" href="/tags/Security/">
-                        <span class="tag">Security</span>
-                        <span class="tag is-grey">8</span>
-                    </a>
-                </div>
-                
-                <div class="control">
-                    <a class="tags has-addons" href="/tags/VANET/">
-                        <span class="tag">VANET</span>
-                        <span class="tag is-grey">6</span>
-                    </a>
-                </div>
-                
-                <div class="control">
-                    <a class="tags has-addons" href="/tags/ns3/">
-                        <span class="tag">ns3</span>
-                        <span class="tag is-grey">6</span>
-                    </a>
-                </div>
-                
-                <div class="control">
-                    <a class="tags has-addons" href="/tags/time-series/">
-                        <span class="tag">time series</span>
-                        <span class="tag is-grey">1</span>
-                    </a>
-                </div>
-                
-            </div>
-        </div>
-    </div>
-</div>
-        
-        </div>
-    
-</div>
-
-                
-
-
-
-
-<div class="column is-4-tablet is-4-desktop is-3-widescreen is-hidden-touch is-hidden-desktop-only has-order-3 column-right ">
-    
-        
-<div class="card widget">
-    <div class="card-content">
-        <h3 class="menu-label">
-            最新文章
-        </h3>
-        
-        <article class="media">
-            
-            <a href="/2019/09/16/数据挖掘/2019-09-16-基于注意力模型的RNN时序预测/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-09-16T08:29:00.668Z">2019-09-16</time></div>
-                    <a href="/2019/09/16/数据挖掘/2019-09-16-基于注意力模型的RNN时序预测/" class="title has-link-black-ter is-size-6 has-text-weight-normal"></a>
-                    <p class="is-size-7 is-uppercase">
-                        
-                    </p>
-                </div>
-            </div>
-        </article>
-        
-        <article class="media">
-            
-            <a href="/2019/09/12/数据挖掘/2019-09-12-时间注意力模型下的时序预测/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="时间注意力模型下的时序预测.md">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-09-11T16:00:00.000Z">2019-09-12</time></div>
-                    <a href="/2019/09/12/数据挖掘/2019-09-12-时间注意力模型下的时序预测/" class="title has-link-black-ter is-size-6 has-text-weight-normal">时间注意力模型下的时序预测.md</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/Anomaly-detection/">Anomaly detection</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
-        <article class="media">
-            
-            <a href="/2019/09/09/数据挖掘/2019-09-09-DNN多维时序无监督异常检测/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="多维时序无监督异常检测.md">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-09-08T16:00:00.000Z">2019-09-09</time></div>
-                    <a href="/2019/09/09/数据挖掘/2019-09-09-DNN多维时序无监督异常检测/" class="title has-link-black-ter is-size-6 has-text-weight-normal">多维时序无监督异常检测.md</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/Anomaly-detection/">Anomaly detection</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
-        <article class="media">
-            
-            <a href="/2019/08/14/数据挖掘/2019-08-14-异常检测（MSRA KDD'19）/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="异常检测（MSRA，KDD&#39;19）">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-08-13T16:00:00.000Z">2019-08-14</time></div>
-                    <a href="/2019/08/14/数据挖掘/2019-08-14-异常检测（MSRA KDD'19）/" class="title has-link-black-ter is-size-6 has-text-weight-normal">异常检测（MSRA，KDD&#39;19）</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/Anomaly-detection/">Anomaly detection</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
-        <article class="media">
-            
-            <a href="/2019/07/21/安全/2019-07-22-xgboost/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="孤立森林（Isolation Forest）">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-07-20T16:00:00.000Z">2019-07-21</time></div>
-                    <a href="/2019/07/21/安全/2019-07-22-xgboost/" class="title has-link-black-ter is-size-6 has-text-weight-normal">孤立森林（Isolation Forest）</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/Security/">Security</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
-    </div>
-</div>
-
-    
-        <div class="card widget">
-    <div class="card-content">
-        <div class="menu">
-        <h3 class="menu-label">
-            归档
-        </h3>
-        <ul class="menu-list">
-        
-        <li>
-            <a class="level is-marginless" href="/archives/2019/09/">
-                <span class="level-start">
-                    <span class="level-item">九月 2019</span>
-                </span>
-                <span class="level-end">
-                    <span class="level-item tag">3</span>
-                </span>
-            </a>
-        </li>
-        
-        <li>
-            <a class="level is-marginless" href="/archives/2019/08/">
-                <span class="level-start">
-                    <span class="level-item">八月 2019</span>
-                </span>
-                <span class="level-end">
-                    <span class="level-item tag">1</span>
-                </span>
-            </a>
-        </li>
-        
-        <li>
-            <a class="level is-marginless" href="/archives/2019/07/">
-                <span class="level-start">
-                    <span class="level-item">七月 2019</span>
-                </span>
-                <span class="level-end">
-                    <span class="level-item tag">7</span>
-                </span>
-            </a>
-        </li>
-        
-        <li>
-            <a class="level is-marginless" href="/archives/2019/06/">
-                <span class="level-start">
-                    <span class="level-item">六月 2019</span>
-                </span>
-                <span class="level-end">
-                    <span class="level-item tag">4</span>
-                </span>
-            </a>
-        </li>
-        
-        <li>
-            <a class="level is-marginless" href="/archives/2019/05/">
-                <span class="level-start">
-                    <span class="level-item">五月 2019</span>
-                </span>
-                <span class="level-end">
-                    <span class="level-item tag">4</span>
-                </span>
-            </a>
-        </li>
-        
-        <li>
-            <a class="level is-marginless" href="/archives/2018/12/">
-                <span class="level-start">
-                    <span class="level-item">十二月 2018</span>
-                </span>
-                <span class="level-end">
-                    <span class="level-item tag">4</span>
-                </span>
-            </a>
-        </li>
-        
-        <li>
-            <a class="level is-marginless" href="/archives/2018/11/">
-                <span class="level-start">
-                    <span class="level-item">十一月 2018</span>
-                </span>
-                <span class="level-end">
-                    <span class="level-item tag">2</span>
-                </span>
-            </a>
-        </li>
-        
-        <li>
-            <a class="level is-marginless" href="/archives/2018/10/">
-                <span class="level-start">
-                    <span class="level-item">十月 2018</span>
-                </span>
-                <span class="level-end">
-                    <span class="level-item tag">1</span>
-                </span>
-            </a>
-        </li>
-        
-        <li>
-            <a class="level is-marginless" href="/archives/2018/09/">
-                <span class="level-start">
-                    <span class="level-item">九月 2018</span>
-                </span>
-                <span class="level-end">
-                    <span class="level-item tag">1</span>
-                </span>
-            </a>
-        </li>
-        
-        <li>
-            <a class="level is-marginless" href="/archives/2018/08/">
-                <span class="level-start">
-                    <span class="level-item">八月 2018</span>
-                </span>
-                <span class="level-end">
-                    <span class="level-item tag">3</span>
-                </span>
-            </a>
-        </li>
-        
-        <li>
-            <a class="level is-marginless" href="/archives/2018/04/">
-                <span class="level-start">
-                    <span class="level-item">四月 2018</span>
-                </span>
-                <span class="level-end">
-                    <span class="level-item tag">2</span>
-                </span>
-            </a>
-        </li>
-        
-        <li>
-            <a class="level is-marginless" href="/archives/2017/11/">
-                <span class="level-start">
-                    <span class="level-item">十一月 2017</span>
-                </span>
-                <span class="level-end">
-                    <span class="level-item tag">3</span>
-                </span>
-            </a>
-        </li>
-        
-        <li>
-            <a class="level is-marginless" href="/archives/2017/10/">
-                <span class="level-start">
-                    <span class="level-item">十月 2017</span>
-                </span>
-                <span class="level-end">
-                    <span class="level-item tag">6</span>
-                </span>
-            </a>
-        </li>
-        
-        <li>
-            <a class="level is-marginless" href="/archives/2017/09/">
-                <span class="level-start">
-                    <span class="level-item">九月 2017</span>
-                </span>
-                <span class="level-end">
-                    <span class="level-item tag">7</span>
-                </span>
-            </a>
-        </li>
-        
-        <li>
-            <a class="level is-marginless" href="/archives/2017/07/">
-                <span class="level-start">
-                    <span class="level-item">七月 2017</span>
-                </span>
-                <span class="level-end">
-                    <span class="level-item tag">2</span>
-                </span>
-            </a>
-        </li>
-        
-        <li>
-            <a class="level is-marginless" href="/archives/2017/03/">
-                <span class="level-start">
-                    <span class="level-item">三月 2017</span>
-                </span>
-                <span class="level-end">
-                    <span class="level-item tag">6</span>
-                </span>
-            </a>
-        </li>
-        
-        <li>
-            <a class="level is-marginless" href="/archives/2016/12/">
-                <span class="level-start">
-                    <span class="level-item">十二月 2016</span>
-                </span>
-                <span class="level-end">
-                    <span class="level-item tag">2</span>
-                </span>
-            </a>
-        </li>
-        
-        <li>
-            <a class="level is-marginless" href="/archives/2016/10/">
-                <span class="level-start">
-                    <span class="level-item">十月 2016</span>
-                </span>
-                <span class="level-end">
-                    <span class="level-item tag">2</span>
-                </span>
-            </a>
-        </li>
-        
-        <li>
-            <a class="level is-marginless" href="/archives/2016/09/">
-                <span class="level-start">
-                    <span class="level-item">九月 2016</span>
-                </span>
-                <span class="level-end">
-                    <span class="level-item tag">1</span>
-                </span>
-            </a>
-        </li>
-        
-        <li>
-            <a class="level is-marginless" href="/archives/2016/08/">
-                <span class="level-start">
-                    <span class="level-item">八月 2016</span>
-                </span>
-                <span class="level-end">
-                    <span class="level-item tag">11</span>
-                </span>
-            </a>
-        </li>
-        
-        <li>
-            <a class="level is-marginless" href="/archives/2016/05/">
-                <span class="level-start">
-                    <span class="level-item">五月 2016</span>
-                </span>
-                <span class="level-end">
-                    <span class="level-item tag">1</span>
-                </span>
-            </a>
-        </li>
-        
-        </ul>
-        </div>
-    </div>
-</div>
-    
-        <div class="card widget">
-    <div class="card-content">
-        <div class="menu">
-            <h3 class="menu-label">
-                标签
-            </h3>
-            <div class="field is-grouped is-grouped-multiline">
-                
-                <div class="control">
-                    <a class="tags has-addons" href="/tags/Algorithm/">
-                        <span class="tag">Algorithm</span>
-                        <span class="tag is-grey">13</span>
-                    </a>
-                </div>
-                
-                <div class="control">
-                    <a class="tags has-addons" href="/tags/Anomaly-detection/">
-                        <span class="tag">Anomaly detection</span>
-                        <span class="tag is-grey">10</span>
-                    </a>
-                </div>
-                
-                <div class="control">
-                    <a class="tags has-addons" href="/tags/Concept/">
-                        <span class="tag">Concept</span>
-                        <span class="tag is-grey">4</span>
-                    </a>
-                </div>
-                
-                <div class="control">
-                    <a class="tags has-addons" href="/tags/Data-mining/">
-                        <span class="tag">Data mining</span>
-                        <span class="tag is-grey">4</span>
-                    </a>
-                </div>
-                
-                <div class="control">
-                    <a class="tags has-addons" href="/tags/Database/">
-                        <span class="tag">Database</span>
-                        <span class="tag is-grey">3</span>
-                    </a>
-                </div>
-                
-                <div class="control">
-                    <a class="tags has-addons" href="/tags/IPv4/">
-                        <span class="tag">IPv4</span>
-                        <span class="tag is-grey">1</span>
-                    </a>
-                </div>
-                
-                <div class="control">
-                    <a class="tags has-addons" href="/tags/Information-Retrieval/">
-                        <span class="tag">Information Retrieval</span>
-                        <span class="tag is-grey">1</span>
-                    </a>
-                </div>
-                
-                <div class="control">
-                    <a class="tags has-addons" href="/tags/Linux/">
-                        <span class="tag">Linux</span>
-                        <span class="tag is-grey">5</span>
-                    </a>
-                </div>
-                
-                <div class="control">
-                    <a class="tags has-addons" href="/tags/Mininet/">
-                        <span class="tag">Mininet</span>
-                        <span class="tag is-grey">1</span>
-                    </a>
-                </div>
-                
-                <div class="control">
-                    <a class="tags has-addons" href="/tags/Networking/">
-                        <span class="tag">Networking</span>
-                        <span class="tag is-grey">8</span>
-                    </a>
-                </div>
-                
-                <div class="control">
-                    <a class="tags has-addons" href="/tags/OS/">
-                        <span class="tag">OS</span>
-                        <span class="tag is-grey">17</span>
-                    </a>
-                </div>
-                
-                <div class="control">
-                    <a class="tags has-addons" href="/tags/Pattern-recognition/">
-                        <span class="tag">Pattern recognition</span>
-                        <span class="tag is-grey">1</span>
-                    </a>
-                </div>
-                
-                <div class="control">
-                    <a class="tags has-addons" href="/tags/RL/">
-                        <span class="tag">RL</span>
-                        <span class="tag is-grey">3</span>
-                    </a>
-                </div>
-                
-                <div class="control">
-                    <a class="tags has-addons" href="/tags/Raspberry-Pi/">
-                        <span class="tag">Raspberry-Pi</span>
-                        <span class="tag is-grey">12</span>
-                    </a>
-                </div>
-                
-                <div class="control">
-                    <a class="tags has-addons" href="/tags/Security/">
-                        <span class="tag">Security</span>
-                        <span class="tag is-grey">8</span>
-                    </a>
-                </div>
-                
-                <div class="control">
-                    <a class="tags has-addons" href="/tags/VANET/">
-                        <span class="tag">VANET</span>
-                        <span class="tag is-grey">6</span>
-                    </a>
-                </div>
-                
-                <div class="control">
-                    <a class="tags has-addons" href="/tags/ns3/">
-                        <span class="tag">ns3</span>
-                        <span class="tag is-grey">6</span>
-                    </a>
-                </div>
-                
-                <div class="control">
-                    <a class="tags has-addons" href="/tags/time-series/">
-                        <span class="tag">time series</span>
-                        <span class="tag is-grey">1</span>
-                    </a>
-                </div>
-                
-            </div>
-        </div>
-    </div>
-</div>
-    
-    
-</div>
-
-            </div>
-        </div>
-    </section>
-    <footer class="footer">
-    <div class="container">
-        <div class="level">
-            <div class="level-start has-text-centered-mobile">
-                <a class="footer-logo is-block has-mb-6" href="/">
-                
-                    <img src="/images/logo.svg" alt="VANET仿真-ns3(6)" height="28">
-                
-                </a>
-                <p class="is-size-7">
-                &copy; 2019 刘丰瑞&nbsp;
-                Powered by <a href="https://hexo.io/" target="_blank">Hexo</a> & <a
-                        href="https://github.com/ppoffice/hexo-theme-icarus" target="_blank">Icarus</a>
-                
-                </p>
-            </div>
-            <div class="level-end">
-            
-                <div class="field has-addons is-flex-center-mobile has-mt-5-mobile is-flex-wrap is-flex-middle">
-                
-                
-                <p class="control">
-                    <a class="button is-white is-large" target="_blank" title="Creative Commons" href="https://creativecommons.org/">
-                        
-                        <i class="fab fa-creative-commons"></i>
-                        
-                    </a>
-                </p>
-                
-                <p class="control">
-                    <a class="button is-white is-large" target="_blank" title="Attribution 4.0 International" href="https://creativecommons.org/licenses/by/4.0/">
-                        
-                        <i class="fab fa-creative-commons-by"></i>
-                        
-                    </a>
-                </p>
-                
-                <p class="control">
-                    <a class="button is-white is-large" target="_blank" title="Download on GitHub" href="https://github.com/ppoffice/hexo-theme-icarus">
-                        
-                        <i class="fab fa-github"></i>
-                        
-                    </a>
-                </p>
-                
-                </div>
-            
-            </div>
-        </div>
-    </div>
-</footer>
-    <script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/min/moment-with-locales.min.js"></script>
-<script>moment.locale("zh-CN");</script>
-
-<script>
-var IcarusThemeSettings = {
-    article: {
-        highlight: {
-            clipboard: true,
-            fold: 'unfolded'
-        }
-    }
-};
-</script>
-
-
-    <script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.4/dist/clipboard.min.js" defer></script>
-
-
-
-    
-    
-    
-    <script src="/js/animation.js"></script>
-    
-
-    
-    
-    
-    <script src="https://cdn.jsdelivr.net/npm/lightgallery@1.6.8/dist/js/lightgallery.min.js" defer></script>
-    <script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/js/jquery.justifiedGallery.min.js" defer></script>
-    <script src="/js/gallery.js" defer></script>
-    
-
-    
-    
-
-<div id="outdated">
-    <h6>Your browser is out-of-date!</h6>
-    <p>Update your browser to view this website correctly. <a id="btnUpdateBrowser" href="http://outdatedbrowser.com/">Update
-            my browser now </a></p>
-    <p class="last"><a href="#" id="btnCloseUpdateBrowser" title="Close">&times;</a></p>
-</div>
-<script src="https://cdn.jsdelivr.net/npm/outdatedbrowser@1.1.5/outdatedbrowser/outdatedbrowser.min.js" defer></script>
-<script>
-    document.addEventListener("DOMContentLoaded", function () {
-        outdatedBrowser({
-            bgColor: '#f25648',
-            color: '#ffffff',
-            lowerThan: 'flex'
-        });
-    });
-</script>
-
-
-    
-    
-<script src="https://cdn.jsdelivr.net/npm/mathjax@2.7.5/unpacked/MathJax.js?config=TeX-MML-AM_CHTML" defer></script>
-<script>
-document.addEventListener('DOMContentLoaded', function () {
-    MathJax.Hub.Config({
-        'HTML-CSS': {
-            matchFontHeight: false
-        },
-        SVG: {
-            matchFontHeight: false
-        },
-        CommonHTML: {
-            matchFontHeight: false
-        },
-        tex2jax: {
-            inlineMath: [
-                ['$','$'],
-                ['\\(','\\)']
-            ]
-        }
-    });
-});
-</script>
-
-    
-    
-
-<a id="back-to-top" title="回到顶端" href="javascript:;">
-    <i class="fas fa-chevron-up"></i>
-</a>
-<script src="/js/back-to-top.js" defer></script>
-
-
-    
-    
-
-    
-    
-    
-    
-
-    
-    
-    
-    
-    
-
-
-<script src="/js/main.js" defer></script>
-
-    
-    <div class="searchbox ins-search">
-    <div class="searchbox-container ins-search-container">
-        <div class="searchbox-input-wrapper">
-            <input type="text" class="searchbox-input ins-search-input" placeholder="想要查找什么..." />
-            <span class="searchbox-close ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
-        </div>
-        <div class="searchbox-result-wrapper ins-section-wrapper">
+        <div class="ins-section-wrapper">
             <div class="ins-section-container"></div>
         </div>
     </div>
 </div>
 <script>
-    (function (window) {
-        var INSIGHT_CONFIG = {
-            TRANSLATION: {
-                POSTS: '文章',
-                PAGES: '页面',
-                CATEGORIES: '分类',
-                TAGS: '标签',
-                UNTITLED: '(无标题)',
-            },
-            CONTENT_URL: '/content.json',
-        };
-        window.INSIGHT_CONFIG = INSIGHT_CONFIG;
-    })(window);
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: '文章',
+            PAGES: '页面',
+            CATEGORIES: '分类',
+            TAGS: '标签',
+            UNTITLED: '(未命名)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
 </script>
-<script src="/js/insight.js" defer></script>
-<link rel="stylesheet" href="/css/search.css">
-<link rel="stylesheet" href="/css/insight.css">
+<script src="/js/insight.js"></script>
+
+</div>
+        </div>
+    </div>
+    <div id="main-nav-mobile" class="header-sub header-inner">
+        <table class="menu outer">
+            <tr>
+                
+                    <td><a class="main-nav-link" href="/">首页</a></td>
+                
+                    <td><a class="main-nav-link" href="/archives">归档</a></td>
+                
+                    <td><a class="main-nav-link" href="/categories">分类</a></td>
+                
+                    <td><a class="main-nav-link" href="/tags">标签</a></td>
+                
+                    <td><a class="main-nav-link" href="/about">关于</a></td>
+                
+                <td>
+                    
+    <div class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="搜索">
+    </div>
+
+                </td>
+            </tr>
+        </table>
+    </div>
+</header>
+
+        <div class="outer">
+            
+            
+                <aside id="sidebar">
+   
+        
+    <div class="widget-wrap" id="categories">
+        <h3 class="widget-title">
+            <span>分类</span>
+            &nbsp;
+            <a id="allExpand" href="#">
+                <i class="fa fa-angle-double-down fa-2x"></i>
+            </a>
+        </h3>
+        
+        
+        
+         <ul class="unstyled" id="tree"> 
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Anomaly detection
+                        </a>
+                         <ul class="unstyled" id="tree">  <li class="file"><a href="/2019/07/21/数据挖掘/2019-08-13-实时异常检测/">实时异常检测（xStream，KDD'18）</a></li>  <li class="file"><a href="/2019/08/14/数据挖掘/2019-08-14-异常检测（MSRA KDD'19）/">异常检测（MSRA，KDD'19）</a></li>  <li class="file"><a href="/2019/09/09/数据挖掘/2019-09-09-DNN多维时序无监督异常检测/">多维时序无监督异常检测.md</a></li>  <li class="file"><a href="/2019/09/12/数据挖掘/2019-09-12-时间注意力模型下的时序预测/">时间注意力模型下的时序预测.md</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Concept
+                        </a>
+                         <ul class="unstyled" id="tree">  <li class="file"><a href="/2016/05/02/概念/2016-05-15-IRQ与FIQ中断/">IRQ与FIQ中断</a></li>  <li class="file"><a href="/2017/10/31/概念/2017-10-31-张量(Tensor)/">张量(Tensor)</a></li>  <li class="file"><a href="/2017/11/22/概念/2017-11-22-奇异值分解/">奇异值分解</a></li>  <li class="file"><a href="/2017/11/22/概念/2017-11-22-马哈拉诺比斯距离/">马哈拉诺比斯距离(马氏距离)</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Data mining
+                        </a>
+                         <ul class="unstyled" id="tree">  <li class="file"><a href="/2018/12/02/数据挖掘/2018-12-02-监督学习/">监督学习 Supervised Learning(决策树+SVM/Perceptron+AdaBoost)</a></li>  <li class="file"><a href="/2018/12/03/数据挖掘/2018-12-03-非监督学习/">无监督学习 Unsupervised Learning(聚类、矩阵分解、话题模型)</a></li>  <li class="file"><a href="/2018/12/05/数据挖掘/2018-12-05-互联网搜索与排序/">互联网搜索与排序</a></li>  <li class="file"><a href="/2018/12/05/数据挖掘/2018-12-05-大规模机器学习/">大规模机器学习</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Database
+                        </a>
+                         <ul class="unstyled" id="tree">  <li class="file"><a href="/2019/06/03/数据库/2019-06-03-关系数据库/">关系数据库</a></li>  <li class="file"><a href="/2019/06/04/数据库/2019-06-04-大数据存储系统/">大数据存储系统</a></li>  <li class="file"><a href="/2019/06/04/数据库/2019-06-04-大数据运算/">大数据存储系统</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Information Retrieval
+                        </a>
+                         <ul class="unstyled" id="tree">  <li class="file"><a href="/2018/11/07/检索/2018-11-7-ETH Zurich at TREC Precision Medicine 2017/">ETH Zurich at TREC Precision Medicine 2017</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Linux
+                        </a>
+                         <ul class="unstyled" id="tree">  <li class="file"><a href="/2017/10/05/Linux/2017-10-05-Linux-进程管理/">Linux-进程管理</a></li>  <li class="file"><a href="/2017/10/17/Linux/2017-10-17-Linux进程调度/">Linux-进程调度</a></li>  <li class="file"><a href="/2017/10/20/Linux/2017-10-20-Linux系统调用/">Linux-系统调用</a></li>  <li class="file"><a href="/2017/10/22/Linux/2017-10-22-Linux中断和中断处理/">Linux-中断和中断处理</a></li>  <li class="file"><a href="/2017/10/22/Linux/2017-11-2-Linux-下半部和推后执行的工作/">Linux-下半部和推后执行的工作"</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Pattern recognition
+                        </a>
+                         <ul class="unstyled" id="tree">  <li class="file"><a href="/2018/11/19/模式识别/2018-11-19-证明拉普拉斯矩阵是半正定矩阵/">证明拉普拉斯矩阵是半正定矩阵</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Pi
+                        </a>
+                         <ul class="unstyled" id="tree">  <li class="file"><a href="/2016/08/06/Pi/2016-08-06-Raspberry Pi OK02/">Raspberry Pi OK02</a></li>  <li class="file"><a href="/2016/08/06/Pi/2016-08-06-Raspberry Pi OK03/">Raspberry Pi OK03</a></li>  <li class="file"><a href="/2016/08/06/Pi/2016-08-06-Baking Pi – Operating Systems Development前言/">Raspberry Pi OS Development 前言</a></li>  <li class="file"><a href="/2016/08/06/Pi/2016-08-06-Raspberry Pi OK01/">Raspberry Pi OK01</a></li>  <li class="file"><a href="/2016/08/09/Pi/2016-08-09-Raspberry Pi OK04/">Raspberry Pi OK04</a></li>  <li class="file"><a href="/2016/08/09/Pi/2016-08-09-Raspberry Pi OK05/">Raspberry Pi OK05</a></li>  <li class="file"><a href="/2016/08/09/Pi/2016-08-10-Raspberry Pi Screen01/">Raspberry Pi Screen01</a></li>  <li class="file"><a href="/2016/08/09/Pi/2016-08-11-Raspberry Pi Screen02/">Raspberry Pi Screen02</a></li>  <li class="file"><a href="/2016/08/14/Pi/2016-08-14-Raspberry Pi Screen03/">Raspberry Pi Screen03</a></li>  <li class="file"><a href="/2016/08/16/Pi/2016-08-16-Raspberry Pi Screen04/">Raspberry Pi Screen04</a></li>  <li class="file"><a href="/2016/08/31/Pi/2016-08-31-Raspberry Pi Input01/">Raspberry Pi Input01</a></li>  <li class="file"><a href="/2016/09/01/Pi/2016-09-01-Raspberry Pi Input02/">Raspberry Pi Input02</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            RL
+                        </a>
+                         <ul class="unstyled" id="tree">  <li class="file"><a href="/2019/05/27/强化学习/2019-05-27-强化学习(1)/">强化学习(1)</a></li>  <li class="file"><a href="/2019/05/28/强化学习/2019-05-28-强化学习(2)/">强化学习(2)</a></li>  <li class="file"><a href="/2019/05/29/强化学习/2019-05-29-强化学习(3)/">强化学习(3)</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Security
+                        </a>
+                         <ul class="unstyled" id="tree">  <li class="file"><a href="/2018/09/02/安全/2018-09-02-蜜罐技术/">蜜罐技术</a></li>  <li class="file"><a href="/2019/06/22/安全/2019-06-22-网络异常行为检测/">网络异常行为检测</a></li>  <li class="file"><a href="/2019/07/21/安全/2019-07-21-指数加权移动平均法（EWMA）/">指数加权移动平均法（EWMA）</a></li>  <li class="file"><a href="/2019/07/21/安全/2019-07-21-多项式插值/">多项式插值</a></li>  <li class="file"><a href="/2019/07/21/安全/2019-07-21-梯度提升决策树(GBDT)/">梯度提升决策树（GBDT）</a></li>  <li class="file"><a href="/2019/07/21/安全/2019-07-22-xgboost/">孤立森林（Isolation Forest）</a></li>  <li class="file"><a href="/2019/07/21/安全/2019-07-22-孤立森林（Isolation Froest）/">孤立森林（Isolation Forest）</a></li>  <li class="file"><a href="/2019/07/21/安全/2019-07-22-利用时序决策树进行DGA僵尸检测/">利用时序决策树进行DGA僵尸检测</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            算法
+                        </a>
+                         <ul class="unstyled" id="tree">  <li class="file"><a href="/2016/10/25/算法/2016-10-25-Dijkstra算法/">Dijkstra算法</a></li>  <li class="file"><a href="/2016/10/25/算法/2016-10-25-BellmanFord算法/">Bellman-Ford算法</a></li>  <li class="file"><a href="/2016/12/08/算法/2016-12-08-Bloom Filter/">Bloom Filter</a></li>  <li class="file"><a href="/2017/07/14/算法/2017-7-14-tf-idf/">tf-idf</a></li>  <li class="file"><a href="/2017/09/13/算法/2017-9-13-前缀和/">前缀和（SJTU OJ 1002）</a></li>  <li class="file"><a href="/2017/09/14/算法/2017-9-14-超大数求和/">超大数求和（SJTU OJ 1007）</a></li>  <li class="file"><a href="/2017/09/15/算法/2017-9-15-DP(0" 1背包) ">DP（0/1背包）</a></li>  <li class="file"><a href="/2017/09/15/算法/2017-9-15-DP最长公共子序列/">DP（最长公共子序列）</a></li>  <li class="file"><a href="/2017/09/15/算法/2017-9-15-完全背包/">DP（完全背包）</a></li>  <li class="file"><a href="/2017/09/15/算法/2017-9-15-DP问题/">DP（SJTU OJ 1012）</a></li>  <li class="file"><a href="/2017/09/25/算法/2017-9-25-约瑟夫问题/">约瑟夫问题(SJTU OJ 1038)</a></li>  <li class="file"><a href="/2018/04/02/算法/2018-4-2-排序(位图数据结构)/">排序(位图数据结构)</a></li>  <li class="file"><a href="/2018/10/18/算法/2018-10-15-非负矩阵分解/">非负矩阵分解</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory open">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder-open"></i>
+                            &nbsp;
+                            网络
+                        </a>
+                         <ul class="unstyled" id="tree">  <li class="file"><a href="/2016/12/24/网络/2016-12-24-ipv4在Linux上的实现/">学习构造用户空间的IP栈（资料总结）</a></li>  <li class="file"><a href="/2017/03/12/VANET/2017-3-12-Vanet仿真-ns3(2)/">VANET仿真-ns3(2)</a></li>  <li class="file"><a href="/2017/03/12/VANET/2017-3-12-Vanet仿真-ns3(1)/">VANET仿真-ns3(1)</a></li>  <li class="file"><a href="/2017/03/12/VANET/2017-3-12-Vanet仿真-ns3(3)/">VANET仿真-ns3(3)</a></li>  <li class="file"><a href="/2017/03/13/VANET/2017-3-13-Vanet仿真-ns3(5)/">VANET仿真-ns3(5)</a></li>  <li class="file"><a href="/2017/03/13/VANET/2017-3-13-Vanet仿真-ns3(4)/">VANET仿真-ns3(4)</a></li>  <li class="file active"><a href="/2017/03/15/VANET/2017-3-15-Vanet仿真-ns3(6)/">VANET仿真-ns3(6)</a></li>  <li class="file"><a href="/2017/07/14/网络/2017-07-14-Ego networks/">Ego networks</a></li>  <li class="file"><a href="/2017/11/28/网络/2017-11-28-路由协议汇总整理/">路由协议汇总整理</a></li>  <li class="file"><a href="/2018/04/24/网络/2018-4-24-Mininet拓扑学习/">Mininet拓扑学习</a></li>  <li class="file"><a href="/2018/08/23/网络/2018-8-24-SketchLearn/">SketchLearn: Relieving User Burdens in Approximate Measurement with Automated Statistical Inference</a></li>  <li class="file"><a href="/2018/08/23/网络/2018-8-23-Elastic Sketch/">Elastic Sketch: Adaptive and Fast Network-wide Measurements</a></li>  <li class="file"><a href="/2018/08/23/网络/2018-8-23-SketchVisor/">SketchVisor: Robust Network Measurement for Soware Packet Processing</a></li>  </ul> 
+                    </li> 
+                     <li class="file"><a href="/2019/05/30/强化学习/~$19-05-28-强化学习(2)/"></a></li>  <li class="file"><a href="/2019/09/16/数据挖掘/2019-09-16-基于注意力模型的RNN时序预测/"></a></li>  </ul> 
+    </div>
+    <script>
+        $(document).ready(function() {
+            var iconFolderOpenClass  = 'fa-folder-open';
+            var iconFolderCloseClass = 'fa-folder';
+            var iconAllExpandClass = 'fa-angle-double-down';
+            var iconAllPackClass = 'fa-angle-double-up';
+            // Handle directory-tree expansion:
+            // 左键单独展开目录
+            $(document).on('click', '#categories a[data-role="directory"]', function (event) {
+                event.preventDefault();
+
+                var icon = $(this).children('.fa');
+                var expanded = icon.hasClass(iconFolderOpenClass);
+                var subtree = $(this).siblings('ul');
+                icon.removeClass(iconFolderOpenClass).removeClass(iconFolderCloseClass);
+                if (expanded) {
+                    if (typeof subtree != 'undefined') {
+                        subtree.slideUp({ duration: 100 });
+                    }
+                    icon.addClass(iconFolderCloseClass);
+                } else {
+                    if (typeof subtree != 'undefined') {
+                        subtree.slideDown({ duration: 100 });
+                    }
+                    icon.addClass(iconFolderOpenClass);
+                }
+            });
+            // 右键展开下属所有目录
+            $('#categories a[data-role="directory"]').bind("contextmenu", function(event){
+                event.preventDefault();
+                
+                var icon = $(this).children('.fa');
+                var expanded = icon.hasClass(iconFolderOpenClass);
+                var listNode = $(this).siblings('ul');
+                var subtrees = $.merge(listNode.find('li ul'), listNode);
+                var icons = $.merge(listNode.find('.fa'), icon);
+                icons.removeClass(iconFolderOpenClass).removeClass(iconFolderCloseClass);
+                if(expanded) {
+                    subtrees.slideUp({ duration: 100 });
+                    icons.addClass(iconFolderCloseClass);
+                } else {
+                    subtrees.slideDown({ duration: 100 });
+                    icons.addClass(iconFolderOpenClass);
+                }
+            })
+            // 展开关闭所有目录按钮
+            $(document).on('click', '#allExpand', function (event) {
+                event.preventDefault();
+                
+                var icon = $(this).children('.fa');
+                var expanded = icon.hasClass(iconAllExpandClass);
+                icon.removeClass(iconAllExpandClass).removeClass(iconAllPackClass);
+                if(expanded) {
+                    $('#sidebar .fa.fa-folder').removeClass('fa-folder').addClass('fa-folder-open')
+                    $('#categories li ul').slideDown({ duration: 100 });
+                    icon.addClass(iconAllPackClass);
+                } else {
+                    $('#sidebar .fa.fa-folder-open').removeClass('fa-folder-open').addClass('fa-folder')
+                    $('#categories li ul').slideUp({ duration: 100 });
+                    icon.addClass(iconAllExpandClass);
+                }
+            });  
+        });
+    </script>
+
     
+    <div id="toTop" class="fa fa-angle-up"></div>
+</aside>
+            
+            <section id="main"><article id="post-VANET/2017-3-15-Vanet仿真-ns3(6)" class="article article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+        
+            <header class="article-header">
+                
+                    <div class="article-meta">
+                        
+    <div class="article-category">
+    	<i class="fa fa-folder"></i>
+        <a class="article-category-link" href="/categories/网络/">网络</a>
+    </div>
+
+                        
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link" href="/tags/VANET/">VANET</a>, <a class="tag-link" href="/tags/ns3/">ns3</a>
+    </div>
+
+                        
+    <div class="article-date">
+        <i class="fa fa-calendar"></i>
+        <a href="/2017/03/15/VANET/2017-3-15-Vanet仿真-ns3(6)/">
+            <time datetime="2017-03-14T16:00:00.000Z" itemprop="datePublished">2017-03-15</time>
+        </a>
+    </div>
+
+
+                        
+                            <i class="fa fa-bar-chart"></i>
+                            <span id="busuanzi_container_site_pv"><span id="busuanzi_value_page_pv"></span></span>    
+                        
+                        
+                            <div class="article-meta-button">
+                                <a href="https://github.com/zthxxx/Wiki-site/raw/writing/source/_posts/VANET/2017-3-15-Vanet仿真-ns3(6).md"> Source </a>
+                            </div>
+                            <div class="article-meta-button">
+                                <a href="https://github.com/zthxxx/Wiki-site/edit/writing/source/_posts/VANET/2017-3-15-Vanet仿真-ns3(6).md"> Edit </a>
+                            </div>
+                            <div class="article-meta-button">
+                                <a href="https://github.com/zthxxx/Wiki-site/commits/writing/source/_posts/VANET/2017-3-15-Vanet仿真-ns3(6).md"> History </a>
+                            </div>
+                        
+                    </div>
+                
+                
+    
+        <h1 class="article-title" itemprop="name">
+            VANET仿真-ns3(6)
+        </h1>
+    
+
+            </header>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+        
+        
+            
+        
+        
+            <h2 id="vanet-仿真">VANET 仿真</h2>
+<p>ns3/examples/routing/manet-routing-compare.cc</p>
+<p>该代码是在ns-3上运行DSDV，AODV，OLSR，仿真场景是典型的随机运动模型。 默认情况下，模拟共200s，前50s是启动时间；共50个节点，节点遵从RandomWaypointMobilityModel模型，运动速度20m/s，无暂停，运动范围300*1500 m的区域范围之内。WiFi的传播速度为2Mb/s，遵守Friis loss model(认为是ns-3中的一个模型)，广播发射功率为7.5dBm。</p>
+<p>在这里，运动与密度模型、可以通过速度和节点数量被直接修改，也可以改变发射功率（很显然，当发射功率增加时，运动所造成的影响就减少了，密度造成的影响相应增大）。</p>
+<p>默认是OLSR路由协议，参数2是AODV，3是DSDV。</p>
+<p>默认状态下，有10对源数据对发送UDP，速度为2.048 kbps。均在50~51s内开始发送。</p>
+<p>标准输出 1. 包接收：<timestamp> <node-id> received one packet from <src-address> 2. 每秒数据接收都会制表并输出成csv文件 3. 一些追踪和流监视器会在程序运行时输出一些状态信息</src-address></node-id></timestamp></p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;fstream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">"ns3/core-module.h"</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">"ns3/network-module.h"</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">"ns3/internet-module.h"</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">"ns3/mobility-module.h"</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">"ns3/wifi-module.h"</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">"ns3/aodv-module.h"</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">"ns3/olsr-module.h"</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">"ns3/dsdv-module.h"</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">"ns3/dsr-module.h"</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">"ns3/applications-module.h"</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> ns3;</span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> dsr;</span><br><span class="line"></span><br><span class="line">NS_LOG_COMPONENT_DEFINE (<span class="string">"manet-routing-compare"</span>);</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">RoutingExperiment</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">  RoutingExperiment ();</span><br><span class="line">  <span class="function"><span class="keyword">void</span> <span class="title">Run</span> <span class="params">(<span class="keyword">int</span> nSinks, <span class="keyword">double</span> txp, <span class="built_in">std</span>::<span class="built_in">string</span> CSVfileName)</span></span>;</span><br><span class="line">  <span class="comment">//static void SetMACParam (ns3::NetDeviceContainer &amp; devices,</span></span><br><span class="line">  <span class="comment">//                                 int slotDistance);</span></span><br><span class="line">  <span class="built_in">std</span>::<span class="function"><span class="built_in">string</span> <span class="title">CommandSetup</span> <span class="params">(<span class="keyword">int</span> argc, <span class="keyword">char</span> \**argv)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">  Ptr&lt;Socket&gt; SetupPacketReceive (Ipv4Address addr, Ptr&lt;Node&gt; node);</span><br><span class="line">  <span class="function"><span class="keyword">void</span> <span class="title">ReceivePacket</span> <span class="params">(Ptr&lt;Socket&gt; socket)</span></span>;</span><br><span class="line">  <span class="function"><span class="keyword">void</span> <span class="title">CheckThroughput</span> <span class="params">()</span></span>;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">uint32_t</span> port;</span><br><span class="line">  <span class="keyword">uint32_t</span> bytesTotal;</span><br><span class="line">  <span class="keyword">uint32_t</span> packetsReceived;</span><br><span class="line"></span><br><span class="line">  <span class="built_in">std</span>::<span class="built_in">string</span> m_CSVfileName;</span><br><span class="line">  <span class="keyword">int</span> m_nSinks;</span><br><span class="line">  <span class="built_in">std</span>::<span class="built_in">string</span> m_protocolName;</span><br><span class="line">  <span class="keyword">double</span> m_txp;</span><br><span class="line">  <span class="keyword">bool</span> m_traceMobility;</span><br><span class="line">  <span class="keyword">uint32_t</span> m_protocol;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">//设置端口号、字节数、接收包的个数、CSV文件名、移动追踪、协议等</span></span><br><span class="line">RoutingExperiment::RoutingExperiment ()</span><br><span class="line">  : port (<span class="number">9</span>),</span><br><span class="line">    bytesTotal (<span class="number">0</span>),</span><br><span class="line">    packetsReceived (<span class="number">0</span>),</span><br><span class="line">    m_CSVfileName (<span class="string">"manet-routing.output.csv"</span>),</span><br><span class="line">    m_traceMobility (<span class="literal">false</span>),</span><br><span class="line">    m_protocol (<span class="number">2</span>) <span class="comment">// AODV</span></span><br><span class="line">&#123;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//在RoutingExperiment::ReceivePacket中使用</span></span><br><span class="line"><span class="keyword">static</span> <span class="keyword">inline</span> <span class="built_in">std</span>::<span class="built_in">string</span></span><br><span class="line">PrintReceivedPacket (Ptr&lt;Socket&gt; socket, Ptr&lt;Packet&gt; packet, Address senderAddress)</span><br><span class="line">&#123;</span><br><span class="line">	<span class="comment">//自动分配缓冲区，格式化字符串</span></span><br><span class="line">  <span class="built_in">std</span>::<span class="built_in">ostringstream</span> oss;</span><br><span class="line"></span><br><span class="line">  oss &lt;&lt; Simulator::Now ().GetSeconds () &lt;&lt; <span class="string">" "</span> &lt;&lt; socket-&gt;GetNode ()-&gt;GetId ();</span><br><span class="line"></span><br><span class="line">	<span class="comment">//如果找到匹配的地址，那么就把地址也表示出来</span></span><br><span class="line">  <span class="keyword">if</span> (InetSocketAddress::IsMatchingType (senderAddress))</span><br><span class="line">    &#123;</span><br><span class="line">      InetSocketAddress addr = InetSocketAddress::ConvertFrom (senderAddress);</span><br><span class="line">      oss &lt;&lt; <span class="string">" received one packet from "</span> &lt;&lt; addr.GetIpv4 ();</span><br><span class="line">    &#125;</span><br><span class="line">  <span class="keyword">else</span></span><br><span class="line">    &#123;</span><br><span class="line">      oss &lt;&lt; <span class="string">" received one packet!"</span>;</span><br><span class="line">    &#125;</span><br><span class="line">  <span class="keyword">return</span> oss.str ();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">void</span></span><br><span class="line">RoutingExperiment::ReceivePacket (Ptr&lt;Socket&gt; socket)</span><br><span class="line">&#123;</span><br><span class="line">  Ptr&lt;Packet&gt; packet;</span><br><span class="line">  Address senderAddress;</span><br><span class="line">  <span class="comment">//从socket中读取一个数据包packet，并且检索发送地址，保存到变量senderAddress中</span></span><br><span class="line">  <span class="keyword">while</span> ((packet = socket-&gt;RecvFrom (senderAddress)))</span><br><span class="line">    &#123;</span><br><span class="line">      bytesTotal += packet-&gt;GetSize ();</span><br><span class="line">      packetsReceived += <span class="number">1</span>;</span><br><span class="line">      NS_LOG_UNCOND (PrintReceivedPacket (socket, packet, senderAddress));</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">void</span></span><br><span class="line">RoutingExperiment::CheckThroughput ()</span><br><span class="line">&#123;</span><br><span class="line">	<span class="comment">//先计算kbs，然后再把bytesTotal清零，用于计算下一次的kbs</span></span><br><span class="line">  <span class="keyword">double</span> kbs = (bytesTotal * <span class="number">8.0</span>) / <span class="number">1000</span>;</span><br><span class="line">  bytesTotal = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">  <span class="comment">//写操作到csv文件中</span></span><br><span class="line">  std::ofstream out (m_CSVfileName.c_str (), std::ios::app);</span><br><span class="line"></span><br><span class="line">  out &lt;&lt; (Simulator::Now ()).GetSeconds () &lt;&lt; <span class="string">","</span></span><br><span class="line">      &lt;&lt; kbs &lt;&lt; <span class="string">","</span></span><br><span class="line">      &lt;&lt; packetsReceived &lt;&lt; <span class="string">","</span></span><br><span class="line">      &lt;&lt; m_nSinks &lt;&lt; <span class="string">","</span></span><br><span class="line">      &lt;&lt; m_protocolName &lt;&lt; <span class="string">","</span></span><br><span class="line">      &lt;&lt; m_txp &lt;&lt; <span class="string">""</span></span><br><span class="line">      &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line"></span><br><span class="line">  out.close ();</span><br><span class="line">  <span class="comment">//同理，这里packetsReceived也需要清零</span></span><br><span class="line">  packetsReceived = <span class="number">0</span>;</span><br><span class="line">  <span class="comment">//设置1s延时之后执行CheckThroughput，this标明是谁唤醒成员函数</span></span><br><span class="line">  Simulator::Schedule (Seconds (<span class="number">1.0</span>), &amp;RoutingExperiment::CheckThroughput, <span class="keyword">this</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">Ptr&lt;Socket&gt;</span><br><span class="line">RoutingExperiment::SetupPacketReceive (Ipv4Address addr, Ptr&lt;Node&gt; node)</span><br><span class="line">&#123;</span><br><span class="line">	<span class="comment">//通过名字返回一个TypeId</span></span><br><span class="line">  TypeId tid = TypeId::LookupByName (<span class="string">"ns3::UdpSocketFactory"</span>);</span><br><span class="line">  Ptr&lt;Socket&gt; sink = Socket::CreateSocket (node, tid);</span><br><span class="line">  InetSocketAddress local = InetSocketAddress (addr, port);</span><br><span class="line">  sink-&gt;Bind (local);</span><br><span class="line">  <span class="comment">//设置回调</span></span><br><span class="line">  sink-&gt;SetRecvCallback (MakeCallback (&amp;RoutingExperiment::ReceivePacket, <span class="keyword">this</span>));</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> sink;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">std</span>::<span class="built_in">string</span></span><br><span class="line">RoutingExperiment::CommandSetup (<span class="keyword">int</span> argc, <span class="keyword">char</span> \**argv)</span><br><span class="line">&#123;</span><br><span class="line">  CommandLine cmd;</span><br><span class="line">  cmd.AddValue (<span class="string">"CSVfileName"</span>, <span class="string">"The name of the CSV output file name"</span>, m_CSVfileName);</span><br><span class="line">  cmd.AddValue (<span class="string">"traceMobility"</span>, <span class="string">"Enable mobility tracing"</span>, m_traceMobility);</span><br><span class="line">  cmd.AddValue (<span class="string">"protocol"</span>, <span class="string">"1=OLSR;2=AODV;3=DSDV;4=DSR"</span>, m_protocol);</span><br><span class="line">  cmd.Parse (argc, argv);</span><br><span class="line">  <span class="keyword">return</span> m_CSVfileName;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span></span><br><span class="line">main (<span class="keyword">int</span> argc, <span class="keyword">char</span> \*argv[])</span><br><span class="line">&#123;</span><br><span class="line">  RoutingExperiment experiment;</span><br><span class="line">  <span class="built_in">std</span>::<span class="built_in">string</span> CSVfileName = experiment.CommandSetup (argc,argv);</span><br><span class="line"></span><br><span class="line">  <span class="comment">//blank out the last output file and write the column headers</span></span><br><span class="line">  std::ofstream out (CSVfileName.c_str ());</span><br><span class="line">  out &lt;&lt; <span class="string">"SimulationSecond,"</span> &lt;&lt;</span><br><span class="line">  <span class="string">"ReceiveRate,"</span> &lt;&lt;</span><br><span class="line">  <span class="string">"PacketsReceived,"</span> &lt;&lt;</span><br><span class="line">  <span class="string">"NumberOfSinks,"</span> &lt;&lt;</span><br><span class="line">  <span class="string">"RoutingProtocol,"</span> &lt;&lt;</span><br><span class="line">  <span class="string">"TransmissionPower"</span> &lt;&lt;</span><br><span class="line">  <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line">  out.close ();</span><br><span class="line"></span><br><span class="line">  <span class="keyword">int</span> nSinks = <span class="number">10</span>;</span><br><span class="line">  <span class="keyword">double</span> txp = <span class="number">7.5</span>;</span><br><span class="line"></span><br><span class="line">  <span class="comment">//节点数10，传播功率7.5</span></span><br><span class="line">  experiment.Run (nSinks, txp, CSVfileName);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">void</span></span><br><span class="line">RoutingExperiment::Run (<span class="keyword">int</span> nSinks, <span class="keyword">double</span> txp, <span class="built_in">std</span>::<span class="built_in">string</span> CSVfileName)</span><br><span class="line">&#123;</span><br><span class="line">  Packet::EnablePrinting ();</span><br><span class="line">  m_nSinks = nSinks;</span><br><span class="line">  m_txp = txp;</span><br><span class="line">  m_CSVfileName = CSVfileName;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">int</span> nWifis = <span class="number">50</span>;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">double</span> TotalTime = <span class="number">200.0</span>;</span><br><span class="line">  <span class="built_in">std</span>::<span class="function"><span class="built_in">string</span> <span class="title">rate</span> <span class="params">(<span class="string">"2048bps"</span>)</span></span>;</span><br><span class="line">  <span class="built_in">std</span>::<span class="function"><span class="built_in">string</span> <span class="title">phyMode</span> <span class="params">(<span class="string">"DsssRate11Mbps"</span>)</span></span>;</span><br><span class="line">  <span class="built_in">std</span>::<span class="function"><span class="built_in">string</span> <span class="title">tr_name</span> <span class="params">(<span class="string">"manet-routing-compare"</span>)</span></span>;</span><br><span class="line">  <span class="keyword">int</span> nodeSpeed = <span class="number">20</span>; <span class="comment">//in m/s</span></span><br><span class="line">  <span class="keyword">int</span> nodePause = <span class="number">0</span>; <span class="comment">//in s</span></span><br><span class="line">  m_protocolName = <span class="string">"protocol"</span>;</span><br><span class="line"></span><br><span class="line">	<span class="comment">//这里OnOffApplication生成了一个单向的交通流，有以下两个属性可以设置</span></span><br><span class="line">  Config::SetDefault  (<span class="string">"ns3::OnOffApplication::PacketSize"</span>,StringValue (<span class="string">"64"</span>));</span><br><span class="line">  Config::SetDefault (<span class="string">"ns3::OnOffApplication::DataRate"</span>,  StringValue (rate));</span><br><span class="line"></span><br><span class="line">  <span class="comment">//将非单播模式设置成单播</span></span><br><span class="line">  Config::SetDefault (<span class="string">"ns3::WifiRemoteStationManager::NonUnicastMode"</span>,StringValue (phyMode));</span><br><span class="line"></span><br><span class="line">  NodeContainer adhocNodes;</span><br><span class="line">  adhocNodes.Create (nWifis);</span><br><span class="line"></span><br><span class="line">  <span class="comment">// setting up wifi phy and channel using helpers</span></span><br><span class="line">  WifiHelper wifi;</span><br><span class="line">  wifi.SetStandard (WIFI_PHY_STANDARD_80211b);</span><br><span class="line"></span><br><span class="line">  YansWifiPhyHelper wifiPhy =  YansWifiPhyHelper::Default ();</span><br><span class="line">  YansWifiChannelHelper wifiChannel;</span><br><span class="line">  wifiChannel.SetPropagationDelay (<span class="string">"ns3::ConstantSpeedPropagationDelayModel"</span>);</span><br><span class="line">  wifiChannel.AddPropagationLoss (<span class="string">"ns3::FriisPropagationLossModel"</span>);</span><br><span class="line">  wifiPhy.SetChannel (wifiChannel.Create ());</span><br><span class="line"></span><br><span class="line">  <span class="comment">// Add a mac and disable rate control</span></span><br><span class="line">  WifiMacHelper wifiMac;</span><br><span class="line">  wifi.SetRemoteStationManager (<span class="string">"ns3::ConstantRateWifiManager"</span>,</span><br><span class="line">                                <span class="string">"DataMode"</span>,StringValue (phyMode),</span><br><span class="line">                                <span class="string">"ControlMode"</span>,StringValue (phyMode));</span><br><span class="line"></span><br><span class="line">  wifiPhy.Set (<span class="string">"TxPowerStart"</span>,DoubleValue (txp));</span><br><span class="line">  wifiPhy.Set (<span class="string">"TxPowerEnd"</span>, DoubleValue (txp));</span><br><span class="line"></span><br><span class="line">  wifiMac.SetType (<span class="string">"ns3::AdhocWifiMac"</span>);</span><br><span class="line">  NetDeviceContainer adhocDevices = wifi.Install (wifiPhy, wifiMac, adhocNodes);</span><br><span class="line"></span><br><span class="line">  MobilityHelper mobilityAdhoc;</span><br><span class="line">  <span class="comment">//为了能持续性地得到移动交叉场景</span></span><br><span class="line">  <span class="keyword">int64_t</span> streamIndex = <span class="number">0</span>; <span class="comment">// used to get consistent mobility across scenarios</span></span><br><span class="line"></span><br><span class="line">  <span class="comment">//设置运动范围</span></span><br><span class="line">  ObjectFactory pos;</span><br><span class="line">  pos.SetTypeId (<span class="string">"ns3::RandomRectanglePositionAllocator"</span>);</span><br><span class="line">  pos.Set (<span class="string">"X"</span>, StringValue (<span class="string">"ns3::UniformRandomVariable[Min=0.0|Max=300.0]"</span>));</span><br><span class="line">  pos.Set (<span class="string">"Y"</span>, StringValue (<span class="string">"ns3::UniformRandomVariable[Min=0.0|Max=1500.0]"</span>));</span><br><span class="line"></span><br><span class="line">  Ptr&lt;PositionAllocator&gt; taPositionAlloc = pos.Create ()-&gt;GetObject&lt;PositionAllocator&gt; ();</span><br><span class="line">  streamIndex += taPositionAlloc-&gt;AssignStreams (streamIndex);</span><br><span class="line"></span><br><span class="line">  <span class="built_in">std</span>::<span class="built_in">stringstream</span> ssSpeed;</span><br><span class="line">  ssSpeed &lt;&lt; <span class="string">"ns3::UniformRandomVariable[Min=0.0|Max="</span> &lt;&lt; nodeSpeed &lt;&lt; <span class="string">"]"</span>;</span><br><span class="line">  <span class="built_in">std</span>::<span class="built_in">stringstream</span> ssPause;</span><br><span class="line">  ssPause &lt;&lt; <span class="string">"ns3::ConstantRandomVariable[Constant="</span> &lt;&lt; nodePause &lt;&lt; <span class="string">"]"</span>;</span><br><span class="line">  mobilityAdhoc.SetMobilityModel (<span class="string">"ns3::RandomWaypointMobilityModel"</span>,</span><br><span class="line">                                  <span class="string">"Speed"</span>, StringValue (ssSpeed.str ()),</span><br><span class="line">                                  <span class="string">"Pause"</span>, StringValue (ssPause.str ()),</span><br><span class="line">                                  <span class="string">"PositionAllocator"</span>, PointerValue (taPositionAlloc));</span><br><span class="line">  mobilityAdhoc.SetPositionAllocator (taPositionAlloc);</span><br><span class="line">  mobilityAdhoc.Install (adhocNodes);</span><br><span class="line">  streamIndex += mobilityAdhoc.AssignStreams (adhocNodes, streamIndex);</span><br><span class="line"></span><br><span class="line">  AodvHelper aodv;</span><br><span class="line">  OlsrHelper olsr;</span><br><span class="line">  DsdvHelper dsdv;</span><br><span class="line">  DsrHelper dsr;</span><br><span class="line">  DsrMainHelper dsrMain;</span><br><span class="line">  Ipv4ListRoutingHelper <span class="built_in">list</span>;</span><br><span class="line">  InternetStackHelper internet;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">switch</span> (m_protocol)</span><br><span class="line">    &#123;</span><br><span class="line">    <span class="keyword">case</span> <span class="number">1</span>:</span><br><span class="line">      <span class="built_in">list</span>.Add (olsr, <span class="number">100</span>);</span><br><span class="line">      m_protocolName = <span class="string">"OLSR"</span>;</span><br><span class="line">      <span class="keyword">break</span>;</span><br><span class="line">    <span class="keyword">case</span> <span class="number">2</span>:</span><br><span class="line">      <span class="built_in">list</span>.Add (aodv, <span class="number">100</span>);</span><br><span class="line">      m_protocolName = <span class="string">"AODV"</span>;</span><br><span class="line">      <span class="keyword">break</span>;</span><br><span class="line">    <span class="keyword">case</span> <span class="number">3</span>:</span><br><span class="line">      <span class="built_in">list</span>.Add (dsdv, <span class="number">100</span>);</span><br><span class="line">      m_protocolName = <span class="string">"DSDV"</span>;</span><br><span class="line">      <span class="keyword">break</span>;</span><br><span class="line">    <span class="keyword">case</span> <span class="number">4</span>:</span><br><span class="line">      m_protocolName = <span class="string">"DSR"</span>;</span><br><span class="line">      <span class="keyword">break</span>;</span><br><span class="line">    <span class="keyword">default</span>:</span><br><span class="line">      NS_FATAL_ERROR (<span class="string">"No such protocol:"</span> &lt;&lt; m_protocol);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span> (m_protocol &lt; <span class="number">4</span>)</span><br><span class="line">    &#123;</span><br><span class="line">      internet.SetRoutingHelper (<span class="built_in">list</span>);</span><br><span class="line">      internet.Install (adhocNodes);</span><br><span class="line">    &#125;</span><br><span class="line">  <span class="keyword">else</span> <span class="keyword">if</span> (m_protocol == <span class="number">4</span>)</span><br><span class="line">    &#123;</span><br><span class="line">      internet.Install (adhocNodes);</span><br><span class="line">      dsrMain.Install (dsr, adhocNodes);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">  NS_LOG_INFO (<span class="string">"assigning ip address"</span>);</span><br><span class="line"></span><br><span class="line">  Ipv4AddressHelper addressAdhoc;</span><br><span class="line">  addressAdhoc.SetBase (<span class="string">"10.1.1.0"</span>, <span class="string">"255.255.255.0"</span>);</span><br><span class="line">  Ipv4InterfaceContainer adhocInterfaces;</span><br><span class="line">  adhocInterfaces = addressAdhoc.Assign (adhocDevices);</span><br><span class="line"></span><br><span class="line">  OnOffHelper onoff1 ("ns3::UdpSocketFactory",Address ());</span><br><span class="line">  onoff1.SetAttribute (<span class="string">"OnTime"</span>, StringValue (<span class="string">"ns3::ConstantRandomVariable[Constant=1.0]"</span>));</span><br><span class="line">  onoff1.SetAttribute (<span class="string">"OffTime"</span>, StringValue (<span class="string">"ns3::ConstantRandomVariable[Constant=0.0]"</span>));</span><br><span class="line"></span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; nSinks; i++)</span><br><span class="line">    &#123;</span><br><span class="line">      Ptr&lt;Socket&gt; sink = SetupPacketReceive (adhocInterfaces.GetAddress (i), adhocNodes.Get (i));</span><br><span class="line"></span><br><span class="line">      AddressValue remoteAddress (InetSocketAddress (adhocInterfaces.GetAddress (i), port));</span><br><span class="line">      onoff1.SetAttribute (<span class="string">"Remote"</span>, remoteAddress);</span><br><span class="line"></span><br><span class="line">      Ptr&lt;UniformRandomVariable&gt; var = CreateObject&lt;UniformRandomVariable&gt; ();</span><br><span class="line">      ApplicationContainer temp = onoff1.Install (adhocNodes.Get (i + nSinks));</span><br><span class="line">      temp.Start (Seconds (var-&gt;GetValue (<span class="number">100.0</span>,<span class="number">101.0</span>)));</span><br><span class="line">      temp.Stop (Seconds (TotalTime));</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">  <span class="built_in">std</span>::<span class="built_in">stringstream</span> ss;</span><br><span class="line">  ss &lt;&lt; nWifis;</span><br><span class="line">  <span class="built_in">std</span>::<span class="built_in">string</span> nodes = ss.str ();</span><br><span class="line"></span><br><span class="line">  <span class="built_in">std</span>::<span class="built_in">stringstream</span> ss2;</span><br><span class="line">  ss2 &lt;&lt; nodeSpeed;</span><br><span class="line">  <span class="built_in">std</span>::<span class="built_in">string</span> sNodeSpeed = ss2.str ();</span><br><span class="line"></span><br><span class="line">  <span class="built_in">std</span>::<span class="built_in">stringstream</span> ss3;</span><br><span class="line">  ss3 &lt;&lt; nodePause;</span><br><span class="line">  <span class="built_in">std</span>::<span class="built_in">string</span> sNodePause = ss3.str ();</span><br><span class="line"></span><br><span class="line">  <span class="built_in">std</span>::<span class="built_in">stringstream</span> ss4;</span><br><span class="line">  ss4 &lt;&lt; rate;</span><br><span class="line">  <span class="built_in">std</span>::<span class="built_in">string</span> sRate = ss4.str ();</span><br><span class="line"></span><br><span class="line">  <span class="comment">//NS_LOG_INFO ("Configure Tracing.");</span></span><br><span class="line">  <span class="comment">//tr_name = tr_name + "_" + m_protocolName +"_" + nodes + "nodes_" + sNodeSpeed + "speed_" + sNodePause + "pause_" + sRate + "rate";</span></span><br><span class="line"></span><br><span class="line">  <span class="comment">//AsciiTraceHelper ascii;</span></span><br><span class="line">  <span class="comment">//Ptr&lt;OutputStreamWrapper&gt; osw = ascii.CreateFileStream ( (tr_name + ".tr").c_str());</span></span><br><span class="line">  <span class="comment">//wifiPhy.EnableAsciiAll (osw);</span></span><br><span class="line">  AsciiTraceHelper ascii;</span><br><span class="line">  MobilityHelper::EnableAsciiAll (ascii.CreateFileStream (tr_name + <span class="string">".mob"</span>));</span><br><span class="line"></span><br><span class="line">  <span class="comment">//Ptr&lt;FlowMonitor&gt; flowmon;</span></span><br><span class="line">  <span class="comment">//FlowMonitorHelper flowmonHelper;</span></span><br><span class="line">  <span class="comment">//flowmon = flowmonHelper.InstallAll ();</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">  NS_LOG_INFO (<span class="string">"Run Simulation."</span>);</span><br><span class="line"></span><br><span class="line">  CheckThroughput ();</span><br><span class="line"></span><br><span class="line">  Simulator::Stop (Seconds (TotalTime));</span><br><span class="line">  Simulator::Run ();</span><br><span class="line"></span><br><span class="line">  <span class="comment">//flowmon-&gt;SerializeToXmlFile ((tr_name + ".flowmon").c_str(), false, false);</span></span><br><span class="line"></span><br><span class="line">  Simulator::Destroy ();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>仿真结果如下：</p>
+<p><img src="https://ww4.sinaimg.cn/large/006tNc79gy1fdntmd2lvkj31kw0zknda.jpg"></p>
+<p>注意，如果需要使用netanim来导出xml文件的时候，一定要把asciihelper注释掉，否则有冲突，不能正常工作！！！！！！</p>
+
+            </div>
+        
+        <footer class="article-footer">
+        </footer>
+    </div>
+</article>
+
+
+    
+<nav id="article-nav">
+    
+        <a href="/2017/07/14/网络/2017-07-14-Ego networks/" id="article-nav-newer" class="article-nav-link-wrap">
+            <strong class="article-nav-caption">上一篇</strong>
+            <div class="article-nav-title">
+                
+                    Ego networks
+                
+            </div>
+        </a>
+    
+    
+        <a href="/2017/03/13/VANET/2017-3-13-Vanet仿真-ns3(4)/" id="article-nav-older" class="article-nav-link-wrap">
+            <strong class="article-nav-caption">下一篇</strong>
+            <div class="article-nav-title">VANET仿真-ns3(4)</div>
+        </a>
+    
+</nav>
+
+
+
+
+
+    
+    
+
+
+
+
+<!-- baidu url auto push script -->
+<script type="text/javascript">
+    !function(){var e=/([http|https]:\/\/[a-zA-Z0-9\_\.]+\.baidu\.com)/gi,r=window.location.href,o=document.referrer;if(!e.test(r)){var n="//api.share.baidu.com/s.gif";o?(n+="?r="+encodeURIComponent(document.referrer),r&&(n+="&l="+r)):r&&(n+="?l="+r);var t=new Image;t.src=n}}(window);
+</script>     
+</section>
+        </div>
+        <footer id="footer">
+    <div class="outer">
+        <div id="footer-info" class="inner">
+            Fengrui Liu &copy; 2019 
+            <a rel="license" href="http://creativecommons.org/licenses/by-nc-nd/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-nd/4.0/80x15.png"></a>
+            <br> Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>. Theme - <a href="https://github.com/zthxxx/hexo-theme-Wikitten">wikitten</a>
+            
+                <br>
+                <span id="busuanzi_container_site_pv"><i class="fa fa-eye"></i> <span id="busuanzi_value_site_pv"></span></span>
+                &nbsp;|&nbsp;
+                <span id="busuanzi_container_site_pv"><i class="fa fa-user"></i> <span id="busuanzi_value_site_uv"></span></span>
+            
+        </div>
+    </div>
+</footer>
+
+        
+
+    
+        <script src="/libs/lightgallery/js/lightgallery.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-thumbnail.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-pager.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-autoplay.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-fullscreen.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-zoom.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-hash.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-share.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-video.min.js"></script>
+    
+    
+        <script src="/libs/justified-gallery/jquery.justifiedGallery.min.js"></script>
+    
+    
+        <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true,
+            TeX: {
+                equationNumbers: {
+                  autoNumber: 'AMS'
+                }
+            }
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script async src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+
+
+
+<!-- Custom Scripts -->
+<script src="/js/main.js"></script>
+
+    </div>
 <script type="text/x-mathjax-config">
     MathJax.Hub.Config({
         tex2jax: {
@@ -1744,6 +533,6 @@ document.addEventListener('DOMContentLoaded', function () {
             all[i].SourceElement().parentNode.className += ' has-jax';
     });
 </script>
-<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
 </body>
 </html>
