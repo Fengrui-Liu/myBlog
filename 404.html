@@ -7,17 +7,21 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
 
-<title>Fengrui Liu&#39;s Blog</title>
+<title>404 - Fengrui Liu&#39;s Blog</title>
 
 
-    <meta property="og:type" content="website">
-<meta property="og:title" content="Fengrui Liu&#39;s Blog">
-<meta property="og:url" content="http://www.liufr.com/page/8/index.html">
+    <meta name="description" content="你来到了没有知识的荒原 :(">
+<meta property="og:type" content="website">
+<meta property="og:title" content="404">
+<meta property="og:url" content="http://www.liufr.com/404.html">
 <meta property="og:site_name" content="Fengrui Liu&#39;s Blog">
+<meta property="og:description" content="你来到了没有知识的荒原 :(">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http://www.liufr.com/images/og_image.png">
+<meta property="og:updated_time" content="2019-09-17T03:05:36.068Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Fengrui Liu&#39;s Blog">
+<meta name="twitter:title" content="404">
+<meta name="twitter:description" content="你来到了没有知识的荒原 :(">
 <meta name="twitter:image" content="http://www.liufr.com/images/og_image.png">
 
 
@@ -88,7 +92,7 @@
         <div class="navbar-brand is-flex-center">
             <a class="navbar-item navbar-logo" href="/">
             
-                <img src="/images/logo.svg" alt="Fengrui Liu&#39;s Blog" height="28">
+                <img src="/images/logo.svg" alt="404" height="28">
             
             </a>
         </div>
@@ -138,224 +142,34 @@
     <section class="section">
         <div class="container">
             <div class="columns">
-                <div class="column is-8-tablet is-8-desktop is-6-widescreen has-order-2 column-main">
-    <div class="card">
-    
-    <div class="card-content article ">
-        
-        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
-            <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2016-08-05T16:00:00.000Z">2016-08-06</time>
-                
-                <div class="level-item">
-                <a class="has-link-grey -link" href="/categories/Pi/">Pi</a>
+                <div class="column is-8-tablet is-8-desktop is-6-widescreen has-order-2 column-main"><style type="text/css">
+    /* don't remove. */
+    .about-cover {
+        height: 75vh;
+    }
+</style>
+
+<div class="bg-cover pd-header about-cover">
+    <div class="container">
+        <div class="row">
+            <div class="col s10 offset-s1 m8 offset-m2 l8 offset-l2">
+                <div class="brand">
+                    <div class="title center-align">
+                        404
+                    </div>
+                    <div class="description center-align">
+                        你来到了没有知识的荒原 :(
+                    </div>
                 </div>
-                
-                
-                <span class="level-item has-text-grey">
-                    
-                    
-                    2 分钟 读完 (大约 343 个字)
-                </span>
-                
-                
             </div>
         </div>
-        
-        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
-            
-                <a class="has-link-black-ter" href="/2016/08/06/Pi/2016-08-06-Raspberry Pi OK01/">Raspberry Pi OK01</a>
-            
-        </h1>
-        <div class="content">
-            <h3 id="实验目标"><a href="#实验目标" class="headerlink" title="实验目标"></a>实验目标</h3><p>通过GPIO使能Pi上ACT/OK灯，从而了解GPIO口。</p>
-<h3 id="代码分析"><a href="#代码分析" class="headerlink" title="代码分析"></a>代码分析</h3><figure class="highlight arm hljs"><table><tr><td class="code"><pre><span class="line"><span class="hljs-keyword">ldr </span><span class="hljs-built_in">r0</span>,<span class="hljs-number">=0x20200000</span></span><br></pre></td></tr></table></figure>
-
-<p><img src="http://www.z4a.net/images/2016/08/06/GPIO-Register-Bytes.png" alt="GPIO-Register-Bytes.png"></p>
-<p>通过上表我们可以知道GPIO口是以0x20200000作为开始的，那么此时r0寄存器中保存的就是基址。</p>
-<figure class="highlight arm hljs"><table><tr><td class="code"><pre><span class="line"><span class="hljs-keyword">mov </span><span class="hljs-built_in">r1</span>,<span class="hljs-number">#1</span></span><br><span class="line"><span class="hljs-keyword">lsl </span><span class="hljs-built_in">r1</span>,<span class="hljs-number">#18</span></span><br><span class="line"><span class="hljs-keyword">str </span><span class="hljs-built_in">r1</span>,[<span class="hljs-built_in">r0</span>,<span class="hljs-number">#4</span>]</span><br></pre></td></tr></table></figure>
-
-<p><img src="http://www.z4a.net/images/2016/08/06/Bits-Pin-Map.png" alt="Bits-Pin-Map.png"></p>
-<p><img src="http://ww3.sinaimg.cn/large/006tKfTcgw1f6k1384mpjj308e05bjs2.jpg" alt></p>
-<p>根据以上两张图我们可以知道将地址0x20200000的第18位置1，相当于将GPIO16设置为output，此处GPIO16就是我们要点亮的ACT灯的输出位置。</p>
-<hr>
-<p>在正式点亮ACT灯之前，树莓派还要求将GPIO16口进行清除操作</p>
-<p><img src="http://ww2.sinaimg.cn/large/006tKfTcgw1f6k17n3iz3j30h9084wge.jpg" alt></p>
-<figure class="highlight arm hljs"><table><tr><td class="code"><pre><span class="line"><span class="hljs-keyword">mov </span><span class="hljs-built_in">r1</span>,<span class="hljs-number">#1</span></span><br><span class="line"><span class="hljs-keyword">lsl </span><span class="hljs-built_in">r1</span>,<span class="hljs-number">#16</span></span><br><span class="line"><span class="hljs-keyword">str </span><span class="hljs-built_in">r1</span>,[<span class="hljs-built_in">r0</span>,<span class="hljs-number">#40</span>]</span><br></pre></td></tr></table></figure>
-
-<p>根据图标显示我们有了以上代码，将物理地址0x20200028里的第16位设置成1，代表着清除GPIO16。</p>
-<hr>
-<p>可以将以上代码理解成初始化步骤，接下里就让Pi在一个无限循环的loop里工作。</p>
-<figure class="highlight arm hljs"><table><tr><td class="code"><pre><span class="line"><span class="hljs-symbol">loop$</span>:</span><br><span class="line"><span class="hljs-keyword">b </span>loop$</span><br></pre></td></tr></table></figure>
-
-<p>此时使用<strong>make</strong>指令，将生成的kernel.img文件进行更换,可以观察到Pi的ACT灯亮起，实验结束。</p>
-<h3 id="结果展示"><a href="#结果展示" class="headerlink" title="结果展示"></a>结果展示</h3><p><img src="http://ww4.sinaimg.cn/large/006tKfTcgw1f6k1fmvgqxj31kw23u7wh.jpg" alt></p>
-
-        </div>
-        
-        
-        
     </div>
 </div>
 
-
-
-
-
-
-
-
-    <div class="card">
-    
-    <div class="card-content article ">
-        
-        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
-            <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2016-08-05T16:00:00.000Z">2016-08-06</time>
-                
-                <div class="level-item">
-                <a class="has-link-grey -link" href="/categories/Pi/">Pi</a>
-                </div>
-                
-                
-                <span class="level-item has-text-grey">
-                    
-                    
-                    1 分钟 读完 (大约 145 个字)
-                </span>
-                
-                
-            </div>
-        </div>
-        
-        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
-            
-                <a class="has-link-black-ter" href="/2016/08/06/Pi/2016-08-06-Raspberry Pi OK02/">Raspberry Pi OK02</a>
-            
-        </h1>
-        <div class="content">
-            <h3 id="实验目标"><a href="#实验目标" class="headerlink" title="实验目标"></a>实验目标</h3><p>在OK01的实验基础上，通过GPIO口重复控制ACT/OK灯的亮灭。掌握OS的等待/延迟实现。</p>
-<h3 id="代码分析"><a href="#代码分析" class="headerlink" title="代码分析"></a>代码分析</h3><figure class="highlight arm hljs"><table><tr><td class="code"><pre><span class="line"><span class="hljs-keyword">mov </span><span class="hljs-built_in">r2</span>,<span class="hljs-number">#0x3F0000</span></span><br><span class="line"><span class="hljs-symbol">wait1$</span>:</span><br><span class="line"><span class="hljs-keyword">sub </span><span class="hljs-built_in">r2</span>,<span class="hljs-number">#1</span></span><br><span class="line"><span class="hljs-keyword">cmp </span><span class="hljs-built_in">r2</span>,<span class="hljs-number">#0</span></span><br><span class="line"><span class="hljs-keyword">bne </span>wait1$</span><br></pre></td></tr></table></figure>
-
-<p>通过减法实现可控的循环延迟。</p>
-<hr>
-<p><img src="http://ww3.sinaimg.cn/large/006tKfTcgw1f6k1ylrxyzj30h9084jtg.jpg" alt></p>
-<p>在这幅图中又可以看出想要将GPIO16置0只需要设置0x2020001c就可以了，所以代码逻辑就是</p>
-<blockquote>
-<p>开灯 延迟 关灯 延迟 开灯 …</p>
-</blockquote>
-<hr>
-<h3 id="结果展示"><a href="#结果展示" class="headerlink" title="结果展示"></a>结果展示</h3><p><img src="http://ww1.sinaimg.cn/large/006tKfTcgw1f6k2d4nld4g308w0ciu0z.gif" alt></p>
-
-        </div>
-        
-        
-        
-    </div>
-</div>
-
-
-
-
-
-
-
-
-    <div class="card">
-    
-    <div class="card-content article ">
-        
-        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
-            <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2016-05-01T16:00:00.000Z">2016-05-02</time>
-                
-                <div class="level-item">
-                <a class="has-link-grey -link" href="/categories/Concept/">Concept</a>
-                </div>
-                
-                
-                <span class="level-item has-text-grey">
-                    
-                    
-                    3 分钟 读完 (大约 500 个字)
-                </span>
-                
-                
-            </div>
-        </div>
-        
-        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
-            
-                <a class="has-link-black-ter" href="/2016/05/02/概念/2016-05-15-IRQ与FIQ中断/">IRQ与FIQ中断</a>
-            
-        </h1>
-        <div class="content">
-            <p>以S3C2410系统为例，七种异常中断如下：</p>
-<ol>
-<li>复位</li>
-<li>未定义指令</li>
-<li>软中断</li>
-<li>指令预取中止</li>
-<li>数据中止</li>
-<li>IRQ</li>
-<li>FIQ</li>
-</ol>
-<p>以下主要分析IRQ（中断请求）和FIQ（快速中断请求）的区别。</p>
-<p>FIQ必须尽快处理事情并离开这个模式，IRQ可以被FIQ中断，反之不可以。也就是说FIQ比IRQ优先级要高,在执行FIQ中断时不能处理其他一切中断。</p>
-<hr>
-<p>为什么FIQ比较快呢呢？</p>
-<ol>
-<li>FIQ模式下有自己的寄存器组r8-r14,r14寄存器链接到返回地址，但是如果你的FIQ处理程序可以被写入时，只需要r8-r13寄存器组。优势如下：它不产生像IRQ入栈和出栈时的寄存器开销，以节省中断处理运行运转周期；快速中断还可以重复利用寄存器组里的值，比如说r8寄存器指向一个外部硬件，很有可能下一次中断也是同一个中断请求这样寄存器组里的值就可以被重复利用而不需要重新装载。</li>
-<li>FIQ中断服务程序被放在异常向量表的底部，也就是说不需要任何的分支指令，可以直接从0x1c执行，也节省了很多周期。</li>
-<li>优先级问题，FIQ可以中断IRQ反之不可以。</li>
-</ol>
-<hr>
-<p>为什么很多操作系统没有引入FIQ呢？</p>
-<ol>
-<li>FIQ需要汇编写，c语言没法处理，FIQ中断需要自己r8-r14的特殊寄存器，c语言也无法解决这个限制问题。</li>
-<li>大多数操作系统并没有高优先级的中断来源，也就不需要快速中断处理</li>
-</ol>
-<hr>
-<p>资料参考:<br><a href="http://stackoverflow.com/questions/973933/what-is-the-difference-between-fiq-and-irq-interrupt-system" target="_blank" rel="noopener">What is the difference between FIQ and IRQ interrupt system?</a></p>
-
-        </div>
-        
-        
-        
-    </div>
-</div>
-
-
-
-
-
-
-
-
-
-    
-<div class="card card-transparent">
-    <nav class="pagination is-centered" role="navigation" aria-label="pagination">
-        <div class="pagination-previous">
-            <a class="is-flex-grow has-text-black-ter" href="/page/7/">上一页</a>
-        </div>
-        <div class="pagination-next is-invisible is-hidden-mobile">
-            <a class="is-flex-grow has-text-black-ter" href="/page/9/">下一页</a>
-        </div>
-        <ul class="pagination-list is-hidden-mobile">
-            
-            <li><a class="pagination-link has-text-black-ter" href="/">1</a></li>
-            
-            <li><span class="pagination-ellipsis has-text-black-ter">&hellip;</span></li>
-            
-            <li><a class="pagination-link has-text-black-ter" href="/page/7/">7</a></li>
-            
-            <li><a class="pagination-link is-current" href="/page/8/">8</a></li>
-            
-        </ul>
-    </nav>
-</div>
-</div>
+<script>
+    // 每天切换 banner 图.  Switch banner image every day.
+    $('.bg-cover').css('background-image', 'url(/medias/banner/' + new Date().getDay() + '.jpg)');
+</script></div>
                 
 
 
@@ -1638,7 +1452,7 @@
             <div class="level-start has-text-centered-mobile">
                 <a class="footer-logo is-block has-mb-6" href="/">
                 
-                    <img src="/images/logo.svg" alt="Fengrui Liu&#39;s Blog" height="28">
+                    <img src="/images/logo.svg" alt="404" height="28">
                 
                 </a>
                 <p class="is-size-7">

@@ -10,19 +10,19 @@
 <title>Raspberry Pi OK01 - Fengrui Liu&#39;s Blog</title>
 
 
-    <meta name="description" content="实验目标通过GPIO使能Pi上ACT/OK灯，从而了解GPIO口。 代码分析ldr r0,=0x20200000  通过上表我们可以知道GPIO口是以0x20200000作为开始的，那么此时r0寄存器中保存的就是基址。 mov r1,#1lsl r1,#18str r1,[r0,#4]   根据以上两张图我们可以知道将地址0x20200000的第18位置1，相当于将GPIO16设置为output，">
+    <meta name="description" content="实验目标通过GPIO使能Pi上ACT/OK灯，从而了解GPIO口。 代码分析ldr r0,=0x20200000   通过上表我们可以知道GPIO口是以0x20200000作为开始的，那么此时r0寄存器中保存的就是基址。 mov r1,#1lsl r1,#18str r1,[r0,#4]    根据以上两张图我们可以知道将地址0x20200000的第18位置1，相当于将GPIO16设置为outpu">
 <meta name="keywords" content="OS,Raspberry-Pi">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Raspberry Pi OK01">
 <meta property="og:url" content="http://www.liufr.com/2016/08/06/Pi/2016-08-06-Raspberry Pi OK01/index.html">
 <meta property="og:site_name" content="Fengrui Liu&#39;s Blog">
-<meta property="og:description" content="实验目标通过GPIO使能Pi上ACT/OK灯，从而了解GPIO口。 代码分析ldr r0,=0x20200000  通过上表我们可以知道GPIO口是以0x20200000作为开始的，那么此时r0寄存器中保存的就是基址。 mov r1,#1lsl r1,#18str r1,[r0,#4]   根据以上两张图我们可以知道将地址0x20200000的第18位置1，相当于将GPIO16设置为output，">
+<meta property="og:description" content="实验目标通过GPIO使能Pi上ACT/OK灯，从而了解GPIO口。 代码分析ldr r0,=0x20200000   通过上表我们可以知道GPIO口是以0x20200000作为开始的，那么此时r0寄存器中保存的就是基址。 mov r1,#1lsl r1,#18str r1,[r0,#4]    根据以上两张图我们可以知道将地址0x20200000的第18位置1，相当于将GPIO16设置为outpu">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http://www.liufr.com/images/og_image.png">
 <meta property="og:updated_time" content="2017-10-20T01:30:30.320Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Raspberry Pi OK01">
-<meta name="twitter:description" content="实验目标通过GPIO使能Pi上ACT/OK灯，从而了解GPIO口。 代码分析ldr r0,=0x20200000  通过上表我们可以知道GPIO口是以0x20200000作为开始的，那么此时r0寄存器中保存的就是基址。 mov r1,#1lsl r1,#18str r1,[r0,#4]   根据以上两张图我们可以知道将地址0x20200000的第18位置1，相当于将GPIO16设置为output，">
+<meta name="twitter:description" content="实验目标通过GPIO使能Pi上ACT/OK灯，从而了解GPIO口。 代码分析ldr r0,=0x20200000   通过上表我们可以知道GPIO口是以0x20200000作为开始的，那么此时r0寄存器中保存的就是基址。 mov r1,#1lsl r1,#18str r1,[r0,#4]    根据以上两张图我们可以知道将地址0x20200000的第18位置1，相当于将GPIO16设置为outpu">
 <meta name="twitter:image" content="http://www.liufr.com/images/og_image.png">
 
 
@@ -174,9 +174,11 @@
         <div class="content">
             <h3 id="实验目标"><a href="#实验目标" class="headerlink" title="实验目标"></a>实验目标</h3><p>通过GPIO使能Pi上ACT/OK灯，从而了解GPIO口。</p>
 <h3 id="代码分析"><a href="#代码分析" class="headerlink" title="代码分析"></a>代码分析</h3><figure class="highlight arm hljs"><table><tr><td class="code"><pre><span class="line"><span class="hljs-keyword">ldr </span><span class="hljs-built_in">r0</span>,<span class="hljs-number">=0x20200000</span></span><br></pre></td></tr></table></figure>
+
 <p><img src="http://www.z4a.net/images/2016/08/06/GPIO-Register-Bytes.png" alt="GPIO-Register-Bytes.png"></p>
 <p>通过上表我们可以知道GPIO口是以0x20200000作为开始的，那么此时r0寄存器中保存的就是基址。</p>
 <figure class="highlight arm hljs"><table><tr><td class="code"><pre><span class="line"><span class="hljs-keyword">mov </span><span class="hljs-built_in">r1</span>,<span class="hljs-number">#1</span></span><br><span class="line"><span class="hljs-keyword">lsl </span><span class="hljs-built_in">r1</span>,<span class="hljs-number">#18</span></span><br><span class="line"><span class="hljs-keyword">str </span><span class="hljs-built_in">r1</span>,[<span class="hljs-built_in">r0</span>,<span class="hljs-number">#4</span>]</span><br></pre></td></tr></table></figure>
+
 <p><img src="http://www.z4a.net/images/2016/08/06/Bits-Pin-Map.png" alt="Bits-Pin-Map.png"></p>
 <p><img src="http://ww3.sinaimg.cn/large/006tKfTcgw1f6k1384mpjj308e05bjs2.jpg" alt></p>
 <p>根据以上两张图我们可以知道将地址0x20200000的第18位置1，相当于将GPIO16设置为output，此处GPIO16就是我们要点亮的ACT灯的输出位置。</p>
@@ -184,10 +186,12 @@
 <p>在正式点亮ACT灯之前，树莓派还要求将GPIO16口进行清除操作</p>
 <p><img src="http://ww2.sinaimg.cn/large/006tKfTcgw1f6k17n3iz3j30h9084wge.jpg" alt></p>
 <figure class="highlight arm hljs"><table><tr><td class="code"><pre><span class="line"><span class="hljs-keyword">mov </span><span class="hljs-built_in">r1</span>,<span class="hljs-number">#1</span></span><br><span class="line"><span class="hljs-keyword">lsl </span><span class="hljs-built_in">r1</span>,<span class="hljs-number">#16</span></span><br><span class="line"><span class="hljs-keyword">str </span><span class="hljs-built_in">r1</span>,[<span class="hljs-built_in">r0</span>,<span class="hljs-number">#40</span>]</span><br></pre></td></tr></table></figure>
+
 <p>根据图标显示我们有了以上代码，将物理地址0x20200028里的第16位设置成1，代表着清除GPIO16。</p>
 <hr>
 <p>可以将以上代码理解成初始化步骤，接下里就让Pi在一个无限循环的loop里工作。</p>
 <figure class="highlight arm hljs"><table><tr><td class="code"><pre><span class="line"><span class="hljs-symbol">loop$</span>:</span><br><span class="line"><span class="hljs-keyword">b </span>loop$</span><br></pre></td></tr></table></figure>
+
 <p>此时使用<strong>make</strong>指令，将生成的kernel.img文件进行更换,可以观察到Pi的ACT灯亮起，实验结束。</p>
 <h3 id="结果展示"><a href="#结果展示" class="headerlink" title="结果展示"></a>结果展示</h3><p><img src="http://ww4.sinaimg.cn/large/006tKfTcgw1f6k1fmvgqxj31kw23u7wh.jpg" alt></p>
 
@@ -249,16 +253,16 @@
     <div class="level post-navigation is-flex-wrap is-mobile">
         
         <div class="level-start">
-            <a class="level level-item has-link-grey  article-nav-prev" href="/2016/08/06/Pi/2016-08-06-Raspberry Pi OK03/">
+            <a class="level level-item has-link-grey  article-nav-prev" href="/2016/08/06/Pi/2016-08-06-Baking Pi – Operating Systems Development前言/">
                 <i class="level-item fas fa-chevron-left"></i>
-                <span class="level-item">Raspberry Pi OK03</span>
+                <span class="level-item">Raspberry Pi OS Development 前言</span>
             </a>
         </div>
         
         
         <div class="level-end">
-            <a class="level level-item has-link-grey  article-nav-next" href="/2016/05/02/概念/2016-05-15-IRQ与FIQ中断/">
-                <span class="level-item">IRQ与FIQ中断</span>
+            <a class="level level-item has-link-grey  article-nav-next" href="/2016/08/06/Pi/2016-08-06-Raspberry Pi OK02/">
+                <span class="level-item">Raspberry Pi OK02</span>
                 <i class="level-item fas fa-chevron-right"></i>
             </a>
         </div>
@@ -634,18 +638,18 @@
         
         <article class="media">
             
-            <a href="/2019/07/21/数据挖掘/2019-08-13-实时异常检测/" class="media-left">
+            <a href="/2019/07/21/安全/2019-07-22-xgboost/" class="media-left">
                 <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="实时异常检测（xStream，KDD&#39;18）">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="孤立森林（Isolation Forest）">
                 </p>
             </a>
             
             <div class="media-content">
                 <div class="content">
                     <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-07-20T16:00:00.000Z">2019-07-21</time></div>
-                    <a href="/2019/07/21/数据挖掘/2019-08-13-实时异常检测/" class="title has-link-black-ter is-size-6 has-text-weight-normal">实时异常检测（xStream，KDD&#39;18）</a>
+                    <a href="/2019/07/21/安全/2019-07-22-xgboost/" class="title has-link-black-ter is-size-6 has-text-weight-normal">孤立森林（Isolation Forest）</a>
                     <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/Anomaly-detection/">Anomaly detection</a>
+                        <a class="has-link-grey -link" href="/categories/Security/">Security</a>
                     </p>
                 </div>
             </div>
@@ -1134,18 +1138,18 @@
         
         <article class="media">
             
-            <a href="/2019/07/21/数据挖掘/2019-08-13-实时异常检测/" class="media-left">
+            <a href="/2019/07/21/安全/2019-07-22-xgboost/" class="media-left">
                 <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="实时异常检测（xStream，KDD&#39;18）">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="孤立森林（Isolation Forest）">
                 </p>
             </a>
             
             <div class="media-content">
                 <div class="content">
                     <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-07-20T16:00:00.000Z">2019-07-21</time></div>
-                    <a href="/2019/07/21/数据挖掘/2019-08-13-实时异常检测/" class="title has-link-black-ter is-size-6 has-text-weight-normal">实时异常检测（xStream，KDD&#39;18）</a>
+                    <a href="/2019/07/21/安全/2019-07-22-xgboost/" class="title has-link-black-ter is-size-6 has-text-weight-normal">孤立森林（Isolation Forest）</a>
                     <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/Anomaly-detection/">Anomaly detection</a>
+                        <a class="has-link-grey -link" href="/categories/Security/">Security</a>
                     </p>
                 </div>
             </div>

@@ -260,73 +260,69 @@
             <h2 id="Dijkstra算法"><a href="#Dijkstra算法" class="headerlink" title="Dijkstra算法"></a>Dijkstra算法</h2><p>Dijkstra算法求图中最短路径的一种算法，优点是其能找到所有最短路径，但是要求图中不能含有负权值的边。</p>
 <p>算法描述</p>
 <p>Dijkstra算法的思想是一种贪婪算法，初始化时根节点（root）被设置为distance = 0 并放在优先队列S中，其他节点被设置成distance = +inf 并放在等待队列V中。设descendent node是V的某一个节点，我们把从processed node到descendent node且中间只经过S中节点的路径叫做关键路径，采用数组dist记录路径长度，也就是说在算法中保证</p>
-<pre><code>distance.processed + edgeWeight.(processed,descendant) &lt; distance.descendent
-</code></pre><p>如果上式成立，那么将processed node设置成descendant node 的祖先节点（ancestor），遍历V集合中的所有节点，然后选取最优（最短路径）加入S集合中，然后重复上述过程，直到V集合为空。</p>
+<pre><code>distance.processed + edgeWeight.(processed,descendant) &lt; distance.descendent</code></pre><p>如果上式成立，那么将processed node设置成descendant node 的祖先节点（ancestor），遍历V集合中的所有节点，然后选取最优（最短路径）加入S集合中，然后重复上述过程，直到V集合为空。</p>
 <figure class="highlight java hljs"><table><tr><td class="code"><pre><span class="line"><span class="hljs-comment">/**</span></span><br><span class="line"><span class="hljs-comment"> * Dijkstra's algorithm</span></span><br><span class="line"><span class="hljs-comment"> * <span class="hljs-doctag">@param</span> d matrix of legths, position [0 1] = 2 means that from node 0 leads an edge to node 1 of length 2</span></span><br><span class="line"><span class="hljs-comment"> * <span class="hljs-doctag">@param</span> from root node</span></span><br><span class="line"><span class="hljs-comment"> * <span class="hljs-doctag">@return</span> tree an ancestors (denotes path from the node to the root node)</span></span><br><span class="line"><span class="hljs-comment"> */</span></span><br><span class="line">procedure <span class="hljs-keyword">int</span>[] doDijkstra(d, from) &#123;</span><br><span class="line">    <span class="hljs-comment">//insert all nodes to the priority queue, node from has a distance 0, all others infinity</span></span><br><span class="line">    Q = InsertAllNodesToTheQueue(d, from)</span><br><span class="line">    CLOSED = &#123;&#125; <span class="hljs-comment">//closed nodes - empty set</span></span><br><span class="line">    predecessors = <span class="hljs-keyword">new</span> array[d.nodeCount] <span class="hljs-comment">//array of ancestors</span></span><br><span class="line"></span><br><span class="line">    <span class="hljs-keyword">while</span> !Q.isEmpty() <span class="hljs-keyword">do</span></span><br><span class="line">        node = Q.extractMin()</span><br><span class="line">        CLOSED.add(node) <span class="hljs-comment">//close the node</span></span><br><span class="line"></span><br><span class="line">        <span class="hljs-comment">//contract distances</span></span><br><span class="line">        <span class="hljs-function"><span class="hljs-keyword">for</span> a in <span class="hljs-title">Adj</span><span class="hljs-params">(node)</span> <span class="hljs-keyword">do</span> <span class="hljs-comment">//for all descendants</span></span></span><br><span class="line"><span class="hljs-function">            <span class="hljs-keyword">if</span> !CLOSED.<span class="hljs-title">contains</span><span class="hljs-params">(a)</span> <span class="hljs-comment">//if the descendatn was not closed yet</span></span></span><br><span class="line"><span class="hljs-function">                <span class="hljs-comment">//and his distance has decreased               </span></span></span><br><span class="line"><span class="hljs-function">                <span class="hljs-keyword">if</span> Q[node].distance + d[node][a] &lt; Q[a].distance</span></span><br><span class="line"><span class="hljs-function">                    <span class="hljs-comment">//zmen prioritu (vzdalenost) uzlu</span></span></span><br><span class="line"><span class="hljs-function">                    Q[a].distance </span>= Q[node].distance + d[node][a]</span><br><span class="line">                    <span class="hljs-comment">//change its ancestor</span></span><br><span class="line">                    predecessors[a] = node   </span><br><span class="line"></span><br><span class="line">    <span class="hljs-keyword">return</span> predecessors</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">	<span class="hljs-comment">/**</span></span><br><span class="line"><span class="hljs-comment">	 * Dijkstra's algorithm</span></span><br><span class="line"><span class="hljs-comment">	 * <span class="hljs-doctag">@param</span> d matrix of lengths (Integer.MAX_VALUE if there is no edge between the nodes)</span></span><br><span class="line"><span class="hljs-comment">	 * <span class="hljs-doctag">@param</span> from root node</span></span><br><span class="line"><span class="hljs-comment">	 * <span class="hljs-doctag">@return</span> tree an ancestors (denotes path from the node to the root node)</span></span><br><span class="line"><span class="hljs-comment">	 */</span></span><br><span class="line">	<span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">int</span>[] doDijkstra(<span class="hljs-keyword">int</span>[][] d, <span class="hljs-keyword">int</span> from) &#123;</span><br><span class="line">	    Set&lt;Integer&gt; set = <span class="hljs-keyword">new</span> HashSet&lt;Integer&gt;();</span><br><span class="line">	    set.add(from);</span><br><span class="line"></span><br><span class="line">	    <span class="hljs-keyword">boolean</span>[] closed = <span class="hljs-keyword">new</span> <span class="hljs-keyword">boolean</span>[d.length];</span><br><span class="line">	    <span class="hljs-keyword">int</span>[] distances = <span class="hljs-keyword">new</span> <span class="hljs-keyword">int</span>[d.length];</span><br><span class="line">	    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; d.length; i++) &#123;</span><br><span class="line">	        <span class="hljs-keyword">if</span> (i != from) &#123;</span><br><span class="line">	            distances[i] = Integer.MAX_VALUE;</span><br><span class="line">	        &#125; <span class="hljs-keyword">else</span> &#123;</span><br><span class="line">	            distances[i] = <span class="hljs-number">0</span>;</span><br><span class="line">	        &#125;</span><br><span class="line">	    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">	    <span class="hljs-keyword">int</span>[] predecessors = <span class="hljs-keyword">new</span> <span class="hljs-keyword">int</span>[d.length];</span><br><span class="line">	    predecessors[from] = -<span class="hljs-number">1</span>;</span><br><span class="line"></span><br><span class="line">	    <span class="hljs-keyword">while</span> (!set.isEmpty()) &#123;</span><br><span class="line">	        <span class="hljs-comment">//find the nearest node</span></span><br><span class="line">	        <span class="hljs-keyword">int</span> minDistance = Integer.MAX_VALUE;</span><br><span class="line">	        <span class="hljs-keyword">int</span> node = -<span class="hljs-number">1</span>;</span><br><span class="line">	        <span class="hljs-keyword">for</span>(Integer i : set)&#123;</span><br><span class="line">	            <span class="hljs-keyword">if</span>(distances[i] &lt; minDistance)&#123;</span><br><span class="line">	                minDistance = distances[i];</span><br><span class="line">	                node = i;</span><br><span class="line">	            &#125;</span><br><span class="line">	        &#125;</span><br><span class="line"></span><br><span class="line">	        set.remove(node);</span><br><span class="line">	        closed[node] = <span class="hljs-keyword">true</span>;</span><br><span class="line"></span><br><span class="line">	        <span class="hljs-comment">//contract the distances</span></span><br><span class="line">	        <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; d.length; i++) &#123;</span><br><span class="line">	            <span class="hljs-comment">//edge exists</span></span><br><span class="line">	            <span class="hljs-keyword">if</span> (d[node][i] != Integer.MAX_VALUE) &#123;</span><br><span class="line">	                <span class="hljs-keyword">if</span> (!closed[i]) &#123;</span><br><span class="line">	                    <span class="hljs-comment">//the path length decreased using the ancestor node</span></span><br><span class="line">	                    <span class="hljs-keyword">if</span> (distances[node] + d[node][i] &lt; distances[i]) &#123;</span><br><span class="line">	                        distances[i] = distances[node] + d[node][i];</span><br><span class="line">	                        predecessors[i] = node;</span><br><span class="line">	                        set.add(i);</span><br><span class="line">	                    &#125;</span><br><span class="line">	                &#125;</span><br><span class="line">	            &#125;</span><br><span class="line">	        &#125;</span><br><span class="line">	    &#125;</span><br><span class="line">	    <span class="hljs-keyword">return</span> predecessors;</span><br><span class="line">	&#125;</span><br></pre></td></tr></table></figure>
+
 <p>图示</p>
 <p><img src="http://ww3.sinaimg.cn/large/006y8lVagw1f94tn8h79dj30bo0c4aar.jpg" alt></p>
-<div class="table-container">
 <table>
 <thead>
 <tr>
-<th style="text-align:center">迭代</th>
-<th style="text-align:center">S</th>
-<th style="text-align:center">descentdent node</th>
-<th style="text-align:center">dist[A]</th>
-<th style="text-align:center">dist[B]</th>
-<th style="text-align:center">dist[C]</th>
-<th style="text-align:center">dist[D]</th>
+<th align="center">迭代</th>
+<th align="center">S</th>
+<th align="center">descentdent node</th>
+<th align="center">dist[A]</th>
+<th align="center">dist[B]</th>
+<th align="center">dist[C]</th>
+<th align="center">dist[D]</th>
 </tr>
 </thead>
-<tbody>
-<tr>
-<td style="text-align:center">初始</td>
-<td style="text-align:center">{S}</td>
-<td style="text-align:center">-</td>
-<td style="text-align:center">20</td>
-<td style="text-align:center">10</td>
-<td style="text-align:center">max int</td>
-<td style="text-align:center">70</td>
+<tbody><tr>
+<td align="center">初始</td>
+<td align="center">{S}</td>
+<td align="center">-</td>
+<td align="center">20</td>
+<td align="center">10</td>
+<td align="center">max int</td>
+<td align="center">70</td>
 </tr>
 <tr>
-<td style="text-align:center">1</td>
-<td style="text-align:center">{S，B}</td>
-<td style="text-align:center">B</td>
-<td style="text-align:center">20</td>
-<td style="text-align:center">10</td>
-<td style="text-align:center">40</td>
-<td style="text-align:center">70</td>
+<td align="center">1</td>
+<td align="center">{S，B}</td>
+<td align="center">B</td>
+<td align="center">20</td>
+<td align="center">10</td>
+<td align="center">40</td>
+<td align="center">70</td>
 </tr>
 <tr>
-<td style="text-align:center">2</td>
-<td style="text-align:center">{S，B，A}</td>
-<td style="text-align:center">A</td>
-<td style="text-align:center">20</td>
-<td style="text-align:center">10</td>
-<td style="text-align:center">40</td>
-<td style="text-align:center">70</td>
+<td align="center">2</td>
+<td align="center">{S，B，A}</td>
+<td align="center">A</td>
+<td align="center">20</td>
+<td align="center">10</td>
+<td align="center">40</td>
+<td align="center">70</td>
 </tr>
 <tr>
-<td style="text-align:center">3</td>
-<td style="text-align:center">{S，B，A，C}</td>
-<td style="text-align:center">C</td>
-<td style="text-align:center">20</td>
-<td style="text-align:center">10</td>
-<td style="text-align:center">40</td>
-<td style="text-align:center">70</td>
+<td align="center">3</td>
+<td align="center">{S，B，A，C}</td>
+<td align="center">C</td>
+<td align="center">20</td>
+<td align="center">10</td>
+<td align="center">40</td>
+<td align="center">70</td>
 </tr>
 <tr>
-<td style="text-align:center">4</td>
-<td style="text-align:center">{S，B，A，C，D}</td>
-<td style="text-align:center">D</td>
-<td style="text-align:center">20</td>
-<td style="text-align:center">10</td>
-<td style="text-align:center">40</td>
-<td style="text-align:center">70</td>
+<td align="center">4</td>
+<td align="center">{S，B，A，C，D}</td>
+<td align="center">D</td>
+<td align="center">20</td>
+<td align="center">10</td>
+<td align="center">40</td>
+<td align="center">70</td>
 </tr>
-</tbody>
-</table>
-</div>
+</tbody></table>
 
         </div>
         
@@ -382,6 +378,7 @@
 <li>遍历途中所有的边（edge（u，v）），判断是否存在这样情况：<br>d（v） &gt; d (u) + w(u,v)，则返回false，表示途中存在从源点可达的权为负的回路</li>
 </ol>
 <figure class="highlight java hljs"><table><tr><td class="code"><pre><span class="line">function &lt;predecessors&gt; Bellman-Ford(G, source)</span><br><span class="line">    <span class="hljs-keyword">for</span> i in <span class="hljs-number">1</span> to |U| <span class="hljs-keyword">do</span></span><br><span class="line">        distance[i] = +inf</span><br><span class="line">        predecessors[i] = <span class="hljs-keyword">null</span></span><br><span class="line"></span><br><span class="line">    distance[source] = <span class="hljs-number">0</span></span><br><span class="line"></span><br><span class="line">    <span class="hljs-keyword">for</span> i in <span class="hljs-number">1</span> to (|U| - <span class="hljs-number">1</span>) <span class="hljs-keyword">do</span></span><br><span class="line">        <span class="hljs-function"><span class="hljs-keyword">for</span> each Edge e in <span class="hljs-title">Edges</span><span class="hljs-params">(G)</span> <span class="hljs-keyword">do</span></span></span><br><span class="line"><span class="hljs-function">            <span class="hljs-keyword">if</span> distance[e.from] + <span class="hljs-title">length</span><span class="hljs-params">(e)</span> &lt; distance[e.to] <span class="hljs-keyword">do</span></span></span><br><span class="line"><span class="hljs-function">                distance[e.to] </span>= distance[e.from] + length(e)</span><br><span class="line">                predecessors[e.to] = e.from</span><br><span class="line"></span><br><span class="line">    <span class="hljs-function"><span class="hljs-keyword">for</span> each Edge e in <span class="hljs-title">Edges</span><span class="hljs-params">(G)</span> <span class="hljs-keyword">do</span></span></span><br><span class="line"><span class="hljs-function">        <span class="hljs-keyword">if</span> distance[e.from] + <span class="hljs-title">length</span><span class="hljs-params">(e)</span> &lt; distance[e.to] <span class="hljs-keyword">do</span></span></span><br><span class="line"><span class="hljs-function">            <span class="hljs-title">error</span><span class="hljs-params">(<span class="hljs-string">"Graph contains cycles of negative length"</span>)</span></span></span><br><span class="line"><span class="hljs-function"></span></span><br><span class="line"><span class="hljs-function">    return predecessors</span></span><br></pre></td></tr></table></figure>
+
 <p>这里的第三步是为了检测是否存在negative cycle，假设存在以下图并进行relaxation operation：</p>
 <p><img src="http://ww3.sinaimg.cn/large/006y8lVagw1f94d03kx2qj30or07h0tq.jpg" alt></p>
 <p>由于存在negative edge 导致每进行一次松弛计算，节点的权值都会减小，这样在环图中就没有收敛，此时根据算法第三条进行判断，若满足条件则说明存在negative edge</p>
@@ -788,18 +785,18 @@
         
         <article class="media">
             
-            <a href="/2019/07/21/数据挖掘/2019-08-13-实时异常检测/" class="media-left">
+            <a href="/2019/07/21/安全/2019-07-22-xgboost/" class="media-left">
                 <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="实时异常检测（xStream，KDD&#39;18）">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="孤立森林（Isolation Forest）">
                 </p>
             </a>
             
             <div class="media-content">
                 <div class="content">
                     <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-07-20T16:00:00.000Z">2019-07-21</time></div>
-                    <a href="/2019/07/21/数据挖掘/2019-08-13-实时异常检测/" class="title has-link-black-ter is-size-6 has-text-weight-normal">实时异常检测（xStream，KDD&#39;18）</a>
+                    <a href="/2019/07/21/安全/2019-07-22-xgboost/" class="title has-link-black-ter is-size-6 has-text-weight-normal">孤立森林（Isolation Forest）</a>
                     <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/Anomaly-detection/">Anomaly detection</a>
+                        <a class="has-link-grey -link" href="/categories/Security/">Security</a>
                     </p>
                 </div>
             </div>
@@ -1288,18 +1285,18 @@
         
         <article class="media">
             
-            <a href="/2019/07/21/数据挖掘/2019-08-13-实时异常检测/" class="media-left">
+            <a href="/2019/07/21/安全/2019-07-22-xgboost/" class="media-left">
                 <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="实时异常检测（xStream，KDD&#39;18）">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="孤立森林（Isolation Forest）">
                 </p>
             </a>
             
             <div class="media-content">
                 <div class="content">
                     <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-07-20T16:00:00.000Z">2019-07-21</time></div>
-                    <a href="/2019/07/21/数据挖掘/2019-08-13-实时异常检测/" class="title has-link-black-ter is-size-6 has-text-weight-normal">实时异常检测（xStream，KDD&#39;18）</a>
+                    <a href="/2019/07/21/安全/2019-07-22-xgboost/" class="title has-link-black-ter is-size-6 has-text-weight-normal">孤立森林（Isolation Forest）</a>
                     <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/Anomaly-detection/">Anomaly detection</a>
+                        <a class="has-link-grey -link" href="/categories/Security/">Security</a>
                     </p>
                 </div>
             </div>

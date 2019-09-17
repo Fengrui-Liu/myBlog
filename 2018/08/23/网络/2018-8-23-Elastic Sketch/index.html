@@ -206,11 +206,11 @@
 <li>势估计：网络流数量</li>
 </ol>
 <hr>
-<h2 id="弹性Sketches"><a href="#弹性Sketches" class="headerlink" title="弹性Sketches"></a>弹性Sketches</h2><h3 id="基本思路"><a href="#基本思路" class="headerlink" title="基本思路"></a>基本思路</h3><p>逻辑依据(Rationale): 根据上述提到的，我们需要区分大小数据流。我们将分流问题规约为：已知一个高速的网络流，如果用一个桶(bucket)来选择最大的网络流？因为内存大小有限，不可能实现一个完全准确的答案，因此我们应该致力于提高该算法的准确度。我们的方法与陶片放逐法(Ostracism)的思路类似。详细来讲，每一个桶(bucket)都有三个域：ID，positive votes，negative votes。已知一个ID为$f_1$的流传来了一个数据包，如果与bucket 中的ID一致，就增加其positive votes的值，反之增加negative notes的值。如果($\frac{negative votes}{positive votes} \geq \lambda$)其中λ是预先定义好的阈值，我们将原有的数据流从bucket中删除并将$f_1$放入到bucket中。</p>
+<h2 id="弹性Sketches"><a href="#弹性Sketches" class="headerlink" title="弹性Sketches"></a>弹性Sketches</h2><h3 id="基本思路"><a href="#基本思路" class="headerlink" title="基本思路"></a>基本思路</h3><p>逻辑依据(Rationale): 根据上述提到的，我们需要区分大小数据流。我们将分流问题规约为：已知一个高速的网络流，如果用一个桶(bucket)来选择最大的网络流？因为内存大小有限，不可能实现一个完全准确的答案，因此我们应该致力于提高该算法的准确度。我们的方法与陶片放逐法(Ostracism)的思路类似。详细来讲，每一个桶(bucket)都有三个域：ID，positive votes，negative votes。已知一个ID为$f_1$的流传来了一个数据包，如果与bucket 中的ID一致，就增加其positive votes的值，反之增加negative notes的值。如果($\frac{negative\ votes}{positive\ votes} \geq \lambda$)其中λ是预先定义好的阈值，我们将原有的数据流从bucket中删除并将$f_1$放入到bucket中。</p>
 <p><img src="https://ws4.sinaimg.cn/large/006tNbRwly1fuilqxx4h2j30lm09u406.jpg" alt></p>
 <p>如图所示，数据结构包含两部分，heavy part记录大数据流，light part记录小数据流。$h(.)$是一个哈希函数，$vote^+$可以记录本数据流的数据包，$vote^-$可以记录其他数据流的数据包，flag标志light part里面是否包含本条数据流的positive votes。</p>
 <p>light part是一个CM sketch, 一个CM sketch包含$d$个数组，每个数组都有一个哈希函数，并组成了$w$个计数器。给定一个进来的数据包，CM sketch取出流ID，计算$d$个哈希函数去给每一个数组定位一个计数器，并且在该计数器上加1。</p>
-<p>插入：给定一个进来的流ID为$f$的数据包，我们把它哈希到桶$\mathcal{H}[h(f)\%B]$中，$B$是heavy part里面bucket的个数。假设bucket保存$(f1,vote+,flag1,vote-)$。与陶片放逐法Ostracism相同的是，如果$f$与$f_1$匹配，我们增加$vote^+$，否则增加$vote^-$并且决定是否驱逐$f_1$。具体来说有以下四种情况：</p>
+<p>插入：给定一个进来的流ID为$f$的数据包，我们把它哈希到桶$\mathcal{H}[h(f)%B]$中，$B$是heavy part里面bucket的个数。假设bucket保存$(f1,vote+,flag1,vote-)$。与陶片放逐法Ostracism相同的是，如果$f$与$f_1$匹配，我们增加$vote^+$，否则增加$vote^-$并且决定是否驱逐$f_1$。具体来说有以下四种情况：</p>
 <ol>
 <li>bucket是空的，插入$(f,1,F,0)$</li>
 <li>$f=f1$,$vote^+$加1</li>
@@ -236,7 +236,7 @@
 <ol>
 <li><p>将sketch A划分为相等的部分，每个部分都是$w’*d$。</p>
 </li>
-<li><p>我们设立一个sketch B大小为$w’ * d$。3）有同样索引的计数器将会被分到同一个组里（${A_i^k[j]}_{k=1,…,z}$），因此我们可以设置$B_i[j]=OP^z_{k=1}{A_i^k[j]}(1&lt;=i&lt;=d,1&lt;=j&lt;=z)$,$OP$是一个合并操作符如MAX或Sum，图例中就是取最大值，为了符合sketch B，我们也仅仅需要将哈希函数$hi(.)\%w$变为$hi(.)\%w\%w’$。</p>
+<li><p>我们设立一个sketch B大小为$w’ * d$。3）有同样索引的计数器将会被分到同一个组里（${A_i^k[j]}<em>{k=1,…,z}$），因此我们可以设置$B_i[j]=OP^z</em>{k=1}{A_i^k[j]}(1&lt;=i&lt;=d,1&lt;=j&lt;=z)$,$OP$是一个合并操作符如MAX或Sum，图例中就是取最大值，为了符合sketch B，我们也仅仅需要将哈希函数$hi(.)%w$变为$hi(.)%w%w’$。</p>
 </li>
 </ol>
 <p>合并操作：第一种是加和压缩(SC)，将每一组的计数器求和。另一种就是最大值压缩(MC)。关于二者有以下结论：</p>
@@ -249,14 +249,14 @@
 <h3 id="合并sketches"><a href="#合并sketches" class="headerlink" title="合并sketches"></a>合并sketches</h3><p><img src="https://ws2.sinaimg.cn/large/006tNbRwly1fujn6aip66j30ik092q48.jpg" alt></p>
 <p>如上图所示，可以利用服务器来节省带宽。每一个服务器都从测量节点收到很多个sketches，然后合并sketches并将合并结果发送到collector。为了实现合并，我们需要每一个sketches都使用相同的哈希函数。如果他们都有共同的流ID，我们建议使用求和合并，否则我们建议使用最大值合并。</p>
 <p><strong>求和合并（Sum Merging）</strong>：给定两个相同大小($d*w$)的，将相对应的计数器值相加即可，这种方法简单快速但是准确率低。</p>
-<p><strong>对于相同大小的sketches进行最大值合并</strong>：如下图所示，给定两个sketches A和B（$w*d$），建立一个新的sketch $\mathbb{C}$，$C_i[j]=max\{Ai_[j],B_i[j]\}(1 \leq i \leq d,1 \leq j \leq w)$。</p>
+<p><strong>对于相同大小的sketches进行最大值合并</strong>：如下图所示，给定两个sketches A和B（$w*d$），建立一个新的sketch $\mathbb{C}$，$C_i[j]=max{Ai_[j],B_i[j]}(1 \leq i \leq d,1 \leq j \leq w)$。</p>
 <p><img src="https://ws1.sinaimg.cn/large/006tNbRwly1fujp4i6cm3j30iu0680tf.jpg" alt></p>
 <hr>
 <h3 id="自适应数据包传输速率"><a href="#自适应数据包传输速率" class="headerlink" title="自适应数据包传输速率"></a>自适应数据包传输速率</h3><p>在测量节点上，总是有一个输入队列来缓存数据包。包速率在大多数情况下都是比较低的，但是更糟的情况下，其速度是很高的，输入队列也很快填满了，也就很难记录所有的数据流。上一篇文章SketchVisor使用一个专用组件fast path来容纳高速率的数据包。然而，最差情况下他还要将整个数据结构都进行传输，可能会影响一定的性能。</p>
 <p>我们提出了一个方法来应对突发流量。当包数量大于预先设定的阈值时，我们让输入包只到heavy part中，这样保留大数据流，丢弃小数据流。这样一来，只有在以下情况可能发生改变：如果一个bucket里的数据流f由另一个数据流$f’$替换，$f’$的流大小就被设置成了$f$。因此我们需要一个探针，当数据流量速度减小的时候，就回到之前的方法上。</p>
 <p>上述方法在损失很小精确度的情况下实现了更高的速度。该策略被激活的时候，我们没有丢弃light part而是阻止其更新。也就是仅仅当数据包速度很快的时候才会发生信息的丢失。</p>
 <hr>
-<h3 id="自适应网络流大小分布"><a href="#自适应网络流大小分布" class="headerlink" title="自适应网络流大小分布"></a>自适应网络流大小分布</h3><p>对于流大小分布的主要判别依据就是大数据流的数量。我们需要根据数据流的分布来调整heavy part的规模。步骤如下：首先我们向heavy part分配一个小内存空间，随着越来越多的大数据流的加入，heavy part将会满了。我们设定一个阈值T1。当 heavy part满了的时候，我们提出了一下的复制操作：将 heavy part拷贝并与原heavy part合并为一个。哈希函数也从$h(.)\%w$变为$h(.)\%2w$。这样一来，bucket就节省了一半的空间。</p>
+<h3 id="自适应网络流大小分布"><a href="#自适应网络流大小分布" class="headerlink" title="自适应网络流大小分布"></a>自适应网络流大小分布</h3><p>对于流大小分布的主要判别依据就是大数据流的数量。我们需要根据数据流的分布来调整heavy part的规模。步骤如下：首先我们向heavy part分配一个小内存空间，随着越来越多的大数据流的加入，heavy part将会满了。我们设定一个阈值T1。当 heavy part满了的时候，我们提出了一下的复制操作：将 heavy part拷贝并与原heavy part合并为一个。哈希函数也从$h(.)%w$变为$h(.)%2w$。这样一来，bucket就节省了一半的空间。</p>
 <p><img src="https://ws1.sinaimg.cn/large/006tNbRwly1fujqe6jlqmj30j009q75l.jpg" alt></p>
 <p>上图所示到达的$f_2$数据流哈希到了$f_3$的bucket位置上，这样将$w$翻倍，由4变到8，$f_3$数据流的余数可以变为6，$f_2$落到原$f_3$的位置上，这样动态实现了网络流大小的分布适应。</p>
 
@@ -318,16 +318,16 @@
     <div class="level post-navigation is-flex-wrap is-mobile">
         
         <div class="level-start">
-            <a class="level level-item has-link-grey  article-nav-prev" href="/2018/08/23/网络/2018-8-23-SketchVisor/">
+            <a class="level level-item has-link-grey  article-nav-prev" href="/2018/08/23/网络/2018-8-24-SketchLearn/">
                 <i class="level-item fas fa-chevron-left"></i>
-                <span class="level-item">SketchVisor: Robust Network Measurement for Soware Packet Processing</span>
+                <span class="level-item">SketchLearn: Relieving User Burdens in Approximate Measurement with Automated Statistical Inference</span>
             </a>
         </div>
         
         
         <div class="level-end">
-            <a class="level level-item has-link-grey  article-nav-next" href="/2018/08/23/网络/2018-8-24-SketchLearn/">
-                <span class="level-item">SketchLearn: Relieving User Burdens in Approximate Measurement with Automated Statistical Inference</span>
+            <a class="level level-item has-link-grey  article-nav-next" href="/2018/08/23/网络/2018-8-23-SketchVisor/">
+                <span class="level-item">SketchVisor: Robust Network Measurement for Soware Packet Processing</span>
                 <i class="level-item fas fa-chevron-right"></i>
             </a>
         </div>
@@ -703,18 +703,18 @@
         
         <article class="media">
             
-            <a href="/2019/07/21/数据挖掘/2019-08-13-实时异常检测/" class="media-left">
+            <a href="/2019/07/21/安全/2019-07-22-xgboost/" class="media-left">
                 <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="实时异常检测（xStream，KDD&#39;18）">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="孤立森林（Isolation Forest）">
                 </p>
             </a>
             
             <div class="media-content">
                 <div class="content">
                     <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-07-20T16:00:00.000Z">2019-07-21</time></div>
-                    <a href="/2019/07/21/数据挖掘/2019-08-13-实时异常检测/" class="title has-link-black-ter is-size-6 has-text-weight-normal">实时异常检测（xStream，KDD&#39;18）</a>
+                    <a href="/2019/07/21/安全/2019-07-22-xgboost/" class="title has-link-black-ter is-size-6 has-text-weight-normal">孤立森林（Isolation Forest）</a>
                     <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/Anomaly-detection/">Anomaly detection</a>
+                        <a class="has-link-grey -link" href="/categories/Security/">Security</a>
                     </p>
                 </div>
             </div>
@@ -1203,18 +1203,18 @@
         
         <article class="media">
             
-            <a href="/2019/07/21/数据挖掘/2019-08-13-实时异常检测/" class="media-left">
+            <a href="/2019/07/21/安全/2019-07-22-xgboost/" class="media-left">
                 <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="实时异常检测（xStream，KDD&#39;18）">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="孤立森林（Isolation Forest）">
                 </p>
             </a>
             
             <div class="media-content">
                 <div class="content">
                     <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-07-20T16:00:00.000Z">2019-07-21</time></div>
-                    <a href="/2019/07/21/数据挖掘/2019-08-13-实时异常检测/" class="title has-link-black-ter is-size-6 has-text-weight-normal">实时异常检测（xStream，KDD&#39;18）</a>
+                    <a href="/2019/07/21/安全/2019-07-22-xgboost/" class="title has-link-black-ter is-size-6 has-text-weight-normal">孤立森林（Isolation Forest）</a>
                     <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/Anomaly-detection/">Anomaly detection</a>
+                        <a class="has-link-grey -link" href="/categories/Security/">Security</a>
                     </p>
                 </div>
             </div>

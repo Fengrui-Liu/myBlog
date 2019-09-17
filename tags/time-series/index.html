@@ -183,36 +183,20 @@
 <p>multi-horizon代表的意思就是在未来时间内进行多步预测。这可以用来进行资源规划的预测以及决策。这对LSTM提出了挑战，因为当前的输入源于历史信息和未来动态输入的变量，我们的可以精确预测是因为，可以通过对潜在模型的适当表示以及历史数据时间模式的参照。</p>
 <h2 id="方法"><a href="#方法" class="headerlink" title="方法"></a>方法</h2><h3 id="基础编码-解码结构"><a href="#基础编码-解码结构" class="headerlink" title="基础编码-解码结构"></a>基础编码-解码结构</h3><p>采用的是seq2seq流水线结构来编码历史/未来的输入变量，然后解码用于未来的预测</p>
 <p><img src="pictures/Multi-Horizon&#32;LSTM.jpg" alt></p>
-<p>如上图所示，编码过程是一个两层的LSTM架构，可以将历史信息匹配到隐藏层的上一层的$h_{t-1}$。其中$x_t$代表每一个时间戳中的输入，隐藏层就是$h_t$，内部的门(gate cell)就是$i_t,f_t,o_t,c_t$</p>
-<script type="math/tex; mode=display">
-\begin{array}{l}{i_{t}=\sigma\left(W_{i x} x_{t}+W_{i m} m_{t-1}\right)} \\ {f_{t}=\sigma\left(W_{f x} x_{t}+W_{f m} m_{t-1}\right)} \\ {o_{t}=\sigma\left(W_{o x} x_{t}+W_{o m} m_{t-1}\right)} \\ {c_{t}=f_{t} \cdot c_{t-1}+i_{t} \cdot \tanh \left(W_{c x} x_{t}+W_{c m} m_{t-1}\right)} \\ {h_{t}=o_{t} \cdot \tanh \left(c_{t}\right)}\end{array}</script><p>上述复杂的公式简写成$h_t^e=LSTM^e(x_t;h_{t-1})$, 其中$e$就表示在隐含层中已经经过了编码。</p>
-<p>解码器就是将编码器的输出当作输入的初始状态，未来的信息也作为输入生成未来序列，也就是输出。解码器设计成一个双向LSTM网络，可以正向和逆向传播未来的输入特征。这个结构可以使得前向和后向的输入都可以在每一个未来的时间步中观察得到。BiLSTM的隐含层传入一个全连接层或者一个时间域上的卷积层来进行最后的预测。我们强调说最后的预测应该是在BiLSTM信息传播后来进行的。通过将信息传播状态和信息预测状态进行分离，防止在一个长视界（long horizon）中错误的累加。这个结构中前向和后向的信息传播是分离的。定义如下：</p>
-<script type="math/tex; mode=display">
-\begin{aligned} 
-h_{t}^{f} &=L S T M^{f}\left(x_{t} ; h_{t-1}\right) \\ 
-h_{t}^{b} &=L S T M^{b}\left(x_{t} ; h_{t+1}\right) \\ 
-h_{t} &=\left[h_{t}^{f} ; h_{t}^{b}\right] 
-\end{aligned}</script><p>上式可以综合写成$h_t^d = BiLSTM^d(x_t;h_{t-1},h_{t+1})$，为了从隐含层生成分位数的预测，我们加入了一个线性层，在编码解码层的K维分位数预测则为</p>
-<script type="math/tex; mode=display">
-\begin{aligned} 
-y_{t}^{e} &=W_{e} h_{t}^{e}+b_{e} \\
- y_{t}^{d} &=W_{d} h_{t}^{d}+b_{d} 
- \end{aligned}</script><h3 id="Embedding"><a href="#Embedding" class="headerlink" title="Embedding"></a>Embedding</h3><p>通过Embedding技术可以将明确的变量映射为数个特征向量，采用one-hot编码代表$|C|$变量$x_c=\{0…010…0\}\in R^{|C|}$，学习的嵌入式矩阵$W_c\in R^{D*|C|}$，变化后的变量可以由$x_c’=W_cx_c$计算得。</p>
+<p>如上图所示，编码过程是一个两层的LSTM架构，可以将历史信息匹配到隐藏层的上一层的$h_{t-1}$。其中$x_t$代表每一个时间戳中的输入，隐藏层就是$h_t$，内部的门(gate cell)就是$i_t,f_t,o_t,c_t$<br>$$<br>\begin{array}{l}{i_{t}=\sigma\left(W_{i x} x_{t}+W_{i m} m_{t-1}\right)} \ {f_{t}=\sigma\left(W_{f x} x_{t}+W_{f m} m_{t-1}\right)} \ {o_{t}=\sigma\left(W_{o x} x_{t}+W_{o m} m_{t-1}\right)} \ {c_{t}=f_{t} \cdot c_{t-1}+i_{t} \cdot \tanh \left(W_{c x} x_{t}+W_{c m} m_{t-1}\right)} \ {h_{t}=o_{t} \cdot \tanh \left(c_{t}\right)}\end{array}<br>$$</p>
+<p>上述复杂的公式简写成$h_t^e=LSTM^e(x_t;h_{t-1})$, 其中$e$就表示在隐含层中已经经过了编码。</p>
+<p>解码器就是将编码器的输出当作输入的初始状态，未来的信息也作为输入生成未来序列，也就是输出。解码器设计成一个双向LSTM网络，可以正向和逆向传播未来的输入特征。这个结构可以使得前向和后向的输入都可以在每一个未来的时间步中观察得到。BiLSTM的隐含层传入一个全连接层或者一个时间域上的卷积层来进行最后的预测。我们强调说最后的预测应该是在BiLSTM信息传播后来进行的。通过将信息传播状态和信息预测状态进行分离，防止在一个长视界（long horizon）中错误的累加。这个结构中前向和后向的信息传播是分离的。定义如下：<br>$$<br>\begin{aligned}<br>h_{t}^{f} &amp;=L S T M^{f}\left(x_{t} ; h_{t-1}\right) \<br>h_{t}^{b} &amp;=L S T M^{b}\left(x_{t} ; h_{t+1}\right) \<br>h_{t} &amp;=\left[h_{t}^{f} ; h_{t}^{b}\right]<br>\end{aligned}<br>$$</p>
+<p>上式可以综合写成$h_t^d = BiLSTM^d(x_t;h_{t-1},h_{t+1})$，为了从隐含层生成分位数的预测，我们加入了一个线性层，在编码解码层的K维分位数预测则为<br>$$<br>\begin{aligned}<br>y_{t}^{e} &amp;=W_{e} h_{t}^{e}+b_{e} \<br> y_{t}^{d} &amp;=W_{d} h_{t}^{d}+b_{d}<br> \end{aligned}<br>$$</p>
+<h3 id="Embedding"><a href="#Embedding" class="headerlink" title="Embedding"></a>Embedding</h3><p>通过Embedding技术可以将明确的变量映射为数个特征向量，采用one-hot编码代表$|C|$变量$x_c={0…010…0}\in R^{|C|}$，学习的嵌入式矩阵$W_c\in R^{D*|C|}$，变化后的变量可以由$x_c’=W_cx_c$计算得。</p>
 <h3 id="注意力模型"><a href="#注意力模型" class="headerlink" title="注意力模型"></a>注意力模型</h3><p>编码解码模型由于内存的更新很难捕获长期的记忆，所以这里使用注意力模型，如图所示<br><img src="pictures/multi-scale.jpg" alt><br>最下层的是历史编码模块，最上层是一个BiLSTM的未来解码模块，文章设计了一个多模型的注意力机制，他由每次未来时间步骤中的BiLSTM的隐藏层引导，并且融合不同的权重应用到不同的历史数据中</p>
 <p><strong>时间注意力</strong></p>
-<p>不能使用全体的历史数据，原因是真实世界的时序数据太长了，可能会模糊掉注意力模型，并且计算不够有效率。文章提出了一种分离性注意每个时期下的历史数据并将其结合到多形态融合的模式下，长度可以由人为设定。时间注意力的权重$\gamma_{1:T_h}$可以表述为</p>
-<script type="math/tex; mode=display">
-\begin{array}
-{c}{\mathbf{g}=\mathbf{v}_{g}^{\top} \tanh \left(\mathbf{W}_{g} \mathbf{s}_{t}+\mathbf{V}_{g} \mathbf{h}+\mathbf{b}_{g}\right)} \\ 
-{\gamma_{i}=\frac{\exp \left(g_{i}\right)}{\sum_{j=1}^{T_{h}} \exp \left(g_{j}\right)} \quad \text { for } i=1 \ldots T_{h}}
-\end{array}</script><p>然后加入的内容向量$c_t$和transformer$d_t$为：</p>
-<script type="math/tex; mode=display">
-\begin{aligned} \mathbf{c}_{t} &=\sum_{i=1}^{T_{h}} \gamma_{i} \mathbf{h}_{i} \\ \mathbf{d}_{t} &=\operatorname{ReLU}\left(\mathbf{W}_{d} \mathbf{c}_{t}+\mathbf{b}_{d}\right) \end{aligned}</script><p><strong>多形态融合</strong></p>
-<p>图3 给出的是M=2的融合结果，</p>
-<script type="math/tex; mode=display">
-\begin{array}{l}{\mathbf{p}_{t}^{m}=\mathbf{v}_{p}^{\top} \tanh \left(\mathbf{W}_{p} \mathbf{s}_{t}+\mathbf{V}_{p}^{m} \mathbf{d}_{t}^{m}+\mathbf{b}_{p}\right)} \\ {\phi_{t}^{m}=\frac{\exp \left(p_{t}^{m}\right)}{\sum_{k=1}^{M} \exp \left(p_{t}^{k}\right)} \quad \text { for } m=1 \ldots M}\end{array}</script><p>融合后的知识库$x_t$可以由$d_t^m$的加和计算结果给出</p>
-<script type="math/tex; mode=display">
-x_t=\sum_{m=1}^M\phi_t^md_t^m</script>
+<p>不能使用全体的历史数据，原因是真实世界的时序数据太长了，可能会模糊掉注意力模型，并且计算不够有效率。文章提出了一种分离性注意每个时期下的历史数据并将其结合到多形态融合的模式下，长度可以由人为设定。时间注意力的权重$\gamma_{1:T_h}$可以表述为<br>$$<br>\begin{array}<br>{c}{\mathbf{g}=\mathbf{v}<em>{g}^{\top} \tanh \left(\mathbf{W}</em>{g} \mathbf{s}<em>{t}+\mathbf{V}</em>{g} \mathbf{h}+\mathbf{b}<em>{g}\right)} \<br>{\gamma</em>{i}=\frac{\exp \left(g_{i}\right)}{\sum_{j=1}^{T_{h}} \exp \left(g_{j}\right)} \quad \text { for } i=1 \ldots T_{h}}<br>\end{array}<br>$$</p>
+<p>然后加入的内容向量$c_t$和transformer$d_t$为：<br>$$<br>\begin{aligned} \mathbf{c}<em>{t} &amp;=\sum</em>{i=1}^{T_{h}} \gamma_{i} \mathbf{h}<em>{i} \ \mathbf{d}</em>{t} &amp;=\operatorname{ReLU}\left(\mathbf{W}<em>{d} \mathbf{c}</em>{t}+\mathbf{b}_{d}\right) \end{aligned}<br>$$</p>
+<p><strong>多形态融合</strong></p>
+<p>图3 给出的是M=2的融合结果，<br>$$<br>\begin{array}{l}{\mathbf{p}<em>{t}^{m}=\mathbf{v}</em>{p}^{\top} \tanh \left(\mathbf{W}<em>{p} \mathbf{s}</em>{t}+\mathbf{V}<em>{p}^{m} \mathbf{d}</em>{t}^{m}+\mathbf{b}<em>{p}\right)} \ {\phi</em>{t}^{m}=\frac{\exp \left(p_{t}^{m}\right)}{\sum_{k=1}^{M} \exp \left(p_{t}^{k}\right)} \quad \text { for } m=1 \ldots M}\end{array}<br>$$</p>
+<p>融合后的知识库$x_t$可以由$d_t^m$的加和计算结果给出</p>
+<p>$$<br>x_t=\sum_{m=1}^M\phi_t^md_t^m<br>$$</p>
+
         </div>
         
         
@@ -594,18 +578,18 @@ x_t=\sum_{m=1}^M\phi_t^md_t^m</script>
         
         <article class="media">
             
-            <a href="/2019/07/21/数据挖掘/2019-08-13-实时异常检测/" class="media-left">
+            <a href="/2019/07/21/安全/2019-07-22-xgboost/" class="media-left">
                 <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="实时异常检测（xStream，KDD&#39;18）">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="孤立森林（Isolation Forest）">
                 </p>
             </a>
             
             <div class="media-content">
                 <div class="content">
                     <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-07-20T16:00:00.000Z">2019-07-21</time></div>
-                    <a href="/2019/07/21/数据挖掘/2019-08-13-实时异常检测/" class="title has-link-black-ter is-size-6 has-text-weight-normal">实时异常检测（xStream，KDD&#39;18）</a>
+                    <a href="/2019/07/21/安全/2019-07-22-xgboost/" class="title has-link-black-ter is-size-6 has-text-weight-normal">孤立森林（Isolation Forest）</a>
                     <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/Anomaly-detection/">Anomaly detection</a>
+                        <a class="has-link-grey -link" href="/categories/Security/">Security</a>
                     </p>
                 </div>
             </div>
@@ -1094,18 +1078,18 @@ x_t=\sum_{m=1}^M\phi_t^md_t^m</script>
         
         <article class="media">
             
-            <a href="/2019/07/21/数据挖掘/2019-08-13-实时异常检测/" class="media-left">
+            <a href="/2019/07/21/安全/2019-07-22-xgboost/" class="media-left">
                 <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="实时异常检测（xStream，KDD&#39;18）">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="孤立森林（Isolation Forest）">
                 </p>
             </a>
             
             <div class="media-content">
                 <div class="content">
                     <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-07-20T16:00:00.000Z">2019-07-21</time></div>
-                    <a href="/2019/07/21/数据挖掘/2019-08-13-实时异常检测/" class="title has-link-black-ter is-size-6 has-text-weight-normal">实时异常检测（xStream，KDD&#39;18）</a>
+                    <a href="/2019/07/21/安全/2019-07-22-xgboost/" class="title has-link-black-ter is-size-6 has-text-weight-normal">孤立森林（Isolation Forest）</a>
                     <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/Anomaly-detection/">Anomaly detection</a>
+                        <a class="has-link-grey -link" href="/categories/Security/">Security</a>
                     </p>
                 </div>
             </div>

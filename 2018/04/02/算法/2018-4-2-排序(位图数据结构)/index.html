@@ -10,19 +10,19 @@
 <title>排序(位图数据结构) - Fengrui Liu&#39;s Blog</title>
 
 
-    <meta name="description" content="对于规模比较大的数据集，但又不是特别特别大的数据集来说，使用位图数据结构的排序是一个不错的选择。注：要求数据没有重复。 位图/位向量表示一个整数合集{1，2，3，5，8，13}可以使用如下字符串： 0 1 1 1 0 1 0 0 1 0 0 0 0 1 0 0 0 0 0 0  这种表示方法，1MB大小的空间可以表示月800万个数字，与十进制的7位数字1000万接近。 // phase 1: in">
+    <meta name="description" content="对于规模比较大的数据集，但又不是特别特别大的数据集来说，使用位图数据结构的排序是一个不错的选择。注：要求数据没有重复。 位图/位向量表示一个整数合集{1，2，3，5，8，13}可以使用如下字符串： 0 1 1 1 0 1 0 0 1 0 0 0 0 1 0 0 0 0 0 0 这种表示方法，1MB大小的空间可以表示月800万个数字，与十进制的7位数字1000万接近。 // phase 1: ini">
 <meta name="keywords" content="Algorithm">
 <meta property="og:type" content="article">
 <meta property="og:title" content="排序(位图数据结构)">
 <meta property="og:url" content="http://www.liufr.com/2018/04/02/算法/2018-4-2-排序(位图数据结构)/index.html">
 <meta property="og:site_name" content="Fengrui Liu&#39;s Blog">
-<meta property="og:description" content="对于规模比较大的数据集，但又不是特别特别大的数据集来说，使用位图数据结构的排序是一个不错的选择。注：要求数据没有重复。 位图/位向量表示一个整数合集{1，2，3，5，8，13}可以使用如下字符串： 0 1 1 1 0 1 0 0 1 0 0 0 0 1 0 0 0 0 0 0  这种表示方法，1MB大小的空间可以表示月800万个数字，与十进制的7位数字1000万接近。 // phase 1: in">
+<meta property="og:description" content="对于规模比较大的数据集，但又不是特别特别大的数据集来说，使用位图数据结构的排序是一个不错的选择。注：要求数据没有重复。 位图/位向量表示一个整数合集{1，2，3，5，8，13}可以使用如下字符串： 0 1 1 1 0 1 0 0 1 0 0 0 0 1 0 0 0 0 0 0 这种表示方法，1MB大小的空间可以表示月800万个数字，与十进制的7位数字1000万接近。 // phase 1: ini">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http://www.liufr.com/images/og_image.png">
 <meta property="og:updated_time" content="2018-04-12T02:18:19.860Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="排序(位图数据结构)">
-<meta name="twitter:description" content="对于规模比较大的数据集，但又不是特别特别大的数据集来说，使用位图数据结构的排序是一个不错的选择。注：要求数据没有重复。 位图/位向量表示一个整数合集{1，2，3，5，8，13}可以使用如下字符串： 0 1 1 1 0 1 0 0 1 0 0 0 0 1 0 0 0 0 0 0  这种表示方法，1MB大小的空间可以表示月800万个数字，与十进制的7位数字1000万接近。 // phase 1: in">
+<meta name="twitter:description" content="对于规模比较大的数据集，但又不是特别特别大的数据集来说，使用位图数据结构的排序是一个不错的选择。注：要求数据没有重复。 位图/位向量表示一个整数合集{1，2，3，5，8，13}可以使用如下字符串： 0 1 1 1 0 1 0 0 1 0 0 0 0 1 0 0 0 0 0 0 这种表示方法，1MB大小的空间可以表示月800万个数字，与十进制的7位数字1000万接近。 // phase 1: ini">
 <meta name="twitter:image" content="http://www.liufr.com/images/og_image.png">
 
 
@@ -174,9 +174,9 @@
         <div class="content">
             <p>对于规模比较大的数据集，但又不是特别特别大的数据集来说，使用位图数据结构的排序是一个不错的选择。<br>注：要求数据没有重复。</p>
 <h3 id="位图-位向量"><a href="#位图-位向量" class="headerlink" title="位图/位向量"></a>位图/位向量</h3><p>表示一个整数合集{1，2，3，5，8，13}可以使用如下字符串：</p>
-<pre><code>0 1 1 1 0 1 0 0 1 0 0 0 0 1 0 0 0 0 0 0 
-</code></pre><p>这种表示方法，1MB大小的空间可以表示月800万个数字，与十进制的7位数字1000万接近。</p>
+<pre><code>0 1 1 1 0 1 0 0 1 0 0 0 0 1 0 0 0 0 0 0 </code></pre><p>这种表示方法，1MB大小的空间可以表示月800万个数字，与十进制的7位数字1000万接近。</p>
 <figure class="highlight c hljs"><table><tr><td class="code"><pre><span class="line"><span class="hljs-comment">// phase 1: initialize set to empty</span></span><br><span class="line"><span class="hljs-keyword">for</span> i = [<span class="hljs-number">0</span>,n]</span><br><span class="line">    bit[i] = <span class="hljs-number">0</span>;</span><br><span class="line"></span><br><span class="line"><span class="hljs-comment">// phase 2: insert present elements into the set</span></span><br><span class="line"><span class="hljs-keyword">for</span> each i in the input file</span><br><span class="line">    bit[i] = <span class="hljs-number">1</span>;</span><br><span class="line"></span><br><span class="line"><span class="hljs-comment">//phase 3: write sorted output</span></span><br><span class="line"></span><br><span class="line"><span class="hljs-keyword">for</span> i = [<span class="hljs-number">0</span>,n]</span><br><span class="line">    <span class="hljs-keyword">if</span> bit[i] == <span class="hljs-number">1</span>  </span><br><span class="line">        write i on the output file</span><br></pre></td></tr></table></figure>
+
 <p>位图数据结构还可以用来检查数据集的重复性</p>
 <p>（编程珠玑）</p>
 
@@ -623,18 +623,18 @@
         
         <article class="media">
             
-            <a href="/2019/07/21/数据挖掘/2019-08-13-实时异常检测/" class="media-left">
+            <a href="/2019/07/21/安全/2019-07-22-xgboost/" class="media-left">
                 <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="实时异常检测（xStream，KDD&#39;18）">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="孤立森林（Isolation Forest）">
                 </p>
             </a>
             
             <div class="media-content">
                 <div class="content">
                     <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-07-20T16:00:00.000Z">2019-07-21</time></div>
-                    <a href="/2019/07/21/数据挖掘/2019-08-13-实时异常检测/" class="title has-link-black-ter is-size-6 has-text-weight-normal">实时异常检测（xStream，KDD&#39;18）</a>
+                    <a href="/2019/07/21/安全/2019-07-22-xgboost/" class="title has-link-black-ter is-size-6 has-text-weight-normal">孤立森林（Isolation Forest）</a>
                     <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/Anomaly-detection/">Anomaly detection</a>
+                        <a class="has-link-grey -link" href="/categories/Security/">Security</a>
                     </p>
                 </div>
             </div>
@@ -1123,18 +1123,18 @@
         
         <article class="media">
             
-            <a href="/2019/07/21/数据挖掘/2019-08-13-实时异常检测/" class="media-left">
+            <a href="/2019/07/21/安全/2019-07-22-xgboost/" class="media-left">
                 <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="实时异常检测（xStream，KDD&#39;18）">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="孤立森林（Isolation Forest）">
                 </p>
             </a>
             
             <div class="media-content">
                 <div class="content">
                     <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-07-20T16:00:00.000Z">2019-07-21</time></div>
-                    <a href="/2019/07/21/数据挖掘/2019-08-13-实时异常检测/" class="title has-link-black-ter is-size-6 has-text-weight-normal">实时异常检测（xStream，KDD&#39;18）</a>
+                    <a href="/2019/07/21/安全/2019-07-22-xgboost/" class="title has-link-black-ter is-size-6 has-text-weight-normal">孤立森林（Isolation Forest）</a>
                     <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/Anomaly-detection/">Anomaly detection</a>
+                        <a class="has-link-grey -link" href="/categories/Security/">Security</a>
                     </p>
                 </div>
             </div>

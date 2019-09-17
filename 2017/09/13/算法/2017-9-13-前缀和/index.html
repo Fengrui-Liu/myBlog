@@ -180,8 +180,10 @@
 <p>输出一个整数m，表示在指定大小的区域内，花生最大产量为m。</p>
 <p>Sample Input</p>
 <figure class="highlight plain hljs"><table><tr><td class="code"><pre><span class="line">4 5</span><br><span class="line">1 2 3 4 5</span><br><span class="line">6 7 8 0 0</span><br><span class="line">0 9 2 2 3</span><br><span class="line">3 0 0 0 1</span><br><span class="line">3 3</span><br></pre></td></tr></table></figure>
+
 <p>Sample Output</p>
 <figure class="highlight plain hljs"><table><tr><td class="code"><pre><span class="line">38</span><br></pre></td></tr></table></figure>
+
 <p>样例解释</p>
 <p>左上角：38 = (1+2+3) + (6+7+8) + (0+9+2)</p>
 <p>数据范围</p>
@@ -193,6 +195,7 @@
 <p>在网上有的人是用’前缀和’这样的概念来描述并解决这个问题的：</p>
 <p>我们先考虑一维的情形，如果我事先计算出 pre[i] 表示前1-i个格子内数字之和，那么完成这个处理之后，每次想要得到任意一个区间 [l, r]的数字和，只需要计算 pre[r] - pre[l -1]即可。随即我们可以推广到二维，事先计算pre[i][j]表示以1, 1为左上角，i, j为右下角的矩形内数字之和。那么不难推出如果要取得以x1, y1为左上角 x2, y2为右下角的矩形内数字之和，只需计算 pre[x2][y2] - pre[x1 - 1][y2] - pre[x2][y1 - 1] + pre[x1 - 1][y1 - 1] 即可。</p>
 <figure class="highlight c++ hljs"><table><tr><td class="code"><pre><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span><span class="hljs-meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> <span class="hljs-built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span></span><br><span class="line"><span class="hljs-function"></span>&#123;</span><br><span class="line">    int L(0), W(0), t(0);</span><br><span class="line">    <span class="hljs-built_in">cin</span> &gt;&gt; L &gt;&gt; W; <span class="hljs-comment">//输入花生地的长和宽</span></span><br><span class="line">    <span class="hljs-comment">//定义数组</span></span><br><span class="line">    <span class="hljs-keyword">int</span> **store = <span class="hljs-keyword">new</span> <span class="hljs-keyword">int</span>*[L];</span><br><span class="line">    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; L; ++i)   store[i] = <span class="hljs-keyword">new</span> <span class="hljs-keyword">int</span>[W];</span><br><span class="line">    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; L; ++i)&#123;</span><br><span class="line">        <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> j = <span class="hljs-number">0</span>; j &lt; W; ++j)&#123;</span><br><span class="line">            <span class="hljs-built_in">cin</span> &gt;&gt; t;</span><br><span class="line">            <span class="hljs-keyword">if</span> (j&gt;<span class="hljs-number">0</span>&amp;&amp;i&gt;<span class="hljs-number">0</span>)store[i][j] = store[i<span class="hljs-number">-1</span>][j] + t + store[i][j<span class="hljs-number">-1</span>] - store[i<span class="hljs-number">-1</span>][j<span class="hljs-number">-1</span>];</span><br><span class="line">            <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (j&gt;<span class="hljs-number">0</span> &amp;&amp; i == <span class="hljs-number">0</span>)store[i][j] = t + store[i][j<span class="hljs-number">-1</span>];</span><br><span class="line">            <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (i &gt; <span class="hljs-number">0</span> &amp;&amp; j == <span class="hljs-number">0</span>)store[i][j] = t + store[i - <span class="hljs-number">1</span>][j];</span><br><span class="line">            <span class="hljs-keyword">else</span> store[i][j] = t;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="hljs-keyword">int</span> l, w, result(<span class="hljs-number">0</span>), temp(<span class="hljs-number">0</span>);</span><br><span class="line">    <span class="hljs-built_in">cin</span> &gt;&gt; l &gt;&gt; w;<span class="hljs-comment">//获得目标区块的大小</span></span><br><span class="line">    <span class="hljs-comment">//遍历计算</span></span><br><span class="line">    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = l - <span class="hljs-number">1</span>; i &lt; L; ++i)&#123;</span><br><span class="line">        <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> j = w - <span class="hljs-number">1</span>; j &lt; W; ++j)&#123;</span><br><span class="line">            <span class="hljs-keyword">if</span>(i == l- <span class="hljs-number">1</span> &amp;&amp; j == w - <span class="hljs-number">1</span>)temp = store[i][j];</span><br><span class="line">            <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (i == l - <span class="hljs-number">1</span> &amp;&amp; j != w - <span class="hljs-number">1</span>)temp = store[i][j] - store[i][j - w];</span><br><span class="line">            <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (i != l - <span class="hljs-number">1</span> &amp;&amp; j == w - <span class="hljs-number">1</span>)temp = store[i][j] - store[i - l][j];</span><br><span class="line">            <span class="hljs-keyword">else</span> temp = store[i][j] - store[i - l][j] - store[i][j-w] + store[i-l][j-w];</span><br><span class="line">            <span class="hljs-keyword">if</span> (temp &gt;= result)result = temp;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="hljs-built_in">cout</span> &lt;&lt; result;<span class="hljs-comment">//输出结果</span></span><br><span class="line">    <span class="hljs-comment">//释放内存！</span></span><br><span class="line">    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; L; ++i)</span><br><span class="line">        <span class="hljs-keyword">delete</span>[] store[i];</span><br><span class="line">    <span class="hljs-keyword">delete</span>[] store;</span><br><span class="line">    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
 
         </div>
         
@@ -260,8 +263,8 @@
         
         
         <div class="level-end">
-            <a class="level level-item has-link-grey  article-nav-next" href="/2017/07/14/网络/2017-07-14-Ego networks/">
-                <span class="level-item">Ego networks</span>
+            <a class="level level-item has-link-grey  article-nav-next" href="/2017/07/14/算法/2017-7-14-tf-idf/">
+                <span class="level-item">tf-idf</span>
                 <i class="level-item fas fa-chevron-right"></i>
             </a>
         </div>
@@ -637,18 +640,18 @@
         
         <article class="media">
             
-            <a href="/2019/07/21/数据挖掘/2019-08-13-实时异常检测/" class="media-left">
+            <a href="/2019/07/21/安全/2019-07-22-xgboost/" class="media-left">
                 <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="实时异常检测（xStream，KDD&#39;18）">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="孤立森林（Isolation Forest）">
                 </p>
             </a>
             
             <div class="media-content">
                 <div class="content">
                     <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-07-20T16:00:00.000Z">2019-07-21</time></div>
-                    <a href="/2019/07/21/数据挖掘/2019-08-13-实时异常检测/" class="title has-link-black-ter is-size-6 has-text-weight-normal">实时异常检测（xStream，KDD&#39;18）</a>
+                    <a href="/2019/07/21/安全/2019-07-22-xgboost/" class="title has-link-black-ter is-size-6 has-text-weight-normal">孤立森林（Isolation Forest）</a>
                     <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/Anomaly-detection/">Anomaly detection</a>
+                        <a class="has-link-grey -link" href="/categories/Security/">Security</a>
                     </p>
                 </div>
             </div>
@@ -1137,18 +1140,18 @@
         
         <article class="media">
             
-            <a href="/2019/07/21/数据挖掘/2019-08-13-实时异常检测/" class="media-left">
+            <a href="/2019/07/21/安全/2019-07-22-xgboost/" class="media-left">
                 <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="实时异常检测（xStream，KDD&#39;18）">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="孤立森林（Isolation Forest）">
                 </p>
             </a>
             
             <div class="media-content">
                 <div class="content">
                     <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-07-20T16:00:00.000Z">2019-07-21</time></div>
-                    <a href="/2019/07/21/数据挖掘/2019-08-13-实时异常检测/" class="title has-link-black-ter is-size-6 has-text-weight-normal">实时异常检测（xStream，KDD&#39;18）</a>
+                    <a href="/2019/07/21/安全/2019-07-22-xgboost/" class="title has-link-black-ter is-size-6 has-text-weight-normal">孤立森林（Isolation Forest）</a>
                     <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/Anomaly-detection/">Anomaly detection</a>
+                        <a class="has-link-grey -link" href="/categories/Security/">Security</a>
                     </p>
                 </div>
             </div>

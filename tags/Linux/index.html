@@ -165,7 +165,7 @@
                 <span class="level-item has-text-grey">
                     
                     
-                    15 分钟 读完 (大约 2225 个字)
+                    12 分钟 读完 (大约 1841 个字)
                 </span>
                 
                 
@@ -174,43 +174,77 @@
         
         <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
             
-                <a class="has-link-black-ter" href="/2017/10/22/Linux/2017-10-22-Linux中断和中断处理/">Linux-中断和中断处理</a>
+                <a class="has-link-black-ter" href="/2017/10/22/Linux/2017-11-2-Linux-下半部和推后执行的工作/">Linux-下半部和推后执行的工作&#34;</a>
             
         </h1>
         <div class="content">
-            <h3 id="中断"><a href="#中断" class="headerlink" title="中断"></a>中断</h3><p>不同的设备对应的中断不同，而每个中断都通过一个唯一的数字标志，从而使得操作系统能够对中断进行区分，并且知道哪个硬件设备产生了哪个中断。</p>
-<p>每个中断值通常被称作中断请求(IRQ)线。每个IRQ县都会被关联一个数值量(例如 IRQ 0 是时钟中断，IRQ 1是键盘中断)。对于连接在PCI总线上的设备而言，中断是动态分配的。</p>
-<h3 id="异常"><a href="#异常" class="headerlink" title="异常"></a>异常</h3><p>异常与中断不同，它在产生时必须考虑与处理器时钟同步，因此异常也被称作同步中断。内核对于中断与异常的处理比较类似。</p>
-<h3 id="中断处理程序"><a href="#中断处理程序" class="headerlink" title="中断处理程序"></a>中断处理程序</h3><p>在响应一个特定中断的时候，内核会执行一个函数，该函数叫做中断处理程序或者中断服务例程(interrupt service routine, ISR)。产生中断的每个设备都有一个相应的中断处理程序。</p>
-<p>在Linux中，中断处理程序就是C函数，只不过这些函数必须按照特定的类型声明。ISR与其他内核函数的区别就是ISR是被内核调用来响应中断的，而它们运行于我们称之为中断上下文的特殊上下文中。</p>
-<h3 id="上半部与下半部的对比"><a href="#上半部与下半部的对比" class="headerlink" title="上半部与下半部的对比"></a>上半部与下半部的对比</h3><p>中断处理程序是上半部(top half)——接收到一个中断，就开始立即执行，但是只做有严格时限的工作，例如对接收的中断进行应答或者复位。此后，在合适的时机，下半部会被开中断执行。</p>
-<h3 id="注册中断处理程序"><a href="#注册中断处理程序" class="headerlink" title="注册中断处理程序"></a>注册中断处理程序</h3><p>中断处理程序是管理硬件的驱动程序的组成部分。每一设备都有相关的驱动程序，如果设备使用中断，那么相应的驱动程序就注册一个中断处理程序。</p>
-<p>驱动程序可以通过request_irq()函数注册一个中断处理程序。<br><figure class="highlight c hljs"><table><tr><td class="code"><pre><span class="line"><span class="hljs-comment">//  arch/sparc/kernel/irq.c</span></span><br><span class="line"><span class="hljs-comment">//</span></span><br><span class="line"><span class="hljs-comment">//  irq: 要分配的中断号，对于系统时钟或者键盘等，这个值是确定的，但是对于其他设备这个值可以探测获取或者编程动态确定。</span></span><br><span class="line"><span class="hljs-comment">//  handler：指针指向处理这个中断的实际中断处理程序。</span></span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">request_irq</span><span class="hljs-params">(<span class="hljs-keyword">unsigned</span> <span class="hljs-keyword">int</span> irq,</span></span></span><br><span class="line">		irqreturn_t (*handler)(int, void *, struct pt_regs *),</span><br><span class="line">		<span class="hljs-keyword">unsigned</span> <span class="hljs-keyword">long</span> irqflags, <span class="hljs-keyword">const</span> <span class="hljs-keyword">char</span> * devname, <span class="hljs-keyword">void</span> *dev_id)</span><br></pre></td></tr></table></figure></p>
-<h4 id="中断处理程序标志"><a href="#中断处理程序标志" class="headerlink" title="中断处理程序标志"></a>中断处理程序标志</h4><p>request_irq第三个参数flags可以为0，也可能是下列一个或多个标志的位掩码。这些标志中最重要的是：</p>
+            <p>中断机制有一些局限，包括：</p>
+<ol>
+<li>中断以异步方式执行，并且有可能会打断其他重要代码。为了避免被打断的代码停止过长时间，中断处理应该执行得越快越好。</li>
+<li>如果当前有一个中断处理程序正在执行，最好情况下该中断同级的其他中断会被屏蔽；最坏情况下当前处理器上所有的其他中断都会被屏蔽。因为禁止中断后硬件与操作系统无法通信，所以中断处理程序执行得越快越好。</li>
+<li>中断往往需要对硬件进行操作，所以它们通常有很高的时限要求。</li>
+<li>中断不能再进程上下文中进行，所以不能阻塞。</li>
+</ol>
+<p>正因如此，中断处理流程被分为两部分，第一部分是中断处理程序(上半部)，内核对它的异步执行完成对硬件中断的及时响应。另一部分就是下半部。</p>
+<h3 id="下半部"><a href="#下半部" class="headerlink" title="下半部"></a>下半部</h3><p>理想情况下中断(上半部)完成的工作越少越好，将所需处理的工作都留给下半部，但是中断程序注定要做一些工作，虽然不是严格要求，但是可以参考如下：</p>
+<ol>
+<li>对时间非常敏感，将其放在中断处理程序中执行。</li>
+<li>和硬件相关，将其放在中断处理程序中执行。</li>
+<li>要保证不被其他中断打断，将其放在中断处理程序中执行。</li>
+<li>其他所有任务都放在下半部执行。</li>
+</ol>
+<h3 id="软中断"><a href="#软中断" class="headerlink" title="软中断"></a>软中断</h3><h4 id="软中断的实现"><a href="#软中断的实现" class="headerlink" title="软中断的实现"></a>软中断的实现</h4><p>软中断是在编译期间静态分配的。有<strong>softirq_action</strong>结构表示，总共有32个该结构体的数组。</p>
+<figure class="highlight c hljs"><table><tr><td class="code"><pre><span class="line"><span class="hljs-comment">// linux/interrupt.h</span></span><br><span class="line"></span><br><span class="line"><span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">softirq_action</span>&#123;</span></span><br><span class="line">	<span class="hljs-keyword">void</span> (*action)(struct softirq_action *);</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<p>每个被注册的软中断都占据一项，最多有32个软中断。</p>
+<h5 id="软中断处理程序"><a href="#软中断处理程序" class="headerlink" title="软中断处理程序"></a>软中断处理程序</h5><p>action的函数原型如下：</p>
+<figure class="highlight c hljs"><table><tr><td class="code"><pre><span class="line"><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">softirq_handler</span><span class="hljs-params">(struct softirq_action *)</span></span></span><br></pre></td></tr></table></figure>
+
+<p>一个软中断不会抢占另外一个软中断，只有中断处理程序才会抢占软中断，不过多个软中断可以在其他处理器上同时执行。</p>
+<h5 id="执行软中断"><a href="#执行软中断" class="headerlink" title="执行软中断"></a>执行软中断</h5><p>通常中断处理程序会在返回前标记它的软中断，使其稍后执行(触发软中断)。在以下情况，待处理的软中断会被检查和执行：</p>
+<ol>
+<li>从一个硬件中断代码处返回</li>
+<li>在ksoftirqd内核线程中</li>
+<li>在那些显示检查和执行待处理的软中断的代码中，如网络子系统中</li>
+</ol>
+<h3 id="tasklet"><a href="#tasklet" class="headerlink" title="tasklet"></a>tasklet</h3><p>tasklet是利用软中断实现的一种下半部机制，他和进程没有任何关系。tasklet的接口更简单，锁保护也要求比较低。通常情况下应该选用tasklet而非软中断。</p>
+<h4 id="tasklet的实现"><a href="#tasklet的实现" class="headerlink" title="tasklet的实现"></a>tasklet的实现</h4><p>因为tasklet是通过软中断实现的，所以它本身也是软中断，由两类软中断代表：HI_SOFIRQ和TASKLET_SOFTIRQ。其中HI_SOFTIRQ类型软中断要优先于TASKLET_SOFTIRQ。</p>
+<h5 id="tasklet结构体"><a href="#tasklet结构体" class="headerlink" title="tasklet结构体"></a>tasklet结构体</h5><figure class="highlight c hljs"><table><tr><td class="code"><pre><span class="line"><span class="hljs-comment">// linux/interrupt.h</span></span><br><span class="line"><span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">tasklet_struct</span>&#123;</span></span><br><span class="line">	<span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">tasklet_struct</span> *<span class="hljs-title">next</span>;</span>  <span class="hljs-comment">//链表中的下一个tasklet</span></span><br><span class="line">	<span class="hljs-keyword">unsigned</span> <span class="hljs-keyword">long</span> state;          <span class="hljs-comment">//tasklet 的状态</span></span><br><span class="line">	<span class="hljs-keyword">atomic_t</span> count;               <span class="hljs-comment">//引用计数器</span></span><br><span class="line">	<span class="hljs-keyword">void</span> (*func)(<span class="hljs-keyword">unsigned</span> <span class="hljs-keyword">long</span>);  <span class="hljs-comment">//tasklet 处理函数</span></span><br><span class="line">	<span class="hljs-keyword">unsigned</span> <span class="hljs-keyword">long</span> data;			  <span class="hljs-comment">//给tasklet处理函数的参数</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>func</strong>是tasklet的处理程序，data是它唯一的参数。<br><strong>state</strong>只能在0，TASKLET_STATE_SCHED和TASKLET_STATE_RUN之间取值。TASKLET_STATE-SCHED表示tasklet已被调度准备投入运行；TASKLET_STATE_RUN表明tasklet正在运行(多用在多处理器上)。<br><strong>count</strong>如果不是0，则tasklet被禁止不允许执行；当他为0时tasklet才允许被激活，并且被设置为挂起状态。</p>
+<h5 id="调度tasklet"><a href="#调度tasklet" class="headerlink" title="调度tasklet"></a>调度tasklet</h5><p>已调度的tasklet存放在两个单处理器数据结构：tasklet_vec(普通tasklet)和tasklet_hi_vec(高优先级的tasklet)，这两个tasklet_struct结构体构成的链表。</p>
+<p>执行步骤如下：</p>
+<ol>
+<li>检查tasklet的状态是否为TASKLET_STATE_SCHED。如果是则说明已经被调度过了，函数立即返回。</li>
+<li>调用_tasklet_schedule()。</li>
+<li>保存中断状态，然后禁止本地中断。在我们执行tasklet代码时，这么做能够保证当tasklet_schedule()处理这些tasklet时，处理器上的数据不会乱。</li>
+<li>把需要调度的tasklet加到每个处理器一个的tasklet_vec链表或tasklet_hi_vec链表的表头上去。</li>
+<li>唤起TASKLET_SOFTIRQ或HI_SOFTIRQ软中断，这样在下一次调用do_softirq()时就会执行tasklet。</li>
+<li>恢复中断到原状态并返回。</li>
+</ol>
+<h3 id="工作队列"><a href="#工作队列" class="headerlink" title="工作队列"></a>工作队列</h3><p>工作队列可以把工作推后，交由一个内核线程去执行，这样工作队列执行的代码能占尽进程上下文的所有优势。工作队列允许重新调度甚至是睡眠。</p>
 <ul>
-<li>IRQF_DISABLED——该标志被设置后，意味着内核在处理中断处理程序本身期间，要禁用所有其他中断。如果不设置，中断处理程序可以与其它任何中断同时运行。</li>
-<li>IRQF_SAMPLE_RANDOM——表明这个设备产生的中断对内核熵池(提供从各种随机事件导出的真正的随机数)有贡献。</li>
-<li>IRQF_TIMER——该标志是特别为系统定时器的中断处理而准备的。</li>
-<li>IRQF_SHARED——表明可以在多个中断处理程序之间共享中断线。在同一个给定线上注册的每个处理程序必须指定这个标志，否则每条线上只能有一个处理程序。</li>
+<li>工作队列：推后执行的任务需要睡眠，且需要用一个内核线程来推后执行工作。</li>
+<li>tasklet：推后执行的任务不需要睡眠</li>
 </ul>
-<p>第四个参数name是与中断相关的设备的ASCII文本，例如PC机上键盘中断对应的这个值为”keyboard”。</p>
-<p>第五个参数dev_id用于共享中断线。当一个中断处理程序需要释放时，dev将提供唯一的标志信息，以便从共享中断线的诸多中断处理程序中删除指定的那一个。如果没有这个参数，那么内核不可能知道在给定的中断线上到底删除哪一个处理程序。</p>
-<p>注意 <strong>request_irq</strong> 成功执行会返回0.如果返回非0就代表有错误发生，在这种情况下，指定的中断处理程序不会被注册。常见的错误如 <strong>-EBUSY</strong> 表示给定的中断线已经在使用。</p>
-<p><strong>request_irq</strong> 函数可能会睡眠，因此不能再中断上下文或其他不允许阻塞的代码中调用该函数。在注册的过程中，内核需要在/proc/irq 文件中创建一个与中断对应的项。函数proc_mkdir()就是用来创建这个新的procfs项的，其中调用函数proc_create()对这个新的profs进行设置，而proc_create()会调用函数kmalloc()来请求分配内存，这里的kmalloc()是可以睡眠的。</p>
-<h4 id="释放中断处理程序"><a href="#释放中断处理程序" class="headerlink" title="释放中断处理程序"></a>释放中断处理程序</h4><p>卸载驱动程序时，调用：</p>
-<figure class="highlight c hljs"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line"><span class="hljs-comment">/**</span></span><br><span class="line"><span class="hljs-comment"> *	free_irq - free an interrupt</span></span><br><span class="line"><span class="hljs-comment"> *	@irq: Interrupt line to free</span></span><br><span class="line"><span class="hljs-comment"> *	@dev_id: Device identity to free</span></span><br><span class="line"><span class="hljs-comment"> *</span></span><br><span class="line"><span class="hljs-comment"> *	Remove an interrupt handler. The handler is removed and if the</span></span><br><span class="line"><span class="hljs-comment"> *	interrupt line is no longer in use by any driver it is disabled.</span></span><br><span class="line"><span class="hljs-comment"> *	On a shared IRQ the caller must ensure the interrupt is disabled</span></span><br><span class="line"><span class="hljs-comment"> *	on the card it drives before calling this function. The function</span></span><br><span class="line"><span class="hljs-comment"> *	does not return until any executing interrupts for this IRQ</span></span><br><span class="line"><span class="hljs-comment"> *	have completed.</span></span><br><span class="line"><span class="hljs-comment"> *</span></span><br><span class="line"><span class="hljs-comment"> *	This function must not be called from interrupt context.</span></span><br><span class="line"><span class="hljs-comment"> */</span></span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">free_irq</span><span class="hljs-params">(<span class="hljs-keyword">unsigned</span> <span class="hljs-keyword">int</span> irq, <span class="hljs-keyword">void</span> *dev_id)</span></span>&#123;</span><br><span class="line">	...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>如果指定的中断线不是共享的，那么该函数删除处理程序的同时将禁用这条中断线,如果是共享的则删除dev_id所对应的处理程序，而这条中断线本身只有在删除了最后一个处理程序时才会被禁用。</p>
-<h3 id="中断上下文"><a href="#中断上下文" class="headerlink" title="中断上下文"></a>中断上下文</h3><p>当执行一个中断处理程序时，内核处于中断上下文(interrput context)中。</p>
-<p>注意进程上下文是一种操作模式，此时内核代表进程执行——执行系统调用或运行内核线程。进程上下文可以睡眠也可以调度程序。</p>
-<p>然而中断上下文与之相反，二者没有什么瓜葛。与current宏也是不相干的。中断上下文不可以睡眠，因此不能从中断上下文中调用某些函数。如果一个函数睡眠，就不能在你的中断处理程序中使用它。</p>
-<p>中断上下文具有较为严格的时间限制，因为他打断了其他代码。代码应当迅速简洁尽量不要使用循环去处理繁重的工作。</p>
-<h3 id="中断处理机制的实现"><a href="#中断处理机制的实现" class="headerlink" title="中断处理机制的实现"></a>中断处理机制的实现</h3><p><img src="https://ws1.sinaimg.cn/large/006tKfTcgy1fkvm1pgthzj30r40dota3.jpg" alt></p>
-<p>设备产生中断，通过总线把电信号发送给中断控制器。如果中断线是激活的(它们允许被屏蔽)，那么中断控制器就会把中断发往处理器。在大多数的体系结构中，这个工作就是通过电信号给处理器的特定管脚发送一个信号。除非在处理器上禁止该中断，否则处理器会立即停止他正在做的事情，关闭中断系统，跳到内存中预定义的位置开始执行那里的代码，这个预定义的位置由内核设置，是中端处理程序的入口点。</p>
-<p>由于每条中断线处理器都会跳到对应的一个唯一的位置，这样内核就可以知道所接收中断的IRQ号。初始入口点只是在栈中保存这个号，并存放当前寄存器的值(被中断的任务)，然后内核调用do_IRQ()</p>
-<pre><code>    unsigned int do_IRQ(struct pt_regs regs)
-</code></pre><p>接下来do_IRQ()需要确保在这条中断线上有一个有效的处理程序，而且这个程序已经启动，当时当前并没有执行。do_IRQ()调用handle_IRQ_event()来运行为这条中断线所安装的中断处理程序。</p>
-<h3 id="中断控制"><a href="#中断控制" class="headerlink" title="中断控制"></a>中断控制</h3><p>Linux 内核提供了一组接口用于操作机器上的中断状态。这些接口提供了能够禁止当前处理器的中断系统，或者屏蔽掉整个机器的一条中断线的能力。</p>
-<p>一般控制中断系统的原因就是需要提供同步。通过禁止中断，可以确保某个中断处理程序不会抢占当前的代码，此外还可以禁止内核抢占。由于Linux支持多处理器，因此内核代码会用锁保护机制，防止多个处理器的并发访问，而禁止中断提供保护机制。</p>
+<h4 id="工作队列的实现"><a href="#工作队列的实现" class="headerlink" title="工作队列的实现"></a>工作队列的实现</h4><p>工作队列可以让你的驱动程序创建一个专门的工作者线程来处理需要推后的工作，不过工作队列子系统提供了一个缺省的工作者线程 <strong>events/n</strong>来处理上述过程。这里的n是处理器的编号，每个处理器对应一个线程。例如单处理器系统就是有 <strong>events/0</strong> 线程，双处理器就多了 <strong>events/1</strong> 线程。许多内核驱动程序都把下半部交给缺省的工作者线程去做。</p>
+<h4 id="使用工作队列"><a href="#使用工作队列" class="headerlink" title="使用工作队列"></a>使用工作队列</h4><p>首先就是创建一些需要推后完成的工作：</p>
+<figure class="highlight c hljs"><table><tr><td class="code"><pre><span class="line">DECLARE_WORK(name, <span class="hljs-keyword">void</span>(*func) (<span class="hljs-keyword">void</span> *), <span class="hljs-keyword">void</span> *data);</span><br></pre></td></tr></table></figure>
+
+<p>以上代码创建一个名为name，处理函数func，参数为data的work_struct结构体。</p>
+<h4 id="工作队列处理函数"><a href="#工作队列处理函数" class="headerlink" title="工作队列处理函数"></a>工作队列处理函数</h4><figure class="highlight c hljs"><table><tr><td class="code"><pre><span class="line"><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">work_handler</span><span class="hljs-params">(<span class="hljs-keyword">void</span> *data)</span></span></span><br></pre></td></tr></table></figure>
+
+<p>这个函数由一个工作者线程执行。默认情况下会响应中断，并且不持有任何锁。</p>
+<h4 id="对工作进行调度"><a href="#对工作进行调度" class="headerlink" title="对工作进行调度"></a>对工作进行调度</h4><p>想要把给定的工作的处理函数提交给缺省的events工作线程，只需调用：</p>
+<figure class="highlight c hljs"><table><tr><td class="code"><pre><span class="line">schedule_work(&amp;work);</span><br></pre></td></tr></table></figure>
+
+<p>work就会马上调度，一旦其所在的处理器上的工作者线程唤醒，他就会执行。如果需要在一定的延时之后再进行调度：</p>
+<figure class="highlight c hljs"><table><tr><td class="code"><pre><span class="line">schedule_delayed_work(&amp;work, delay)；</span><br></pre></td></tr></table></figure>
+
+<h4 id="刷新操作"><a href="#刷新操作" class="headerlink" title="刷新操作"></a>刷新操作</h4><p>排入队列的工作会在工作者线程的下一次被唤醒时执行，有时，为了防止竞争条件的出现，可能需要确保不再有待处理的工作。出于以上目的，内核准备了一个用于刷新指定工作队列的函数：</p>
+<figure class="highlight c hljs"><table><tr><td class="code"><pre><span class="line"><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">flush_scheduled_work</span><span class="hljs-params">(<span class="hljs-keyword">void</span>)</span></span></span><br></pre></td></tr></table></figure>
+
+<p>该函数会一直等待直到队列中所有对象都被执行以后返回，在等待过程中所有待处理的工作时，该函数会进入休眠状态</p>
 
         </div>
         
@@ -242,7 +276,7 @@
                 <span class="level-item has-text-grey">
                     
                     
-                    12 分钟 读完 (大约 1841 个字)
+                    15 分钟 读完 (大约 2225 个字)
                 </span>
                 
                 
@@ -251,68 +285,45 @@
         
         <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
             
-                <a class="has-link-black-ter" href="/2017/10/22/Linux/2017-11-2-Linux-下半部和推后执行的工作/">Linux-下半部和推后执行的工作&#34;</a>
+                <a class="has-link-black-ter" href="/2017/10/22/Linux/2017-10-22-Linux中断和中断处理/">Linux-中断和中断处理</a>
             
         </h1>
         <div class="content">
-            <p>中断机制有一些局限，包括：</p>
-<ol>
-<li>中断以异步方式执行，并且有可能会打断其他重要代码。为了避免被打断的代码停止过长时间，中断处理应该执行得越快越好。</li>
-<li>如果当前有一个中断处理程序正在执行，最好情况下该中断同级的其他中断会被屏蔽；最坏情况下当前处理器上所有的其他中断都会被屏蔽。因为禁止中断后硬件与操作系统无法通信，所以中断处理程序执行得越快越好。</li>
-<li>中断往往需要对硬件进行操作，所以它们通常有很高的时限要求。</li>
-<li>中断不能再进程上下文中进行，所以不能阻塞。</li>
-</ol>
-<p>正因如此，中断处理流程被分为两部分，第一部分是中断处理程序(上半部)，内核对它的异步执行完成对硬件中断的及时响应。另一部分就是下半部。</p>
-<h3 id="下半部"><a href="#下半部" class="headerlink" title="下半部"></a>下半部</h3><p>理想情况下中断(上半部)完成的工作越少越好，将所需处理的工作都留给下半部，但是中断程序注定要做一些工作，虽然不是严格要求，但是可以参考如下：</p>
-<ol>
-<li>对时间非常敏感，将其放在中断处理程序中执行。</li>
-<li>和硬件相关，将其放在中断处理程序中执行。</li>
-<li>要保证不被其他中断打断，将其放在中断处理程序中执行。</li>
-<li>其他所有任务都放在下半部执行。</li>
-</ol>
-<h3 id="软中断"><a href="#软中断" class="headerlink" title="软中断"></a>软中断</h3><h4 id="软中断的实现"><a href="#软中断的实现" class="headerlink" title="软中断的实现"></a>软中断的实现</h4><p>软中断是在编译期间静态分配的。有<strong>softirq_action</strong>结构表示，总共有32个该结构体的数组。</p>
-<figure class="highlight c hljs"><table><tr><td class="code"><pre><span class="line"><span class="hljs-comment">// linux/interrupt.h</span></span><br><span class="line"></span><br><span class="line"><span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">softirq_action</span>&#123;</span></span><br><span class="line">	<span class="hljs-keyword">void</span> (*action)(struct softirq_action *);</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-<p>每个被注册的软中断都占据一项，最多有32个软中断。</p>
-<h5 id="软中断处理程序"><a href="#软中断处理程序" class="headerlink" title="软中断处理程序"></a>软中断处理程序</h5><p>action的函数原型如下：<br><figure class="highlight c hljs"><table><tr><td class="code"><pre><span class="line"><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">softirq_handler</span><span class="hljs-params">(struct softirq_action *)</span></span></span><br></pre></td></tr></table></figure></p>
-<p>一个软中断不会抢占另外一个软中断，只有中断处理程序才会抢占软中断，不过多个软中断可以在其他处理器上同时执行。</p>
-<h5 id="执行软中断"><a href="#执行软中断" class="headerlink" title="执行软中断"></a>执行软中断</h5><p>通常中断处理程序会在返回前标记它的软中断，使其稍后执行(触发软中断)。在以下情况，待处理的软中断会被检查和执行：</p>
-<ol>
-<li>从一个硬件中断代码处返回</li>
-<li>在ksoftirqd内核线程中</li>
-<li>在那些显示检查和执行待处理的软中断的代码中，如网络子系统中</li>
-</ol>
-<h3 id="tasklet"><a href="#tasklet" class="headerlink" title="tasklet"></a>tasklet</h3><p>tasklet是利用软中断实现的一种下半部机制，他和进程没有任何关系。tasklet的接口更简单，锁保护也要求比较低。通常情况下应该选用tasklet而非软中断。</p>
-<h4 id="tasklet的实现"><a href="#tasklet的实现" class="headerlink" title="tasklet的实现"></a>tasklet的实现</h4><p>因为tasklet是通过软中断实现的，所以它本身也是软中断，由两类软中断代表：HI_SOFIRQ和TASKLET_SOFTIRQ。其中HI_SOFTIRQ类型软中断要优先于TASKLET_SOFTIRQ。</p>
-<h5 id="tasklet结构体"><a href="#tasklet结构体" class="headerlink" title="tasklet结构体"></a>tasklet结构体</h5><figure class="highlight c hljs"><table><tr><td class="code"><pre><span class="line"><span class="hljs-comment">// linux/interrupt.h</span></span><br><span class="line"><span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">tasklet_struct</span>&#123;</span></span><br><span class="line">	<span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">tasklet_struct</span> *<span class="hljs-title">next</span>;</span>  <span class="hljs-comment">//链表中的下一个tasklet</span></span><br><span class="line">	<span class="hljs-keyword">unsigned</span> <span class="hljs-keyword">long</span> state;          <span class="hljs-comment">//tasklet 的状态</span></span><br><span class="line">	<span class="hljs-keyword">atomic_t</span> count;               <span class="hljs-comment">//引用计数器</span></span><br><span class="line">	<span class="hljs-keyword">void</span> (*func)(<span class="hljs-keyword">unsigned</span> <span class="hljs-keyword">long</span>);  <span class="hljs-comment">//tasklet 处理函数</span></span><br><span class="line">	<span class="hljs-keyword">unsigned</span> <span class="hljs-keyword">long</span> data;			  <span class="hljs-comment">//给tasklet处理函数的参数</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p><strong>func</strong>是tasklet的处理程序，data是它唯一的参数。<br><strong>state</strong>只能在0，TASKLET_STATE_SCHED和TASKLET_STATE_RUN之间取值。TASKLET_STATE-SCHED表示tasklet已被调度准备投入运行；TASKLET_STATE_RUN表明tasklet正在运行(多用在多处理器上)。<br><strong>count</strong>如果不是0，则tasklet被禁止不允许执行；当他为0时tasklet才允许被激活，并且被设置为挂起状态。</p>
-<h5 id="调度tasklet"><a href="#调度tasklet" class="headerlink" title="调度tasklet"></a>调度tasklet</h5><p>已调度的tasklet存放在两个单处理器数据结构：tasklet_vec(普通tasklet)和tasklet_hi_vec(高优先级的tasklet)，这两个tasklet_struct结构体构成的链表。</p>
-<p>执行步骤如下：</p>
-<ol>
-<li>检查tasklet的状态是否为TASKLET_STATE_SCHED。如果是则说明已经被调度过了，函数立即返回。</li>
-<li>调用_tasklet_schedule()。</li>
-<li>保存中断状态，然后禁止本地中断。在我们执行tasklet代码时，这么做能够保证当tasklet_schedule()处理这些tasklet时，处理器上的数据不会乱。</li>
-<li>把需要调度的tasklet加到每个处理器一个的tasklet_vec链表或tasklet_hi_vec链表的表头上去。</li>
-<li>唤起TASKLET_SOFTIRQ或HI_SOFTIRQ软中断，这样在下一次调用do_softirq()时就会执行tasklet。</li>
-<li>恢复中断到原状态并返回。</li>
-</ol>
-<h3 id="工作队列"><a href="#工作队列" class="headerlink" title="工作队列"></a>工作队列</h3><p>工作队列可以把工作推后，交由一个内核线程去执行，这样工作队列执行的代码能占尽进程上下文的所有优势。工作队列允许重新调度甚至是睡眠。</p>
+            <h3 id="中断"><a href="#中断" class="headerlink" title="中断"></a>中断</h3><p>不同的设备对应的中断不同，而每个中断都通过一个唯一的数字标志，从而使得操作系统能够对中断进行区分，并且知道哪个硬件设备产生了哪个中断。</p>
+<p>每个中断值通常被称作中断请求(IRQ)线。每个IRQ县都会被关联一个数值量(例如 IRQ 0 是时钟中断，IRQ 1是键盘中断)。对于连接在PCI总线上的设备而言，中断是动态分配的。</p>
+<h3 id="异常"><a href="#异常" class="headerlink" title="异常"></a>异常</h3><p>异常与中断不同，它在产生时必须考虑与处理器时钟同步，因此异常也被称作同步中断。内核对于中断与异常的处理比较类似。</p>
+<h3 id="中断处理程序"><a href="#中断处理程序" class="headerlink" title="中断处理程序"></a>中断处理程序</h3><p>在响应一个特定中断的时候，内核会执行一个函数，该函数叫做中断处理程序或者中断服务例程(interrupt service routine, ISR)。产生中断的每个设备都有一个相应的中断处理程序。</p>
+<p>在Linux中，中断处理程序就是C函数，只不过这些函数必须按照特定的类型声明。ISR与其他内核函数的区别就是ISR是被内核调用来响应中断的，而它们运行于我们称之为中断上下文的特殊上下文中。</p>
+<h3 id="上半部与下半部的对比"><a href="#上半部与下半部的对比" class="headerlink" title="上半部与下半部的对比"></a>上半部与下半部的对比</h3><p>中断处理程序是上半部(top half)——接收到一个中断，就开始立即执行，但是只做有严格时限的工作，例如对接收的中断进行应答或者复位。此后，在合适的时机，下半部会被开中断执行。</p>
+<h3 id="注册中断处理程序"><a href="#注册中断处理程序" class="headerlink" title="注册中断处理程序"></a>注册中断处理程序</h3><p>中断处理程序是管理硬件的驱动程序的组成部分。每一设备都有相关的驱动程序，如果设备使用中断，那么相应的驱动程序就注册一个中断处理程序。</p>
+<p>驱动程序可以通过request_irq()函数注册一个中断处理程序。</p>
+<figure class="highlight c hljs"><table><tr><td class="code"><pre><span class="line"><span class="hljs-comment">//  arch/sparc/kernel/irq.c</span></span><br><span class="line"><span class="hljs-comment">//</span></span><br><span class="line"><span class="hljs-comment">//  irq: 要分配的中断号，对于系统时钟或者键盘等，这个值是确定的，但是对于其他设备这个值可以探测获取或者编程动态确定。</span></span><br><span class="line"><span class="hljs-comment">//  handler：指针指向处理这个中断的实际中断处理程序。</span></span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">request_irq</span><span class="hljs-params">(<span class="hljs-keyword">unsigned</span> <span class="hljs-keyword">int</span> irq,</span></span></span><br><span class="line">		irqreturn_t (*handler)(int, void *, struct pt_regs *),</span><br><span class="line">		<span class="hljs-keyword">unsigned</span> <span class="hljs-keyword">long</span> irqflags, <span class="hljs-keyword">const</span> <span class="hljs-keyword">char</span> * devname, <span class="hljs-keyword">void</span> *dev_id)</span><br></pre></td></tr></table></figure>
+
+<h4 id="中断处理程序标志"><a href="#中断处理程序标志" class="headerlink" title="中断处理程序标志"></a>中断处理程序标志</h4><p>request_irq第三个参数flags可以为0，也可能是下列一个或多个标志的位掩码。这些标志中最重要的是：</p>
 <ul>
-<li>工作队列：推后执行的任务需要睡眠，且需要用一个内核线程来推后执行工作。</li>
-<li>tasklet：推后执行的任务不需要睡眠</li>
+<li>IRQF_DISABLED——该标志被设置后，意味着内核在处理中断处理程序本身期间，要禁用所有其他中断。如果不设置，中断处理程序可以与其它任何中断同时运行。</li>
+<li>IRQF_SAMPLE_RANDOM——表明这个设备产生的中断对内核熵池(提供从各种随机事件导出的真正的随机数)有贡献。</li>
+<li>IRQF_TIMER——该标志是特别为系统定时器的中断处理而准备的。</li>
+<li>IRQF_SHARED——表明可以在多个中断处理程序之间共享中断线。在同一个给定线上注册的每个处理程序必须指定这个标志，否则每条线上只能有一个处理程序。</li>
 </ul>
-<h4 id="工作队列的实现"><a href="#工作队列的实现" class="headerlink" title="工作队列的实现"></a>工作队列的实现</h4><p>工作队列可以让你的驱动程序创建一个专门的工作者线程来处理需要推后的工作，不过工作队列子系统提供了一个缺省的工作者线程 <strong>events/n</strong>来处理上述过程。这里的n是处理器的编号，每个处理器对应一个线程。例如单处理器系统就是有 <strong>events/0</strong> 线程，双处理器就多了 <strong>events/1</strong> 线程。许多内核驱动程序都把下半部交给缺省的工作者线程去做。</p>
-<h4 id="使用工作队列"><a href="#使用工作队列" class="headerlink" title="使用工作队列"></a>使用工作队列</h4><p>首先就是创建一些需要推后完成的工作：</p>
-<figure class="highlight c hljs"><table><tr><td class="code"><pre><span class="line">DECLARE_WORK(name, <span class="hljs-keyword">void</span>(*func) (<span class="hljs-keyword">void</span> *), <span class="hljs-keyword">void</span> *data);</span><br></pre></td></tr></table></figure>
-<p>以上代码创建一个名为name，处理函数func，参数为data的work_struct结构体。</p>
-<h4 id="工作队列处理函数"><a href="#工作队列处理函数" class="headerlink" title="工作队列处理函数"></a>工作队列处理函数</h4><figure class="highlight c hljs"><table><tr><td class="code"><pre><span class="line"><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">work_handler</span><span class="hljs-params">(<span class="hljs-keyword">void</span> *data)</span></span></span><br></pre></td></tr></table></figure>
-<p>这个函数由一个工作者线程执行。默认情况下会响应中断，并且不持有任何锁。</p>
-<h4 id="对工作进行调度"><a href="#对工作进行调度" class="headerlink" title="对工作进行调度"></a>对工作进行调度</h4><p>想要把给定的工作的处理函数提交给缺省的events工作线程，只需调用：</p>
-<figure class="highlight c hljs"><table><tr><td class="code"><pre><span class="line">schedule_work(&amp;work);</span><br></pre></td></tr></table></figure>
-<p>work就会马上调度，一旦其所在的处理器上的工作者线程唤醒，他就会执行。如果需要在一定的延时之后再进行调度：</p>
-<figure class="highlight c hljs"><table><tr><td class="code"><pre><span class="line">schedule_delayed_work(&amp;work, delay)；</span><br></pre></td></tr></table></figure>
-<h4 id="刷新操作"><a href="#刷新操作" class="headerlink" title="刷新操作"></a>刷新操作</h4><p>排入队列的工作会在工作者线程的下一次被唤醒时执行，有时，为了防止竞争条件的出现，可能需要确保不再有待处理的工作。出于以上目的，内核准备了一个用于刷新指定工作队列的函数：</p>
-<figure class="highlight c hljs"><table><tr><td class="code"><pre><span class="line"><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">flush_scheduled_work</span><span class="hljs-params">(<span class="hljs-keyword">void</span>)</span></span></span><br></pre></td></tr></table></figure>
-<p>该函数会一直等待直到队列中所有对象都被执行以后返回，在等待过程中所有待处理的工作时，该函数会进入休眠状态</p>
+<p>第四个参数name是与中断相关的设备的ASCII文本，例如PC机上键盘中断对应的这个值为”keyboard”。</p>
+<p>第五个参数dev_id用于共享中断线。当一个中断处理程序需要释放时，dev将提供唯一的标志信息，以便从共享中断线的诸多中断处理程序中删除指定的那一个。如果没有这个参数，那么内核不可能知道在给定的中断线上到底删除哪一个处理程序。</p>
+<p>注意 <strong>request_irq</strong> 成功执行会返回0.如果返回非0就代表有错误发生，在这种情况下，指定的中断处理程序不会被注册。常见的错误如 <strong>-EBUSY</strong> 表示给定的中断线已经在使用。</p>
+<p><strong>request_irq</strong> 函数可能会睡眠，因此不能再中断上下文或其他不允许阻塞的代码中调用该函数。在注册的过程中，内核需要在/proc/irq 文件中创建一个与中断对应的项。函数proc_mkdir()就是用来创建这个新的procfs项的，其中调用函数proc_create()对这个新的profs进行设置，而proc_create()会调用函数kmalloc()来请求分配内存，这里的kmalloc()是可以睡眠的。</p>
+<h4 id="释放中断处理程序"><a href="#释放中断处理程序" class="headerlink" title="释放中断处理程序"></a>释放中断处理程序</h4><p>卸载驱动程序时，调用：</p>
+<figure class="highlight c hljs"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line"><span class="hljs-comment">/**</span></span><br><span class="line"><span class="hljs-comment"> *	free_irq - free an interrupt</span></span><br><span class="line"><span class="hljs-comment"> *	@irq: Interrupt line to free</span></span><br><span class="line"><span class="hljs-comment"> *	@dev_id: Device identity to free</span></span><br><span class="line"><span class="hljs-comment"> *</span></span><br><span class="line"><span class="hljs-comment"> *	Remove an interrupt handler. The handler is removed and if the</span></span><br><span class="line"><span class="hljs-comment"> *	interrupt line is no longer in use by any driver it is disabled.</span></span><br><span class="line"><span class="hljs-comment"> *	On a shared IRQ the caller must ensure the interrupt is disabled</span></span><br><span class="line"><span class="hljs-comment"> *	on the card it drives before calling this function. The function</span></span><br><span class="line"><span class="hljs-comment"> *	does not return until any executing interrupts for this IRQ</span></span><br><span class="line"><span class="hljs-comment"> *	have completed.</span></span><br><span class="line"><span class="hljs-comment"> *</span></span><br><span class="line"><span class="hljs-comment"> *	This function must not be called from interrupt context.</span></span><br><span class="line"><span class="hljs-comment"> */</span></span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">free_irq</span><span class="hljs-params">(<span class="hljs-keyword">unsigned</span> <span class="hljs-keyword">int</span> irq, <span class="hljs-keyword">void</span> *dev_id)</span></span>&#123;</span><br><span class="line">	...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>如果指定的中断线不是共享的，那么该函数删除处理程序的同时将禁用这条中断线,如果是共享的则删除dev_id所对应的处理程序，而这条中断线本身只有在删除了最后一个处理程序时才会被禁用。</p>
+<h3 id="中断上下文"><a href="#中断上下文" class="headerlink" title="中断上下文"></a>中断上下文</h3><p>当执行一个中断处理程序时，内核处于中断上下文(interrput context)中。</p>
+<p>注意进程上下文是一种操作模式，此时内核代表进程执行——执行系统调用或运行内核线程。进程上下文可以睡眠也可以调度程序。</p>
+<p>然而中断上下文与之相反，二者没有什么瓜葛。与current宏也是不相干的。中断上下文不可以睡眠，因此不能从中断上下文中调用某些函数。如果一个函数睡眠，就不能在你的中断处理程序中使用它。</p>
+<p>中断上下文具有较为严格的时间限制，因为他打断了其他代码。代码应当迅速简洁尽量不要使用循环去处理繁重的工作。</p>
+<h3 id="中断处理机制的实现"><a href="#中断处理机制的实现" class="headerlink" title="中断处理机制的实现"></a>中断处理机制的实现</h3><p><img src="https://ws1.sinaimg.cn/large/006tKfTcgy1fkvm1pgthzj30r40dota3.jpg" alt></p>
+<p>设备产生中断，通过总线把电信号发送给中断控制器。如果中断线是激活的(它们允许被屏蔽)，那么中断控制器就会把中断发往处理器。在大多数的体系结构中，这个工作就是通过电信号给处理器的特定管脚发送一个信号。除非在处理器上禁止该中断，否则处理器会立即停止他正在做的事情，关闭中断系统，跳到内存中预定义的位置开始执行那里的代码，这个预定义的位置由内核设置，是中端处理程序的入口点。</p>
+<p>由于每条中断线处理器都会跳到对应的一个唯一的位置，这样内核就可以知道所接收中断的IRQ号。初始入口点只是在栈中保存这个号，并存放当前寄存器的值(被中断的任务)，然后内核调用do_IRQ()</p>
+<pre><code>unsigned int do_IRQ(struct pt_regs regs)</code></pre><p>接下来do_IRQ()需要确保在这条中断线上有一个有效的处理程序，而且这个程序已经启动，当时当前并没有执行。do_IRQ()调用handle_IRQ_event()来运行为这条中断线所安装的中断处理程序。</p>
+<h3 id="中断控制"><a href="#中断控制" class="headerlink" title="中断控制"></a>中断控制</h3><p>Linux 内核提供了一组接口用于操作机器上的中断状态。这些接口提供了能够禁止当前处理器的中断系统，或者屏蔽掉整个机器的一条中断线的能力。</p>
+<p>一般控制中断系统的原因就是需要提供同步。通过禁止中断，可以确保某个中断处理程序不会抢占当前的代码，此外还可以禁止内核抢占。由于Linux支持多处理器，因此内核代码会用锁保护机制，防止多个处理器的并发访问，而禁止中断提供保护机制。</p>
 
         </div>
         
@@ -375,8 +386,7 @@
 <p>通知内核的机制是靠软中断实现的：通过引发一个异常来促使系统切换到内核态去执行异常处理程序。此时的异常处理程序实际上就是系统调用处理程序。在x86系统上预定义的软中断是中断号128，通过 <strong>int $0x80</strong> 指令触发该终端。</p>
 <h4 id="指定恰当的系统调用"><a href="#指定恰当的系统调用" class="headerlink" title="指定恰当的系统调用"></a>指定恰当的系统调用</h4><p>因为所有的系统调用陷入内核的方式都一样，因此还需要将系统调用号一并传给内核。在x86，系统调用号通过eax寄存器传递给内核。</p>
 <p>system_call()函数通过将给定的系统调用号与NR_syscalls做比较来检查其有效性。如果它大于或者等于NR_syscalls,将函数就返回-ENOSYS。否则，就执行相应的系统调用：</p>
-<pre><code>    call *sys_call_table(,%rax,8)
-</code></pre><h4 id="参数传递"><a href="#参数传递" class="headerlink" title="参数传递"></a>参数传递</h4><p>除了系统调用号以外，大部分系统调用都还需要一些外部的参数输入。所以，在发生陷入的时候，应该把这些参数从用户空间传给内核。最简单的办法就是把这些参数也存放到寄存器中。在x86-32系统上，ebx，ecx，edx，esi，edi按照顺序存放前5个参数。需要六个或以上的情况时，需要一个单独的寄存器存放指向所有这些参数在用户空间地址的指针。</p>
+<pre><code>call *sys_call_table(,%rax,8)</code></pre><h4 id="参数传递"><a href="#参数传递" class="headerlink" title="参数传递"></a>参数传递</h4><p>除了系统调用号以外，大部分系统调用都还需要一些外部的参数输入。所以，在发生陷入的时候，应该把这些参数从用户空间传给内核。最简单的办法就是把这些参数也存放到寄存器中。在x86-32系统上，ebx，ecx，edx，esi，edi按照顺序存放前5个参数。需要六个或以上的情况时，需要一个单独的寄存器存放指向所有这些参数在用户空间地址的指针。</p>
 <p>用户空间的返回值也通过寄存器传递。在x86系统上，他存放在eax寄存器中。</p>
 <h3 id="系统调用的实现"><a href="#系统调用的实现" class="headerlink" title="系统调用的实现"></a>系统调用的实现</h3><h4 id="实现系统调用"><a href="#实现系统调用" class="headerlink" title="实现系统调用"></a>实现系统调用</h4><p>Linux 不提倡采用多用途的系统调用(一个系统调用通过传递不同的参数值来选择完成不同的工作)。很多系统共了标志参数确保向前兼容。标志并不是用来让单个系统调用具有多个不同的行为，而是为了即使增加新的功能和选项，也不破坏向后兼容或不需要增加新的系统调用。</p>
 <h4 id="参数验证"><a href="#参数验证" class="headerlink" title="参数验证"></a>参数验证</h4><p>系统调用必须检查所有的参数是否合法有效。</p>
@@ -388,7 +398,9 @@
 <li>如果是读，该内存应被标记为可读；如果是写，该内存被标记为可写；如果是可执行，该内存应该被标记为可执行。进程决不能绕过内存访问限制。</li>
 </ul>
 <figure class="highlight c hljs"><table><tr><td class="code"><pre><span class="line"><span class="hljs-comment">//Copy a block of data into user space, with less checking.</span></span><br><span class="line"><span class="hljs-comment">//void __user * to</span></span><br><span class="line"><span class="hljs-comment">//Destination address, in user space.</span></span><br><span class="line"></span><br><span class="line"><span class="hljs-comment">//const void * from</span></span><br><span class="line"><span class="hljs-comment">//Source address, in kernel space.</span></span><br><span class="line"></span><br><span class="line"><span class="hljs-comment">//unsigned long n</span></span><br><span class="line"><span class="hljs-comment">//Number of bytes to copy.</span></span><br><span class="line"></span><br><span class="line"><span class="hljs-keyword">unsigned</span> <span class="hljs-keyword">long</span> __copy_to_user (	<span class="hljs-keyword">void</span> __user * to,</span><br><span class="line"> 	<span class="hljs-keyword">const</span> <span class="hljs-keyword">void</span> * from,</span><br><span class="line"> 	<span class="hljs-keyword">unsigned</span> <span class="hljs-keyword">long</span> n);</span><br></pre></td></tr></table></figure>
+
 <figure class="highlight c hljs"><table><tr><td class="code"><pre><span class="line"><span class="hljs-comment">//Name: Copy a block of data from user space, with less checking.</span></span><br><span class="line"></span><br><span class="line"><span class="hljs-comment">//Arguments</span></span><br><span class="line"><span class="hljs-comment">//void * to</span></span><br><span class="line"><span class="hljs-comment">//Destination address, in kernel space.</span></span><br><span class="line"></span><br><span class="line"><span class="hljs-comment">//const void __user * from</span></span><br><span class="line"><span class="hljs-comment">//Source address, in user space.</span></span><br><span class="line"></span><br><span class="line"><span class="hljs-comment">//unsigned long n</span></span><br><span class="line"><span class="hljs-comment">//Number of bytes to copy.</span></span><br><span class="line"></span><br><span class="line"><span class="hljs-keyword">unsigned</span> <span class="hljs-keyword">long</span> __copy_from_user (	<span class="hljs-keyword">void</span> * to,</span><br><span class="line"> 	<span class="hljs-keyword">const</span> <span class="hljs-keyword">void</span> __user * from,</span><br><span class="line"> 	<span class="hljs-keyword">unsigned</span> <span class="hljs-keyword">long</span> n);</span><br></pre></td></tr></table></figure>
+
 <p>上述两个函数都有可能引起阻塞。当包含用户数据的页被换出到硬盘上而不是在物理内存上的时候，这种情况就会发生。此时，进程就会休眠，直到缺页处理程序将该页从硬盘重新换回物理内存。</p>
 
         </div>
@@ -455,10 +467,12 @@
 <h5 id="从树中删除进程"><a href="#从树中删除进程" class="headerlink" title="从树中删除进程"></a>从树中删除进程</h5><p>删除动作发生在进程堵塞或者终止时，通过红黑树操作可以删除进程，然后检查是否删除的是最左节点，从而判断是否要更新rb_leftmost的缓存。</p>
 <h4 id="调整入口"><a href="#调整入口" class="headerlink" title="调整入口"></a>调整入口</h4><p>进程调度主要入口是schedule(),他会调用pick_next_task()，以优先级为序，从高到低，依次检查每一个类，从而选择最高优先级的进程。</p>
 <figure class="highlight c hljs"><table><tr><td class="code"><pre><span class="line"><span class="hljs-comment">// kernel/sched.c</span></span><br><span class="line"></span><br><span class="line"><span class="hljs-comment">//挑选最高优先级的任务</span></span><br><span class="line"></span><br><span class="line"><span class="hljs-keyword">static</span> <span class="hljs-keyword">inline</span> <span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">task_struct</span> *</span></span><br><span class="line"><span class="hljs-class"><span class="hljs-title">pick_next_task</span>(<span class="hljs-title">struct</span> <span class="hljs-title">rq</span> *<span class="hljs-title">rq</span>)&#123;</span></span><br><span class="line">	<span class="hljs-keyword">const</span> <span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">sched_class</span> *<span class="hljs-title">class</span>;</span></span><br><span class="line">	<span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">task_struct</span> *<span class="hljs-title">p</span>;</span></span><br><span class="line"></span><br><span class="line">	<span class="hljs-comment">//如果我们知道所有任务都在公平类中，那么可以直接调用该函数(所有可运行进程数量等于CFS类对应的可运行进程数，也就是说所有的可运行进程都是CFS类)</span></span><br><span class="line"></span><br><span class="line">	<span class="hljs-keyword">if</span> (likely(rq-&gt;nr_running == rq-&gt;cfs.nr_running)) &#123;</span><br><span class="line">		p = fair_sched_class.pick_next_task(rq);</span><br><span class="line">		<span class="hljs-keyword">if</span> (likely(p)) &#123;</span><br><span class="line">			<span class="hljs-keyword">return</span> p;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="hljs-class"><span class="hljs-keyword">class</span> = <span class="hljs-title">sched_class_highest</span>;</span></span><br><span class="line">	<span class="hljs-keyword">for</span> (; ;) &#123;</span><br><span class="line">		p = class-&gt;pick_next_task(rq);</span><br><span class="line">		<span class="hljs-keyword">if</span> (p) &#123;</span><br><span class="line">			<span class="hljs-keyword">return</span> p;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="hljs-comment">//p永远不会为NULL,因为idle类总会返回非NULL的p。</span></span><br><span class="line">		<span class="hljs-class"><span class="hljs-keyword">class</span> = <span class="hljs-title">class</span>-&gt;<span class="hljs-title">next</span>;</span></span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
 <h4 id="睡眠和唤醒"><a href="#睡眠和唤醒" class="headerlink" title="睡眠和唤醒"></a>睡眠和唤醒</h4><p>休眠的进程处于一个特殊的不可执行的状态，进程把自己标记成休眠状态，从可执行红黑树中移除，放入等待队列，然后调用schedule()选择和执行一个其他进程。</p>
 <p>唤醒的过程与睡眠相反，进程被设置为可执行状态，然后从等待队列移到可执行红黑树中。</p>
 <h5 id="等待队列"><a href="#等待队列" class="headerlink" title="等待队列"></a>等待队列</h5><p>等待队列是由某些事件发生的进程组成的简单链表(wake_queue_head_t)，</p>
 <figure class="highlight c hljs"><table><tr><td class="code"><pre><span class="line"><span class="hljs-comment">// q 是我们希望休眠的等待队列</span></span><br><span class="line"></span><br><span class="line">DEFINE_WAIT(wait)；</span><br><span class="line"></span><br><span class="line">add_wait_queue(q, &amp;wait)；</span><br><span class="line"><span class="hljs-keyword">while</span>(!condition) &#123;</span><br><span class="line">	prepare_to_wait(&amp;q, &amp;wait, TASK_INTERPUPTIBLE);</span><br><span class="line">	<span class="hljs-keyword">if</span> (signal_pending(current)) &#123;</span><br><span class="line">		<span class="hljs-comment">/* 处理信号 */</span></span><br><span class="line">	&#125;</span><br><span class="line">	schedule();</span><br><span class="line">&#125;</span><br><span class="line">finish_wait(&amp;q, &amp;wait);</span><br></pre></td></tr></table></figure>
+
 <ol>
 <li>调用宏DEFINE_WAIT()创建一个等待队列的项。</li>
 <li>调用add_wait_queue()把自己加入到队列中。该队列会在进程等待的条件满足时唤醒它。当然我们必须在其他地方撰写相关代码，在事件发生时，对等待队列执行wake_up()操作</li>
@@ -543,8 +557,10 @@
 <hr>
 <h3 id="进程描述符"><a href="#进程描述符" class="headerlink" title="进程描述符"></a>进程描述符</h3><p>内核把进程的列表存放在任务队列中（task list）的双向循环链表中。task list 中的每一项都是一个 task_struct, 结构为：</p>
 <figure class="highlight c hljs"><table><tr><td class="code"><pre><span class="line">\\ linux<span class="hljs-number">-2.6</span><span class="hljs-number">.10</span>/include/<span class="hljs-keyword">asm</span>-x86_64/thread_info.h</span><br><span class="line"></span><br><span class="line"><span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">thread_info</span> &#123;</span></span><br><span class="line">	<span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">task_struct</span>	*<span class="hljs-title">task</span>;</span>		<span class="hljs-comment">/* main task structure */</span></span><br><span class="line">	<span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">exec_domain</span>	*<span class="hljs-title">exec_domain</span>;</span>	<span class="hljs-comment">/* execution domain */</span></span><br><span class="line">	__u32			flags;		<span class="hljs-comment">/* low level flags */</span></span><br><span class="line">	__u32			status;		<span class="hljs-comment">/* thread synchronous flags */</span></span><br><span class="line">	__u32			cpu;		<span class="hljs-comment">/* current CPU */</span></span><br><span class="line">	<span class="hljs-keyword">int</span> 			preempt_count;</span><br><span class="line"></span><br><span class="line">	<span class="hljs-keyword">mm_segment_t</span>		addr_limit;</span><br><span class="line">	<span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">restart_block</span>    <span class="hljs-title">restart_block</span>;</span></span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
 <p>内核通过唯一的进程标识符或PID来标识每个进程（最大0x8000）。一般进程数值大的比进程数值小的迟运行，所以可以通过修改/include/linux/threads.h</p>
 <figure class="highlight c hljs"><table><tr><td class="code"><pre><span class="line"><span class="hljs-comment">/*</span></span><br><span class="line"><span class="hljs-comment"> * This controls the default maximum pid allocated to a process</span></span><br><span class="line"><span class="hljs-comment"> */</span></span><br><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> PID_MAX_DEFAULT 0x8000</span></span><br></pre></td></tr></table></figure>
+
 <p>由于内核访问任务需要task_truct的指针，所以要通过current宏查找，这一部分具体实现与实际系统有关。</p>
 <hr>
 <h3 id="进程状态"><a href="#进程状态" class="headerlink" title="进程状态"></a>进程状态</h3><p>进程有如下5种状态，在进程描述符的state域中标识</p>
@@ -558,6 +574,7 @@
 <p><img src="https://ws4.sinaimg.cn/large/006tKfTcgy1fkghudu4zuj30gu0bkmzi.jpg" alt></p>
 <p>内核经常需要调整进程的状态，因此，可以用一下函数设置：</p>
 <figure class="highlight c hljs"><table><tr><td class="code"><pre><span class="line"><span class="hljs-comment">// include/linux/sched.h</span></span><br><span class="line"></span><br><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> __set_task_state(tsk, state_value)		\</span></span><br><span class="line">	<span class="hljs-keyword">do</span> &#123; (tsk)-&gt;state = (state_value); &#125; <span class="hljs-keyword">while</span> (<span class="hljs-number">0</span>)</span><br><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> set_task_state(tsk, state_value)		\</span></span><br><span class="line">	set_mb((tsk)-&gt;state, (state_value))</span><br><span class="line"></span><br><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> __set_current_state(state_value)			\</span></span><br><span class="line">	<span class="hljs-keyword">do</span> &#123; current-&gt;state = (state_value); &#125; <span class="hljs-keyword">while</span> (<span class="hljs-number">0</span>)</span><br><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> set_current_state(state_value)		\</span></span><br><span class="line">	set_mb(current-&gt;state, (state_value))</span><br></pre></td></tr></table></figure>
+
 <hr>
 <h3 id="进程创建"><a href="#进程创建" class="headerlink" title="进程创建"></a>进程创建</h3><p>fork()通过拷贝当前进程创建一个子进程。子进程与父进程的区别仅仅为一个PID (每个进程都是唯一的)， PPID(父进程的进程号，子进程将其复制成被拷贝的进程的PID)和某些资源及统计量。</p>
 <p>exec() 负责读取可执行文件并将其载入地址空间开始运行。</p>
@@ -961,18 +978,18 @@
         
         <article class="media">
             
-            <a href="/2019/07/21/数据挖掘/2019-08-13-实时异常检测/" class="media-left">
+            <a href="/2019/07/21/安全/2019-07-22-xgboost/" class="media-left">
                 <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="实时异常检测（xStream，KDD&#39;18）">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="孤立森林（Isolation Forest）">
                 </p>
             </a>
             
             <div class="media-content">
                 <div class="content">
                     <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-07-20T16:00:00.000Z">2019-07-21</time></div>
-                    <a href="/2019/07/21/数据挖掘/2019-08-13-实时异常检测/" class="title has-link-black-ter is-size-6 has-text-weight-normal">实时异常检测（xStream，KDD&#39;18）</a>
+                    <a href="/2019/07/21/安全/2019-07-22-xgboost/" class="title has-link-black-ter is-size-6 has-text-weight-normal">孤立森林（Isolation Forest）</a>
                     <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/Anomaly-detection/">Anomaly detection</a>
+                        <a class="has-link-grey -link" href="/categories/Security/">Security</a>
                     </p>
                 </div>
             </div>
@@ -1461,18 +1478,18 @@
         
         <article class="media">
             
-            <a href="/2019/07/21/数据挖掘/2019-08-13-实时异常检测/" class="media-left">
+            <a href="/2019/07/21/安全/2019-07-22-xgboost/" class="media-left">
                 <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="实时异常检测（xStream，KDD&#39;18）">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="孤立森林（Isolation Forest）">
                 </p>
             </a>
             
             <div class="media-content">
                 <div class="content">
                     <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-07-20T16:00:00.000Z">2019-07-21</time></div>
-                    <a href="/2019/07/21/数据挖掘/2019-08-13-实时异常检测/" class="title has-link-black-ter is-size-6 has-text-weight-normal">实时异常检测（xStream，KDD&#39;18）</a>
+                    <a href="/2019/07/21/安全/2019-07-22-xgboost/" class="title has-link-black-ter is-size-6 has-text-weight-normal">孤立森林（Isolation Forest）</a>
                     <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/Anomaly-detection/">Anomaly detection</a>
+                        <a class="has-link-grey -link" href="/categories/Security/">Security</a>
                     </p>
                 </div>
             </div>

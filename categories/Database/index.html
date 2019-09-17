@@ -166,268 +166,6 @@
                 <span class="level-item has-text-grey">
                     
                     
-                    11 分钟 读完 (大约 1661 个字)
-                </span>
-                
-                
-            </div>
-        </div>
-        
-        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
-            
-                <a class="has-link-black-ter" href="/2019/06/04/数据库/2019-06-04-大数据存储系统/">大数据存储系统</a>
-            
-        </h1>
-        <div class="content">
-            <h2 id="NFS"><a href="#NFS" class="headerlink" title="NFS"></a>NFS</h2><p>POSIX文件系统</p>
-<p>主要目的：</p>
-<ul>
-<li>从不同终端访问同一个目录</li>
-<li>多用户共享数据</li>
-<li>集中管理</li>
-<li>不是处理大规模数据</li>
-</ul>
-<h3 id="设计目标1：服务器出现故障可以简单快速恢复。"><a href="#设计目标1：服务器出现故障可以简单快速恢复。" class="headerlink" title="设计目标1：服务器出现故障可以简单快速恢复。"></a>设计目标1：服务器出现故障可以简单快速恢复。</h3><p>Staeless(无状态)：NFS Server不保存任何状态，每个操作都是无状态的。<br>Idempoten(幂等性)：重复多次结果不变。（Read不改变数据；Write在相同位置写相同的数据）</p>
-<p>Server Crash Recovery：Server只用重启；Client不断重试。</p>
-<h3 id="设计目标2：远程文件操作性能高。"><a href="#设计目标2：远程文件操作性能高。" class="headerlink" title="设计目标2：远程文件操作性能高。"></a>设计目标2：远程文件操作性能高。</h3><p>在Client cache中缓存读写的数据。</p>
-<p>可能会造成访问冲突问题，Cache不能保证一致性。<strong>解决方法</strong>:</p>
-<ol>
-<li>在文件关闭时必须把缓存的已修改的文件数据写回NFS Server。</li>
-<li>每次使用缓存数据前必须检查是否已经过时（轮询操作影响性能）。</li>
-</ol>
-<h3 id="AFS"><a href="#AFS" class="headerlink" title="AFS"></a>AFS</h3><p>Invalidation</p>
-<ul>
-<li>Client 获得一个文件在server上登记</li>
-<li>Server 发现文件被修改向登记的Client发送一个callback</li>
-<li>Client 收到callback删除缓存的文件</li>
-</ul>
-<hr>
-<h2 id="GFS-HDFS"><a href="#GFS-HDFS" class="headerlink" title="GFS/HDFS"></a>GFS/HDFS</h2><p>应用层文件系统（Meta data和Data分离）</p>
-<ul>
-<li>Name Node（存元数据）：文件名，长度，分成多少数据块，每个数据块分布在哪些Data Node上</li>
-<li>Data Node：存数据块</li>
-</ul>
-<h3 id="Read"><a href="#Read" class="headerlink" title="Read"></a>Read</h3><ol>
-<li>打开文件时与Name node通信一次</li>
-<li>之后的读操作直接与Data Node通信</li>
-<li>支持并发read</li>
-</ol>
-<h3 id="Write"><a href="#Write" class="headerlink" title="Write"></a>Write</h3><ol>
-<li>写与Name node通信一次，返回应写的Data nodes（由Name Node决定）</li>
-<li>CLient 发送数据给Primary和secondary datanode，形成流水线，实现备份，此时写入cache中还没写进HDFS</li>
-<li>收到写命令才把缓存写入文件系统</li>
-</ol>
-<p>并发写的问题可能因为对于同一个数据块的两次操作，可能对之前的有覆盖（不支持此操作）；支持并行append。</p>
-<hr>
-<h2 id="NoSQL"><a href="#NoSQL" class="headerlink" title="NoSQL"></a>NoSQL</h2><h3 id="Dynamo"><a href="#Dynamo" class="headerlink" title="Dynamo"></a>Dynamo</h3><p>最简单的<key,value>模型，get/put操作</key,value></p>
-<ul>
-<li>单节点上存储由外部存储系统实现</li>
-<li>多节点间的数据分布<ul>
-<li>Consistent hashing</li>
-<li>Quorum (N, W, R)</li>
-<li>Eventual consistency</li>
-</ul>
-</li>
-</ul>
-<h4 id="一致性哈希"><a href="#一致性哈希" class="headerlink" title="一致性哈希"></a>一致性哈希</h4><p><img src="pictures/consistent_hash.jpg" alt><br><img src="pictures/consistent_hash1.jpg" alt></p>
-<h4 id="3副本备份"><a href="#3副本备份" class="headerlink" title="3副本备份"></a>3副本备份</h4><p>Put到Node j上的数据，要备份到Node j+1和Node j+2上，所以一个Node j上实际存储的数据是$(u_{j-3}, u_j]$，增加或者删除节点时需要更改备份位置。</p>
-<h4 id="Quorum机制：实现读写的一致性"><a href="#Quorum机制：实现读写的一致性" class="headerlink" title="Quorum机制：实现读写的一致性"></a>Quorum机制：实现读写的一致性</h4><p>Quorum（N，W，R）</p>
-<ul>
-<li>由N个副本</li>
-<li>写:保证&gt;=W个副本的写完成</li>
-<li>读:读&gt;=R个副本，选出最新版本</li>
-<li>如果R+W&gt;N，那么一定读到最新的数据</li>
-<li>R小，读效率高</li>
-<li>W小，写效率高</li>
-</ul>
-<p>Put操作</p>
-<ul>
-<li>Client根据hash(key)得到所有N个副本所在的节点</li>
-<li>Client向所有N个副本所在的节点发出put</li>
-<li>等到至少W个节点完成的响应，就认为写成功</li>
-</ul>
-<p>Get操作</p>
-<ul>
-<li>Client根据hash(key)得到所有N个副本所在的节点</li>
-<li>Client向所有N个副本所在的节点发出get</li>
-<li>等到至少R个节点的value，就必然包含最新一次写的值</li>
-</ul>
-<hr>
-<h3 id="Bigtable-HBase"><a href="#Bigtable-HBase" class="headerlink" title="Bigtable/HBase"></a>Bigtable/HBase</h3><p><img src="pictures/bigtable.jpg" alt></p>
-<ul>
-<li>Key包括row key与column两个部分</li>
-<li>所有row key是按顺序存储的</li>
-<li>其中column又有column family前缀<ul>
-<li>Column family是需要事先声明的，种类有限（例如~10或~100）</li>
-<li>而column key可以有很多</li>
-</ul>
-</li>
-<li><p>具体存储时，每个column family将分开存储（类似列式数据库）</p>
-</li>
-<li><p>Get</p>
-<ul>
-<li>给定row key, column family, column key</li>
-<li>读取value</li>
-</ul>
-</li>
-<li>Put<ul>
-<li>给定row key, column family, column key</li>
-<li>创建或更新value</li>
-</ul>
-</li>
-<li>Scan<ul>
-<li>给定一个范围，读取这个范围内所有row key的value</li>
-<li>Row key是排序存储的</li>
-</ul>
-</li>
-<li>Delete<ul>
-<li>删除一个指定的value</li>
-</ul>
-</li>
-</ul>
-<p>Tablet是分布式Bigtable表的一部分</p>
-<p>查找Tablet：三层的B+-Tree，每个叶子节点是一个Tablet，内部节点是特殊的MetaData Tablet，其包含Tablet的位置信息。</p>
-<ul>
-<li>Put<ul>
-<li>写入MemTable，Append日志</li>
-<li>MemTable满了就对其排序，生成新的SSTable，只创建一次不修改最后删除。</li>
-</ul>
-</li>
-<li>Get<ul>
-<li>对每个SSTable都建索引</li>
-</ul>
-</li>
-</ul>
-<hr>
-<h3 id="Cassandra-Dynamo-Bigtable"><a href="#Cassandra-Dynamo-Bigtable" class="headerlink" title="Cassandra(Dynamo+Bigtable)"></a>Cassandra(Dynamo+Bigtable)</h3><p><img src="pictures/Cassandra.jpg" alt></p>
-<hr>
-<h3 id="分布式协调（ZooKeeper）"><a href="#分布式协调（ZooKeeper）" class="headerlink" title="分布式协调（ZooKeeper）"></a>分布式协调（ZooKeeper）</h3><p>多个ZooKeeper维护一组共同的数据状态，2f+1个ZooKeeper可以容忍f个节点故障。</p>
-<p>ZooKeeper是一个简化的文件系统，树结构，可以用一条从根开始的路径确定。</p>
-<p>Client Session：开始（Client主动连接），结束（CLient主动关闭，或者经过一个Timeout，Zookeeper没有收到通信）</p>
-<p>Watch机制：exists可以判断节点是否存在；ZooKeeper通知，通知后Watch被删除。</p>
-<p>同步机制：请求后阻塞；异步机制：允许Client发多个请求，提供回调函数。</p>
-<p>Zookeeper需要保证写操作串行化（由leader领导follower按照相同顺序完成，FIFO，无保证，要调用sync）</p>
-<p>ZAB（一致性协议）</p>
-<ul>
-<li>Propose阶段<ul>
-<li>Leader把一个新的txn写入本地log， 广播Propose这个txn </li>
-<li>每个Follower收到Propose后，写入本地log，向Leader发回Ack</li>
-</ul>
-</li>
-<li>Commit阶段<ul>
-<li>Leader收到 f个Ack后，写Commit到log, 广播Commit，然后修改自己的ZooKeeper树</li>
-<li>Follower收到Commit消息，写Commit到log，然后修改ZooKeeper树、</li>
-</ul>
-</li>
-<li>Recovery<ul>
-<li>竞选leader（Txn ID最大的节点）</li>
-<li>新的leader包正确执行的Txn都正确执行，丢弃未执行的操作</li>
-</ul>
-</li>
-</ul>
-<hr>
-<h2 id="JSON"><a href="#JSON" class="headerlink" title="JSON"></a>JSON</h2><h3 id="JSON-vs-Google-Protocol-Buffers"><a href="#JSON-vs-Google-Protocol-Buffers" class="headerlink" title="JSON vs Google Protocol Buffers"></a>JSON vs Google Protocol Buffers</h3><ul>
-<li>相同点：<ul>
-<li>都可以表达程序设计语言中的结构和数组</li>
-<li>嵌套：JSON object, PB message/group</li>
-<li>数组：JSON array, PB repeated</li>
-<li>缺值的情况：JSON记录实际上没有规定一定要有什么域，PB optional</li>
-</ul>
-</li>
-<li>不同点：<ul>
-<li>数据类型：PB要求事先声明，JSON不需要</li>
-</ul>
-</li>
-</ul>
-<h3 id="JSON-vs-XML"><a href="#JSON-vs-XML" class="headerlink" title="JSON vs XML"></a>JSON vs XML</h3><ul>
-<li>JSON；轻量，自定义格式，key-value</li>
-<li>XML：重量，需要定义格式</li>
-</ul>
-<hr>
-<h2 id="Document-Store"><a href="#Document-Store" class="headerlink" title="Document Store"></a>Document Store</h2><ul>
-<li>Database &lt;-&gt; 数据库</li>
-<li>Collection &lt;-&gt; Table概念</li>
-<li>Document &lt;-&gt; 记录概念</li>
-</ul>
-<div class="table-container">
-<table>
-<thead>
-<tr>
-<th style="text-align:right">MongoDB</th>
-<th style="text-align:right">SQL</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:right">insert</td>
-<td style="text-align:right">create</td>
-</tr>
-<tr>
-<td style="text-align:right">insert</td>
-<td style="text-align:right">insert</td>
-</tr>
-<tr>
-<td style="text-align:right">find</td>
-<td style="text-align:right">select</td>
-</tr>
-<tr>
-<td style="text-align:right">aggregate/group</td>
-<td style="text-align:right">group by</td>
-</tr>
-<tr>
-<td style="text-align:right">不支持join</td>
-<td style="text-align:right">join</td>
-</tr>
-<tr>
-<td style="text-align:right">支持index</td>
-</tr>
-</tbody>
-</table>
-</div>
-<p>Write concern：</p>
-<ol>
-<li>Unacknowledged: 写请求发送了，就认为完成</li>
-<li>Acknowledged：MongoDB应答了收到写请求，就认为完成</li>
-<li>Journaled：MongoDB把写请求记录在硬盘上的日志中，认为完成</li>
-</ol>
-<hr>
-<h2 id="图存储系统"><a href="#图存储系统" class="headerlink" title="图存储系统"></a>图存储系统</h2><h3 id="Neo4j"><a href="#Neo4j" class="headerlink" title="Neo4j"></a>Neo4j</h3><ul>
-<li>顶点 &lt;-&gt; node</li>
-<li>边 &lt;-&gt; relationship, 双向链表</li>
-<li>顶点和边存储多个key-value值 &lt;-&gt; property，单向链表</li>
-</ul>
-<p>对node relationship property由缓冲区</p>
-
-        </div>
-        
-        
-        
-    </div>
-</div>
-
-
-
-
-
-
-
-
-    <div class="card">
-    
-    <div class="card-content article ">
-        
-        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
-            <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2019-06-03T16:00:00.000Z">2019-06-04</time>
-                
-                <div class="level-item">
-                <a class="has-link-grey -link" href="/categories/Database/">Database</a>
-                </div>
-                
-                
-                <span class="level-item has-text-grey">
-                    
-                    
                     7 分钟 读完 (大约 1092 个字)
                 </span>
                 
@@ -442,7 +180,7 @@
         </h1>
         <div class="content">
             <h2 id="MapReduce"><a href="#MapReduce" class="headerlink" title="MapReduce"></a>MapReduce</h2><p>程序员写串行程序，系统并行分布式执行。</p>
-<p>数据模型<key,value></key,value></p>
+<p>数据模型&lt;key,value&gt;</p>
 <ul>
 <li>数据由一条一条记录组成</li>
 <li>记录之间无序</li>
@@ -451,9 +189,9 @@
 <li>key与value具体类型和内部结构由程序员决定</li>
 </ul>
 <ol>
-<li>Map(ik,iv)-&gt;{<mk,mv>}</mk,mv></li>
+<li>Map(ik,iv)-&gt;{&lt;mk,mv&gt;}</li>
 <li>Shuffle = group by mk, 对所有的map输出进行group by，相同mk的所有mv提供给Reduce</li>
-<li>Reduce(mk,{mv})-&gt;{<ok,ov>}</ok,ov></li>
+<li>Reduce(mk,{mv})-&gt;{&lt;ok,ov&gt;}</li>
 </ol>
 <p>JobTracker/Name Node控制协调作业的运行；TaskTracker/Data Node执行Map和Reduce的任务。</p>
 <p>MR运行：</p>
@@ -554,6 +292,271 @@
         
         <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
             <div class="level-left">
+                <time class="level-item has-text-grey" datetime="2019-06-03T16:00:00.000Z">2019-06-04</time>
+                
+                <div class="level-item">
+                <a class="has-link-grey -link" href="/categories/Database/">Database</a>
+                </div>
+                
+                
+                <span class="level-item has-text-grey">
+                    
+                    
+                    11 分钟 读完 (大约 1661 个字)
+                </span>
+                
+                
+            </div>
+        </div>
+        
+        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+            
+                <a class="has-link-black-ter" href="/2019/06/04/数据库/2019-06-04-大数据存储系统/">大数据存储系统</a>
+            
+        </h1>
+        <div class="content">
+            <h2 id="NFS"><a href="#NFS" class="headerlink" title="NFS"></a>NFS</h2><p>POSIX文件系统</p>
+<p>主要目的：</p>
+<ul>
+<li>从不同终端访问同一个目录</li>
+<li>多用户共享数据</li>
+<li>集中管理</li>
+<li>不是处理大规模数据</li>
+</ul>
+<h3 id="设计目标1：服务器出现故障可以简单快速恢复。"><a href="#设计目标1：服务器出现故障可以简单快速恢复。" class="headerlink" title="设计目标1：服务器出现故障可以简单快速恢复。"></a>设计目标1：服务器出现故障可以简单快速恢复。</h3><p>Staeless(无状态)：NFS Server不保存任何状态，每个操作都是无状态的。<br>Idempoten(幂等性)：重复多次结果不变。（Read不改变数据；Write在相同位置写相同的数据）</p>
+<p>Server Crash Recovery：Server只用重启；Client不断重试。</p>
+<h3 id="设计目标2：远程文件操作性能高。"><a href="#设计目标2：远程文件操作性能高。" class="headerlink" title="设计目标2：远程文件操作性能高。"></a>设计目标2：远程文件操作性能高。</h3><p>在Client cache中缓存读写的数据。</p>
+<p>可能会造成访问冲突问题，Cache不能保证一致性。<strong>解决方法</strong>:</p>
+<ol>
+<li>在文件关闭时必须把缓存的已修改的文件数据写回NFS Server。</li>
+<li>每次使用缓存数据前必须检查是否已经过时（轮询操作影响性能）。</li>
+</ol>
+<h3 id="AFS"><a href="#AFS" class="headerlink" title="AFS"></a>AFS</h3><p>Invalidation</p>
+<ul>
+<li>Client 获得一个文件在server上登记</li>
+<li>Server 发现文件被修改向登记的Client发送一个callback</li>
+<li>Client 收到callback删除缓存的文件</li>
+</ul>
+<hr>
+<h2 id="GFS-HDFS"><a href="#GFS-HDFS" class="headerlink" title="GFS/HDFS"></a>GFS/HDFS</h2><p>应用层文件系统（Meta data和Data分离）</p>
+<ul>
+<li>Name Node（存元数据）：文件名，长度，分成多少数据块，每个数据块分布在哪些Data Node上</li>
+<li>Data Node：存数据块</li>
+</ul>
+<h3 id="Read"><a href="#Read" class="headerlink" title="Read"></a>Read</h3><ol>
+<li>打开文件时与Name node通信一次</li>
+<li>之后的读操作直接与Data Node通信</li>
+<li>支持并发read</li>
+</ol>
+<h3 id="Write"><a href="#Write" class="headerlink" title="Write"></a>Write</h3><ol>
+<li>写与Name node通信一次，返回应写的Data nodes（由Name Node决定）</li>
+<li>CLient 发送数据给Primary和secondary datanode，形成流水线，实现备份，此时写入cache中还没写进HDFS</li>
+<li>收到写命令才把缓存写入文件系统</li>
+</ol>
+<p>并发写的问题可能因为对于同一个数据块的两次操作，可能对之前的有覆盖（不支持此操作）；支持并行append。</p>
+<hr>
+<h2 id="NoSQL"><a href="#NoSQL" class="headerlink" title="NoSQL"></a>NoSQL</h2><h3 id="Dynamo"><a href="#Dynamo" class="headerlink" title="Dynamo"></a>Dynamo</h3><p>最简单的&lt;key,value&gt;模型，get/put操作</p>
+<ul>
+<li>单节点上存储由外部存储系统实现</li>
+<li>多节点间的数据分布<ul>
+<li>Consistent hashing</li>
+<li>Quorum (N, W, R)</li>
+<li>Eventual consistency</li>
+</ul>
+</li>
+</ul>
+<h4 id="一致性哈希"><a href="#一致性哈希" class="headerlink" title="一致性哈希"></a>一致性哈希</h4><p><img src="pictures/consistent_hash.jpg" alt><br><img src="pictures/consistent_hash1.jpg" alt></p>
+<h4 id="3副本备份"><a href="#3副本备份" class="headerlink" title="3副本备份"></a>3副本备份</h4><p>Put到Node j上的数据，要备份到Node j+1和Node j+2上，所以一个Node j上实际存储的数据是$(u_{j-3}, u_j]$，增加或者删除节点时需要更改备份位置。</p>
+<h4 id="Quorum机制：实现读写的一致性"><a href="#Quorum机制：实现读写的一致性" class="headerlink" title="Quorum机制：实现读写的一致性"></a>Quorum机制：实现读写的一致性</h4><p>Quorum（N，W，R）</p>
+<ul>
+<li>由N个副本</li>
+<li>写:保证&gt;=W个副本的写完成</li>
+<li>读:读&gt;=R个副本，选出最新版本</li>
+<li>如果R+W&gt;N，那么一定读到最新的数据</li>
+<li>R小，读效率高</li>
+<li>W小，写效率高</li>
+</ul>
+<p>Put操作</p>
+<ul>
+<li>Client根据hash(key)得到所有N个副本所在的节点</li>
+<li>Client向所有N个副本所在的节点发出put</li>
+<li>等到至少W个节点完成的响应，就认为写成功</li>
+</ul>
+<p>Get操作</p>
+<ul>
+<li>Client根据hash(key)得到所有N个副本所在的节点</li>
+<li>Client向所有N个副本所在的节点发出get</li>
+<li>等到至少R个节点的value，就必然包含最新一次写的值</li>
+</ul>
+<hr>
+<h3 id="Bigtable-HBase"><a href="#Bigtable-HBase" class="headerlink" title="Bigtable/HBase"></a>Bigtable/HBase</h3><p><img src="pictures/bigtable.jpg" alt></p>
+<ul>
+<li><p>Key包括row key与column两个部分</p>
+</li>
+<li><p>所有row key是按顺序存储的</p>
+</li>
+<li><p>其中column又有column family前缀</p>
+<ul>
+<li>Column family是需要事先声明的，种类有限（例如<del>10或</del>100）</li>
+<li>而column key可以有很多</li>
+</ul>
+</li>
+<li><p>具体存储时，每个column family将分开存储（类似列式数据库）</p>
+</li>
+<li><p>Get</p>
+<ul>
+<li>给定row key, column family, column key</li>
+<li>读取value</li>
+</ul>
+</li>
+<li><p>Put</p>
+<ul>
+<li>给定row key, column family, column key</li>
+<li>创建或更新value</li>
+</ul>
+</li>
+<li><p>Scan</p>
+<ul>
+<li>给定一个范围，读取这个范围内所有row key的value</li>
+<li>Row key是排序存储的</li>
+</ul>
+</li>
+<li><p>Delete</p>
+<ul>
+<li>删除一个指定的value</li>
+</ul>
+</li>
+</ul>
+<p>Tablet是分布式Bigtable表的一部分</p>
+<p>查找Tablet：三层的B+-Tree，每个叶子节点是一个Tablet，内部节点是特殊的MetaData Tablet，其包含Tablet的位置信息。</p>
+<ul>
+<li>Put<ul>
+<li>写入MemTable，Append日志</li>
+<li>MemTable满了就对其排序，生成新的SSTable，只创建一次不修改最后删除。</li>
+</ul>
+</li>
+<li>Get<ul>
+<li>对每个SSTable都建索引</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h3 id="Cassandra-Dynamo-Bigtable"><a href="#Cassandra-Dynamo-Bigtable" class="headerlink" title="Cassandra(Dynamo+Bigtable)"></a>Cassandra(Dynamo+Bigtable)</h3><p><img src="pictures/Cassandra.jpg" alt></p>
+<hr>
+<h3 id="分布式协调（ZooKeeper）"><a href="#分布式协调（ZooKeeper）" class="headerlink" title="分布式协调（ZooKeeper）"></a>分布式协调（ZooKeeper）</h3><p>多个ZooKeeper维护一组共同的数据状态，2f+1个ZooKeeper可以容忍f个节点故障。</p>
+<p>ZooKeeper是一个简化的文件系统，树结构，可以用一条从根开始的路径确定。</p>
+<p>Client Session：开始（Client主动连接），结束（CLient主动关闭，或者经过一个Timeout，Zookeeper没有收到通信）</p>
+<p>Watch机制：exists可以判断节点是否存在；ZooKeeper通知，通知后Watch被删除。</p>
+<p>同步机制：请求后阻塞；异步机制：允许Client发多个请求，提供回调函数。</p>
+<p>Zookeeper需要保证写操作串行化（由leader领导follower按照相同顺序完成，FIFO，无保证，要调用sync）</p>
+<p>ZAB（一致性协议）</p>
+<ul>
+<li>Propose阶段<ul>
+<li>Leader把一个新的txn写入本地log， 广播Propose这个txn </li>
+<li>每个Follower收到Propose后，写入本地log，向Leader发回Ack</li>
+</ul>
+</li>
+<li>Commit阶段<ul>
+<li>Leader收到 f个Ack后，写Commit到log, 广播Commit，然后修改自己的ZooKeeper树</li>
+<li>Follower收到Commit消息，写Commit到log，然后修改ZooKeeper树、</li>
+</ul>
+</li>
+<li>Recovery<ul>
+<li>竞选leader（Txn ID最大的节点）</li>
+<li>新的leader包正确执行的Txn都正确执行，丢弃未执行的操作</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h2 id="JSON"><a href="#JSON" class="headerlink" title="JSON"></a>JSON</h2><h3 id="JSON-vs-Google-Protocol-Buffers"><a href="#JSON-vs-Google-Protocol-Buffers" class="headerlink" title="JSON vs Google Protocol Buffers"></a>JSON vs Google Protocol Buffers</h3><ul>
+<li>相同点：<ul>
+<li>都可以表达程序设计语言中的结构和数组</li>
+<li>嵌套：JSON object, PB message/group</li>
+<li>数组：JSON array, PB repeated</li>
+<li>缺值的情况：JSON记录实际上没有规定一定要有什么域，PB optional</li>
+</ul>
+</li>
+<li>不同点：<ul>
+<li>数据类型：PB要求事先声明，JSON不需要</li>
+</ul>
+</li>
+</ul>
+<h3 id="JSON-vs-XML"><a href="#JSON-vs-XML" class="headerlink" title="JSON vs XML"></a>JSON vs XML</h3><ul>
+<li>JSON；轻量，自定义格式，key-value</li>
+<li>XML：重量，需要定义格式</li>
+</ul>
+<hr>
+<h2 id="Document-Store"><a href="#Document-Store" class="headerlink" title="Document Store"></a>Document Store</h2><ul>
+<li>Database &lt;-&gt; 数据库</li>
+<li>Collection &lt;-&gt; Table概念</li>
+<li>Document &lt;-&gt; 记录概念</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th align="right">MongoDB</th>
+<th align="right">SQL</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="right">insert</td>
+<td align="right">create</td>
+</tr>
+<tr>
+<td align="right">insert</td>
+<td align="right">insert</td>
+</tr>
+<tr>
+<td align="right">find</td>
+<td align="right">select</td>
+</tr>
+<tr>
+<td align="right">aggregate/group</td>
+<td align="right">group by</td>
+</tr>
+<tr>
+<td align="right">不支持join</td>
+<td align="right">join</td>
+</tr>
+<tr>
+<td align="right">支持index</td>
+<td align="right"></td>
+</tr>
+</tbody></table>
+<p>Write concern：</p>
+<ol>
+<li>Unacknowledged: 写请求发送了，就认为完成</li>
+<li>Acknowledged：MongoDB应答了收到写请求，就认为完成</li>
+<li>Journaled：MongoDB把写请求记录在硬盘上的日志中，认为完成</li>
+</ol>
+<hr>
+<h2 id="图存储系统"><a href="#图存储系统" class="headerlink" title="图存储系统"></a>图存储系统</h2><h3 id="Neo4j"><a href="#Neo4j" class="headerlink" title="Neo4j"></a>Neo4j</h3><ul>
+<li>顶点 &lt;-&gt; node</li>
+<li>边 &lt;-&gt; relationship, 双向链表</li>
+<li>顶点和边存储多个key-value值 &lt;-&gt; property，单向链表</li>
+</ul>
+<p>对node relationship property由缓冲区</p>
+
+        </div>
+        
+        
+        
+    </div>
+</div>
+
+
+
+
+
+
+
+
+    <div class="card">
+    
+    <div class="card-content article ">
+        
+        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+            <div class="level-left">
                 <time class="level-item has-text-grey" datetime="2019-06-02T16:00:00.000Z">2019-06-03</time>
                 
                 <div class="level-item">
@@ -617,6 +620,7 @@
 </ul>
 <hr>
 <h2 id="SQL"><a href="#SQL" class="headerlink" title="SQL"></a>SQL</h2><figure class="highlight sql hljs"><table><tr><td class="code"><pre><span class="line"><span class="hljs-keyword">create</span> <span class="hljs-keyword">table</span> 表名 (</span><br><span class="line">列名 类型,</span><br><span class="line">列名 类型,</span><br><span class="line">列名 类型,</span><br><span class="line">…… ,</span><br><span class="line">primary <span class="hljs-keyword">key</span>(<span class="hljs-keyword">ID</span>) -&gt; 声明主键，可以包含多个属性</span><br><span class="line">foreign <span class="hljs-keyword">key</span>(CourseId) <span class="hljs-keyword">references</span> Course(<span class="hljs-keyword">ID</span>),</span><br><span class="line">foreign <span class="hljs-keyword">key</span>(StudentId) <span class="hljs-keyword">references</span> Student(<span class="hljs-keyword">ID</span>) -&gt; 声明外键，可以有多个</span><br><span class="line">);</span><br><span class="line"></span><br><span class="line">插入完整记录：</span><br><span class="line"><span class="hljs-keyword">insert</span> <span class="hljs-keyword">into</span> Student</span><br><span class="line"><span class="hljs-keyword">values</span> (<span class="hljs-number">131234</span>, ‘张飞’, <span class="hljs-number">1995</span>/<span class="hljs-number">1</span>/<span class="hljs-number">1</span>, M, ‘计算机’, <span class="hljs-number">2013</span>, <span class="hljs-number">85</span>);</span><br><span class="line"></span><br><span class="line">插入记录特定的列，其它列为空：</span><br><span class="line"><span class="hljs-keyword">insert</span> <span class="hljs-keyword">into</span> Student(<span class="hljs-keyword">ID</span>, <span class="hljs-keyword">Name</span>)</span><br><span class="line"><span class="hljs-keyword">values</span> (<span class="hljs-number">131234</span>, ‘张飞’);</span><br><span class="line"></span><br><span class="line">删除记录</span><br><span class="line"><span class="hljs-keyword">delete</span> <span class="hljs-keyword">from</span> Student</span><br><span class="line"><span class="hljs-keyword">where</span> <span class="hljs-keyword">ID</span> = <span class="hljs-number">131234</span>;</span><br><span class="line"></span><br><span class="line">更新</span><br><span class="line"><span class="hljs-keyword">update</span> Student</span><br><span class="line"><span class="hljs-keyword">set</span> GPA = <span class="hljs-number">86</span></span><br><span class="line"><span class="hljs-keyword">where</span> <span class="hljs-keyword">ID</span> = <span class="hljs-number">131234</span></span><br><span class="line"></span><br><span class="line">选择（从一个表中提取一些行）</span><br><span class="line"><span class="hljs-keyword">select</span> *</span><br><span class="line"><span class="hljs-keyword">from</span> 表名</span><br><span class="line"><span class="hljs-keyword">where</span> 条件（多个条件可以用<span class="hljs-keyword">and</span>,<span class="hljs-keyword">or</span>,()进行组合）</span><br><span class="line"></span><br><span class="line">投影（从一个表中提取一些列）</span><br><span class="line"><span class="hljs-keyword">select</span> 列名，...列名</span><br><span class="line"><span class="hljs-keyword">from</span> 表名</span><br><span class="line"></span><br><span class="line">选择+投影</span><br><span class="line"><span class="hljs-keyword">select</span> <span class="hljs-keyword">Name</span>,GPA</span><br><span class="line"><span class="hljs-keyword">from</span> Student</span><br><span class="line"><span class="hljs-keyword">where</span> Major=<span class="hljs-string">"计算机"</span></span><br><span class="line"></span><br><span class="line">连接(<span class="hljs-keyword">Join</span>)</span><br><span class="line"><span class="hljs-keyword">select</span> Student.Name, Course.Name</span><br><span class="line"><span class="hljs-keyword">from</span> Student, Course, TakeCourse</span><br><span class="line"><span class="hljs-keyword">where</span> TakeCourse.CourseId = Course.ID <span class="hljs-keyword">and</span> TakeCourse.StudentID = Student.ID;</span><br><span class="line"></span><br><span class="line">分组统计(group by)</span><br><span class="line"><span class="hljs-keyword">select</span> Major, <span class="hljs-keyword">count</span>(*)</span><br><span class="line"><span class="hljs-keyword">from</span> Student</span><br><span class="line"><span class="hljs-keyword">where</span> <span class="hljs-keyword">Year</span> &gt;= <span class="hljs-number">2013</span> <span class="hljs-keyword">and</span> <span class="hljs-keyword">Year</span> &lt;= <span class="hljs-number">2014</span></span><br><span class="line"><span class="hljs-keyword">group</span> <span class="hljs-keyword">by</span> Major;</span><br><span class="line"></span><br><span class="line">过滤(Having,在group by基础上选择)</span><br><span class="line"><span class="hljs-keyword">select</span> Major, <span class="hljs-keyword">count</span>(*) <span class="hljs-keyword">as</span> Cnt</span><br><span class="line"><span class="hljs-keyword">from</span> Student</span><br><span class="line"><span class="hljs-keyword">where</span> <span class="hljs-keyword">Year</span> &gt;= <span class="hljs-number">2013</span> <span class="hljs-keyword">and</span> <span class="hljs-keyword">Year</span> &lt;= <span class="hljs-number">2014</span></span><br><span class="line"><span class="hljs-keyword">group</span> <span class="hljs-keyword">by</span> Major</span><br><span class="line"><span class="hljs-keyword">having</span> Cnt &gt;= <span class="hljs-number">2</span>;</span><br><span class="line"></span><br><span class="line">排序(Order by,desc减少，asc增加)</span><br><span class="line"><span class="hljs-keyword">select</span> Major, <span class="hljs-keyword">count</span>(*) <span class="hljs-keyword">as</span> Cnt</span><br><span class="line"><span class="hljs-keyword">from</span> Student</span><br><span class="line"><span class="hljs-keyword">where</span> <span class="hljs-keyword">Year</span> &gt;= <span class="hljs-number">2013</span> <span class="hljs-keyword">and</span> <span class="hljs-keyword">Year</span> &lt;= <span class="hljs-number">2014</span></span><br><span class="line"><span class="hljs-keyword">group</span> <span class="hljs-keyword">by</span> Major</span><br><span class="line"><span class="hljs-keyword">order</span> <span class="hljs-keyword">by</span> Cnt <span class="hljs-keyword">desc</span>;</span><br></pre></td></tr></table></figure>
+
 <hr>
 <h3 id="RDBMS-关系型数据库系统"><a href="#RDBMS-关系型数据库系统" class="headerlink" title="RDBMS(关系型数据库系统)"></a>RDBMS(关系型数据库系统)</h3><p>系统架构</p>
 <ul>
@@ -628,38 +632,34 @@
 <li>Transaction management：事务管理（ACID，logging日志加锁，保证并行事务正确性）</li>
 </ul>
 <hr>
-<h3 id="数据库-vs-文件系统"><a href="#数据库-vs-文件系统" class="headerlink" title="数据库 vs 文件系统"></a>数据库 vs 文件系统</h3><div class="table-container">
-<table>
+<h3 id="数据库-vs-文件系统"><a href="#数据库-vs-文件系统" class="headerlink" title="数据库 vs 文件系统"></a>数据库 vs 文件系统</h3><table>
 <thead>
 <tr>
-<th style="text-align:right">文件系统</th>
-<th style="text-align:right">数据库</th>
+<th align="right">文件系统</th>
+<th align="right">数据库</th>
 </tr>
 </thead>
-<tbody>
-<tr>
-<td style="text-align:right">存储文件</td>
-<td style="text-align:right">存储数据表</td>
+<tbody><tr>
+<td align="right">存储文件</td>
+<td align="right">存储数据表</td>
 </tr>
 <tr>
-<td style="text-align:right">通用的</td>
-<td style="text-align:right">专用的</td>
+<td align="right">通用的</td>
+<td align="right">专用的</td>
 </tr>
 <tr>
-<td style="text-align:right">文件无结构，由一串字节组成</td>
-<td style="text-align:right">由记录组成，每个记录有多个属性</td>
+<td align="right">文件无结构，由一串字节组成</td>
+<td align="right">由记录组成，每个记录有多个属性</td>
 </tr>
 <tr>
-<td style="text-align:right">操作系统实现</td>
-<td style="text-align:right">用户态程序实现</td>
+<td align="right">操作系统实现</td>
+<td align="right">用户态程序实现</td>
 </tr>
 <tr>
-<td style="text-align:right">提供编程接口</td>
-<td style="text-align:right">提供SQL接口</td>
+<td align="right">提供编程接口</td>
+<td align="right">提供SQL接口</td>
 </tr>
-</tbody>
-</table>
-</div>
+</tbody></table>
 <p>相同点：数据存储在外存；数据分成定长数据块</p>
 <p>RDBMS最小存储单位database page size</p>
 <p>Tuple可以存储变长的列,主要就是利用指针把边长空间放到后面</p>
@@ -746,30 +746,26 @@
 <li>如果数据页LSN&gt;=日志LSN，才进行undo</li>
 </ol>
 <hr>
-<div class="table-container">
 <table>
 <thead>
 <tr>
-<th style="text-align:right">数据仓库</th>
-<th style="text-align:right">事务处理</th>
+<th align="right">数据仓库</th>
+<th align="right">事务处理</th>
 </tr>
 </thead>
-<tbody>
-<tr>
-<td style="text-align:right">少数数据分析操作</td>
-<td style="text-align:right">大量并发transactions</td>
+<tbody><tr>
+<td align="right">少数数据分析操作</td>
+<td align="right">大量并发transactions</td>
 </tr>
 <tr>
-<td style="text-align:right">每个操作访问大量数据</td>
-<td style="text-align:right">访问很少数据</td>
+<td align="right">每个操作访问大量数据</td>
+<td align="right">访问很少数据</td>
 </tr>
 <tr>
-<td style="text-align:right">读</td>
-<td style="text-align:right">读写</td>
+<td align="right">读</td>
+<td align="right">读写</td>
 </tr>
-</tbody>
-</table>
-</div>
+</tbody></table>
 <hr>
 <h3 id="OLAP-联机分析处理"><a href="#OLAP-联机分析处理" class="headerlink" title="OLAP(联机分析处理)"></a>OLAP(联机分析处理)</h3><p>数据仓库的基础。基本数据模型：多维矩阵。称为数据立方。</p>
 <p>常用操作：</p>
@@ -1170,18 +1166,18 @@
         
         <article class="media">
             
-            <a href="/2019/07/21/数据挖掘/2019-08-13-实时异常检测/" class="media-left">
+            <a href="/2019/07/21/安全/2019-07-22-xgboost/" class="media-left">
                 <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="实时异常检测（xStream，KDD&#39;18）">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="孤立森林（Isolation Forest）">
                 </p>
             </a>
             
             <div class="media-content">
                 <div class="content">
                     <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-07-20T16:00:00.000Z">2019-07-21</time></div>
-                    <a href="/2019/07/21/数据挖掘/2019-08-13-实时异常检测/" class="title has-link-black-ter is-size-6 has-text-weight-normal">实时异常检测（xStream，KDD&#39;18）</a>
+                    <a href="/2019/07/21/安全/2019-07-22-xgboost/" class="title has-link-black-ter is-size-6 has-text-weight-normal">孤立森林（Isolation Forest）</a>
                     <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/Anomaly-detection/">Anomaly detection</a>
+                        <a class="has-link-grey -link" href="/categories/Security/">Security</a>
                     </p>
                 </div>
             </div>
@@ -1670,18 +1666,18 @@
         
         <article class="media">
             
-            <a href="/2019/07/21/数据挖掘/2019-08-13-实时异常检测/" class="media-left">
+            <a href="/2019/07/21/安全/2019-07-22-xgboost/" class="media-left">
                 <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="实时异常检测（xStream，KDD&#39;18）">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="孤立森林（Isolation Forest）">
                 </p>
             </a>
             
             <div class="media-content">
                 <div class="content">
                     <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-07-20T16:00:00.000Z">2019-07-21</time></div>
-                    <a href="/2019/07/21/数据挖掘/2019-08-13-实时异常检测/" class="title has-link-black-ter is-size-6 has-text-weight-normal">实时异常检测（xStream，KDD&#39;18）</a>
+                    <a href="/2019/07/21/安全/2019-07-22-xgboost/" class="title has-link-black-ter is-size-6 has-text-weight-normal">孤立森林（Isolation Forest）</a>
                     <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/Anomaly-detection/">Anomaly detection</a>
+                        <a class="has-link-grey -link" href="/categories/Security/">Security</a>
                     </p>
                 </div>
             </div>

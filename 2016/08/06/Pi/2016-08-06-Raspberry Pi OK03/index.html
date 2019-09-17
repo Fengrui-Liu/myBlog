@@ -185,27 +185,37 @@
 <hr>
 <h3 id="代码分析"><a href="#代码分析" class="headerlink" title="代码分析"></a>代码分析</h3><p><strong>GetGpioAddress</strong></p>
 <figure class="highlight arm hljs"><table><tr><td class="code"><pre><span class="line"><span class="hljs-symbol">.globl</span> GetGpioAddress</span><br><span class="line"><span class="hljs-symbol">GetGpioAddress</span>:</span><br><span class="line"><span class="hljs-keyword">ldr </span><span class="hljs-built_in">r0</span>,<span class="hljs-number">=0x20200000</span></span><br><span class="line"><span class="hljs-keyword">mov </span><span class="hljs-built_in">pc</span>,<span class="hljs-built_in">lr</span></span><br></pre></td></tr></table></figure>
+
 <p>我们可以通过这种方式定义在文件外部的函数代码，既可以本文件调用也可以让其他文件的函数引用。然后设置GPIO的基地址，并把lr寄存器的值保存到pc寄存器中，实现功能与之前实验基本相同。</p>
 <p><strong>SetGpioFunction</strong></p>
 <figure class="highlight arm hljs"><table><tr><td class="code"><pre><span class="line"><span class="hljs-symbol">.globl</span> SetGpioFunction</span><br><span class="line"><span class="hljs-symbol">SetGpioFunction</span>:</span><br><span class="line"><span class="hljs-keyword">cmp </span><span class="hljs-built_in">r0</span>,<span class="hljs-number">#53</span></span><br><span class="line"><span class="hljs-keyword">cmpls </span><span class="hljs-built_in">r1</span>,<span class="hljs-number">#7</span></span><br><span class="line"><span class="hljs-keyword">movhi </span><span class="hljs-built_in">pc</span>,<span class="hljs-built_in">lr</span></span><br></pre></td></tr></table></figure>
+
 <p>cmp指令中，如果r0&gt;53则跳过cmpls指令运行movhi，函数结束；cmpls指令中，如果r1&gt;7则运行movhi，函数结束。正确情况下是r0&lt;=53,r1&lt;=7,指令继续执行。</p>
 <figure class="highlight arm hljs"><table><tr><td class="code"><pre><span class="line"><span class="hljs-keyword">push </span>&#123;<span class="hljs-built_in">lr</span>&#125;</span><br><span class="line"><span class="hljs-keyword">mov </span><span class="hljs-built_in">r2</span>,<span class="hljs-built_in">r0</span></span><br><span class="line"><span class="hljs-keyword">bl </span>GetGpioAddress</span><br></pre></td></tr></table></figure>
+
 <p>调用GetGpioAddress函数，首先将返回地址压栈，然后保存现场避免丢失寄存器的值（假如我们不知道调用的函数是如何工作的，那么就需要保存所有的寄存器，此处我们只保存r0）。</p>
 <p>调用结束之后我们可以知道r0中的值就是GPIO的地址，r1保存function code，r2保存GPIO端口（r1和r2在main函数中定义）</p>
 <figure class="highlight arm hljs"><table><tr><td class="code"><pre><span class="line"><span class="hljs-symbol">functionLoop$</span>:</span><br><span class="line"><span class="hljs-keyword">cmp </span><span class="hljs-built_in">r2</span>,<span class="hljs-number">#9</span></span><br><span class="line"><span class="hljs-keyword">subhi </span><span class="hljs-built_in">r2</span>,<span class="hljs-number">#10</span></span><br><span class="line"><span class="hljs-keyword">addhi </span><span class="hljs-built_in">r0</span>,<span class="hljs-number">#4</span></span><br><span class="line"><span class="hljs-keyword">bhi </span>functionLoop$</span><br></pre></td></tr></table></figure>
+
 <p>循环以保证r2&lt;9,地址r0 = r0+（GPIO%10）* 4</p>
 <figure class="highlight arm hljs"><table><tr><td class="code"><pre><span class="line"><span class="hljs-keyword">add </span><span class="hljs-built_in">r2</span>, <span class="hljs-built_in">r2</span>,<span class="hljs-keyword">lsl </span><span class="hljs-number">#1</span></span><br><span class="line"><span class="hljs-keyword">lsl </span><span class="hljs-built_in">r1</span>,<span class="hljs-built_in">r2</span></span><br><span class="line"><span class="hljs-keyword">str </span><span class="hljs-built_in">r1</span>,[<span class="hljs-built_in">r0</span>]</span><br><span class="line"><span class="hljs-keyword">pop </span>&#123;<span class="hljs-built_in">pc</span>&#125;</span><br></pre></td></tr></table></figure>
+
 <p>为了加快运行速度，(r2 * 3) 变换成 (r2 左移1位 + r2)，然后剩余代码与之前实验功能一致，将对应位置1，同时使用pop指令出栈lr寄存器的值送到pc中。</p>
 <p><strong>SetGpio</strong></p>
 <figure class="highlight arm hljs"><table><tr><td class="code"><pre><span class="line"><span class="hljs-symbol">.globl</span> SetGpio</span><br><span class="line"><span class="hljs-symbol">SetGpio</span>:</span><br><span class="line"><span class="hljs-symbol">pinNum</span> <span class="hljs-meta">.req</span> <span class="hljs-built_in">r0</span></span><br><span class="line"><span class="hljs-symbol">pinVal</span> <span class="hljs-meta">.req</span> <span class="hljs-built_in">r1</span></span><br></pre></td></tr></table></figure>
+
 <p>这里使用到了register aliases，类似于c语言中的宏，优点就是避免只用符号代替的寄存器混淆掉。</p>
 <figure class="highlight arm hljs"><table><tr><td class="code"><pre><span class="line"><span class="hljs-keyword">cmp </span>pinNum,<span class="hljs-number">#53</span></span><br><span class="line"><span class="hljs-keyword">movhi </span><span class="hljs-built_in">pc</span>,<span class="hljs-built_in">lr</span></span><br><span class="line"><span class="hljs-keyword">push </span>&#123;<span class="hljs-built_in">lr</span>&#125;</span><br><span class="line"><span class="hljs-keyword">mov </span><span class="hljs-built_in">r2</span>,pinNum</span><br><span class="line"><span class="hljs-symbol">.unreq</span> pinNum</span><br><span class="line"><span class="hljs-symbol">pinNum</span> <span class="hljs-meta">.req</span> <span class="hljs-built_in">r2</span></span><br><span class="line"><span class="hljs-keyword">bl </span>GetGpioAddress</span><br><span class="line"><span class="hljs-symbol">gpioAddr</span> <span class="hljs-meta">.req</span> <span class="hljs-built_in">r0</span></span><br></pre></td></tr></table></figure>
+
 <p>首先检测给出的pinNum是否在允许范围，更改aliases所用的寄存器并调用函数，最后r2保存pinNum，r0保存的是gpioAddr。</p>
 <figure class="highlight arm hljs"><table><tr><td class="code"><pre><span class="line"><span class="hljs-symbol">pinBank</span> <span class="hljs-meta">.req</span> <span class="hljs-built_in">r3</span></span><br><span class="line"><span class="hljs-keyword">lsr </span>pinBank,pinNum,<span class="hljs-number">#5</span></span><br><span class="line"><span class="hljs-keyword">lsl </span>pinBank,<span class="hljs-number">#2</span></span><br><span class="line"><span class="hljs-keyword">add </span>gpioAddr,pinBank</span><br><span class="line"><span class="hljs-symbol">.unreq</span> pinBank</span><br></pre></td></tr></table></figure>
-<p>利用r3把54个GPIO划分成32和22两组，分别对应GPIO 0~31的地址0x20200000和GPIO 32~53的地址0x20200004</p>
+
+<p>利用r3把54个GPIO划分成32和22两组，分别对应GPIO 0<del>31的地址0x20200000和GPIO 32</del>53的地址0x20200004</p>
 <figure class="highlight arm hljs"><table><tr><td class="code"><pre><span class="line"><span class="hljs-keyword">and </span>pinNum,<span class="hljs-number">#31</span></span><br><span class="line"><span class="hljs-symbol">setBit</span> <span class="hljs-meta">.req</span> <span class="hljs-built_in">r3</span></span><br><span class="line"><span class="hljs-keyword">mov </span>setBit,<span class="hljs-number">#1</span></span><br><span class="line"><span class="hljs-keyword">lsl </span>setBit,pinNum</span><br><span class="line"><span class="hljs-symbol">.unreq</span> pinNum</span><br></pre></td></tr></table></figure>
+
 <p>生成对应GPIO口的置位数值，注意其中31在二进制中表示5个1，</p>
 <figure class="highlight arm hljs"><table><tr><td class="code"><pre><span class="line"><span class="hljs-keyword">teq </span>pinVal,<span class="hljs-number">#0</span></span><br><span class="line"><span class="hljs-symbol">.unreq</span> pinVal</span><br><span class="line"><span class="hljs-keyword">streq </span>setBit,[gpioAddr,<span class="hljs-number">#40</span>]</span><br><span class="line"><span class="hljs-keyword">strne </span>setBit,[gpioAddr,<span class="hljs-number">#28</span>]</span><br><span class="line"><span class="hljs-symbol">.unreq</span> setBit</span><br><span class="line"><span class="hljs-symbol">.unreq</span> gpioAddr</span><br><span class="line"><span class="hljs-keyword">pop </span>&#123;<span class="hljs-built_in">pc</span>&#125;</span><br></pre></td></tr></table></figure>
+
 <p>注意teq(test equal),并保存在相应地址处，pop出栈结束函数。</p>
 <hr>
 <p>最后注意堆栈结构，并写入main函数中</p>
@@ -272,16 +282,16 @@
     <div class="level post-navigation is-flex-wrap is-mobile">
         
         <div class="level-start">
-            <a class="level level-item has-link-grey  article-nav-prev" href="/2016/08/06/Pi/2016-08-06-Raspberry Pi OK02/">
+            <a class="level level-item has-link-grey  article-nav-prev" href="/2016/08/09/Pi/2016-08-09-Raspberry Pi OK04/">
                 <i class="level-item fas fa-chevron-left"></i>
-                <span class="level-item">Raspberry Pi OK02</span>
+                <span class="level-item">Raspberry Pi OK04</span>
             </a>
         </div>
         
         
         <div class="level-end">
-            <a class="level level-item has-link-grey  article-nav-next" href="/2016/08/06/Pi/2016-08-06-Raspberry Pi OK01/">
-                <span class="level-item">Raspberry Pi OK01</span>
+            <a class="level level-item has-link-grey  article-nav-next" href="/2016/08/06/Pi/2016-08-06-Baking Pi – Operating Systems Development前言/">
+                <span class="level-item">Raspberry Pi OS Development 前言</span>
                 <i class="level-item fas fa-chevron-right"></i>
             </a>
         </div>
@@ -657,18 +667,18 @@
         
         <article class="media">
             
-            <a href="/2019/07/21/数据挖掘/2019-08-13-实时异常检测/" class="media-left">
+            <a href="/2019/07/21/安全/2019-07-22-xgboost/" class="media-left">
                 <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="实时异常检测（xStream，KDD&#39;18）">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="孤立森林（Isolation Forest）">
                 </p>
             </a>
             
             <div class="media-content">
                 <div class="content">
                     <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-07-20T16:00:00.000Z">2019-07-21</time></div>
-                    <a href="/2019/07/21/数据挖掘/2019-08-13-实时异常检测/" class="title has-link-black-ter is-size-6 has-text-weight-normal">实时异常检测（xStream，KDD&#39;18）</a>
+                    <a href="/2019/07/21/安全/2019-07-22-xgboost/" class="title has-link-black-ter is-size-6 has-text-weight-normal">孤立森林（Isolation Forest）</a>
                     <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/Anomaly-detection/">Anomaly detection</a>
+                        <a class="has-link-grey -link" href="/categories/Security/">Security</a>
                     </p>
                 </div>
             </div>
@@ -1157,18 +1167,18 @@
         
         <article class="media">
             
-            <a href="/2019/07/21/数据挖掘/2019-08-13-实时异常检测/" class="media-left">
+            <a href="/2019/07/21/安全/2019-07-22-xgboost/" class="media-left">
                 <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="实时异常检测（xStream，KDD&#39;18）">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="孤立森林（Isolation Forest）">
                 </p>
             </a>
             
             <div class="media-content">
                 <div class="content">
                     <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-07-20T16:00:00.000Z">2019-07-21</time></div>
-                    <a href="/2019/07/21/数据挖掘/2019-08-13-实时异常检测/" class="title has-link-black-ter is-size-6 has-text-weight-normal">实时异常检测（xStream，KDD&#39;18）</a>
+                    <a href="/2019/07/21/安全/2019-07-22-xgboost/" class="title has-link-black-ter is-size-6 has-text-weight-normal">孤立森林（Isolation Forest）</a>
                     <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/Anomaly-detection/">Anomaly detection</a>
+                        <a class="has-link-grey -link" href="/categories/Security/">Security</a>
                     </p>
                 </div>
             </div>

@@ -191,12 +191,8 @@
 <li>把时间信息编码到ConvLSTM注意力模型中</li>
 <li>根据卷积解码器重构签名矩阵，利用平方误差来进行端到端的学习</li>
 </ol>
-<h3 id="使用签名矩阵描述状态"><a href="#使用签名矩阵描述状态" class="headerlink" title="使用签名矩阵描述状态"></a>使用签名矩阵描述状态</h3><p>对于时间段$t-w$ 到 $t$ 这段时间内，两个时序$x_i^w =(x_i^{t-w},x_i^{t-w-1},…,x_i^t)$ 与 $x_j^w =(x_j^{t-w},x_j^{t-w-1},…,x_j^t)$，联合计算</p>
-<script type="math/tex; mode=display">
-m_{ij}^t = \frac{sum_{\delta=0}^\omega x_i^{t-\delta}x_j^{t-\delta}}{K}</script><p>其中$K$作为缩放因子。这个矩阵可以衡量相似性且有一定的鲁棒性，有$m$构成完全矩阵$M$</p>
-<h3 id="卷积下的编码器"><a href="#卷积下的编码器" class="headerlink" title="卷积下的编码器"></a>卷积下的编码器</h3><p>首先将$M^t$用不同尺度连接成tensor $\chi^{t,0}\in \mathbb{R}^{n<em>n</em>s}$ 然后再传入卷积层，前后两层的通过激活函数连接</p>
-<script type="math/tex; mode=display">
-\chi^{t,l}=f(W^l*\chi^{t,l-1}+b^l)</script><p>激励函数用的是SELU</p>
+<h3 id="使用签名矩阵描述状态"><a href="#使用签名矩阵描述状态" class="headerlink" title="使用签名矩阵描述状态"></a>使用签名矩阵描述状态</h3><p>对于时间段$t-w$ 到 $t$ 这段时间内，两个时序$x_i^w =(x_i^{t-w},x_i^{t-w-1},…,x_i^t)$ 与 $x_j^w =(x_j^{t-w},x_j^{t-w-1},…,x_j^t)$，联合计算<br>$$<br>m_{ij}^t = \frac{sum_{\delta=0}^\omega x_i^{t-\delta}x_j^{t-\delta}}{K}<br>$$<br>其中$K$作为缩放因子。这个矩阵可以衡量相似性且有一定的鲁棒性，有$m$构成完全矩阵$M$</p>
+<h3 id="卷积下的编码器"><a href="#卷积下的编码器" class="headerlink" title="卷积下的编码器"></a>卷积下的编码器</h3><p>首先将$M^t$用不同尺度连接成tensor $\chi^{t,0}\in \mathbb{R}^{n<em>n</em>s}$ 然后再传入卷积层，前后两层的通过激活函数连接<br>$$<br>\chi^{t,l}=f(W^l*\chi^{t,l-1}+b^l)<br>$$<br>激励函数用的是SELU</p>
 <p><img src="pictures/MSCRED.jpg" alt></p>
 <h3 id="基于注意力的ConvLSTM"><a href="#基于注意力的ConvLSTM" class="headerlink" title="基于注意力的ConvLSTM"></a>基于注意力的ConvLSTM</h3><p>传统的ConvLSTM可能随着时序序列的增加，性能发生下降，为了解决这个问题，引入了注意力模型，可以根据时间戳动态采取相关隐含层（feature map）。隐含层的更新$H^{t,l} = ConvLSTM(\chi^{t,l},H^{t-1,l})$</p>
 
@@ -643,18 +639,18 @@ m_{ij}^t = \frac{sum_{\delta=0}^\omega x_i^{t-\delta}x_j^{t-\delta}}{K}</script>
         
         <article class="media">
             
-            <a href="/2019/07/21/数据挖掘/2019-08-13-实时异常检测/" class="media-left">
+            <a href="/2019/07/21/安全/2019-07-22-xgboost/" class="media-left">
                 <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="实时异常检测（xStream，KDD&#39;18）">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="孤立森林（Isolation Forest）">
                 </p>
             </a>
             
             <div class="media-content">
                 <div class="content">
                     <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-07-20T16:00:00.000Z">2019-07-21</time></div>
-                    <a href="/2019/07/21/数据挖掘/2019-08-13-实时异常检测/" class="title has-link-black-ter is-size-6 has-text-weight-normal">实时异常检测（xStream，KDD&#39;18）</a>
+                    <a href="/2019/07/21/安全/2019-07-22-xgboost/" class="title has-link-black-ter is-size-6 has-text-weight-normal">孤立森林（Isolation Forest）</a>
                     <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/Anomaly-detection/">Anomaly detection</a>
+                        <a class="has-link-grey -link" href="/categories/Security/">Security</a>
                     </p>
                 </div>
             </div>
@@ -1143,18 +1139,18 @@ m_{ij}^t = \frac{sum_{\delta=0}^\omega x_i^{t-\delta}x_j^{t-\delta}}{K}</script>
         
         <article class="media">
             
-            <a href="/2019/07/21/数据挖掘/2019-08-13-实时异常检测/" class="media-left">
+            <a href="/2019/07/21/安全/2019-07-22-xgboost/" class="media-left">
                 <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="实时异常检测（xStream，KDD&#39;18）">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="孤立森林（Isolation Forest）">
                 </p>
             </a>
             
             <div class="media-content">
                 <div class="content">
                     <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-07-20T16:00:00.000Z">2019-07-21</time></div>
-                    <a href="/2019/07/21/数据挖掘/2019-08-13-实时异常检测/" class="title has-link-black-ter is-size-6 has-text-weight-normal">实时异常检测（xStream，KDD&#39;18）</a>
+                    <a href="/2019/07/21/安全/2019-07-22-xgboost/" class="title has-link-black-ter is-size-6 has-text-weight-normal">孤立森林（Isolation Forest）</a>
                     <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/Anomaly-detection/">Anomaly detection</a>
+                        <a class="has-link-grey -link" href="/categories/Security/">Security</a>
                     </p>
                 </div>
             </div>

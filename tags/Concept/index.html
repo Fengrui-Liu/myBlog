@@ -180,7 +180,8 @@
         <div class="content">
             <h3 id="奇异值分解"><a href="#奇异值分解" class="headerlink" title="奇异值分解"></a>奇异值分解</h3><p>奇异值分解(singular value decomposition, SVD)</p>
 <p>假设$M$是一个$m*n$阶矩阵，其中的元素全部属于域$K$,也就是实数域或复数域。如此存在一个分解使得：</p>
-<script type="math/tex; mode=display">M=U\Sigma V^\ast</script><p>其中$U$是$m\ast n$阶酉矩阵,$\Sigma$是$m\ast n$阶非负实数对角矩阵,$V^\ast$ 是$V$的共轭转置，是$n\ast n$阶酉矩阵。这样的分解就是 $M$的奇异值分解。$\Sigma$ 对角线上的元素 $\Sigma_{i,j}$ 即为奇异值分解，常见情况下将奇异值由大到小排列。如此 $\Sigma$ 便能由$M$唯一确定。</p>
+<p>$$ M=U\Sigma V^\ast$$</p>
+<p>其中$U$是$m\ast n$阶酉矩阵,$\Sigma$是$m\ast n$阶非负实数对角矩阵,$V^\ast$ 是$V$的共轭转置，是$n\ast n$阶酉矩阵。这样的分解就是 $M$的奇异值分解。$\Sigma$ 对角线上的元素 $\Sigma_{i,j}$ 即为奇异值分解，常见情况下将奇异值由大到小排列。如此 $\Sigma$ 便能由$M$唯一确定。</p>
 <ul>
 <li>V的列组成一套对M的正交”输入”或”分析”的基向量，也是 $M\ast M$ 的特征向量。</li>
 <li>U的列组成一套对M的正交”输出”基向量，也是 $MM\ast$ 的特征向量。</li>
@@ -199,82 +200,15 @@
 <li>左下：单位圆通过 $V^\ast$ 的旋转。</li>
 <li>右下：单位圆通过 $\Sigma V^\ast$ 的变形，其中 $\Sigma$ 缩放了水平与垂直的比例。</li>
 </ul>
-<h3 id="举例"><a href="#举例" class="headerlink" title="举例"></a>举例</h3><script type="math/tex; mode=display">
-M=
-\begin{bmatrix}
-1 & 0 & 0 & 0 & 2\\\\ 
-0 & 0 & 3 & 0 & 0\\\\ 
-0 & 0 & 0 & 0 & 0\\\\ 
-0 & 2 & 0 & 0 & 0
-\end{bmatrix}</script><p>奇异值分解后的结果如下：</p>
-<script type="math/tex; mode=display">
-U=\begin{bmatrix}
-0 & 0 & 1 & 0\\\\ 
-0 & 1 & 0 & 0\\\\ 
-0 & 0 & 0 & 1\\\\ 
-1 & 0 & 0 & 0
-\end{bmatrix},
-\Sigma=\begin{bmatrix}
-4 & 0 & 0 & 0 & 0\\\\ 
-0 & 3 & 0 & 0 & 0\\\\ 
-0 & 0 & \sqrt{5} & 0 & 0\\\\ 
-0 & 0 & 0 & 0 & 0
-\end{bmatrix},
-V^*=\begin{bmatrix}
-0 & 1 & 0 & 0 & 0\\\\ 
-0 & 0 & 1 & 0 & 0\\\\ 
-\sqrt{0.2} & 0 & 0 & 0 & \sqrt{0.8}\\\\ 
-0 & 0 & 0 & 1 & 0\\
-\sqrt{0.8} & 0 & 0 & 0 & -\sqrt{0.2}
-\end{bmatrix}</script><p>注意矩阵 $\Sigma$ 的所有非对角元为0，矩阵 $U,V$ 都是酉矩阵，它们乘上各自的共轭转置都得到单位矩阵。由于 $U,V^*$ 都是实矩阵，故它们都是正交矩阵。</p>
-<script type="math/tex; mode=display">
-UU^\ast =\begin{bmatrix}
-0 & 0 & 1 & 0\\\\ 
-0 & 1 & 0 & 0\\\\ 
-0 & 0 & 0 & 1\\\\ 
-1 & 0 & 0 & 0
-\end{bmatrix}\ast
-\begin{bmatrix}
-0 & 0 & 0 & 1\\\\ 
-0 & 1 & 0 & 0\\\\ 
-1 & 0 & 0 & 0\\\\ 
-1 & 0 & 0 & 0
-\end{bmatrix} = 
-\begin{bmatrix}
-1 & 0 & 0 & 0\\\\ 
-0 & 1 & 0 & 0\\\\ 
-0 & 0 & 1 & 0\\\\ 
-0 & 0 & 0 & 1
-\end{bmatrix} =I_4</script><script type="math/tex; mode=display">
-VV^\ast =\begin{bmatrix}
-0 & 0 & \sqrt{0.2} & 0 & \sqrt{0.8}\\\\ 
-1 & 0 & 0 & 0 & 0\\\\ 
-0 & 1 & 0 & 0 & 0\\\\ 
-0 & 0 & 0 & 1 & 0\\
-0 & 0 & \sqrt{0.8} & 0 & -\sqrt{0.2}
-\end{bmatrix}\ast
-\begin{bmatrix}
-0 & 1 & 0 & 0 & 0\\\\ 
-0 & 0 & 1 & 0 & 0\\\\ 
-\sqrt{0.2} & 0 & 0 & 0 & \sqrt{0.8}\\\\ 
-0 & 0 & 0 & 1 & 0\\
-\sqrt{0.8} & 0 & 0 & 0 & -\sqrt{0.2}
-\end{bmatrix}=
-\begin{bmatrix}
-1 & 0 & 0 & 0 & 0\\\\ 
-0 & 1 & 0 & 0 & 0\\\\ 
-0 & 0 & 1 & 0 & 0\\\\ 
-0 & 0 & 0 & 1 & 0\\
-0 & 0 & 0 & 0 & 1
-\end{bmatrix} =I_5</script><p>由于 $\Sigma$ 有一个对角元是0，所以这个奇异值分解值不是唯一的，例如 V 可以为：</p>
-<script type="math/tex; mode=display">
-V^\ast = \begin{bmatrix}
-0 & 1 & 0 & 0 & 0\\\\ 
-0 & 0 & 1 & 0 & 0\\\\ 
-\sqrt{0.2} & 0 & 0 & 0 & \sqrt{0.8}\\\\ 
-\sqrt{0.4} & 0 & 0 & \sqrt{0.5} & -\sqrt{0.1}\\
--\sqrt{0.4} & 0 & 0 & \sqrt{0.5} & \sqrt{0.1}
-\end{bmatrix}</script>
+<h3 id="举例"><a href="#举例" class="headerlink" title="举例"></a>举例</h3><p>$$<br>M=<br>\begin{bmatrix}<br>1 &amp; 0 &amp; 0 &amp; 0 &amp; 2\\<br>0 &amp; 0 &amp; 3 &amp; 0 &amp; 0\\<br>0 &amp; 0 &amp; 0 &amp; 0 &amp; 0\\<br>0 &amp; 2 &amp; 0 &amp; 0 &amp; 0<br>\end{bmatrix}<br>$$</p>
+<p>奇异值分解后的结果如下：</p>
+<p>$$<br>U=\begin{bmatrix}<br>0 &amp; 0 &amp; 1 &amp; 0\\<br>0 &amp; 1 &amp; 0 &amp; 0\\<br>0 &amp; 0 &amp; 0 &amp; 1\\<br>1 &amp; 0 &amp; 0 &amp; 0<br>\end{bmatrix},<br>\Sigma=\begin{bmatrix}<br>4 &amp; 0 &amp; 0 &amp; 0 &amp; 0\\<br>0 &amp; 3 &amp; 0 &amp; 0 &amp; 0\\<br>0 &amp; 0 &amp; \sqrt{5} &amp; 0 &amp; 0\\<br>0 &amp; 0 &amp; 0 &amp; 0 &amp; 0<br>\end{bmatrix},<br>V^*=\begin{bmatrix}<br>0 &amp; 1 &amp; 0 &amp; 0 &amp; 0\\<br>0 &amp; 0 &amp; 1 &amp; 0 &amp; 0\\<br>\sqrt{0.2} &amp; 0 &amp; 0 &amp; 0 &amp; \sqrt{0.8}\\<br>0 &amp; 0 &amp; 0 &amp; 1 &amp; 0\<br>\sqrt{0.8} &amp; 0 &amp; 0 &amp; 0 &amp; -\sqrt{0.2}<br>\end{bmatrix}<br>$$</p>
+<p>注意矩阵 $\Sigma$ 的所有非对角元为0，矩阵 $U,V$ 都是酉矩阵，它们乘上各自的共轭转置都得到单位矩阵。由于 $U,V^*$ 都是实矩阵，故它们都是正交矩阵。</p>
+<p>$$<br>UU^\ast =\begin{bmatrix}<br>0 &amp; 0 &amp; 1 &amp; 0\\<br>0 &amp; 1 &amp; 0 &amp; 0\\<br>0 &amp; 0 &amp; 0 &amp; 1\\<br>1 &amp; 0 &amp; 0 &amp; 0<br>\end{bmatrix}\ast<br>\begin{bmatrix}<br>0 &amp; 0 &amp; 0 &amp; 1\\<br>0 &amp; 1 &amp; 0 &amp; 0\\<br>1 &amp; 0 &amp; 0 &amp; 0\\<br>1 &amp; 0 &amp; 0 &amp; 0<br>\end{bmatrix} =<br>\begin{bmatrix}<br>1 &amp; 0 &amp; 0 &amp; 0\\<br>0 &amp; 1 &amp; 0 &amp; 0\\<br>0 &amp; 0 &amp; 1 &amp; 0\\<br>0 &amp; 0 &amp; 0 &amp; 1<br>\end{bmatrix} =I_4<br>$$</p>
+<p>$$<br>VV^\ast =\begin{bmatrix}<br>0 &amp; 0 &amp; \sqrt{0.2} &amp; 0 &amp; \sqrt{0.8}\\<br>1 &amp; 0 &amp; 0 &amp; 0 &amp; 0\\<br>0 &amp; 1 &amp; 0 &amp; 0 &amp; 0\\<br>0 &amp; 0 &amp; 0 &amp; 1 &amp; 0\<br>0 &amp; 0 &amp; \sqrt{0.8} &amp; 0 &amp; -\sqrt{0.2}<br>\end{bmatrix}\ast<br>\begin{bmatrix}<br>0 &amp; 1 &amp; 0 &amp; 0 &amp; 0\\<br>0 &amp; 0 &amp; 1 &amp; 0 &amp; 0\\<br>\sqrt{0.2} &amp; 0 &amp; 0 &amp; 0 &amp; \sqrt{0.8}\\<br>0 &amp; 0 &amp; 0 &amp; 1 &amp; 0\<br>\sqrt{0.8} &amp; 0 &amp; 0 &amp; 0 &amp; -\sqrt{0.2}<br>\end{bmatrix}=<br>\begin{bmatrix}<br>1 &amp; 0 &amp; 0 &amp; 0 &amp; 0\\<br>0 &amp; 1 &amp; 0 &amp; 0 &amp; 0\\<br>0 &amp; 0 &amp; 1 &amp; 0 &amp; 0\\<br>0 &amp; 0 &amp; 0 &amp; 1 &amp; 0\<br>0 &amp; 0 &amp; 0 &amp; 0 &amp; 1<br>\end{bmatrix} =I_5<br>$$</p>
+<p>由于 $\Sigma$ 有一个对角元是0，所以这个奇异值分解值不是唯一的，例如 V 可以为：</p>
+<p>$$<br>V^\ast = \begin{bmatrix}<br>0 &amp; 1 &amp; 0 &amp; 0 &amp; 0\\<br>0 &amp; 0 &amp; 1 &amp; 0 &amp; 0\\<br>\sqrt{0.2} &amp; 0 &amp; 0 &amp; 0 &amp; \sqrt{0.8}\\<br>\sqrt{0.4} &amp; 0 &amp; 0 &amp; \sqrt{0.5} &amp; -\sqrt{0.1}\<br>-\sqrt{0.4} &amp; 0 &amp; 0 &amp; \sqrt{0.5} &amp; \sqrt{0.1}<br>\end{bmatrix}<br>$$</p>
+
         </div>
         
         
@@ -319,9 +253,12 @@ V^\ast = \begin{bmatrix}
         </h1>
         <div class="content">
             <h3 id="计算马氏距离"><a href="#计算马氏距离" class="headerlink" title="计算马氏距离"></a>计算马氏距离</h3><p>马氏距离用来表示数据的协方差距离。他可以有效地计算两个未知样本集的相似度，他也考虑到各种特性之间的联系。对于一个均值为 $μ = (μ_1,μ_2,μ_3,…,μ_p)^T$，协方差矩阵为 $\Sigma$ 的多变向量 $x = (x_1,x_2,x_3,…,x_p)^T$ 其马氏距离为：</p>
-<script type="math/tex; mode=display">D_M(x) = \sqrt{(x-μ)^T\Sigma^{-1}(x-μ)}</script><p>马氏距离也可以定义为两个服从同一分布并且协方差矩阵为 $\Sigma$ 的随机变量 $\vec{x}$ 与 $\vec{y}$ 的差异程度：</p>
-<script type="math/tex; mode=display">d(\vec{x},\vec{y}) = \sqrt{(\vec{x}-\vec{y})^T\Sigma^{-1}(\vec{x}-\vec{y})}</script><p>如果协方差矩阵为单位矩阵，马氏距离就简化为欧氏距离，如果协方差矩阵为对角矩阵，也可以称为正规化的欧氏距离：</p>
-<script type="math/tex; mode=display">d(\vec{x},\vec{y}) = \sqrt{\sum_{i=1}^{p}\frac{(x_i-y_i)^2}{\sigma_i^2}}</script><h3 id="理解马氏距离"><a href="#理解马氏距离" class="headerlink" title="理解马氏距离"></a>理解马氏距离</h3><p>如下是一个离散图</p>
+<p>$$ D_M(x) = \sqrt{(x-μ)^T\Sigma^{-1}(x-μ)} $$</p>
+<p>马氏距离也可以定义为两个服从同一分布并且协方差矩阵为 $\Sigma$ 的随机变量 $\vec{x}$ 与 $\vec{y}$ 的差异程度：</p>
+<p>$$d(\vec{x},\vec{y}) = \sqrt{(\vec{x}-\vec{y})^T\Sigma^{-1}(\vec{x}-\vec{y})}$$ </p>
+<p>如果协方差矩阵为单位矩阵，马氏距离就简化为欧氏距离，如果协方差矩阵为对角矩阵，也可以称为正规化的欧氏距离：</p>
+<p>$$ d(\vec{x},\vec{y}) = \sqrt{\sum_{i=1}^{p}\frac{(x_i-y_i)^2}{\sigma_i^2}}$$</p>
+<h3 id="理解马氏距离"><a href="#理解马氏距离" class="headerlink" title="理解马氏距离"></a>理解马氏距离</h3><p>如下是一个离散图</p>
 <p><img src="https://i.stack.imgur.com/D7t2q.png" alt></p>
 <p>将上图的坐标轴去掉</p>
 <p><img src="https://i.stack.imgur.com/vI1vj.png" alt></p>
@@ -846,18 +783,18 @@ V^\ast = \begin{bmatrix}
         
         <article class="media">
             
-            <a href="/2019/07/21/数据挖掘/2019-08-13-实时异常检测/" class="media-left">
+            <a href="/2019/07/21/安全/2019-07-22-xgboost/" class="media-left">
                 <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="实时异常检测（xStream，KDD&#39;18）">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="孤立森林（Isolation Forest）">
                 </p>
             </a>
             
             <div class="media-content">
                 <div class="content">
                     <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-07-20T16:00:00.000Z">2019-07-21</time></div>
-                    <a href="/2019/07/21/数据挖掘/2019-08-13-实时异常检测/" class="title has-link-black-ter is-size-6 has-text-weight-normal">实时异常检测（xStream，KDD&#39;18）</a>
+                    <a href="/2019/07/21/安全/2019-07-22-xgboost/" class="title has-link-black-ter is-size-6 has-text-weight-normal">孤立森林（Isolation Forest）</a>
                     <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/Anomaly-detection/">Anomaly detection</a>
+                        <a class="has-link-grey -link" href="/categories/Security/">Security</a>
                     </p>
                 </div>
             </div>
@@ -1346,18 +1283,18 @@ V^\ast = \begin{bmatrix}
         
         <article class="media">
             
-            <a href="/2019/07/21/数据挖掘/2019-08-13-实时异常检测/" class="media-left">
+            <a href="/2019/07/21/安全/2019-07-22-xgboost/" class="media-left">
                 <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="实时异常检测（xStream，KDD&#39;18）">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="孤立森林（Isolation Forest）">
                 </p>
             </a>
             
             <div class="media-content">
                 <div class="content">
                     <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-07-20T16:00:00.000Z">2019-07-21</time></div>
-                    <a href="/2019/07/21/数据挖掘/2019-08-13-实时异常检测/" class="title has-link-black-ter is-size-6 has-text-weight-normal">实时异常检测（xStream，KDD&#39;18）</a>
+                    <a href="/2019/07/21/安全/2019-07-22-xgboost/" class="title has-link-black-ter is-size-6 has-text-weight-normal">孤立森林（Isolation Forest）</a>
                     <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/Anomaly-detection/">Anomaly detection</a>
+                        <a class="has-link-grey -link" href="/categories/Security/">Security</a>
                     </p>
                 </div>
             </div>

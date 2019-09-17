@@ -192,6 +192,7 @@
 <hr>
 <h3 id="代码分析"><a href="#代码分析" class="headerlink" title="代码分析"></a>代码分析</h3><p><strong>GetMailboxBase</strong></p>
 <figure class="highlight arm hljs"><table><tr><td class="code"><pre><span class="line"><span class="hljs-symbol">.globl</span> GetMailboxBase</span><br><span class="line"><span class="hljs-symbol">GetMailboxBase</span>:</span><br><span class="line"><span class="hljs-keyword">ldr </span><span class="hljs-built_in">r0</span>,<span class="hljs-number">=0x2000B880</span></span><br><span class="line"><span class="hljs-keyword">mov </span><span class="hljs-built_in">pc</span>,<span class="hljs-built_in">lr</span></span><br></pre></td></tr></table></figure>
+
 <p>根据上表我们知道<strong>0x2000B880</strong>是信箱的地址。</p>
 <p><strong>MailboxWrite</strong></p>
 <ol>
@@ -203,21 +204,28 @@
 <li>写</li>
 </ol>
 <figure class="highlight arm hljs"><table><tr><td class="code"><pre><span class="line"><span class="hljs-symbol">.globl</span> MailboxWrite</span><br><span class="line"><span class="hljs-symbol">MailboxWrite</span>:</span><br><span class="line"><span class="hljs-keyword">tst </span><span class="hljs-built_in">r0</span>,<span class="hljs-number">#0b1111</span></span><br><span class="line"><span class="hljs-keyword">movne </span><span class="hljs-built_in">pc</span>,<span class="hljs-built_in">lr</span></span><br><span class="line"><span class="hljs-keyword">cmp </span><span class="hljs-built_in">r1</span>,<span class="hljs-number">#15</span></span><br><span class="line"><span class="hljs-keyword">movhi </span><span class="hljs-built_in">pc</span>,<span class="hljs-built_in">lr</span></span><br></pre></td></tr></table></figure>
+
 <p><strong>tst</strong> 数据处理指令，用于把一个寄存器的内容和另一个寄存器的内容或立即数进行按位的与运算，并根据运算结果更新CPSR中条件标志位的值,这几行代码就是检查r0和r1寄存器的最低4为是否为0，若不为0则把lr寄存器装载到pc中，返回并退出。</p>
 <figure class="highlight arm hljs"><table><tr><td class="code"><pre><span class="line"><span class="hljs-symbol">channel</span> <span class="hljs-meta">.req</span> <span class="hljs-built_in">r1</span></span><br><span class="line"><span class="hljs-symbol">value</span> <span class="hljs-meta">.req</span> <span class="hljs-built_in">r2</span></span><br><span class="line"><span class="hljs-keyword">mov </span>value,<span class="hljs-built_in">r0</span></span><br><span class="line"><span class="hljs-keyword">push </span>&#123;<span class="hljs-built_in">lr</span>&#125;</span><br><span class="line"><span class="hljs-keyword">bl </span>GetMailboxBase</span><br><span class="line"><span class="hljs-symbol">mailbox</span> <span class="hljs-meta">.req</span> <span class="hljs-built_in">r0</span></span><br></pre></td></tr></table></figure>
+
 <p>保护现场，避免覆盖r0的值。</p>
 <figure class="highlight arm hljs"><table><tr><td class="code"><pre><span class="line"><span class="hljs-symbol">wait1$</span>:</span><br><span class="line"><span class="hljs-symbol">status</span> <span class="hljs-meta">.req</span> <span class="hljs-built_in">r3</span></span><br><span class="line"><span class="hljs-keyword">ldr </span>status,[mailbox,<span class="hljs-number">#0x18</span>]</span><br></pre></td></tr></table></figure>
+
 <p>根据表格可以知道0x2000B898是Status的地址。</p>
 <figure class="highlight arm hljs"><table><tr><td class="code"><pre><span class="line"><span class="hljs-keyword">tst </span>status,<span class="hljs-number">#0x80000000</span></span><br><span class="line"><span class="hljs-symbol">.unreq</span> status</span><br><span class="line"><span class="hljs-keyword">bne </span>wait1$</span><br></pre></td></tr></table></figure>
+
 <p>检查最高位是否为0。</p>
 <figure class="highlight arm hljs"><table><tr><td class="code"><pre><span class="line"><span class="hljs-keyword">add </span>value,channel</span><br><span class="line"><span class="hljs-symbol">.unreq</span> channel</span><br></pre></td></tr></table></figure>
+
 <p>高28位数值于低4位通道号连接。</p>
 <figure class="highlight arm hljs"><table><tr><td class="code"><pre><span class="line"><span class="hljs-keyword">str </span>value,[mailbox,<span class="hljs-number">#0x20</span>]</span><br><span class="line"><span class="hljs-symbol">.unreq</span> value</span><br><span class="line"><span class="hljs-symbol">.unreq</span> mailbox</span><br><span class="line"><span class="hljs-keyword">pop </span>&#123;<span class="hljs-built_in">pc</span>&#125;</span><br></pre></td></tr></table></figure>
+
 <p>根据表格可以得知地址<strong>2000B8A0</strong>是WRITE，将value的值保存到该地址中即可，同时取消所有定义，pc出栈，完成操作。</p>
 <p><strong>MailboxRead</strong></p>
 <p>从信箱中读取信件的代码与之前实现基本相同。在读取的时候要从0x2000B880地址中读取。</p>
 <p><strong>FrameBufferInfo</strong></p>
 <figure class="highlight arm hljs"><table><tr><td class="code"><pre><span class="line"><span class="hljs-symbol">.section</span> <span class="hljs-meta">.data</span></span><br><span class="line"><span class="hljs-symbol">.align</span> <span class="hljs-number">4</span></span><br><span class="line"><span class="hljs-symbol">.globl</span> FrameBufferInfo</span><br><span class="line"><span class="hljs-symbol">FrameBufferInfo</span>:</span><br><span class="line"><span class="hljs-symbol">.int</span> <span class="hljs-number">1024</span> <span class="hljs-comment">/* #0 Physical Width */</span></span><br><span class="line"><span class="hljs-symbol">.int</span> <span class="hljs-number">768</span> <span class="hljs-comment">/* #4 Physical Height */</span></span><br><span class="line"><span class="hljs-symbol">.int</span> <span class="hljs-number">1024</span> <span class="hljs-comment">/* #8 Virtual Width */</span></span><br><span class="line"><span class="hljs-symbol">.int</span> <span class="hljs-number">768</span> <span class="hljs-comment">/* #12 Virtual Height */</span></span><br><span class="line"><span class="hljs-symbol">.int</span> <span class="hljs-number">0</span> <span class="hljs-comment">/* #16 GPU - Pitch */</span></span><br><span class="line"><span class="hljs-symbol">.int</span> <span class="hljs-number">16</span> <span class="hljs-comment">/* #20 Bit Depth */</span></span><br><span class="line"><span class="hljs-symbol">.int</span> <span class="hljs-number">0</span> <span class="hljs-comment">/* #24 X */</span></span><br><span class="line"><span class="hljs-symbol">.int</span> <span class="hljs-number">0</span> <span class="hljs-comment">/* #28 Y */</span></span><br><span class="line"><span class="hljs-symbol">.int</span> <span class="hljs-number">0</span> <span class="hljs-comment">/* #32 GPU - Pointer */</span></span><br><span class="line"><span class="hljs-symbol">.int</span> <span class="hljs-number">0</span> <span class="hljs-comment">/* #36 GPU - Size */</span></span><br></pre></td></tr></table></figure>
+
 <p>以上代码是定义传到GPU的数据格式，各项意义均已说明，注意字对齐。</p>
 <p>接下来的步骤如下：</p>
 <ol>
@@ -226,6 +234,7 @@
 <li>将指针指向我们所要展示的图片，就能在显示器上看到图片了。</li>
 </ol>
 <figure class="highlight arm hljs"><table><tr><td class="code"><pre><span class="line"><span class="hljs-symbol">FrameBufferInfo</span> + <span class="hljs-number">0x40000000</span></span><br></pre></td></tr></table></figure>
+
 <p>加上0x40000000是一种特定的指令，为了能够告诉GPU禁止自身的cache，以便能让我们观察到数据变换，这是规定好的指令。</p>
 <ol>
 <li>输入</li>
@@ -237,25 +246,34 @@
 </ol>
 <p><strong>InitialiseFrameBuffer</strong></p>
 <figure class="highlight arm hljs"><table><tr><td class="code"><pre><span class="line"><span class="hljs-symbol">.section</span> <span class="hljs-meta">.text</span></span><br><span class="line"><span class="hljs-symbol">.globl</span> InitialiseFrameBuffer</span><br><span class="line"><span class="hljs-symbol">InitialiseFrameBuffer</span>:</span><br><span class="line"><span class="hljs-symbol">width</span> <span class="hljs-meta">.req</span> <span class="hljs-built_in">r0</span></span><br><span class="line"><span class="hljs-symbol">height</span> <span class="hljs-meta">.req</span> <span class="hljs-built_in">r1</span></span><br><span class="line"><span class="hljs-keyword">bitDepth </span><span class="hljs-meta">.req</span> <span class="hljs-built_in">r2</span></span><br><span class="line"><span class="hljs-keyword">cmp </span>width,<span class="hljs-number">#4096</span></span><br><span class="line"><span class="hljs-keyword">cmpls </span>height,<span class="hljs-number">#4096</span></span><br><span class="line"><span class="hljs-keyword">cmpls </span><span class="hljs-keyword">bitDepth,#32</span></span><br><span class="line"><span class="hljs-keyword">result </span><span class="hljs-meta">.req</span> <span class="hljs-built_in">r0</span></span><br><span class="line"><span class="hljs-keyword">movhi </span>result,<span class="hljs-number">#0</span></span><br><span class="line"><span class="hljs-keyword">movhi </span><span class="hljs-built_in">pc</span>,<span class="hljs-built_in">lr</span></span><br></pre></td></tr></table></figure>
+
 <p>检查width和height是否都小于等于4096，bitDepth是否小于等于32，如果满足条件则将0保存到result中，表示符合条件。</p>
 <figure class="highlight arm hljs"><table><tr><td class="code"><pre><span class="line"><span class="hljs-symbol">fbInfoAddr</span> <span class="hljs-meta">.req</span> <span class="hljs-built_in">r3</span></span><br><span class="line"><span class="hljs-keyword">push </span>&#123;<span class="hljs-built_in">lr</span>&#125;</span><br><span class="line"><span class="hljs-keyword">ldr </span>fbInfoAddr,<span class="hljs-symbol">=FrameBufferInfo</span></span><br><span class="line"><span class="hljs-keyword">str </span>width,[fbInfoAddr,<span class="hljs-number">#0</span>]</span><br><span class="line"><span class="hljs-keyword">str </span>height,[fbInfoAddr,<span class="hljs-number">#4</span>]</span><br><span class="line"><span class="hljs-keyword">str </span>width,[fbInfoAddr,<span class="hljs-number">#8</span>]</span><br><span class="line"><span class="hljs-keyword">str </span>height,[fbInfoAddr,<span class="hljs-number">#12</span>]</span><br><span class="line"><span class="hljs-keyword">str </span><span class="hljs-keyword">bitDepth,[fbInfoAddr,#20]</span></span><br><span class="line"><span class="hljs-keyword">.unreq </span>width</span><br><span class="line"><span class="hljs-symbol">.unreq</span> height</span><br><span class="line"><span class="hljs-symbol">.unreq</span> <span class="hljs-keyword">bitDepth</span></span><br></pre></td></tr></table></figure>
+
 <p>按照之前给出的数据格式保存到相应的地址中</p>
 <figure class="highlight arm hljs"><table><tr><td class="code"><pre><span class="line"><span class="hljs-keyword">mov </span><span class="hljs-built_in">r0</span>,fbInfoAddr</span><br><span class="line"><span class="hljs-keyword">add </span><span class="hljs-built_in">r0</span>,<span class="hljs-number">#0x40000000</span></span><br><span class="line"><span class="hljs-keyword">mov </span><span class="hljs-built_in">r1</span>,<span class="hljs-number">#1</span></span><br><span class="line"><span class="hljs-keyword">bl </span>MailboxWrite</span><br></pre></td></tr></table></figure>
+
 <p>这里就是之前说的固定格式的地址指令，r1中则是选择了通道。</p>
 <figure class="highlight arm hljs"><table><tr><td class="code"><pre><span class="line"><span class="hljs-keyword">mov </span><span class="hljs-built_in">r0</span>,<span class="hljs-number">#1</span></span><br><span class="line"><span class="hljs-keyword">bl </span>MailboxRead</span><br></pre></td></tr></table></figure>
+
 <p>r0中选择了通道，与上面写信箱的通道保持一致。</p>
 <figure class="highlight arm hljs"><table><tr><td class="code"><pre><span class="line"><span class="hljs-keyword">teq </span>result,<span class="hljs-number">#0</span></span><br><span class="line"><span class="hljs-keyword">movne </span>result,<span class="hljs-number">#0</span></span><br><span class="line"><span class="hljs-keyword">popne </span>&#123;<span class="hljs-built_in">pc</span>&#125;</span><br></pre></td></tr></table></figure>
+
 <p>测试返回值是否为0，如果结果不为0则返回0表示有错误发生。</p>
 <figure class="highlight arm hljs"><table><tr><td class="code"><pre><span class="line"><span class="hljs-keyword">mov </span>result,fbInfoAddr</span><br><span class="line"><span class="hljs-keyword">pop </span>&#123;<span class="hljs-built_in">pc</span>&#125;</span><br><span class="line"><span class="hljs-symbol">.unreq</span> result</span><br><span class="line"><span class="hljs-symbol">.unreq</span> fbInfoAddr</span><br></pre></td></tr></table></figure>
+
 <p>将帧缓冲地址返回</p>
 <hr>
 <p>现在我们要使用GPU处理图像。</p>
 <figure class="highlight arm hljs"><table><tr><td class="code"><pre><span class="line"><span class="hljs-keyword">mov </span><span class="hljs-built_in">r0</span>,<span class="hljs-number">#1024</span></span><br><span class="line"><span class="hljs-keyword">mov </span><span class="hljs-built_in">r1</span>,<span class="hljs-number">#768</span></span><br><span class="line"><span class="hljs-keyword">mov </span><span class="hljs-built_in">r2</span>,<span class="hljs-number">#16</span></span><br><span class="line"><span class="hljs-keyword">bl </span>InitialiseFrameBuffer</span><br></pre></td></tr></table></figure>
+
 <p>定义一个1024*768，16位色的帧</p>
 <figure class="highlight arm hljs"><table><tr><td class="code"><pre><span class="line"><span class="hljs-keyword">teq </span><span class="hljs-built_in">r0</span>,<span class="hljs-number">#0</span></span><br><span class="line"><span class="hljs-keyword">bne </span>noError$</span><br><span class="line"></span><br><span class="line"><span class="hljs-keyword">mov </span><span class="hljs-built_in">r0</span>,<span class="hljs-number">#16</span></span><br><span class="line"><span class="hljs-keyword">mov </span><span class="hljs-built_in">r1</span>,<span class="hljs-number">#1</span></span><br><span class="line"><span class="hljs-keyword">bl </span>SetGpioFunction</span><br><span class="line"><span class="hljs-keyword">mov </span><span class="hljs-built_in">r0</span>,<span class="hljs-number">#16</span></span><br><span class="line"><span class="hljs-keyword">mov </span><span class="hljs-built_in">r1</span>,<span class="hljs-number">#0</span></span><br><span class="line"><span class="hljs-keyword">bl </span>SetGpio</span><br><span class="line"></span><br><span class="line"><span class="hljs-symbol">error$</span>:</span><br><span class="line"><span class="hljs-keyword">b </span>error$</span><br><span class="line"></span><br><span class="line"><span class="hljs-symbol">noError$</span>:</span><br><span class="line"><span class="hljs-symbol">fbInfoAddr</span> <span class="hljs-meta">.req</span> <span class="hljs-built_in">r4</span></span><br><span class="line"><span class="hljs-keyword">mov </span>fbInfoAddr,<span class="hljs-built_in">r0</span></span><br></pre></td></tr></table></figure>
+
 <p>检查r0寄存器中是否为0，若不为0，进行图像处理程序，否则通过GPIO口点亮ACT灯。</p>
 <p>在大多数的位图的存储方式中，总是从左向右，从上到下，所以我们使用两个循环完成每个像素点。</p>
 <figure class="highlight arm hljs"><table><tr><td class="code"><pre><span class="line"><span class="hljs-symbol">render$</span>:</span><br><span class="line">	fbAddr <span class="hljs-meta">.req</span> <span class="hljs-built_in">r3</span></span><br><span class="line">	<span class="hljs-keyword">ldr </span>fbAddr,[fbInfoAddr,<span class="hljs-number">#32</span>]</span><br><span class="line"></span><br><span class="line">	colour <span class="hljs-meta">.req</span> <span class="hljs-built_in">r0</span></span><br><span class="line">	y <span class="hljs-meta">.req</span> <span class="hljs-built_in">r1</span></span><br><span class="line">	<span class="hljs-keyword">mov </span>y,<span class="hljs-number">#768</span></span><br><span class="line"><span class="hljs-symbol">	drawRow$:</span></span><br><span class="line">		x <span class="hljs-meta">.req</span> <span class="hljs-built_in">r2</span></span><br><span class="line">		<span class="hljs-keyword">mov </span>x,<span class="hljs-number">#1024</span></span><br><span class="line"><span class="hljs-symbol">		drawPixel$:</span></span><br><span class="line">			<span class="hljs-keyword">strh </span>colour,[fbAddr]</span><br><span class="line">			<span class="hljs-keyword">add </span>fbAddr,<span class="hljs-number">#2</span></span><br><span class="line">			<span class="hljs-keyword">sub </span>x,<span class="hljs-number">#1</span></span><br><span class="line">			<span class="hljs-keyword">teq </span>x,<span class="hljs-number">#0</span></span><br><span class="line">			<span class="hljs-keyword">bne </span>drawPixel$</span><br><span class="line"></span><br><span class="line">		<span class="hljs-keyword">sub </span>y,<span class="hljs-number">#1</span></span><br><span class="line">		<span class="hljs-keyword">add </span>colour,<span class="hljs-number">#1</span></span><br><span class="line">		<span class="hljs-keyword">teq </span>y,<span class="hljs-number">#0</span></span><br><span class="line">		<span class="hljs-keyword">bne </span>drawRow$</span><br><span class="line"></span><br><span class="line">	<span class="hljs-keyword">b </span>render$</span><br><span class="line"></span><br><span class="line"><span class="hljs-symbol">.unreq</span> fbAddr</span><br><span class="line"><span class="hljs-symbol">.unreq</span> fbInfoAddr</span><br></pre></td></tr></table></figure>
+
 <p><strong>strh</strong> 指令是半字存储，在通过x和y分别控制循环变量，实现嵌套的循环，完成整个屏幕像素点的加载</p>
 <hr>
 <h3 id="结果展示"><a href="#结果展示" class="headerlink" title="结果展示"></a>结果展示</h3><p><img src="http://ww2.sinaimg.cn/large/65e4f1e6gw1f7r9ue2k8hg20dc06zkjn.gif" alt></p>
@@ -318,16 +336,16 @@
     <div class="level post-navigation is-flex-wrap is-mobile">
         
         <div class="level-start">
-            <a class="level level-item has-link-grey  article-nav-prev" href="/2016/08/09/Pi/2016-08-11-Raspberry Pi Screen02/">
+            <a class="level level-item has-link-grey  article-nav-prev" href="/2016/08/14/Pi/2016-08-14-Raspberry Pi Screen03/">
                 <i class="level-item fas fa-chevron-left"></i>
-                <span class="level-item">Raspberry Pi Screen02</span>
+                <span class="level-item">Raspberry Pi Screen03</span>
             </a>
         </div>
         
         
         <div class="level-end">
-            <a class="level level-item has-link-grey  article-nav-next" href="/2016/08/09/Pi/2016-08-09-Raspberry Pi OK04/">
-                <span class="level-item">Raspberry Pi OK04</span>
+            <a class="level level-item has-link-grey  article-nav-next" href="/2016/08/09/Pi/2016-08-09-Raspberry Pi OK05/">
+                <span class="level-item">Raspberry Pi OK05</span>
                 <i class="level-item fas fa-chevron-right"></i>
             </a>
         </div>
@@ -703,18 +721,18 @@
         
         <article class="media">
             
-            <a href="/2019/07/21/数据挖掘/2019-08-13-实时异常检测/" class="media-left">
+            <a href="/2019/07/21/安全/2019-07-22-xgboost/" class="media-left">
                 <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="实时异常检测（xStream，KDD&#39;18）">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="孤立森林（Isolation Forest）">
                 </p>
             </a>
             
             <div class="media-content">
                 <div class="content">
                     <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-07-20T16:00:00.000Z">2019-07-21</time></div>
-                    <a href="/2019/07/21/数据挖掘/2019-08-13-实时异常检测/" class="title has-link-black-ter is-size-6 has-text-weight-normal">实时异常检测（xStream，KDD&#39;18）</a>
+                    <a href="/2019/07/21/安全/2019-07-22-xgboost/" class="title has-link-black-ter is-size-6 has-text-weight-normal">孤立森林（Isolation Forest）</a>
                     <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/Anomaly-detection/">Anomaly detection</a>
+                        <a class="has-link-grey -link" href="/categories/Security/">Security</a>
                     </p>
                 </div>
             </div>
@@ -1203,18 +1221,18 @@
         
         <article class="media">
             
-            <a href="/2019/07/21/数据挖掘/2019-08-13-实时异常检测/" class="media-left">
+            <a href="/2019/07/21/安全/2019-07-22-xgboost/" class="media-left">
                 <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="实时异常检测（xStream，KDD&#39;18）">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="孤立森林（Isolation Forest）">
                 </p>
             </a>
             
             <div class="media-content">
                 <div class="content">
                     <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-07-20T16:00:00.000Z">2019-07-21</time></div>
-                    <a href="/2019/07/21/数据挖掘/2019-08-13-实时异常检测/" class="title has-link-black-ter is-size-6 has-text-weight-normal">实时异常检测（xStream，KDD&#39;18）</a>
+                    <a href="/2019/07/21/安全/2019-07-22-xgboost/" class="title has-link-black-ter is-size-6 has-text-weight-normal">孤立森林（Isolation Forest）</a>
                     <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/Anomaly-detection/">Anomaly detection</a>
+                        <a class="has-link-grey -link" href="/categories/Security/">Security</a>
                     </p>
                 </div>
             </div>

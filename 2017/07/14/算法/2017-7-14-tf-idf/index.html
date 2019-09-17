@@ -10,19 +10,19 @@
 <title>tf-idf - Fengrui Liu&#39;s Blog</title>
 
 
-    <meta name="description" content="tf-idf: term-frequency-inverse document frequency 这种技术常用来进行文本挖掘，可以评估出某一个语料库中的单词、文件集的重要程度。 term frequency 作为词频，是词数的归一化表示，可以避免它偏向长文件。分子中 $n_{i,j}$ 是该词在文件 $d_j$ 中出现的次数，分母是文件 $d_j$ 中所有字词的出现次数之和。  tf_{i,j}">
+    <meta name="description" content="tf-idf: term-frequency-inverse document frequency 这种技术常用来进行文本挖掘，可以评估出某一个语料库中的单词、文件集的重要程度。 term frequency 作为词频，是词数的归一化表示，可以避免它偏向长文件。分子中 $n_{i,j}$ 是该词在文件 $d_j$ 中出现的次数，分母是文件 $d_j$ 中所有字词的出现次数之和。 $$tf_{i,j">
 <meta name="keywords" content="Algorithm">
 <meta property="og:type" content="article">
 <meta property="og:title" content="tf-idf">
 <meta property="og:url" content="http://www.liufr.com/2017/07/14/算法/2017-7-14-tf-idf/index.html">
 <meta property="og:site_name" content="Fengrui Liu&#39;s Blog">
-<meta property="og:description" content="tf-idf: term-frequency-inverse document frequency 这种技术常用来进行文本挖掘，可以评估出某一个语料库中的单词、文件集的重要程度。 term frequency 作为词频，是词数的归一化表示，可以避免它偏向长文件。分子中 $n_{i,j}$ 是该词在文件 $d_j$ 中出现的次数，分母是文件 $d_j$ 中所有字词的出现次数之和。  tf_{i,j}">
+<meta property="og:description" content="tf-idf: term-frequency-inverse document frequency 这种技术常用来进行文本挖掘，可以评估出某一个语料库中的单词、文件集的重要程度。 term frequency 作为词频，是词数的归一化表示，可以避免它偏向长文件。分子中 $n_{i,j}$ 是该词在文件 $d_j$ 中出现的次数，分母是文件 $d_j$ 中所有字词的出现次数之和。 $$tf_{i,j">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http://www.liufr.com/images/og_image.png">
 <meta property="og:updated_time" content="2017-10-09T02:33:58.260Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="tf-idf">
-<meta name="twitter:description" content="tf-idf: term-frequency-inverse document frequency 这种技术常用来进行文本挖掘，可以评估出某一个语料库中的单词、文件集的重要程度。 term frequency 作为词频，是词数的归一化表示，可以避免它偏向长文件。分子中 $n_{i,j}$ 是该词在文件 $d_j$ 中出现的次数，分母是文件 $d_j$ 中所有字词的出现次数之和。  tf_{i,j}">
+<meta name="twitter:description" content="tf-idf: term-frequency-inverse document frequency 这种技术常用来进行文本挖掘，可以评估出某一个语料库中的单词、文件集的重要程度。 term frequency 作为词频，是词数的归一化表示，可以避免它偏向长文件。分子中 $n_{i,j}$ 是该词在文件 $d_j$ 中出现的次数，分母是文件 $d_j$ 中所有字词的出现次数之和。 $$tf_{i,j">
 <meta name="twitter:image" content="http://www.liufr.com/images/og_image.png">
 
 
@@ -175,12 +175,12 @@
             <p>tf-idf: term-frequency-inverse document frequency</p>
 <p>这种技术常用来进行文本挖掘，可以评估出某一个语料库中的单词、文件集的重要程度。</p>
 <p>term frequency 作为词频，是词数的归一化表示，可以避免它偏向长文件。<br>分子中 $n_{i,j}$ 是该词在文件 $d_j$ 中出现的次数，分母是文件 $d_j$ 中所有字词的出现次数之和。</p>
-<script type="math/tex; mode=display">
-tf_{i,j} = \frac {n_{i,j}}{\sum_kn_{k,j}}</script><p>inverse document frequency 逆向文件频率，也可以是一个词语普遍重要性的度量，由总文件数目<br>除以包含该词语文件的数目，再将得到的商取对数。$|D|$ 是语料库中文件总数，$|\{j:t_i\in d_j\}|$<br>表示包含该词语的文件，若值为0，用 $|\{j:t_i\in d_j\}|+1$ 来代替。</p>
-<script type="math/tex; mode=display">
-idf_i=log\frac{|D|}{|\{j:t_i\in d_j\}|}</script><p>综上所述，</p>
-<script type="math/tex; mode=display">
-rfidf_{i,j} = tf_{i,j}*idf_{i}</script><hr>
+<p>$$<br>tf_{i,j} = \frac {n_{i,j}}{\sum_kn_{k,j}}<br>$$</p>
+<p>inverse document frequency 逆向文件频率，也可以是一个词语普遍重要性的度量，由总文件数目<br>除以包含该词语文件的数目，再将得到的商取对数。$|D|$ 是语料库中文件总数，$|{j:t_i\in d_j}|$<br>表示包含该词语的文件，若值为0，用 $|{j:t_i\in d_j}|+1$ 来代替。</p>
+<p>$$<br>idf_i=log\frac{|D|}{|{j:t_i\in d_j}|}<br>$$</p>
+<p>综上所述，</p>
+<p>$$<br>rfidf_{i,j} = tf_{i,j}*idf_{i}<br>$$</p>
+<hr>
 <p>应用：tfidf常常与余弦相似性并用，具体步骤为：分词，计算词频，写出词频向量，计算余弦值</p>
 <p>参考文献：</p>
 <ul>
@@ -246,16 +246,16 @@ rfidf_{i,j} = tf_{i,j}*idf_{i}</script><hr>
     <div class="level post-navigation is-flex-wrap is-mobile">
         
         <div class="level-start">
-            <a class="level level-item has-link-grey  article-nav-prev" href="/2017/07/14/网络/2017-07-14-Ego networks/">
+            <a class="level level-item has-link-grey  article-nav-prev" href="/2017/09/13/算法/2017-9-13-前缀和/">
                 <i class="level-item fas fa-chevron-left"></i>
-                <span class="level-item">Ego networks</span>
+                <span class="level-item">前缀和（SJTU OJ 1002）</span>
             </a>
         </div>
         
         
         <div class="level-end">
-            <a class="level level-item has-link-grey  article-nav-next" href="/2017/03/15/VANET/2017-3-15-Vanet仿真-ns3(6)/">
-                <span class="level-item">VANET仿真-ns3(6)</span>
+            <a class="level level-item has-link-grey  article-nav-next" href="/2017/07/14/网络/2017-07-14-Ego networks/">
+                <span class="level-item">Ego networks</span>
                 <i class="level-item fas fa-chevron-right"></i>
             </a>
         </div>
@@ -631,18 +631,18 @@ rfidf_{i,j} = tf_{i,j}*idf_{i}</script><hr>
         
         <article class="media">
             
-            <a href="/2019/07/21/数据挖掘/2019-08-13-实时异常检测/" class="media-left">
+            <a href="/2019/07/21/安全/2019-07-22-xgboost/" class="media-left">
                 <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="实时异常检测（xStream，KDD&#39;18）">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="孤立森林（Isolation Forest）">
                 </p>
             </a>
             
             <div class="media-content">
                 <div class="content">
                     <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-07-20T16:00:00.000Z">2019-07-21</time></div>
-                    <a href="/2019/07/21/数据挖掘/2019-08-13-实时异常检测/" class="title has-link-black-ter is-size-6 has-text-weight-normal">实时异常检测（xStream，KDD&#39;18）</a>
+                    <a href="/2019/07/21/安全/2019-07-22-xgboost/" class="title has-link-black-ter is-size-6 has-text-weight-normal">孤立森林（Isolation Forest）</a>
                     <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/Anomaly-detection/">Anomaly detection</a>
+                        <a class="has-link-grey -link" href="/categories/Security/">Security</a>
                     </p>
                 </div>
             </div>
@@ -1131,18 +1131,18 @@ rfidf_{i,j} = tf_{i,j}*idf_{i}</script><hr>
         
         <article class="media">
             
-            <a href="/2019/07/21/数据挖掘/2019-08-13-实时异常检测/" class="media-left">
+            <a href="/2019/07/21/安全/2019-07-22-xgboost/" class="media-left">
                 <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="实时异常检测（xStream，KDD&#39;18）">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="孤立森林（Isolation Forest）">
                 </p>
             </a>
             
             <div class="media-content">
                 <div class="content">
                     <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-07-20T16:00:00.000Z">2019-07-21</time></div>
-                    <a href="/2019/07/21/数据挖掘/2019-08-13-实时异常检测/" class="title has-link-black-ter is-size-6 has-text-weight-normal">实时异常检测（xStream，KDD&#39;18）</a>
+                    <a href="/2019/07/21/安全/2019-07-22-xgboost/" class="title has-link-black-ter is-size-6 has-text-weight-normal">孤立森林（Isolation Forest）</a>
                     <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/Anomaly-detection/">Anomaly detection</a>
+                        <a class="has-link-grey -link" href="/categories/Security/">Security</a>
                     </p>
                 </div>
             </div>

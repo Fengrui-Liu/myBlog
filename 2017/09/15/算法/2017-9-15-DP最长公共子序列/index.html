@@ -175,12 +175,9 @@
             <h2 id="Description"><a href="#Description" class="headerlink" title="Description"></a>Description</h2><p>在字母表中，分别给出两个长度为n和m的字符串A和B，确定在A与B中最长公共子序列的长度。</p>
 <p>$A = a_1a_2a_3…a_n$ 其中每个$i_j$都在1和n之间，并且$1&lt;=i_1&lt;i_2&lt;…&lt;i_k&lt;=n$。</p>
 <h2 id="Solution"><a href="#Solution" class="headerlink" title="Solution"></a>Solution</h2><p>使用动态规划解决这个问题，$A = a_1a_2a_3…a_n$，$B = b_1b_2b_3…b_n$，令$L[i,j]$来表示两个公共子序列的长度。那么总结有以下的结论：</p>
-<script type="math/tex; mode=display">
-L[i,j] = \left\{\begin{matrix}
-& 0 & 若i=0或j=0\\
-& L[i-1,j-1]+1 & 若i>0,j>0 和 a_i=b_j\\
-& max\left\{L[i,j-1],L[i-1,j] \right\} & 若i>0,j>0 和a_i \neq b_j
-\end{matrix}\right.</script><h2 id="Algotrithm"><a href="#Algotrithm" class="headerlink" title="Algotrithm"></a>Algotrithm</h2><figure class="highlight c hljs"><table><tr><td class="code"><pre><span class="line">算法： LCS</span><br><span class="line">输入： 字母表上的两个字符串A和B，长度分别为n和m</span><br><span class="line">输出： A和B最长公共子序列的长度</span><br><span class="line"></span><br><span class="line"><span class="hljs-number">1.</span> <span class="hljs-keyword">for</span> i = <span class="hljs-number">0</span> to n</span><br><span class="line"><span class="hljs-number">2.</span>     L[i, <span class="hljs-number">0</span>] = <span class="hljs-number">0</span></span><br><span class="line"><span class="hljs-number">3.</span> end <span class="hljs-keyword">for</span></span><br><span class="line"><span class="hljs-number">4.</span> <span class="hljs-keyword">for</span> j = <span class="hljs-number">0</span> to m</span><br><span class="line"><span class="hljs-number">5.</span>     L[<span class="hljs-number">0</span>, j] = <span class="hljs-number">0</span></span><br><span class="line"><span class="hljs-number">6.</span> end <span class="hljs-keyword">for</span></span><br><span class="line"><span class="hljs-number">7.</span> <span class="hljs-keyword">for</span> i = <span class="hljs-number">1</span> to n</span><br><span class="line"><span class="hljs-number">8.</span>     <span class="hljs-keyword">for</span> j = <span class="hljs-number">1</span> to m</span><br><span class="line"><span class="hljs-number">9.</span>         <span class="hljs-keyword">if</span> a_i = b_j then L[i,j] = L[i<span class="hljs-number">-1</span>,j<span class="hljs-number">-1</span>]+<span class="hljs-number">1</span></span><br><span class="line"><span class="hljs-number">10.</span>        <span class="hljs-keyword">else</span> L[i,j] = max&#123;L[i,j<span class="hljs-number">-1</span>],L[i<span class="hljs-number">-1</span>,j]&#125;</span><br><span class="line"><span class="hljs-number">11.</span>        end <span class="hljs-keyword">if</span></span><br><span class="line"><span class="hljs-number">12.</span>    end <span class="hljs-keyword">for</span></span><br><span class="line"><span class="hljs-number">13.</span> end <span class="hljs-keyword">for</span></span><br><span class="line"><span class="hljs-number">14.</span> <span class="hljs-keyword">return</span> L[n,m]</span><br></pre></td></tr></table></figure>
+<p>$$<br>L[i,j] = \left{\begin{matrix}<br>&amp; 0 &amp; 若i=0或j=0\<br>&amp; L[i-1,j-1]+1 &amp; 若i&gt;0,j&gt;0 和 a_i=b_j\<br>&amp; max\left{L[i,j-1],L[i-1,j] \right} &amp; 若i&gt;0,j&gt;0 和a_i \neq b_j<br>\end{matrix}\right.<br>$$</p>
+<h2 id="Algotrithm"><a href="#Algotrithm" class="headerlink" title="Algotrithm"></a>Algotrithm</h2><figure class="highlight c hljs"><table><tr><td class="code"><pre><span class="line">算法： LCS</span><br><span class="line">输入： 字母表上的两个字符串A和B，长度分别为n和m</span><br><span class="line">输出： A和B最长公共子序列的长度</span><br><span class="line"></span><br><span class="line"><span class="hljs-number">1.</span> <span class="hljs-keyword">for</span> i = <span class="hljs-number">0</span> to n</span><br><span class="line"><span class="hljs-number">2.</span>     L[i, <span class="hljs-number">0</span>] = <span class="hljs-number">0</span></span><br><span class="line"><span class="hljs-number">3.</span> end <span class="hljs-keyword">for</span></span><br><span class="line"><span class="hljs-number">4.</span> <span class="hljs-keyword">for</span> j = <span class="hljs-number">0</span> to m</span><br><span class="line"><span class="hljs-number">5.</span>     L[<span class="hljs-number">0</span>, j] = <span class="hljs-number">0</span></span><br><span class="line"><span class="hljs-number">6.</span> end <span class="hljs-keyword">for</span></span><br><span class="line"><span class="hljs-number">7.</span> <span class="hljs-keyword">for</span> i = <span class="hljs-number">1</span> to n</span><br><span class="line"><span class="hljs-number">8.</span>     <span class="hljs-keyword">for</span> j = <span class="hljs-number">1</span> to m</span><br><span class="line"><span class="hljs-number">9.</span>         <span class="hljs-keyword">if</span> a_i = b_j then L[i,j] = L[i<span class="hljs-number">-1</span>,j<span class="hljs-number">-1</span>]+<span class="hljs-number">1</span></span><br><span class="line"><span class="hljs-number">10.</span>        <span class="hljs-keyword">else</span> L[i,j] = max&#123;L[i,j<span class="hljs-number">-1</span>],L[i<span class="hljs-number">-1</span>,j]&#125;</span><br><span class="line"><span class="hljs-number">11.</span>        end <span class="hljs-keyword">if</span></span><br><span class="line"><span class="hljs-number">12.</span>    end <span class="hljs-keyword">for</span></span><br><span class="line"><span class="hljs-number">13.</span> end <span class="hljs-keyword">for</span></span><br><span class="line"><span class="hljs-number">14.</span> <span class="hljs-keyword">return</span> L[n,m]</span><br></pre></td></tr></table></figure>
+
 
         </div>
         
@@ -240,16 +237,16 @@ L[i,j] = \left\{\begin{matrix}
     <div class="level post-navigation is-flex-wrap is-mobile">
         
         <div class="level-start">
-            <a class="level level-item has-link-grey  article-nav-prev" href="/2017/09/15/算法/2017-9-15-DP(0"1背包)/">
+            <a class="level level-item has-link-grey  article-nav-prev" href="/2017/09/15/算法/2017-9-15-完全背包/">
                 <i class="level-item fas fa-chevron-left"></i>
-                <span class="level-item">DP（0/1背包）</span>
+                <span class="level-item">DP（完全背包）</span>
             </a>
         </div>
         
         
         <div class="level-end">
-            <a class="level level-item has-link-grey  article-nav-next" href="/2017/09/15/算法/2017-9-15-完全背包/">
-                <span class="level-item">DP（完全背包）</span>
+            <a class="level level-item has-link-grey  article-nav-next" href="/2017/09/15/算法/2017-9-15-DP问题/">
+                <span class="level-item">DP（SJTU OJ 1012）</span>
                 <i class="level-item fas fa-chevron-right"></i>
             </a>
         </div>
@@ -625,18 +622,18 @@ L[i,j] = \left\{\begin{matrix}
         
         <article class="media">
             
-            <a href="/2019/07/21/数据挖掘/2019-08-13-实时异常检测/" class="media-left">
+            <a href="/2019/07/21/安全/2019-07-22-xgboost/" class="media-left">
                 <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="实时异常检测（xStream，KDD&#39;18）">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="孤立森林（Isolation Forest）">
                 </p>
             </a>
             
             <div class="media-content">
                 <div class="content">
                     <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-07-20T16:00:00.000Z">2019-07-21</time></div>
-                    <a href="/2019/07/21/数据挖掘/2019-08-13-实时异常检测/" class="title has-link-black-ter is-size-6 has-text-weight-normal">实时异常检测（xStream，KDD&#39;18）</a>
+                    <a href="/2019/07/21/安全/2019-07-22-xgboost/" class="title has-link-black-ter is-size-6 has-text-weight-normal">孤立森林（Isolation Forest）</a>
                     <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/Anomaly-detection/">Anomaly detection</a>
+                        <a class="has-link-grey -link" href="/categories/Security/">Security</a>
                     </p>
                 </div>
             </div>
@@ -1125,18 +1122,18 @@ L[i,j] = \left\{\begin{matrix}
         
         <article class="media">
             
-            <a href="/2019/07/21/数据挖掘/2019-08-13-实时异常检测/" class="media-left">
+            <a href="/2019/07/21/安全/2019-07-22-xgboost/" class="media-left">
                 <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="实时异常检测（xStream，KDD&#39;18）">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="孤立森林（Isolation Forest）">
                 </p>
             </a>
             
             <div class="media-content">
                 <div class="content">
                     <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-07-20T16:00:00.000Z">2019-07-21</time></div>
-                    <a href="/2019/07/21/数据挖掘/2019-08-13-实时异常检测/" class="title has-link-black-ter is-size-6 has-text-weight-normal">实时异常检测（xStream，KDD&#39;18）</a>
+                    <a href="/2019/07/21/安全/2019-07-22-xgboost/" class="title has-link-black-ter is-size-6 has-text-weight-normal">孤立森林（Isolation Forest）</a>
                     <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/Anomaly-detection/">Anomaly detection</a>
+                        <a class="has-link-grey -link" href="/categories/Security/">Security</a>
                     </p>
                 </div>
             </div>

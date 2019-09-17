@@ -10,19 +10,19 @@
 <title>大数据存储系统 - Fengrui Liu&#39;s Blog</title>
 
 
-    <meta name="description" content="MapReduce程序员写串行程序，系统并行分布式执行。 数据模型  数据由一条一条记录组成 记录之间无序 每一条记录有一个key，一个value key可以不唯一 key与value具体类型和内部结构由程序员决定   Map(ik,iv)-&amp;gt;{} Shuffle = group by mk, 对所有的map输出进行group by，相同mk的所有mv提供给Reduce Reduce(mk,">
+    <meta name="description" content="MapReduce程序员写串行程序，系统并行分布式执行。 数据模型&amp;lt;key,value&amp;gt;  数据由一条一条记录组成 记录之间无序 每一条记录有一个key，一个value key可以不唯一 key与value具体类型和内部结构由程序员决定   Map(ik,iv)-&amp;gt;{&amp;lt;mk,mv&amp;gt;} Shuffle = group by mk, 对所有的map输出进行group by">
 <meta name="keywords" content="Database">
 <meta property="og:type" content="article">
 <meta property="og:title" content="大数据存储系统">
 <meta property="og:url" content="http://www.liufr.com/2019/06/04/数据库/2019-06-04-大数据运算/index.html">
 <meta property="og:site_name" content="Fengrui Liu&#39;s Blog">
-<meta property="og:description" content="MapReduce程序员写串行程序，系统并行分布式执行。 数据模型  数据由一条一条记录组成 记录之间无序 每一条记录有一个key，一个value key可以不唯一 key与value具体类型和内部结构由程序员决定   Map(ik,iv)-&amp;gt;{} Shuffle = group by mk, 对所有的map输出进行group by，相同mk的所有mv提供给Reduce Reduce(mk,">
+<meta property="og:description" content="MapReduce程序员写串行程序，系统并行分布式执行。 数据模型&amp;lt;key,value&amp;gt;  数据由一条一条记录组成 记录之间无序 每一条记录有一个key，一个value key可以不唯一 key与value具体类型和内部结构由程序员决定   Map(ik,iv)-&amp;gt;{&amp;lt;mk,mv&amp;gt;} Shuffle = group by mk, 对所有的map输出进行group by">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http://www.liufr.com/images/og_image.png">
 <meta property="og:updated_time" content="2019-06-05T02:42:34.192Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="大数据存储系统">
-<meta name="twitter:description" content="MapReduce程序员写串行程序，系统并行分布式执行。 数据模型  数据由一条一条记录组成 记录之间无序 每一条记录有一个key，一个value key可以不唯一 key与value具体类型和内部结构由程序员决定   Map(ik,iv)-&amp;gt;{} Shuffle = group by mk, 对所有的map输出进行group by，相同mk的所有mv提供给Reduce Reduce(mk,">
+<meta name="twitter:description" content="MapReduce程序员写串行程序，系统并行分布式执行。 数据模型&amp;lt;key,value&amp;gt;  数据由一条一条记录组成 记录之间无序 每一条记录有一个key，一个value key可以不唯一 key与value具体类型和内部结构由程序员决定   Map(ik,iv)-&amp;gt;{&amp;lt;mk,mv&amp;gt;} Shuffle = group by mk, 对所有的map输出进行group by">
 <meta name="twitter:image" content="http://www.liufr.com/images/og_image.png">
 
 
@@ -173,7 +173,7 @@
         </h1>
         <div class="content">
             <h2 id="MapReduce"><a href="#MapReduce" class="headerlink" title="MapReduce"></a>MapReduce</h2><p>程序员写串行程序，系统并行分布式执行。</p>
-<p>数据模型<key,value></key,value></p>
+<p>数据模型&lt;key,value&gt;</p>
 <ul>
 <li>数据由一条一条记录组成</li>
 <li>记录之间无序</li>
@@ -182,9 +182,9 @@
 <li>key与value具体类型和内部结构由程序员决定</li>
 </ul>
 <ol>
-<li>Map(ik,iv)-&gt;{<mk,mv>}</mk,mv></li>
+<li>Map(ik,iv)-&gt;{&lt;mk,mv&gt;}</li>
 <li>Shuffle = group by mk, 对所有的map输出进行group by，相同mk的所有mv提供给Reduce</li>
-<li>Reduce(mk,{mv})-&gt;{<ok,ov>}</ok,ov></li>
+<li>Reduce(mk,{mv})-&gt;{&lt;ok,ov&gt;}</li>
 </ol>
 <p>JobTracker/Name Node控制协调作业的运行；TaskTracker/Data Node执行Map和Reduce的任务。</p>
 <p>MR运行：</p>
@@ -323,16 +323,16 @@
     <div class="level post-navigation is-flex-wrap is-mobile">
         
         <div class="level-start">
-            <a class="level level-item has-link-grey  article-nav-prev" href="/2019/06/04/数据库/2019-06-04-大数据存储系统/">
+            <a class="level level-item has-link-grey  article-nav-prev" href="/2019/06/22/安全/2019-06-22-网络异常行为检测/">
                 <i class="level-item fas fa-chevron-left"></i>
-                <span class="level-item">大数据存储系统</span>
+                <span class="level-item">网络异常行为检测</span>
             </a>
         </div>
         
         
         <div class="level-end">
-            <a class="level level-item has-link-grey  article-nav-next" href="/2019/06/03/数据库/2019-06-03-关系数据库/">
-                <span class="level-item">关系数据库</span>
+            <a class="level level-item has-link-grey  article-nav-next" href="/2019/06/04/数据库/2019-06-04-大数据存储系统/">
+                <span class="level-item">大数据存储系统</span>
                 <i class="level-item fas fa-chevron-right"></i>
             </a>
         </div>
@@ -708,18 +708,18 @@
         
         <article class="media">
             
-            <a href="/2019/07/21/数据挖掘/2019-08-13-实时异常检测/" class="media-left">
+            <a href="/2019/07/21/安全/2019-07-22-xgboost/" class="media-left">
                 <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="实时异常检测（xStream，KDD&#39;18）">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="孤立森林（Isolation Forest）">
                 </p>
             </a>
             
             <div class="media-content">
                 <div class="content">
                     <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-07-20T16:00:00.000Z">2019-07-21</time></div>
-                    <a href="/2019/07/21/数据挖掘/2019-08-13-实时异常检测/" class="title has-link-black-ter is-size-6 has-text-weight-normal">实时异常检测（xStream，KDD&#39;18）</a>
+                    <a href="/2019/07/21/安全/2019-07-22-xgboost/" class="title has-link-black-ter is-size-6 has-text-weight-normal">孤立森林（Isolation Forest）</a>
                     <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/Anomaly-detection/">Anomaly detection</a>
+                        <a class="has-link-grey -link" href="/categories/Security/">Security</a>
                     </p>
                 </div>
             </div>
@@ -1208,18 +1208,18 @@
         
         <article class="media">
             
-            <a href="/2019/07/21/数据挖掘/2019-08-13-实时异常检测/" class="media-left">
+            <a href="/2019/07/21/安全/2019-07-22-xgboost/" class="media-left">
                 <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="实时异常检测（xStream，KDD&#39;18）">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="孤立森林（Isolation Forest）">
                 </p>
             </a>
             
             <div class="media-content">
                 <div class="content">
                     <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-07-20T16:00:00.000Z">2019-07-21</time></div>
-                    <a href="/2019/07/21/数据挖掘/2019-08-13-实时异常检测/" class="title has-link-black-ter is-size-6 has-text-weight-normal">实时异常检测（xStream，KDD&#39;18）</a>
+                    <a href="/2019/07/21/安全/2019-07-22-xgboost/" class="title has-link-black-ter is-size-6 has-text-weight-normal">孤立森林（Isolation Forest）</a>
                     <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/Anomaly-detection/">Anomaly detection</a>
+                        <a class="has-link-grey -link" href="/categories/Security/">Security</a>
                     </p>
                 </div>
             </div>

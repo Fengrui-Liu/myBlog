@@ -10,19 +10,19 @@
 <title>马哈拉诺比斯距离(马氏距离) - Fengrui Liu&#39;s Blog</title>
 
 
-    <meta name="description" content="计算马氏距离马氏距离用来表示数据的协方差距离。他可以有效地计算两个未知样本集的相似度，他也考虑到各种特性之间的联系。对于一个均值为 $μ = (μ_1,μ_2,μ_3,…,μ_p)^T$，协方差矩阵为 $\Sigma$ 的多变向量 $x = (x_1,x_2,x_3,…,x_p)^T$ 其马氏距离为： D_M(x) = \sqrt{(x-μ)^T\Sigma^{-1}(x-μ)}马氏距离也可以定义">
+    <meta name="description" content="计算马氏距离马氏距离用来表示数据的协方差距离。他可以有效地计算两个未知样本集的相似度，他也考虑到各种特性之间的联系。对于一个均值为 $μ = (μ_1,μ_2,μ_3,…,μ_p)^T$，协方差矩阵为 $\Sigma$ 的多变向量 $x = (x_1,x_2,x_3,…,x_p)^T$ 其马氏距离为： $$ D_M(x) = \sqrt{(x-μ)^T\Sigma^{-1}(x-μ)} $$ 马氏">
 <meta name="keywords" content="Concept">
 <meta property="og:type" content="article">
 <meta property="og:title" content="马哈拉诺比斯距离(马氏距离)">
 <meta property="og:url" content="http://www.liufr.com/2017/11/22/概念/2017-11-22-马哈拉诺比斯距离/index.html">
 <meta property="og:site_name" content="Fengrui Liu&#39;s Blog">
-<meta property="og:description" content="计算马氏距离马氏距离用来表示数据的协方差距离。他可以有效地计算两个未知样本集的相似度，他也考虑到各种特性之间的联系。对于一个均值为 $μ = (μ_1,μ_2,μ_3,…,μ_p)^T$，协方差矩阵为 $\Sigma$ 的多变向量 $x = (x_1,x_2,x_3,…,x_p)^T$ 其马氏距离为： D_M(x) = \sqrt{(x-μ)^T\Sigma^{-1}(x-μ)}马氏距离也可以定义">
+<meta property="og:description" content="计算马氏距离马氏距离用来表示数据的协方差距离。他可以有效地计算两个未知样本集的相似度，他也考虑到各种特性之间的联系。对于一个均值为 $μ = (μ_1,μ_2,μ_3,…,μ_p)^T$，协方差矩阵为 $\Sigma$ 的多变向量 $x = (x_1,x_2,x_3,…,x_p)^T$ 其马氏距离为： $$ D_M(x) = \sqrt{(x-μ)^T\Sigma^{-1}(x-μ)} $$ 马氏">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http://www.liufr.com/images/og_image.png">
 <meta property="og:updated_time" content="2017-11-22T08:23:26.100Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="马哈拉诺比斯距离(马氏距离)">
-<meta name="twitter:description" content="计算马氏距离马氏距离用来表示数据的协方差距离。他可以有效地计算两个未知样本集的相似度，他也考虑到各种特性之间的联系。对于一个均值为 $μ = (μ_1,μ_2,μ_3,…,μ_p)^T$，协方差矩阵为 $\Sigma$ 的多变向量 $x = (x_1,x_2,x_3,…,x_p)^T$ 其马氏距离为： D_M(x) = \sqrt{(x-μ)^T\Sigma^{-1}(x-μ)}马氏距离也可以定义">
+<meta name="twitter:description" content="计算马氏距离马氏距离用来表示数据的协方差距离。他可以有效地计算两个未知样本集的相似度，他也考虑到各种特性之间的联系。对于一个均值为 $μ = (μ_1,μ_2,μ_3,…,μ_p)^T$，协方差矩阵为 $\Sigma$ 的多变向量 $x = (x_1,x_2,x_3,…,x_p)^T$ 其马氏距离为： $$ D_M(x) = \sqrt{(x-μ)^T\Sigma^{-1}(x-μ)} $$ 马氏">
 <meta name="twitter:image" content="http://www.liufr.com/images/og_image.png">
 
 
@@ -173,9 +173,12 @@
         </h1>
         <div class="content">
             <h3 id="计算马氏距离"><a href="#计算马氏距离" class="headerlink" title="计算马氏距离"></a>计算马氏距离</h3><p>马氏距离用来表示数据的协方差距离。他可以有效地计算两个未知样本集的相似度，他也考虑到各种特性之间的联系。对于一个均值为 $μ = (μ_1,μ_2,μ_3,…,μ_p)^T$，协方差矩阵为 $\Sigma$ 的多变向量 $x = (x_1,x_2,x_3,…,x_p)^T$ 其马氏距离为：</p>
-<script type="math/tex; mode=display">D_M(x) = \sqrt{(x-μ)^T\Sigma^{-1}(x-μ)}</script><p>马氏距离也可以定义为两个服从同一分布并且协方差矩阵为 $\Sigma$ 的随机变量 $\vec{x}$ 与 $\vec{y}$ 的差异程度：</p>
-<script type="math/tex; mode=display">d(\vec{x},\vec{y}) = \sqrt{(\vec{x}-\vec{y})^T\Sigma^{-1}(\vec{x}-\vec{y})}</script><p>如果协方差矩阵为单位矩阵，马氏距离就简化为欧氏距离，如果协方差矩阵为对角矩阵，也可以称为正规化的欧氏距离：</p>
-<script type="math/tex; mode=display">d(\vec{x},\vec{y}) = \sqrt{\sum_{i=1}^{p}\frac{(x_i-y_i)^2}{\sigma_i^2}}</script><h3 id="理解马氏距离"><a href="#理解马氏距离" class="headerlink" title="理解马氏距离"></a>理解马氏距离</h3><p>如下是一个离散图</p>
+<p>$$ D_M(x) = \sqrt{(x-μ)^T\Sigma^{-1}(x-μ)} $$</p>
+<p>马氏距离也可以定义为两个服从同一分布并且协方差矩阵为 $\Sigma$ 的随机变量 $\vec{x}$ 与 $\vec{y}$ 的差异程度：</p>
+<p>$$d(\vec{x},\vec{y}) = \sqrt{(\vec{x}-\vec{y})^T\Sigma^{-1}(\vec{x}-\vec{y})}$$ </p>
+<p>如果协方差矩阵为单位矩阵，马氏距离就简化为欧氏距离，如果协方差矩阵为对角矩阵，也可以称为正规化的欧氏距离：</p>
+<p>$$ d(\vec{x},\vec{y}) = \sqrt{\sum_{i=1}^{p}\frac{(x_i-y_i)^2}{\sigma_i^2}}$$</p>
+<h3 id="理解马氏距离"><a href="#理解马氏距离" class="headerlink" title="理解马氏距离"></a>理解马氏距离</h3><p>如下是一个离散图</p>
 <p><img src="https://i.stack.imgur.com/D7t2q.png" alt></p>
 <p>将上图的坐标轴去掉</p>
 <p><img src="https://i.stack.imgur.com/vI1vj.png" alt></p>
@@ -630,18 +633,18 @@
         
         <article class="media">
             
-            <a href="/2019/07/21/数据挖掘/2019-08-13-实时异常检测/" class="media-left">
+            <a href="/2019/07/21/安全/2019-07-22-xgboost/" class="media-left">
                 <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="实时异常检测（xStream，KDD&#39;18）">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="孤立森林（Isolation Forest）">
                 </p>
             </a>
             
             <div class="media-content">
                 <div class="content">
                     <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-07-20T16:00:00.000Z">2019-07-21</time></div>
-                    <a href="/2019/07/21/数据挖掘/2019-08-13-实时异常检测/" class="title has-link-black-ter is-size-6 has-text-weight-normal">实时异常检测（xStream，KDD&#39;18）</a>
+                    <a href="/2019/07/21/安全/2019-07-22-xgboost/" class="title has-link-black-ter is-size-6 has-text-weight-normal">孤立森林（Isolation Forest）</a>
                     <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/Anomaly-detection/">Anomaly detection</a>
+                        <a class="has-link-grey -link" href="/categories/Security/">Security</a>
                     </p>
                 </div>
             </div>
@@ -1130,18 +1133,18 @@
         
         <article class="media">
             
-            <a href="/2019/07/21/数据挖掘/2019-08-13-实时异常检测/" class="media-left">
+            <a href="/2019/07/21/安全/2019-07-22-xgboost/" class="media-left">
                 <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="实时异常检测（xStream，KDD&#39;18）">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="孤立森林（Isolation Forest）">
                 </p>
             </a>
             
             <div class="media-content">
                 <div class="content">
                     <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-07-20T16:00:00.000Z">2019-07-21</time></div>
-                    <a href="/2019/07/21/数据挖掘/2019-08-13-实时异常检测/" class="title has-link-black-ter is-size-6 has-text-weight-normal">实时异常检测（xStream，KDD&#39;18）</a>
+                    <a href="/2019/07/21/安全/2019-07-22-xgboost/" class="title has-link-black-ter is-size-6 has-text-weight-normal">孤立森林（Isolation Forest）</a>
                     <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/Anomaly-detection/">Anomaly detection</a>
+                        <a class="has-link-grey -link" href="/categories/Security/">Security</a>
                     </p>
                 </div>
             </div>

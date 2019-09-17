@@ -10,19 +10,19 @@
 <title>DP（0/1背包） - Fengrui Liu&#39;s Blog</title>
 
 
-    <meta name="description" content="Description对于 $U={u_1,u_2,u_3…}$ 是一个准备放入容器为$C$的背包中的$n$项物品的集合。我们要解决的是用$U$中的一些物品来装满背包，使得物体的总体积不超过$C$,然后使得背包里的物品总价值最大，形式化表述为： 给出有$n$项物品的$U$,我们要找出一个子集$S\in U$ 使得  \sum_{u_i\in S} v_i在约束条件下  \sum_{u_i\in S">
+    <meta name="description" content="Description对于 $U={u_1,u_2,u_3…}$ 是一个准备放入容器为$C$的背包中的$n$项物品的集合。我们要解决的是用$U$中的一些物品来装满背包，使得物体的总体积不超过$C$,然后使得背包里的物品总价值最大，形式化表述为： 给出有$n$项物品的$U$,我们要找出一个子集$S\in U$ 使得$$\sum_{u_i\in S} v_i$$在约束条件下$$\sum_{u_i\in">
 <meta name="keywords" content="Algorithm">
 <meta property="og:type" content="article">
 <meta property="og:title" content="DP（0&#x2F;1背包）">
 <meta property="og:url" content="http://www.liufr.com/2017/09/15/算法/2017-9-15-DP(0"1背包)/index.html">
 <meta property="og:site_name" content="Fengrui Liu&#39;s Blog">
-<meta property="og:description" content="Description对于 $U={u_1,u_2,u_3…}$ 是一个准备放入容器为$C$的背包中的$n$项物品的集合。我们要解决的是用$U$中的一些物品来装满背包，使得物体的总体积不超过$C$,然后使得背包里的物品总价值最大，形式化表述为： 给出有$n$项物品的$U$,我们要找出一个子集$S\in U$ 使得  \sum_{u_i\in S} v_i在约束条件下  \sum_{u_i\in S">
+<meta property="og:description" content="Description对于 $U={u_1,u_2,u_3…}$ 是一个准备放入容器为$C$的背包中的$n$项物品的集合。我们要解决的是用$U$中的一些物品来装满背包，使得物体的总体积不超过$C$,然后使得背包里的物品总价值最大，形式化表述为： 给出有$n$项物品的$U$,我们要找出一个子集$S\in U$ 使得$$\sum_{u_i\in S} v_i$$在约束条件下$$\sum_{u_i\in">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http://www.liufr.com/images/og_image.png">
 <meta property="og:updated_time" content="2017-10-09T05:22:55.160Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="DP（0&#x2F;1背包）">
-<meta name="twitter:description" content="Description对于 $U={u_1,u_2,u_3…}$ 是一个准备放入容器为$C$的背包中的$n$项物品的集合。我们要解决的是用$U$中的一些物品来装满背包，使得物体的总体积不超过$C$,然后使得背包里的物品总价值最大，形式化表述为： 给出有$n$项物品的$U$,我们要找出一个子集$S\in U$ 使得  \sum_{u_i\in S} v_i在约束条件下  \sum_{u_i\in S">
+<meta name="twitter:description" content="Description对于 $U={u_1,u_2,u_3…}$ 是一个准备放入容器为$C$的背包中的$n$项物品的集合。我们要解决的是用$U$中的一些物品来装满背包，使得物体的总体积不超过$C$,然后使得背包里的物品总价值最大，形式化表述为： 给出有$n$项物品的$U$,我们要找出一个子集$S\in U$ 使得$$\sum_{u_i\in S} v_i$$在约束条件下$$\sum_{u_i\in">
 <meta name="twitter:image" content="http://www.liufr.com/images/og_image.png">
 
 
@@ -173,24 +173,16 @@
         </h1>
         <div class="content">
             <h2 id="Description"><a href="#Description" class="headerlink" title="Description"></a>Description</h2><p>对于 $U={u_1,u_2,u_3…}$ 是一个准备放入容器为$C$的背包中的$n$项物品的集合。我们要解决的是用$U$中的一些物品来装满背包，使得物体的总体积不超过$C$,然后使得背包里的物品总价值最大，形式化表述为：</p>
-<p>给出有$n$项物品的$U$,我们要找出一个子集$S\in U$ 使得</p>
-<script type="math/tex; mode=display">
-\sum_{u_i\in S} v_i</script><p>在约束条件下</p>
-<script type="math/tex; mode=display">
-\sum_{u_i\in S} s_i \leq C</script><p>下最大。</p>
+<p>给出有$n$项物品的$U$,我们要找出一个子集$S\in U$ 使得<br>$$<br>\sum_{u_i\in S} v_i<br>$$<br>在约束条件下<br>$$<br>\sum_{u_i\in S} s_i \leq C<br>$$<br>下最大。</p>
 <h2 id="Solution"><a href="#Solution" class="headerlink" title="Solution"></a>Solution</h2><p>用V[i,j]表示从前i项 $[u_1,u_2,u_3…u_n]$ 中取出来的装入体积为j的背包的物品的最大价值。这里，i的范围是从0到n，j的范围是从0到C。这样，要寻求的是值V[n,C]。也就是说V[0,j]对于所有的j的值都是0，这是由于包里什么都没有。另一方面，V[i,0]对于所有i的值为0，因为没有东西可以放到包里。一般情况下，当i和j都大于0时，有下面的结论：</p>
 <p>V[i,j]是下面两个量的最大值：</p>
 <ul>
 <li>$V[i-1,j]$: 仅用最优的方法取自 $[u_1,u_2,…,u_{i-1}]$的物品去装入体积为j的背包所得的价值最大值。</li>
 <li>$V[i-1,j-s_i] + v_i$: 用最优的方法取自 $[u_1,u_2,…,u_{i-1}]$ 的物品去装入体积为 $j-s_i$ 的背包所得到的价值最大值加上 $u_i$ 的价值。</li>
 </ul>
-<p>形式化有以下递推：</p>
-<script type="math/tex; mode=display">
-V[i,j] =\left\{\begin{matrix}
-0 &&  若i=0或j=0 \\
-V[i-1,j] && 若j<s_i \\
-max\{V[i-1,j],V[i-1,j-s_i]+v_i\} && i\geq 1 和j\geq s_i\\
-\end{matrix}\right.</script><h2 id="Algotithm"><a href="#Algotithm" class="headerlink" title="Algotithm"></a>Algotithm</h2><figure class="highlight c hljs"><table><tr><td class="code"><pre><span class="line">算法：KNAPSACK</span><br><span class="line">输入：物品集合 $U$=&#123;u1,u2...,us&#125;,体积分别为s1,s2,...sn,价值分别为v1,v2,...vn,容量为C的背包。</span><br><span class="line">输出：最大总价值</span><br><span class="line"></span><br><span class="line"> <span class="hljs-keyword">for</span> i=<span class="hljs-number">1</span> to n</span><br><span class="line">     V[i,<span class="hljs-number">0</span>] = <span class="hljs-number">0</span>;</span><br><span class="line"> end <span class="hljs-keyword">for</span></span><br><span class="line"> <span class="hljs-keyword">for</span> j=<span class="hljs-number">0</span> to C</span><br><span class="line">     V[<span class="hljs-number">0</span>,j] = <span class="hljs-number">0</span>;</span><br><span class="line"> end <span class="hljs-keyword">for</span></span><br><span class="line"> <span class="hljs-keyword">for</span> i=<span class="hljs-number">1</span> to n</span><br><span class="line">     <span class="hljs-keyword">for</span> j=<span class="hljs-number">1</span> to C</span><br><span class="line">        V[i,j] = V[i<span class="hljs-number">-1</span>,j]</span><br><span class="line">       <span class="hljs-keyword">if</span> si &lt;= j then V[i,j] = max&#123;V[i<span class="hljs-number">-1</span>,j],V[i<span class="hljs-number">-1</span>,j-si]+vi&#125;</span><br><span class="line">    end <span class="hljs-keyword">for</span></span><br><span class="line"> end <span class="hljs-keyword">for</span></span><br><span class="line"> <span class="hljs-keyword">return</span> V[n,C]</span><br></pre></td></tr></table></figure>
+<p>形式化有以下递推：<br>$$<br>V[i,j] =\left{\begin{matrix}<br>0 &amp;&amp;  若i=0或j=0 \<br>V[i-1,j] &amp;&amp; 若j&lt;s_i \<br>max{V[i-1,j],V[i-1,j-s_i]+v_i} &amp;&amp; i\geq 1 和j\geq s_i\<br>\end{matrix}\right.<br>$$</p>
+<h2 id="Algotithm"><a href="#Algotithm" class="headerlink" title="Algotithm"></a>Algotithm</h2><figure class="highlight c hljs"><table><tr><td class="code"><pre><span class="line">算法：KNAPSACK</span><br><span class="line">输入：物品集合 $U$=&#123;u1,u2...,us&#125;,体积分别为s1,s2,...sn,价值分别为v1,v2,...vn,容量为C的背包。</span><br><span class="line">输出：最大总价值</span><br><span class="line"></span><br><span class="line"> <span class="hljs-keyword">for</span> i=<span class="hljs-number">1</span> to n</span><br><span class="line">     V[i,<span class="hljs-number">0</span>] = <span class="hljs-number">0</span>;</span><br><span class="line"> end <span class="hljs-keyword">for</span></span><br><span class="line"> <span class="hljs-keyword">for</span> j=<span class="hljs-number">0</span> to C</span><br><span class="line">     V[<span class="hljs-number">0</span>,j] = <span class="hljs-number">0</span>;</span><br><span class="line"> end <span class="hljs-keyword">for</span></span><br><span class="line"> <span class="hljs-keyword">for</span> i=<span class="hljs-number">1</span> to n</span><br><span class="line">     <span class="hljs-keyword">for</span> j=<span class="hljs-number">1</span> to C</span><br><span class="line">        V[i,j] = V[i<span class="hljs-number">-1</span>,j]</span><br><span class="line">       <span class="hljs-keyword">if</span> si &lt;= j then V[i,j] = max&#123;V[i<span class="hljs-number">-1</span>,j],V[i<span class="hljs-number">-1</span>,j-si]+vi&#125;</span><br><span class="line">    end <span class="hljs-keyword">for</span></span><br><span class="line"> end <span class="hljs-keyword">for</span></span><br><span class="line"> <span class="hljs-keyword">return</span> V[n,C]</span><br></pre></td></tr></table></figure>
+
 
         </div>
         
@@ -258,8 +250,8 @@ max\{V[i-1,j],V[i-1,j-s_i]+v_i\} && i\geq 1 和j\geq s_i\\
         
         
         <div class="level-end">
-            <a class="level level-item has-link-grey  article-nav-next" href="/2017/09/15/算法/2017-9-15-DP最长公共子序列/">
-                <span class="level-item">DP（最长公共子序列）</span>
+            <a class="level level-item has-link-grey  article-nav-next" href="/2017/09/15/算法/2017-9-15-完全背包/">
+                <span class="level-item">DP（完全背包）</span>
                 <i class="level-item fas fa-chevron-right"></i>
             </a>
         </div>
@@ -635,18 +627,18 @@ max\{V[i-1,j],V[i-1,j-s_i]+v_i\} && i\geq 1 和j\geq s_i\\
         
         <article class="media">
             
-            <a href="/2019/07/21/数据挖掘/2019-08-13-实时异常检测/" class="media-left">
+            <a href="/2019/07/21/安全/2019-07-22-xgboost/" class="media-left">
                 <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="实时异常检测（xStream，KDD&#39;18）">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="孤立森林（Isolation Forest）">
                 </p>
             </a>
             
             <div class="media-content">
                 <div class="content">
                     <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-07-20T16:00:00.000Z">2019-07-21</time></div>
-                    <a href="/2019/07/21/数据挖掘/2019-08-13-实时异常检测/" class="title has-link-black-ter is-size-6 has-text-weight-normal">实时异常检测（xStream，KDD&#39;18）</a>
+                    <a href="/2019/07/21/安全/2019-07-22-xgboost/" class="title has-link-black-ter is-size-6 has-text-weight-normal">孤立森林（Isolation Forest）</a>
                     <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/Anomaly-detection/">Anomaly detection</a>
+                        <a class="has-link-grey -link" href="/categories/Security/">Security</a>
                     </p>
                 </div>
             </div>
@@ -1135,18 +1127,18 @@ max\{V[i-1,j],V[i-1,j-s_i]+v_i\} && i\geq 1 和j\geq s_i\\
         
         <article class="media">
             
-            <a href="/2019/07/21/数据挖掘/2019-08-13-实时异常检测/" class="media-left">
+            <a href="/2019/07/21/安全/2019-07-22-xgboost/" class="media-left">
                 <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="实时异常检测（xStream，KDD&#39;18）">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="孤立森林（Isolation Forest）">
                 </p>
             </a>
             
             <div class="media-content">
                 <div class="content">
                     <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-07-20T16:00:00.000Z">2019-07-21</time></div>
-                    <a href="/2019/07/21/数据挖掘/2019-08-13-实时异常检测/" class="title has-link-black-ter is-size-6 has-text-weight-normal">实时异常检测（xStream，KDD&#39;18）</a>
+                    <a href="/2019/07/21/安全/2019-07-22-xgboost/" class="title has-link-black-ter is-size-6 has-text-weight-normal">孤立森林（Isolation Forest）</a>
                     <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/Anomaly-detection/">Anomaly detection</a>
+                        <a class="has-link-grey -link" href="/categories/Security/">Security</a>
                     </p>
                 </div>
             </div>

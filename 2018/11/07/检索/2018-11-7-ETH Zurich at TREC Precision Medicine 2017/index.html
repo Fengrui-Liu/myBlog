@@ -185,16 +185,14 @@
 <h2 id="方法"><a href="#方法" class="headerlink" title="方法"></a>方法</h2><h3 id="基于精确匹配的词项"><a href="#基于精确匹配的词项" class="headerlink" title="基于精确匹配的词项"></a>基于精确匹配的词项</h3><p>我们使用患者描述来生成队列，以使得我们通过对比文档来获得一个相似的评分。假设的框架中采用了简要的数据以及临床实验数据作为向量空间模型，其中词项的权重由$tf-idf$的得分。对于算法实现来说，我们使用了开源框架$Lucene$，为了在固定结构的topic中确定不同field（理解成不同元素/项）我们使用如下的静态权重因子：<br><img src="https://ws3.sinaimg.cn/large/006tNbRwly1fwzr0mo1mxj30ky08m752.jpg" alt><br>为了更科学的简化，我们将年龄具体划分成三个类别（小儿，成年，老年医疗），对于每一个类别我们都加入年龄。通过临床实验来加强对于每一个类别的特定年龄范围。</p>
 <h3 id="神经网络的内容嵌入"><a href="#神经网络的内容嵌入" class="headerlink" title="神经网络的内容嵌入"></a>神经网络的内容嵌入</h3><p>在第二个方法中，我们使用文字项来匹配计算出的语义向量，包括对于患者基因特征的描述以及抽象。我们构建了一个基因特征的词汇表，有生物信息概念以及文档中出现的常用词。然后我们使用神经概率语言模型，找出这些词项的连续嵌入。然后现在对于患者以及科学抽象的临床试验文档可以表示为距离函数，然后应用到各自的向量表达中。</p>
 <p>为了区分文档集中相关基因的区分度，我们使用HGNC数据库中的基因特征，并应用基于符号同义词关系的简单启发式方法来消除模糊基因符号，如CO2或SARS，这些符号也具有非基因组解释。我们词汇表的生物医学概念由Uniﬁed Medical Language System（UMLS）提供。我们在PubMed中的所有摘要中训练我们的嵌入，其中包含任何已识别的相关基因符号。</p>
-<p>相关度对于每个topic文章的分数都可以通过向量表示来进行计算，以及基于内容的相似度的分数可以写作$s_c$。我们考虑对于基因符号$g_t$最相似的三个词项$d_{i,1},d_{i,2},d_{i,3}$，以及一个给定的重要性的递减权重，采用最常用的$1+log(k_{ij})$来表示词项频率$tf(d_{ij})$来计算词项$d_{ij}$在文档中出现的多个次数，最后的评分可以被写作余弦距离：</p>
-<script type="math/tex; mode=display">
-s_c(T,D)= \\sum_{g_t\in T} \\sum_{j=1}^3 \omega_j*(1+log(tf(d_{ij})))(1-cos(g_t,d_{ij}))</script><h3 id="神经网络的基因嵌入"><a href="#神经网络的基因嵌入" class="headerlink" title="神经网络的基因嵌入"></a>神经网络的基因嵌入</h3><p>在一个可选的神经嵌入规则中，我们目标是对一个医学的基因特性以及基因突变建模。函数的相似性可以被定义为基于相同的癌症类型以及基因，使得对于相同癌症的相关基因相似度更高。</p>
+<p>相关度对于每个topic文章的分数都可以通过向量表示来进行计算，以及基于内容的相似度的分数可以写作$s_c$。我们考虑对于基因符号$g_t$最相似的三个词项$d_{i,1},d_{i,2},d_{i,3}$，以及一个给定的重要性的递减权重，采用最常用的$1+log(k_{ij})$来表示词项频率$tf(d_{ij})$来计算词项$d_{ij}$在文档中出现的多个次数，最后的评分可以被写作余弦距离：<br>$$<br>s_c(T,D)= \sum_{g_t\in T} \sum_{j=1}^3 \omega_j*(1+log(tf(d_{ij})))(1-cos(g_t,d_{ij}))<br>$$</p>
+<h3 id="神经网络的基因嵌入"><a href="#神经网络的基因嵌入" class="headerlink" title="神经网络的基因嵌入"></a>神经网络的基因嵌入</h3><p>在一个可选的神经嵌入规则中，我们目标是对一个医学的基因特性以及基因突变建模。函数的相似性可以被定义为基于相同的癌症类型以及基因，使得对于相同癌症的相关基因相似度更高。</p>
 <p>我们使用NCBI数据库，对于每一个基因都包含染色体，基因以及它们的属性（例如蛋白质作用），相关标记，显性以及相互作用。除此之外，对于每一个记录的基因，有一个『总结』，在这一部分中，多有与该基因有关的癌症类型都被列出来了，总计有1357种不同的基因与109种癌症类型。</p>
 <p>采用单层的欧式函数空间来前反馈基因型。该网络中的输入就是一个向量可以独一无二地表示这个基因，输出就是一个特殊的向量，对应一个特殊的癌症类型。如果一个输入基因对应着一个癌症类型，那么对应元素的输出向量(癌症类型)就置为1，如下图所示<br><img src="https://ws3.sinaimg.cn/large/006tNbRwly1fwzs76t8rlj30r60gkdha.jpg" alt></p>
 <p>输入层的大小等于基因的数量（1347），输出层对应癌症的类型（109），隐藏层大于为50，最大的用于预测癌症的交叉对比准确度约为60%。在训练完这些数据的特征之后，我们使用基因表示来对学术文章进行排名，用余弦函数来表示任意两个基因之间的相似度。$a = {mean,max,mean max}$</p>
-<script type="math/tex; mode=display">
-s_f(T,D) = a(cos(g_t,g_d))\forall g_t \in T, g_d \in D</script><h3 id="其他的对于基因对排名的训练"><a href="#其他的对于基因对排名的训练" class="headerlink" title="其他的对于基因对排名的训练"></a>其他的对于基因对排名的训练</h3><p>为了提高兼容性，我们生成了一个额外的网络GAN，一个GAN网络包含两个不同目标的训练， GAN由针对不同目标训练的两个网络组成：发生器网络旨在复制原始数据分布，而鉴别器网络交替地馈送实际和生成的数据，并且负责识别真实数据点。基本假设就是经常一起发生的基因也有相似之处。最后，我们使用训练有素的GAN来构建度量，以根据文档的基因兼容性对文档进行排名。对于给定文件$g_d$中的每个患者基因$g_t$和基因提及，我们计算Disc的鉴别值$(g_t,g_d)$。对于可能的实对，鉴别器分别输出1和0用于可能不相关的数据。我们通过应用聚合函数$a = {min，max，mean}$将$Disc(.)$的值组合在文档中的所有基因中。</p>
-<script type="math/tex; mode=display">
-s_g(T,D) = a(cos(g_t,g_d)) \forall g_t \in T, g_d \in D</script><h2 id="分数模糊"><a href="#分数模糊" class="headerlink" title="分数模糊"></a>分数模糊</h2><p>根据以上我们计算出了分数$(tfidf(.),s_c(.),s_f(.)以及s_g(.))$ 首先我们将所有的组成分高造成向量：<br><img src="https://ws1.sinaimg.cn/large/006tNbRwly1fwzsrog8tkj30o20dkwgw.jpg" alt></p>
+<p>$$<br>s_f(T,D) = a(cos(g_t,g_d))\forall g_t \in T, g_d \in D<br>$$</p>
+<h3 id="其他的对于基因对排名的训练"><a href="#其他的对于基因对排名的训练" class="headerlink" title="其他的对于基因对排名的训练"></a>其他的对于基因对排名的训练</h3><p>为了提高兼容性，我们生成了一个额外的网络GAN，一个GAN网络包含两个不同目标的训练， GAN由针对不同目标训练的两个网络组成：发生器网络旨在复制原始数据分布，而鉴别器网络交替地馈送实际和生成的数据，并且负责识别真实数据点。基本假设就是经常一起发生的基因也有相似之处。最后，我们使用训练有素的GAN来构建度量，以根据文档的基因兼容性对文档进行排名。对于给定文件$g_d$中的每个患者基因$g_t$和基因提及，我们计算Disc的鉴别值$(g_t,g_d)$。对于可能的实对，鉴别器分别输出1和0用于可能不相关的数据。我们通过应用聚合函数$a = {min，max，mean}$将$Disc(.)$的值组合在文档中的所有基因中。<br>$$<br>s_g(T,D) = a(cos(g_t,g_d)) \forall g_t \in T, g_d \in D<br>$$</p>
+<h2 id="分数模糊"><a href="#分数模糊" class="headerlink" title="分数模糊"></a>分数模糊</h2><p>根据以上我们计算出了分数$(tfidf(.),s_c(.),s_f(.)以及s_g(.))$ 首先我们将所有的组成分高造成向量：<br><img src="https://ws1.sinaimg.cn/large/006tNbRwly1fwzsrog8tkj30o20dkwgw.jpg" alt></p>
 <p>我们介绍5中方法来模糊分数使得他们可以融合起来。</p>
 <ol>
 <li>Weighted Sum (nDCG)：将不同分数分配不同权重相加。</li>
@@ -647,18 +645,18 @@ s_g(T,D) = a(cos(g_t,g_d)) \forall g_t \in T, g_d \in D</script><h2 id="分数�
         
         <article class="media">
             
-            <a href="/2019/07/21/数据挖掘/2019-08-13-实时异常检测/" class="media-left">
+            <a href="/2019/07/21/安全/2019-07-22-xgboost/" class="media-left">
                 <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="实时异常检测（xStream，KDD&#39;18）">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="孤立森林（Isolation Forest）">
                 </p>
             </a>
             
             <div class="media-content">
                 <div class="content">
                     <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-07-20T16:00:00.000Z">2019-07-21</time></div>
-                    <a href="/2019/07/21/数据挖掘/2019-08-13-实时异常检测/" class="title has-link-black-ter is-size-6 has-text-weight-normal">实时异常检测（xStream，KDD&#39;18）</a>
+                    <a href="/2019/07/21/安全/2019-07-22-xgboost/" class="title has-link-black-ter is-size-6 has-text-weight-normal">孤立森林（Isolation Forest）</a>
                     <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/Anomaly-detection/">Anomaly detection</a>
+                        <a class="has-link-grey -link" href="/categories/Security/">Security</a>
                     </p>
                 </div>
             </div>
@@ -1147,18 +1145,18 @@ s_g(T,D) = a(cos(g_t,g_d)) \forall g_t \in T, g_d \in D</script><h2 id="分数�
         
         <article class="media">
             
-            <a href="/2019/07/21/数据挖掘/2019-08-13-实时异常检测/" class="media-left">
+            <a href="/2019/07/21/安全/2019-07-22-xgboost/" class="media-left">
                 <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="实时异常检测（xStream，KDD&#39;18）">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="孤立森林（Isolation Forest）">
                 </p>
             </a>
             
             <div class="media-content">
                 <div class="content">
                     <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-07-20T16:00:00.000Z">2019-07-21</time></div>
-                    <a href="/2019/07/21/数据挖掘/2019-08-13-实时异常检测/" class="title has-link-black-ter is-size-6 has-text-weight-normal">实时异常检测（xStream，KDD&#39;18）</a>
+                    <a href="/2019/07/21/安全/2019-07-22-xgboost/" class="title has-link-black-ter is-size-6 has-text-weight-normal">孤立森林（Isolation Forest）</a>
                     <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/Anomaly-detection/">Anomaly detection</a>
+                        <a class="has-link-grey -link" href="/categories/Security/">Security</a>
                     </p>
                 </div>
             </div>

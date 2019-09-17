@@ -212,7 +212,7 @@
 </ol>
 <p>并发写的问题可能因为对于同一个数据块的两次操作，可能对之前的有覆盖（不支持此操作）；支持并行append。</p>
 <hr>
-<h2 id="NoSQL"><a href="#NoSQL" class="headerlink" title="NoSQL"></a>NoSQL</h2><h3 id="Dynamo"><a href="#Dynamo" class="headerlink" title="Dynamo"></a>Dynamo</h3><p>最简单的<key,value>模型，get/put操作</key,value></p>
+<h2 id="NoSQL"><a href="#NoSQL" class="headerlink" title="NoSQL"></a>NoSQL</h2><h3 id="Dynamo"><a href="#Dynamo" class="headerlink" title="Dynamo"></a>Dynamo</h3><p>最简单的&lt;key,value&gt;模型，get/put操作</p>
 <ul>
 <li>单节点上存储由外部存储系统实现</li>
 <li>多节点间的数据分布<ul>
@@ -248,10 +248,13 @@
 <hr>
 <h3 id="Bigtable-HBase"><a href="#Bigtable-HBase" class="headerlink" title="Bigtable/HBase"></a>Bigtable/HBase</h3><p><img src="pictures/bigtable.jpg" alt></p>
 <ul>
-<li>Key包括row key与column两个部分</li>
-<li>所有row key是按顺序存储的</li>
-<li>其中column又有column family前缀<ul>
-<li>Column family是需要事先声明的，种类有限（例如~10或~100）</li>
+<li><p>Key包括row key与column两个部分</p>
+</li>
+<li><p>所有row key是按顺序存储的</p>
+</li>
+<li><p>其中column又有column family前缀</p>
+<ul>
+<li>Column family是需要事先声明的，种类有限（例如<del>10或</del>100）</li>
 <li>而column key可以有很多</li>
 </ul>
 </li>
@@ -263,17 +266,20 @@
 <li>读取value</li>
 </ul>
 </li>
-<li>Put<ul>
+<li><p>Put</p>
+<ul>
 <li>给定row key, column family, column key</li>
 <li>创建或更新value</li>
 </ul>
 </li>
-<li>Scan<ul>
+<li><p>Scan</p>
+<ul>
 <li>给定一个范围，读取这个范围内所有row key的value</li>
 <li>Row key是排序存储的</li>
 </ul>
 </li>
-<li>Delete<ul>
+<li><p>Delete</p>
+<ul>
 <li>删除一个指定的value</li>
 </ul>
 </li>
@@ -342,41 +348,38 @@
 <li>Collection &lt;-&gt; Table概念</li>
 <li>Document &lt;-&gt; 记录概念</li>
 </ul>
-<div class="table-container">
 <table>
 <thead>
 <tr>
-<th style="text-align:right">MongoDB</th>
-<th style="text-align:right">SQL</th>
+<th align="right">MongoDB</th>
+<th align="right">SQL</th>
 </tr>
 </thead>
-<tbody>
-<tr>
-<td style="text-align:right">insert</td>
-<td style="text-align:right">create</td>
+<tbody><tr>
+<td align="right">insert</td>
+<td align="right">create</td>
 </tr>
 <tr>
-<td style="text-align:right">insert</td>
-<td style="text-align:right">insert</td>
+<td align="right">insert</td>
+<td align="right">insert</td>
 </tr>
 <tr>
-<td style="text-align:right">find</td>
-<td style="text-align:right">select</td>
+<td align="right">find</td>
+<td align="right">select</td>
 </tr>
 <tr>
-<td style="text-align:right">aggregate/group</td>
-<td style="text-align:right">group by</td>
+<td align="right">aggregate/group</td>
+<td align="right">group by</td>
 </tr>
 <tr>
-<td style="text-align:right">不支持join</td>
-<td style="text-align:right">join</td>
+<td align="right">不支持join</td>
+<td align="right">join</td>
 </tr>
 <tr>
-<td style="text-align:right">支持index</td>
+<td align="right">支持index</td>
+<td align="right"></td>
 </tr>
-</tbody>
-</table>
-</div>
+</tbody></table>
 <p>Write concern：</p>
 <ol>
 <li>Unacknowledged: 写请求发送了，就认为完成</li>
@@ -449,16 +452,16 @@
     <div class="level post-navigation is-flex-wrap is-mobile">
         
         <div class="level-start">
-            <a class="level level-item has-link-grey  article-nav-prev" href="/2019/06/22/安全/2019-06-22-网络异常行为检测/">
+            <a class="level level-item has-link-grey  article-nav-prev" href="/2019/06/04/数据库/2019-06-04-大数据运算/">
                 <i class="level-item fas fa-chevron-left"></i>
-                <span class="level-item">网络异常行为检测</span>
+                <span class="level-item">大数据存储系统</span>
             </a>
         </div>
         
         
         <div class="level-end">
-            <a class="level level-item has-link-grey  article-nav-next" href="/2019/06/04/数据库/2019-06-04-大数据运算/">
-                <span class="level-item">大数据存储系统</span>
+            <a class="level level-item has-link-grey  article-nav-next" href="/2019/06/03/数据库/2019-06-03-关系数据库/">
+                <span class="level-item">关系数据库</span>
                 <i class="level-item fas fa-chevron-right"></i>
             </a>
         </div>
@@ -834,18 +837,18 @@
         
         <article class="media">
             
-            <a href="/2019/07/21/数据挖掘/2019-08-13-实时异常检测/" class="media-left">
+            <a href="/2019/07/21/安全/2019-07-22-xgboost/" class="media-left">
                 <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="实时异常检测（xStream，KDD&#39;18）">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="孤立森林（Isolation Forest）">
                 </p>
             </a>
             
             <div class="media-content">
                 <div class="content">
                     <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-07-20T16:00:00.000Z">2019-07-21</time></div>
-                    <a href="/2019/07/21/数据挖掘/2019-08-13-实时异常检测/" class="title has-link-black-ter is-size-6 has-text-weight-normal">实时异常检测（xStream，KDD&#39;18）</a>
+                    <a href="/2019/07/21/安全/2019-07-22-xgboost/" class="title has-link-black-ter is-size-6 has-text-weight-normal">孤立森林（Isolation Forest）</a>
                     <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/Anomaly-detection/">Anomaly detection</a>
+                        <a class="has-link-grey -link" href="/categories/Security/">Security</a>
                     </p>
                 </div>
             </div>
@@ -1334,18 +1337,18 @@
         
         <article class="media">
             
-            <a href="/2019/07/21/数据挖掘/2019-08-13-实时异常检测/" class="media-left">
+            <a href="/2019/07/21/安全/2019-07-22-xgboost/" class="media-left">
                 <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="实时异常检测（xStream，KDD&#39;18）">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="孤立森林（Isolation Forest）">
                 </p>
             </a>
             
             <div class="media-content">
                 <div class="content">
                     <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-07-20T16:00:00.000Z">2019-07-21</time></div>
-                    <a href="/2019/07/21/数据挖掘/2019-08-13-实时异常检测/" class="title has-link-black-ter is-size-6 has-text-weight-normal">实时异常检测（xStream，KDD&#39;18）</a>
+                    <a href="/2019/07/21/安全/2019-07-22-xgboost/" class="title has-link-black-ter is-size-6 has-text-weight-normal">孤立森林（Isolation Forest）</a>
                     <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/Anomaly-detection/">Anomaly detection</a>
+                        <a class="has-link-grey -link" href="/categories/Security/">Security</a>
                     </p>
                 </div>
             </div>

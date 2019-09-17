@@ -10,19 +10,19 @@
 <title>Raspberry Pi OK02 - Fengrui Liu&#39;s Blog</title>
 
 
-    <meta name="description" content="实验目标在OK01的实验基础上，通过GPIO口重复控制ACT/OK灯的亮灭。掌握OS的等待/延迟实现。 代码分析mov r2,#0x3F0000wait1$:sub r2,#1cmp r2,#0bne wait1$ 通过减法实现可控的循环延迟。   在这幅图中又可以看出想要将GPIO16置0只需要设置0x2020001c就可以了，所以代码逻辑就是  开灯 延迟 关灯 延迟 开灯 …   结果展示">
+    <meta name="description" content="实验目标在OK01的实验基础上，通过GPIO口重复控制ACT/OK灯的亮灭。掌握OS的等待/延迟实现。 代码分析mov r2,#0x3F0000wait1$:sub r2,#1cmp r2,#0bne wait1$  通过减法实现可控的循环延迟。   在这幅图中又可以看出想要将GPIO16置0只需要设置0x2020001c就可以了，所以代码逻辑就是  开灯 延迟 关灯 延迟 开灯 …   结果展示">
 <meta name="keywords" content="OS,Raspberry-Pi">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Raspberry Pi OK02">
 <meta property="og:url" content="http://www.liufr.com/2016/08/06/Pi/2016-08-06-Raspberry Pi OK02/index.html">
 <meta property="og:site_name" content="Fengrui Liu&#39;s Blog">
-<meta property="og:description" content="实验目标在OK01的实验基础上，通过GPIO口重复控制ACT/OK灯的亮灭。掌握OS的等待/延迟实现。 代码分析mov r2,#0x3F0000wait1$:sub r2,#1cmp r2,#0bne wait1$ 通过减法实现可控的循环延迟。   在这幅图中又可以看出想要将GPIO16置0只需要设置0x2020001c就可以了，所以代码逻辑就是  开灯 延迟 关灯 延迟 开灯 …   结果展示">
+<meta property="og:description" content="实验目标在OK01的实验基础上，通过GPIO口重复控制ACT/OK灯的亮灭。掌握OS的等待/延迟实现。 代码分析mov r2,#0x3F0000wait1$:sub r2,#1cmp r2,#0bne wait1$  通过减法实现可控的循环延迟。   在这幅图中又可以看出想要将GPIO16置0只需要设置0x2020001c就可以了，所以代码逻辑就是  开灯 延迟 关灯 延迟 开灯 …   结果展示">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http://www.liufr.com/images/og_image.png">
 <meta property="og:updated_time" content="2017-10-20T01:30:35.190Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Raspberry Pi OK02">
-<meta name="twitter:description" content="实验目标在OK01的实验基础上，通过GPIO口重复控制ACT/OK灯的亮灭。掌握OS的等待/延迟实现。 代码分析mov r2,#0x3F0000wait1$:sub r2,#1cmp r2,#0bne wait1$ 通过减法实现可控的循环延迟。   在这幅图中又可以看出想要将GPIO16置0只需要设置0x2020001c就可以了，所以代码逻辑就是  开灯 延迟 关灯 延迟 开灯 …   结果展示">
+<meta name="twitter:description" content="实验目标在OK01的实验基础上，通过GPIO口重复控制ACT/OK灯的亮灭。掌握OS的等待/延迟实现。 代码分析mov r2,#0x3F0000wait1$:sub r2,#1cmp r2,#0bne wait1$  通过减法实现可控的循环延迟。   在这幅图中又可以看出想要将GPIO16置0只需要设置0x2020001c就可以了，所以代码逻辑就是  开灯 延迟 关灯 延迟 开灯 …   结果展示">
 <meta name="twitter:image" content="http://www.liufr.com/images/og_image.png">
 
 
@@ -174,6 +174,7 @@
         <div class="content">
             <h3 id="实验目标"><a href="#实验目标" class="headerlink" title="实验目标"></a>实验目标</h3><p>在OK01的实验基础上，通过GPIO口重复控制ACT/OK灯的亮灭。掌握OS的等待/延迟实现。</p>
 <h3 id="代码分析"><a href="#代码分析" class="headerlink" title="代码分析"></a>代码分析</h3><figure class="highlight arm hljs"><table><tr><td class="code"><pre><span class="line"><span class="hljs-keyword">mov </span><span class="hljs-built_in">r2</span>,<span class="hljs-number">#0x3F0000</span></span><br><span class="line"><span class="hljs-symbol">wait1$</span>:</span><br><span class="line"><span class="hljs-keyword">sub </span><span class="hljs-built_in">r2</span>,<span class="hljs-number">#1</span></span><br><span class="line"><span class="hljs-keyword">cmp </span><span class="hljs-built_in">r2</span>,<span class="hljs-number">#0</span></span><br><span class="line"><span class="hljs-keyword">bne </span>wait1$</span><br></pre></td></tr></table></figure>
+
 <p>通过减法实现可控的循环延迟。</p>
 <hr>
 <p><img src="http://ww3.sinaimg.cn/large/006tKfTcgw1f6k1ylrxyzj30h9084jtg.jpg" alt></p>
@@ -242,16 +243,16 @@
     <div class="level post-navigation is-flex-wrap is-mobile">
         
         <div class="level-start">
-            <a class="level level-item has-link-grey  article-nav-prev" href="/2016/08/06/Pi/2016-08-06-Baking Pi – Operating Systems Development前言/">
+            <a class="level level-item has-link-grey  article-nav-prev" href="/2016/08/06/Pi/2016-08-06-Raspberry Pi OK01/">
                 <i class="level-item fas fa-chevron-left"></i>
-                <span class="level-item">Raspberry Pi OS Development 前言</span>
+                <span class="level-item">Raspberry Pi OK01</span>
             </a>
         </div>
         
         
         <div class="level-end">
-            <a class="level level-item has-link-grey  article-nav-next" href="/2016/08/06/Pi/2016-08-06-Raspberry Pi OK03/">
-                <span class="level-item">Raspberry Pi OK03</span>
+            <a class="level level-item has-link-grey  article-nav-next" href="/2016/05/02/概念/2016-05-15-IRQ与FIQ中断/">
+                <span class="level-item">IRQ与FIQ中断</span>
                 <i class="level-item fas fa-chevron-right"></i>
             </a>
         </div>
@@ -627,18 +628,18 @@
         
         <article class="media">
             
-            <a href="/2019/07/21/数据挖掘/2019-08-13-实时异常检测/" class="media-left">
+            <a href="/2019/07/21/安全/2019-07-22-xgboost/" class="media-left">
                 <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="实时异常检测（xStream，KDD&#39;18）">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="孤立森林（Isolation Forest）">
                 </p>
             </a>
             
             <div class="media-content">
                 <div class="content">
                     <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-07-20T16:00:00.000Z">2019-07-21</time></div>
-                    <a href="/2019/07/21/数据挖掘/2019-08-13-实时异常检测/" class="title has-link-black-ter is-size-6 has-text-weight-normal">实时异常检测（xStream，KDD&#39;18）</a>
+                    <a href="/2019/07/21/安全/2019-07-22-xgboost/" class="title has-link-black-ter is-size-6 has-text-weight-normal">孤立森林（Isolation Forest）</a>
                     <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/Anomaly-detection/">Anomaly detection</a>
+                        <a class="has-link-grey -link" href="/categories/Security/">Security</a>
                     </p>
                 </div>
             </div>
@@ -1127,18 +1128,18 @@
         
         <article class="media">
             
-            <a href="/2019/07/21/数据挖掘/2019-08-13-实时异常检测/" class="media-left">
+            <a href="/2019/07/21/安全/2019-07-22-xgboost/" class="media-left">
                 <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="实时异常检测（xStream，KDD&#39;18）">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="孤立森林（Isolation Forest）">
                 </p>
             </a>
             
             <div class="media-content">
                 <div class="content">
                     <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-07-20T16:00:00.000Z">2019-07-21</time></div>
-                    <a href="/2019/07/21/数据挖掘/2019-08-13-实时异常检测/" class="title has-link-black-ter is-size-6 has-text-weight-normal">实时异常检测（xStream，KDD&#39;18）</a>
+                    <a href="/2019/07/21/安全/2019-07-22-xgboost/" class="title has-link-black-ter is-size-6 has-text-weight-normal">孤立森林（Isolation Forest）</a>
                     <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/Anomaly-detection/">Anomaly detection</a>
+                        <a class="has-link-grey -link" href="/categories/Security/">Security</a>
                     </p>
                 </div>
             </div>

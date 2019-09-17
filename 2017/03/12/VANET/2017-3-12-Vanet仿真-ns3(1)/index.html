@@ -175,6 +175,7 @@
             <h2 id="VANET-仿真"><a href="#VANET-仿真" class="headerlink" title="VANET 仿真"></a>VANET 仿真</h2><p>ns3示例代码first.cc注释整理，点对点的udp传输仿真</p>
 <figure class="highlight c++ hljs"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">"ns3/core-module.h"</span></span></span><br><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">"ns3/network-module.h"</span></span></span><br><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">"ns3/internet-module.h"</span></span></span><br><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">"ns3/point-to-point-module.h"</span></span></span><br><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">"ns3/applications-module.h"</span></span></span><br><span class="line"></span><br><span class="line"><span class="hljs-comment">//namespace 定义之后，所有命令行的参数都需要用ns::的形式来表示</span></span><br><span class="line"><span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> ns3;</span><br><span class="line"></span><br><span class="line"><span class="hljs-comment">//定义日志的组成部分</span></span><br><span class="line">NS_LOG_COMPONENT_DEFINE (<span class="hljs-string">"FirstScriptExample"</span>);</span><br><span class="line"></span><br><span class="line"><span class="hljs-keyword">int</span></span><br><span class="line">main (<span class="hljs-keyword">int</span> argc, <span class="hljs-keyword">char</span> \*argv[])</span><br><span class="line">&#123;</span><br><span class="line">  <span class="hljs-comment">//开启命令行参数，可以设置全局变量、属性等，可以用./waf --run "scratch/myfirst --PrintHelp"查看帮助信息</span></span><br><span class="line">  CommandLine cmd;</span><br><span class="line">  cmd.Parse (argc, argv);</span><br><span class="line"></span><br><span class="line">  Time::SetResolution (Time::NS); <span class="hljs-comment">//时间被设定成纳秒级别</span></span><br><span class="line">  LogComponentEnable (<span class="hljs-string">"UdpEchoClientApplication"</span>, LOG_LEVEL_INFO);</span><br><span class="line">  LogComponentEnable (<span class="hljs-string">"UdpEchoServerApplication"</span>, LOG_LEVEL_INFO);</span><br><span class="line"></span><br><span class="line">  NodeContainer nodes;</span><br><span class="line">  nodes.Create (<span class="hljs-number">2</span>);</span><br><span class="line"></span><br><span class="line">  PointToPointHelper pointToPoint;</span><br><span class="line">  <span class="hljs-comment">//实例化一个点对点模型</span></span><br><span class="line">  <span class="hljs-comment">//有两种方式可以设置节点参数，一种可以通过下面的方式修改，</span></span><br><span class="line">  <span class="hljs-comment">//另一种通过命令行./waf --run "scratch/myfirst --ns3::PointToPointNetDevice::DataRate=5Mbps --ns3::PointToPointChannel::Delay=2ms"</span></span><br><span class="line">  pointToPoint.SetDeviceAttribute (<span class="hljs-string">"DataRate"</span>, StringValue (<span class="hljs-string">"5Mbps"</span>));</span><br><span class="line">  pointToPoint.SetChannelAttribute (<span class="hljs-string">"Delay"</span>, StringValue (<span class="hljs-string">"2ms"</span>));</span><br><span class="line"></span><br><span class="line">  NetDeviceContainer devices;</span><br><span class="line">  devices = pointToPoint.Install (nodes);</span><br><span class="line"></span><br><span class="line">  <span class="hljs-comment">//协议栈，包括TCP，UDP，IP等</span></span><br><span class="line">  InternetStackHelper <span class="hljs-built_in">stack</span>;</span><br><span class="line">  <span class="hljs-built_in">stack</span>.Install (nodes);</span><br><span class="line"></span><br><span class="line">  <span class="hljs-comment">//设定地址掩码等信息</span></span><br><span class="line">  Ipv4AddressHelper address;</span><br><span class="line">  address.SetBase (<span class="hljs-string">"10.1.1.0"</span>, <span class="hljs-string">"255.255.255.0"</span>);</span><br><span class="line"></span><br><span class="line">  <span class="hljs-comment">//通过下面的函数将ipv4地址与设备链接起来</span></span><br><span class="line">  Ipv4InterfaceContainer interfaces = address.Assign (devices);</span><br><span class="line"></span><br><span class="line">  <span class="hljs-comment">//设置udp端口号为9</span></span><br><span class="line">  <span class="hljs-function">UdpEchoServerHelper <span class="hljs-title">echoServer</span> <span class="hljs-params">(<span class="hljs-number">9</span>)</span></span>;</span><br><span class="line"></span><br><span class="line">  <span class="hljs-comment">//install函数就是把节点挂载到server上</span></span><br><span class="line">  ApplicationContainer serverApps = echoServer.Install (nodes.Get (<span class="hljs-number">1</span>));</span><br><span class="line">  serverApps.Start (Seconds (<span class="hljs-number">1.0</span>));</span><br><span class="line">  serverApps.Stop (Seconds (<span class="hljs-number">10.0</span>));</span><br><span class="line"></span><br><span class="line">  <span class="hljs-comment">//client上五个属性分别为节点地址、端口号、包数量、间隔、包大小</span></span><br><span class="line">  UdpEchoClientHelper echoClient (interfaces.GetAddress (1), 9);</span><br><span class="line">  echoClient.SetAttribute (<span class="hljs-string">"MaxPackets"</span>, UintegerValue (<span class="hljs-number">1</span>));</span><br><span class="line">  echoClient.SetAttribute (<span class="hljs-string">"Interval"</span>, TimeValue (Seconds (<span class="hljs-number">1.0</span>)));</span><br><span class="line">  echoClient.SetAttribute (<span class="hljs-string">"PacketSize"</span>, UintegerValue (<span class="hljs-number">1024</span>));</span><br><span class="line"></span><br><span class="line">  ApplicationContainer clientApps = echoClient.Install (nodes.Get (<span class="hljs-number">0</span>));</span><br><span class="line">  clientApps.Start (Seconds (<span class="hljs-number">2.0</span>));</span><br><span class="line">  clientApps.Stop (Seconds (<span class="hljs-number">10.0</span>));</span><br><span class="line"></span><br><span class="line">  <span class="hljs-comment">//开始仿真、结束仿真</span></span><br><span class="line">  Simulator::Run ();</span><br><span class="line">  Simulator::Destroy ();</span><br><span class="line">  <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
+
         </div>
         
         <div class="level is-size-7 is-uppercase">
@@ -233,16 +234,16 @@
     <div class="level post-navigation is-flex-wrap is-mobile">
         
         <div class="level-start">
-            <a class="level level-item has-link-grey  article-nav-prev" href="/2017/03/12/VANET/2017-3-12-Vanet仿真-ns3(3)/">
+            <a class="level level-item has-link-grey  article-nav-prev" href="/2017/03/12/VANET/2017-3-12-Vanet仿真-ns3(2)/">
                 <i class="level-item fas fa-chevron-left"></i>
-                <span class="level-item">VANET仿真-ns3(3)</span>
+                <span class="level-item">VANET仿真-ns3(2)</span>
             </a>
         </div>
         
         
         <div class="level-end">
-            <a class="level level-item has-link-grey  article-nav-next" href="/2016/12/24/网络/2016-12-24-ipv4在Linux上的实现/">
-                <span class="level-item">学习构造用户空间的IP栈（资料总结）</span>
+            <a class="level level-item has-link-grey  article-nav-next" href="/2017/03/12/VANET/2017-3-12-Vanet仿真-ns3(3)/">
+                <span class="level-item">VANET仿真-ns3(3)</span>
                 <i class="level-item fas fa-chevron-right"></i>
             </a>
         </div>
@@ -618,18 +619,18 @@
         
         <article class="media">
             
-            <a href="/2019/07/21/数据挖掘/2019-08-13-实时异常检测/" class="media-left">
+            <a href="/2019/07/21/安全/2019-07-22-xgboost/" class="media-left">
                 <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="实时异常检测（xStream，KDD&#39;18）">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="孤立森林（Isolation Forest）">
                 </p>
             </a>
             
             <div class="media-content">
                 <div class="content">
                     <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-07-20T16:00:00.000Z">2019-07-21</time></div>
-                    <a href="/2019/07/21/数据挖掘/2019-08-13-实时异常检测/" class="title has-link-black-ter is-size-6 has-text-weight-normal">实时异常检测（xStream，KDD&#39;18）</a>
+                    <a href="/2019/07/21/安全/2019-07-22-xgboost/" class="title has-link-black-ter is-size-6 has-text-weight-normal">孤立森林（Isolation Forest）</a>
                     <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/Anomaly-detection/">Anomaly detection</a>
+                        <a class="has-link-grey -link" href="/categories/Security/">Security</a>
                     </p>
                 </div>
             </div>
@@ -1118,18 +1119,18 @@
         
         <article class="media">
             
-            <a href="/2019/07/21/数据挖掘/2019-08-13-实时异常检测/" class="media-left">
+            <a href="/2019/07/21/安全/2019-07-22-xgboost/" class="media-left">
                 <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="实时异常检测（xStream，KDD&#39;18）">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="孤立森林（Isolation Forest）">
                 </p>
             </a>
             
             <div class="media-content">
                 <div class="content">
                     <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-07-20T16:00:00.000Z">2019-07-21</time></div>
-                    <a href="/2019/07/21/数据挖掘/2019-08-13-实时异常检测/" class="title has-link-black-ter is-size-6 has-text-weight-normal">实时异常检测（xStream，KDD&#39;18）</a>
+                    <a href="/2019/07/21/安全/2019-07-22-xgboost/" class="title has-link-black-ter is-size-6 has-text-weight-normal">孤立森林（Isolation Forest）</a>
                     <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/Anomaly-detection/">Anomaly detection</a>
+                        <a class="has-link-grey -link" href="/categories/Security/">Security</a>
                     </p>
                 </div>
             </div>

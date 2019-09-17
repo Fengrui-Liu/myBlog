@@ -178,7 +178,9 @@
 <p>100%的数据，0&lt;S&lt;T≤200000。</p>
 <h2 id="Output-Format"><a href="#Output-Format" class="headerlink" title="Output Format"></a>Output Format</h2><p>输出有2行。第一行包含一个数表示长度，第二行包含一个数表示个数。</p>
 <h2 id="Sample-Input"><a href="#Sample-Input" class="headerlink" title="Sample Input"></a>Sample Input</h2><figure class="highlight plain hljs"><table><tr><td class="code"><pre><span class="line">2 10</span><br></pre></td></tr></table></figure>
+
 <h2 id="Sample-Output"><a href="#Sample-Output" class="headerlink" title="Sample Output"></a>Sample Output</h2><figure class="highlight plain hljs"><table><tr><td class="code"><pre><span class="line">5</span><br><span class="line">2</span><br></pre></td></tr></table></figure>
+
 <h2 id="样例解释"><a href="#样例解释" class="headerlink" title="样例解释"></a>样例解释</h2><p>2 4 5 6 9以及2 4 5 8 10</p>
 <hr>
 <h2 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h2><p>DP动态规划求解</p>
@@ -201,6 +203,7 @@
 <p>更新总的最大长度$ans = max（ans,d[tmp]）$;</p>
 <p>最后输出ans和cnt[ans]</p>
 <figure class="highlight c hljs"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;cstdio&gt;</span></span></span><br><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;cstring&gt;</span></span></span><br><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;algorithm&gt;</span></span></span><br><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> <span class="hljs-built_in">std</span>;</span><br><span class="line"><span class="hljs-keyword">typedef</span> <span class="hljs-keyword">long</span> <span class="hljs-keyword">long</span> ll;</span><br><span class="line"></span><br><span class="line"><span class="hljs-keyword">const</span> <span class="hljs-keyword">int</span> maxn=<span class="hljs-number">200007</span>;</span><br><span class="line"><span class="hljs-keyword">int</span> d[maxn];</span><br><span class="line">ll cnt[maxn],times[maxn];</span><br><span class="line"><span class="hljs-comment">//cnt[i]存储的是 长度为i的序列的个数</span></span><br><span class="line"><span class="hljs-comment">//d[i]存储的是以i结尾的序列最长的长度</span></span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span></span><br><span class="line"><span class="hljs-function"></span>&#123;</span><br><span class="line">    <span class="hljs-keyword">int</span> s,t;</span><br><span class="line">    <span class="hljs-built_in">cin</span>&gt;&gt;s&gt;&gt;t;</span><br><span class="line">    <span class="hljs-built_in">memset</span>(cnt,<span class="hljs-number">0</span>,<span class="hljs-keyword">sizeof</span>(cnt));</span><br><span class="line">    <span class="hljs-keyword">int</span> i,j,tmp,ans=<span class="hljs-number">1</span>;</span><br><span class="line">    cnt[<span class="hljs-number">1</span>]=t-s+<span class="hljs-number">1</span>;</span><br><span class="line"></span><br><span class="line">    <span class="hljs-keyword">for</span>(i=s;i&lt;=t;i++)</span><br><span class="line">        d[i]=times[i]=<span class="hljs-number">1</span>; <span class="hljs-comment">//初始化为1</span></span><br><span class="line"></span><br><span class="line">    <span class="hljs-keyword">for</span>(i=s;i&lt;=t;i++) <span class="hljs-comment">//遍历每个数作为起点</span></span><br><span class="line">        <span class="hljs-keyword">for</span>(j=<span class="hljs-number">1</span>;j&lt;=<span class="hljs-number">100</span>;j++)    <span class="hljs-keyword">if</span>( (i*j)%<span class="hljs-number">100</span> == <span class="hljs-number">0</span>) <span class="hljs-comment">//假设增长率为j%</span></span><br><span class="line">        &#123;</span><br><span class="line">            <span class="hljs-comment">//则在此增长率下 得到的数为 tmp 可以看出,要让tmp为整数 必须i*j是100的倍数</span></span><br><span class="line">            tmp = i + i*j/<span class="hljs-number">100</span>;</span><br><span class="line">            <span class="hljs-keyword">if</span>( tmp &lt;= t ) <span class="hljs-comment">//如果这个tmp是在规定范围内的 我们就找到了一个解</span></span><br><span class="line">            &#123;</span><br><span class="line">                <span class="hljs-keyword">if</span>(d[i]+<span class="hljs-number">1</span> &gt; d[tmp]) <span class="hljs-comment">//这时要比较 看看要不要更新以tmp结尾的最长的长度</span></span><br><span class="line">                &#123;</span><br><span class="line">                    d[tmp] = d[i] + <span class="hljs-number">1</span>;<span class="hljs-comment">//以tmp为结尾的序列的长度 为 以i为结尾的序列的长度 再加上1 表示算上tmp</span></span><br><span class="line">                    times[tmp] = times[i]; <span class="hljs-comment">//发生了最长长度的更新 所以要重置 以tmp结尾的最长长度的重复次数为 i的</span></span><br><span class="line">                &#125;</span><br><span class="line">                <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>(d[i]+<span class="hljs-number">1</span>==d[tmp]) <span class="hljs-comment">//恰好是重复的最长长度 </span></span><br><span class="line">                &#123;</span><br><span class="line">                    times[tmp] += times[i];<span class="hljs-comment">//则最长长度的次数 增加 以i结尾的最长长度重复次数</span></span><br><span class="line">                &#125;</span><br><span class="line"></span><br><span class="line">                ans = max(ans,d[tmp]);  <span class="hljs-comment">//更新ans</span></span><br><span class="line">                <span class="hljs-comment">//d[i]+1 表示以i结尾的序列长度+tmp所增加的1位 这个长度的子列数量要增加times[i]</span></span><br><span class="line">                cnt[d[i]+<span class="hljs-number">1</span>] += times[i];</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    <span class="hljs-built_in">cout</span>&lt;&lt;ans&lt;&lt;cnt[ans];</span><br><span class="line">    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
 
         </div>
         
@@ -260,9 +263,9 @@
     <div class="level post-navigation is-flex-wrap is-mobile">
         
         <div class="level-start">
-            <a class="level level-item has-link-grey  article-nav-prev" href="/2017/09/15/算法/2017-9-15-完全背包/">
+            <a class="level level-item has-link-grey  article-nav-prev" href="/2017/09/15/算法/2017-9-15-DP最长公共子序列/">
                 <i class="level-item fas fa-chevron-left"></i>
-                <span class="level-item">DP（完全背包）</span>
+                <span class="level-item">DP（最长公共子序列）</span>
             </a>
         </div>
         
@@ -645,18 +648,18 @@
         
         <article class="media">
             
-            <a href="/2019/07/21/数据挖掘/2019-08-13-实时异常检测/" class="media-left">
+            <a href="/2019/07/21/安全/2019-07-22-xgboost/" class="media-left">
                 <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="实时异常检测（xStream，KDD&#39;18）">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="孤立森林（Isolation Forest）">
                 </p>
             </a>
             
             <div class="media-content">
                 <div class="content">
                     <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-07-20T16:00:00.000Z">2019-07-21</time></div>
-                    <a href="/2019/07/21/数据挖掘/2019-08-13-实时异常检测/" class="title has-link-black-ter is-size-6 has-text-weight-normal">实时异常检测（xStream，KDD&#39;18）</a>
+                    <a href="/2019/07/21/安全/2019-07-22-xgboost/" class="title has-link-black-ter is-size-6 has-text-weight-normal">孤立森林（Isolation Forest）</a>
                     <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/Anomaly-detection/">Anomaly detection</a>
+                        <a class="has-link-grey -link" href="/categories/Security/">Security</a>
                     </p>
                 </div>
             </div>
@@ -1145,18 +1148,18 @@
         
         <article class="media">
             
-            <a href="/2019/07/21/数据挖掘/2019-08-13-实时异常检测/" class="media-left">
+            <a href="/2019/07/21/安全/2019-07-22-xgboost/" class="media-left">
                 <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="实时异常检测（xStream，KDD&#39;18）">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="孤立森林（Isolation Forest）">
                 </p>
             </a>
             
             <div class="media-content">
                 <div class="content">
                     <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-07-20T16:00:00.000Z">2019-07-21</time></div>
-                    <a href="/2019/07/21/数据挖掘/2019-08-13-实时异常检测/" class="title has-link-black-ter is-size-6 has-text-weight-normal">实时异常检测（xStream，KDD&#39;18）</a>
+                    <a href="/2019/07/21/安全/2019-07-22-xgboost/" class="title has-link-black-ter is-size-6 has-text-weight-normal">孤立森林（Isolation Forest）</a>
                     <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/Anomaly-detection/">Anomaly detection</a>
+                        <a class="has-link-grey -link" href="/categories/Security/">Security</a>
                     </p>
                 </div>
             </div>

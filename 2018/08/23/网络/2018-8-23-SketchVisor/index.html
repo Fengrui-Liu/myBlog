@@ -229,20 +229,20 @@
 <h2 id="网络范围内的恢复"><a href="#网络范围内的恢复" class="headerlink" title="网络范围内的恢复"></a>网络范围内的恢复</h2><h3 id="基本思想"><a href="#基本思想" class="headerlink" title="基本思想"></a>基本思想</h3><p>控制层通过周期性的收集本地数据提供全网范围内的测量数据，它可以通过矩阵加将所有的sketch合并到一个sketch上（合并后的结果用N来表示），将多个哈希表合并成一个，并且将计数器的结果合并成一个，注意到之前算法有不确定性，因此它只维护top-k个数据流并且没有跟踪到具体的某一个小的数据流上。这部分的研究目标就是精确恢复。</p>
 <p>我们分解网络流数据成两个向量，$x$表示哈希表$H$中的流实际的字节数，$y$表示其他流实际的字节数。如果一个流不存在，那么所有的数据就都是0了。$x+y$就表示了fast-path中的每一个数据流。</p>
 <p>为了恢复出所有的网络流T，我们可以将fast path中的所有流都注入到normal path中，本质就是用sketch方法来处理$x+y$，表示为$sk(x+y)$，</p>
-<script type="math/tex; mode=display">
-T=N+sk(x+y)</script><p> 由于fast path 并不是追踪到每条数据流，因此$x$和$y$实际上是未知的，但是我们可以通过统计量来明确其值的限制条件。$x$和$y$的$l_1$范数之和可以如下表示：</p>
-<script type="math/tex; mode=display">
-\lVert x\rVert_1 + \lVert y\rVert_1 = V</script><p>除此之外，合并后的哈希表H也给出了每条流的上/下确界：</p>
-<script type="math/tex; mode=display">
-rf+df \leq xf \leq rf+df+ef</script><p>前两个等式表述的是网络流的聚集合并特性，第三个式子表示的是每条流的错误区间。但是上述信息还不够完整全面，有很多工作都针对其做矩阵插入的解决方案，本文则着力于找到最佳的估计矩阵T，以实现最好的恢复效果。</p>
+<p>$$<br>T=N+sk(x+y)<br>$$</p>
+<p> 由于fast path 并不是追踪到每条数据流，因此$x$和$y$实际上是未知的，但是我们可以通过统计量来明确其值的限制条件。$x$和$y$的$l_1$范数之和可以如下表示：</p>
+<p>$$<br>\lVert x\rVert_1 + \lVert y\rVert_1 = V<br>$$</p>
+<p>除此之外，合并后的哈希表H也给出了每条流的上/下确界：</p>
+<p>$$<br>rf+df \leq xf \leq rf+df+ef<br>$$</p>
+<p>前两个等式表述的是网络流的聚集合并特性，第三个式子表示的是每条流的错误区间。但是上述信息还不够完整全面，有很多工作都针对其做矩阵插入的解决方案，本文则着力于找到最佳的估计矩阵T，以实现最好的恢复效果。</p>
 <h3 id="压缩感知"><a href="#压缩感知" class="headerlink" title="压缩感知"></a>压缩感知</h3><p>首先明确出$T，x，y$的特性</p>
 <p>$T$接近是一个低秩矩阵。网络中大多数都是较大流量的数据流，又因为大数据流会引起更多的重视，因此，计数器的统计量大多近似。</p>
 <p>$x$和$sk(x)$是稀疏的。因为$x$只包含top-k条流在哈希表中，且整张表的规模是非常大的，因此我们可以将$x$视作一个稀疏向量，又因为$x$在sketch算法中由计数器限定了一定的数量，所以$sk(x)$也是稀疏的。</p>
 <p>$y$和$sk(y)$是低噪的。由y所记录的所有数据流都是规模小且区分度低。因此我们可以将y视作一个低噪的向量。</p>
 <p>我们使用奇异值分解方法，对几个sketch矩阵产生了低秩近似。</p>
 <p><strong>目标函数</strong><br>我们将上述的特性引入到目标函数当中，然后利用压缩感知框架LENS去恢复T，LENS就是这样一种算法，可以将网络流矩阵分解成低秩、稀疏并且低噪的部分。通过LENS我们将目标函数设定为：</p>
-<script type="math/tex; mode=display">
-minimize: \alpha\lVert T\rVert_* + \beta\lVert x\rVert_1 + \frac{1}{2\gamma}\lVert y\rVert^2_F</script><p>$\lVert T\rVert_*$ : T的核范数，可以约束低秩矩阵。<br>$\lVert x\rVert_1$ : x的l1范数，约束x的稀疏性。<br>$\lVert y\rVert^2_F$ :Frobenius 范数，约束y里面的大元素。</p>
+<p>$$<br>minimize: \alpha\lVert T\rVert_* + \beta\lVert x\rVert_1 + \frac{1}{2\gamma}\lVert y\rVert^2_F<br>$$</p>
+<p>$\lVert T\rVert_*$ : T的核范数，可以约束低秩矩阵。<br>$\lVert x\rVert_1$ : x的l1范数，约束x的稀疏性。<br>$\lVert y\rVert^2_F$ :Frobenius 范数，约束y里面的大元素。</p>
 
         </div>
         
@@ -302,16 +302,16 @@ minimize: \alpha\lVert T\rVert_* + \beta\lVert x\rVert_1 + \frac{1}{2\gamma}\lVe
     <div class="level post-navigation is-flex-wrap is-mobile">
         
         <div class="level-start">
-            <a class="level level-item has-link-grey  article-nav-prev" href="/2018/09/02/安全/2018-09-02-蜜罐技术/">
+            <a class="level level-item has-link-grey  article-nav-prev" href="/2018/08/23/网络/2018-8-23-Elastic Sketch/">
                 <i class="level-item fas fa-chevron-left"></i>
-                <span class="level-item">蜜罐技术</span>
+                <span class="level-item">Elastic Sketch: Adaptive and Fast Network-wide Measurements</span>
             </a>
         </div>
         
         
         <div class="level-end">
-            <a class="level level-item has-link-grey  article-nav-next" href="/2018/08/23/网络/2018-8-23-Elastic Sketch/">
-                <span class="level-item">Elastic Sketch: Adaptive and Fast Network-wide Measurements</span>
+            <a class="level level-item has-link-grey  article-nav-next" href="/2018/04/24/网络/2018-4-24-Mininet拓扑学习/">
+                <span class="level-item">Mininet拓扑学习</span>
                 <i class="level-item fas fa-chevron-right"></i>
             </a>
         </div>
@@ -687,18 +687,18 @@ minimize: \alpha\lVert T\rVert_* + \beta\lVert x\rVert_1 + \frac{1}{2\gamma}\lVe
         
         <article class="media">
             
-            <a href="/2019/07/21/数据挖掘/2019-08-13-实时异常检测/" class="media-left">
+            <a href="/2019/07/21/安全/2019-07-22-xgboost/" class="media-left">
                 <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="实时异常检测（xStream，KDD&#39;18）">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="孤立森林（Isolation Forest）">
                 </p>
             </a>
             
             <div class="media-content">
                 <div class="content">
                     <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-07-20T16:00:00.000Z">2019-07-21</time></div>
-                    <a href="/2019/07/21/数据挖掘/2019-08-13-实时异常检测/" class="title has-link-black-ter is-size-6 has-text-weight-normal">实时异常检测（xStream，KDD&#39;18）</a>
+                    <a href="/2019/07/21/安全/2019-07-22-xgboost/" class="title has-link-black-ter is-size-6 has-text-weight-normal">孤立森林（Isolation Forest）</a>
                     <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/Anomaly-detection/">Anomaly detection</a>
+                        <a class="has-link-grey -link" href="/categories/Security/">Security</a>
                     </p>
                 </div>
             </div>
@@ -1187,18 +1187,18 @@ minimize: \alpha\lVert T\rVert_* + \beta\lVert x\rVert_1 + \frac{1}{2\gamma}\lVe
         
         <article class="media">
             
-            <a href="/2019/07/21/数据挖掘/2019-08-13-实时异常检测/" class="media-left">
+            <a href="/2019/07/21/安全/2019-07-22-xgboost/" class="media-left">
                 <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="实时异常检测（xStream，KDD&#39;18）">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="孤立森林（Isolation Forest）">
                 </p>
             </a>
             
             <div class="media-content">
                 <div class="content">
                     <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-07-20T16:00:00.000Z">2019-07-21</time></div>
-                    <a href="/2019/07/21/数据挖掘/2019-08-13-实时异常检测/" class="title has-link-black-ter is-size-6 has-text-weight-normal">实时异常检测（xStream，KDD&#39;18）</a>
+                    <a href="/2019/07/21/安全/2019-07-22-xgboost/" class="title has-link-black-ter is-size-6 has-text-weight-normal">孤立森林（Isolation Forest）</a>
                     <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/Anomaly-detection/">Anomaly detection</a>
+                        <a class="has-link-grey -link" href="/categories/Security/">Security</a>
                     </p>
                 </div>
             </div>

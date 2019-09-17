@@ -183,6 +183,7 @@
 <li>遍历途中所有的边（edge（u，v）），判断是否存在这样情况：<br>d（v） &gt; d (u) + w(u,v)，则返回false，表示途中存在从源点可达的权为负的回路</li>
 </ol>
 <figure class="highlight java hljs"><table><tr><td class="code"><pre><span class="line">function &lt;predecessors&gt; Bellman-Ford(G, source)</span><br><span class="line">    <span class="hljs-keyword">for</span> i in <span class="hljs-number">1</span> to |U| <span class="hljs-keyword">do</span></span><br><span class="line">        distance[i] = +inf</span><br><span class="line">        predecessors[i] = <span class="hljs-keyword">null</span></span><br><span class="line"></span><br><span class="line">    distance[source] = <span class="hljs-number">0</span></span><br><span class="line"></span><br><span class="line">    <span class="hljs-keyword">for</span> i in <span class="hljs-number">1</span> to (|U| - <span class="hljs-number">1</span>) <span class="hljs-keyword">do</span></span><br><span class="line">        <span class="hljs-function"><span class="hljs-keyword">for</span> each Edge e in <span class="hljs-title">Edges</span><span class="hljs-params">(G)</span> <span class="hljs-keyword">do</span></span></span><br><span class="line"><span class="hljs-function">            <span class="hljs-keyword">if</span> distance[e.from] + <span class="hljs-title">length</span><span class="hljs-params">(e)</span> &lt; distance[e.to] <span class="hljs-keyword">do</span></span></span><br><span class="line"><span class="hljs-function">                distance[e.to] </span>= distance[e.from] + length(e)</span><br><span class="line">                predecessors[e.to] = e.from</span><br><span class="line"></span><br><span class="line">    <span class="hljs-function"><span class="hljs-keyword">for</span> each Edge e in <span class="hljs-title">Edges</span><span class="hljs-params">(G)</span> <span class="hljs-keyword">do</span></span></span><br><span class="line"><span class="hljs-function">        <span class="hljs-keyword">if</span> distance[e.from] + <span class="hljs-title">length</span><span class="hljs-params">(e)</span> &lt; distance[e.to] <span class="hljs-keyword">do</span></span></span><br><span class="line"><span class="hljs-function">            <span class="hljs-title">error</span><span class="hljs-params">(<span class="hljs-string">"Graph contains cycles of negative length"</span>)</span></span></span><br><span class="line"><span class="hljs-function"></span></span><br><span class="line"><span class="hljs-function">    return predecessors</span></span><br></pre></td></tr></table></figure>
+
 <p>这里的第三步是为了检测是否存在negative cycle，假设存在以下图并进行relaxation operation：</p>
 <p><img src="http://ww3.sinaimg.cn/large/006y8lVagw1f94d03kx2qj30or07h0tq.jpg" alt></p>
 <p>由于存在negative edge 导致每进行一次松弛计算，节点的权值都会减小，这样在环图中就没有收敛，此时根据算法第三条进行判断，若满足条件则说明存在negative edge</p>
@@ -247,16 +248,16 @@
     <div class="level post-navigation is-flex-wrap is-mobile">
         
         <div class="level-start">
-            <a class="level level-item has-link-grey  article-nav-prev" href="/2016/10/25/算法/2016-10-25-Dijkstra算法/">
+            <a class="level level-item has-link-grey  article-nav-prev" href="/2016/12/08/算法/2016-12-08-Bloom Filter/">
                 <i class="level-item fas fa-chevron-left"></i>
-                <span class="level-item">Dijkstra算法</span>
+                <span class="level-item">Bloom Filter</span>
             </a>
         </div>
         
         
         <div class="level-end">
-            <a class="level level-item has-link-grey  article-nav-next" href="/2016/09/01/Pi/2016-09-01-Raspberry Pi Input02/">
-                <span class="level-item">Raspberry Pi Input02</span>
+            <a class="level level-item has-link-grey  article-nav-next" href="/2016/10/25/算法/2016-10-25-Dijkstra算法/">
+                <span class="level-item">Dijkstra算法</span>
                 <i class="level-item fas fa-chevron-right"></i>
             </a>
         </div>
@@ -632,18 +633,18 @@
         
         <article class="media">
             
-            <a href="/2019/07/21/数据挖掘/2019-08-13-实时异常检测/" class="media-left">
+            <a href="/2019/07/21/安全/2019-07-22-xgboost/" class="media-left">
                 <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="实时异常检测（xStream，KDD&#39;18）">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="孤立森林（Isolation Forest）">
                 </p>
             </a>
             
             <div class="media-content">
                 <div class="content">
                     <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-07-20T16:00:00.000Z">2019-07-21</time></div>
-                    <a href="/2019/07/21/数据挖掘/2019-08-13-实时异常检测/" class="title has-link-black-ter is-size-6 has-text-weight-normal">实时异常检测（xStream，KDD&#39;18）</a>
+                    <a href="/2019/07/21/安全/2019-07-22-xgboost/" class="title has-link-black-ter is-size-6 has-text-weight-normal">孤立森林（Isolation Forest）</a>
                     <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/Anomaly-detection/">Anomaly detection</a>
+                        <a class="has-link-grey -link" href="/categories/Security/">Security</a>
                     </p>
                 </div>
             </div>
@@ -1132,18 +1133,18 @@
         
         <article class="media">
             
-            <a href="/2019/07/21/数据挖掘/2019-08-13-实时异常检测/" class="media-left">
+            <a href="/2019/07/21/安全/2019-07-22-xgboost/" class="media-left">
                 <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="实时异常检测（xStream，KDD&#39;18）">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="孤立森林（Isolation Forest）">
                 </p>
             </a>
             
             <div class="media-content">
                 <div class="content">
                     <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-07-20T16:00:00.000Z">2019-07-21</time></div>
-                    <a href="/2019/07/21/数据挖掘/2019-08-13-实时异常检测/" class="title has-link-black-ter is-size-6 has-text-weight-normal">实时异常检测（xStream，KDD&#39;18）</a>
+                    <a href="/2019/07/21/安全/2019-07-22-xgboost/" class="title has-link-black-ter is-size-6 has-text-weight-normal">孤立森林（Isolation Forest）</a>
                     <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/Anomaly-detection/">Anomaly detection</a>
+                        <a class="has-link-grey -link" href="/categories/Security/">Security</a>
                     </p>
                 </div>
             </div>

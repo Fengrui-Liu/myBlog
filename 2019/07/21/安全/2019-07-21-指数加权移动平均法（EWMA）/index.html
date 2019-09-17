@@ -11,7 +11,7 @@
 
 
     <meta name="description" content="主要思想Exponentially Weighted Moving Average (EWMA)，对观察值给予不同的权重求得平均值，并以平均值为基础确定预测值的方法，往往近期观察值的权重高是因为其更能反映近期变化的趋势。各个指数加权系数是随时间指数递减的，越靠近当前时刻，加权系数就越大。 可以视作一种理想的最大似然估计，当前估计值由前一次估计值和当前的抽样值共同决定；也可以视作一个低通滤波器，剔除">
-<meta name="keywords" content="Security,Anomaly detection">
+<meta name="keywords" content="Anomaly detection,Security">
 <meta property="og:type" content="article">
 <meta property="og:title" content="指数加权移动平均法（EWMA）">
 <meta property="og:url" content="http://www.liufr.com/2019/07/21/安全/2019-07-21-指数加权移动平均法（EWMA）/index.html">
@@ -178,9 +178,10 @@
 <li>不需要保存过去的所有数值</li>
 <li>计算量显著减小</li>
 </ol>
-<h2 id="计算"><a href="#计算" class="headerlink" title="计算"></a>计算</h2><script type="math/tex; mode=display">v_t = \beta v_{t-1}+(1-\beta)\theta_t</script><p>其中$\theta_t$为时刻$t$的实际温度；$\beta$表示加权下降的速率，其值越小下降越快；$v_t$为$t$时刻的EWMA值。</p>
-<h2 id="变差修正"><a href="#变差修正" class="headerlink" title="变差修正"></a>变差修正</h2><p>如果初始化$v_0=0$,那么初期值都会偏小，虽然最后会慢慢减小这部分影响但是还是对公式做出适当修正：</p>
-<script type="math/tex; mode=display">v_t = \frac{\beta v_{t-1}+(1-\beta)\theta_t}{1-\beta^t}</script><p>当t表较小（初期）分母可以很好放大当前数值，当t很大，分母趋为1，对数值机会没有影响。</p>
+<h2 id="计算"><a href="#计算" class="headerlink" title="计算"></a>计算</h2><p>$$ v_t = \beta v_{t-1}+(1-\beta)\theta_t$$</p>
+<p>其中$\theta_t$为时刻$t$的实际温度；$\beta$表示加权下降的速率，其值越小下降越快；$v_t$为$t$时刻的EWMA值。</p>
+<h2 id="变差修正"><a href="#变差修正" class="headerlink" title="变差修正"></a>变差修正</h2><p>如果初始化$v_0=0$,那么初期值都会偏小，虽然最后会慢慢减小这部分影响但是还是对公式做出适当修正：<br>$$v_t = \frac{\beta v_{t-1}+(1-\beta)\theta_t}{1-\beta^t}$$</p>
+<p>当t表较小（初期）分母可以很好放大当前数值，当t很大，分母趋为1，对数值机会没有影响。</p>
 <h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2><figure class="highlight python hljs"><table><tr><td class="code"><pre><span class="line"><span class="hljs-keyword">import</span> numpy <span class="hljs-keyword">as</span> np</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Ewma</span><span class="hljs-params">(object)</span>:</span></span><br><span class="line">    <span class="hljs-string">"""</span></span><br><span class="line"><span class="hljs-string">    In statistical quality control, the EWMA chart (or exponentially weighted moving average chart)</span></span><br><span class="line"><span class="hljs-string">    is a type of control chart used to monitor either variables or attributes-type data using the monitored business</span></span><br><span class="line"><span class="hljs-string">    or industrial process's entire history of output. While other control charts treat rational subgroups of samples</span></span><br><span class="line"><span class="hljs-string">    individually, the EWMA chart tracks the exponentially-weighted moving average of all prior sample means.</span></span><br><span class="line"><span class="hljs-string">    WIKIPEDIA: https://en.wikipedia.org/wiki/EWMA_chart</span></span><br><span class="line"><span class="hljs-string">    """</span></span><br><span class="line"></span><br><span class="line">    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">__init__</span><span class="hljs-params">(self, alpha=<span class="hljs-number">0.3</span>, coefficient=<span class="hljs-number">3</span>)</span>:</span></span><br><span class="line">        <span class="hljs-string">"""</span></span><br><span class="line"><span class="hljs-string">        :param alpha: Discount rate of ewma, usually in (0.2, 0.3).</span></span><br><span class="line"><span class="hljs-string">        :param coefficient: Coefficient is the width of the control limits, usually in (2.7, 3.0).</span></span><br><span class="line"><span class="hljs-string">        """</span></span><br><span class="line">        self.alpha = alpha</span><br><span class="line">        self.coefficient = coefficient</span><br><span class="line"></span><br><span class="line">    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">predict</span><span class="hljs-params">(self, X)</span>:</span></span><br><span class="line">        <span class="hljs-string">"""</span></span><br><span class="line"><span class="hljs-string">        Predict if a particular sample is an outlier or not.</span></span><br><span class="line"><span class="hljs-string">        :param X: the time series to detect of</span></span><br><span class="line"><span class="hljs-string">        :param type X: pandas.Series</span></span><br><span class="line"><span class="hljs-string">        :return: 1 denotes normal, 0 denotes abnormal</span></span><br><span class="line"><span class="hljs-string">        """</span></span><br><span class="line">        s = [X[<span class="hljs-number">0</span>]]</span><br><span class="line">        <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> range(<span class="hljs-number">1</span>, len(X)):</span><br><span class="line">            temp = self.alpha * X[i] + (<span class="hljs-number">1</span> - self.alpha) * s[<span class="hljs-number">-1</span>]</span><br><span class="line">            s.append(temp)</span><br><span class="line">        s_avg = np.mean(s)</span><br><span class="line">        sigma = np.sqrt(np.var(X))</span><br><span class="line">        ucl = s_avg + self.coefficient * sigma * np.sqrt(self.alpha / (<span class="hljs-number">2</span> - self.alpha))</span><br><span class="line">        lcl = s_avg - self.coefficient * sigma * np.sqrt(self.alpha / (<span class="hljs-number">2</span> - self.alpha))</span><br><span class="line">        <span class="hljs-keyword">if</span> s[<span class="hljs-number">-1</span>] &gt; ucl <span class="hljs-keyword">or</span> s[<span class="hljs-number">-1</span>] &lt; lcl:</span><br><span class="line">            <span class="hljs-keyword">return</span> <span class="hljs-number">0</span></span><br><span class="line">        <span class="hljs-keyword">return</span> <span class="hljs-number">1</span></span><br></pre></td></tr></table></figure>
         </div>
         
@@ -248,8 +249,8 @@
         
         
         <div class="level-end">
-            <a class="level level-item has-link-grey  article-nav-next" href="/2019/07/21/安全/2019-07-22-利用时序决策树进行DGA僵尸检测/">
-                <span class="level-item">利用时序决策树进行DGA僵尸检测</span>
+            <a class="level level-item has-link-grey  article-nav-next" href="/2019/07/21/安全/2019-07-22-孤立森林（Isolation Froest）/">
+                <span class="level-item">孤立森林（Isolation Forest）</span>
                 <i class="level-item fas fa-chevron-right"></i>
             </a>
         </div>
@@ -625,18 +626,18 @@
         
         <article class="media">
             
-            <a href="/2019/07/21/数据挖掘/2019-08-13-实时异常检测/" class="media-left">
+            <a href="/2019/07/21/安全/2019-07-22-xgboost/" class="media-left">
                 <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="实时异常检测（xStream，KDD&#39;18）">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="孤立森林（Isolation Forest）">
                 </p>
             </a>
             
             <div class="media-content">
                 <div class="content">
                     <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-07-20T16:00:00.000Z">2019-07-21</time></div>
-                    <a href="/2019/07/21/数据挖掘/2019-08-13-实时异常检测/" class="title has-link-black-ter is-size-6 has-text-weight-normal">实时异常检测（xStream，KDD&#39;18）</a>
+                    <a href="/2019/07/21/安全/2019-07-22-xgboost/" class="title has-link-black-ter is-size-6 has-text-weight-normal">孤立森林（Isolation Forest）</a>
                     <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/Anomaly-detection/">Anomaly detection</a>
+                        <a class="has-link-grey -link" href="/categories/Security/">Security</a>
                     </p>
                 </div>
             </div>
@@ -1125,18 +1126,18 @@
         
         <article class="media">
             
-            <a href="/2019/07/21/数据挖掘/2019-08-13-实时异常检测/" class="media-left">
+            <a href="/2019/07/21/安全/2019-07-22-xgboost/" class="media-left">
                 <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="实时异常检测（xStream，KDD&#39;18）">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="孤立森林（Isolation Forest）">
                 </p>
             </a>
             
             <div class="media-content">
                 <div class="content">
                     <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-07-20T16:00:00.000Z">2019-07-21</time></div>
-                    <a href="/2019/07/21/数据挖掘/2019-08-13-实时异常检测/" class="title has-link-black-ter is-size-6 has-text-weight-normal">实时异常检测（xStream，KDD&#39;18）</a>
+                    <a href="/2019/07/21/安全/2019-07-22-xgboost/" class="title has-link-black-ter is-size-6 has-text-weight-normal">孤立森林（Isolation Forest）</a>
                     <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/Anomaly-detection/">Anomaly detection</a>
+                        <a class="has-link-grey -link" href="/categories/Security/">Security</a>
                     </p>
                 </div>
             </div>

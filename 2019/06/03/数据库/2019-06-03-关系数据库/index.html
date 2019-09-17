@@ -212,6 +212,7 @@
 </ul>
 <hr>
 <h2 id="SQL"><a href="#SQL" class="headerlink" title="SQL"></a>SQL</h2><figure class="highlight sql hljs"><table><tr><td class="code"><pre><span class="line"><span class="hljs-keyword">create</span> <span class="hljs-keyword">table</span> 表名 (</span><br><span class="line">列名 类型,</span><br><span class="line">列名 类型,</span><br><span class="line">列名 类型,</span><br><span class="line">…… ,</span><br><span class="line">primary <span class="hljs-keyword">key</span>(<span class="hljs-keyword">ID</span>) -&gt; 声明主键，可以包含多个属性</span><br><span class="line">foreign <span class="hljs-keyword">key</span>(CourseId) <span class="hljs-keyword">references</span> Course(<span class="hljs-keyword">ID</span>),</span><br><span class="line">foreign <span class="hljs-keyword">key</span>(StudentId) <span class="hljs-keyword">references</span> Student(<span class="hljs-keyword">ID</span>) -&gt; 声明外键，可以有多个</span><br><span class="line">);</span><br><span class="line"></span><br><span class="line">插入完整记录：</span><br><span class="line"><span class="hljs-keyword">insert</span> <span class="hljs-keyword">into</span> Student</span><br><span class="line"><span class="hljs-keyword">values</span> (<span class="hljs-number">131234</span>, ‘张飞’, <span class="hljs-number">1995</span>/<span class="hljs-number">1</span>/<span class="hljs-number">1</span>, M, ‘计算机’, <span class="hljs-number">2013</span>, <span class="hljs-number">85</span>);</span><br><span class="line"></span><br><span class="line">插入记录特定的列，其它列为空：</span><br><span class="line"><span class="hljs-keyword">insert</span> <span class="hljs-keyword">into</span> Student(<span class="hljs-keyword">ID</span>, <span class="hljs-keyword">Name</span>)</span><br><span class="line"><span class="hljs-keyword">values</span> (<span class="hljs-number">131234</span>, ‘张飞’);</span><br><span class="line"></span><br><span class="line">删除记录</span><br><span class="line"><span class="hljs-keyword">delete</span> <span class="hljs-keyword">from</span> Student</span><br><span class="line"><span class="hljs-keyword">where</span> <span class="hljs-keyword">ID</span> = <span class="hljs-number">131234</span>;</span><br><span class="line"></span><br><span class="line">更新</span><br><span class="line"><span class="hljs-keyword">update</span> Student</span><br><span class="line"><span class="hljs-keyword">set</span> GPA = <span class="hljs-number">86</span></span><br><span class="line"><span class="hljs-keyword">where</span> <span class="hljs-keyword">ID</span> = <span class="hljs-number">131234</span></span><br><span class="line"></span><br><span class="line">选择（从一个表中提取一些行）</span><br><span class="line"><span class="hljs-keyword">select</span> *</span><br><span class="line"><span class="hljs-keyword">from</span> 表名</span><br><span class="line"><span class="hljs-keyword">where</span> 条件（多个条件可以用<span class="hljs-keyword">and</span>,<span class="hljs-keyword">or</span>,()进行组合）</span><br><span class="line"></span><br><span class="line">投影（从一个表中提取一些列）</span><br><span class="line"><span class="hljs-keyword">select</span> 列名，...列名</span><br><span class="line"><span class="hljs-keyword">from</span> 表名</span><br><span class="line"></span><br><span class="line">选择+投影</span><br><span class="line"><span class="hljs-keyword">select</span> <span class="hljs-keyword">Name</span>,GPA</span><br><span class="line"><span class="hljs-keyword">from</span> Student</span><br><span class="line"><span class="hljs-keyword">where</span> Major=<span class="hljs-string">"计算机"</span></span><br><span class="line"></span><br><span class="line">连接(<span class="hljs-keyword">Join</span>)</span><br><span class="line"><span class="hljs-keyword">select</span> Student.Name, Course.Name</span><br><span class="line"><span class="hljs-keyword">from</span> Student, Course, TakeCourse</span><br><span class="line"><span class="hljs-keyword">where</span> TakeCourse.CourseId = Course.ID <span class="hljs-keyword">and</span> TakeCourse.StudentID = Student.ID;</span><br><span class="line"></span><br><span class="line">分组统计(group by)</span><br><span class="line"><span class="hljs-keyword">select</span> Major, <span class="hljs-keyword">count</span>(*)</span><br><span class="line"><span class="hljs-keyword">from</span> Student</span><br><span class="line"><span class="hljs-keyword">where</span> <span class="hljs-keyword">Year</span> &gt;= <span class="hljs-number">2013</span> <span class="hljs-keyword">and</span> <span class="hljs-keyword">Year</span> &lt;= <span class="hljs-number">2014</span></span><br><span class="line"><span class="hljs-keyword">group</span> <span class="hljs-keyword">by</span> Major;</span><br><span class="line"></span><br><span class="line">过滤(Having,在group by基础上选择)</span><br><span class="line"><span class="hljs-keyword">select</span> Major, <span class="hljs-keyword">count</span>(*) <span class="hljs-keyword">as</span> Cnt</span><br><span class="line"><span class="hljs-keyword">from</span> Student</span><br><span class="line"><span class="hljs-keyword">where</span> <span class="hljs-keyword">Year</span> &gt;= <span class="hljs-number">2013</span> <span class="hljs-keyword">and</span> <span class="hljs-keyword">Year</span> &lt;= <span class="hljs-number">2014</span></span><br><span class="line"><span class="hljs-keyword">group</span> <span class="hljs-keyword">by</span> Major</span><br><span class="line"><span class="hljs-keyword">having</span> Cnt &gt;= <span class="hljs-number">2</span>;</span><br><span class="line"></span><br><span class="line">排序(Order by,desc减少，asc增加)</span><br><span class="line"><span class="hljs-keyword">select</span> Major, <span class="hljs-keyword">count</span>(*) <span class="hljs-keyword">as</span> Cnt</span><br><span class="line"><span class="hljs-keyword">from</span> Student</span><br><span class="line"><span class="hljs-keyword">where</span> <span class="hljs-keyword">Year</span> &gt;= <span class="hljs-number">2013</span> <span class="hljs-keyword">and</span> <span class="hljs-keyword">Year</span> &lt;= <span class="hljs-number">2014</span></span><br><span class="line"><span class="hljs-keyword">group</span> <span class="hljs-keyword">by</span> Major</span><br><span class="line"><span class="hljs-keyword">order</span> <span class="hljs-keyword">by</span> Cnt <span class="hljs-keyword">desc</span>;</span><br></pre></td></tr></table></figure>
+
 <hr>
 <h3 id="RDBMS-关系型数据库系统"><a href="#RDBMS-关系型数据库系统" class="headerlink" title="RDBMS(关系型数据库系统)"></a>RDBMS(关系型数据库系统)</h3><p>系统架构</p>
 <ul>
@@ -223,38 +224,34 @@
 <li>Transaction management：事务管理（ACID，logging日志加锁，保证并行事务正确性）</li>
 </ul>
 <hr>
-<h3 id="数据库-vs-文件系统"><a href="#数据库-vs-文件系统" class="headerlink" title="数据库 vs 文件系统"></a>数据库 vs 文件系统</h3><div class="table-container">
-<table>
+<h3 id="数据库-vs-文件系统"><a href="#数据库-vs-文件系统" class="headerlink" title="数据库 vs 文件系统"></a>数据库 vs 文件系统</h3><table>
 <thead>
 <tr>
-<th style="text-align:right">文件系统</th>
-<th style="text-align:right">数据库</th>
+<th align="right">文件系统</th>
+<th align="right">数据库</th>
 </tr>
 </thead>
-<tbody>
-<tr>
-<td style="text-align:right">存储文件</td>
-<td style="text-align:right">存储数据表</td>
+<tbody><tr>
+<td align="right">存储文件</td>
+<td align="right">存储数据表</td>
 </tr>
 <tr>
-<td style="text-align:right">通用的</td>
-<td style="text-align:right">专用的</td>
+<td align="right">通用的</td>
+<td align="right">专用的</td>
 </tr>
 <tr>
-<td style="text-align:right">文件无结构，由一串字节组成</td>
-<td style="text-align:right">由记录组成，每个记录有多个属性</td>
+<td align="right">文件无结构，由一串字节组成</td>
+<td align="right">由记录组成，每个记录有多个属性</td>
 </tr>
 <tr>
-<td style="text-align:right">操作系统实现</td>
-<td style="text-align:right">用户态程序实现</td>
+<td align="right">操作系统实现</td>
+<td align="right">用户态程序实现</td>
 </tr>
 <tr>
-<td style="text-align:right">提供编程接口</td>
-<td style="text-align:right">提供SQL接口</td>
+<td align="right">提供编程接口</td>
+<td align="right">提供SQL接口</td>
 </tr>
-</tbody>
-</table>
-</div>
+</tbody></table>
 <p>相同点：数据存储在外存；数据分成定长数据块</p>
 <p>RDBMS最小存储单位database page size</p>
 <p>Tuple可以存储变长的列,主要就是利用指针把边长空间放到后面</p>
@@ -341,30 +338,26 @@
 <li>如果数据页LSN&gt;=日志LSN，才进行undo</li>
 </ol>
 <hr>
-<div class="table-container">
 <table>
 <thead>
 <tr>
-<th style="text-align:right">数据仓库</th>
-<th style="text-align:right">事务处理</th>
+<th align="right">数据仓库</th>
+<th align="right">事务处理</th>
 </tr>
 </thead>
-<tbody>
-<tr>
-<td style="text-align:right">少数数据分析操作</td>
-<td style="text-align:right">大量并发transactions</td>
+<tbody><tr>
+<td align="right">少数数据分析操作</td>
+<td align="right">大量并发transactions</td>
 </tr>
 <tr>
-<td style="text-align:right">每个操作访问大量数据</td>
-<td style="text-align:right">访问很少数据</td>
+<td align="right">每个操作访问大量数据</td>
+<td align="right">访问很少数据</td>
 </tr>
 <tr>
-<td style="text-align:right">读</td>
-<td style="text-align:right">读写</td>
+<td align="right">读</td>
+<td align="right">读写</td>
 </tr>
-</tbody>
-</table>
-</div>
+</tbody></table>
 <hr>
 <h3 id="OLAP-联机分析处理"><a href="#OLAP-联机分析处理" class="headerlink" title="OLAP(联机分析处理)"></a>OLAP(联机分析处理)</h3><p>数据仓库的基础。基本数据模型：多维矩阵。称为数据立方。</p>
 <p>常用操作：</p>
@@ -442,7 +435,7 @@
     <div class="level post-navigation is-flex-wrap is-mobile">
         
         <div class="level-start">
-            <a class="level level-item has-link-grey  article-nav-prev" href="/2019/06/04/数据库/2019-06-04-大数据运算/">
+            <a class="level level-item has-link-grey  article-nav-prev" href="/2019/06/04/数据库/2019-06-04-大数据存储系统/">
                 <i class="level-item fas fa-chevron-left"></i>
                 <span class="level-item">大数据存储系统</span>
             </a>
@@ -827,18 +820,18 @@
         
         <article class="media">
             
-            <a href="/2019/07/21/数据挖掘/2019-08-13-实时异常检测/" class="media-left">
+            <a href="/2019/07/21/安全/2019-07-22-xgboost/" class="media-left">
                 <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="实时异常检测（xStream，KDD&#39;18）">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="孤立森林（Isolation Forest）">
                 </p>
             </a>
             
             <div class="media-content">
                 <div class="content">
                     <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-07-20T16:00:00.000Z">2019-07-21</time></div>
-                    <a href="/2019/07/21/数据挖掘/2019-08-13-实时异常检测/" class="title has-link-black-ter is-size-6 has-text-weight-normal">实时异常检测（xStream，KDD&#39;18）</a>
+                    <a href="/2019/07/21/安全/2019-07-22-xgboost/" class="title has-link-black-ter is-size-6 has-text-weight-normal">孤立森林（Isolation Forest）</a>
                     <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/Anomaly-detection/">Anomaly detection</a>
+                        <a class="has-link-grey -link" href="/categories/Security/">Security</a>
                     </p>
                 </div>
             </div>
@@ -1327,18 +1320,18 @@
         
         <article class="media">
             
-            <a href="/2019/07/21/数据挖掘/2019-08-13-实时异常检测/" class="media-left">
+            <a href="/2019/07/21/安全/2019-07-22-xgboost/" class="media-left">
                 <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="实时异常检测（xStream，KDD&#39;18）">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="孤立森林（Isolation Forest）">
                 </p>
             </a>
             
             <div class="media-content">
                 <div class="content">
                     <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-07-20T16:00:00.000Z">2019-07-21</time></div>
-                    <a href="/2019/07/21/数据挖掘/2019-08-13-实时异常检测/" class="title has-link-black-ter is-size-6 has-text-weight-normal">实时异常检测（xStream，KDD&#39;18）</a>
+                    <a href="/2019/07/21/安全/2019-07-22-xgboost/" class="title has-link-black-ter is-size-6 has-text-weight-normal">孤立森林（Isolation Forest）</a>
                     <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/Anomaly-detection/">Anomaly detection</a>
+                        <a class="has-link-grey -link" href="/categories/Security/">Security</a>
                     </p>
                 </div>
             </div>

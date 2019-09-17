@@ -165,7 +165,7 @@
                 <span class="level-item has-text-grey">
                     
                     
-                    7 分钟 读完 (大约 983 个字)
+                    2 分钟 读完 (大约 343 个字)
                 </span>
                 
                 
@@ -174,51 +174,32 @@
         
         <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
             
-                <a class="has-link-black-ter" href="/2016/08/06/Pi/2016-08-06-Raspberry Pi OK03/">Raspberry Pi OK03</a>
+                <a class="has-link-black-ter" href="/2016/08/06/Pi/2016-08-06-Raspberry Pi OK01/">Raspberry Pi OK01</a>
             
         </h1>
         <div class="content">
-            <h3 id="实验目标"><a href="#实验目标" class="headerlink" title="实验目标"></a>实验目标</h3><p>学会使用汇编语言写函数</p>
-<h3 id="背景补充"><a href="#背景补充" class="headerlink" title="背景补充"></a>背景补充</h3><p><strong>ABI</strong> 应用程序二进制接口</p>
-<ol>
-<li>标准规定寄存器r0，r1，r2和r3应该按顺序使用，如果函数中没有输入，那么就不必使用任何寄存器；如果只需要1个输入，那么就使用r0，需要2个输入，就使用r0和r1，以此类推；函数的输出总使用r0，同理如果没有输出就不需要使用r0输出。</li>
-<li>对于r4~r12寄存器，在每次调用函数之后都需要还原现场，保证使用前后寄存器的值不变。</li>
-<li>函数运行结束之后需要返回，那么此时我们必须知道返回的地址，该地址用lr寄存器保存。</li>
-<li>sp寄存器保存的是堆栈中第一个参数的地址，并且配合push{r4，r5}，pop{r4，r5}这样的指令进行使用。</li>
-</ol>
-<p>各个寄存器的使用功能如下表所示，可供查阅</p>
-<p><img src="http://ww3.sinaimg.cn/large/006tKfTcgw1f6k2zj1nmyj30lc0l3n28.jpg" alt></p>
+            <h3 id="实验目标"><a href="#实验目标" class="headerlink" title="实验目标"></a>实验目标</h3><p>通过GPIO使能Pi上ACT/OK灯，从而了解GPIO口。</p>
+<h3 id="代码分析"><a href="#代码分析" class="headerlink" title="代码分析"></a>代码分析</h3><figure class="highlight arm hljs"><table><tr><td class="code"><pre><span class="line"><span class="hljs-keyword">ldr </span><span class="hljs-built_in">r0</span>,<span class="hljs-number">=0x20200000</span></span><br></pre></td></tr></table></figure>
+
+<p><img src="http://www.z4a.net/images/2016/08/06/GPIO-Register-Bytes.png" alt="GPIO-Register-Bytes.png"></p>
+<p>通过上表我们可以知道GPIO口是以0x20200000作为开始的，那么此时r0寄存器中保存的就是基址。</p>
+<figure class="highlight arm hljs"><table><tr><td class="code"><pre><span class="line"><span class="hljs-keyword">mov </span><span class="hljs-built_in">r1</span>,<span class="hljs-number">#1</span></span><br><span class="line"><span class="hljs-keyword">lsl </span><span class="hljs-built_in">r1</span>,<span class="hljs-number">#18</span></span><br><span class="line"><span class="hljs-keyword">str </span><span class="hljs-built_in">r1</span>,[<span class="hljs-built_in">r0</span>,<span class="hljs-number">#4</span>]</span><br></pre></td></tr></table></figure>
+
+<p><img src="http://www.z4a.net/images/2016/08/06/Bits-Pin-Map.png" alt="Bits-Pin-Map.png"></p>
+<p><img src="http://ww3.sinaimg.cn/large/006tKfTcgw1f6k1384mpjj308e05bjs2.jpg" alt></p>
+<p>根据以上两张图我们可以知道将地址0x20200000的第18位置1，相当于将GPIO16设置为output，此处GPIO16就是我们要点亮的ACT灯的输出位置。</p>
 <hr>
-<h3 id="代码分析"><a href="#代码分析" class="headerlink" title="代码分析"></a>代码分析</h3><p><strong>GetGpioAddress</strong></p>
-<figure class="highlight arm hljs"><table><tr><td class="code"><pre><span class="line"><span class="hljs-symbol">.globl</span> GetGpioAddress</span><br><span class="line"><span class="hljs-symbol">GetGpioAddress</span>:</span><br><span class="line"><span class="hljs-keyword">ldr </span><span class="hljs-built_in">r0</span>,<span class="hljs-number">=0x20200000</span></span><br><span class="line"><span class="hljs-keyword">mov </span><span class="hljs-built_in">pc</span>,<span class="hljs-built_in">lr</span></span><br></pre></td></tr></table></figure>
-<p>我们可以通过这种方式定义在文件外部的函数代码，既可以本文件调用也可以让其他文件的函数引用。然后设置GPIO的基地址，并把lr寄存器的值保存到pc寄存器中，实现功能与之前实验基本相同。</p>
-<p><strong>SetGpioFunction</strong></p>
-<figure class="highlight arm hljs"><table><tr><td class="code"><pre><span class="line"><span class="hljs-symbol">.globl</span> SetGpioFunction</span><br><span class="line"><span class="hljs-symbol">SetGpioFunction</span>:</span><br><span class="line"><span class="hljs-keyword">cmp </span><span class="hljs-built_in">r0</span>,<span class="hljs-number">#53</span></span><br><span class="line"><span class="hljs-keyword">cmpls </span><span class="hljs-built_in">r1</span>,<span class="hljs-number">#7</span></span><br><span class="line"><span class="hljs-keyword">movhi </span><span class="hljs-built_in">pc</span>,<span class="hljs-built_in">lr</span></span><br></pre></td></tr></table></figure>
-<p>cmp指令中，如果r0&gt;53则跳过cmpls指令运行movhi，函数结束；cmpls指令中，如果r1&gt;7则运行movhi，函数结束。正确情况下是r0&lt;=53,r1&lt;=7,指令继续执行。</p>
-<figure class="highlight arm hljs"><table><tr><td class="code"><pre><span class="line"><span class="hljs-keyword">push </span>&#123;<span class="hljs-built_in">lr</span>&#125;</span><br><span class="line"><span class="hljs-keyword">mov </span><span class="hljs-built_in">r2</span>,<span class="hljs-built_in">r0</span></span><br><span class="line"><span class="hljs-keyword">bl </span>GetGpioAddress</span><br></pre></td></tr></table></figure>
-<p>调用GetGpioAddress函数，首先将返回地址压栈，然后保存现场避免丢失寄存器的值（假如我们不知道调用的函数是如何工作的，那么就需要保存所有的寄存器，此处我们只保存r0）。</p>
-<p>调用结束之后我们可以知道r0中的值就是GPIO的地址，r1保存function code，r2保存GPIO端口（r1和r2在main函数中定义）</p>
-<figure class="highlight arm hljs"><table><tr><td class="code"><pre><span class="line"><span class="hljs-symbol">functionLoop$</span>:</span><br><span class="line"><span class="hljs-keyword">cmp </span><span class="hljs-built_in">r2</span>,<span class="hljs-number">#9</span></span><br><span class="line"><span class="hljs-keyword">subhi </span><span class="hljs-built_in">r2</span>,<span class="hljs-number">#10</span></span><br><span class="line"><span class="hljs-keyword">addhi </span><span class="hljs-built_in">r0</span>,<span class="hljs-number">#4</span></span><br><span class="line"><span class="hljs-keyword">bhi </span>functionLoop$</span><br></pre></td></tr></table></figure>
-<p>循环以保证r2&lt;9,地址r0 = r0+（GPIO%10）* 4</p>
-<figure class="highlight arm hljs"><table><tr><td class="code"><pre><span class="line"><span class="hljs-keyword">add </span><span class="hljs-built_in">r2</span>, <span class="hljs-built_in">r2</span>,<span class="hljs-keyword">lsl </span><span class="hljs-number">#1</span></span><br><span class="line"><span class="hljs-keyword">lsl </span><span class="hljs-built_in">r1</span>,<span class="hljs-built_in">r2</span></span><br><span class="line"><span class="hljs-keyword">str </span><span class="hljs-built_in">r1</span>,[<span class="hljs-built_in">r0</span>]</span><br><span class="line"><span class="hljs-keyword">pop </span>&#123;<span class="hljs-built_in">pc</span>&#125;</span><br></pre></td></tr></table></figure>
-<p>为了加快运行速度，(r2 * 3) 变换成 (r2 左移1位 + r2)，然后剩余代码与之前实验功能一致，将对应位置1，同时使用pop指令出栈lr寄存器的值送到pc中。</p>
-<p><strong>SetGpio</strong></p>
-<figure class="highlight arm hljs"><table><tr><td class="code"><pre><span class="line"><span class="hljs-symbol">.globl</span> SetGpio</span><br><span class="line"><span class="hljs-symbol">SetGpio</span>:</span><br><span class="line"><span class="hljs-symbol">pinNum</span> <span class="hljs-meta">.req</span> <span class="hljs-built_in">r0</span></span><br><span class="line"><span class="hljs-symbol">pinVal</span> <span class="hljs-meta">.req</span> <span class="hljs-built_in">r1</span></span><br></pre></td></tr></table></figure>
-<p>这里使用到了register aliases，类似于c语言中的宏，优点就是避免只用符号代替的寄存器混淆掉。</p>
-<figure class="highlight arm hljs"><table><tr><td class="code"><pre><span class="line"><span class="hljs-keyword">cmp </span>pinNum,<span class="hljs-number">#53</span></span><br><span class="line"><span class="hljs-keyword">movhi </span><span class="hljs-built_in">pc</span>,<span class="hljs-built_in">lr</span></span><br><span class="line"><span class="hljs-keyword">push </span>&#123;<span class="hljs-built_in">lr</span>&#125;</span><br><span class="line"><span class="hljs-keyword">mov </span><span class="hljs-built_in">r2</span>,pinNum</span><br><span class="line"><span class="hljs-symbol">.unreq</span> pinNum</span><br><span class="line"><span class="hljs-symbol">pinNum</span> <span class="hljs-meta">.req</span> <span class="hljs-built_in">r2</span></span><br><span class="line"><span class="hljs-keyword">bl </span>GetGpioAddress</span><br><span class="line"><span class="hljs-symbol">gpioAddr</span> <span class="hljs-meta">.req</span> <span class="hljs-built_in">r0</span></span><br></pre></td></tr></table></figure>
-<p>首先检测给出的pinNum是否在允许范围，更改aliases所用的寄存器并调用函数，最后r2保存pinNum，r0保存的是gpioAddr。</p>
-<figure class="highlight arm hljs"><table><tr><td class="code"><pre><span class="line"><span class="hljs-symbol">pinBank</span> <span class="hljs-meta">.req</span> <span class="hljs-built_in">r3</span></span><br><span class="line"><span class="hljs-keyword">lsr </span>pinBank,pinNum,<span class="hljs-number">#5</span></span><br><span class="line"><span class="hljs-keyword">lsl </span>pinBank,<span class="hljs-number">#2</span></span><br><span class="line"><span class="hljs-keyword">add </span>gpioAddr,pinBank</span><br><span class="line"><span class="hljs-symbol">.unreq</span> pinBank</span><br></pre></td></tr></table></figure>
-<p>利用r3把54个GPIO划分成32和22两组，分别对应GPIO 0~31的地址0x20200000和GPIO 32~53的地址0x20200004</p>
-<figure class="highlight arm hljs"><table><tr><td class="code"><pre><span class="line"><span class="hljs-keyword">and </span>pinNum,<span class="hljs-number">#31</span></span><br><span class="line"><span class="hljs-symbol">setBit</span> <span class="hljs-meta">.req</span> <span class="hljs-built_in">r3</span></span><br><span class="line"><span class="hljs-keyword">mov </span>setBit,<span class="hljs-number">#1</span></span><br><span class="line"><span class="hljs-keyword">lsl </span>setBit,pinNum</span><br><span class="line"><span class="hljs-symbol">.unreq</span> pinNum</span><br></pre></td></tr></table></figure>
-<p>生成对应GPIO口的置位数值，注意其中31在二进制中表示5个1，</p>
-<figure class="highlight arm hljs"><table><tr><td class="code"><pre><span class="line"><span class="hljs-keyword">teq </span>pinVal,<span class="hljs-number">#0</span></span><br><span class="line"><span class="hljs-symbol">.unreq</span> pinVal</span><br><span class="line"><span class="hljs-keyword">streq </span>setBit,[gpioAddr,<span class="hljs-number">#40</span>]</span><br><span class="line"><span class="hljs-keyword">strne </span>setBit,[gpioAddr,<span class="hljs-number">#28</span>]</span><br><span class="line"><span class="hljs-symbol">.unreq</span> setBit</span><br><span class="line"><span class="hljs-symbol">.unreq</span> gpioAddr</span><br><span class="line"><span class="hljs-keyword">pop </span>&#123;<span class="hljs-built_in">pc</span>&#125;</span><br></pre></td></tr></table></figure>
-<p>注意teq(test equal),并保存在相应地址处，pop出栈结束函数。</p>
+<p>在正式点亮ACT灯之前，树莓派还要求将GPIO16口进行清除操作</p>
+<p><img src="http://ww2.sinaimg.cn/large/006tKfTcgw1f6k17n3iz3j30h9084wge.jpg" alt></p>
+<figure class="highlight arm hljs"><table><tr><td class="code"><pre><span class="line"><span class="hljs-keyword">mov </span><span class="hljs-built_in">r1</span>,<span class="hljs-number">#1</span></span><br><span class="line"><span class="hljs-keyword">lsl </span><span class="hljs-built_in">r1</span>,<span class="hljs-number">#16</span></span><br><span class="line"><span class="hljs-keyword">str </span><span class="hljs-built_in">r1</span>,[<span class="hljs-built_in">r0</span>,<span class="hljs-number">#40</span>]</span><br></pre></td></tr></table></figure>
+
+<p>根据图标显示我们有了以上代码，将物理地址0x20200028里的第16位设置成1，代表着清除GPIO16。</p>
 <hr>
-<p>最后注意堆栈结构，并写入main函数中</p>
-<p><img src="http://ww4.sinaimg.cn/large/006tKfTcgw1f6k5lyvd5hj305k05kglq.jpg" alt></p>
-<hr>
-<h3 id="结果展示"><a href="#结果展示" class="headerlink" title="结果展示"></a>结果展示</h3><p>本实验结果与ok02结果相同</p>
-<p><img src="http://ww1.sinaimg.cn/large/006tKfTcgw1f6k2d4nld4g308w0ciu0z.gif" alt></p>
+<p>可以将以上代码理解成初始化步骤，接下里就让Pi在一个无限循环的loop里工作。</p>
+<figure class="highlight arm hljs"><table><tr><td class="code"><pre><span class="line"><span class="hljs-symbol">loop$</span>:</span><br><span class="line"><span class="hljs-keyword">b </span>loop$</span><br></pre></td></tr></table></figure>
+
+<p>此时使用<strong>make</strong>指令，将生成的kernel.img文件进行更换,可以观察到Pi的ACT灯亮起，实验结束。</p>
+<h3 id="结果展示"><a href="#结果展示" class="headerlink" title="结果展示"></a>结果展示</h3><p><img src="http://ww4.sinaimg.cn/large/006tKfTcgw1f6k1fmvgqxj31kw23u7wh.jpg" alt></p>
 
         </div>
         
@@ -250,7 +231,7 @@
                 <span class="level-item has-text-grey">
                     
                     
-                    2 分钟 读完 (大约 353 个字)
+                    1 分钟 读完 (大约 145 个字)
                 </span>
                 
                 
@@ -259,31 +240,22 @@
         
         <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
             
-                <a class="has-link-black-ter" href="/2016/08/06/Pi/2016-08-06-Baking Pi – Operating Systems Development前言/">Raspberry Pi OS Development 前言</a>
+                <a class="has-link-black-ter" href="/2016/08/06/Pi/2016-08-06-Raspberry Pi OK02/">Raspberry Pi OK02</a>
             
         </h1>
         <div class="content">
-            <h3 id="树莓派操作系统"><a href="#树莓派操作系统" class="headerlink" title="树莓派操作系统"></a><a href="http://www.cl.cam.ac.uk/projects/raspberrypi/tutorials/os/index.html" target="_blank" rel="noopener">树莓派操作系统</a></h3><p>这一系列的实验教程是英国剑桥大学针对计算机专业学生开设的，可以帮助学生了解基础的树莓派操作系统，官网教程已经十分详尽，我记录一些实验过程中的问题以及详细实现，避免与教程重复。</p>
+            <h3 id="实验目标"><a href="#实验目标" class="headerlink" title="实验目标"></a>实验目标</h3><p>在OK01的实验基础上，通过GPIO口重复控制ACT/OK灯的亮灭。掌握OS的等待/延迟实现。</p>
+<h3 id="代码分析"><a href="#代码分析" class="headerlink" title="代码分析"></a>代码分析</h3><figure class="highlight arm hljs"><table><tr><td class="code"><pre><span class="line"><span class="hljs-keyword">mov </span><span class="hljs-built_in">r2</span>,<span class="hljs-number">#0x3F0000</span></span><br><span class="line"><span class="hljs-symbol">wait1$</span>:</span><br><span class="line"><span class="hljs-keyword">sub </span><span class="hljs-built_in">r2</span>,<span class="hljs-number">#1</span></span><br><span class="line"><span class="hljs-keyword">cmp </span><span class="hljs-built_in">r2</span>,<span class="hljs-number">#0</span></span><br><span class="line"><span class="hljs-keyword">bne </span>wait1$</span><br></pre></td></tr></table></figure>
+
+<p>通过减法实现可控的循环延迟。</p>
 <hr>
-<h3 id="要求"><a href="#要求" class="headerlink" title="要求"></a>要求</h3><p>基本知识：</p>
-<ol>
-<li>基础编程</li>
-<li>汇编</li>
-</ol>
-<p>硬件：</p>
-<ol>
-<li>树莓派1代B型</li>
-<li>SD卡</li>
-</ol>
-<p>软件：</p>
-<p>1.GNU<br>2.交叉编译器</p>
+<p><img src="http://ww3.sinaimg.cn/large/006tKfTcgw1f6k1ylrxyzj30h9084jtg.jpg" alt></p>
+<p>在这幅图中又可以看出想要将GPIO16置0只需要设置0x2020001c就可以了，所以代码逻辑就是</p>
+<blockquote>
+<p>开灯 延迟 关灯 延迟 开灯 …</p>
+</blockquote>
 <hr>
-<h3 id="其它说明"><a href="#其它说明" class="headerlink" title="其它说明"></a>其它说明</h3><ol>
-<li>树莓派1代是2011年的产品，可以在二手市场找到。我本来想尝试使用树莓派3代完成实验，但是在进行实验过程中，发现layout布局已经相比1代有明显改动，实验中要求进行写入的地址发生了变化，在Github开源项目中issue提交可以查到相关问题描述，但是开发者还未正式公布layout的接口布局，故只能作罢，后续如果开发者有更新可以继续尝试。</li>
-<li><a href="https://www.raspberrypi.org" target="_blank" rel="noopener">树莓派官网以及操作系统安装教程。</a></li>
-<li>根据实际使用操作系统下载相关软件，详情见<a href="http://www.cl.cam.ac.uk/projects/raspberrypi/tutorials/os/downloads.html" target="_blank" rel="noopener">Download</a></li>
-<li>推荐使用一台hdmi接口的显示器</li>
-</ol>
+<h3 id="结果展示"><a href="#结果展示" class="headerlink" title="结果展示"></a>结果展示</h3><p><img src="http://ww1.sinaimg.cn/large/006tKfTcgw1f6k2d4nld4g308w0ciu0z.gif" alt></p>
 
         </div>
         
@@ -685,18 +657,18 @@
         
         <article class="media">
             
-            <a href="/2019/07/21/数据挖掘/2019-08-13-实时异常检测/" class="media-left">
+            <a href="/2019/07/21/安全/2019-07-22-xgboost/" class="media-left">
                 <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="实时异常检测（xStream，KDD&#39;18）">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="孤立森林（Isolation Forest）">
                 </p>
             </a>
             
             <div class="media-content">
                 <div class="content">
                     <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-07-20T16:00:00.000Z">2019-07-21</time></div>
-                    <a href="/2019/07/21/数据挖掘/2019-08-13-实时异常检测/" class="title has-link-black-ter is-size-6 has-text-weight-normal">实时异常检测（xStream，KDD&#39;18）</a>
+                    <a href="/2019/07/21/安全/2019-07-22-xgboost/" class="title has-link-black-ter is-size-6 has-text-weight-normal">孤立森林（Isolation Forest）</a>
                     <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/Anomaly-detection/">Anomaly detection</a>
+                        <a class="has-link-grey -link" href="/categories/Security/">Security</a>
                     </p>
                 </div>
             </div>
@@ -1185,18 +1157,18 @@
         
         <article class="media">
             
-            <a href="/2019/07/21/数据挖掘/2019-08-13-实时异常检测/" class="media-left">
+            <a href="/2019/07/21/安全/2019-07-22-xgboost/" class="media-left">
                 <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="实时异常检测（xStream，KDD&#39;18）">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="孤立森林（Isolation Forest）">
                 </p>
             </a>
             
             <div class="media-content">
                 <div class="content">
                     <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-07-20T16:00:00.000Z">2019-07-21</time></div>
-                    <a href="/2019/07/21/数据挖掘/2019-08-13-实时异常检测/" class="title has-link-black-ter is-size-6 has-text-weight-normal">实时异常检测（xStream，KDD&#39;18）</a>
+                    <a href="/2019/07/21/安全/2019-07-22-xgboost/" class="title has-link-black-ter is-size-6 has-text-weight-normal">孤立森林（Isolation Forest）</a>
                     <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/Anomaly-detection/">Anomaly detection</a>
+                        <a class="has-link-grey -link" href="/categories/Security/">Security</a>
                     </p>
                 </div>
             </div>

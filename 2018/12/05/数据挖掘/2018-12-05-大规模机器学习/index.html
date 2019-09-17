@@ -10,19 +10,19 @@
 <title>大规模机器学习 - Fengrui Liu&#39;s Blog</title>
 
 
-    <meta name="description" content="百万级别的数据样本：指数级别的算法基本告别了十亿级别的数据样本：开始考虑分布式存储万亿级别的数据样本：无法得知数据全貌，采用Peer-to-peer（机器处理本地的数据无总控） 理解机器学习从优化的角度看机器学习 \arg max_{\vec{\theta}} \equiv \mathcal{L}(\{x_i,y_i\}_{i=1}^N;\vec{\theta})+ \Omega(\vec{\t">
+    <meta name="description" content="百万级别的数据样本：指数级别的算法基本告别了十亿级别的数据样本：开始考虑分布式存储万亿级别的数据样本：无法得知数据全貌，采用Peer-to-peer（机器处理本地的数据无总控） 理解机器学习从优化的角度看机器学习$$\arg max_{\vec{\theta}} \equiv \mathcal{L}({x_i,y_i}_{i=1}^N;\vec{\theta})+ \Omega(\vec{\th">
 <meta name="keywords" content="Data mining">
 <meta property="og:type" content="article">
 <meta property="og:title" content="大规模机器学习">
 <meta property="og:url" content="http://www.liufr.com/2018/12/05/数据挖掘/2018-12-05-大规模机器学习/index.html">
 <meta property="og:site_name" content="Fengrui Liu&#39;s Blog">
-<meta property="og:description" content="百万级别的数据样本：指数级别的算法基本告别了十亿级别的数据样本：开始考虑分布式存储万亿级别的数据样本：无法得知数据全貌，采用Peer-to-peer（机器处理本地的数据无总控） 理解机器学习从优化的角度看机器学习 \arg max_{\vec{\theta}} \equiv \mathcal{L}(\{x_i,y_i\}_{i=1}^N;\vec{\theta})+ \Omega(\vec{\t">
+<meta property="og:description" content="百万级别的数据样本：指数级别的算法基本告别了十亿级别的数据样本：开始考虑分布式存储万亿级别的数据样本：无法得知数据全貌，采用Peer-to-peer（机器处理本地的数据无总控） 理解机器学习从优化的角度看机器学习$$\arg max_{\vec{\theta}} \equiv \mathcal{L}({x_i,y_i}_{i=1}^N;\vec{\theta})+ \Omega(\vec{\th">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http://www.liufr.com/images/og_image.png">
 <meta property="og:updated_time" content="2018-12-05T06:43:36.680Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="大规模机器学习">
-<meta name="twitter:description" content="百万级别的数据样本：指数级别的算法基本告别了十亿级别的数据样本：开始考虑分布式存储万亿级别的数据样本：无法得知数据全貌，采用Peer-to-peer（机器处理本地的数据无总控） 理解机器学习从优化的角度看机器学习 \arg max_{\vec{\theta}} \equiv \mathcal{L}(\{x_i,y_i\}_{i=1}^N;\vec{\theta})+ \Omega(\vec{\t">
+<meta name="twitter:description" content="百万级别的数据样本：指数级别的算法基本告别了十亿级别的数据样本：开始考虑分布式存储万亿级别的数据样本：无法得知数据全貌，采用Peer-to-peer（机器处理本地的数据无总控） 理解机器学习从优化的角度看机器学习$$\arg max_{\vec{\theta}} \equiv \mathcal{L}({x_i,y_i}_{i=1}^N;\vec{\theta})+ \Omega(\vec{\th">
 <meta name="twitter:image" content="http://www.liufr.com/images/og_image.png">
 
 
@@ -173,10 +173,8 @@
         </h1>
         <div class="content">
             <p>百万级别的数据样本：<strong>指数级别的算法基本告别了</strong><br>十亿级别的数据样本：<strong>开始考虑分布式存储</strong><br>万亿级别的数据样本：<strong>无法得知数据全貌，采用Peer-to-peer（机器处理本地的数据无总控）</strong></p>
-<h2 id="理解机器学习"><a href="#理解机器学习" class="headerlink" title="理解机器学习"></a>理解机器学习</h2><h3 id="从优化的角度看机器学习"><a href="#从优化的角度看机器学习" class="headerlink" title="从优化的角度看机器学习"></a>从优化的角度看机器学习</h3><script type="math/tex; mode=display">
-\arg max_{\vec{\theta}} \equiv \mathcal{L}(\{x_i,y_i\}_{i=1}^N;\vec{\theta})+ \Omega(\vec{\theta})</script><p>其中$\mathcal{L}$是一个模型（经验风险），$x_i,y_i$代表的是数据，$N$是数据规模，$\vec{\theta}$代表参数（结构风险），有参数就是有偏估计，方差小，有更好的泛化能力。然后通过迭代求解：</p>
-<script type="math/tex; mode=display">
-\vec{\theta}^{t+1}=g(\vec{\theta}^t,\Delta_f \vec{theta}(\mathcal{D}))</script><p>其中后一项为模型参数的梯度计算，用于迭代与修正，梯度如果各项独立通常可以并行，即每台电脑可以算本地的，然后多台机器合并，显而易见的是模型并行数据一定并行。</p>
+<h2 id="理解机器学习"><a href="#理解机器学习" class="headerlink" title="理解机器学习"></a>理解机器学习</h2><h3 id="从优化的角度看机器学习"><a href="#从优化的角度看机器学习" class="headerlink" title="从优化的角度看机器学习"></a>从优化的角度看机器学习</h3><p>$$<br>\arg max_{\vec{\theta}} \equiv \mathcal{L}({x_i,y_i}_{i=1}^N;\vec{\theta})+ \Omega(\vec{\theta})<br>$$</p>
+<p>其中$\mathcal{L}$是一个模型（经验风险），$x_i,y_i$代表的是数据，$N$是数据规模，$\vec{\theta}$代表参数（结构风险），有参数就是有偏估计，方差小，有更好的泛化能力。然后通过迭代求解：<br>$$<br>\vec{\theta}^{t+1}=g(\vec{\theta}^t,\Delta_f \vec{theta}(\mathcal{D}))<br>$$<br>其中后一项为模型参数的梯度计算，用于迭代与修正，梯度如果各项独立通常可以并行，即每台电脑可以算本地的，然后多台机器合并，显而易见的是模型并行数据一定并行。</p>
 <p><img src="https://ws3.sinaimg.cn/large/006tNbRwly1fxvp8olas5j30ug0hyq5b.jpg" alt></p>
 <p>这里的数据与参数都是稀疏的，只拉入必要的参数即可，即使参数有误，也可以在最后收敛。</p>
 <h3 id="参数更新方案"><a href="#参数更新方案" class="headerlink" title="参数更新方案"></a>参数更新方案</h3><h4 id="同步更新"><a href="#同步更新" class="headerlink" title="同步更新"></a>同步更新</h4><p><img src="https://ws4.sinaimg.cn/large/006tNbRwly1fxvpauo6vqj30us0iaacd.jpg" alt></p>
@@ -274,16 +272,16 @@
     <div class="level post-navigation is-flex-wrap is-mobile">
         
         <div class="level-start">
-            <a class="level level-item has-link-grey  article-nav-prev" href="/2019/05/27/强化学习/2019-05-27-强化学习(1)/">
+            <a class="level level-item has-link-grey  article-nav-prev" href="/2018/12/05/数据挖掘/2018-12-05-互联网搜索与排序/">
                 <i class="level-item fas fa-chevron-left"></i>
-                <span class="level-item">强化学习(1)</span>
+                <span class="level-item">互联网搜索与排序</span>
             </a>
         </div>
         
         
         <div class="level-end">
-            <a class="level level-item has-link-grey  article-nav-next" href="/2018/12/05/数据挖掘/2018-12-05-互联网搜索与排序/">
-                <span class="level-item">互联网搜索与排序</span>
+            <a class="level level-item has-link-grey  article-nav-next" href="/2018/12/03/数据挖掘/2018-12-03-非监督学习/">
+                <span class="level-item">无监督学习 Unsupervised Learning(聚类、矩阵分解、话题模型)</span>
                 <i class="level-item fas fa-chevron-right"></i>
             </a>
         </div>
@@ -659,18 +657,18 @@
         
         <article class="media">
             
-            <a href="/2019/07/21/数据挖掘/2019-08-13-实时异常检测/" class="media-left">
+            <a href="/2019/07/21/安全/2019-07-22-xgboost/" class="media-left">
                 <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="实时异常检测（xStream，KDD&#39;18）">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="孤立森林（Isolation Forest）">
                 </p>
             </a>
             
             <div class="media-content">
                 <div class="content">
                     <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-07-20T16:00:00.000Z">2019-07-21</time></div>
-                    <a href="/2019/07/21/数据挖掘/2019-08-13-实时异常检测/" class="title has-link-black-ter is-size-6 has-text-weight-normal">实时异常检测（xStream，KDD&#39;18）</a>
+                    <a href="/2019/07/21/安全/2019-07-22-xgboost/" class="title has-link-black-ter is-size-6 has-text-weight-normal">孤立森林（Isolation Forest）</a>
                     <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/Anomaly-detection/">Anomaly detection</a>
+                        <a class="has-link-grey -link" href="/categories/Security/">Security</a>
                     </p>
                 </div>
             </div>
@@ -1159,18 +1157,18 @@
         
         <article class="media">
             
-            <a href="/2019/07/21/数据挖掘/2019-08-13-实时异常检测/" class="media-left">
+            <a href="/2019/07/21/安全/2019-07-22-xgboost/" class="media-left">
                 <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="实时异常检测（xStream，KDD&#39;18）">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="孤立森林（Isolation Forest）">
                 </p>
             </a>
             
             <div class="media-content">
                 <div class="content">
                     <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-07-20T16:00:00.000Z">2019-07-21</time></div>
-                    <a href="/2019/07/21/数据挖掘/2019-08-13-实时异常检测/" class="title has-link-black-ter is-size-6 has-text-weight-normal">实时异常检测（xStream，KDD&#39;18）</a>
+                    <a href="/2019/07/21/安全/2019-07-22-xgboost/" class="title has-link-black-ter is-size-6 has-text-weight-normal">孤立森林（Isolation Forest）</a>
                     <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/Anomaly-detection/">Anomaly detection</a>
+                        <a class="has-link-grey -link" href="/categories/Security/">Security</a>
                     </p>
                 </div>
             </div>

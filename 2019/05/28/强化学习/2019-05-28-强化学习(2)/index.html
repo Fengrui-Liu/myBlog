@@ -10,19 +10,19 @@
 <title>强化学习(2) - Fengrui Liu&#39;s Blog</title>
 
 
-    <meta name="description" content="动态规划通过把原问题分解为相对简单的子问题来求解复杂问题  马尔可夫决策过程满足如下两个属性   贝尔曼方程具有递归形式  价值函数可以保存和重复利用  贝尔曼最优方程如下,其难点是$v_*$同时存在于等式左右两边  v_*(s)=max_a(R_s^a+\gamma \sum_{s&apos;\in S}P_{ss&apos;}^av_*(s&apos;))价值迭代的基本思路:   对$v_∗$定义一个估计函数$v$  将估">
+    <meta name="description" content="动态规划通过把原问题分解为相对简单的子问题来求解复杂问题  马尔可夫决策过程满足如下两个属性   贝尔曼方程具有递归形式  价值函数可以保存和重复利用  贝尔曼最优方程如下,其难点是$v_$同时存在于等式左右两边$$v_(s)=max_a(R_s^a+\gamma \sum_{s’\in S}P_{ss’}^av_*(s’))$$ 价值迭代的基本思路:   对$v_∗$定义一个估计函数$v$  将">
 <meta name="keywords" content="RL">
 <meta property="og:type" content="article">
 <meta property="og:title" content="强化学习(2)">
 <meta property="og:url" content="http://www.liufr.com/2019/05/28/强化学习/2019-05-28-强化学习(2)/index.html">
 <meta property="og:site_name" content="Fengrui Liu&#39;s Blog">
-<meta property="og:description" content="动态规划通过把原问题分解为相对简单的子问题来求解复杂问题  马尔可夫决策过程满足如下两个属性   贝尔曼方程具有递归形式  价值函数可以保存和重复利用  贝尔曼最优方程如下,其难点是$v_*$同时存在于等式左右两边  v_*(s)=max_a(R_s^a+\gamma \sum_{s&apos;\in S}P_{ss&apos;}^av_*(s&apos;))价值迭代的基本思路:   对$v_∗$定义一个估计函数$v$  将估">
+<meta property="og:description" content="动态规划通过把原问题分解为相对简单的子问题来求解复杂问题  马尔可夫决策过程满足如下两个属性   贝尔曼方程具有递归形式  价值函数可以保存和重复利用  贝尔曼最优方程如下,其难点是$v_$同时存在于等式左右两边$$v_(s)=max_a(R_s^a+\gamma \sum_{s’\in S}P_{ss’}^av_*(s’))$$ 价值迭代的基本思路:   对$v_∗$定义一个估计函数$v$  将">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http://www.liufr.com/images/og_image.png">
 <meta property="og:updated_time" content="2019-05-29T03:20:17.186Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="强化学习(2)">
-<meta name="twitter:description" content="动态规划通过把原问题分解为相对简单的子问题来求解复杂问题  马尔可夫决策过程满足如下两个属性   贝尔曼方程具有递归形式  价值函数可以保存和重复利用  贝尔曼最优方程如下,其难点是$v_*$同时存在于等式左右两边  v_*(s)=max_a(R_s^a+\gamma \sum_{s&apos;\in S}P_{ss&apos;}^av_*(s&apos;))价值迭代的基本思路:   对$v_∗$定义一个估计函数$v$  将估">
+<meta name="twitter:description" content="动态规划通过把原问题分解为相对简单的子问题来求解复杂问题  马尔可夫决策过程满足如下两个属性   贝尔曼方程具有递归形式  价值函数可以保存和重复利用  贝尔曼最优方程如下,其难点是$v_$同时存在于等式左右两边$$v_(s)=max_a(R_s^a+\gamma \sum_{s’\in S}P_{ss’}^av_*(s’))$$ 价值迭代的基本思路:   对$v_∗$定义一个估计函数$v$  将">
 <meta name="twitter:image" content="http://www.liufr.com/images/og_image.png">
 
 
@@ -178,26 +178,23 @@
 <li>贝尔曼方程具有递归形式 </li>
 <li>价值函数可以保存和重复利用</li>
 </ul>
-<p>贝尔曼最优方程如下,其难点是$v_*$同时存在于等式左右两边</p>
-<script type="math/tex; mode=display">
-v_*(s)=max_a(R_s^a+\gamma \sum_{s'\in S}P_{ss'}^av_*(s'))</script><p>价值迭代的基本思路: </p>
+<p>贝尔曼最优方程如下,其难点是$v_<em>$同时存在于等式左右两边<br>$$<br>v_</em>(s)=max_a(R_s^a+\gamma \sum_{s’\in S}P_{ss’}^av_*(s’))<br>$$</p>
+<p>价值迭代的基本思路: </p>
 <ol>
 <li>对$v_∗$定义一个估计函数$v$ </li>
 <li>将估计函数代入方程右边, 等式左边得到一个新函数$v′$ </li>
 <li>$v′$ 是对 $v_∗$ 更为准确的估计</li>
 <li>将 $v′$ 代入右式继续上述过程</li>
 </ol>
-<script type="math/tex; mode=display">
-v'(s)=max_a(R_s^a+\gamma \sum_{s'\in S}P_{ss'}^av(s'))</script><p><strong>价值迭代算子</strong>定义一个以函数作为输入的算子$\tau$, 对给定的函数$v_k$计算新的函数 $v_{k+1}(s)=<a href="s">\tau(v_k)</a>$,贝尔曼最优方程写成</p>
-<script type="math/tex; mode=display">
-v_*(s)=[\tau(v_*)](s)=max_a(R_s^a+\gamma\sum_{s'\in S}P_{ss'}^av_*(s'))</script><p>$\gamma &lt; 1$ 时, 价值迭代算子是一个收缩算子($||\tau(f-g)||_{\infty}&lt;||f-g||$)</p>
+<p>$$<br>v’(s)=max_a(R_s^a+\gamma \sum_{s’\in S}P_{ss’}^av(s’))<br>$$</p>
+<p><strong>价值迭代算子</strong>定义一个以函数作为输入的算子$\tau$, 对给定的函数$v_k$计算新的函数 $v_{k+1}(s)=<a href="s">\tau(v_k)</a>$,贝尔曼最优方程写成<br>$$<br>v_<em>(s)=[\tau(v_</em>)](s)=max_a(R_s^a+\gamma\sum_{s’\in S}P_{ss’}^av_*(s’))<br>$$<br>$\gamma &lt; 1$ 时, 价值迭代算子是一个收缩算子($||\tau(f-g)||_{\infty}&lt;||f-g||$)</p>
 <p>确定性策略：价值迭代找到最优策略；随机性策略：机器人在所有位置以相同的概率向左或向右。</p>
 <p>策略迭代：</p>
 <ol>
 <li>给定一个初始策略 π1, k = 1 </li>
 <li>loop </li>
-<li>策略评估: 对当前策略 πk 计算它的价值函数<br>$v_{πk}(s) = \mathbb E[R_{t+1} + \gamma R_{t+2} + …|_St = s,A_t ∼ π_k(St)] =\sum_a π_k(a|s)(R^a_{ss’} + \gamma P^a_{ss′}v_{πk}(s′))$</li>
-<li>策略提升: 根据 $v_{πk}$ 提取出新的策略 $π_{k+1}(s) = argmax_{a\in A}(R^a_s + \gamma \sum_{s′\in S} P^a_{ss′}v_{πk}(s′))$</li>
+<li>策略评估: 对当前策略 πk 计算它的价值函数<br>$v_{πk}(s) = \mathbb E[R_{t+1} + \gamma R_{t+2} + …|<em>St = s,A_t ∼ π_k(St)] =\sum_a π_k(a|s)(R^a</em>{ss’} + \gamma P^a_{ss′}v_{πk}(s′))$</li>
+<li>策略提升: 根据 $v_{πk}$ 提取出新的策略 $π<em>{k+1}(s) = argmax</em>{a\in A}(R^a_s + \gamma \sum_{s′\in S} P^a_{ss′}v_{πk}(s′))$</li>
 <li>k←k+ 1 </li>
 <li>end loop</li>
 </ol>
@@ -273,13 +270,9 @@ v_*(s)=[\tau(v_*)](s)=max_a(R_s^a+\gamma\sum_{s'\in S}P_{ss'}^av_*(s'))</script>
 <li>DP 使用自举，不使用采样</li>
 <li>TD 使用自举，使用采样</li>
 </ul>
-<p>$\lambda -回报$： 每项的权重$(1-\lambda)\lambda^{n-1}$<strong>前向更新</strong></p>
-<script type="math/tex; mode=display">
-G_t^{\lambda}=(1-\lambda)\sum_{n=1}^{\infty}\lambda^{n-1}G_t^{(n)}\\
-V(S_t)\leftarrow V(S_t)+\alpha(G_t^{\lambda}-V(S_t))</script><p>资格迹：受频率启发；受近因启发（二者结合）更新量与 TD 误差 和资格迹 $E_t(s)$ 呈正比 <strong>后向更新</strong></p>
-<script type="math/tex; mode=display">
-\delta_t = R_{t+1}+\gamma V(S_{t+1})-V(S_t)\\
-V(s)\leftarrow V(s) + \alpha\delta_tE_t(s)</script><p>TD(1) 大致等价于每次经过的 MC 方法,误差会随在线运行逐步累积,如果价值函数只在事件结束时离线更新, 那么所有的更新量等同于 MC 方法</p>
+<p>$\lambda -回报$： 每项的权重$(1-\lambda)\lambda^{n-1}$<strong>前向更新</strong><br>$$<br>G_t^{\lambda}=(1-\lambda)\sum_{n=1}^{\infty}\lambda^{n-1}G_t^{(n)}\<br>V(S_t)\leftarrow V(S_t)+\alpha(G_t^{\lambda}-V(S_t))<br>$$</p>
+<p>资格迹：受频率启发；受近因启发（二者结合）更新量与 TD 误差 和资格迹 $E_t(s)$ 呈正比 <strong>后向更新</strong><br>$$<br>\delta_t = R_{t+1}+\gamma V(S_{t+1})-V(S_t)\<br>V(s)\leftarrow V(s) + \alpha\delta_tE_t(s)<br>$$</p>
+<p>TD(1) 大致等价于每次经过的 MC 方法,误差会随在线运行逐步累积,如果价值函数只在事件结束时离线更新, 那么所有的更新量等同于 MC 方法</p>
 
         </div>
         
@@ -724,18 +717,18 @@ V(s)\leftarrow V(s) + \alpha\delta_tE_t(s)</script><p>TD(1) 大致等价于每�
         
         <article class="media">
             
-            <a href="/2019/07/21/数据挖掘/2019-08-13-实时异常检测/" class="media-left">
+            <a href="/2019/07/21/安全/2019-07-22-xgboost/" class="media-left">
                 <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="实时异常检测（xStream，KDD&#39;18）">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="孤立森林（Isolation Forest）">
                 </p>
             </a>
             
             <div class="media-content">
                 <div class="content">
                     <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-07-20T16:00:00.000Z">2019-07-21</time></div>
-                    <a href="/2019/07/21/数据挖掘/2019-08-13-实时异常检测/" class="title has-link-black-ter is-size-6 has-text-weight-normal">实时异常检测（xStream，KDD&#39;18）</a>
+                    <a href="/2019/07/21/安全/2019-07-22-xgboost/" class="title has-link-black-ter is-size-6 has-text-weight-normal">孤立森林（Isolation Forest）</a>
                     <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/Anomaly-detection/">Anomaly detection</a>
+                        <a class="has-link-grey -link" href="/categories/Security/">Security</a>
                     </p>
                 </div>
             </div>
@@ -1224,18 +1217,18 @@ V(s)\leftarrow V(s) + \alpha\delta_tE_t(s)</script><p>TD(1) 大致等价于每�
         
         <article class="media">
             
-            <a href="/2019/07/21/数据挖掘/2019-08-13-实时异常检测/" class="media-left">
+            <a href="/2019/07/21/安全/2019-07-22-xgboost/" class="media-left">
                 <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="实时异常检测（xStream，KDD&#39;18）">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="孤立森林（Isolation Forest）">
                 </p>
             </a>
             
             <div class="media-content">
                 <div class="content">
                     <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-07-20T16:00:00.000Z">2019-07-21</time></div>
-                    <a href="/2019/07/21/数据挖掘/2019-08-13-实时异常检测/" class="title has-link-black-ter is-size-6 has-text-weight-normal">实时异常检测（xStream，KDD&#39;18）</a>
+                    <a href="/2019/07/21/安全/2019-07-22-xgboost/" class="title has-link-black-ter is-size-6 has-text-weight-normal">孤立森林（Isolation Forest）</a>
                     <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/Anomaly-detection/">Anomaly detection</a>
+                        <a class="has-link-grey -link" href="/categories/Security/">Security</a>
                     </p>
                 </div>
             </div>

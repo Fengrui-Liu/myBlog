@@ -174,6 +174,7 @@
         <div class="content">
             <h2 id="VANET-仿真"><a href="#VANET-仿真" class="headerlink" title="VANET 仿真"></a>VANET 仿真</h2><p>ns3示例代码fourth.cc注释整理，追踪（tracing）与回调。</p>
 <figure class="highlight c++ hljs"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">"ns3/object.h"</span></span></span><br><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">"ns3/uinteger.h"</span></span></span><br><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">"ns3/traced-value.h"</span> <span class="hljs-comment">//提供了一系列的数据追踪的方法</span></span></span><br><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">"ns3/trace-source-accessor.h"</span></span></span><br><span class="line"></span><br><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> ns3;</span><br><span class="line"></span><br><span class="line"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MyObject</span> :</span> <span class="hljs-keyword">public</span> Object</span><br><span class="line">&#123;</span><br><span class="line"><span class="hljs-keyword">public</span>:</span><br><span class="line"></span><br><span class="line">   <span class="hljs-comment">// Register this type.</span></span><br><span class="line">   <span class="hljs-comment">//return The TypeId.</span></span><br><span class="line">  <span class="hljs-function"><span class="hljs-keyword">static</span> TypeId <span class="hljs-title">GetTypeId</span> <span class="hljs-params">(<span class="hljs-keyword">void</span>)</span></span></span><br><span class="line"><span class="hljs-function">  </span>&#123;</span><br><span class="line">    <span class="hljs-keyword">static</span> TypeId tid = TypeId (<span class="hljs-string">"MyObject"</span>)</span><br><span class="line">      .SetParent&lt;Object&gt; ()</span><br><span class="line">      .SetGroupName (<span class="hljs-string">"Tutorial"</span>)</span><br><span class="line">      .AddConstructor&lt;MyObject&gt; ()</span><br><span class="line">	  <span class="hljs-comment">//.AddTraceSource提供了一个外部的钩子(hook)，参数分别为：</span></span><br><span class="line">	  <span class="hljs-comment">//1.数据追踪的名字，可以被系统可见</span></span><br><span class="line">	  <span class="hljs-comment">//2.提示信息</span></span><br><span class="line">	  <span class="hljs-comment">//3.&amp;MyObject::m_myInt被追踪的值，是一个类的数据成员</span></span><br><span class="line">	  <span class="hljs-comment">//4.用来生成文档与正确的Callback信息</span></span><br><span class="line">      .AddTraceSource (<span class="hljs-string">"MyInteger"</span>,</span><br><span class="line">                       <span class="hljs-string">"An integer value to trace."</span>,</span><br><span class="line">                       MakeTraceSourceAccessor (&amp;MyObject::m_myInt),</span><br><span class="line">                       <span class="hljs-string">"ns3::TracedValueCallback::Int32"</span>)</span><br><span class="line">    ;</span><br><span class="line">    <span class="hljs-keyword">return</span> tid;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  MyObject () &#123;&#125;</span><br><span class="line">  <span class="hljs-comment">//Traceavalue可以用来回调，确定需要追踪的对象属性。</span></span><br><span class="line">  TracedValue&lt;<span class="hljs-keyword">int32_t</span>&gt; m_myInt;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="hljs-comment">//与trace sink匹配的函数，是回调的直接信号，当值发生变化时就需要回调该函数</span></span><br><span class="line"><span class="hljs-keyword">void</span></span><br><span class="line">IntTrace (<span class="hljs-keyword">int32_t</span> oldValue, <span class="hljs-keyword">int32_t</span> newValue)</span><br><span class="line">&#123;</span><br><span class="line">  <span class="hljs-built_in">std</span>::<span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-string">"Traced "</span> &lt;&lt; oldValue &lt;&lt; <span class="hljs-string">" to "</span> &lt;&lt; newValue &lt;&lt; <span class="hljs-built_in">std</span>::<span class="hljs-built_in">endl</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="hljs-keyword">int</span></span><br><span class="line">main (<span class="hljs-keyword">int</span> argc, <span class="hljs-keyword">char</span> \*argv[])</span><br><span class="line">&#123;</span><br><span class="line">  Ptr&lt;MyObject&gt; myObject = CreateObject&lt;MyObject&gt; ();</span><br><span class="line">  <span class="hljs-comment">//在trace source与trace sink之间建立联系，第一个参数为trace source的名字，第二个为回调</span></span><br><span class="line">  myObject-&gt;TraceConnectWithoutContext (<span class="hljs-string">"MyInteger"</span>, MakeCallback (&amp;IntTrace));</span><br><span class="line"></span><br><span class="line">  myObject-&gt;m_myInt = <span class="hljs-number">1234</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
 <p>当执行代码 <strong>myObject-&gt;m_myInt = 1234;</strong> 时，由于值的改变触发了回调函数，有以下运行结果：</p>
 <p><img src="https://ww4.sinaimg.cn/large/006tNc79gy1fdlbkoxdtdj30l502dmxm.jpg" alt></p>
 
@@ -235,16 +236,16 @@
     <div class="level post-navigation is-flex-wrap is-mobile">
         
         <div class="level-start">
-            <a class="level level-item has-link-grey  article-nav-prev" href="/2017/03/13/VANET/2017-3-13-Vanet仿真-ns3(5)/">
+            <a class="level level-item has-link-grey  article-nav-prev" href="/2017/03/15/VANET/2017-3-15-Vanet仿真-ns3(6)/">
                 <i class="level-item fas fa-chevron-left"></i>
-                <span class="level-item">VANET仿真-ns3(5)</span>
+                <span class="level-item">VANET仿真-ns3(6)</span>
             </a>
         </div>
         
         
         <div class="level-end">
-            <a class="level level-item has-link-grey  article-nav-next" href="/2017/03/12/VANET/2017-3-12-Vanet仿真-ns3(2)/">
-                <span class="level-item">VANET仿真-ns3(2)</span>
+            <a class="level level-item has-link-grey  article-nav-next" href="/2017/03/13/VANET/2017-3-13-Vanet仿真-ns3(5)/">
+                <span class="level-item">VANET仿真-ns3(5)</span>
                 <i class="level-item fas fa-chevron-right"></i>
             </a>
         </div>
@@ -620,18 +621,18 @@
         
         <article class="media">
             
-            <a href="/2019/07/21/数据挖掘/2019-08-13-实时异常检测/" class="media-left">
+            <a href="/2019/07/21/安全/2019-07-22-xgboost/" class="media-left">
                 <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="实时异常检测（xStream，KDD&#39;18）">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="孤立森林（Isolation Forest）">
                 </p>
             </a>
             
             <div class="media-content">
                 <div class="content">
                     <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-07-20T16:00:00.000Z">2019-07-21</time></div>
-                    <a href="/2019/07/21/数据挖掘/2019-08-13-实时异常检测/" class="title has-link-black-ter is-size-6 has-text-weight-normal">实时异常检测（xStream，KDD&#39;18）</a>
+                    <a href="/2019/07/21/安全/2019-07-22-xgboost/" class="title has-link-black-ter is-size-6 has-text-weight-normal">孤立森林（Isolation Forest）</a>
                     <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/Anomaly-detection/">Anomaly detection</a>
+                        <a class="has-link-grey -link" href="/categories/Security/">Security</a>
                     </p>
                 </div>
             </div>
@@ -1120,18 +1121,18 @@
         
         <article class="media">
             
-            <a href="/2019/07/21/数据挖掘/2019-08-13-实时异常检测/" class="media-left">
+            <a href="/2019/07/21/安全/2019-07-22-xgboost/" class="media-left">
                 <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="实时异常检测（xStream，KDD&#39;18）">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="孤立森林（Isolation Forest）">
                 </p>
             </a>
             
             <div class="media-content">
                 <div class="content">
                     <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-07-20T16:00:00.000Z">2019-07-21</time></div>
-                    <a href="/2019/07/21/数据挖掘/2019-08-13-实时异常检测/" class="title has-link-black-ter is-size-6 has-text-weight-normal">实时异常检测（xStream，KDD&#39;18）</a>
+                    <a href="/2019/07/21/安全/2019-07-22-xgboost/" class="title has-link-black-ter is-size-6 has-text-weight-normal">孤立森林（Isolation Forest）</a>
                     <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/Anomaly-detection/">Anomaly detection</a>
+                        <a class="has-link-grey -link" href="/categories/Security/">Security</a>
                     </p>
                 </div>
             </div>

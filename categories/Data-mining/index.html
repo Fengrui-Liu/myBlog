@@ -193,8 +193,8 @@
 <li>idf(w): inverse document frequency $idf = log \frac{N}{df}$ 其中N为文档集的个数</li>
 <li>tf-idf(w,d) = tf(w,d)*idf(w)</li>
 </ul>
-<h3 id="BM25-Best-match-25"><a href="#BM25-Best-match-25" class="headerlink" title="BM25(Best match 25)"></a>BM25(Best match 25)</h3><script type="math/tex; mode=display">
-BM25 = \sum_{i \in q} \log\frac{N}{df_i} \cdot \frac{(k_1+1)tf_i}{k_1((1-b)+b\frac{dl}{avdl})+tf_i}</script><ul>
+<h3 id="BM25-Best-match-25"><a href="#BM25-Best-match-25" class="headerlink" title="BM25(Best match 25)"></a>BM25(Best match 25)</h3><p>$$<br>BM25 = \sum_{i \in q} \log\frac{N}{df_i} \cdot \frac{(k_1+1)tf_i}{k_1((1-b)+b\frac{dl}{avdl})+tf_i}<br>$$</p>
+<ul>
 <li>avgdl:集合中平均文档长度</li>
 <li>$k_1$:控制因$tf$的增大最终排序值的速度<ul>
 <li>k1=0:二值模型,只反映词是否出现,不考虑出现次数</li>
@@ -224,17 +224,16 @@ BM25 = \sum_{i \in q} \log\frac{N}{df_i} \cdot \frac{(k_1+1)tf_i}{k_1((1-b)+b\fr
 <li><strong>Discounted Cumulative Gain</strong>：由于返回结果有一个排序，因此根据所在排序还需要一定的打折$\frac{1}{log_2(rank+1)}$</li>
 </ul>
 <p>比较二者那么<br><strong>CG@N</strong> $CG=r_1+r_2+…+r_n$<br><strong>NCG@N</strong> $NCG= \frac{r_1}{\log(1+1)} + \frac{r_2}{\log(1+2)}+…+\frac{r_n}{\log(1+n)}$</p>
-<h3 id="NDCG-Normalized-DCG"><a href="#NDCG-Normalized-DCG" class="headerlink" title="NDCG(Normalized DCG)"></a>NDCG(Normalized DCG)</h3><p>利用最优排序对DCG@N进行归一化处理，其中最优排序为按照用户标注对文档进行排序。其中$IDCG_p$为理想情况下最大的$DCG$值。</p>
-<script type="math/tex; mode=display">
-nDCG_p = \frac{DCG_p}{IDCG_p}</script><h2 id="Pair-wise排序学习：区分文档间的差异"><a href="#Pair-wise排序学习：区分文档间的差异" class="headerlink" title="Pair-wise排序学习：区分文档间的差异"></a>Pair-wise排序学习：区分文档间的差异</h2><p>核心思想：模型只需要区分同一个查询内部标注为不同相关度文档间的差异</p>
+<h3 id="NDCG-Normalized-DCG"><a href="#NDCG-Normalized-DCG" class="headerlink" title="NDCG(Normalized DCG)"></a>NDCG(Normalized DCG)</h3><p>利用最优排序对DCG@N进行归一化处理，其中最优排序为按照用户标注对文档进行排序。其中$IDCG_p$为理想情况下最大的$DCG$值。<br>$$<br>nDCG_p = \frac{DCG_p}{IDCG_p}<br>$$</p>
+<h2 id="Pair-wise排序学习：区分文档间的差异"><a href="#Pair-wise排序学习：区分文档间的差异" class="headerlink" title="Pair-wise排序学习：区分文档间的差异"></a>Pair-wise排序学习：区分文档间的差异</h2><p>核心思想：模型只需要区分同一个查询内部标注为不同相关度文档间的差异</p>
 <h3 id="排序支持向量机（ranking-SVM）"><a href="#排序支持向量机（ranking-SVM）" class="headerlink" title="排序支持向量机（ranking SVM）"></a>排序支持向量机（ranking SVM）</h3><ul>
 <li>Ranking SVM 训练<ul>
-<li>构造训练数据集合$\{\phi(q_k,d_{ki})-\phi(q_k,d_{kj}),+1\}$</li>
-<li>训练二值分类SVM，得到打分函数$f(q,d)=<w,\phi(q,d)>$</w,\phi(q,d)></li>
+<li>构造训练数据集合${\phi(q_k,d_{ki})-\phi(q_k,d_{kj}),+1}$</li>
+<li>训练二值分类SVM，得到打分函数$f(q,d)=&lt;w,\phi(q,d)&gt;$</li>
 </ul>
 </li>
 <li>Ranking SVM 在线应用<ul>
-<li>给定一个查询q和检索出的文档集合$C=\{d_i\}$</li>
+<li>给定一个查询q和检索出的文档集合$C={d_i}$</li>
 <li>用$f(q,d)$对每一个C中的文档进行打分</li>
 <li>将C中的文档按照$f(q,d)$从大到小排序</li>
 </ul>
@@ -253,7 +252,7 @@ nDCG_p = \frac{DCG_p}{IDCG_p}</script><h2 id="Pair-wise排序学习：区分文�
 <li>违背分类训练数据独立同分布假设</li>
 </ul>
 <hr>
-<h2 id="语言排序模型"><a href="#语言排序模型" class="headerlink" title="语言排序模型"></a>语言排序模型</h2><p>词袋假设$P(w_1,w_2,…w_m)=P(w_1)P(w_2)…P(w_m)$<br>估计每一个词的出现概率$P(w)=\frac{#w}{all\,words}$，其中$\sum_{w\in V}P(w)=1$ </p>
+<h2 id="语言排序模型"><a href="#语言排序模型" class="headerlink" title="语言排序模型"></a>语言排序模型</h2><p>词袋假设$P(w_1,w_2,…w_m)=P(w_1)P(w_2)…P(w_m)$<br>估计每一个词的出现概率$P(w)=\frac{#w}{all,words}$，其中$\sum_{w\in V}P(w)=1$ </p>
 <p>语言模型中的马尔科夫假设，$P(w_n|w_{n-1},w_{n-2},…,w_1)=P(w_n|w_{n-1})$<br>$P(w_1,w_2,…,w_m)=P(w_1)P(w_2|w_1)P(w_3|w_2)…P(w_m|w_{m-1})$<br>给定一个训练文档集合，统计给个一个词之后，其他词出现的概率$P(w_i|w_j)=\frac{#(w_jw_i)}{#w_j}$<br>举例来说$\sum_{w_i\in V}P(w_i|’is’)=1$</p>
 <h3 id="数据稀疏问题"><a href="#数据稀疏问题" class="headerlink" title="数据稀疏问题"></a>数据稀疏问题</h3><p>对于0概率问题采用平滑化方法</p>
 <h3 id="LM-for-IR"><a href="#LM-for-IR" class="headerlink" title="LM for IR"></a>LM for IR</h3><ul>
@@ -263,14 +262,12 @@ nDCG_p = \frac{DCG_p}{IDCG_p}</script><h2 id="Pair-wise排序学习：区分文�
 <li>将文档对应的生成模型应用于查询，计算生成概率</li>
 <li>按照生成概率将文档排序，取topN展现给用户</li>
 </ul>
-<p>给定查询$q$和文档$d$，对文档的打分为$P(d|q)$根据贝叶斯公式</p>
-<script type="math/tex; mode=display">
-P(d|q) = \frac{P(q|d)P(d)}{P(q)}</script><p>对于独立假设来说$P(q|d)=P(q_1q_2,….q_m|d)=\Pi_{i=1}^MP(q_i|d)$</p>
+<p>给定查询$q$和文档$d$，对文档的打分为$P(d|q)$根据贝叶斯公式<br>$$<br>P(d|q) = \frac{P(q|d)P(d)}{P(q)}<br>$$<br>对于独立假设来说$P(q|d)=P(q_1q_2,….q_m|d)=\Pi_{i=1}^MP(q_i|d)$</p>
 <p>举例：<br>$q$ 中国_科学院_大学<br>$d$ 科学院_大学_计算机_学院</p>
 <p>$P(q|d)=P(中国|d)P(科学院|d)P(大学|d)=0<em>0.25</em>0.25=0$</p>
 <h3 id="Dirichlet-平滑-与混合平滑"><a href="#Dirichlet-平滑-与混合平滑" class="headerlink" title="Dirichlet 平滑 与混合平滑"></a>Dirichlet 平滑 与混合平滑</h3><p>D={d1,d2}, Query q: Michael Jackson</p>
 <p>d1: Jackson was one of the most talented entertainers of all time（11）<br>d2: Michael Jackson anointed himself King of Pop（7）<br>$P(q|d_1)=\frac{0}{11}<em>\frac{1}{11}=0,P(q|d_2)=\frac{1}{7}</em>\frac{1}{7}=\frac{1}{49},P(Michael|C)=\frac{1}{18},P(Jackson|C)=\frac{2}{18}$</p>
-<p><strong>混合模型</strong>$\lambda=0.5$<br>$P_{mix}(q|d_1)=(\frac{0}{11}<em>\frac{1}{2}+\frac{1}{18}</em>\frac{1}{2})<em>(\frac{1}{11}</em>\frac{1}{2}+\frac{2}{18}<em>\frac{1}{2})$<br>$P_{mix}(q|d_2)=(\frac{1}{7}</em>\frac{1}{2}+\frac{1}{18}<em>\frac{1}{2})</em>(\frac{1}{7}<em>\frac{1}{2}+\frac{2}{18}</em>\frac{1}{2})$<br><strong>狄里克莱平滑</strong>$\mu = 5$<br>$P_{dir}(q|d_1)=(\frac{0+\frac{5}{18}}{11+5})(\frac{1+5<em>\frac{2}{18}}{11+5})$<br>$P_{dir}(q|d_2)=(\frac{1+\frac{5}{18}}{7+5})(\frac{1+5</em>\frac{2}{18}}{7+5})$</p>
+<p><strong>混合模型</strong>$\lambda=0.5$<br>$P_{mix}(q|d_1)=(\frac{0}{11}<em>\frac{1}{2}+\frac{1}{18}*\frac{1}{2})</em>(\frac{1}{11}<em>\frac{1}{2}+\frac{2}{18}<em>\frac{1}{2})$<br>$P_{mix}(q|d_2)=(\frac{1}{7}</em>\frac{1}{2}+\frac{1}{18}*\frac{1}{2})</em>(\frac{1}{7}<em>\frac{1}{2}+\frac{2}{18}</em>\frac{1}{2})$<br><strong>狄里克莱平滑</strong>$\mu = 5$<br>$P_{dir}(q|d_1)=(\frac{0+\frac{5}{18}}{11+5})(\frac{1+5<em>\frac{2}{18}}{11+5})$<br>$P_{dir}(q|d_2)=(\frac{1+\frac{5}{18}}{7+5})(\frac{1+5</em>\frac{2}{18}}{7+5})$</p>
 
         </div>
         
@@ -316,10 +313,8 @@ P(d|q) = \frac{P(q|d)P(d)}{P(q)}</script><p>对于独立假设来说$P(q|d)=P(q_
         </h1>
         <div class="content">
             <p>百万级别的数据样本：<strong>指数级别的算法基本告别了</strong><br>十亿级别的数据样本：<strong>开始考虑分布式存储</strong><br>万亿级别的数据样本：<strong>无法得知数据全貌，采用Peer-to-peer（机器处理本地的数据无总控）</strong></p>
-<h2 id="理解机器学习"><a href="#理解机器学习" class="headerlink" title="理解机器学习"></a>理解机器学习</h2><h3 id="从优化的角度看机器学习"><a href="#从优化的角度看机器学习" class="headerlink" title="从优化的角度看机器学习"></a>从优化的角度看机器学习</h3><script type="math/tex; mode=display">
-\arg max_{\vec{\theta}} \equiv \mathcal{L}(\{x_i,y_i\}_{i=1}^N;\vec{\theta})+ \Omega(\vec{\theta})</script><p>其中$\mathcal{L}$是一个模型（经验风险），$x_i,y_i$代表的是数据，$N$是数据规模，$\vec{\theta}$代表参数（结构风险），有参数就是有偏估计，方差小，有更好的泛化能力。然后通过迭代求解：</p>
-<script type="math/tex; mode=display">
-\vec{\theta}^{t+1}=g(\vec{\theta}^t,\Delta_f \vec{theta}(\mathcal{D}))</script><p>其中后一项为模型参数的梯度计算，用于迭代与修正，梯度如果各项独立通常可以并行，即每台电脑可以算本地的，然后多台机器合并，显而易见的是模型并行数据一定并行。</p>
+<h2 id="理解机器学习"><a href="#理解机器学习" class="headerlink" title="理解机器学习"></a>理解机器学习</h2><h3 id="从优化的角度看机器学习"><a href="#从优化的角度看机器学习" class="headerlink" title="从优化的角度看机器学习"></a>从优化的角度看机器学习</h3><p>$$<br>\arg max_{\vec{\theta}} \equiv \mathcal{L}({x_i,y_i}_{i=1}^N;\vec{\theta})+ \Omega(\vec{\theta})<br>$$</p>
+<p>其中$\mathcal{L}$是一个模型（经验风险），$x_i,y_i$代表的是数据，$N$是数据规模，$\vec{\theta}$代表参数（结构风险），有参数就是有偏估计，方差小，有更好的泛化能力。然后通过迭代求解：<br>$$<br>\vec{\theta}^{t+1}=g(\vec{\theta}^t,\Delta_f \vec{theta}(\mathcal{D}))<br>$$<br>其中后一项为模型参数的梯度计算，用于迭代与修正，梯度如果各项独立通常可以并行，即每台电脑可以算本地的，然后多台机器合并，显而易见的是模型并行数据一定并行。</p>
 <p><img src="https://ws3.sinaimg.cn/large/006tNbRwly1fxvp8olas5j30ug0hyq5b.jpg" alt></p>
 <p>这里的数据与参数都是稀疏的，只拉入必要的参数即可，即使参数有误，也可以在最后收敛。</p>
 <h3 id="参数更新方案"><a href="#参数更新方案" class="headerlink" title="参数更新方案"></a>参数更新方案</h3><h4 id="同步更新"><a href="#同步更新" class="headerlink" title="同步更新"></a>同步更新</h4><p><img src="https://ws4.sinaimg.cn/large/006tNbRwly1fxvpauo6vqj30us0iaacd.jpg" alt></p>
@@ -403,6 +398,7 @@ P(d|q) = \frac{P(q|d)P(d)}{P(q)}</script><p>对于独立假设来说$P(q|d)=P(q_
         </h1>
         <div class="content">
             <h2 id="聚类"><a href="#聚类" class="headerlink" title="聚类"></a>聚类</h2><h3 id="K-means"><a href="#K-means" class="headerlink" title="K-means"></a>K-means</h3><figure class="highlight c hljs"><table><tr><td class="code"><pre><span class="line">输入：数据D=&#123;x1,x2,...,xn&#125;,簇数目K</span><br><span class="line"><span class="hljs-number">1.</span> 随机选取K个种子数据点（seeds）作为K个簇中心</span><br><span class="line"><span class="hljs-number">2.</span> repeat</span><br><span class="line"><span class="hljs-number">3.</span>      foreach x in D <span class="hljs-keyword">do</span></span><br><span class="line"><span class="hljs-number">4.</span>          计算x与每一个簇中心的距离</span><br><span class="line"><span class="hljs-number">5.</span>          将x指配到距离最近的簇中心</span><br><span class="line"><span class="hljs-number">6.</span>      endfor</span><br><span class="line"><span class="hljs-number">7.</span>      用当前的簇内点重新计算K个簇中心位置</span><br><span class="line"><span class="hljs-number">8.</span> until（达到终止条件）</span><br></pre></td></tr></table></figure>
+
 <p><img src="https://ws4.sinaimg.cn/large/006tNbRwly1fxtowximhdj317g0c8abn.jpg" alt></p>
 <p>优点：</p>
 <ul>
@@ -417,17 +413,11 @@ P(d|q) = \frac{P(q|d)P(d)}{P(q)}</script><p>对于独立假设来说$P(q|d)=P(q_
 <li>离群点敏感（可能为数据准备，预处理过程中出现的错误）</li>
 </ul>
 <hr>
-<h2 id="矩阵分解"><a href="#矩阵分解" class="headerlink" title="矩阵分解"></a>矩阵分解</h2><h3 id="SVD分解"><a href="#SVD分解" class="headerlink" title="SVD分解"></a>SVD分解</h3><script type="math/tex; mode=display">
-D = \sum_{k=1}^p\sigma_k\mu_kv_k^T=U {\tiny \sum} V^T</script><p>${\tiny \sum}=\begin{bmatrix}<br>\sigma_1 &amp; 0 &amp; 0 &amp; 0\ <br>0 &amp; \sigma_2 &amp; 0 &amp; 0\ <br>0 &amp; 0 &amp; … &amp; 0\ <br>0 &amp; 0 &amp; 0 &amp; \sigma_n<br>\end{bmatrix}$ 对角矩阵，表示的是特征值,此维度上的方差与能量。</p>
+<h2 id="矩阵分解"><a href="#矩阵分解" class="headerlink" title="矩阵分解"></a>矩阵分解</h2><h3 id="SVD分解"><a href="#SVD分解" class="headerlink" title="SVD分解"></a>SVD分解</h3><p>$$<br>D = \sum_{k=1}^p\sigma_k\mu_kv_k^T=U {\tiny \sum} V^T<br>$$</p>
+<p>${\tiny \sum}=\begin{bmatrix}<br>\sigma_1 &amp; 0 &amp; 0 &amp; 0\<br>0 &amp; \sigma_2 &amp; 0 &amp; 0\<br>0 &amp; 0 &amp; … &amp; 0\<br>0 &amp; 0 &amp; 0 &amp; \sigma_n<br>\end{bmatrix}$ 对角矩阵，表示的是特征值,此维度上的方差与能量。</p>
 <p>$u_k,v_k$表示的是对于$\sigma_k$对应的特征向量。<br>$U^TU=I,V^TV=I:U,V$均为正交矩阵。</p>
 <p>左特征向量$U$，每一列对应一个方向，不同的列对应的向量互相垂直，那么将${\tiny \sum}$中的$\sigma_k$按照从小到大排序，$u_k，v_k$也相应排序，可以得到$u_1$是对应方差能量最大的方向，$u_2$是与$u_1$垂直的方差最大的方向…<br>右特征向量$V$，由于$D^T=V{\tiny \sum}U^T$，可以按照与上述相同的理解，因此只是维度存在的不同。</p>
-<h3 id="SVD分解与主成分分析-PCA"><a href="#SVD分解与主成分分析-PCA" class="headerlink" title="SVD分解与主成分分析(PCA)"></a>SVD分解与主成分分析(PCA)</h3><p>给定矩阵</p>
-<script type="math/tex; mode=display">
-\begin{aligned}
-S_{M*M}&=D*D^T\\
-&=(U {\tiny \sum} V^T)(U {\tiny \sum} V^T)^T\\
-&={\tiny \sum}^2
-\end{aligned}</script><p>也就是说$U$中对应最大的向量位主成分</p>
+<h3 id="SVD分解与主成分分析-PCA"><a href="#SVD分解与主成分分析-PCA" class="headerlink" title="SVD分解与主成分分析(PCA)"></a>SVD分解与主成分分析(PCA)</h3><p>给定矩阵<br>$$<br>\begin{aligned}<br>S_{M<em>M}&amp;=D</em>D^T\<br>&amp;=(U {\tiny \sum} V^T)(U {\tiny \sum} V^T)^T\<br>&amp;={\tiny \sum}^2<br>\end{aligned}<br>$$<br>也就是说$U$中对应最大的向量位主成分</p>
 <hr>
 <h3 id="LSI分解"><a href="#LSI分解" class="headerlink" title="LSI分解"></a>LSI分解</h3><p><img src="https://ws2.sinaimg.cn/large/006tNbRwly1fxuk04kt2oj31180eu75l.jpg" alt></p>
 <h3 id="NMF分解"><a href="#NMF分解" class="headerlink" title="NMF分解"></a>NMF分解</h3><p><img src="https://ws1.sinaimg.cn/large/006tNbRwly1fxtqt0jr55j30uq08iwf1.jpg" alt></p>
@@ -440,38 +430,7 @@ S_{M*M}&=D*D^T\\
 </ul>
 <p>核心思想：一个单词的表达可以通过在它周围出现的单词计算出来（Word2Vec）<br>举例如下：<br>d1: Albert Einstein was a physicist<br>d2: Richard Feynman was a physicist</p>
 <p>WordsVec 分解Word-Word矩阵，建模单词间的上下文共现</p>
-<div class="table-container">
-<table>
-<thead>
-<tr>
-<th></th>
-<th>Einstein</th>
-<th>Feynman</th>
-<th>physicist</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Einstein</td>
-<td>0</td>
-<td>0</td>
-<td>1</td>
-</tr>
-<tr>
-<td>Feynman</td>
-<td>0</td>
-<td>0</td>
-<td>1</td>
-</tr>
-<tr>
-<td>physicist</td>
-<td>1</td>
-<td>1</td>
-<td>0</td>
-</tr>
-</tbody>
-</table>
-</div>
+<p>||Einstein|Feynman|physicist|<br>|–|–|–|–|–|<br>|Einstein|0|0|1|<br>|Feynman|0|0|1|<br>|physicist|1|1|0|</p>
 
         </div>
         
@@ -519,7 +478,7 @@ S_{M*M}&=D*D^T\\
             <h2 id="监督学习的形式化描述"><a href="#监督学习的形式化描述" class="headerlink" title="监督学习的形式化描述"></a>监督学习的形式化描述</h2><h3 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h3><ul>
 <li>样本空间$X$(如X为所有的网页集合)和目标空间$Y$(Y={个人主页，公司主页，科研机构主页，其他网页})</li>
 <li>预测函数$f：X-&gt;Y$</li>
-<li>假设空间$H=\{h|h:X-&gt;Y\}$</li>
+<li>假设空间$H={h|h:X-&gt;Y}$</li>
 </ul>
 <h3 id="算法输入"><a href="#算法输入" class="headerlink" title="算法输入"></a>算法输入</h3><ul>
 <li>训练集合$D={(x_i,y_i)}_{i=1}^N$,其中$(x_i,y_i)\in X*Y$</li>
@@ -528,69 +487,61 @@ S_{M*M}&=D*D^T\\
 <li>根据D中的样本估计”最优”的函数$h\in H$,使之能够对<strong>未出现在D中的样本</strong>的标签进行预测</li>
 </ul>
 <hr>
-<div class="table-container">
 <table>
 <thead>
 <tr>
-<th style="text-align:center"></th>
-<th style="text-align:center">二值分类（Y为类别集合）</th>
-<th style="text-align:center">回归（Y为实数集合）</th>
-<th style="text-align:center">结构预测/排序（Y为结构类型/排序）</th>
+<th align="center"></th>
+<th align="center">二值分类（Y为类别集合）</th>
+<th align="center">回归（Y为实数集合）</th>
+<th align="center">结构预测/排序（Y为结构类型/排序）</th>
 </tr>
 </thead>
-<tbody>
-<tr>
-<td style="text-align:center">线性函数$f(x)=<w,x>$</w,x></td>
-<td style="text-align:center">Perceptron,SVM</td>
-<td style="text-align:center">Ridge regression SVR</td>
-<td style="text-align:center">Structured SVM,Ranking SVM</td>
+<tbody><tr>
+<td align="center">线性函数$f(x)=&lt;w,x&gt;$</td>
+<td align="center">Perceptron,SVM</td>
+<td align="center">Ridge regression SVR</td>
+<td align="center">Structured SVM,Ranking SVM</td>
 </tr>
 <tr>
-<td style="text-align:center">树</td>
-<td style="text-align:center">Decision tree</td>
-<td style="text-align:center">Regression tree</td>
-<td style="text-align:center">LambdaMART</td>
+<td align="center">树</td>
+<td align="center">Decision tree</td>
+<td align="center">Regression tree</td>
+<td align="center">LambdaMART</td>
 </tr>
 <tr>
-<td style="text-align:center">神经网络</td>
-<td style="text-align:center">神经网络</td>
-<td style="text-align:center">神经网络</td>
-<td style="text-align:center">RankNet</td>
+<td align="center">神经网络</td>
+<td align="center">神经网络</td>
+<td align="center">神经网络</td>
+<td align="center">RankNet</td>
 </tr>
 <tr>
-<td style="text-align:center">叠加函数$f(x)=\sum_th_t(x)$</td>
-<td style="text-align:center">AdaBoost</td>
-<td style="text-align:center">Boosted Regression Tree</td>
-<td style="text-align:center">RankBoost</td>
+<td align="center">叠加函数$f(x)=\sum_th_t(x)$</td>
+<td align="center">AdaBoost</td>
+<td align="center">Boosted Regression Tree</td>
+<td align="center">RankBoost</td>
 </tr>
-</tbody>
-</table>
-</div>
+</tbody></table>
 <hr>
 <h2 id="分类模型的评价方法"><a href="#分类模型的评价方法" class="headerlink" title="分类模型的评价方法"></a>分类模型的评价方法</h2><h3 id="n折交叉验证"><a href="#n折交叉验证" class="headerlink" title="n折交叉验证"></a>n折交叉验证</h3><p><img src="https://ws4.sinaimg.cn/large/006tNbRwly1fxs8tdtjifj31bk0e8whc.jpg" alt></p>
-<h3 id="评价准则"><a href="#评价准则" class="headerlink" title="评价准则"></a>评价准则</h3><div class="table-container">
-<table>
+<h3 id="评价准则"><a href="#评价准则" class="headerlink" title="评价准则"></a>评价准则</h3><table>
 <thead>
 <tr>
-<th style="text-align:center"></th>
-<th style="text-align:center">预测为正样本</th>
-<th style="text-align:center">预测为负样本</th>
+<th align="center"></th>
+<th align="center">预测为正样本</th>
+<th align="center">预测为负样本</th>
 </tr>
 </thead>
-<tbody>
-<tr>
-<td style="text-align:center">标注为正样本</td>
-<td style="text-align:center">TP(true positive)</td>
-<td style="text-align:center">FN(false negative)</td>
+<tbody><tr>
+<td align="center">标注为正样本</td>
+<td align="center">TP(true positive)</td>
+<td align="center">FN(false negative)</td>
 </tr>
 <tr>
-<td style="text-align:center">标注为负样本</td>
-<td style="text-align:center">FP(false positive)</td>
-<td style="text-align:center">TN(true negative)</td>
+<td align="center">标注为负样本</td>
+<td align="center">FP(false positive)</td>
+<td align="center">TN(true negative)</td>
 </tr>
-</tbody>
-</table>
-</div>
+</tbody></table>
 <ul>
 <li>$Accuracy = \frac{TP+TN}{TP+FN+FP+TN}$</li>
 <li>$Precision = \frac{TP}{TP+FP}$</li>
@@ -608,14 +559,8 @@ S_{M*M}&=D*D^T\\
 <h3 id="选择决策特征"><a href="#选择决策特征" class="headerlink" title="选择决策特征"></a>选择决策特征</h3><p>核心步骤：选择<strong>合适</strong>的特征进行决策，划分数据，生成子节点<br>合适：尽量大的减少划分后自数据集的混杂度</p>
 <p><img src="https://ws3.sinaimg.cn/large/006tNbRwly1fxsi7sec7gj31660hqjsv.jpg" alt></p>
 <h3 id="信息增益-Information-gain"><a href="#信息增益-Information-gain" class="headerlink" title="信息增益(Information gain)"></a>信息增益(Information gain)</h3><p><img src="https://ws2.sinaimg.cn/small/006tNbRwly1fxss71x6b0j30gi0d4js6.jpg" alt></p>
-<p>从上图可以看出有以下性质</p>
-<script type="math/tex; mode=display">
-\begin{aligned}
-&H(A,X) = H(X,A)\\
-&IG(X|A) = IG(A|X)\\
-&IG(X|X) = H(X)\\
-&IG(X|A) = H(X) + H(A) - H(X,A)
-\end{aligned}</script><p>对于上述决策树算法有以下特征：</p>
+<p>从上图可以看出有以下性质<br>$$<br>\begin{aligned}<br>&amp;H(A,X) = H(X,A)\<br>&amp;IG(X|A) = IG(A|X)\<br>&amp;IG(X|X) = H(X)\<br>&amp;IG(X|A) = H(X) + H(A) - H(X,A)<br>\end{aligned}<br>$$</p>
+<p>对于上述决策树算法有以下特征：</p>
 <ul>
 <li>贪心策略 <ul>
 <li>从根节点开始，已建立的树不再改变</li>
@@ -632,12 +577,11 @@ S_{M*M}&=D*D^T\\
 <hr>
 <h2 id="SVM-Perceptron"><a href="#SVM-Perceptron" class="headerlink" title="SVM/Perceptron"></a>SVM/Perceptron</h2><p>分类边距Margin：对线性分类器而言，边距就是从分类面到最近的训练样本的距离。<br>SVM(support vector machine)：最大化分类边距，VC理论证明最大边距分类器有较好的泛化能力。</p>
 <p><img src="https://ws2.sinaimg.cn/large/006tNbRwly1fxssvady1bj31bw0iu772.jpg" alt></p>
-<p>$$<br>Margin = |x^+-x^-| = |\lambda w|=\frac{2}{<w,w>}\sqrt{<w,w>}=\frac{2}{\sqrt{w,w}}</w,w></w,w></p>
-<p>$$</p>
-<p>优化目标: $min_{w,b}|w|^2$，约束条件$y_i(<w,x_i>+b)\geq 1, for \,i=1,…,N$</w,x_i></p>
+<p>$$<br>Margin = |x^+-x^-| = |\lambda w|=\frac{2}{&lt;w,w&gt;}\sqrt{&lt;w,w&gt;}=\frac{2}{\sqrt{w,w}}<br>$$</p>
+<p>优化目标: $min_{w,b}|w|^2$，约束条件$y_i(&lt;w,x_i&gt;+b)\geq 1, for ,i=1,…,N$</p>
 <p>当出现线性不可分的时候，解决方案是容忍错误的发生，采用软边距</p>
 <p><img src="https://ws3.sinaimg.cn/large/006tNbRwly1fxstiyn2x1j31ac0he40m.jpg" alt></p>
-<p>优化目标：$min_{w,b}|w|^2+C\cdot \sum_{i=1}^N\xi_i$，约束条件$y_i(<w,x_i>+b)\geq 1-\xi_i,\xi_i \geq 0$<br>$C$：权衡边距大小与错误容忍度，C变大牺牲边距减少训练集合上的错误</w,x_i></p>
+<p>优化目标：$min_{w,b}|w|^2+C\cdot \sum_{i=1}^N\xi_i$，约束条件$y_i(&lt;w,x_i&gt;+b)\geq 1-\xi_i,\xi_i \geq 0$<br>$C$：权衡边距大小与错误容忍度，C变大牺牲边距减少训练集合上的错误</p>
 <hr>
 <h2 id="AdaBoost"><a href="#AdaBoost" class="headerlink" title="AdaBoost"></a>AdaBoost</h2><ul>
 <li>组会有差异性的弱分类器可以得到强分类器</li>
@@ -1030,18 +974,18 @@ S_{M*M}&=D*D^T\\
         
         <article class="media">
             
-            <a href="/2019/07/21/数据挖掘/2019-08-13-实时异常检测/" class="media-left">
+            <a href="/2019/07/21/安全/2019-07-22-xgboost/" class="media-left">
                 <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="实时异常检测（xStream，KDD&#39;18）">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="孤立森林（Isolation Forest）">
                 </p>
             </a>
             
             <div class="media-content">
                 <div class="content">
                     <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-07-20T16:00:00.000Z">2019-07-21</time></div>
-                    <a href="/2019/07/21/数据挖掘/2019-08-13-实时异常检测/" class="title has-link-black-ter is-size-6 has-text-weight-normal">实时异常检测（xStream，KDD&#39;18）</a>
+                    <a href="/2019/07/21/安全/2019-07-22-xgboost/" class="title has-link-black-ter is-size-6 has-text-weight-normal">孤立森林（Isolation Forest）</a>
                     <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/Anomaly-detection/">Anomaly detection</a>
+                        <a class="has-link-grey -link" href="/categories/Security/">Security</a>
                     </p>
                 </div>
             </div>
@@ -1530,18 +1474,18 @@ S_{M*M}&=D*D^T\\
         
         <article class="media">
             
-            <a href="/2019/07/21/数据挖掘/2019-08-13-实时异常检测/" class="media-left">
+            <a href="/2019/07/21/安全/2019-07-22-xgboost/" class="media-left">
                 <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="实时异常检测（xStream，KDD&#39;18）">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="孤立森林（Isolation Forest）">
                 </p>
             </a>
             
             <div class="media-content">
                 <div class="content">
                     <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-07-20T16:00:00.000Z">2019-07-21</time></div>
-                    <a href="/2019/07/21/数据挖掘/2019-08-13-实时异常检测/" class="title has-link-black-ter is-size-6 has-text-weight-normal">实时异常检测（xStream，KDD&#39;18）</a>
+                    <a href="/2019/07/21/安全/2019-07-22-xgboost/" class="title has-link-black-ter is-size-6 has-text-weight-normal">孤立森林（Isolation Forest）</a>
                     <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/Anomaly-detection/">Anomaly detection</a>
+                        <a class="has-link-grey -link" href="/categories/Security/">Security</a>
                     </p>
                 </div>
             </div>

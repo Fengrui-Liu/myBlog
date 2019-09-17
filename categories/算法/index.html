@@ -182,81 +182,35 @@
             <p>原论文 <a href="http://papers.nips.cc/paper/1861-algorithms-for-non-negative-matrix-factorization" target="_blank" rel="noopener">Algorithms for Non-negative Matrix Factorization</a></p>
 <hr>
 <h2 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h2><p>非负矩阵(NMF)对于多元数据的分解来说很有用，这里分析两个不同的NMF算法，其中一个最小化二乘误差，另一个最小化广义Kullback-Leibler分歧。两种算法的单调收敛可以使用类似于用于证明期望最大化算法的收敛的辅助功能来证明。算法也可以解释为对角重新缩放的梯度下降，其中最佳地选择重定标因子以确保收敛。</p>
-<h2 id="非负矩阵的分解"><a href="#非负矩阵的分解" class="headerlink" title="非负矩阵的分解"></a>非负矩阵的分解</h2><p>我们考虑以下形式化问题的求解：<br><strong>NMF</strong> 给定一个非负矩阵$V$，找到非负矩阵$W$和$H$使得有以下式子：</p>
-<script type="math/tex; mode=display">V \approx WH \tag{1}</script><p><strong>NMF</strong>可以被应用到多元数据的统计分析当中，给定一个n维的数据向量集，由一个 $n<em>m$ 的矩阵$V$来表示，其中$m$表示数据集的例子个数。这个矩阵可以被分解成$n</em>r$的矩阵$W$以及$r*m$的矩阵$H$，通常$r$都是要比$n$和$m$要小的，所以$W$与$H$也比原始矩阵要小一些。也就是说结果可以看做是原始数据矩阵的一种压缩。</p>
+<h2 id="非负矩阵的分解"><a href="#非负矩阵的分解" class="headerlink" title="非负矩阵的分解"></a>非负矩阵的分解</h2><p>我们考虑以下形式化问题的求解：<br><strong>NMF</strong> 给定一个非负矩阵$V$，找到非负矩阵$W$和$H$使得有以下式子：<br>$$V \approx WH \tag{1}$$</p>
+<p><strong>NMF</strong>可以被应用到多元数据的统计分析当中，给定一个n维的数据向量集，由一个 $n<em>m$ 的矩阵$V$来表示，其中$m$表示数据集的例子个数。这个矩阵可以被分解成$n</em>r$的矩阵$W$以及$r*m$的矩阵$H$，通常$r$都是要比$n$和$m$要小的，所以$W$与$H$也比原始矩阵要小一些。也就是说结果可以看做是原始数据矩阵的一种压缩。</p>
 <p>那么公式（1）有什么意义呢？他可以携程列的形式$v \approx Wh$，$v$和$h$都是对应矩阵$V$和$H$的某一列。也就是说，每一列的数据向量$v$都是对于矩阵$W$的一个线性变换，权重取值为$h$。因此$W$可以被视为包含针对V中的数据的线性近似而优化的基础。因为很多基本列都可以变换得到其他的数据向量，因此一个好的变换就是可以通过这些基本列来实现。</p>
 <p>现在所关注的不是NMF的如何应用，而是关注与找到非负矩阵如何分解。当然，其他类型的矩阵分解已经在数值线性代数中被广泛研究了，但是由于非负的限制，使得之前的工作与现在的例子不完全兼容。</p>
 <p>现在我们考虑两种基于不断迭代更新$W$和$H$的NMF算法，因为这些算法容易实现且可以收敛，在实际情况中也可以应用。其他算法可能也有效但是比较难实现。</p>
 <p>在我们算法的每一次迭代中，$W$与$H$的新值可以通过公式（1）将当前值乘以质量因子而得。我们证明得出这种近似估计的质量随着应用的多次迭代，单调递增。也就是说这种重复迭代通过更新规则保证了矩阵分解的局部优化的收敛。</p>
-<h2 id="成本函数"><a href="#成本函数" class="headerlink" title="成本函数"></a>成本函数</h2><p>为了找到近似分解$V \approx WH$，我们首先需要确定成本函数来量化估计质量。成本函数可以通过构造两个非负矩阵$A$和$B$的距离来确定。一个有效的测量就是简单计算两个矩阵的欧氏距离</p>
-<script type="math/tex; mode=display">
-\left \| A-B \right \|^2=\sum_{ij}(A_{ij}-B_{ij})^2 \tag{2}</script><p>根据上式可以明显看出当$A=B$时，取下界0。另外一个有效的测量方法是</p>
-<script type="math/tex; mode=display">
-D(A||B)=\sum_{ij}(A_{ij}log\frac{A_{ij}}{B_{ij}})-A_{ij}+B_{ij} \tag{3}</script><p>虽然上式的下界也是0，但是却不能称之为距离，因为并没有根据A和B对称，所以我们将其称之为A与B的区分度，它简化了Kullback-Leibler分歧，或者说是相对熵。当$\sum_{ij}A_{ij}=\sum_{ij}B_{ij}=1$，A和B可以被看作是归一化的概率分布。<br>现在我们考虑两个可能的形式化NMF优化问题：<br><strong>Problem 1</strong> 最小化关于W和H的式子$\left |V-WH \right |^2$，其中$W，H\geq0$<br><strong>Problem 2</strong>最小化关于W和H的式子$D(V |WH)$，其中$W，H\geq0$</p>
+<h2 id="成本函数"><a href="#成本函数" class="headerlink" title="成本函数"></a>成本函数</h2><p>为了找到近似分解$V \approx WH$，我们首先需要确定成本函数来量化估计质量。成本函数可以通过构造两个非负矩阵$A$和$B$的距离来确定。一个有效的测量就是简单计算两个矩阵的欧氏距离<br>$$<br>\left | A-B \right |^2=\sum_{ij}(A_{ij}-B_{ij})^2 \tag{2}<br>$$<br>根据上式可以明显看出当$A=B$时，取下界0。另外一个有效的测量方法是<br>$$<br>D(A||B)=\sum_{ij}(A_{ij}log\frac{A_{ij}}{B_{ij}})-A_{ij}+B_{ij} \tag{3}<br>$$<br>虽然上式的下界也是0，但是却不能称之为距离，因为并没有根据A和B对称，所以我们将其称之为A与B的区分度，它简化了Kullback-Leibler分歧，或者说是相对熵。当$\sum_{ij}A_{ij}=\sum_{ij}B_{ij}=1$，A和B可以被看作是归一化的概率分布。<br>现在我们考虑两个可能的形式化NMF优化问题：<br><strong>Problem 1</strong> 最小化关于W和H的式子$\left |V-WH \right |^2$，其中$W，H\geq0$<br><strong>Problem 2</strong>最小化关于W和H的式子$D(V |WH)$，其中$W，H\geq0$</p>
 <p>尽管上式对于$WH$都分别是凸函数，但是二者一起来看就不是凸函数了，所以在全局对于$WH$找到一个最小值是不现实的，然而有很多技术可以进行数值优化找到局部最小值。<br>梯度下降法可能是最简单的一种方法，但是收敛速度可能比较慢，另外的如共轭梯度可以快速收敛找到一个局部最小值，但是实现复杂。除此之外，梯度下降法对于步长还比较敏感，对于大规模的应用来说适应性比较低。</p>
 <h2 id="乘法更新规则"><a href="#乘法更新规则" class="headerlink" title="乘法更新规则"></a>乘法更新规则</h2><p>我们发现”乘法更新规则”对于解决<strong>Problem 1&amp;2</strong>来说有较高的效率提升且易于实现。</p>
-<p><strong>Theorem 1</strong> 欧氏距离$\left | V -WH \right |$在以下的更新规则中是非增长的当W和H达到平稳点的时候，欧氏距离不再发生变化。</p>
-<script type="math/tex; mode=display">
-H_{a \mu} \leftarrow H_{a \mu} \\frac{(W^TV)\_{a\mu}}{(W^TWH)_{a\mu}}</script><script type="math/tex; mode=display">
-W_{ia} \leftarrow W_{ia} \frac{(VH^T)\_{ia}}{(WHH^T)_{ia}} \tag{4}</script><p><strong>Theorem 2</strong> $D(V |WH)$的分歧子啊以下更新规则中不再增加。</p>
-<script type="math/tex; mode=display">
-H_{a \mu} \leftarrow H_{a \mu} \frac{\sum_iW_{ia}V_{i\mu}/(WH)_{i\mu}}{\sum_kW_{ka}} \\\\
-W_{ia} \leftarrow W_{ia} \frac{\sum_{\mu}H_{a\mu}V_{i\mu}/(WH)_{i\mu}}{\sum_vH_{av}} \tag{5}</script><p>当W和H达到平稳点时，区分度会保持不变</p>
-<h2 id="乘法与加法更新规则"><a href="#乘法与加法更新规则" class="headerlink" title="乘法与加法更新规则"></a>乘法与加法更新规则</h2><p>拿乘法更新规则与梯度下降法相比较是很有用的。特别的有，一个对于H的简单加法更新可以减小平方距离，可以被写作：</p>
-<script type="math/tex; mode=display">
-H_{a\mu} \leftarrow H_{a\mu}+ \eta_{a\mu}[(W^TV)\_{a\mu}-(W^TWH)_{a\mu}] \tag{6}</script><p>如果$\eta_{a\mu}$都等于小的正整数，那么就是常规的梯度下降法，只要这个数足够小那么该式就可以规约成$\left | V-WH \right |$<br>如果我们规定变量</p>
-<script type="math/tex; mode=display">
-\eta_{a\mu} = \frac{H_{a\mu}}{(W^TWH)_{a\mu}} \tag{7}</script><p>那么我们就得到了<strong>Theorem 1</strong>的更新规则。注意到重缩放的结果是由乘法因子与分母中的梯度的正分量以及分子中的负分量的绝对值来决定的。</p>
-<p>至于区分度，斜向重缩放的梯度下降表示形式为</p>
-<script type="math/tex; mode=display">
-H_{a\mu} \leftarrow H_{a\mu}+\eta_{a\mu}[\sum_iW_{ia}\frac{V_{i\mu}}{(WH)_{i\mu}}-\sum_iW_{ia}] \tag{8}</script><p>同样的，如果$\eta_{a\mu}$是小的正数，这个更新应该会减少$D(V||WH)$，如果我们设定</p>
-<script type="math/tex; mode=display">
-\eta_{a\mu}=\frac{H_{a\mu}}{\sum_iW_{ia}} \tag{9}</script><p>我们将会得到对于H的<strong>Theorem 2</strong>更新规则。这个重缩放能够被解释成一个在分母中有正因子梯度下降的乘法规则和分子中有负因子的乘法因子。<br>由于我们选择的$\eta_{a\mu}$并不非常小，所以它并不保证这样的梯度下降会造成成本函数的收敛。但是下一节将会对此证明。</p>
+<p><strong>Theorem 1</strong> 欧氏距离$\left | V -WH \right |$在以下的更新规则中是非增长的当W和H达到平稳点的时候，欧氏距离不再发生变化。<br>$$<br>H_{a \mu} \leftarrow H_{a \mu} \frac{(W^TV)_{a\mu}}{(W^TWH)_{a\mu}}<br>$$</p>
+<p>$$<br>W_{ia} \leftarrow W_{ia} \frac{(VH^T)_{ia}}{(WHH^T)_{ia}} \tag{4}<br>$$</p>
+<p><strong>Theorem 2</strong> $D(V |WH)$的分歧子啊以下更新规则中不再增加。<br>$$<br>H_{a \mu} \leftarrow H_{a \mu} \frac{\sum_iW_{ia}V_{i\mu}/(WH)<em>{i\mu}}{\sum_kW</em>{ka}} \\<br>W_{ia} \leftarrow W_{ia} \frac{\sum_{\mu}H_{a\mu}V_{i\mu}/(WH)<em>{i\mu}}{\sum_vH</em>{av}} \tag{5}<br>$$<br>当W和H达到平稳点时，区分度会保持不变</p>
+<h2 id="乘法与加法更新规则"><a href="#乘法与加法更新规则" class="headerlink" title="乘法与加法更新规则"></a>乘法与加法更新规则</h2><p>拿乘法更新规则与梯度下降法相比较是很有用的。特别的有，一个对于H的简单加法更新可以减小平方距离，可以被写作：<br>$$<br>H_{a\mu} \leftarrow H_{a\mu}+ \eta_{a\mu}[(W^TV)_{a\mu}-(W^TWH)_{a\mu}] \tag{6}<br>$$</p>
+<p>如果$\eta_{a\mu}$都等于小的正整数，那么就是常规的梯度下降法，只要这个数足够小那么该式就可以规约成$\left | V-WH \right |$<br>如果我们规定变量</p>
+<p>$$<br>\eta_{a\mu} = \frac{H_{a\mu}}{(W^TWH)_{a\mu}} \tag{7}<br>$$</p>
+<p>那么我们就得到了<strong>Theorem 1</strong>的更新规则。注意到重缩放的结果是由乘法因子与分母中的梯度的正分量以及分子中的负分量的绝对值来决定的。</p>
+<p>至于区分度，斜向重缩放的梯度下降表示形式为<br>$$<br>H_{a\mu} \leftarrow H_{a\mu}+\eta_{a\mu}[\sum_iW_{ia}\frac{V_{i\mu}}{(WH)<em>{i\mu}}-\sum_iW</em>{ia}] \tag{8}<br>$$<br>同样的，如果$\eta_{a\mu}$是小的正数，这个更新应该会减少$D(V||WH)$，如果我们设定<br>$$<br>\eta_{a\mu}=\frac{H_{a\mu}}{\sum_iW_{ia}} \tag{9}<br>$$<br>我们将会得到对于H的<strong>Theorem 2</strong>更新规则。这个重缩放能够被解释成一个在分母中有正因子梯度下降的乘法规则和分子中有负因子的乘法因子。<br>由于我们选择的$\eta_{a\mu}$并不非常小，所以它并不保证这样的梯度下降会造成成本函数的收敛。但是下一节将会对此证明。</p>
 <h2 id="收敛证明"><a href="#收敛证明" class="headerlink" title="收敛证明"></a>收敛证明</h2><p>为了证明$Theorems 1,2$，我们会重复使用一个辅助函数来近似期望最大化的算法。</p>
-<p><strong>定理 1</strong> $G(h,h’)$是一个对于$F(h)$的辅助函数，当且仅当以下条件满足时</p>
-<script type="math/tex; mode=display">
-G(h,h') \geq F(h),G(h,h)=F(h) \tag{10}</script><p>由于<strong>Lemma 1</strong>，辅助函数是一个非常有帮助的函数，在<strong>Fig.1</strong>中有所阐释。 </p>
-<p>如果G是一个辅助函数，那么F在更新过程中是一个非增长的。</p>
-<script type="math/tex; mode=display">
-h^{t+1}=arg min_h\,G(h,h^t)  \tag{11}</script><p><img src="https://ws2.sinaimg.cn/large/006tNbRwly1fwgpvggtq6j30va0e2myc.jpg" alt></p>
+<p><strong>定理 1</strong> $G(h,h’)$是一个对于$F(h)$的辅助函数，当且仅当以下条件满足时<br>$$<br>G(h,h’) \geq F(h),G(h,h)=F(h) \tag{10}<br>$$</p>
+<p>由于<strong>Lemma 1</strong>，辅助函数是一个非常有帮助的函数，在<strong>Fig.1</strong>中有所阐释。 </p>
+<p>如果G是一个辅助函数，那么F在更新过程中是一个非增长的。<br>$$<br>h^{t+1}=arg min_h,G(h,h^t)  \tag{11}<br>$$</p>
+<p><img src="https://ws2.sinaimg.cn/large/006tNbRwly1fwgpvggtq6j30va0e2myc.jpg" alt></p>
 <p><strong>证明：</strong> $F(h^{t+1})\leq G(h^{t+1},h^t)\leq G(h^t,h^t) = F(h^t)$</p>
-<p>注意到当$h^t$是函数$G(h,h^t)$的局部最小点的时候，有$F(h^{t+1})=F(h^t)$。如果$F$存在分歧且在$h^t$的很小一个邻域内连续，就是说$\bigtriangledown F(h^t)=0$，因此，由(11)的更新规则，我们能得到一个序列，在局部对目标函数的最小值连续的收敛估计$h_{min}=arg\,min_hF(h)$</p>
-<script type="math/tex; mode=display">
-F(h_{min}) \leq ...F(h^{t+1}) \leq F(h^t) ... \leq F(h_2) \leq F(h_1) \leq F(h_0) \tag{12}</script><p><strong>定理 2</strong> 如果$K(h^t)$是一个对角矩阵</p>
-<script type="math/tex; mode=display">
-K_{ab}(h^t) = \delta_{ab}(W^TWh^t)_a/h_a^t/h_a^t \tag{13}</script><p>然后</p>
-<script type="math/tex; mode=display">
-G(h,h^t) = F(h^t)+(h-h^t)^T\bigtriangledown F(h^t) + \frac{1}{2}(h-h^t)^TK(h^t)(h-h^t) \tag{14}</script><p>作为以下函数的辅助函数</p>
-<script type="math/tex; mode=display">
-F(h)=\frac{1}{2}\sum_i(v_i-\sum_aW_{ia}h_a)^2 \tag{15}</script><p>证明有：<br>因为G(h,h) = F(h),我们需要证明$G(h,h^t)\geq F(h)$ 我们比较下式与(14)</p>
-<script type="math/tex; mode=display">
-F(h) = F(h^t)+(h-h^t)^T\bigtriangledown F(h^t) + \frac{1}{2}(h-h^t)^T(W^TW)(h-h^t) \tag{16}</script><p>发现要满足$G(h,h^t)\geq F(h)$等价于</p>
-<script type="math/tex; mode=display">
-0 \leq (h-h^t)^T\[K(h^t)-W^TW\]\(h-h^t) \tag{17}</script><p>为了证明半定，考虑以下矩阵：</p>
-<script type="math/tex; mode=display">
-M_{ab}(h^t) = h_a^t(K(h^t)-W^TW)_{ab}h_b^t \tag{18}</script><p>这样，当且仅当$M$是一个半正定矩阵时，$K-W^TW$也是一个半正定的矩阵。有：</p>
-<script type="math/tex; mode=display">
-\begin{aligned}    
-\upsilon^TM\upsilon = \frac{1}{2}\sum_{ab}(W^TW)_{ab}h_a^th_b^t(\upsilon_a - \upsilon_b)^2 
-\end{aligned}</script><p>上式大于0，我们可以证明Theorem1的收敛<br><strong>Theorem 1证明</strong> 将公式(14)的结果代入公式(11)中得到更新规则：</p>
-<script type="math/tex; mode=display">
-h^{t+1} = h^t - K(h^t)^{-1} \bigtriangledown F(h^t) \tag{21}</script><p>因为公式(14)是一个辅助函数，F在此更新规则下是非增长的，根据Lemma 1，可以明确得到下式：</p>
-<script type="math/tex; mode=display">
-h_a^{t+1} = h_a^t\frac{W^T\upsilon_a}{W^TWh^t}_a \tag{22}</script><p>翻转W与H的角色，F也可以在W的更新规则下保持不增长。<br>现在我们考虑对于分歧开销函数的估计函数。<br><strong>Lemma 3</strong> 定义</p>
-<script type="math/tex; mode=display">
-G(h,h^t) = \sum_i(\upsilon_i log\upsilon_i - \upsilon_i)+\sum_{ia}W_{ia}h_a \\
--\sum_{ia}\upsilon_i \frac{W_{ia}h_a^t}{\sum_bW_{ib}h_b^t}(logW_{ia}h_a-log\frac{W_{ia}h_a^t}{\sum_b}W_{ib}h_b^t) \tag{23}</script><p>这是对于下式的辅助函数</p>
-<script type="math/tex; mode=display">
-F(h) = \sum_i \upsilon_ilog(\frac{\upsilon_i}{\sum_aW_{ia}h_a}) - \upsilon_i + \sum_aW_{ia}h_a \tag{24}</script><p><strong>证明</strong><br>可以很直接证明$G(h,h)=F(h)$，为了证明$G(h,h) \geq F(h)$，有</p>
-<script type="math/tex; mode=display">
--log \sum_aW_{ia}h_a \leq -\sum_a\alpha_a log\frac{W_{ia}h_a}{\alpha_a} \tag{25}</script><p>总的来说这里的$\alpha_a$是非负的。设定有</p>
-<script type="math/tex; mode=display">
-\alpha_a = \frac{W_{ia}h_a^t}{\sum_bW_{ib}h_b^t} \tag{26}</script><p>我们可以由此得到</p>
-<script type="math/tex; mode=display">
--log\sum_aW_{ia}h_a \leq - \sum_a\frac{W_{ia}h_a^t}{\sum_bW_{ib}h_b^t}(log W_{ia}h_a - log\frac{W_{ia}}{\sum_bW_{ib}h_b^t}) \tag{27}</script><p>从上述不等式可以看出$F(h)\leq G(h,h^t)$</p>
-<p><strong>Theorem 2证明</strong> 关于h的$G(h,h^t)$的最小值是由梯度下降为0时而决定的：</p>
-<script type="math/tex; mode=display">
-\frac{dF(h,h^t)}{dh_a}=-\sum_i \upsilon_i\frac{W_{ia}h_a^t}{\sum_bW_{ib}h_b^t}W_{ia} \tag{28}</script><p>因为G是一个辅助函数，在公式(24)里面，F在更新下是一个非增长的函数。重写该矩阵可以得到公式(5)。翻转H和W的角色，关于W的更新规则也可以看做是非增长的。</p>
+<p>注意到当$h^t$是函数$G(h,h^t)$的局部最小点的时候，有$F(h^{t+1})=F(h^t)$。如果$F$存在分歧且在$h^t$的很小一个邻域内连续，就是说$\bigtriangledown F(h^t)=0$，因此，由(11)的更新规则，我们能得到一个序列，在局部对目标函数的最小值连续的收敛估计$h_{min}=arg,min_hF(h)$<br>$$<br>F(h_{min}) \leq …F(h^{t+1}) \leq F(h^t) … \leq F(h_2) \leq F(h_1) \leq F(h_0) \tag{12}<br>$$</p>
+<p><strong>定理 2</strong> 如果$K(h^t)$是一个对角矩阵<br>$$<br>K_{ab}(h^t) = \delta_{ab}(W^TWh^t)<em>a/h_a^t/h_a^t \tag{13}<br>$$<br>然后<br>$$<br>G(h,h^t) = F(h^t)+(h-h^t)^T\bigtriangledown F(h^t) + \frac{1}{2}(h-h^t)^TK(h^t)(h-h^t) \tag{14}<br>$$<br>作为以下函数的辅助函数<br>$$<br>F(h)=\frac{1}{2}\sum_i(v_i-\sum_aW</em>{ia}h_a)^2 \tag{15}<br>$$<br>证明有：<br>因为G(h,h) = F(h),我们需要证明$G(h,h^t)\geq F(h)$ 我们比较下式与(14)<br>$$<br>F(h) = F(h^t)+(h-h^t)^T\bigtriangledown F(h^t) + \frac{1}{2}(h-h^t)^T(W^TW)(h-h^t) \tag{16}<br>$$<br>发现要满足$G(h,h^t)\geq F(h)$等价于<br>$$<br>0 \leq (h-h^t)^T[K(h^t)-W^TW](h-h^t) \tag{17}<br>$$<br>为了证明半定，考虑以下矩阵：</p>
+<p>$$<br>M_{ab}(h^t) = h_a^t(K(h^t)-W^TW)_{ab}h_b^t \tag{18}<br>$$</p>
+<p>这样，当且仅当$M$是一个半正定矩阵时，$K-W^TW$也是一个半正定的矩阵。有：</p>
+<p>$$<br>\begin{aligned}<br>\upsilon^TM\upsilon = \frac{1}{2}\sum_{ab}(W^TW)<em>{ab}h_a^th_b^t(\upsilon_a - \upsilon_b)^2<br>\end{aligned}<br>$$<br>上式大于0，我们可以证明Theorem1的收敛<br><strong>Theorem 1证明</strong> 将公式(14)的结果代入公式(11)中得到更新规则：<br>$$<br>h^{t+1} = h^t - K(h^t)^{-1} \bigtriangledown F(h^t) \tag{21}<br>$$<br>因为公式(14)是一个辅助函数，F在此更新规则下是非增长的，根据Lemma 1，可以明确得到下式：<br>$$<br>h_a^{t+1} = h_a^t\frac{W^T\upsilon_a}{W^TWh^t}_a \tag{22}<br>$$<br>翻转W与H的角色，F也可以在W的更新规则下保持不增长。<br>现在我们考虑对于分歧开销函数的估计函数。<br><strong>Lemma 3</strong> 定义<br>$$<br>G(h,h^t) = \sum_i(\upsilon_i log\upsilon_i - \upsilon_i)+\sum</em>{ia}W_{ia}h_a \<br>-\sum_{ia}\upsilon_i \frac{W_{ia}h_a^t}{\sum_bW_{ib}h_b^t}(logW_{ia}h_a-log\frac{W_{ia}h_a^t}{\sum_b}W_{ib}h_b^t) \tag{23}<br>$$<br>这是对于下式的辅助函数<br>$$<br>F(h) = \sum_i \upsilon_ilog(\frac{\upsilon_i}{\sum_aW_{ia}h_a}) - \upsilon_i + \sum_aW_{ia}h_a \tag{24}<br>$$<br><strong>证明</strong><br>可以很直接证明$G(h,h)=F(h)$，为了证明$G(h,h) \geq F(h)$，有<br>$$<br>-log \sum_aW_{ia}h_a \leq -\sum_a\alpha_a log\frac{W_{ia}h_a}{\alpha_a} \tag{25}<br>$$<br>总的来说这里的$\alpha_a$是非负的。设定有<br>$$<br>\alpha_a = \frac{W_{ia}h_a^t}{\sum_bW_{ib}h_b^t} \tag{26}<br>$$<br>我们可以由此得到<br>$$<br>-log\sum_aW_{ia}h_a \leq - \sum_a\frac{W_{ia}h_a^t}{\sum_bW_{ib}h_b^t}(log W_{ia}h_a - log\frac{W_{ia}}{\sum_bW_{ib}h_b^t}) \tag{27}<br>$$<br>从上述不等式可以看出$F(h)\leq G(h,h^t)$</p>
+<p><strong>Theorem 2证明</strong> 关于h的$G(h,h^t)$的最小值是由梯度下降为0时而决定的：<br>$$<br>\frac{dF(h,h^t)}{dh_a}=-\sum_i \upsilon_i\frac{W_{ia}h_a^t}{\sum_bW_{ib}h_b^t}W_{ia} \tag{28}<br>$$<br>因为G是一个辅助函数，在公式(24)里面，F在更新下是一个非增长的函数。重写该矩阵可以得到公式(5)。翻转H和W的角色，关于W的更新规则也可以看做是非增长的。</p>
 
         </div>
         
@@ -303,9 +257,9 @@ F(h) = \sum_i \upsilon_ilog(\frac{\upsilon_i}{\sum_aW_{ia}h_a}) - \upsilon_i + \
         <div class="content">
             <p>对于规模比较大的数据集，但又不是特别特别大的数据集来说，使用位图数据结构的排序是一个不错的选择。<br>注：要求数据没有重复。</p>
 <h3 id="位图-位向量"><a href="#位图-位向量" class="headerlink" title="位图/位向量"></a>位图/位向量</h3><p>表示一个整数合集{1，2，3，5，8，13}可以使用如下字符串：</p>
-<pre><code>0 1 1 1 0 1 0 0 1 0 0 0 0 1 0 0 0 0 0 0 
-</code></pre><p>这种表示方法，1MB大小的空间可以表示月800万个数字，与十进制的7位数字1000万接近。</p>
+<pre><code>0 1 1 1 0 1 0 0 1 0 0 0 0 1 0 0 0 0 0 0 </code></pre><p>这种表示方法，1MB大小的空间可以表示月800万个数字，与十进制的7位数字1000万接近。</p>
 <figure class="highlight c hljs"><table><tr><td class="code"><pre><span class="line"><span class="hljs-comment">// phase 1: initialize set to empty</span></span><br><span class="line"><span class="hljs-keyword">for</span> i = [<span class="hljs-number">0</span>,n]</span><br><span class="line">    bit[i] = <span class="hljs-number">0</span>;</span><br><span class="line"></span><br><span class="line"><span class="hljs-comment">// phase 2: insert present elements into the set</span></span><br><span class="line"><span class="hljs-keyword">for</span> each i in the input file</span><br><span class="line">    bit[i] = <span class="hljs-number">1</span>;</span><br><span class="line"></span><br><span class="line"><span class="hljs-comment">//phase 3: write sorted output</span></span><br><span class="line"></span><br><span class="line"><span class="hljs-keyword">for</span> i = [<span class="hljs-number">0</span>,n]</span><br><span class="line">    <span class="hljs-keyword">if</span> bit[i] == <span class="hljs-number">1</span>  </span><br><span class="line">        write i on the output file</span><br></pre></td></tr></table></figure>
+
 <p>位图数据结构还可以用来检查数据集的重复性</p>
 <p>（编程珠玑）</p>
 
@@ -367,7 +321,9 @@ F(h) = \sum_i \upsilon_ilog(\frac{\upsilon_i}{\sum_aW_{ia}h_a}) - \upsilon_i + \
 <p>对于70%的数据，M&lt;=10000, K&lt;=10000</p>
 <p>对于100%的数据，M&lt;=10000, K&lt;=100000000</p>
 <h2 id="Sample-Input"><a href="#Sample-Input" class="headerlink" title="Sample Input"></a>Sample Input</h2><figure class="highlight plain hljs"><table><tr><td class="code"><pre><span class="line">5</span><br><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td></tr></table></figure>
+
 <h2 id="Sample-Output"><a href="#Sample-Output" class="headerlink" title="Sample Output"></a>Sample Output</h2><figure class="highlight plain hljs"><table><tr><td class="code"><pre><span class="line">4</span><br></pre></td></tr></table></figure>
+
 <hr>
 <h2 id="Solution"><a href="#Solution" class="headerlink" title="Solution"></a>Solution</h2><p>用链表解决这个问题。需要注意以下两点：</p>
 <ol>
@@ -377,58 +333,6 @@ F(h) = \sum_i \upsilon_ilog(\frac{\upsilon_i}{\sum_aW_{ia}h_a}) - \upsilon_i + \
 </ol>
 <figure class="highlight c hljs"><table><tr><td class="code"><pre><span class="line"><span class="hljs-comment">//</span></span><br><span class="line"><span class="hljs-comment">//  main.c</span></span><br><span class="line"><span class="hljs-comment">//  1038</span></span><br><span class="line"><span class="hljs-comment">//</span></span><br><span class="line"><span class="hljs-comment">//  Created by Oscar on 21/09/2017.</span></span><br><span class="line"><span class="hljs-comment">//  Copyright © 2017 刘丰瑞. All rights reserved.</span></span><br><span class="line"><span class="hljs-comment">//</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="hljs-keyword">typedef</span> <span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">Lnode</span>&#123;</span></span><br><span class="line">    <span class="hljs-keyword">int</span> num;</span><br><span class="line"></span><br><span class="line">    <span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">Lnode</span> *<span class="hljs-title">next</span>;</span></span><br><span class="line">&#125;LinkList;</span><br><span class="line"></span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">createList</span> <span class="hljs-params">(LinkList *L,  <span class="hljs-keyword">int</span> n)</span> </span>&#123;</span><br><span class="line">    LinkList *s,*r,*p;</span><br><span class="line">    <span class="hljs-keyword">int</span> i;</span><br><span class="line">    L-&gt;num = <span class="hljs-number">1</span>;</span><br><span class="line">    r = L;</span><br><span class="line">    <span class="hljs-keyword">for</span> (i = <span class="hljs-number">2</span> ; i&lt;=n; i++) &#123;</span><br><span class="line">        s = (LinkList*)<span class="hljs-built_in">malloc</span>(<span class="hljs-keyword">sizeof</span>(LinkList));</span><br><span class="line">        s-&gt;num = i;</span><br><span class="line">        r-&gt;next = s;</span><br><span class="line">        r = s;</span><br><span class="line">    &#125;</span><br><span class="line">    r-&gt;next = L;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">findList</span> <span class="hljs-params">(LinkList *L, <span class="hljs-keyword">long</span> <span class="hljs-keyword">long</span> <span class="hljs-keyword">int</span> n, <span class="hljs-keyword">long</span> <span class="hljs-keyword">long</span> <span class="hljs-keyword">int</span> *remain)</span></span>&#123;</span><br><span class="line">    <span class="hljs-keyword">int</span> a;</span><br><span class="line">    LinkList *f;</span><br><span class="line">    <span class="hljs-keyword">if</span> (n == <span class="hljs-number">1</span>) &#123;</span><br><span class="line">        <span class="hljs-keyword">for</span> (a=<span class="hljs-number">1</span>; a&lt;*remain; a++) &#123;</span><br><span class="line">            L=L-&gt;next;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;<span class="hljs-keyword">else</span> &#123;</span><br><span class="line">        <span class="hljs-keyword">for</span> (a=<span class="hljs-number">0</span>; a&lt;n<span class="hljs-number">-1</span>; a++) &#123;</span><br><span class="line">            L=L-&gt;next;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    f = L-&gt;next;</span><br><span class="line">    L-&gt;next = L-&gt;next-&gt;next;</span><br><span class="line">    L = L-&gt;next;</span><br><span class="line">    *remain -= <span class="hljs-number">1</span>;</span><br><span class="line">    <span class="hljs-built_in">free</span>(f);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">(<span class="hljs-keyword">int</span> argc, <span class="hljs-keyword">const</span> <span class="hljs-keyword">char</span> * argv[])</span> </span>&#123;</span><br><span class="line">    <span class="hljs-keyword">int</span> n,m,i,p=<span class="hljs-number">0</span>,q=<span class="hljs-number">0</span>,a,sum;</span><br><span class="line">    <span class="hljs-keyword">int</span> k;</span><br><span class="line">    LinkList *monkey;</span><br><span class="line">    LinkList *f;</span><br><span class="line">    <span class="hljs-built_in">scanf</span>(<span class="hljs-string">"%d"</span>,&amp;sum);</span><br><span class="line">    monkey = (LinkList *)<span class="hljs-built_in">malloc</span>(<span class="hljs-keyword">sizeof</span>(LinkList));</span><br><span class="line"></span><br><span class="line">    createList(monkey, sum);</span><br><span class="line">    k=sum;</span><br><span class="line">    <span class="hljs-keyword">for</span> (m = <span class="hljs-number">1</span>; m&lt;sum; m++) &#123;</span><br><span class="line">        <span class="hljs-keyword">if</span> (m==sum<span class="hljs-number">-1</span>) &#123;</span><br><span class="line">            <span class="hljs-built_in">scanf</span>(<span class="hljs-string">"%d"</span>,&amp;i);</span><br><span class="line">        &#125;<span class="hljs-keyword">else</span>&#123;</span><br><span class="line">            <span class="hljs-built_in">scanf</span>(<span class="hljs-string">"%d\n"</span>,&amp;i);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        i = i%k;</span><br><span class="line">        <span class="hljs-keyword">if</span> (i == <span class="hljs-number">0</span>) &#123;</span><br><span class="line">            i = k;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="hljs-keyword">if</span> (i == <span class="hljs-number">1</span>) &#123;</span><br><span class="line">            <span class="hljs-keyword">for</span> (a=<span class="hljs-number">1</span>; a&lt;k; a++) &#123;</span><br><span class="line">                monkey=monkey-&gt;next;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;<span class="hljs-keyword">else</span> &#123;</span><br><span class="line">            <span class="hljs-keyword">for</span> (a=<span class="hljs-number">0</span>; a&lt;i<span class="hljs-number">-2</span>; a++) &#123;</span><br><span class="line">                monkey=monkey-&gt;next;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        f = monkey-&gt;next;</span><br><span class="line">        monkey-&gt;next = monkey-&gt;next-&gt;next;</span><br><span class="line">        monkey = monkey-&gt;next;</span><br><span class="line">        k -= <span class="hljs-number">1</span>;</span><br><span class="line">        <span class="hljs-built_in">free</span>(f);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="hljs-built_in">printf</span>(<span class="hljs-string">"%d "</span>, monkey-&gt;num);</span><br><span class="line">    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-        </div>
-        
-        
-        
-    </div>
-</div>
-
-
-
-
-
-
-
-
-    <div class="card">
-    
-    <div class="card-content article ">
-        
-        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
-            <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2017-09-14T16:00:00.000Z">2017-09-15</time>
-                
-                <div class="level-item">
-                <a class="has-link-grey -link" href="/categories/算法/">算法</a>
-                </div>
-                
-                
-                <span class="level-item has-text-grey">
-                    
-                    
-                    1 分钟 读完 (大约 198 个字)
-                </span>
-                
-                
-            </div>
-        </div>
-        
-        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
-            
-                <a class="has-link-black-ter" href="/2017/09/15/算法/2017-9-15-DP最长公共子序列/">DP（最长公共子序列）</a>
-            
-        </h1>
-        <div class="content">
-            <h2 id="Description"><a href="#Description" class="headerlink" title="Description"></a>Description</h2><p>在字母表中，分别给出两个长度为n和m的字符串A和B，确定在A与B中最长公共子序列的长度。</p>
-<p>$A = a_1a_2a_3…a_n$ 其中每个$i_j$都在1和n之间，并且$1&lt;=i_1&lt;i_2&lt;…&lt;i_k&lt;=n$。</p>
-<h2 id="Solution"><a href="#Solution" class="headerlink" title="Solution"></a>Solution</h2><p>使用动态规划解决这个问题，$A = a_1a_2a_3…a_n$，$B = b_1b_2b_3…b_n$，令$L[i,j]$来表示两个公共子序列的长度。那么总结有以下的结论：</p>
-<script type="math/tex; mode=display">
-L[i,j] = \left\{\begin{matrix}
-& 0 & 若i=0或j=0\\
-& L[i-1,j-1]+1 & 若i>0,j>0 和 a_i=b_j\\
-& max\left\{L[i,j-1],L[i-1,j] \right\} & 若i>0,j>0 和a_i \neq b_j
-\end{matrix}\right.</script><h2 id="Algotrithm"><a href="#Algotrithm" class="headerlink" title="Algotrithm"></a>Algotrithm</h2><figure class="highlight c hljs"><table><tr><td class="code"><pre><span class="line">算法： LCS</span><br><span class="line">输入： 字母表上的两个字符串A和B，长度分别为n和m</span><br><span class="line">输出： A和B最长公共子序列的长度</span><br><span class="line"></span><br><span class="line"><span class="hljs-number">1.</span> <span class="hljs-keyword">for</span> i = <span class="hljs-number">0</span> to n</span><br><span class="line"><span class="hljs-number">2.</span>     L[i, <span class="hljs-number">0</span>] = <span class="hljs-number">0</span></span><br><span class="line"><span class="hljs-number">3.</span> end <span class="hljs-keyword">for</span></span><br><span class="line"><span class="hljs-number">4.</span> <span class="hljs-keyword">for</span> j = <span class="hljs-number">0</span> to m</span><br><span class="line"><span class="hljs-number">5.</span>     L[<span class="hljs-number">0</span>, j] = <span class="hljs-number">0</span></span><br><span class="line"><span class="hljs-number">6.</span> end <span class="hljs-keyword">for</span></span><br><span class="line"><span class="hljs-number">7.</span> <span class="hljs-keyword">for</span> i = <span class="hljs-number">1</span> to n</span><br><span class="line"><span class="hljs-number">8.</span>     <span class="hljs-keyword">for</span> j = <span class="hljs-number">1</span> to m</span><br><span class="line"><span class="hljs-number">9.</span>         <span class="hljs-keyword">if</span> a_i = b_j then L[i,j] = L[i<span class="hljs-number">-1</span>,j<span class="hljs-number">-1</span>]+<span class="hljs-number">1</span></span><br><span class="line"><span class="hljs-number">10.</span>        <span class="hljs-keyword">else</span> L[i,j] = max&#123;L[i,j<span class="hljs-number">-1</span>],L[i<span class="hljs-number">-1</span>,j]&#125;</span><br><span class="line"><span class="hljs-number">11.</span>        end <span class="hljs-keyword">if</span></span><br><span class="line"><span class="hljs-number">12.</span>    end <span class="hljs-keyword">for</span></span><br><span class="line"><span class="hljs-number">13.</span> end <span class="hljs-keyword">for</span></span><br><span class="line"><span class="hljs-number">14.</span> <span class="hljs-keyword">return</span> L[n,m]</span><br></pre></td></tr></table></figure>
 
         </div>
         
@@ -480,12 +384,17 @@ L[i,j] = \left\{\begin{matrix}
 <p>$V≤10000,N≤1000$。</p>
 <p>保证操作可在C++ int范围内完成。</p>
 <h2 id="Output-Format"><a href="#Output-Format" class="headerlink" title="Output Format"></a>Output Format</h2><p>输出一个整数，表示最大的价值总和</p>
-<p>Sample Input<br><figure class="highlight plain hljs"><table><tr><td class="code"><pre><span class="line">5 3</span><br><span class="line">2 3</span><br><span class="line">3 2</span><br><span class="line">4 1</span><br></pre></td></tr></table></figure></p>
-<p>Sample Output<br><figure class="highlight plain hljs"><table><tr><td class="code"><pre><span class="line">6</span><br></pre></td></tr></table></figure></p>
+<p>Sample Input</p>
+<figure class="highlight plain hljs"><table><tr><td class="code"><pre><span class="line">5 3</span><br><span class="line">2 3</span><br><span class="line">3 2</span><br><span class="line">4 1</span><br></pre></td></tr></table></figure>
+
+<p>Sample Output</p>
+<figure class="highlight plain hljs"><table><tr><td class="code"><pre><span class="line">6</span><br></pre></td></tr></table></figure>
+
 <hr>
 <h2 id="Solution"><a href="#Solution" class="headerlink" title="Solution"></a>Solution</h2><p>第一层循环是从第一个物品到第n个物品的循环</p>
 <p>第二层循环是先装第一种物品直到装满，然后分别对加入该物品后的体积和价值保留，然后再考虑从包中拿出某个第一种物品，加入第二种物品，直到装满，且价值最大。依次循环直到第n种物品，整个包装满且价值最大。</p>
 <figure class="highlight c++ hljs"><table><tr><td class="code"><pre><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span><span class="hljs-meta-string">&lt;cstdio&gt;</span></span></span><br><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span><span class="hljs-meta-string">&lt;algorithm&gt;</span></span></span><br><span class="line"><span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> <span class="hljs-built_in">std</span>;</span><br><span class="line"><span class="hljs-keyword">int</span> w[<span class="hljs-number">1000</span>],c[<span class="hljs-number">1000</span>],f[<span class="hljs-number">300010</span>];</span><br><span class="line"><span class="hljs-keyword">int</span> V,n;</span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>&#123;</span><br><span class="line">    <span class="hljs-built_in">scanf</span>(<span class="hljs-string">"%d%d"</span>,&amp;V,&amp;n);</span><br><span class="line">    <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i=<span class="hljs-number">1</span>;i&lt;=n;i++)&#123;<span class="hljs-built_in">scanf</span>(<span class="hljs-string">"%d%d"</span>,&amp;w[i],&amp;c[i]);&#125;</span><br><span class="line">    <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i=<span class="hljs-number">1</span>;i&lt;=n;i++)</span><br><span class="line">        <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> j=w[i];j&lt;=V;j++)f[j]=max(f[j],f[j-w[i]]+c[i]);</span><br><span class="line">    <span class="hljs-built_in">printf</span>(<span class="hljs-string">"%d"</span>,f[V]);</span><br><span class="line">    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
 
         </div>
         
@@ -531,24 +440,66 @@ L[i,j] = \left\{\begin{matrix}
         </h1>
         <div class="content">
             <h2 id="Description"><a href="#Description" class="headerlink" title="Description"></a>Description</h2><p>对于 $U={u_1,u_2,u_3…}$ 是一个准备放入容器为$C$的背包中的$n$项物品的集合。我们要解决的是用$U$中的一些物品来装满背包，使得物体的总体积不超过$C$,然后使得背包里的物品总价值最大，形式化表述为：</p>
-<p>给出有$n$项物品的$U$,我们要找出一个子集$S\in U$ 使得</p>
-<script type="math/tex; mode=display">
-\sum_{u_i\in S} v_i</script><p>在约束条件下</p>
-<script type="math/tex; mode=display">
-\sum_{u_i\in S} s_i \leq C</script><p>下最大。</p>
+<p>给出有$n$项物品的$U$,我们要找出一个子集$S\in U$ 使得<br>$$<br>\sum_{u_i\in S} v_i<br>$$<br>在约束条件下<br>$$<br>\sum_{u_i\in S} s_i \leq C<br>$$<br>下最大。</p>
 <h2 id="Solution"><a href="#Solution" class="headerlink" title="Solution"></a>Solution</h2><p>用V[i,j]表示从前i项 $[u_1,u_2,u_3…u_n]$ 中取出来的装入体积为j的背包的物品的最大价值。这里，i的范围是从0到n，j的范围是从0到C。这样，要寻求的是值V[n,C]。也就是说V[0,j]对于所有的j的值都是0，这是由于包里什么都没有。另一方面，V[i,0]对于所有i的值为0，因为没有东西可以放到包里。一般情况下，当i和j都大于0时，有下面的结论：</p>
 <p>V[i,j]是下面两个量的最大值：</p>
 <ul>
 <li>$V[i-1,j]$: 仅用最优的方法取自 $[u_1,u_2,…,u_{i-1}]$的物品去装入体积为j的背包所得的价值最大值。</li>
 <li>$V[i-1,j-s_i] + v_i$: 用最优的方法取自 $[u_1,u_2,…,u_{i-1}]$ 的物品去装入体积为 $j-s_i$ 的背包所得到的价值最大值加上 $u_i$ 的价值。</li>
 </ul>
-<p>形式化有以下递推：</p>
-<script type="math/tex; mode=display">
-V[i,j] =\left\{\begin{matrix}
-0 &&  若i=0或j=0 \\
-V[i-1,j] && 若j<s_i \\
-max\{V[i-1,j],V[i-1,j-s_i]+v_i\} && i\geq 1 和j\geq s_i\\
-\end{matrix}\right.</script><h2 id="Algotithm"><a href="#Algotithm" class="headerlink" title="Algotithm"></a>Algotithm</h2><figure class="highlight c hljs"><table><tr><td class="code"><pre><span class="line">算法：KNAPSACK</span><br><span class="line">输入：物品集合 $U$=&#123;u1,u2...,us&#125;,体积分别为s1,s2,...sn,价值分别为v1,v2,...vn,容量为C的背包。</span><br><span class="line">输出：最大总价值</span><br><span class="line"></span><br><span class="line"> <span class="hljs-keyword">for</span> i=<span class="hljs-number">1</span> to n</span><br><span class="line">     V[i,<span class="hljs-number">0</span>] = <span class="hljs-number">0</span>;</span><br><span class="line"> end <span class="hljs-keyword">for</span></span><br><span class="line"> <span class="hljs-keyword">for</span> j=<span class="hljs-number">0</span> to C</span><br><span class="line">     V[<span class="hljs-number">0</span>,j] = <span class="hljs-number">0</span>;</span><br><span class="line"> end <span class="hljs-keyword">for</span></span><br><span class="line"> <span class="hljs-keyword">for</span> i=<span class="hljs-number">1</span> to n</span><br><span class="line">     <span class="hljs-keyword">for</span> j=<span class="hljs-number">1</span> to C</span><br><span class="line">        V[i,j] = V[i<span class="hljs-number">-1</span>,j]</span><br><span class="line">       <span class="hljs-keyword">if</span> si &lt;= j then V[i,j] = max&#123;V[i<span class="hljs-number">-1</span>,j],V[i<span class="hljs-number">-1</span>,j-si]+vi&#125;</span><br><span class="line">    end <span class="hljs-keyword">for</span></span><br><span class="line"> end <span class="hljs-keyword">for</span></span><br><span class="line"> <span class="hljs-keyword">return</span> V[n,C]</span><br></pre></td></tr></table></figure>
+<p>形式化有以下递推：<br>$$<br>V[i,j] =\left{\begin{matrix}<br>0 &amp;&amp;  若i=0或j=0 \<br>V[i-1,j] &amp;&amp; 若j&lt;s_i \<br>max{V[i-1,j],V[i-1,j-s_i]+v_i} &amp;&amp; i\geq 1 和j\geq s_i\<br>\end{matrix}\right.<br>$$</p>
+<h2 id="Algotithm"><a href="#Algotithm" class="headerlink" title="Algotithm"></a>Algotithm</h2><figure class="highlight c hljs"><table><tr><td class="code"><pre><span class="line">算法：KNAPSACK</span><br><span class="line">输入：物品集合 $U$=&#123;u1,u2...,us&#125;,体积分别为s1,s2,...sn,价值分别为v1,v2,...vn,容量为C的背包。</span><br><span class="line">输出：最大总价值</span><br><span class="line"></span><br><span class="line"> <span class="hljs-keyword">for</span> i=<span class="hljs-number">1</span> to n</span><br><span class="line">     V[i,<span class="hljs-number">0</span>] = <span class="hljs-number">0</span>;</span><br><span class="line"> end <span class="hljs-keyword">for</span></span><br><span class="line"> <span class="hljs-keyword">for</span> j=<span class="hljs-number">0</span> to C</span><br><span class="line">     V[<span class="hljs-number">0</span>,j] = <span class="hljs-number">0</span>;</span><br><span class="line"> end <span class="hljs-keyword">for</span></span><br><span class="line"> <span class="hljs-keyword">for</span> i=<span class="hljs-number">1</span> to n</span><br><span class="line">     <span class="hljs-keyword">for</span> j=<span class="hljs-number">1</span> to C</span><br><span class="line">        V[i,j] = V[i<span class="hljs-number">-1</span>,j]</span><br><span class="line">       <span class="hljs-keyword">if</span> si &lt;= j then V[i,j] = max&#123;V[i<span class="hljs-number">-1</span>,j],V[i<span class="hljs-number">-1</span>,j-si]+vi&#125;</span><br><span class="line">    end <span class="hljs-keyword">for</span></span><br><span class="line"> end <span class="hljs-keyword">for</span></span><br><span class="line"> <span class="hljs-keyword">return</span> V[n,C]</span><br></pre></td></tr></table></figure>
+
+
+        </div>
+        
+        
+        
+    </div>
+</div>
+
+
+
+
+
+
+
+
+    <div class="card">
+    
+    <div class="card-content article ">
+        
+        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+            <div class="level-left">
+                <time class="level-item has-text-grey" datetime="2017-09-14T16:00:00.000Z">2017-09-15</time>
+                
+                <div class="level-item">
+                <a class="has-link-grey -link" href="/categories/算法/">算法</a>
+                </div>
+                
+                
+                <span class="level-item has-text-grey">
+                    
+                    
+                    1 分钟 读完 (大约 198 个字)
+                </span>
+                
+                
+            </div>
+        </div>
+        
+        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+            
+                <a class="has-link-black-ter" href="/2017/09/15/算法/2017-9-15-DP最长公共子序列/">DP（最长公共子序列）</a>
+            
+        </h1>
+        <div class="content">
+            <h2 id="Description"><a href="#Description" class="headerlink" title="Description"></a>Description</h2><p>在字母表中，分别给出两个长度为n和m的字符串A和B，确定在A与B中最长公共子序列的长度。</p>
+<p>$A = a_1a_2a_3…a_n$ 其中每个$i_j$都在1和n之间，并且$1&lt;=i_1&lt;i_2&lt;…&lt;i_k&lt;=n$。</p>
+<h2 id="Solution"><a href="#Solution" class="headerlink" title="Solution"></a>Solution</h2><p>使用动态规划解决这个问题，$A = a_1a_2a_3…a_n$，$B = b_1b_2b_3…b_n$，令$L[i,j]$来表示两个公共子序列的长度。那么总结有以下的结论：</p>
+<p>$$<br>L[i,j] = \left{\begin{matrix}<br>&amp; 0 &amp; 若i=0或j=0\<br>&amp; L[i-1,j-1]+1 &amp; 若i&gt;0,j&gt;0 和 a_i=b_j\<br>&amp; max\left{L[i,j-1],L[i-1,j] \right} &amp; 若i&gt;0,j&gt;0 和a_i \neq b_j<br>\end{matrix}\right.<br>$$</p>
+<h2 id="Algotrithm"><a href="#Algotrithm" class="headerlink" title="Algotrithm"></a>Algotrithm</h2><figure class="highlight c hljs"><table><tr><td class="code"><pre><span class="line">算法： LCS</span><br><span class="line">输入： 字母表上的两个字符串A和B，长度分别为n和m</span><br><span class="line">输出： A和B最长公共子序列的长度</span><br><span class="line"></span><br><span class="line"><span class="hljs-number">1.</span> <span class="hljs-keyword">for</span> i = <span class="hljs-number">0</span> to n</span><br><span class="line"><span class="hljs-number">2.</span>     L[i, <span class="hljs-number">0</span>] = <span class="hljs-number">0</span></span><br><span class="line"><span class="hljs-number">3.</span> end <span class="hljs-keyword">for</span></span><br><span class="line"><span class="hljs-number">4.</span> <span class="hljs-keyword">for</span> j = <span class="hljs-number">0</span> to m</span><br><span class="line"><span class="hljs-number">5.</span>     L[<span class="hljs-number">0</span>, j] = <span class="hljs-number">0</span></span><br><span class="line"><span class="hljs-number">6.</span> end <span class="hljs-keyword">for</span></span><br><span class="line"><span class="hljs-number">7.</span> <span class="hljs-keyword">for</span> i = <span class="hljs-number">1</span> to n</span><br><span class="line"><span class="hljs-number">8.</span>     <span class="hljs-keyword">for</span> j = <span class="hljs-number">1</span> to m</span><br><span class="line"><span class="hljs-number">9.</span>         <span class="hljs-keyword">if</span> a_i = b_j then L[i,j] = L[i<span class="hljs-number">-1</span>,j<span class="hljs-number">-1</span>]+<span class="hljs-number">1</span></span><br><span class="line"><span class="hljs-number">10.</span>        <span class="hljs-keyword">else</span> L[i,j] = max&#123;L[i,j<span class="hljs-number">-1</span>],L[i<span class="hljs-number">-1</span>,j]&#125;</span><br><span class="line"><span class="hljs-number">11.</span>        end <span class="hljs-keyword">if</span></span><br><span class="line"><span class="hljs-number">12.</span>    end <span class="hljs-keyword">for</span></span><br><span class="line"><span class="hljs-number">13.</span> end <span class="hljs-keyword">for</span></span><br><span class="line"><span class="hljs-number">14.</span> <span class="hljs-keyword">return</span> L[n,m]</span><br></pre></td></tr></table></figure>
+
 
         </div>
         
@@ -599,7 +550,9 @@ max\{V[i-1,j],V[i-1,j-s_i]+v_i\} && i\geq 1 和j\geq s_i\\
 <p>100%的数据，0&lt;S&lt;T≤200000。</p>
 <h2 id="Output-Format"><a href="#Output-Format" class="headerlink" title="Output Format"></a>Output Format</h2><p>输出有2行。第一行包含一个数表示长度，第二行包含一个数表示个数。</p>
 <h2 id="Sample-Input"><a href="#Sample-Input" class="headerlink" title="Sample Input"></a>Sample Input</h2><figure class="highlight plain hljs"><table><tr><td class="code"><pre><span class="line">2 10</span><br></pre></td></tr></table></figure>
+
 <h2 id="Sample-Output"><a href="#Sample-Output" class="headerlink" title="Sample Output"></a>Sample Output</h2><figure class="highlight plain hljs"><table><tr><td class="code"><pre><span class="line">5</span><br><span class="line">2</span><br></pre></td></tr></table></figure>
+
 <h2 id="样例解释"><a href="#样例解释" class="headerlink" title="样例解释"></a>样例解释</h2><p>2 4 5 6 9以及2 4 5 8 10</p>
 <hr>
 <h2 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h2><p>DP动态规划求解</p>
@@ -622,6 +575,7 @@ max\{V[i-1,j],V[i-1,j-s_i]+v_i\} && i\geq 1 和j\geq s_i\\
 <p>更新总的最大长度$ans = max（ans,d[tmp]）$;</p>
 <p>最后输出ans和cnt[ans]</p>
 <figure class="highlight c hljs"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;cstdio&gt;</span></span></span><br><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;cstring&gt;</span></span></span><br><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;algorithm&gt;</span></span></span><br><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> <span class="hljs-built_in">std</span>;</span><br><span class="line"><span class="hljs-keyword">typedef</span> <span class="hljs-keyword">long</span> <span class="hljs-keyword">long</span> ll;</span><br><span class="line"></span><br><span class="line"><span class="hljs-keyword">const</span> <span class="hljs-keyword">int</span> maxn=<span class="hljs-number">200007</span>;</span><br><span class="line"><span class="hljs-keyword">int</span> d[maxn];</span><br><span class="line">ll cnt[maxn],times[maxn];</span><br><span class="line"><span class="hljs-comment">//cnt[i]存储的是 长度为i的序列的个数</span></span><br><span class="line"><span class="hljs-comment">//d[i]存储的是以i结尾的序列最长的长度</span></span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span></span><br><span class="line"><span class="hljs-function"></span>&#123;</span><br><span class="line">    <span class="hljs-keyword">int</span> s,t;</span><br><span class="line">    <span class="hljs-built_in">cin</span>&gt;&gt;s&gt;&gt;t;</span><br><span class="line">    <span class="hljs-built_in">memset</span>(cnt,<span class="hljs-number">0</span>,<span class="hljs-keyword">sizeof</span>(cnt));</span><br><span class="line">    <span class="hljs-keyword">int</span> i,j,tmp,ans=<span class="hljs-number">1</span>;</span><br><span class="line">    cnt[<span class="hljs-number">1</span>]=t-s+<span class="hljs-number">1</span>;</span><br><span class="line"></span><br><span class="line">    <span class="hljs-keyword">for</span>(i=s;i&lt;=t;i++)</span><br><span class="line">        d[i]=times[i]=<span class="hljs-number">1</span>; <span class="hljs-comment">//初始化为1</span></span><br><span class="line"></span><br><span class="line">    <span class="hljs-keyword">for</span>(i=s;i&lt;=t;i++) <span class="hljs-comment">//遍历每个数作为起点</span></span><br><span class="line">        <span class="hljs-keyword">for</span>(j=<span class="hljs-number">1</span>;j&lt;=<span class="hljs-number">100</span>;j++)    <span class="hljs-keyword">if</span>( (i*j)%<span class="hljs-number">100</span> == <span class="hljs-number">0</span>) <span class="hljs-comment">//假设增长率为j%</span></span><br><span class="line">        &#123;</span><br><span class="line">            <span class="hljs-comment">//则在此增长率下 得到的数为 tmp 可以看出,要让tmp为整数 必须i*j是100的倍数</span></span><br><span class="line">            tmp = i + i*j/<span class="hljs-number">100</span>;</span><br><span class="line">            <span class="hljs-keyword">if</span>( tmp &lt;= t ) <span class="hljs-comment">//如果这个tmp是在规定范围内的 我们就找到了一个解</span></span><br><span class="line">            &#123;</span><br><span class="line">                <span class="hljs-keyword">if</span>(d[i]+<span class="hljs-number">1</span> &gt; d[tmp]) <span class="hljs-comment">//这时要比较 看看要不要更新以tmp结尾的最长的长度</span></span><br><span class="line">                &#123;</span><br><span class="line">                    d[tmp] = d[i] + <span class="hljs-number">1</span>;<span class="hljs-comment">//以tmp为结尾的序列的长度 为 以i为结尾的序列的长度 再加上1 表示算上tmp</span></span><br><span class="line">                    times[tmp] = times[i]; <span class="hljs-comment">//发生了最长长度的更新 所以要重置 以tmp结尾的最长长度的重复次数为 i的</span></span><br><span class="line">                &#125;</span><br><span class="line">                <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>(d[i]+<span class="hljs-number">1</span>==d[tmp]) <span class="hljs-comment">//恰好是重复的最长长度 </span></span><br><span class="line">                &#123;</span><br><span class="line">                    times[tmp] += times[i];<span class="hljs-comment">//则最长长度的次数 增加 以i结尾的最长长度重复次数</span></span><br><span class="line">                &#125;</span><br><span class="line"></span><br><span class="line">                ans = max(ans,d[tmp]);  <span class="hljs-comment">//更新ans</span></span><br><span class="line">                <span class="hljs-comment">//d[i]+1 表示以i结尾的序列长度+tmp所增加的1位 这个长度的子列数量要增加times[i]</span></span><br><span class="line">                cnt[d[i]+<span class="hljs-number">1</span>] += times[i];</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    <span class="hljs-built_in">cout</span>&lt;&lt;ans&lt;&lt;cnt[ans];</span><br><span class="line">    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
 
         </div>
         
@@ -671,8 +625,12 @@ max\{V[i-1,j],V[i-1,j-s_i]+v_i\} && i\geq 1 和j\geq s_i\\
 <h2 id="输入格式"><a href="#输入格式" class="headerlink" title="输入格式"></a>输入格式</h2><p>输入共两行，每行是一个十进制表示的工资金额（没有正负号，小数点后有两位数字）。</p>
 <h2 id="输出格式"><a href="#输出格式" class="headerlink" title="输出格式"></a>输出格式</h2><p>输出共一行，即精确的工资总和（没有正负号，小数点后有两位数字）。</p>
 <h2 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h2><p>工资金额的有效数字位数不超过200位，并保证有小数点。</p>
-<p>Sample Input<br><figure class="highlight plain hljs"><table><tr><td class="code"><pre><span class="line">123.45</span><br><span class="line">543.21</span><br></pre></td></tr></table></figure></p>
-<p>Sample Output<br><figure class="highlight plain hljs"><table><tr><td class="code"><pre><span class="line">666.66</span><br></pre></td></tr></table></figure></p>
+<p>Sample Input</p>
+<figure class="highlight plain hljs"><table><tr><td class="code"><pre><span class="line">123.45</span><br><span class="line">543.21</span><br></pre></td></tr></table></figure>
+
+<p>Sample Output</p>
+<figure class="highlight plain hljs"><table><tr><td class="code"><pre><span class="line">666.66</span><br></pre></td></tr></table></figure>
+
 <hr>
 <h2 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h2><p>整体思路使用字符数组代替double类型实现大整数的相加，需要注意的地方是：</p>
 <ol>
@@ -680,6 +638,7 @@ max\{V[i-1,j],V[i-1,j-s_i]+v_i\} && i\geq 1 和j\geq s_i\\
 <li>最高位进位后要记得输出</li>
 </ol>
 <figure class="highlight c hljs"><table><tr><td class="code"><pre><span class="line"><span class="hljs-comment">//</span></span><br><span class="line"><span class="hljs-comment">//  main.c</span></span><br><span class="line"><span class="hljs-comment">//  calculation</span></span><br><span class="line"><span class="hljs-comment">//</span></span><br><span class="line"><span class="hljs-comment">//  Created by Oscar on 11/09/2017.</span></span><br><span class="line"><span class="hljs-comment">//  Copyright © 2017 刘丰瑞. All rights reserved.</span></span><br><span class="line"><span class="hljs-comment">//</span></span><br><span class="line"></span><br><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">"stdlib.h"</span></span></span><br><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">"math.h"</span></span></span><br><span class="line"></span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">(<span class="hljs-keyword">int</span> argc, <span class="hljs-keyword">const</span> <span class="hljs-keyword">char</span> * argv[])</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="hljs-keyword">int</span> max = <span class="hljs-number">0</span>, m=<span class="hljs-number">0</span>, n=<span class="hljs-number">0</span>,k;</span><br><span class="line">    <span class="hljs-keyword">int</span> carry = <span class="hljs-number">0</span>;</span><br><span class="line">    <span class="hljs-keyword">int</span> sum=<span class="hljs-number">0</span>;</span><br><span class="line">    <span class="hljs-keyword">int</span> temp = <span class="hljs-number">0</span>;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="hljs-keyword">int</span> a[<span class="hljs-number">200</span>] = &#123;&#125;;</span><br><span class="line">    <span class="hljs-keyword">int</span> b[<span class="hljs-number">200</span>] = &#123;&#125;;</span><br><span class="line">    <span class="hljs-keyword">int</span> result[<span class="hljs-number">210</span>] = &#123;&#125;;</span><br><span class="line"></span><br><span class="line">    <span class="hljs-keyword">while</span> ((temp=getchar())!=<span class="hljs-string">'\n'</span>) &#123;</span><br><span class="line">        a[m] = temp-<span class="hljs-string">'0'</span>;</span><br><span class="line">        m++;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="hljs-keyword">while</span> ((temp=getchar())!=<span class="hljs-string">'\n'</span>) &#123;</span><br><span class="line">        b[n] = temp-<span class="hljs-string">'0'</span>;</span><br><span class="line">        n++;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    max = n&gt;m?n:m;</span><br><span class="line"></span><br><span class="line">    <span class="hljs-keyword">for</span> (k = <span class="hljs-number">0</span>; k &lt; max; k++) &#123;</span><br><span class="line"></span><br><span class="line">        <span class="hljs-keyword">if</span> (k!=<span class="hljs-number">2</span>) &#123;</span><br><span class="line"></span><br><span class="line">        <span class="hljs-keyword">if</span> (k&gt;=n) &#123;</span><br><span class="line">            result[k] = a[m-k<span class="hljs-number">-1</span>] + carry;</span><br><span class="line">        &#125;<span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (k&gt;=m)&#123;</span><br><span class="line">            result[k] = b[n-k<span class="hljs-number">-1</span>] + carry;</span><br><span class="line">        &#125;<span class="hljs-keyword">else</span>&#123;</span><br><span class="line">            result[k] = a[m-k<span class="hljs-number">-1</span>] + b[n-k<span class="hljs-number">-1</span>] + carry;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="hljs-keyword">if</span> (result[k]&gt;=<span class="hljs-number">10</span>) &#123;</span><br><span class="line">            result[k] = result[k]%<span class="hljs-number">10</span>;</span><br><span class="line">            carry = <span class="hljs-number">1</span>;</span><br><span class="line">        &#125;<span class="hljs-keyword">else</span>&#123;</span><br><span class="line">            carry = <span class="hljs-number">0</span>;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        &#125;<span class="hljs-keyword">else</span>&#123;</span><br><span class="line"></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="hljs-keyword">if</span> (carry==<span class="hljs-number">1</span>) &#123;</span><br><span class="line">        <span class="hljs-built_in">printf</span>(<span class="hljs-string">"1"</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="hljs-keyword">for</span> (k = <span class="hljs-number">0</span>; k &lt; max; k++) &#123;</span><br><span class="line">        <span class="hljs-keyword">if</span> (k==max<span class="hljs-number">-3</span>) &#123;</span><br><span class="line">            <span class="hljs-built_in">printf</span>(<span class="hljs-string">"."</span>);</span><br><span class="line">        &#125;<span class="hljs-keyword">else</span>&#123;</span><br><span class="line">            <span class="hljs-built_in">printf</span>(<span class="hljs-string">"%d"</span>,result[max-k<span class="hljs-number">-1</span>]);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
 
         </div>
         
@@ -732,8 +691,10 @@ max\{V[i-1,j],V[i-1,j-s_i]+v_i\} && i\geq 1 和j\geq s_i\\
 <p>输出一个整数m，表示在指定大小的区域内，花生最大产量为m。</p>
 <p>Sample Input</p>
 <figure class="highlight plain hljs"><table><tr><td class="code"><pre><span class="line">4 5</span><br><span class="line">1 2 3 4 5</span><br><span class="line">6 7 8 0 0</span><br><span class="line">0 9 2 2 3</span><br><span class="line">3 0 0 0 1</span><br><span class="line">3 3</span><br></pre></td></tr></table></figure>
+
 <p>Sample Output</p>
 <figure class="highlight plain hljs"><table><tr><td class="code"><pre><span class="line">38</span><br></pre></td></tr></table></figure>
+
 <p>样例解释</p>
 <p>左上角：38 = (1+2+3) + (6+7+8) + (0+9+2)</p>
 <p>数据范围</p>
@@ -745,6 +706,7 @@ max\{V[i-1,j],V[i-1,j-s_i]+v_i\} && i\geq 1 和j\geq s_i\\
 <p>在网上有的人是用’前缀和’这样的概念来描述并解决这个问题的：</p>
 <p>我们先考虑一维的情形，如果我事先计算出 pre[i] 表示前1-i个格子内数字之和，那么完成这个处理之后，每次想要得到任意一个区间 [l, r]的数字和，只需要计算 pre[r] - pre[l -1]即可。随即我们可以推广到二维，事先计算pre[i][j]表示以1, 1为左上角，i, j为右下角的矩形内数字之和。那么不难推出如果要取得以x1, y1为左上角 x2, y2为右下角的矩形内数字之和，只需计算 pre[x2][y2] - pre[x1 - 1][y2] - pre[x2][y1 - 1] + pre[x1 - 1][y1 - 1] 即可。</p>
 <figure class="highlight c++ hljs"><table><tr><td class="code"><pre><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span><span class="hljs-meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> <span class="hljs-built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span></span><br><span class="line"><span class="hljs-function"></span>&#123;</span><br><span class="line">    int L(0), W(0), t(0);</span><br><span class="line">    <span class="hljs-built_in">cin</span> &gt;&gt; L &gt;&gt; W; <span class="hljs-comment">//输入花生地的长和宽</span></span><br><span class="line">    <span class="hljs-comment">//定义数组</span></span><br><span class="line">    <span class="hljs-keyword">int</span> **store = <span class="hljs-keyword">new</span> <span class="hljs-keyword">int</span>*[L];</span><br><span class="line">    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; L; ++i)   store[i] = <span class="hljs-keyword">new</span> <span class="hljs-keyword">int</span>[W];</span><br><span class="line">    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; L; ++i)&#123;</span><br><span class="line">        <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> j = <span class="hljs-number">0</span>; j &lt; W; ++j)&#123;</span><br><span class="line">            <span class="hljs-built_in">cin</span> &gt;&gt; t;</span><br><span class="line">            <span class="hljs-keyword">if</span> (j&gt;<span class="hljs-number">0</span>&amp;&amp;i&gt;<span class="hljs-number">0</span>)store[i][j] = store[i<span class="hljs-number">-1</span>][j] + t + store[i][j<span class="hljs-number">-1</span>] - store[i<span class="hljs-number">-1</span>][j<span class="hljs-number">-1</span>];</span><br><span class="line">            <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (j&gt;<span class="hljs-number">0</span> &amp;&amp; i == <span class="hljs-number">0</span>)store[i][j] = t + store[i][j<span class="hljs-number">-1</span>];</span><br><span class="line">            <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (i &gt; <span class="hljs-number">0</span> &amp;&amp; j == <span class="hljs-number">0</span>)store[i][j] = t + store[i - <span class="hljs-number">1</span>][j];</span><br><span class="line">            <span class="hljs-keyword">else</span> store[i][j] = t;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="hljs-keyword">int</span> l, w, result(<span class="hljs-number">0</span>), temp(<span class="hljs-number">0</span>);</span><br><span class="line">    <span class="hljs-built_in">cin</span> &gt;&gt; l &gt;&gt; w;<span class="hljs-comment">//获得目标区块的大小</span></span><br><span class="line">    <span class="hljs-comment">//遍历计算</span></span><br><span class="line">    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = l - <span class="hljs-number">1</span>; i &lt; L; ++i)&#123;</span><br><span class="line">        <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> j = w - <span class="hljs-number">1</span>; j &lt; W; ++j)&#123;</span><br><span class="line">            <span class="hljs-keyword">if</span>(i == l- <span class="hljs-number">1</span> &amp;&amp; j == w - <span class="hljs-number">1</span>)temp = store[i][j];</span><br><span class="line">            <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (i == l - <span class="hljs-number">1</span> &amp;&amp; j != w - <span class="hljs-number">1</span>)temp = store[i][j] - store[i][j - w];</span><br><span class="line">            <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (i != l - <span class="hljs-number">1</span> &amp;&amp; j == w - <span class="hljs-number">1</span>)temp = store[i][j] - store[i - l][j];</span><br><span class="line">            <span class="hljs-keyword">else</span> temp = store[i][j] - store[i - l][j] - store[i][j-w] + store[i-l][j-w];</span><br><span class="line">            <span class="hljs-keyword">if</span> (temp &gt;= result)result = temp;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="hljs-built_in">cout</span> &lt;&lt; result;<span class="hljs-comment">//输出结果</span></span><br><span class="line">    <span class="hljs-comment">//释放内存！</span></span><br><span class="line">    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; L; ++i)</span><br><span class="line">        <span class="hljs-keyword">delete</span>[] store[i];</span><br><span class="line">    <span class="hljs-keyword">delete</span>[] store;</span><br><span class="line">    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
 
         </div>
         
@@ -792,12 +754,12 @@ max\{V[i-1,j],V[i-1,j-s_i]+v_i\} && i\geq 1 和j\geq s_i\\
             <p>tf-idf: term-frequency-inverse document frequency</p>
 <p>这种技术常用来进行文本挖掘，可以评估出某一个语料库中的单词、文件集的重要程度。</p>
 <p>term frequency 作为词频，是词数的归一化表示，可以避免它偏向长文件。<br>分子中 $n_{i,j}$ 是该词在文件 $d_j$ 中出现的次数，分母是文件 $d_j$ 中所有字词的出现次数之和。</p>
-<script type="math/tex; mode=display">
-tf_{i,j} = \frac {n_{i,j}}{\sum_kn_{k,j}}</script><p>inverse document frequency 逆向文件频率，也可以是一个词语普遍重要性的度量，由总文件数目<br>除以包含该词语文件的数目，再将得到的商取对数。$|D|$ 是语料库中文件总数，$|\{j:t_i\in d_j\}|$<br>表示包含该词语的文件，若值为0，用 $|\{j:t_i\in d_j\}|+1$ 来代替。</p>
-<script type="math/tex; mode=display">
-idf_i=log\frac{|D|}{|\{j:t_i\in d_j\}|}</script><p>综上所述，</p>
-<script type="math/tex; mode=display">
-rfidf_{i,j} = tf_{i,j}*idf_{i}</script><hr>
+<p>$$<br>tf_{i,j} = \frac {n_{i,j}}{\sum_kn_{k,j}}<br>$$</p>
+<p>inverse document frequency 逆向文件频率，也可以是一个词语普遍重要性的度量，由总文件数目<br>除以包含该词语文件的数目，再将得到的商取对数。$|D|$ 是语料库中文件总数，$|{j:t_i\in d_j}|$<br>表示包含该词语的文件，若值为0，用 $|{j:t_i\in d_j}|+1$ 来代替。</p>
+<p>$$<br>idf_i=log\frac{|D|}{|{j:t_i\in d_j}|}<br>$$</p>
+<p>综上所述，</p>
+<p>$$<br>rfidf_{i,j} = tf_{i,j}*idf_{i}<br>$$</p>
+<hr>
 <p>应用：tfidf常常与余弦相似性并用，具体步骤为：分词，计算词频，写出词频向量，计算余弦值</p>
 <p>参考文献：</p>
 <ul>
@@ -1205,18 +1167,18 @@ rfidf_{i,j} = tf_{i,j}*idf_{i}</script><hr>
         
         <article class="media">
             
-            <a href="/2019/07/21/数据挖掘/2019-08-13-实时异常检测/" class="media-left">
+            <a href="/2019/07/21/安全/2019-07-22-xgboost/" class="media-left">
                 <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="实时异常检测（xStream，KDD&#39;18）">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="孤立森林（Isolation Forest）">
                 </p>
             </a>
             
             <div class="media-content">
                 <div class="content">
                     <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-07-20T16:00:00.000Z">2019-07-21</time></div>
-                    <a href="/2019/07/21/数据挖掘/2019-08-13-实时异常检测/" class="title has-link-black-ter is-size-6 has-text-weight-normal">实时异常检测（xStream，KDD&#39;18）</a>
+                    <a href="/2019/07/21/安全/2019-07-22-xgboost/" class="title has-link-black-ter is-size-6 has-text-weight-normal">孤立森林（Isolation Forest）</a>
                     <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/Anomaly-detection/">Anomaly detection</a>
+                        <a class="has-link-grey -link" href="/categories/Security/">Security</a>
                     </p>
                 </div>
             </div>
@@ -1705,18 +1667,18 @@ rfidf_{i,j} = tf_{i,j}*idf_{i}</script><hr>
         
         <article class="media">
             
-            <a href="/2019/07/21/数据挖掘/2019-08-13-实时异常检测/" class="media-left">
+            <a href="/2019/07/21/安全/2019-07-22-xgboost/" class="media-left">
                 <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="实时异常检测（xStream，KDD&#39;18）">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="孤立森林（Isolation Forest）">
                 </p>
             </a>
             
             <div class="media-content">
                 <div class="content">
                     <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-07-20T16:00:00.000Z">2019-07-21</time></div>
-                    <a href="/2019/07/21/数据挖掘/2019-08-13-实时异常检测/" class="title has-link-black-ter is-size-6 has-text-weight-normal">实时异常检测（xStream，KDD&#39;18）</a>
+                    <a href="/2019/07/21/安全/2019-07-22-xgboost/" class="title has-link-black-ter is-size-6 has-text-weight-normal">孤立森林（Isolation Forest）</a>
                     <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/Anomaly-detection/">Anomaly detection</a>
+                        <a class="has-link-grey -link" href="/categories/Security/">Security</a>
                     </p>
                 </div>
             </div>

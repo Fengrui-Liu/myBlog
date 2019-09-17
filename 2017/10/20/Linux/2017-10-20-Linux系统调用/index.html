@@ -190,8 +190,7 @@
 <p>通知内核的机制是靠软中断实现的：通过引发一个异常来促使系统切换到内核态去执行异常处理程序。此时的异常处理程序实际上就是系统调用处理程序。在x86系统上预定义的软中断是中断号128，通过 <strong>int $0x80</strong> 指令触发该终端。</p>
 <h4 id="指定恰当的系统调用"><a href="#指定恰当的系统调用" class="headerlink" title="指定恰当的系统调用"></a>指定恰当的系统调用</h4><p>因为所有的系统调用陷入内核的方式都一样，因此还需要将系统调用号一并传给内核。在x86，系统调用号通过eax寄存器传递给内核。</p>
 <p>system_call()函数通过将给定的系统调用号与NR_syscalls做比较来检查其有效性。如果它大于或者等于NR_syscalls,将函数就返回-ENOSYS。否则，就执行相应的系统调用：</p>
-<pre><code>    call *sys_call_table(,%rax,8)
-</code></pre><h4 id="参数传递"><a href="#参数传递" class="headerlink" title="参数传递"></a>参数传递</h4><p>除了系统调用号以外，大部分系统调用都还需要一些外部的参数输入。所以，在发生陷入的时候，应该把这些参数从用户空间传给内核。最简单的办法就是把这些参数也存放到寄存器中。在x86-32系统上，ebx，ecx，edx，esi，edi按照顺序存放前5个参数。需要六个或以上的情况时，需要一个单独的寄存器存放指向所有这些参数在用户空间地址的指针。</p>
+<pre><code>call *sys_call_table(,%rax,8)</code></pre><h4 id="参数传递"><a href="#参数传递" class="headerlink" title="参数传递"></a>参数传递</h4><p>除了系统调用号以外，大部分系统调用都还需要一些外部的参数输入。所以，在发生陷入的时候，应该把这些参数从用户空间传给内核。最简单的办法就是把这些参数也存放到寄存器中。在x86-32系统上，ebx，ecx，edx，esi，edi按照顺序存放前5个参数。需要六个或以上的情况时，需要一个单独的寄存器存放指向所有这些参数在用户空间地址的指针。</p>
 <p>用户空间的返回值也通过寄存器传递。在x86系统上，他存放在eax寄存器中。</p>
 <h3 id="系统调用的实现"><a href="#系统调用的实现" class="headerlink" title="系统调用的实现"></a>系统调用的实现</h3><h4 id="实现系统调用"><a href="#实现系统调用" class="headerlink" title="实现系统调用"></a>实现系统调用</h4><p>Linux 不提倡采用多用途的系统调用(一个系统调用通过传递不同的参数值来选择完成不同的工作)。很多系统共了标志参数确保向前兼容。标志并不是用来让单个系统调用具有多个不同的行为，而是为了即使增加新的功能和选项，也不破坏向后兼容或不需要增加新的系统调用。</p>
 <h4 id="参数验证"><a href="#参数验证" class="headerlink" title="参数验证"></a>参数验证</h4><p>系统调用必须检查所有的参数是否合法有效。</p>
@@ -203,7 +202,9 @@
 <li>如果是读，该内存应被标记为可读；如果是写，该内存被标记为可写；如果是可执行，该内存应该被标记为可执行。进程决不能绕过内存访问限制。</li>
 </ul>
 <figure class="highlight c hljs"><table><tr><td class="code"><pre><span class="line"><span class="hljs-comment">//Copy a block of data into user space, with less checking.</span></span><br><span class="line"><span class="hljs-comment">//void __user * to</span></span><br><span class="line"><span class="hljs-comment">//Destination address, in user space.</span></span><br><span class="line"></span><br><span class="line"><span class="hljs-comment">//const void * from</span></span><br><span class="line"><span class="hljs-comment">//Source address, in kernel space.</span></span><br><span class="line"></span><br><span class="line"><span class="hljs-comment">//unsigned long n</span></span><br><span class="line"><span class="hljs-comment">//Number of bytes to copy.</span></span><br><span class="line"></span><br><span class="line"><span class="hljs-keyword">unsigned</span> <span class="hljs-keyword">long</span> __copy_to_user (	<span class="hljs-keyword">void</span> __user * to,</span><br><span class="line"> 	<span class="hljs-keyword">const</span> <span class="hljs-keyword">void</span> * from,</span><br><span class="line"> 	<span class="hljs-keyword">unsigned</span> <span class="hljs-keyword">long</span> n);</span><br></pre></td></tr></table></figure>
+
 <figure class="highlight c hljs"><table><tr><td class="code"><pre><span class="line"><span class="hljs-comment">//Name: Copy a block of data from user space, with less checking.</span></span><br><span class="line"></span><br><span class="line"><span class="hljs-comment">//Arguments</span></span><br><span class="line"><span class="hljs-comment">//void * to</span></span><br><span class="line"><span class="hljs-comment">//Destination address, in kernel space.</span></span><br><span class="line"></span><br><span class="line"><span class="hljs-comment">//const void __user * from</span></span><br><span class="line"><span class="hljs-comment">//Source address, in user space.</span></span><br><span class="line"></span><br><span class="line"><span class="hljs-comment">//unsigned long n</span></span><br><span class="line"><span class="hljs-comment">//Number of bytes to copy.</span></span><br><span class="line"></span><br><span class="line"><span class="hljs-keyword">unsigned</span> <span class="hljs-keyword">long</span> __copy_from_user (	<span class="hljs-keyword">void</span> * to,</span><br><span class="line"> 	<span class="hljs-keyword">const</span> <span class="hljs-keyword">void</span> __user * from,</span><br><span class="line"> 	<span class="hljs-keyword">unsigned</span> <span class="hljs-keyword">long</span> n);</span><br></pre></td></tr></table></figure>
+
 <p>上述两个函数都有可能引起阻塞。当包含用户数据的页被换出到硬盘上而不是在物理内存上的时候，这种情况就会发生。此时，进程就会休眠，直到缺页处理程序将该页从硬盘重新换回物理内存。</p>
 
         </div>
@@ -264,9 +265,9 @@
     <div class="level post-navigation is-flex-wrap is-mobile">
         
         <div class="level-start">
-            <a class="level level-item has-link-grey  article-nav-prev" href="/2017/10/22/Linux/2017-10-22-Linux中断和中断处理/">
+            <a class="level level-item has-link-grey  article-nav-prev" href="/2017/10/22/Linux/2017-11-2-Linux-下半部和推后执行的工作/">
                 <i class="level-item fas fa-chevron-left"></i>
-                <span class="level-item">Linux-中断和中断处理</span>
+                <span class="level-item">Linux-下半部和推后执行的工作&#34;</span>
             </a>
         </div>
         
@@ -649,18 +650,18 @@
         
         <article class="media">
             
-            <a href="/2019/07/21/数据挖掘/2019-08-13-实时异常检测/" class="media-left">
+            <a href="/2019/07/21/安全/2019-07-22-xgboost/" class="media-left">
                 <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="实时异常检测（xStream，KDD&#39;18）">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="孤立森林（Isolation Forest）">
                 </p>
             </a>
             
             <div class="media-content">
                 <div class="content">
                     <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-07-20T16:00:00.000Z">2019-07-21</time></div>
-                    <a href="/2019/07/21/数据挖掘/2019-08-13-实时异常检测/" class="title has-link-black-ter is-size-6 has-text-weight-normal">实时异常检测（xStream，KDD&#39;18）</a>
+                    <a href="/2019/07/21/安全/2019-07-22-xgboost/" class="title has-link-black-ter is-size-6 has-text-weight-normal">孤立森林（Isolation Forest）</a>
                     <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/Anomaly-detection/">Anomaly detection</a>
+                        <a class="has-link-grey -link" href="/categories/Security/">Security</a>
                     </p>
                 </div>
             </div>
@@ -1149,18 +1150,18 @@
         
         <article class="media">
             
-            <a href="/2019/07/21/数据挖掘/2019-08-13-实时异常检测/" class="media-left">
+            <a href="/2019/07/21/安全/2019-07-22-xgboost/" class="media-left">
                 <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="实时异常检测（xStream，KDD&#39;18）">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="孤立森林（Isolation Forest）">
                 </p>
             </a>
             
             <div class="media-content">
                 <div class="content">
                     <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-07-20T16:00:00.000Z">2019-07-21</time></div>
-                    <a href="/2019/07/21/数据挖掘/2019-08-13-实时异常检测/" class="title has-link-black-ter is-size-6 has-text-weight-normal">实时异常检测（xStream，KDD&#39;18）</a>
+                    <a href="/2019/07/21/安全/2019-07-22-xgboost/" class="title has-link-black-ter is-size-6 has-text-weight-normal">孤立森林（Isolation Forest）</a>
                     <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/Anomaly-detection/">Anomaly detection</a>
+                        <a class="has-link-grey -link" href="/categories/Security/">Security</a>
                     </p>
                 </div>
             </div>

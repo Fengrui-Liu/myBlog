@@ -244,7 +244,7 @@
                 <span class="level-item has-text-grey">
                     
                     
-                    19 分钟 读完 (大约 2829 个字)
+                    9 分钟 读完 (大约 1352 个字)
                 </span>
                 
                 
@@ -253,82 +253,42 @@
         
         <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
             
-                <a class="has-link-black-ter" href="/2018/08/23/网络/2018-8-23-SketchVisor/">SketchVisor: Robust Network Measurement for Soware Packet Processing</a>
+                <a class="has-link-black-ter" href="/2018/08/23/网络/2018-8-24-SketchLearn/">SketchLearn: Relieving User Burdens in Approximate Measurement with Automated Statistical Inference</a>
             
         </h1>
         <div class="content">
-            <h2 id="概要"><a href="#概要" class="headerlink" title="概要"></a>概要</h2><p>Sketch是一种紧凑的数据结构，以固定的内存大小来统计网络数据包。传统的sketch-based方法都是消耗大量的CPU资源，例如虚拟机或者容器环境下，同样位置的多个应用都会抢占资源。传统的sketch-based算法过于简洁，因此在将其应用到实际环境当中，就需要加入额外的扩展功能从而导致运算量的增加。虽然在数据中心的链路速度并不总是高要求的，但是这依然是重要的指标。</p>
-<p>本文提出的SketchVisor是一种针对软件数据包处理的鲁棒性网络测量框架。即使在很高的网络流量当中，SV都会有很好的性能以及很高的准确性。SV 引入了独立的数据通路（fast path）以提供快速但是低准确度的测量，以解决那些不能被及时处理的数据包。之后，通过sketch-based以及fast path准确恢复整个网络范围内的测量结果。</p>
-<h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>特别的，SV部署在一个分布式的数据平面上，网络管理员将对不同的数据平面上分配任务，如果这些任务过载或者不能被及时处理，那么就会将任务重定向到fast-path上。本文针对fast-path提出了一个top-k算法以跟踪大数据流。Top-k可以实现较低的偿还过程以及缩紧评价指标。还维持了一个全局的计数器用来追踪进入fast-path的网络流，从而来捕获所有较小的网络数据流的特征。</p>
-<p>除此之外，SV还部署了个中心化的控制平面来合并本地的测量结果（sketch-based以及fast path的结果），fast path不可避免的会出现准确性的损失，本文形式化了一个矩阵插入问题，使得在控制平面可以恢复这些丢失的数据。</p>
-<hr>
-<h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><h3 id="网络测量"><a href="#网络测量" class="headerlink" title="网络测量"></a>网络测量</h3><p>本文着重考虑一下的几个网络数据统计量：</p>
-<ul>
-<li><p>Heavy hitter：在一个时期中流字节大小超过一定阈值的网络流。</p>
-</li>
-<li><p>Heavy changer：在两个连续的时期中发生改变的字节大小超过一定的阈值的网络流。</p>
-</li>
-<li><p>DDos：一个目标host在一定时期中接到的网络数据包超过了阈值。</p>
-</li>
-<li><p>Superspreader：在一个时期内，源host向多于阈值个目标host发送数据。</p>
-</li>
-<li><p>Cardinality：势。在一个时期内不同网络流的数量。</p>
-</li>
-<li><p>Flow size distribution：一个时期内不同字节数范围内的分数大小。</p>
-</li>
-<li><p>Entropy：一个时期内流大小的熵。</p>
-</li>
-</ul>
-<hr>
-<h2 id="概览"><a href="#概览" class="headerlink" title="概览"></a>概览</h2><p>设计目标：</p>
-<ul>
-<li>性能</li>
-<li>资源效率</li>
-<li>精确性</li>
+            <h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2><p>在巨大的网络流量下，网络测量对于资源的利用有着严格的限制。近似测量的方法可以节省一定的资源，需要人工对其进行合适的配置。详细来说，典型方法通过严控参数，在合理的测量误差下提供足够的资源。我们设计了SketchLearn，这是一个sketch-based的测量框架，可以通过学习统计特性解决资源冲突从而消除了网络流量上的冲突。</p>
+<h2 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h2><p>由于网络资源的限制，许多的网络测量方法都需要在资源利用与测量准确度之间进行权衡。基本思路就是将次线性的数据结构压缩，并在有限的资源下理论保证恢复。尽管这具有理论可行性但是现有方法都不方便使用，因为巨大的网络流总是在竞争有限的资源，并由资源冲突引发一定的错误，为了消除这些错误，还需要分出一些资源来实现准确度。综上，资源配置与准确度之间还有紧密的联系，这些联系导致了一部分限制：</p>
+<ol>
+<li>管理员需要将错误容忍级别当做一个参数引入到资源配置算法中。</li>
+<li>每一种资源配置都对应一个阈值参数。</li>
+<li>理论分析只给出了基于实际负载的最坏结果。</li>
+<li>每一种配置都被特定的流所限制。</li>
+<li>管理员不能容忍较大的测量误差。</li>
+</ol>
+<p>由于以上限制的存在，如何在理论方法与实际应用之间架起桥梁对我们来说是一个挑战。</p>
+<p>为了解决这个问题，我们使用的sketch-based方法可以完全记录所有观测到的数据包的统计数据，他们都有固定的数据结构。SketchLearn的基本思想是将固有的资源矛盾的统计特征描绘出来，而非追求一个消除所有资源冲突的配置参数。详细的说，SketchLearn建立了一个多层的sketch来追踪网络流记录的频数。这个多级结构引出了一个计数器的多bit-level的高斯分布。SketchLearn利用高斯分布来确定其限制。它反复从多级sketch中推算并提取出大数据流，直到剩余的多级sketch满足高斯分布。通过分离大小数据流，SketchLearn消除了资源冲突并且提高其测量准确性。</p>
+<h2 id="研究动机"><a href="#研究动机" class="headerlink" title="研究动机"></a>研究动机</h2><p>在一个时间间隙里每条网络数据流的频数被称为epochs。每条流都用一个flowkey作为标志，例如5元组或者源/目的地址对。通过每条流的频数，我们都可以得到较复杂的数据流统计量，如heavy hitters, heavy changers, superspreaders 以及 DDoS，cardinality(势),流大小分布和熵。</p>
+<h3 id="设计要求"><a href="#设计要求" class="headerlink" title="设计要求"></a>设计要求</h3><ol>
+<li>较小的内存使用</li>
+<li>较快的包处理速度</li>
+<li>实时响应</li>
 <li>通用性</li>
-<li>简洁性</li>
-</ul>
+</ol>
+<h3 id="现有方法的一些限制"><a href="#现有方法的一些限制" class="headerlink" title="现有方法的一些限制"></a>现有方法的一些限制</h3><ol>
+<li>很难说明预期误差</li>
+<li>很难处理不同的阈值（针对那些阈值作为一项输入的方法来说）</li>
+<li>很难根据理论依据来调整参数配置</li>
+<li>很难重新定义flowkeys</li>
+<li>很难去检查其准确性</li>
+</ol>
 <hr>
-<h3 id="数据层："><a href="#数据层：" class="headerlink" title="数据层："></a>数据层：</h3><p><img src="https://ws3.sinaimg.cn/large/006tNbRwly1fuf1nkkfj1j30hu0dk0vh.jpg" alt></p>
-<p>在每一个host上都部署了一个测量模块，每一个模块都处理连续不断的数据流并且统计分析该数据。为了防止多次测量，我们可以只测量出或者入的数据，再或者利用哈希来选择监控不连续的数据包。测量模块被分为两个部分，normal path和fast path。Normal path部署一个或者多个sketch-based方法， fast path作为一种补充，通过部署快速但是低准确度的测量方法。正常情况下，在normal path里采用FIFO buffer。 当数据流负载过重时，buffer满了，SV将重定向这部分数据包到fast path，然后收集这部分流量的数据。由网络管理来决定采用哪一种sketch-based方法。</p>
-<p>fast path 所面临的挑战是：</p>
-<ul>
-<li>足够快一致于可以吸收所有重定向的网络数据流</li>
-<li>虽然比normal path的准确度低但是也要保持一定的准确度</li>
-<li>对于不同的网络统计来讲具有一定的通用性。</li>
-</ul>
-<h3 id="控制层："><a href="#控制层：" class="headerlink" title="控制层："></a>控制层：</h3><p><img src="https://ws2.sinaimg.cn/large/006tNbRwly1fuf2h5c4ykj30h60dc41o.jpg" alt></p>
-<p>从多个host收集本地测量结果并且合并，提供网络范围内的测量结果。目标是当所有流量都走normal path时，在网络范围内提供准确的测量结果。</p>
-<p>控制层面临的挑战：</p>
-<ul>
-<li>排除fast path 所导致的测量错误，也就是说所有的错误都是由sketch本身所产生的。这样一来，对于fast path 设计带来了巨大挑战，要保证所有的测量任务的兼容。</li>
-</ul>
-<hr>
-<h2 id="Fast-path"><a href="#Fast-path" class="headerlink" title="Fast path"></a>Fast path</h2><p>Fast path 主要保证了系统的鲁棒性，如果没有这个设计，normal path必定要丢弃那些过载的数据流，从而在准确度上作出妥协。</p>
-<p>设计fast path要尽可能多地去追踪网络数据信息，在大多数情况下网络都是被几个较大规模的数据流所占有，这个假设就会引起很多sketch 设计（要求该设计识别大规模数据流），在我们的设计中就着重关注最大规模的数据流，或者前k个数据流（k取决于内存空间）。</p>
-<p>如果只关注大规模的数据流，那么必定会忽视小数据流的信息，这些对于基于连通的网络统计量来说也很重要，但同时对于所有的小数据流都进行追踪是不现实的。幸运的是，sketch-based解决方法会估计不同流的统计信息。观察发现小流的影响微不足道，因此我们用一个全局变量计数（此处应该是指统计大数据流），并在控制层来推断具体的sketch统计数据。</p>
-<hr>
-<h3 id="方案概览"><a href="#方案概览" class="headerlink" title="方案概览"></a>方案概览</h3><p>fast path 算法是基于Misra-Gries‘s算法的top-k算法，但是原算法有两点对于高性能和准确性的限制。首先，改进算法剔除一个小数据流然后加入一个潜在的大数据流，它表现出$O(k)$的复杂度去更新k个计数器，当有很多个小的数据流时，节省下来的开销就很可观了。其次，改进算法对于估计top-k条数据流的界限要求比较宽松。我们结合了PLC算法，可以提高偏差数据的准确率。最后，每条数据流都用三个计数器来追踪确保每条流都有严格的上界和下界。</p>
-<p>主要思路就是保证top-k条流一直在哈希表H中，当H满了就适当移除一条不满足条件的数据流。当接收到一条大小为v的数据流$f$时，先更新统计计数器$V=V+v$，如果$f$在哈希$H$中，那么就更新$r_f=r_f+v$，如果$H$未满，那么就直接加入$f$并初始化为$(E,v,0)$,如果$H$已满，那么就要计算一个减小值$e$，并对$H$中的所有流的$r$参数减小$e$，$d$参数增加$e$。倘若有$r$小于0那么将被剔除，并加入合适的流。</p>
-<hr>
-<h2 id="网络范围内的恢复"><a href="#网络范围内的恢复" class="headerlink" title="网络范围内的恢复"></a>网络范围内的恢复</h2><h3 id="基本思想"><a href="#基本思想" class="headerlink" title="基本思想"></a>基本思想</h3><p>控制层通过周期性的收集本地数据提供全网范围内的测量数据，它可以通过矩阵加将所有的sketch合并到一个sketch上（合并后的结果用N来表示），将多个哈希表合并成一个，并且将计数器的结果合并成一个，注意到之前算法有不确定性，因此它只维护top-k个数据流并且没有跟踪到具体的某一个小的数据流上。这部分的研究目标就是精确恢复。</p>
-<p>我们分解网络流数据成两个向量，$x$表示哈希表$H$中的流实际的字节数，$y$表示其他流实际的字节数。如果一个流不存在，那么所有的数据就都是0了。$x+y$就表示了fast-path中的每一个数据流。</p>
-<p>为了恢复出所有的网络流T，我们可以将fast path中的所有流都注入到normal path中，本质就是用sketch方法来处理$x+y$，表示为$sk(x+y)$，</p>
-<script type="math/tex; mode=display">
-T=N+sk(x+y)</script><p> 由于fast path 并不是追踪到每条数据流，因此$x$和$y$实际上是未知的，但是我们可以通过统计量来明确其值的限制条件。$x$和$y$的$l_1$范数之和可以如下表示：</p>
-<script type="math/tex; mode=display">
-\lVert x\rVert_1 + \lVert y\rVert_1 = V</script><p>除此之外，合并后的哈希表H也给出了每条流的上/下确界：</p>
-<script type="math/tex; mode=display">
-rf+df \leq xf \leq rf+df+ef</script><p>前两个等式表述的是网络流的聚集合并特性，第三个式子表示的是每条流的错误区间。但是上述信息还不够完整全面，有很多工作都针对其做矩阵插入的解决方案，本文则着力于找到最佳的估计矩阵T，以实现最好的恢复效果。</p>
-<h3 id="压缩感知"><a href="#压缩感知" class="headerlink" title="压缩感知"></a>压缩感知</h3><p>首先明确出$T，x，y$的特性</p>
-<p>$T$接近是一个低秩矩阵。网络中大多数都是较大流量的数据流，又因为大数据流会引起更多的重视，因此，计数器的统计量大多近似。</p>
-<p>$x$和$sk(x)$是稀疏的。因为$x$只包含top-k条流在哈希表中，且整张表的规模是非常大的，因此我们可以将$x$视作一个稀疏向量，又因为$x$在sketch算法中由计数器限定了一定的数量，所以$sk(x)$也是稀疏的。</p>
-<p>$y$和$sk(y)$是低噪的。由y所记录的所有数据流都是规模小且区分度低。因此我们可以将y视作一个低噪的向量。</p>
-<p>我们使用奇异值分解方法，对几个sketch矩阵产生了低秩近似。</p>
-<p><strong>目标函数</strong><br>我们将上述的特性引入到目标函数当中，然后利用压缩感知框架LENS去恢复T，LENS就是这样一种算法，可以将网络流矩阵分解成低秩、稀疏并且低噪的部分。通过LENS我们将目标函数设定为：</p>
-<script type="math/tex; mode=display">
-minimize: \alpha\lVert T\rVert_* + \beta\lVert x\rVert_1 + \frac{1}{2\gamma}\lVert y\rVert^2_F</script><p>$\lVert T\rVert_*$ : T的核范数，可以约束低秩矩阵。<br>$\lVert x\rVert_1$ : x的l1范数，约束x的稀疏性。<br>$\lVert y\rVert^2_F$ :Frobenius 范数，约束y里面的大元素。</p>
-
+<h2 id="SketchLearn-概览"><a href="#SketchLearn-概览" class="headerlink" title="SketchLearn 概览"></a>SketchLearn 概览</h2><h3 id="功能设计"><a href="#功能设计" class="headerlink" title="功能设计"></a>功能设计</h3><p><strong>对于每位进行追踪的多级sketch</strong><br>SketchLearn维护一个由多个小sketches所组成的多级sketch，每个多级sketch都会对一个给定的flowkey进行特定的网络流数据跟踪。结合统计模型，SketchLearn不仅仅减少了sketch的大小，还加强了对于资源的利用，同时还使得flowkey可以按需随意定制。在多级sketch中，每一个flowkey都有多个域来组成，如5元组。</p>
+<p><strong>对大小数据流进行分离</strong><br>多级sketch提供了一个关键的特性就是如果没有大数据流，他的计数器就跟从高斯分布。这样，SketchLearn从多级sketch中抽取大数据流，并且剩下小数据流的计数器形成高斯分布。这样的分离使得SketchLearn解决哈希冲突。例如SketchLearn只对那些抽取出来的大数据流进行hitter检测。</p>
+<p><strong>无参数的模型接口</strong><br>SketchLearn在不借助任何参数的情况下实现对于大小数据流的区分。它反复学习多级sketch中的统计分布并且利用这种分布来指导大数据流的提取。注意这里的无参数不是说SketchLearn是零配置的，例如对于heavy hitter的检测仍然需要一个阈值，但是SketchLearn已经尽可能减少了配置量。</p>
+<p><strong>对于独立数据流的误差测量</strong>对于给定数据流统计量SketchLearn都有相应的误差测量。我们不需要识别任何误差，相反的是我们利用这个来识别正确的数据流</p>
+<p><strong>全网范围</strong>SketchLearn可以部署到全网的测量节点上。</p>
+<h3 id="架构设计"><a href="#架构设计" class="headerlink" title="架构设计"></a>架构设计</h3>
         </div>
         
         
@@ -406,11 +366,11 @@ minimize: \alpha\lVert T\rVert_* + \beta\lVert x\rVert_1 + \frac{1}{2\gamma}\lVe
 <li>势估计：网络流数量</li>
 </ol>
 <hr>
-<h2 id="弹性Sketches"><a href="#弹性Sketches" class="headerlink" title="弹性Sketches"></a>弹性Sketches</h2><h3 id="基本思路"><a href="#基本思路" class="headerlink" title="基本思路"></a>基本思路</h3><p>逻辑依据(Rationale): 根据上述提到的，我们需要区分大小数据流。我们将分流问题规约为：已知一个高速的网络流，如果用一个桶(bucket)来选择最大的网络流？因为内存大小有限，不可能实现一个完全准确的答案，因此我们应该致力于提高该算法的准确度。我们的方法与陶片放逐法(Ostracism)的思路类似。详细来讲，每一个桶(bucket)都有三个域：ID，positive votes，negative votes。已知一个ID为$f_1$的流传来了一个数据包，如果与bucket 中的ID一致，就增加其positive votes的值，反之增加negative notes的值。如果($\frac{negative votes}{positive votes} \geq \lambda$)其中λ是预先定义好的阈值，我们将原有的数据流从bucket中删除并将$f_1$放入到bucket中。</p>
+<h2 id="弹性Sketches"><a href="#弹性Sketches" class="headerlink" title="弹性Sketches"></a>弹性Sketches</h2><h3 id="基本思路"><a href="#基本思路" class="headerlink" title="基本思路"></a>基本思路</h3><p>逻辑依据(Rationale): 根据上述提到的，我们需要区分大小数据流。我们将分流问题规约为：已知一个高速的网络流，如果用一个桶(bucket)来选择最大的网络流？因为内存大小有限，不可能实现一个完全准确的答案，因此我们应该致力于提高该算法的准确度。我们的方法与陶片放逐法(Ostracism)的思路类似。详细来讲，每一个桶(bucket)都有三个域：ID，positive votes，negative votes。已知一个ID为$f_1$的流传来了一个数据包，如果与bucket 中的ID一致，就增加其positive votes的值，反之增加negative notes的值。如果($\frac{negative\ votes}{positive\ votes} \geq \lambda$)其中λ是预先定义好的阈值，我们将原有的数据流从bucket中删除并将$f_1$放入到bucket中。</p>
 <p><img src="https://ws4.sinaimg.cn/large/006tNbRwly1fuilqxx4h2j30lm09u406.jpg" alt></p>
 <p>如图所示，数据结构包含两部分，heavy part记录大数据流，light part记录小数据流。$h(.)$是一个哈希函数，$vote^+$可以记录本数据流的数据包，$vote^-$可以记录其他数据流的数据包，flag标志light part里面是否包含本条数据流的positive votes。</p>
 <p>light part是一个CM sketch, 一个CM sketch包含$d$个数组，每个数组都有一个哈希函数，并组成了$w$个计数器。给定一个进来的数据包，CM sketch取出流ID，计算$d$个哈希函数去给每一个数组定位一个计数器，并且在该计数器上加1。</p>
-<p>插入：给定一个进来的流ID为$f$的数据包，我们把它哈希到桶$\mathcal{H}[h(f)\%B]$中，$B$是heavy part里面bucket的个数。假设bucket保存$(f1,vote+,flag1,vote-)$。与陶片放逐法Ostracism相同的是，如果$f$与$f_1$匹配，我们增加$vote^+$，否则增加$vote^-$并且决定是否驱逐$f_1$。具体来说有以下四种情况：</p>
+<p>插入：给定一个进来的流ID为$f$的数据包，我们把它哈希到桶$\mathcal{H}[h(f)%B]$中，$B$是heavy part里面bucket的个数。假设bucket保存$(f1,vote+,flag1,vote-)$。与陶片放逐法Ostracism相同的是，如果$f$与$f_1$匹配，我们增加$vote^+$，否则增加$vote^-$并且决定是否驱逐$f_1$。具体来说有以下四种情况：</p>
 <ol>
 <li>bucket是空的，插入$(f,1,F,0)$</li>
 <li>$f=f1$,$vote^+$加1</li>
@@ -436,7 +396,7 @@ minimize: \alpha\lVert T\rVert_* + \beta\lVert x\rVert_1 + \frac{1}{2\gamma}\lVe
 <ol>
 <li><p>将sketch A划分为相等的部分，每个部分都是$w’*d$。</p>
 </li>
-<li><p>我们设立一个sketch B大小为$w’ * d$。3）有同样索引的计数器将会被分到同一个组里（${A_i^k[j]}_{k=1,…,z}$），因此我们可以设置$B_i[j]=OP^z_{k=1}{A_i^k[j]}(1&lt;=i&lt;=d,1&lt;=j&lt;=z)$,$OP$是一个合并操作符如MAX或Sum，图例中就是取最大值，为了符合sketch B，我们也仅仅需要将哈希函数$hi(.)\%w$变为$hi(.)\%w\%w’$。</p>
+<li><p>我们设立一个sketch B大小为$w’ * d$。3）有同样索引的计数器将会被分到同一个组里（${A_i^k[j]}<em>{k=1,…,z}$），因此我们可以设置$B_i[j]=OP^z</em>{k=1}{A_i^k[j]}(1&lt;=i&lt;=d,1&lt;=j&lt;=z)$,$OP$是一个合并操作符如MAX或Sum，图例中就是取最大值，为了符合sketch B，我们也仅仅需要将哈希函数$hi(.)%w$变为$hi(.)%w%w’$。</p>
 </li>
 </ol>
 <p>合并操作：第一种是加和压缩(SC)，将每一组的计数器求和。另一种就是最大值压缩(MC)。关于二者有以下结论：</p>
@@ -449,14 +409,14 @@ minimize: \alpha\lVert T\rVert_* + \beta\lVert x\rVert_1 + \frac{1}{2\gamma}\lVe
 <h3 id="合并sketches"><a href="#合并sketches" class="headerlink" title="合并sketches"></a>合并sketches</h3><p><img src="https://ws2.sinaimg.cn/large/006tNbRwly1fujn6aip66j30ik092q48.jpg" alt></p>
 <p>如上图所示，可以利用服务器来节省带宽。每一个服务器都从测量节点收到很多个sketches，然后合并sketches并将合并结果发送到collector。为了实现合并，我们需要每一个sketches都使用相同的哈希函数。如果他们都有共同的流ID，我们建议使用求和合并，否则我们建议使用最大值合并。</p>
 <p><strong>求和合并（Sum Merging）</strong>：给定两个相同大小($d*w$)的，将相对应的计数器值相加即可，这种方法简单快速但是准确率低。</p>
-<p><strong>对于相同大小的sketches进行最大值合并</strong>：如下图所示，给定两个sketches A和B（$w*d$），建立一个新的sketch $\mathbb{C}$，$C_i[j]=max\{Ai_[j],B_i[j]\}(1 \leq i \leq d,1 \leq j \leq w)$。</p>
+<p><strong>对于相同大小的sketches进行最大值合并</strong>：如下图所示，给定两个sketches A和B（$w*d$），建立一个新的sketch $\mathbb{C}$，$C_i[j]=max{Ai_[j],B_i[j]}(1 \leq i \leq d,1 \leq j \leq w)$。</p>
 <p><img src="https://ws1.sinaimg.cn/large/006tNbRwly1fujp4i6cm3j30iu0680tf.jpg" alt></p>
 <hr>
 <h3 id="自适应数据包传输速率"><a href="#自适应数据包传输速率" class="headerlink" title="自适应数据包传输速率"></a>自适应数据包传输速率</h3><p>在测量节点上，总是有一个输入队列来缓存数据包。包速率在大多数情况下都是比较低的，但是更糟的情况下，其速度是很高的，输入队列也很快填满了，也就很难记录所有的数据流。上一篇文章SketchVisor使用一个专用组件fast path来容纳高速率的数据包。然而，最差情况下他还要将整个数据结构都进行传输，可能会影响一定的性能。</p>
 <p>我们提出了一个方法来应对突发流量。当包数量大于预先设定的阈值时，我们让输入包只到heavy part中，这样保留大数据流，丢弃小数据流。这样一来，只有在以下情况可能发生改变：如果一个bucket里的数据流f由另一个数据流$f’$替换，$f’$的流大小就被设置成了$f$。因此我们需要一个探针，当数据流量速度减小的时候，就回到之前的方法上。</p>
 <p>上述方法在损失很小精确度的情况下实现了更高的速度。该策略被激活的时候，我们没有丢弃light part而是阻止其更新。也就是仅仅当数据包速度很快的时候才会发生信息的丢失。</p>
 <hr>
-<h3 id="自适应网络流大小分布"><a href="#自适应网络流大小分布" class="headerlink" title="自适应网络流大小分布"></a>自适应网络流大小分布</h3><p>对于流大小分布的主要判别依据就是大数据流的数量。我们需要根据数据流的分布来调整heavy part的规模。步骤如下：首先我们向heavy part分配一个小内存空间，随着越来越多的大数据流的加入，heavy part将会满了。我们设定一个阈值T1。当 heavy part满了的时候，我们提出了一下的复制操作：将 heavy part拷贝并与原heavy part合并为一个。哈希函数也从$h(.)\%w$变为$h(.)\%2w$。这样一来，bucket就节省了一半的空间。</p>
+<h3 id="自适应网络流大小分布"><a href="#自适应网络流大小分布" class="headerlink" title="自适应网络流大小分布"></a>自适应网络流大小分布</h3><p>对于流大小分布的主要判别依据就是大数据流的数量。我们需要根据数据流的分布来调整heavy part的规模。步骤如下：首先我们向heavy part分配一个小内存空间，随着越来越多的大数据流的加入，heavy part将会满了。我们设定一个阈值T1。当 heavy part满了的时候，我们提出了一下的复制操作：将 heavy part拷贝并与原heavy part合并为一个。哈希函数也从$h(.)%w$变为$h(.)%2w$。这样一来，bucket就节省了一半的空间。</p>
 <p><img src="https://ws1.sinaimg.cn/large/006tNbRwly1fujqe6jlqmj30j009q75l.jpg" alt></p>
 <p>上图所示到达的$f_2$数据流哈希到了$f_3$的bucket位置上，这样将$w$翻倍，由4变到8，$f_3$数据流的余数可以变为6，$f_2$落到原$f_3$的位置上，这样动态实现了网络流大小的分布适应。</p>
 
@@ -490,7 +450,7 @@ minimize: \alpha\lVert T\rVert_* + \beta\lVert x\rVert_1 + \frac{1}{2\gamma}\lVe
                 <span class="level-item has-text-grey">
                     
                     
-                    9 分钟 读完 (大约 1352 个字)
+                    19 分钟 读完 (大约 2829 个字)
                 </span>
                 
                 
@@ -499,42 +459,82 @@ minimize: \alpha\lVert T\rVert_* + \beta\lVert x\rVert_1 + \frac{1}{2\gamma}\lVe
         
         <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
             
-                <a class="has-link-black-ter" href="/2018/08/23/网络/2018-8-24-SketchLearn/">SketchLearn: Relieving User Burdens in Approximate Measurement with Automated Statistical Inference</a>
+                <a class="has-link-black-ter" href="/2018/08/23/网络/2018-8-23-SketchVisor/">SketchVisor: Robust Network Measurement for Soware Packet Processing</a>
             
         </h1>
         <div class="content">
-            <h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2><p>在巨大的网络流量下，网络测量对于资源的利用有着严格的限制。近似测量的方法可以节省一定的资源，需要人工对其进行合适的配置。详细来说，典型方法通过严控参数，在合理的测量误差下提供足够的资源。我们设计了SketchLearn，这是一个sketch-based的测量框架，可以通过学习统计特性解决资源冲突从而消除了网络流量上的冲突。</p>
-<h2 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h2><p>由于网络资源的限制，许多的网络测量方法都需要在资源利用与测量准确度之间进行权衡。基本思路就是将次线性的数据结构压缩，并在有限的资源下理论保证恢复。尽管这具有理论可行性但是现有方法都不方便使用，因为巨大的网络流总是在竞争有限的资源，并由资源冲突引发一定的错误，为了消除这些错误，还需要分出一些资源来实现准确度。综上，资源配置与准确度之间还有紧密的联系，这些联系导致了一部分限制：</p>
-<ol>
-<li>管理员需要将错误容忍级别当做一个参数引入到资源配置算法中。</li>
-<li>每一种资源配置都对应一个阈值参数。</li>
-<li>理论分析只给出了基于实际负载的最坏结果。</li>
-<li>每一种配置都被特定的流所限制。</li>
-<li>管理员不能容忍较大的测量误差。</li>
-</ol>
-<p>由于以上限制的存在，如何在理论方法与实际应用之间架起桥梁对我们来说是一个挑战。</p>
-<p>为了解决这个问题，我们使用的sketch-based方法可以完全记录所有观测到的数据包的统计数据，他们都有固定的数据结构。SketchLearn的基本思想是将固有的资源矛盾的统计特征描绘出来，而非追求一个消除所有资源冲突的配置参数。详细的说，SketchLearn建立了一个多层的sketch来追踪网络流记录的频数。这个多级结构引出了一个计数器的多bit-level的高斯分布。SketchLearn利用高斯分布来确定其限制。它反复从多级sketch中推算并提取出大数据流，直到剩余的多级sketch满足高斯分布。通过分离大小数据流，SketchLearn消除了资源冲突并且提高其测量准确性。</p>
-<h2 id="研究动机"><a href="#研究动机" class="headerlink" title="研究动机"></a>研究动机</h2><p>在一个时间间隙里每条网络数据流的频数被称为epochs。每条流都用一个flowkey作为标志，例如5元组或者源/目的地址对。通过每条流的频数，我们都可以得到较复杂的数据流统计量，如heavy hitters, heavy changers, superspreaders 以及 DDoS，cardinality(势),流大小分布和熵。</p>
-<h3 id="设计要求"><a href="#设计要求" class="headerlink" title="设计要求"></a>设计要求</h3><ol>
-<li>较小的内存使用</li>
-<li>较快的包处理速度</li>
-<li>实时响应</li>
-<li>通用性</li>
-</ol>
-<h3 id="现有方法的一些限制"><a href="#现有方法的一些限制" class="headerlink" title="现有方法的一些限制"></a>现有方法的一些限制</h3><ol>
-<li>很难说明预期误差</li>
-<li>很难处理不同的阈值（针对那些阈值作为一项输入的方法来说）</li>
-<li>很难根据理论依据来调整参数配置</li>
-<li>很难重新定义flowkeys</li>
-<li>很难去检查其准确性</li>
-</ol>
+            <h2 id="概要"><a href="#概要" class="headerlink" title="概要"></a>概要</h2><p>Sketch是一种紧凑的数据结构，以固定的内存大小来统计网络数据包。传统的sketch-based方法都是消耗大量的CPU资源，例如虚拟机或者容器环境下，同样位置的多个应用都会抢占资源。传统的sketch-based算法过于简洁，因此在将其应用到实际环境当中，就需要加入额外的扩展功能从而导致运算量的增加。虽然在数据中心的链路速度并不总是高要求的，但是这依然是重要的指标。</p>
+<p>本文提出的SketchVisor是一种针对软件数据包处理的鲁棒性网络测量框架。即使在很高的网络流量当中，SV都会有很好的性能以及很高的准确性。SV 引入了独立的数据通路（fast path）以提供快速但是低准确度的测量，以解决那些不能被及时处理的数据包。之后，通过sketch-based以及fast path准确恢复整个网络范围内的测量结果。</p>
+<h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>特别的，SV部署在一个分布式的数据平面上，网络管理员将对不同的数据平面上分配任务，如果这些任务过载或者不能被及时处理，那么就会将任务重定向到fast-path上。本文针对fast-path提出了一个top-k算法以跟踪大数据流。Top-k可以实现较低的偿还过程以及缩紧评价指标。还维持了一个全局的计数器用来追踪进入fast-path的网络流，从而来捕获所有较小的网络数据流的特征。</p>
+<p>除此之外，SV还部署了个中心化的控制平面来合并本地的测量结果（sketch-based以及fast path的结果），fast path不可避免的会出现准确性的损失，本文形式化了一个矩阵插入问题，使得在控制平面可以恢复这些丢失的数据。</p>
 <hr>
-<h2 id="SketchLearn-概览"><a href="#SketchLearn-概览" class="headerlink" title="SketchLearn 概览"></a>SketchLearn 概览</h2><h3 id="功能设计"><a href="#功能设计" class="headerlink" title="功能设计"></a>功能设计</h3><p><strong>对于每位进行追踪的多级sketch</strong><br>SketchLearn维护一个由多个小sketches所组成的多级sketch，每个多级sketch都会对一个给定的flowkey进行特定的网络流数据跟踪。结合统计模型，SketchLearn不仅仅减少了sketch的大小，还加强了对于资源的利用，同时还使得flowkey可以按需随意定制。在多级sketch中，每一个flowkey都有多个域来组成，如5元组。</p>
-<p><strong>对大小数据流进行分离</strong><br>多级sketch提供了一个关键的特性就是如果没有大数据流，他的计数器就跟从高斯分布。这样，SketchLearn从多级sketch中抽取大数据流，并且剩下小数据流的计数器形成高斯分布。这样的分离使得SketchLearn解决哈希冲突。例如SketchLearn只对那些抽取出来的大数据流进行hitter检测。</p>
-<p><strong>无参数的模型接口</strong><br>SketchLearn在不借助任何参数的情况下实现对于大小数据流的区分。它反复学习多级sketch中的统计分布并且利用这种分布来指导大数据流的提取。注意这里的无参数不是说SketchLearn是零配置的，例如对于heavy hitter的检测仍然需要一个阈值，但是SketchLearn已经尽可能减少了配置量。</p>
-<p><strong>对于独立数据流的误差测量</strong>对于给定数据流统计量SketchLearn都有相应的误差测量。我们不需要识别任何误差，相反的是我们利用这个来识别正确的数据流</p>
-<p><strong>全网范围</strong>SketchLearn可以部署到全网的测量节点上。</p>
-<h3 id="架构设计"><a href="#架构设计" class="headerlink" title="架构设计"></a>架构设计</h3>
+<h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><h3 id="网络测量"><a href="#网络测量" class="headerlink" title="网络测量"></a>网络测量</h3><p>本文着重考虑一下的几个网络数据统计量：</p>
+<ul>
+<li><p>Heavy hitter：在一个时期中流字节大小超过一定阈值的网络流。</p>
+</li>
+<li><p>Heavy changer：在两个连续的时期中发生改变的字节大小超过一定的阈值的网络流。</p>
+</li>
+<li><p>DDos：一个目标host在一定时期中接到的网络数据包超过了阈值。</p>
+</li>
+<li><p>Superspreader：在一个时期内，源host向多于阈值个目标host发送数据。</p>
+</li>
+<li><p>Cardinality：势。在一个时期内不同网络流的数量。</p>
+</li>
+<li><p>Flow size distribution：一个时期内不同字节数范围内的分数大小。</p>
+</li>
+<li><p>Entropy：一个时期内流大小的熵。</p>
+</li>
+</ul>
+<hr>
+<h2 id="概览"><a href="#概览" class="headerlink" title="概览"></a>概览</h2><p>设计目标：</p>
+<ul>
+<li>性能</li>
+<li>资源效率</li>
+<li>精确性</li>
+<li>通用性</li>
+<li>简洁性</li>
+</ul>
+<hr>
+<h3 id="数据层："><a href="#数据层：" class="headerlink" title="数据层："></a>数据层：</h3><p><img src="https://ws3.sinaimg.cn/large/006tNbRwly1fuf1nkkfj1j30hu0dk0vh.jpg" alt></p>
+<p>在每一个host上都部署了一个测量模块，每一个模块都处理连续不断的数据流并且统计分析该数据。为了防止多次测量，我们可以只测量出或者入的数据，再或者利用哈希来选择监控不连续的数据包。测量模块被分为两个部分，normal path和fast path。Normal path部署一个或者多个sketch-based方法， fast path作为一种补充，通过部署快速但是低准确度的测量方法。正常情况下，在normal path里采用FIFO buffer。 当数据流负载过重时，buffer满了，SV将重定向这部分数据包到fast path，然后收集这部分流量的数据。由网络管理来决定采用哪一种sketch-based方法。</p>
+<p>fast path 所面临的挑战是：</p>
+<ul>
+<li>足够快一致于可以吸收所有重定向的网络数据流</li>
+<li>虽然比normal path的准确度低但是也要保持一定的准确度</li>
+<li>对于不同的网络统计来讲具有一定的通用性。</li>
+</ul>
+<h3 id="控制层："><a href="#控制层：" class="headerlink" title="控制层："></a>控制层：</h3><p><img src="https://ws2.sinaimg.cn/large/006tNbRwly1fuf2h5c4ykj30h60dc41o.jpg" alt></p>
+<p>从多个host收集本地测量结果并且合并，提供网络范围内的测量结果。目标是当所有流量都走normal path时，在网络范围内提供准确的测量结果。</p>
+<p>控制层面临的挑战：</p>
+<ul>
+<li>排除fast path 所导致的测量错误，也就是说所有的错误都是由sketch本身所产生的。这样一来，对于fast path 设计带来了巨大挑战，要保证所有的测量任务的兼容。</li>
+</ul>
+<hr>
+<h2 id="Fast-path"><a href="#Fast-path" class="headerlink" title="Fast path"></a>Fast path</h2><p>Fast path 主要保证了系统的鲁棒性，如果没有这个设计，normal path必定要丢弃那些过载的数据流，从而在准确度上作出妥协。</p>
+<p>设计fast path要尽可能多地去追踪网络数据信息，在大多数情况下网络都是被几个较大规模的数据流所占有，这个假设就会引起很多sketch 设计（要求该设计识别大规模数据流），在我们的设计中就着重关注最大规模的数据流，或者前k个数据流（k取决于内存空间）。</p>
+<p>如果只关注大规模的数据流，那么必定会忽视小数据流的信息，这些对于基于连通的网络统计量来说也很重要，但同时对于所有的小数据流都进行追踪是不现实的。幸运的是，sketch-based解决方法会估计不同流的统计信息。观察发现小流的影响微不足道，因此我们用一个全局变量计数（此处应该是指统计大数据流），并在控制层来推断具体的sketch统计数据。</p>
+<hr>
+<h3 id="方案概览"><a href="#方案概览" class="headerlink" title="方案概览"></a>方案概览</h3><p>fast path 算法是基于Misra-Gries‘s算法的top-k算法，但是原算法有两点对于高性能和准确性的限制。首先，改进算法剔除一个小数据流然后加入一个潜在的大数据流，它表现出$O(k)$的复杂度去更新k个计数器，当有很多个小的数据流时，节省下来的开销就很可观了。其次，改进算法对于估计top-k条数据流的界限要求比较宽松。我们结合了PLC算法，可以提高偏差数据的准确率。最后，每条数据流都用三个计数器来追踪确保每条流都有严格的上界和下界。</p>
+<p>主要思路就是保证top-k条流一直在哈希表H中，当H满了就适当移除一条不满足条件的数据流。当接收到一条大小为v的数据流$f$时，先更新统计计数器$V=V+v$，如果$f$在哈希$H$中，那么就更新$r_f=r_f+v$，如果$H$未满，那么就直接加入$f$并初始化为$(E,v,0)$,如果$H$已满，那么就要计算一个减小值$e$，并对$H$中的所有流的$r$参数减小$e$，$d$参数增加$e$。倘若有$r$小于0那么将被剔除，并加入合适的流。</p>
+<hr>
+<h2 id="网络范围内的恢复"><a href="#网络范围内的恢复" class="headerlink" title="网络范围内的恢复"></a>网络范围内的恢复</h2><h3 id="基本思想"><a href="#基本思想" class="headerlink" title="基本思想"></a>基本思想</h3><p>控制层通过周期性的收集本地数据提供全网范围内的测量数据，它可以通过矩阵加将所有的sketch合并到一个sketch上（合并后的结果用N来表示），将多个哈希表合并成一个，并且将计数器的结果合并成一个，注意到之前算法有不确定性，因此它只维护top-k个数据流并且没有跟踪到具体的某一个小的数据流上。这部分的研究目标就是精确恢复。</p>
+<p>我们分解网络流数据成两个向量，$x$表示哈希表$H$中的流实际的字节数，$y$表示其他流实际的字节数。如果一个流不存在，那么所有的数据就都是0了。$x+y$就表示了fast-path中的每一个数据流。</p>
+<p>为了恢复出所有的网络流T，我们可以将fast path中的所有流都注入到normal path中，本质就是用sketch方法来处理$x+y$，表示为$sk(x+y)$，</p>
+<p>$$<br>T=N+sk(x+y)<br>$$</p>
+<p> 由于fast path 并不是追踪到每条数据流，因此$x$和$y$实际上是未知的，但是我们可以通过统计量来明确其值的限制条件。$x$和$y$的$l_1$范数之和可以如下表示：</p>
+<p>$$<br>\lVert x\rVert_1 + \lVert y\rVert_1 = V<br>$$</p>
+<p>除此之外，合并后的哈希表H也给出了每条流的上/下确界：</p>
+<p>$$<br>rf+df \leq xf \leq rf+df+ef<br>$$</p>
+<p>前两个等式表述的是网络流的聚集合并特性，第三个式子表示的是每条流的错误区间。但是上述信息还不够完整全面，有很多工作都针对其做矩阵插入的解决方案，本文则着力于找到最佳的估计矩阵T，以实现最好的恢复效果。</p>
+<h3 id="压缩感知"><a href="#压缩感知" class="headerlink" title="压缩感知"></a>压缩感知</h3><p>首先明确出$T，x，y$的特性</p>
+<p>$T$接近是一个低秩矩阵。网络中大多数都是较大流量的数据流，又因为大数据流会引起更多的重视，因此，计数器的统计量大多近似。</p>
+<p>$x$和$sk(x)$是稀疏的。因为$x$只包含top-k条流在哈希表中，且整张表的规模是非常大的，因此我们可以将$x$视作一个稀疏向量，又因为$x$在sketch算法中由计数器限定了一定的数量，所以$sk(x)$也是稀疏的。</p>
+<p>$y$和$sk(y)$是低噪的。由y所记录的所有数据流都是规模小且区分度低。因此我们可以将y视作一个低噪的向量。</p>
+<p>我们使用奇异值分解方法，对几个sketch矩阵产生了低秩近似。</p>
+<p><strong>目标函数</strong><br>我们将上述的特性引入到目标函数当中，然后利用压缩感知框架LENS去恢复T，LENS就是这样一种算法，可以将网络流矩阵分解成低秩、稀疏并且低噪的部分。通过LENS我们将目标函数设定为：</p>
+<p>$$<br>minimize: \alpha\lVert T\rVert_* + \beta\lVert x\rVert_1 + \frac{1}{2\gamma}\lVert y\rVert^2_F<br>$$</p>
+<p>$\lVert T\rVert_*$ : T的核范数，可以约束低秩矩阵。<br>$\lVert x\rVert_1$ : x的l1范数，约束x的稀疏性。<br>$\lVert y\rVert^2_F$ :Frobenius 范数，约束y里面的大元素。</p>
+
         </div>
         
         
@@ -591,6 +591,7 @@ minimize: \alpha\lVert T\rVert_* + \beta\lVert x\rVert_1 + \frac{1}{2\gamma}\lVe
 <li>net.hosts</li>
 </ul>
 <figure class="highlight python hljs"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line"><span class="hljs-keyword">from</span> mininet.topo <span class="hljs-keyword">import</span> Topo</span><br><span class="line"><span class="hljs-keyword">from</span> mininet.net <span class="hljs-keyword">import</span> Mininet</span><br><span class="line"><span class="hljs-keyword">from</span> mininet.util <span class="hljs-keyword">import</span> dumpNodeConnections</span><br><span class="line"><span class="hljs-keyword">from</span> mininet.log <span class="hljs-keyword">import</span> setLogLevel</span><br><span class="line"></span><br><span class="line"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">SingleSwitchTopo</span><span class="hljs-params">(Topo)</span>:</span></span><br><span class="line">    <span class="hljs-string">"Single switch connected to n hosts."</span></span><br><span class="line">    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">build</span><span class="hljs-params">(self, n=<span class="hljs-number">2</span>)</span>:</span></span><br><span class="line">        switch = self.addSwitch(<span class="hljs-string">'s1'</span>)</span><br><span class="line">        <span class="hljs-comment"># Python's range(N) generates 0..N-1</span></span><br><span class="line">        <span class="hljs-keyword">for</span> h <span class="hljs-keyword">in</span> range(n):</span><br><span class="line">            host = self.addHost(<span class="hljs-string">'h%s'</span> % (h + <span class="hljs-number">1</span>))</span><br><span class="line">            self.addLink(host, switch)</span><br><span class="line"></span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">simpleTest</span><span class="hljs-params">()</span>:</span></span><br><span class="line">    <span class="hljs-string">"Create and test a simple network"</span></span><br><span class="line">    topo = SingleSwitchTopo(n=<span class="hljs-number">4</span>)</span><br><span class="line">    net = Mininet(topo)</span><br><span class="line">    net.start()</span><br><span class="line">    net.stop()</span><br><span class="line"></span><br><span class="line"><span class="hljs-keyword">if</span> __name__ == <span class="hljs-string">'__main__'</span>:</span><br><span class="line">    <span class="hljs-comment"># Tell mininet to print useful information</span></span><br><span class="line">    setLogLevel(<span class="hljs-string">'info'</span>)</span><br><span class="line">    simpleTest()</span><br></pre></td></tr></table></figure>
+
 <h2 id="网络工具"><a href="#网络工具" class="headerlink" title="网络工具"></a>网络工具</h2><ul>
 <li>pingAll(): 测试网络所有节点的连通性，注意保证节点都在net中，否则不测试。</li>
 <li>dumpNodeConnections():截获节点之间的连通并进行分析。</li>
@@ -605,11 +606,13 @@ minimize: \alpha\lVert T\rVert_* + \beta\lVert x\rVert_1 + \frac{1}{2\gamma}\lVe
 </li>
 </ul>
 <figure class="highlight python hljs"><table><tr><td class="code"><pre><span class="line"><span class="hljs-comment">#!/usr/bin/python</span></span><br><span class="line"></span><br><span class="line"><span class="hljs-keyword">from</span> mininet.topo <span class="hljs-keyword">import</span> Topo</span><br><span class="line"><span class="hljs-keyword">from</span> mininet.net <span class="hljs-keyword">import</span> Mininet</span><br><span class="line"><span class="hljs-keyword">from</span> mininet.node <span class="hljs-keyword">import</span> CPULimitedHost</span><br><span class="line"><span class="hljs-keyword">from</span> mininet.link <span class="hljs-keyword">import</span> TCLink</span><br><span class="line"><span class="hljs-keyword">from</span> mininet.util <span class="hljs-keyword">import</span> dumpNodeConnections</span><br><span class="line"><span class="hljs-keyword">from</span> mininet.log <span class="hljs-keyword">import</span> setLogLevel</span><br><span class="line"></span><br><span class="line"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">SingleSwitchTopo</span><span class="hljs-params">( Topo )</span>:</span></span><br><span class="line">    <span class="hljs-string">"Single switch connected to n hosts."</span></span><br><span class="line">    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">build</span><span class="hljs-params">( self, n=<span class="hljs-number">2</span> )</span>:</span></span><br><span class="line">	switch = self.addSwitch( <span class="hljs-string">'s1'</span> )</span><br><span class="line">	<span class="hljs-keyword">for</span> h <span class="hljs-keyword">in</span> range(n):</span><br><span class="line">	    <span class="hljs-comment"># Each host gets 50%/n of system CPU</span></span><br><span class="line">	    host = self.addHost( <span class="hljs-string">'h%s'</span> % (h + <span class="hljs-number">1</span>),</span><br><span class="line">		                 cpu=<span class="hljs-number">.5</span>/n )</span><br><span class="line">	    <span class="hljs-comment"># 10 Mbps, 5ms delay, 2% loss, 1000 packet queue</span></span><br><span class="line">	    self.addLink( host, switch, bw=<span class="hljs-number">10</span>, delay=<span class="hljs-string">'5ms'</span>, loss=<span class="hljs-number">2</span>,</span><br><span class="line">                          max_queue_size=<span class="hljs-number">1000</span>, use_htb=<span class="hljs-keyword">True</span> )</span><br><span class="line"></span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">perfTest</span><span class="hljs-params">()</span>:</span></span><br><span class="line">    <span class="hljs-string">"Create network and run simple performance test"</span></span><br><span class="line">    topo = SingleSwitchTopo( n=<span class="hljs-number">4</span> )</span><br><span class="line">    net = Mininet( topo=topo,</span><br><span class="line">	           host=CPULimitedHost, link=TCLink )</span><br><span class="line">    net.start()</span><br><span class="line">    <span class="hljs-keyword">print</span> <span class="hljs-string">"Dumping host connections"</span></span><br><span class="line">    dumpNodeConnections( net.hosts )</span><br><span class="line">    <span class="hljs-keyword">print</span> <span class="hljs-string">"Testing network connectivity"</span></span><br><span class="line">    net.pingAll()</span><br><span class="line">    <span class="hljs-keyword">print</span> <span class="hljs-string">"Testing bandwidth between h1 and h4"</span></span><br><span class="line">    h1, h4 = net.get( <span class="hljs-string">'h1'</span>, <span class="hljs-string">'h4'</span> )</span><br><span class="line">    net.iperf( (h1, h4) )</span><br><span class="line">    net.stop()</span><br><span class="line"></span><br><span class="line"><span class="hljs-keyword">if</span> __name__ == <span class="hljs-string">'__main__'</span>:</span><br><span class="line">    setLogLevel( <span class="hljs-string">'info'</span> )</span><br><span class="line">    perfTest()</span><br></pre></td></tr></table></figure>
+
 <h2 id="指令"><a href="#指令" class="headerlink" title="指令"></a>指令</h2><ul>
 <li>cmd()</li>
 </ul>
 <p>由于每一个host主机都是作为bash shell来进行模拟的，所以理论上可以支持所有终端指令</p>
 <figure class="highlight py hljs"><table><tr><td class="code"><pre><span class="line">h1 = net.get(<span class="hljs-string">'h1'</span>)</span><br><span class="line">result = h1.cmd(<span class="hljs-string">'ifconfig'</span>)</span><br><span class="line"><span class="hljs-keyword">print</span> result</span><br></pre></td></tr></table></figure>
+
 
         </div>
         
@@ -1188,18 +1191,18 @@ minimize: \alpha\lVert T\rVert_* + \beta\lVert x\rVert_1 + \frac{1}{2\gamma}\lVe
         
         <article class="media">
             
-            <a href="/2019/07/21/数据挖掘/2019-08-13-实时异常检测/" class="media-left">
+            <a href="/2019/07/21/安全/2019-07-22-xgboost/" class="media-left">
                 <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="实时异常检测（xStream，KDD&#39;18）">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="孤立森林（Isolation Forest）">
                 </p>
             </a>
             
             <div class="media-content">
                 <div class="content">
                     <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-07-20T16:00:00.000Z">2019-07-21</time></div>
-                    <a href="/2019/07/21/数据挖掘/2019-08-13-实时异常检测/" class="title has-link-black-ter is-size-6 has-text-weight-normal">实时异常检测（xStream，KDD&#39;18）</a>
+                    <a href="/2019/07/21/安全/2019-07-22-xgboost/" class="title has-link-black-ter is-size-6 has-text-weight-normal">孤立森林（Isolation Forest）</a>
                     <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/Anomaly-detection/">Anomaly detection</a>
+                        <a class="has-link-grey -link" href="/categories/Security/">Security</a>
                     </p>
                 </div>
             </div>
@@ -1688,18 +1691,18 @@ minimize: \alpha\lVert T\rVert_* + \beta\lVert x\rVert_1 + \frac{1}{2\gamma}\lVe
         
         <article class="media">
             
-            <a href="/2019/07/21/数据挖掘/2019-08-13-实时异常检测/" class="media-left">
+            <a href="/2019/07/21/安全/2019-07-22-xgboost/" class="media-left">
                 <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="实时异常检测（xStream，KDD&#39;18）">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="孤立森林（Isolation Forest）">
                 </p>
             </a>
             
             <div class="media-content">
                 <div class="content">
                     <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-07-20T16:00:00.000Z">2019-07-21</time></div>
-                    <a href="/2019/07/21/数据挖掘/2019-08-13-实时异常检测/" class="title has-link-black-ter is-size-6 has-text-weight-normal">实时异常检测（xStream，KDD&#39;18）</a>
+                    <a href="/2019/07/21/安全/2019-07-22-xgboost/" class="title has-link-black-ter is-size-6 has-text-weight-normal">孤立森林（Isolation Forest）</a>
                     <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/Anomaly-detection/">Anomaly detection</a>
+                        <a class="has-link-grey -link" href="/categories/Security/">Security</a>
                     </p>
                 </div>
             </div>

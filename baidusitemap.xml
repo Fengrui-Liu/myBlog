@@ -6,6 +6,7 @@
     
     
     
+    
   <url>
     <loc>http://www.liufr.com/2019/09/12/%E6%95%B0%E6%8D%AE%E6%8C%96%E6%8E%98/2019-09-12-%E6%97%B6%E9%97%B4%E6%B3%A8%E6%84%8F%E5%8A%9B%E6%A8%A1%E5%9E%8B%E4%B8%8B%E7%9A%84%E6%97%B6%E5%BA%8F%E9%A2%84%E6%B5%8B/</loc>
     <lastmod>2019-09-16T08:29:07.271Z</lastmod>
@@ -111,9 +112,9 @@
         <title>利用时序决策树进行DGA僵尸检测</title>
         <pubTime>2019-07-20T16:00:00.000Z</pubTime>
         
-        <tag>Security</tag>
-         
         <tag>Anomaly detection</tag>
+         
+        <tag>Security</tag>
          
          
            
@@ -133,9 +134,9 @@
         <title>孤立森林（Isolation Forest）</title>
         <pubTime>2019-07-20T16:00:00.000Z</pubTime>
         
-        <tag>Security</tag>
-         
         <tag>Anomaly detection</tag>
+         
+        <tag>Security</tag>
          
          
            
@@ -155,9 +156,9 @@
         <title>孤立森林（Isolation Forest）</title>
         <pubTime>2019-07-20T16:00:00.000Z</pubTime>
         
-        <tag>Security</tag>
-         
         <tag>Anomaly detection</tag>
+         
+        <tag>Security</tag>
          
          
            
@@ -177,9 +178,9 @@
         <title>梯度提升决策树（GBDT）</title>
         <pubTime>2019-07-20T16:00:00.000Z</pubTime>
         
-        <tag>Security</tag>
-         
         <tag>Anomaly detection</tag>
+         
+        <tag>Security</tag>
          
          
            
@@ -199,9 +200,9 @@
         <title>多项式插值</title>
         <pubTime>2019-07-20T16:00:00.000Z</pubTime>
         
-        <tag>Security</tag>
-         
         <tag>Anomaly detection</tag>
+         
+        <tag>Security</tag>
          
          
            
@@ -221,9 +222,9 @@
         <title>指数加权移动平均法（EWMA）</title>
         <pubTime>2019-07-20T16:00:00.000Z</pubTime>
         
-        <tag>Security</tag>
-         
         <tag>Anomaly detection</tag>
+         
+        <tag>Security</tag>
          
          
            

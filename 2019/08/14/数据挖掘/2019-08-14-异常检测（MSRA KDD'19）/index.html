@@ -193,10 +193,8 @@
 <li>计算频谱冗余</li>
 <li>逆傅里叶变化将序列反转到空间域名</li>
 </ol>
-<p>特别的快速傅里叶FFT是通过滑动窗口处理队列的。更多的是关注延迟，发现当检测点是滑动窗口中间点时效果最好，因此要在已知输入的最后一个点后加上几个预测点来从而使该点放在滑动窗口的中心位置，对于$x_n$后的估计点$x_{n+1}$计算如下：</p>
-<script type="math/tex; mode=display">
-\bar{g}=\frac{1}{m}\sum_{i=1}^mg(x_n,x_{n-i})\\
-x_{n+1} = x_{n-m+1}+\bar{g}\cdot m</script><p>其中$g(x_i,x_j)$可以作为i，j两点直线上的斜率，$\bar{g}$也就是平均梯度，m=5，$x_{n+1}$作为一个关键点这里复制K次加到序列末尾即可。</p>
+<p>特别的快速傅里叶FFT是通过滑动窗口处理队列的。更多的是关注延迟，发现当检测点是滑动窗口中间点时效果最好，因此要在已知输入的最后一个点后加上几个预测点来从而使该点放在滑动窗口的中心位置，对于$x_n$后的估计点$x_{n+1}$计算如下：<br>$$<br>\bar{g}=\frac{1}{m}\sum_{i=1}^mg(x_n,x_{n-i})\<br>x_{n+1} = x_{n-m+1}+\bar{g}\cdot m<br>$$</p>
+<p>其中$g(x_i,x_j)$可以作为i，j两点直线上的斜率，$\bar{g}$也就是平均梯度，m=5，$x_{n+1}$作为一个关键点这里复制K次加到序列末尾即可。</p>
 <hr>
 <h3 id="SR-CNN"><a href="#SR-CNN" class="headerlink" title="SR-CNN"></a>SR-CNN</h3><p>原始的SR可以通过设置阈值实现异常检测，但是为了解决更复杂的问题要采用CNN，用在显著图（FTT变换后的）而非原始输入图。CNN由两个1-D的卷积层（卷积核大小与滑动窗口大小一样）以及两个全连接层构成，第一个卷积层的通道大小与滑动窗口一样，第二个卷积层大小翻倍，全连接层在Sigmoid输出前是堆叠的，交叉熵采用损失函数</p>
 
@@ -266,8 +264,8 @@ x_{n+1} = x_{n-m+1}+\bar{g}\cdot m</script><p>其中$g(x_i,x_j)$可以作为i，
         
         
         <div class="level-end">
-            <a class="level level-item has-link-grey  article-nav-next" href="/2019/07/21/数据挖掘/2019-08-13-实时异常检测/">
-                <span class="level-item">实时异常检测（xStream，KDD&#39;18）</span>
+            <a class="level level-item has-link-grey  article-nav-next" href="/2019/07/21/安全/2019-07-22-xgboost/">
+                <span class="level-item">孤立森林（Isolation Forest）</span>
                 <i class="level-item fas fa-chevron-right"></i>
             </a>
         </div>
@@ -643,18 +641,18 @@ x_{n+1} = x_{n-m+1}+\bar{g}\cdot m</script><p>其中$g(x_i,x_j)$可以作为i，
         
         <article class="media">
             
-            <a href="/2019/07/21/数据挖掘/2019-08-13-实时异常检测/" class="media-left">
+            <a href="/2019/07/21/安全/2019-07-22-xgboost/" class="media-left">
                 <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="实时异常检测（xStream，KDD&#39;18）">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="孤立森林（Isolation Forest）">
                 </p>
             </a>
             
             <div class="media-content">
                 <div class="content">
                     <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-07-20T16:00:00.000Z">2019-07-21</time></div>
-                    <a href="/2019/07/21/数据挖掘/2019-08-13-实时异常检测/" class="title has-link-black-ter is-size-6 has-text-weight-normal">实时异常检测（xStream，KDD&#39;18）</a>
+                    <a href="/2019/07/21/安全/2019-07-22-xgboost/" class="title has-link-black-ter is-size-6 has-text-weight-normal">孤立森林（Isolation Forest）</a>
                     <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/Anomaly-detection/">Anomaly detection</a>
+                        <a class="has-link-grey -link" href="/categories/Security/">Security</a>
                     </p>
                 </div>
             </div>
@@ -1143,18 +1141,18 @@ x_{n+1} = x_{n-m+1}+\bar{g}\cdot m</script><p>其中$g(x_i,x_j)$可以作为i，
         
         <article class="media">
             
-            <a href="/2019/07/21/数据挖掘/2019-08-13-实时异常检测/" class="media-left">
+            <a href="/2019/07/21/安全/2019-07-22-xgboost/" class="media-left">
                 <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="实时异常检测（xStream，KDD&#39;18）">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="孤立森林（Isolation Forest）">
                 </p>
             </a>
             
             <div class="media-content">
                 <div class="content">
                     <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-07-20T16:00:00.000Z">2019-07-21</time></div>
-                    <a href="/2019/07/21/数据挖掘/2019-08-13-实时异常检测/" class="title has-link-black-ter is-size-6 has-text-weight-normal">实时异常检测（xStream，KDD&#39;18）</a>
+                    <a href="/2019/07/21/安全/2019-07-22-xgboost/" class="title has-link-black-ter is-size-6 has-text-weight-normal">孤立森林（Isolation Forest）</a>
                     <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/Anomaly-detection/">Anomaly detection</a>
+                        <a class="has-link-grey -link" href="/categories/Security/">Security</a>
                     </p>
                 </div>
             </div>

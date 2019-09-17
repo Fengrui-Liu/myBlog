@@ -179,12 +179,17 @@
 <p>$V≤10000,N≤1000$。</p>
 <p>保证操作可在C++ int范围内完成。</p>
 <h2 id="Output-Format"><a href="#Output-Format" class="headerlink" title="Output Format"></a>Output Format</h2><p>输出一个整数，表示最大的价值总和</p>
-<p>Sample Input<br><figure class="highlight plain hljs"><table><tr><td class="code"><pre><span class="line">5 3</span><br><span class="line">2 3</span><br><span class="line">3 2</span><br><span class="line">4 1</span><br></pre></td></tr></table></figure></p>
-<p>Sample Output<br><figure class="highlight plain hljs"><table><tr><td class="code"><pre><span class="line">6</span><br></pre></td></tr></table></figure></p>
+<p>Sample Input</p>
+<figure class="highlight plain hljs"><table><tr><td class="code"><pre><span class="line">5 3</span><br><span class="line">2 3</span><br><span class="line">3 2</span><br><span class="line">4 1</span><br></pre></td></tr></table></figure>
+
+<p>Sample Output</p>
+<figure class="highlight plain hljs"><table><tr><td class="code"><pre><span class="line">6</span><br></pre></td></tr></table></figure>
+
 <hr>
 <h2 id="Solution"><a href="#Solution" class="headerlink" title="Solution"></a>Solution</h2><p>第一层循环是从第一个物品到第n个物品的循环</p>
 <p>第二层循环是先装第一种物品直到装满，然后分别对加入该物品后的体积和价值保留，然后再考虑从包中拿出某个第一种物品，加入第二种物品，直到装满，且价值最大。依次循环直到第n种物品，整个包装满且价值最大。</p>
 <figure class="highlight c++ hljs"><table><tr><td class="code"><pre><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span><span class="hljs-meta-string">&lt;cstdio&gt;</span></span></span><br><span class="line"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span><span class="hljs-meta-string">&lt;algorithm&gt;</span></span></span><br><span class="line"><span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> <span class="hljs-built_in">std</span>;</span><br><span class="line"><span class="hljs-keyword">int</span> w[<span class="hljs-number">1000</span>],c[<span class="hljs-number">1000</span>],f[<span class="hljs-number">300010</span>];</span><br><span class="line"><span class="hljs-keyword">int</span> V,n;</span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>&#123;</span><br><span class="line">    <span class="hljs-built_in">scanf</span>(<span class="hljs-string">"%d%d"</span>,&amp;V,&amp;n);</span><br><span class="line">    <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i=<span class="hljs-number">1</span>;i&lt;=n;i++)&#123;<span class="hljs-built_in">scanf</span>(<span class="hljs-string">"%d%d"</span>,&amp;w[i],&amp;c[i]);&#125;</span><br><span class="line">    <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i=<span class="hljs-number">1</span>;i&lt;=n;i++)</span><br><span class="line">        <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> j=w[i];j&lt;=V;j++)f[j]=max(f[j],f[j-w[i]]+c[i]);</span><br><span class="line">    <span class="hljs-built_in">printf</span>(<span class="hljs-string">"%d"</span>,f[V]);</span><br><span class="line">    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
 
         </div>
         
@@ -244,16 +249,16 @@
     <div class="level post-navigation is-flex-wrap is-mobile">
         
         <div class="level-start">
-            <a class="level level-item has-link-grey  article-nav-prev" href="/2017/09/15/算法/2017-9-15-DP最长公共子序列/">
+            <a class="level level-item has-link-grey  article-nav-prev" href="/2017/09/15/算法/2017-9-15-DP(0"1背包)/">
                 <i class="level-item fas fa-chevron-left"></i>
-                <span class="level-item">DP（最长公共子序列）</span>
+                <span class="level-item">DP（0/1背包）</span>
             </a>
         </div>
         
         
         <div class="level-end">
-            <a class="level level-item has-link-grey  article-nav-next" href="/2017/09/15/算法/2017-9-15-DP问题/">
-                <span class="level-item">DP（SJTU OJ 1012）</span>
+            <a class="level level-item has-link-grey  article-nav-next" href="/2017/09/15/算法/2017-9-15-DP最长公共子序列/">
+                <span class="level-item">DP（最长公共子序列）</span>
                 <i class="level-item fas fa-chevron-right"></i>
             </a>
         </div>
@@ -629,18 +634,18 @@
         
         <article class="media">
             
-            <a href="/2019/07/21/数据挖掘/2019-08-13-实时异常检测/" class="media-left">
+            <a href="/2019/07/21/安全/2019-07-22-xgboost/" class="media-left">
                 <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="实时异常检测（xStream，KDD&#39;18）">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="孤立森林（Isolation Forest）">
                 </p>
             </a>
             
             <div class="media-content">
                 <div class="content">
                     <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-07-20T16:00:00.000Z">2019-07-21</time></div>
-                    <a href="/2019/07/21/数据挖掘/2019-08-13-实时异常检测/" class="title has-link-black-ter is-size-6 has-text-weight-normal">实时异常检测（xStream，KDD&#39;18）</a>
+                    <a href="/2019/07/21/安全/2019-07-22-xgboost/" class="title has-link-black-ter is-size-6 has-text-weight-normal">孤立森林（Isolation Forest）</a>
                     <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/Anomaly-detection/">Anomaly detection</a>
+                        <a class="has-link-grey -link" href="/categories/Security/">Security</a>
                     </p>
                 </div>
             </div>
@@ -1129,18 +1134,18 @@
         
         <article class="media">
             
-            <a href="/2019/07/21/数据挖掘/2019-08-13-实时异常检测/" class="media-left">
+            <a href="/2019/07/21/安全/2019-07-22-xgboost/" class="media-left">
                 <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="实时异常检测（xStream，KDD&#39;18）">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="孤立森林（Isolation Forest）">
                 </p>
             </a>
             
             <div class="media-content">
                 <div class="content">
                     <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-07-20T16:00:00.000Z">2019-07-21</time></div>
-                    <a href="/2019/07/21/数据挖掘/2019-08-13-实时异常检测/" class="title has-link-black-ter is-size-6 has-text-weight-normal">实时异常检测（xStream，KDD&#39;18）</a>
+                    <a href="/2019/07/21/安全/2019-07-22-xgboost/" class="title has-link-black-ter is-size-6 has-text-weight-normal">孤立森林（Isolation Forest）</a>
                     <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/Anomaly-detection/">Anomaly detection</a>
+                        <a class="has-link-grey -link" href="/categories/Security/">Security</a>
                     </p>
                 </div>
             </div>

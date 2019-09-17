@@ -188,6 +188,7 @@
 <h4 id="格式串"><a href="#格式串" class="headerlink" title="格式串"></a>格式串</h4><p>我们之前提到的 <strong>%d</strong> 就是一种格式化的输出，格式化字符串的精髓就是各种变参（<a href="http://blog.csdn.net/wangjieest/article/details/7087907" target="_blank" rel="noopener">可以参看这篇博客</a>）,甚至可以限制长度、精度等。对于不同的函数，我们手首要确定的关键就是参数，这里我们采用栈来存储参数，对于传入的参数反向压栈，然后依次判断每个字符的含义，从而进行字符串的格式化处理。</p>
 <h4 id="进制转换"><a href="#进制转换" class="headerlink" title="进制转换"></a>进制转换</h4><p>在这一部分我们将10进制数字转换成其它进制的数字。</p>
 <figure class="highlight arm hljs"><table><tr><td class="code"><pre><span class="line"><span class="hljs-keyword">mov </span><span class="hljs-built_in">r4</span>,<span class="hljs-number">#0</span></span><br><span class="line"><span class="hljs-symbol">loop$</span>:</span><br><span class="line"><span class="hljs-keyword">ldr </span><span class="hljs-built_in">r0</span>,<span class="hljs-symbol">=format</span></span><br><span class="line"><span class="hljs-keyword">mov </span><span class="hljs-built_in">r1</span>,<span class="hljs-symbol">#formatEnd</span>-format</span><br><span class="line"><span class="hljs-keyword">ldr </span><span class="hljs-built_in">r2</span>,<span class="hljs-symbol">=formatEnd</span></span><br><span class="line"><span class="hljs-keyword">lsr </span><span class="hljs-built_in">r3</span>,<span class="hljs-built_in">r4</span>,<span class="hljs-number">#4</span></span><br><span class="line"><span class="hljs-keyword">push </span>&#123;<span class="hljs-built_in">r3</span>&#125;</span><br><span class="line"><span class="hljs-keyword">push </span>&#123;<span class="hljs-built_in">r3</span>&#125;</span><br><span class="line"><span class="hljs-keyword">push </span>&#123;<span class="hljs-built_in">r3</span>&#125;</span><br><span class="line"><span class="hljs-keyword">push </span>&#123;<span class="hljs-built_in">r3</span>&#125;</span><br><span class="line"><span class="hljs-keyword">bl </span>FormatString</span><br><span class="line"><span class="hljs-keyword">add </span><span class="hljs-built_in">sp</span>,<span class="hljs-number">#16</span></span><br></pre></td></tr></table></figure>
+
 <p>注意这里<strong>push</strong>指令先减栈指针再数据入栈（也有说二者顺序颠倒，结果没有差别主要看CPU设计），然后接下来的工作就将数字进行进制转换。</p>
 <hr>
 <h3 id="结果展示"><a href="#结果展示" class="headerlink" title="结果展示"></a>结果展示</h3><p><img src="http://ww1.sinaimg.cn/large/65e4f1e6gw1f7rm2rc12dj21kw16o7wh.jpg" alt></p>
@@ -635,18 +636,18 @@
         
         <article class="media">
             
-            <a href="/2019/07/21/数据挖掘/2019-08-13-实时异常检测/" class="media-left">
+            <a href="/2019/07/21/安全/2019-07-22-xgboost/" class="media-left">
                 <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="实时异常检测（xStream，KDD&#39;18）">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="孤立森林（Isolation Forest）">
                 </p>
             </a>
             
             <div class="media-content">
                 <div class="content">
                     <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-07-20T16:00:00.000Z">2019-07-21</time></div>
-                    <a href="/2019/07/21/数据挖掘/2019-08-13-实时异常检测/" class="title has-link-black-ter is-size-6 has-text-weight-normal">实时异常检测（xStream，KDD&#39;18）</a>
+                    <a href="/2019/07/21/安全/2019-07-22-xgboost/" class="title has-link-black-ter is-size-6 has-text-weight-normal">孤立森林（Isolation Forest）</a>
                     <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/Anomaly-detection/">Anomaly detection</a>
+                        <a class="has-link-grey -link" href="/categories/Security/">Security</a>
                     </p>
                 </div>
             </div>
@@ -1135,18 +1136,18 @@
         
         <article class="media">
             
-            <a href="/2019/07/21/数据挖掘/2019-08-13-实时异常检测/" class="media-left">
+            <a href="/2019/07/21/安全/2019-07-22-xgboost/" class="media-left">
                 <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="实时异常检测（xStream，KDD&#39;18）">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="孤立森林（Isolation Forest）">
                 </p>
             </a>
             
             <div class="media-content">
                 <div class="content">
                     <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-07-20T16:00:00.000Z">2019-07-21</time></div>
-                    <a href="/2019/07/21/数据挖掘/2019-08-13-实时异常检测/" class="title has-link-black-ter is-size-6 has-text-weight-normal">实时异常检测（xStream，KDD&#39;18）</a>
+                    <a href="/2019/07/21/安全/2019-07-22-xgboost/" class="title has-link-black-ter is-size-6 has-text-weight-normal">孤立森林（Isolation Forest）</a>
                     <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/Anomaly-detection/">Anomaly detection</a>
+                        <a class="has-link-grey -link" href="/categories/Security/">Security</a>
                     </p>
                 </div>
             </div>

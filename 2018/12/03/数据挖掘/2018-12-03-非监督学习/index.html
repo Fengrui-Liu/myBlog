@@ -173,6 +173,7 @@
         </h1>
         <div class="content">
             <h2 id="聚类"><a href="#聚类" class="headerlink" title="聚类"></a>聚类</h2><h3 id="K-means"><a href="#K-means" class="headerlink" title="K-means"></a>K-means</h3><figure class="highlight c hljs"><table><tr><td class="code"><pre><span class="line">输入：数据D=&#123;x1,x2,...,xn&#125;,簇数目K</span><br><span class="line"><span class="hljs-number">1.</span> 随机选取K个种子数据点（seeds）作为K个簇中心</span><br><span class="line"><span class="hljs-number">2.</span> repeat</span><br><span class="line"><span class="hljs-number">3.</span>      foreach x in D <span class="hljs-keyword">do</span></span><br><span class="line"><span class="hljs-number">4.</span>          计算x与每一个簇中心的距离</span><br><span class="line"><span class="hljs-number">5.</span>          将x指配到距离最近的簇中心</span><br><span class="line"><span class="hljs-number">6.</span>      endfor</span><br><span class="line"><span class="hljs-number">7.</span>      用当前的簇内点重新计算K个簇中心位置</span><br><span class="line"><span class="hljs-number">8.</span> until（达到终止条件）</span><br></pre></td></tr></table></figure>
+
 <p><img src="https://ws4.sinaimg.cn/large/006tNbRwly1fxtowximhdj317g0c8abn.jpg" alt></p>
 <p>优点：</p>
 <ul>
@@ -187,17 +188,11 @@
 <li>离群点敏感（可能为数据准备，预处理过程中出现的错误）</li>
 </ul>
 <hr>
-<h2 id="矩阵分解"><a href="#矩阵分解" class="headerlink" title="矩阵分解"></a>矩阵分解</h2><h3 id="SVD分解"><a href="#SVD分解" class="headerlink" title="SVD分解"></a>SVD分解</h3><script type="math/tex; mode=display">
-D = \sum_{k=1}^p\sigma_k\mu_kv_k^T=U {\tiny \sum} V^T</script><p>${\tiny \sum}=\begin{bmatrix}<br>\sigma_1 &amp; 0 &amp; 0 &amp; 0\ <br>0 &amp; \sigma_2 &amp; 0 &amp; 0\ <br>0 &amp; 0 &amp; … &amp; 0\ <br>0 &amp; 0 &amp; 0 &amp; \sigma_n<br>\end{bmatrix}$ 对角矩阵，表示的是特征值,此维度上的方差与能量。</p>
+<h2 id="矩阵分解"><a href="#矩阵分解" class="headerlink" title="矩阵分解"></a>矩阵分解</h2><h3 id="SVD分解"><a href="#SVD分解" class="headerlink" title="SVD分解"></a>SVD分解</h3><p>$$<br>D = \sum_{k=1}^p\sigma_k\mu_kv_k^T=U {\tiny \sum} V^T<br>$$</p>
+<p>${\tiny \sum}=\begin{bmatrix}<br>\sigma_1 &amp; 0 &amp; 0 &amp; 0\<br>0 &amp; \sigma_2 &amp; 0 &amp; 0\<br>0 &amp; 0 &amp; … &amp; 0\<br>0 &amp; 0 &amp; 0 &amp; \sigma_n<br>\end{bmatrix}$ 对角矩阵，表示的是特征值,此维度上的方差与能量。</p>
 <p>$u_k,v_k$表示的是对于$\sigma_k$对应的特征向量。<br>$U^TU=I,V^TV=I:U,V$均为正交矩阵。</p>
 <p>左特征向量$U$，每一列对应一个方向，不同的列对应的向量互相垂直，那么将${\tiny \sum}$中的$\sigma_k$按照从小到大排序，$u_k，v_k$也相应排序，可以得到$u_1$是对应方差能量最大的方向，$u_2$是与$u_1$垂直的方差最大的方向…<br>右特征向量$V$，由于$D^T=V{\tiny \sum}U^T$，可以按照与上述相同的理解，因此只是维度存在的不同。</p>
-<h3 id="SVD分解与主成分分析-PCA"><a href="#SVD分解与主成分分析-PCA" class="headerlink" title="SVD分解与主成分分析(PCA)"></a>SVD分解与主成分分析(PCA)</h3><p>给定矩阵</p>
-<script type="math/tex; mode=display">
-\begin{aligned}
-S_{M*M}&=D*D^T\\
-&=(U {\tiny \sum} V^T)(U {\tiny \sum} V^T)^T\\
-&={\tiny \sum}^2
-\end{aligned}</script><p>也就是说$U$中对应最大的向量位主成分</p>
+<h3 id="SVD分解与主成分分析-PCA"><a href="#SVD分解与主成分分析-PCA" class="headerlink" title="SVD分解与主成分分析(PCA)"></a>SVD分解与主成分分析(PCA)</h3><p>给定矩阵<br>$$<br>\begin{aligned}<br>S_{M<em>M}&amp;=D</em>D^T\<br>&amp;=(U {\tiny \sum} V^T)(U {\tiny \sum} V^T)^T\<br>&amp;={\tiny \sum}^2<br>\end{aligned}<br>$$<br>也就是说$U$中对应最大的向量位主成分</p>
 <hr>
 <h3 id="LSI分解"><a href="#LSI分解" class="headerlink" title="LSI分解"></a>LSI分解</h3><p><img src="https://ws2.sinaimg.cn/large/006tNbRwly1fxuk04kt2oj31180eu75l.jpg" alt></p>
 <h3 id="NMF分解"><a href="#NMF分解" class="headerlink" title="NMF分解"></a>NMF分解</h3><p><img src="https://ws1.sinaimg.cn/large/006tNbRwly1fxtqt0jr55j30uq08iwf1.jpg" alt></p>
@@ -210,38 +205,7 @@ S_{M*M}&=D*D^T\\
 </ul>
 <p>核心思想：一个单词的表达可以通过在它周围出现的单词计算出来（Word2Vec）<br>举例如下：<br>d1: Albert Einstein was a physicist<br>d2: Richard Feynman was a physicist</p>
 <p>WordsVec 分解Word-Word矩阵，建模单词间的上下文共现</p>
-<div class="table-container">
-<table>
-<thead>
-<tr>
-<th></th>
-<th>Einstein</th>
-<th>Feynman</th>
-<th>physicist</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Einstein</td>
-<td>0</td>
-<td>0</td>
-<td>1</td>
-</tr>
-<tr>
-<td>Feynman</td>
-<td>0</td>
-<td>0</td>
-<td>1</td>
-</tr>
-<tr>
-<td>physicist</td>
-<td>1</td>
-<td>1</td>
-<td>0</td>
-</tr>
-</tbody>
-</table>
-</div>
+<p>||Einstein|Feynman|physicist|<br>|–|–|–|–|–|<br>|Einstein|0|0|1|<br>|Feynman|0|0|1|<br>|physicist|1|1|0|</p>
 
         </div>
         
@@ -301,9 +265,9 @@ S_{M*M}&=D*D^T\\
     <div class="level post-navigation is-flex-wrap is-mobile">
         
         <div class="level-start">
-            <a class="level level-item has-link-grey  article-nav-prev" href="/2018/12/05/数据挖掘/2018-12-05-互联网搜索与排序/">
+            <a class="level level-item has-link-grey  article-nav-prev" href="/2018/12/05/数据挖掘/2018-12-05-大规模机器学习/">
                 <i class="level-item fas fa-chevron-left"></i>
-                <span class="level-item">互联网搜索与排序</span>
+                <span class="level-item">大规模机器学习</span>
             </a>
         </div>
         
@@ -686,18 +650,18 @@ S_{M*M}&=D*D^T\\
         
         <article class="media">
             
-            <a href="/2019/07/21/数据挖掘/2019-08-13-实时异常检测/" class="media-left">
+            <a href="/2019/07/21/安全/2019-07-22-xgboost/" class="media-left">
                 <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="实时异常检测（xStream，KDD&#39;18）">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="孤立森林（Isolation Forest）">
                 </p>
             </a>
             
             <div class="media-content">
                 <div class="content">
                     <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-07-20T16:00:00.000Z">2019-07-21</time></div>
-                    <a href="/2019/07/21/数据挖掘/2019-08-13-实时异常检测/" class="title has-link-black-ter is-size-6 has-text-weight-normal">实时异常检测（xStream，KDD&#39;18）</a>
+                    <a href="/2019/07/21/安全/2019-07-22-xgboost/" class="title has-link-black-ter is-size-6 has-text-weight-normal">孤立森林（Isolation Forest）</a>
                     <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/Anomaly-detection/">Anomaly detection</a>
+                        <a class="has-link-grey -link" href="/categories/Security/">Security</a>
                     </p>
                 </div>
             </div>
@@ -1186,18 +1150,18 @@ S_{M*M}&=D*D^T\\
         
         <article class="media">
             
-            <a href="/2019/07/21/数据挖掘/2019-08-13-实时异常检测/" class="media-left">
+            <a href="/2019/07/21/安全/2019-07-22-xgboost/" class="media-left">
                 <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="实时异常检测（xStream，KDD&#39;18）">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="孤立森林（Isolation Forest）">
                 </p>
             </a>
             
             <div class="media-content">
                 <div class="content">
                     <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-07-20T16:00:00.000Z">2019-07-21</time></div>
-                    <a href="/2019/07/21/数据挖掘/2019-08-13-实时异常检测/" class="title has-link-black-ter is-size-6 has-text-weight-normal">实时异常检测（xStream，KDD&#39;18）</a>
+                    <a href="/2019/07/21/安全/2019-07-22-xgboost/" class="title has-link-black-ter is-size-6 has-text-weight-normal">孤立森林（Isolation Forest）</a>
                     <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/Anomaly-detection/">Anomaly detection</a>
+                        <a class="has-link-grey -link" href="/categories/Security/">Security</a>
                     </p>
                 </div>
             </div>

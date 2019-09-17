@@ -190,12 +190,16 @@
 <li>如果没有错误则跳转到步骤3</li>
 </ol>
 <figure class="highlight arm hljs"><table><tr><td class="code"><pre><span class="line"><span class="hljs-symbol">.section</span> <span class="hljs-meta">.text</span></span><br><span class="line"><span class="hljs-symbol">.globl</span> KeyboardUpdate</span><br><span class="line"><span class="hljs-symbol">KeyboardUpdate</span>:</span><br><span class="line"><span class="hljs-keyword">push </span>&#123;<span class="hljs-built_in">r4</span>,<span class="hljs-built_in">r5</span>,<span class="hljs-built_in">lr</span>&#125;</span><br><span class="line"></span><br><span class="line"><span class="hljs-symbol">kbd</span> <span class="hljs-meta">.req</span> <span class="hljs-built_in">r4</span></span><br><span class="line"><span class="hljs-keyword">ldr </span><span class="hljs-built_in">r0</span>,<span class="hljs-symbol">=KeyboardAddress</span></span><br><span class="line"><span class="hljs-keyword">ldr </span>kbd,[<span class="hljs-built_in">r0</span>]</span><br><span class="line"></span><br><span class="line"><span class="hljs-keyword">teq </span>kbd,<span class="hljs-number">#0</span></span><br><span class="line"><span class="hljs-keyword">bne </span>haveKeyboard$</span><br><span class="line"></span><br><span class="line"><span class="hljs-symbol">getKeyboard$</span>:</span><br><span class="line"><span class="hljs-keyword">bl </span>UsbCheckForChange</span><br></pre></td></tr></table></figure>
+
 <p>首先将KeyboardAddress存入r4中，并判断其是否为0，当地址为0则说明发生错误没有找到键盘，那么就使用UsbCheckForChange来查找新设备，但是这一步消耗资源较大，尽量避免。</p>
 <figure class="highlight arm hljs"><table><tr><td class="code"><pre><span class="line"><span class="hljs-keyword">teq </span><span class="hljs-built_in">r0</span>,<span class="hljs-number">#0</span></span><br><span class="line"><span class="hljs-keyword">ldreq </span><span class="hljs-built_in">r1</span>,<span class="hljs-symbol">=KeyboardAddress</span></span><br><span class="line"><span class="hljs-keyword">streq </span><span class="hljs-built_in">r0</span>,[<span class="hljs-built_in">r1</span>]</span><br><span class="line"><span class="hljs-keyword">beq </span>return$</span><br><span class="line"></span><br><span class="line"><span class="hljs-keyword">mov </span><span class="hljs-built_in">r0</span>,<span class="hljs-number">#0</span></span><br><span class="line"><span class="hljs-keyword">bl </span>KeyboardGetAddress</span><br></pre></td></tr></table></figure>
+
 <p>当没有找到键盘是，理应获取不到键盘地址，那么就应该将r0初始化为0后继续进行返回来查看地址。</p>
 <figure class="highlight arm hljs"><table><tr><td class="code"><pre><span class="line"><span class="hljs-symbol">saveKeys$</span>:</span><br><span class="line"><span class="hljs-keyword">mov </span><span class="hljs-built_in">r0</span>,kbd</span><br><span class="line"><span class="hljs-keyword">mov </span><span class="hljs-built_in">r1</span>,<span class="hljs-built_in">r5</span></span><br><span class="line"><span class="hljs-keyword">bl </span>KeyboardGetKeyDown</span><br><span class="line"></span><br><span class="line"><span class="hljs-keyword">ldr </span><span class="hljs-built_in">r1</span>,<span class="hljs-symbol">=KeyboardOldDown</span></span><br><span class="line"><span class="hljs-keyword">add </span><span class="hljs-built_in">r1</span>,<span class="hljs-built_in">r5</span>,<span class="hljs-keyword">lsl </span><span class="hljs-number">#1</span></span><br><span class="line"><span class="hljs-keyword">strh </span><span class="hljs-built_in">r0</span>,[<span class="hljs-built_in">r1</span>]</span><br><span class="line"><span class="hljs-keyword">add </span><span class="hljs-built_in">r5</span>,<span class="hljs-number">#1</span></span><br><span class="line"><span class="hljs-keyword">cmp </span><span class="hljs-built_in">r5</span>,<span class="hljs-number">#6</span></span><br><span class="line"><span class="hljs-keyword">blt </span>saveKeys$</span><br></pre></td></tr></table></figure>
+
 <p>这里就是采用轮询的方式来获取键入值</p>
 <figure class="highlight arm hljs"><table><tr><td class="code"><pre><span class="line"><span class="hljs-keyword">mov </span><span class="hljs-built_in">r0</span>,kbd</span><br><span class="line"><span class="hljs-keyword">bl </span>KeyboardPoll</span><br><span class="line"></span><br><span class="line"><span class="hljs-keyword">teq </span><span class="hljs-built_in">r0</span>,<span class="hljs-number">#0</span></span><br><span class="line"><span class="hljs-keyword">bne </span>getKeyboard$</span><br><span class="line"></span><br><span class="line"><span class="hljs-symbol">return$</span>:</span><br><span class="line"><span class="hljs-keyword">pop </span>&#123;<span class="hljs-built_in">r4</span>,<span class="hljs-built_in">r5</span>,<span class="hljs-built_in">pc</span>&#125;</span><br><span class="line"><span class="hljs-symbol">.unreq</span> kbd</span><br></pre></td></tr></table></figure>
+
 <p>成功获取当前键入值之后使调用<strong>KeyboardPoll</strong>函数。</p>
 <p>然后根据键盘匹配的字符表来进行比对从而得到每一个按键所代表的字符信息，完成信息键入。</p>
 
@@ -642,18 +646,18 @@
         
         <article class="media">
             
-            <a href="/2019/07/21/数据挖掘/2019-08-13-实时异常检测/" class="media-left">
+            <a href="/2019/07/21/安全/2019-07-22-xgboost/" class="media-left">
                 <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="实时异常检测（xStream，KDD&#39;18）">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="孤立森林（Isolation Forest）">
                 </p>
             </a>
             
             <div class="media-content">
                 <div class="content">
                     <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-07-20T16:00:00.000Z">2019-07-21</time></div>
-                    <a href="/2019/07/21/数据挖掘/2019-08-13-实时异常检测/" class="title has-link-black-ter is-size-6 has-text-weight-normal">实时异常检测（xStream，KDD&#39;18）</a>
+                    <a href="/2019/07/21/安全/2019-07-22-xgboost/" class="title has-link-black-ter is-size-6 has-text-weight-normal">孤立森林（Isolation Forest）</a>
                     <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/Anomaly-detection/">Anomaly detection</a>
+                        <a class="has-link-grey -link" href="/categories/Security/">Security</a>
                     </p>
                 </div>
             </div>
@@ -1142,18 +1146,18 @@
         
         <article class="media">
             
-            <a href="/2019/07/21/数据挖掘/2019-08-13-实时异常检测/" class="media-left">
+            <a href="/2019/07/21/安全/2019-07-22-xgboost/" class="media-left">
                 <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="实时异常检测（xStream，KDD&#39;18）">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="孤立森林（Isolation Forest）">
                 </p>
             </a>
             
             <div class="media-content">
                 <div class="content">
                     <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-07-20T16:00:00.000Z">2019-07-21</time></div>
-                    <a href="/2019/07/21/数据挖掘/2019-08-13-实时异常检测/" class="title has-link-black-ter is-size-6 has-text-weight-normal">实时异常检测（xStream，KDD&#39;18）</a>
+                    <a href="/2019/07/21/安全/2019-07-22-xgboost/" class="title has-link-black-ter is-size-6 has-text-weight-normal">孤立森林（Isolation Forest）</a>
                     <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/Anomaly-detection/">Anomaly detection</a>
+                        <a class="has-link-grey -link" href="/categories/Security/">Security</a>
                     </p>
                 </div>
             </div>

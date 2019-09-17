@@ -185,6 +185,7 @@
 </ol>
 <p>在终端的命令行输入输出操作都具有一定的统一性，因此我们不再需要去绘制出每一个像素点（计算机在此处的额操作是以字符为单位的），我们将每一个字符的图案信息、颜色信息等都保存起来，再按照需要通过<strong>DrawCharacter</strong>函数调用每一个字符即可。</p>
 <figure class="highlight arm hljs"><table><tr><td class="code"><pre><span class="line"><span class="hljs-symbol">.section</span> <span class="hljs-meta">.data</span></span><br><span class="line"><span class="hljs-symbol">.align</span> <span class="hljs-number">4</span></span><br><span class="line"><span class="hljs-symbol">terminalStart</span>:</span><br><span class="line"><span class="hljs-symbol">.int</span> terminalBuffer</span><br><span class="line"><span class="hljs-symbol">terminalStop</span>:</span><br><span class="line"><span class="hljs-symbol">.int</span> terminalBuffer</span><br><span class="line"><span class="hljs-symbol">terminalView</span>:</span><br><span class="line"><span class="hljs-symbol">.int</span> terminalBuffer</span><br><span class="line"><span class="hljs-symbol">terminalColour</span>:</span><br><span class="line"><span class="hljs-symbol">.byte</span> <span class="hljs-number">0xf</span></span><br><span class="line"><span class="hljs-symbol">.align</span> <span class="hljs-number">8</span></span><br><span class="line"><span class="hljs-symbol">terminalBuffer</span>:</span><br><span class="line"><span class="hljs-symbol">.rept</span> <span class="hljs-number">128</span>*<span class="hljs-number">128</span></span><br><span class="line"><span class="hljs-symbol">.byte</span> <span class="hljs-number">0x7f</span></span><br><span class="line"><span class="hljs-symbol">.byte</span> <span class="hljs-number">0x0</span></span><br><span class="line"><span class="hljs-symbol">.endr</span></span><br><span class="line"><span class="hljs-symbol">terminalScreen</span>:</span><br><span class="line"><span class="hljs-symbol">.rept</span> <span class="hljs-number">1024</span>/<span class="hljs-number">8</span> * <span class="hljs-number">768</span>/<span class="hljs-number">16</span></span><br><span class="line"><span class="hljs-symbol">.byte</span> <span class="hljs-number">0x7f</span></span><br><span class="line"><span class="hljs-symbol">.byte</span> <span class="hljs-number">0x0</span></span><br><span class="line"><span class="hljs-symbol">.endr</span></span><br></pre></td></tr></table></figure>
+
 <p><strong>terminalBuffer</strong></p>
 <p>可以保存我们所有需要显示的文本信息，这里定义了最多可以保存128行并且每个保存了128个字符，每个字符又保存了ASCII字符以及颜色信息，使用buffer的优点如下：</p>
 <ol>
@@ -229,7 +230,7 @@
 <li>检测串长度是否为0，如果为0则返回</li>
 <li>加载 <strong>terminalStop</strong> 和 <strong>terminalView</strong> 函数</li>
 <li>计算并确认x坐标的位置（目的是为了确定要显示串的位置）</li>
-<li>对于每一个字符有以下操作<ol>
+<li>对于每一个字符有以下操作<ol start="5">
 <li>检查换行符</li>
 <li>如果需要换行将bufferStop标识更新到行尾</li>
 <li>如果不需要换行将字符复制到当前的terminalColour中</li>
@@ -325,9 +326,9 @@
     <div class="level post-navigation is-flex-wrap is-mobile">
         
         <div class="level-start">
-            <a class="level level-item has-link-grey  article-nav-prev" href="/2016/10/25/算法/2016-10-25-BellmanFord算法/">
+            <a class="level level-item has-link-grey  article-nav-prev" href="/2016/10/25/算法/2016-10-25-Dijkstra算法/">
                 <i class="level-item fas fa-chevron-left"></i>
-                <span class="level-item">Bellman-Ford算法</span>
+                <span class="level-item">Dijkstra算法</span>
             </a>
         </div>
         
@@ -710,18 +711,18 @@
         
         <article class="media">
             
-            <a href="/2019/07/21/数据挖掘/2019-08-13-实时异常检测/" class="media-left">
+            <a href="/2019/07/21/安全/2019-07-22-xgboost/" class="media-left">
                 <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="实时异常检测（xStream，KDD&#39;18）">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="孤立森林（Isolation Forest）">
                 </p>
             </a>
             
             <div class="media-content">
                 <div class="content">
                     <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-07-20T16:00:00.000Z">2019-07-21</time></div>
-                    <a href="/2019/07/21/数据挖掘/2019-08-13-实时异常检测/" class="title has-link-black-ter is-size-6 has-text-weight-normal">实时异常检测（xStream，KDD&#39;18）</a>
+                    <a href="/2019/07/21/安全/2019-07-22-xgboost/" class="title has-link-black-ter is-size-6 has-text-weight-normal">孤立森林（Isolation Forest）</a>
                     <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/Anomaly-detection/">Anomaly detection</a>
+                        <a class="has-link-grey -link" href="/categories/Security/">Security</a>
                     </p>
                 </div>
             </div>
@@ -1210,18 +1211,18 @@
         
         <article class="media">
             
-            <a href="/2019/07/21/数据挖掘/2019-08-13-实时异常检测/" class="media-left">
+            <a href="/2019/07/21/安全/2019-07-22-xgboost/" class="media-left">
                 <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="实时异常检测（xStream，KDD&#39;18）">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="孤立森林（Isolation Forest）">
                 </p>
             </a>
             
             <div class="media-content">
                 <div class="content">
                     <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-07-20T16:00:00.000Z">2019-07-21</time></div>
-                    <a href="/2019/07/21/数据挖掘/2019-08-13-实时异常检测/" class="title has-link-black-ter is-size-6 has-text-weight-normal">实时异常检测（xStream，KDD&#39;18）</a>
+                    <a href="/2019/07/21/安全/2019-07-22-xgboost/" class="title has-link-black-ter is-size-6 has-text-weight-normal">孤立森林（Isolation Forest）</a>
                     <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/Anomaly-detection/">Anomaly detection</a>
+                        <a class="has-link-grey -link" href="/categories/Security/">Security</a>
                     </p>
                 </div>
             </div>

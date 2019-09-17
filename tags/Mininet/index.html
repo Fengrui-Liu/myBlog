@@ -191,6 +191,7 @@
 <li>net.hosts</li>
 </ul>
 <figure class="highlight python hljs"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line"><span class="hljs-keyword">from</span> mininet.topo <span class="hljs-keyword">import</span> Topo</span><br><span class="line"><span class="hljs-keyword">from</span> mininet.net <span class="hljs-keyword">import</span> Mininet</span><br><span class="line"><span class="hljs-keyword">from</span> mininet.util <span class="hljs-keyword">import</span> dumpNodeConnections</span><br><span class="line"><span class="hljs-keyword">from</span> mininet.log <span class="hljs-keyword">import</span> setLogLevel</span><br><span class="line"></span><br><span class="line"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">SingleSwitchTopo</span><span class="hljs-params">(Topo)</span>:</span></span><br><span class="line">    <span class="hljs-string">"Single switch connected to n hosts."</span></span><br><span class="line">    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">build</span><span class="hljs-params">(self, n=<span class="hljs-number">2</span>)</span>:</span></span><br><span class="line">        switch = self.addSwitch(<span class="hljs-string">'s1'</span>)</span><br><span class="line">        <span class="hljs-comment"># Python's range(N) generates 0..N-1</span></span><br><span class="line">        <span class="hljs-keyword">for</span> h <span class="hljs-keyword">in</span> range(n):</span><br><span class="line">            host = self.addHost(<span class="hljs-string">'h%s'</span> % (h + <span class="hljs-number">1</span>))</span><br><span class="line">            self.addLink(host, switch)</span><br><span class="line"></span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">simpleTest</span><span class="hljs-params">()</span>:</span></span><br><span class="line">    <span class="hljs-string">"Create and test a simple network"</span></span><br><span class="line">    topo = SingleSwitchTopo(n=<span class="hljs-number">4</span>)</span><br><span class="line">    net = Mininet(topo)</span><br><span class="line">    net.start()</span><br><span class="line">    net.stop()</span><br><span class="line"></span><br><span class="line"><span class="hljs-keyword">if</span> __name__ == <span class="hljs-string">'__main__'</span>:</span><br><span class="line">    <span class="hljs-comment"># Tell mininet to print useful information</span></span><br><span class="line">    setLogLevel(<span class="hljs-string">'info'</span>)</span><br><span class="line">    simpleTest()</span><br></pre></td></tr></table></figure>
+
 <h2 id="网络工具"><a href="#网络工具" class="headerlink" title="网络工具"></a>网络工具</h2><ul>
 <li>pingAll(): 测试网络所有节点的连通性，注意保证节点都在net中，否则不测试。</li>
 <li>dumpNodeConnections():截获节点之间的连通并进行分析。</li>
@@ -205,11 +206,13 @@
 </li>
 </ul>
 <figure class="highlight python hljs"><table><tr><td class="code"><pre><span class="line"><span class="hljs-comment">#!/usr/bin/python</span></span><br><span class="line"></span><br><span class="line"><span class="hljs-keyword">from</span> mininet.topo <span class="hljs-keyword">import</span> Topo</span><br><span class="line"><span class="hljs-keyword">from</span> mininet.net <span class="hljs-keyword">import</span> Mininet</span><br><span class="line"><span class="hljs-keyword">from</span> mininet.node <span class="hljs-keyword">import</span> CPULimitedHost</span><br><span class="line"><span class="hljs-keyword">from</span> mininet.link <span class="hljs-keyword">import</span> TCLink</span><br><span class="line"><span class="hljs-keyword">from</span> mininet.util <span class="hljs-keyword">import</span> dumpNodeConnections</span><br><span class="line"><span class="hljs-keyword">from</span> mininet.log <span class="hljs-keyword">import</span> setLogLevel</span><br><span class="line"></span><br><span class="line"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">SingleSwitchTopo</span><span class="hljs-params">( Topo )</span>:</span></span><br><span class="line">    <span class="hljs-string">"Single switch connected to n hosts."</span></span><br><span class="line">    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">build</span><span class="hljs-params">( self, n=<span class="hljs-number">2</span> )</span>:</span></span><br><span class="line">	switch = self.addSwitch( <span class="hljs-string">'s1'</span> )</span><br><span class="line">	<span class="hljs-keyword">for</span> h <span class="hljs-keyword">in</span> range(n):</span><br><span class="line">	    <span class="hljs-comment"># Each host gets 50%/n of system CPU</span></span><br><span class="line">	    host = self.addHost( <span class="hljs-string">'h%s'</span> % (h + <span class="hljs-number">1</span>),</span><br><span class="line">		                 cpu=<span class="hljs-number">.5</span>/n )</span><br><span class="line">	    <span class="hljs-comment"># 10 Mbps, 5ms delay, 2% loss, 1000 packet queue</span></span><br><span class="line">	    self.addLink( host, switch, bw=<span class="hljs-number">10</span>, delay=<span class="hljs-string">'5ms'</span>, loss=<span class="hljs-number">2</span>,</span><br><span class="line">                          max_queue_size=<span class="hljs-number">1000</span>, use_htb=<span class="hljs-keyword">True</span> )</span><br><span class="line"></span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">perfTest</span><span class="hljs-params">()</span>:</span></span><br><span class="line">    <span class="hljs-string">"Create network and run simple performance test"</span></span><br><span class="line">    topo = SingleSwitchTopo( n=<span class="hljs-number">4</span> )</span><br><span class="line">    net = Mininet( topo=topo,</span><br><span class="line">	           host=CPULimitedHost, link=TCLink )</span><br><span class="line">    net.start()</span><br><span class="line">    <span class="hljs-keyword">print</span> <span class="hljs-string">"Dumping host connections"</span></span><br><span class="line">    dumpNodeConnections( net.hosts )</span><br><span class="line">    <span class="hljs-keyword">print</span> <span class="hljs-string">"Testing network connectivity"</span></span><br><span class="line">    net.pingAll()</span><br><span class="line">    <span class="hljs-keyword">print</span> <span class="hljs-string">"Testing bandwidth between h1 and h4"</span></span><br><span class="line">    h1, h4 = net.get( <span class="hljs-string">'h1'</span>, <span class="hljs-string">'h4'</span> )</span><br><span class="line">    net.iperf( (h1, h4) )</span><br><span class="line">    net.stop()</span><br><span class="line"></span><br><span class="line"><span class="hljs-keyword">if</span> __name__ == <span class="hljs-string">'__main__'</span>:</span><br><span class="line">    setLogLevel( <span class="hljs-string">'info'</span> )</span><br><span class="line">    perfTest()</span><br></pre></td></tr></table></figure>
+
 <h2 id="指令"><a href="#指令" class="headerlink" title="指令"></a>指令</h2><ul>
 <li>cmd()</li>
 </ul>
 <p>由于每一个host主机都是作为bash shell来进行模拟的，所以理论上可以支持所有终端指令</p>
 <figure class="highlight py hljs"><table><tr><td class="code"><pre><span class="line">h1 = net.get(<span class="hljs-string">'h1'</span>)</span><br><span class="line">result = h1.cmd(<span class="hljs-string">'ifconfig'</span>)</span><br><span class="line"><span class="hljs-keyword">print</span> result</span><br></pre></td></tr></table></figure>
+
 
         </div>
         
@@ -592,18 +595,18 @@
         
         <article class="media">
             
-            <a href="/2019/07/21/数据挖掘/2019-08-13-实时异常检测/" class="media-left">
+            <a href="/2019/07/21/安全/2019-07-22-xgboost/" class="media-left">
                 <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="实时异常检测（xStream，KDD&#39;18）">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="孤立森林（Isolation Forest）">
                 </p>
             </a>
             
             <div class="media-content">
                 <div class="content">
                     <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-07-20T16:00:00.000Z">2019-07-21</time></div>
-                    <a href="/2019/07/21/数据挖掘/2019-08-13-实时异常检测/" class="title has-link-black-ter is-size-6 has-text-weight-normal">实时异常检测（xStream，KDD&#39;18）</a>
+                    <a href="/2019/07/21/安全/2019-07-22-xgboost/" class="title has-link-black-ter is-size-6 has-text-weight-normal">孤立森林（Isolation Forest）</a>
                     <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/Anomaly-detection/">Anomaly detection</a>
+                        <a class="has-link-grey -link" href="/categories/Security/">Security</a>
                     </p>
                 </div>
             </div>
@@ -1092,18 +1095,18 @@
         
         <article class="media">
             
-            <a href="/2019/07/21/数据挖掘/2019-08-13-实时异常检测/" class="media-left">
+            <a href="/2019/07/21/安全/2019-07-22-xgboost/" class="media-left">
                 <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="实时异常检测（xStream，KDD&#39;18）">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="孤立森林（Isolation Forest）">
                 </p>
             </a>
             
             <div class="media-content">
                 <div class="content">
                     <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-07-20T16:00:00.000Z">2019-07-21</time></div>
-                    <a href="/2019/07/21/数据挖掘/2019-08-13-实时异常检测/" class="title has-link-black-ter is-size-6 has-text-weight-normal">实时异常检测（xStream，KDD&#39;18）</a>
+                    <a href="/2019/07/21/安全/2019-07-22-xgboost/" class="title has-link-black-ter is-size-6 has-text-weight-normal">孤立森林（Isolation Forest）</a>
                     <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/Anomaly-detection/">Anomaly detection</a>
+                        <a class="has-link-grey -link" href="/categories/Security/">Security</a>
                     </p>
                 </div>
             </div>

@@ -185,10 +185,56 @@
 <li>不需要保存过去的所有数值</li>
 <li>计算量显著减小</li>
 </ol>
-<h2 id="计算"><a href="#计算" class="headerlink" title="计算"></a>计算</h2><script type="math/tex; mode=display">v_t = \beta v_{t-1}+(1-\beta)\theta_t</script><p>其中$\theta_t$为时刻$t$的实际温度；$\beta$表示加权下降的速率，其值越小下降越快；$v_t$为$t$时刻的EWMA值。</p>
-<h2 id="变差修正"><a href="#变差修正" class="headerlink" title="变差修正"></a>变差修正</h2><p>如果初始化$v_0=0$,那么初期值都会偏小，虽然最后会慢慢减小这部分影响但是还是对公式做出适当修正：</p>
-<script type="math/tex; mode=display">v_t = \frac{\beta v_{t-1}+(1-\beta)\theta_t}{1-\beta^t}</script><p>当t表较小（初期）分母可以很好放大当前数值，当t很大，分母趋为1，对数值机会没有影响。</p>
+<h2 id="计算"><a href="#计算" class="headerlink" title="计算"></a>计算</h2><p>$$ v_t = \beta v_{t-1}+(1-\beta)\theta_t$$</p>
+<p>其中$\theta_t$为时刻$t$的实际温度；$\beta$表示加权下降的速率，其值越小下降越快；$v_t$为$t$时刻的EWMA值。</p>
+<h2 id="变差修正"><a href="#变差修正" class="headerlink" title="变差修正"></a>变差修正</h2><p>如果初始化$v_0=0$,那么初期值都会偏小，虽然最后会慢慢减小这部分影响但是还是对公式做出适当修正：<br>$$v_t = \frac{\beta v_{t-1}+(1-\beta)\theta_t}{1-\beta^t}$$</p>
+<p>当t表较小（初期）分母可以很好放大当前数值，当t很大，分母趋为1，对数值机会没有影响。</p>
 <h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2><figure class="highlight python hljs"><table><tr><td class="code"><pre><span class="line"><span class="hljs-keyword">import</span> numpy <span class="hljs-keyword">as</span> np</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Ewma</span><span class="hljs-params">(object)</span>:</span></span><br><span class="line">    <span class="hljs-string">"""</span></span><br><span class="line"><span class="hljs-string">    In statistical quality control, the EWMA chart (or exponentially weighted moving average chart)</span></span><br><span class="line"><span class="hljs-string">    is a type of control chart used to monitor either variables or attributes-type data using the monitored business</span></span><br><span class="line"><span class="hljs-string">    or industrial process's entire history of output. While other control charts treat rational subgroups of samples</span></span><br><span class="line"><span class="hljs-string">    individually, the EWMA chart tracks the exponentially-weighted moving average of all prior sample means.</span></span><br><span class="line"><span class="hljs-string">    WIKIPEDIA: https://en.wikipedia.org/wiki/EWMA_chart</span></span><br><span class="line"><span class="hljs-string">    """</span></span><br><span class="line"></span><br><span class="line">    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">__init__</span><span class="hljs-params">(self, alpha=<span class="hljs-number">0.3</span>, coefficient=<span class="hljs-number">3</span>)</span>:</span></span><br><span class="line">        <span class="hljs-string">"""</span></span><br><span class="line"><span class="hljs-string">        :param alpha: Discount rate of ewma, usually in (0.2, 0.3).</span></span><br><span class="line"><span class="hljs-string">        :param coefficient: Coefficient is the width of the control limits, usually in (2.7, 3.0).</span></span><br><span class="line"><span class="hljs-string">        """</span></span><br><span class="line">        self.alpha = alpha</span><br><span class="line">        self.coefficient = coefficient</span><br><span class="line"></span><br><span class="line">    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">predict</span><span class="hljs-params">(self, X)</span>:</span></span><br><span class="line">        <span class="hljs-string">"""</span></span><br><span class="line"><span class="hljs-string">        Predict if a particular sample is an outlier or not.</span></span><br><span class="line"><span class="hljs-string">        :param X: the time series to detect of</span></span><br><span class="line"><span class="hljs-string">        :param type X: pandas.Series</span></span><br><span class="line"><span class="hljs-string">        :return: 1 denotes normal, 0 denotes abnormal</span></span><br><span class="line"><span class="hljs-string">        """</span></span><br><span class="line">        s = [X[<span class="hljs-number">0</span>]]</span><br><span class="line">        <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> range(<span class="hljs-number">1</span>, len(X)):</span><br><span class="line">            temp = self.alpha * X[i] + (<span class="hljs-number">1</span> - self.alpha) * s[<span class="hljs-number">-1</span>]</span><br><span class="line">            s.append(temp)</span><br><span class="line">        s_avg = np.mean(s)</span><br><span class="line">        sigma = np.sqrt(np.var(X))</span><br><span class="line">        ucl = s_avg + self.coefficient * sigma * np.sqrt(self.alpha / (<span class="hljs-number">2</span> - self.alpha))</span><br><span class="line">        lcl = s_avg - self.coefficient * sigma * np.sqrt(self.alpha / (<span class="hljs-number">2</span> - self.alpha))</span><br><span class="line">        <span class="hljs-keyword">if</span> s[<span class="hljs-number">-1</span>] &gt; ucl <span class="hljs-keyword">or</span> s[<span class="hljs-number">-1</span>] &lt; lcl:</span><br><span class="line">            <span class="hljs-keyword">return</span> <span class="hljs-number">0</span></span><br><span class="line">        <span class="hljs-keyword">return</span> <span class="hljs-number">1</span></span><br></pre></td></tr></table></figure>
+        </div>
+        
+        
+        
+    </div>
+</div>
+
+
+
+
+
+
+
+
+    <div class="card">
+    
+    <div class="card-content article ">
+        
+        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+            <div class="level-left">
+                <time class="level-item has-text-grey" datetime="2019-07-20T16:00:00.000Z">2019-07-21</time>
+                
+                <div class="level-item">
+                <a class="has-link-grey -link" href="/categories/Security/">Security</a>
+                </div>
+                
+                
+                <span class="level-item has-text-grey">
+                    
+                    
+                    2 分钟 读完 (大约 246 个字)
+                </span>
+                
+                
+            </div>
+        </div>
+        
+        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+            
+                <a class="has-link-black-ter" href="/2019/07/21/安全/2019-07-21-多项式插值/">多项式插值</a>
+            
+        </h1>
+        <div class="content">
+            <h2 id="Polynominal-Interpolation"><a href="#Polynominal-Interpolation" class="headerlink" title="Polynominal Interpolation"></a>Polynominal Interpolation</h2><p>多项式插值，给定一组数据，寻找一个恰好通过这些数据点的多项式。</p>
+<h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2><figure class="highlight python hljs"><table><tr><td class="code"><pre><span class="line"><span class="hljs-keyword">import</span> numpy <span class="hljs-keyword">as</span> np</span><br><span class="line"><span class="hljs-keyword">from</span> sklearn.linear_model <span class="hljs-keyword">import</span> Ridge</span><br><span class="line"><span class="hljs-keyword">from</span> sklearn.preprocessing <span class="hljs-keyword">import</span> PolynomialFeatures</span><br><span class="line"><span class="hljs-keyword">from</span> sklearn.pipeline <span class="hljs-keyword">import</span> make_pipeline</span><br><span class="line"><span class="hljs-keyword">from</span> time_series_detector.common.tsd_common <span class="hljs-keyword">import</span> *</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">PolynomialInterpolation</span><span class="hljs-params">(object)</span>:</span></span><br><span class="line">    <span class="hljs-string">"""</span></span><br><span class="line"><span class="hljs-string">    In statistics, polynomial regression is a form of regression analysis in which the relationship</span></span><br><span class="line"><span class="hljs-string">    between the independent variable x and the dependent variable y is modelled as an nth degree polynomial in x.</span></span><br><span class="line"><span class="hljs-string">    WIKIPEDIA: https://en.wikipedia.org/wiki/Polynomial_regression</span></span><br><span class="line"><span class="hljs-string">    """</span></span><br><span class="line"></span><br><span class="line">    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">__init__</span><span class="hljs-params">(self, threshold=<span class="hljs-number">0.15</span>, degree=<span class="hljs-number">4</span>)</span>:</span></span><br><span class="line">        <span class="hljs-string">"""</span></span><br><span class="line"><span class="hljs-string">       :param threshold: The critical point of normal.</span></span><br><span class="line"><span class="hljs-string">       :param degree: Depth of iteration.</span></span><br><span class="line"><span class="hljs-string">        """</span></span><br><span class="line">        self.degree = degree</span><br><span class="line">        self.threshold = threshold</span><br><span class="line"></span><br><span class="line">    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">predict</span><span class="hljs-params">(self, X, window=DEFAULT_WINDOW)</span>:</span></span><br><span class="line">        <span class="hljs-string">"""</span></span><br><span class="line"><span class="hljs-string">        Predict if a particular sample is an outlier or not.</span></span><br><span class="line"><span class="hljs-string">        :param X: the time series to detect of</span></span><br><span class="line"><span class="hljs-string">        :param type X: pandas.Series</span></span><br><span class="line"><span class="hljs-string">        :param window: the length of window</span></span><br><span class="line"><span class="hljs-string">        :param type window: int</span></span><br><span class="line"><span class="hljs-string">        :return: 1 denotes normal, 0 denotes abnormal</span></span><br><span class="line"><span class="hljs-string">        """</span></span><br><span class="line">        x_train = list(range(<span class="hljs-number">0</span>, <span class="hljs-number">2</span> * window + <span class="hljs-number">1</span>)) + list(range(<span class="hljs-number">0</span>, <span class="hljs-number">2</span> * window + <span class="hljs-number">1</span>)) + list(range(<span class="hljs-number">0</span>, window + <span class="hljs-number">1</span>))</span><br><span class="line">        x_train = np.array(x_train)</span><br><span class="line">        x_train = x_train[:, np.newaxis]</span><br><span class="line">        avg_value = np.mean(X[-(window + <span class="hljs-number">1</span>):])</span><br><span class="line">        <span class="hljs-keyword">if</span> avg_value &gt; <span class="hljs-number">1</span>:</span><br><span class="line">            y_train = X / avg_value</span><br><span class="line">        <span class="hljs-keyword">else</span>:</span><br><span class="line">            y_train = X</span><br><span class="line">        model = make_pipeline(PolynomialFeatures(self.degree), Ridge())</span><br><span class="line">        model.fit(x_train, y_train)</span><br><span class="line">        <span class="hljs-keyword">if</span> abs(y_train[<span class="hljs-number">-1</span>] - model.predict(np.array(x_train[<span class="hljs-number">-1</span>]).reshape(<span class="hljs-number">1</span>, <span class="hljs-number">-1</span>))) &gt; self.threshold:</span><br><span class="line">            <span class="hljs-keyword">return</span> <span class="hljs-number">0</span></span><br><span class="line">        <span class="hljs-keyword">return</span> <span class="hljs-number">1</span></span><br></pre></td></tr></table></figure>
         </div>
         
         
@@ -253,51 +299,6 @@
 <li>实现做了面向体系结构的优化，针对 cache 和内存做了性能优化</li>
 </ol>
 
-        </div>
-        
-        
-        
-    </div>
-</div>
-
-
-
-
-
-
-
-
-    <div class="card">
-    
-    <div class="card-content article ">
-        
-        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
-            <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2019-07-20T16:00:00.000Z">2019-07-21</time>
-                
-                <div class="level-item">
-                <a class="has-link-grey -link" href="/categories/Security/">Security</a>
-                </div>
-                
-                
-                <span class="level-item has-text-grey">
-                    
-                    
-                    2 分钟 读完 (大约 246 个字)
-                </span>
-                
-                
-            </div>
-        </div>
-        
-        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
-            
-                <a class="has-link-black-ter" href="/2019/07/21/安全/2019-07-21-多项式插值/">多项式插值</a>
-            
-        </h1>
-        <div class="content">
-            <h2 id="Polynominal-Interpolation"><a href="#Polynominal-Interpolation" class="headerlink" title="Polynominal Interpolation"></a>Polynominal Interpolation</h2><p>多项式插值，给定一组数据，寻找一个恰好通过这些数据点的多项式。</p>
-<h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2><figure class="highlight python hljs"><table><tr><td class="code"><pre><span class="line"><span class="hljs-keyword">import</span> numpy <span class="hljs-keyword">as</span> np</span><br><span class="line"><span class="hljs-keyword">from</span> sklearn.linear_model <span class="hljs-keyword">import</span> Ridge</span><br><span class="line"><span class="hljs-keyword">from</span> sklearn.preprocessing <span class="hljs-keyword">import</span> PolynomialFeatures</span><br><span class="line"><span class="hljs-keyword">from</span> sklearn.pipeline <span class="hljs-keyword">import</span> make_pipeline</span><br><span class="line"><span class="hljs-keyword">from</span> time_series_detector.common.tsd_common <span class="hljs-keyword">import</span> *</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">PolynomialInterpolation</span><span class="hljs-params">(object)</span>:</span></span><br><span class="line">    <span class="hljs-string">"""</span></span><br><span class="line"><span class="hljs-string">    In statistics, polynomial regression is a form of regression analysis in which the relationship</span></span><br><span class="line"><span class="hljs-string">    between the independent variable x and the dependent variable y is modelled as an nth degree polynomial in x.</span></span><br><span class="line"><span class="hljs-string">    WIKIPEDIA: https://en.wikipedia.org/wiki/Polynomial_regression</span></span><br><span class="line"><span class="hljs-string">    """</span></span><br><span class="line"></span><br><span class="line">    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">__init__</span><span class="hljs-params">(self, threshold=<span class="hljs-number">0.15</span>, degree=<span class="hljs-number">4</span>)</span>:</span></span><br><span class="line">        <span class="hljs-string">"""</span></span><br><span class="line"><span class="hljs-string">       :param threshold: The critical point of normal.</span></span><br><span class="line"><span class="hljs-string">       :param degree: Depth of iteration.</span></span><br><span class="line"><span class="hljs-string">        """</span></span><br><span class="line">        self.degree = degree</span><br><span class="line">        self.threshold = threshold</span><br><span class="line"></span><br><span class="line">    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">predict</span><span class="hljs-params">(self, X, window=DEFAULT_WINDOW)</span>:</span></span><br><span class="line">        <span class="hljs-string">"""</span></span><br><span class="line"><span class="hljs-string">        Predict if a particular sample is an outlier or not.</span></span><br><span class="line"><span class="hljs-string">        :param X: the time series to detect of</span></span><br><span class="line"><span class="hljs-string">        :param type X: pandas.Series</span></span><br><span class="line"><span class="hljs-string">        :param window: the length of window</span></span><br><span class="line"><span class="hljs-string">        :param type window: int</span></span><br><span class="line"><span class="hljs-string">        :return: 1 denotes normal, 0 denotes abnormal</span></span><br><span class="line"><span class="hljs-string">        """</span></span><br><span class="line">        x_train = list(range(<span class="hljs-number">0</span>, <span class="hljs-number">2</span> * window + <span class="hljs-number">1</span>)) + list(range(<span class="hljs-number">0</span>, <span class="hljs-number">2</span> * window + <span class="hljs-number">1</span>)) + list(range(<span class="hljs-number">0</span>, window + <span class="hljs-number">1</span>))</span><br><span class="line">        x_train = np.array(x_train)</span><br><span class="line">        x_train = x_train[:, np.newaxis]</span><br><span class="line">        avg_value = np.mean(X[-(window + <span class="hljs-number">1</span>):])</span><br><span class="line">        <span class="hljs-keyword">if</span> avg_value &gt; <span class="hljs-number">1</span>:</span><br><span class="line">            y_train = X / avg_value</span><br><span class="line">        <span class="hljs-keyword">else</span>:</span><br><span class="line">            y_train = X</span><br><span class="line">        model = make_pipeline(PolynomialFeatures(self.degree), Ridge())</span><br><span class="line">        model.fit(x_train, y_train)</span><br><span class="line">        <span class="hljs-keyword">if</span> abs(y_train[<span class="hljs-number">-1</span>] - model.predict(np.array(x_train[<span class="hljs-number">-1</span>]).reshape(<span class="hljs-number">1</span>, <span class="hljs-number">-1</span>))) &gt; self.threshold:</span><br><span class="line">            <span class="hljs-keyword">return</span> <span class="hljs-number">0</span></span><br><span class="line">        <span class="hljs-keyword">return</span> <span class="hljs-number">1</span></span><br></pre></td></tr></table></figure>
         </div>
         
         
@@ -396,19 +397,17 @@
 <li><strong>数据预处理</strong> 通过启发式方法减小数据量，减少良性的DNS流量，只保留可疑的NXDOMAIN来进行后续的聚类。（根据域名进行判断）</li>
 <li><strong>分级聚类</strong> D作为一系列的域名，每一个域名d都由一组IP代表，这组IP可以至少区分一个不成功的DNS请求。聚类结果C可以代表D的一种划分，对于每一个类别c都是自底向上聚类的结果。两个类可以计算相似度，如果相似度在限制内可以进行合并；该限制也可以防止没有共享足够IP的两个类进行合并。</li>
 </ol>
-<p>相似度计算公式：</p>
-<script type="math/tex; mode=display">
-\forall(c_i,c_j) \in C^2, sim(c_i.c_j) = |IP^{c_i}\cap IP^{c_j} |</script><p>相似度限制公式：</p>
-<script type="math/tex; mode=display">
-sim(c_1^*,c_2^*) > \alpha \cdot min(|IP^{c_1^*}|,|IP^{c_2^*}|)</script><p><img src="pictures/DGA.jpg" alt></p>
-<ol>
+<p>相似度计算公式：<br>$$<br>\forall(c_i,c_j) \in C^2, sim(c_i.c_j) = |IP^{c_i}\cap IP^{c_j} |<br>$$</p>
+<p>相似度限制公式：<br>$$<br>sim(c_1^<em>,c_2^</em>) &gt; \alpha \cdot min(|IP^{c_1^<em>}|,|IP^{c_2^</em>}|)<br>$$</p>
+<p><img src="pictures/DGA.jpg" alt></p>
+<ol start="3">
 <li><strong>得到受感染的IP</strong> 往往丢弃与恶意行为不相干的类别，对已识别的DGA僵尸网络命名，</li>
 </ol>
 <h2 id="检测模块：时序决策树"><a href="#检测模块：时序决策树" class="headerlink" title="检测模块：时序决策树"></a>检测模块：时序决策树</h2><p>输入：DNS时序，每个IP都有标签{Infected，NonInfected}</p>
 <p>在CART决策树的基础上训练，根节点包含所有的训练实例。每个内部节点都包含一系列的训练实例$\tau$以及根据输入特征确定的分割条件s</p>
 <ol>
-<li>所有的实例拥有相同的标签<script type="math/tex; mode=display">\forall(T_0,T_1) \in \tau^2, label(T_0)=label(T_1)</script></li>
-<li>所有的实例根据距离公式都是相等的<script type="math/tex; mode=display">\forall(T_0,T_1) \in \tau^2, dist(T_0,T_1)=0</script></li>
+<li>所有的实例拥有相同的标签<br>$$\forall(T_0,T_1) \in \tau^2, label(T_0)=label(T_1)$$</li>
+<li>所有的实例根据距离公式都是相等的<br>$$\forall(T_0,T_1) \in \tau^2, dist(T_0,T_1)=0$$</li>
 </ol>
 <h3 id="训练模块"><a href="#训练模块" class="headerlink" title="训练模块"></a>训练模块</h3><p>分治算法进行决策树的处理，一条子树持续划分直到满足上述两个限制。</p>
 <p>对于一个训练集，首先计算分裂的候选值，要求分裂结果使得子树最干净，干净可以用标签的定义来进行判断。最不干净的结果就是一半为{Infected}另一半为{NonInfected}</p>
@@ -562,11 +561,11 @@ sim(c_1^*,c_2^*) > \alpha \cdot min(|IP^{c_1^*}|,|IP^{c_2^*}|)</script><p><img s
 </ul>
 <p>特征值异常检测</p>
 <hr>
-<h2 id="基于主动学习的异常检测"><a href="#基于主动学习的异常检测" class="headerlink" title="基于主动学习的异常检测"></a><a href="https://mp.weixin.qq.com/s?__biz=MzIyMzcxMDYwNg==&amp;mid=2247484232&amp;idx=1&amp;sn=28dcd0f1d32ab1298f2ba9c5380d1ce7&amp;chksm=e81b5fa9df6cd6bf391a188c31cb1ac53024f0fd1b6fddb48b13e04882be5d13b53b30eba482&amp;mpshare=1&amp;scene=1&amp;srcid=#rd" target="_blank" rel="noopener">基于主动学习的异常检测</a></h2><p>运维人员会把自己的领域知识融入到异常检测中，针对初始的异常分数排名，给出排名靠前的样本的反馈之后，模型会根据这个反馈来重新调整参数，从而输出新的异常分数排名，目的是使运维人员感兴趣的异常排在靠前的位置，从而节约排查异常所需的时间。</p>
+<h2 id="基于主动学习的异常检测"><a href="#基于主动学习的异常检测" class="headerlink" title="基于主动学习的异常检测"></a><a href="https://mp.weixin.qq.com/s?__biz=MzIyMzcxMDYwNg==&mid=2247484232&idx=1&sn=28dcd0f1d32ab1298f2ba9c5380d1ce7&chksm=e81b5fa9df6cd6bf391a188c31cb1ac53024f0fd1b6fddb48b13e04882be5d13b53b30eba482&mpshare=1&scene=1&srcid=#rd" target="_blank" rel="noopener">基于主动学习的异常检测</a></h2><p>运维人员会把自己的领域知识融入到异常检测中，针对初始的异常分数排名，给出排名靠前的样本的反馈之后，模型会根据这个反馈来重新调整参数，从而输出新的异常分数排名，目的是使运维人员感兴趣的异常排在靠前的位置，从而节约排查异常所需的时间。</p>
 <p><strong>损失函数</strong>：<br>异常样本被排在最前面，说明目前的模型是好的，损失函数的值需要减少,正常点排在前面，那么这个模型是有问题的，需要增大损失函数。</p>
 <p><strong>镜像下降学习算法</strong></p>
 <hr>
-<h2 id="通过半监督学习为新KPI曲线快速部署异常检测"><a href="#通过半监督学习为新KPI曲线快速部署异常检测" class="headerlink" title="通过半监督学习为新KPI曲线快速部署异常检测"></a><a href="https://mp.weixin.qq.com/s?__biz=MzIyMzcxMDYwNg==&amp;mid=2247484321&amp;idx=1&amp;sn=2d7e8fa47adca709814242fa0308c074&amp;chksm=e81b5f40df6cd656ef182ab30c3a7d117268e21e2823d5ab2be438478b5843039b8eb03aca84&amp;mpshare=1&amp;scene=1&amp;srcid=#rd" target="_blank" rel="noopener">通过半监督学习为新KPI曲线快速部署异常检测</a></h2><p>分析KPI曲线，尽管KPI曲线的数量众多，但是曲线的形状大体上只有少数的几类。这本质是由于，曲线的形状是由业务的类型（比如交易量，游戏在线人数，搜索）以及曲线的类型（CPU使用率，成功率）所决定的，而非集群的规模。除非是上线一个全新的业务，否则新的曲线的形状大概率会和旧曲线的形状相似。这启示作者，可以对曲线做聚类，属于同一类别的曲线，其特征空间也大致相似。属于同一类别的曲线形状相似，但是并不完全一致，在模型层面上需要有所区分。作者开始思考，是否可以用机器学习中的半监督算法来解决这个问题，既可以使用原有的label标注，提高准确率，又能够为每根新上线的曲线分配不同的模型。</p>
+<h2 id="通过半监督学习为新KPI曲线快速部署异常检测"><a href="#通过半监督学习为新KPI曲线快速部署异常检测" class="headerlink" title="通过半监督学习为新KPI曲线快速部署异常检测"></a><a href="https://mp.weixin.qq.com/s?__biz=MzIyMzcxMDYwNg==&mid=2247484321&idx=1&sn=2d7e8fa47adca709814242fa0308c074&chksm=e81b5f40df6cd656ef182ab30c3a7d117268e21e2823d5ab2be438478b5843039b8eb03aca84&mpshare=1&scene=1&srcid=#rd" target="_blank" rel="noopener">通过半监督学习为新KPI曲线快速部署异常检测</a></h2><p>分析KPI曲线，尽管KPI曲线的数量众多，但是曲线的形状大体上只有少数的几类。这本质是由于，曲线的形状是由业务的类型（比如交易量，游戏在线人数，搜索）以及曲线的类型（CPU使用率，成功率）所决定的，而非集群的规模。除非是上线一个全新的业务，否则新的曲线的形状大概率会和旧曲线的形状相似。这启示作者，可以对曲线做聚类，属于同一类别的曲线，其特征空间也大致相似。属于同一类别的曲线形状相似，但是并不完全一致，在模型层面上需要有所区分。作者开始思考，是否可以用机器学习中的半监督算法来解决这个问题，既可以使用原有的label标注，提高准确率，又能够为每根新上线的曲线分配不同的模型。</p>
 <p><a href="https://zhuanlan.zhihu.com/p/50698719" target="_blank" rel="noopener">ROCKA</a> 分析曲线相似度</p>
 <hr>
 <p><a href="https://github.com/Tencent/Metis" target="_blank" rel="noopener">腾讯Metis</a></p>
@@ -1045,18 +1044,18 @@ sim(c_1^*,c_2^*) > \alpha \cdot min(|IP^{c_1^*}|,|IP^{c_2^*}|)</script><p><img s
         
         <article class="media">
             
-            <a href="/2019/07/21/数据挖掘/2019-08-13-实时异常检测/" class="media-left">
+            <a href="/2019/07/21/安全/2019-07-22-xgboost/" class="media-left">
                 <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="实时异常检测（xStream，KDD&#39;18）">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="孤立森林（Isolation Forest）">
                 </p>
             </a>
             
             <div class="media-content">
                 <div class="content">
                     <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-07-20T16:00:00.000Z">2019-07-21</time></div>
-                    <a href="/2019/07/21/数据挖掘/2019-08-13-实时异常检测/" class="title has-link-black-ter is-size-6 has-text-weight-normal">实时异常检测（xStream，KDD&#39;18）</a>
+                    <a href="/2019/07/21/安全/2019-07-22-xgboost/" class="title has-link-black-ter is-size-6 has-text-weight-normal">孤立森林（Isolation Forest）</a>
                     <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/Anomaly-detection/">Anomaly detection</a>
+                        <a class="has-link-grey -link" href="/categories/Security/">Security</a>
                     </p>
                 </div>
             </div>
@@ -1545,18 +1544,18 @@ sim(c_1^*,c_2^*) > \alpha \cdot min(|IP^{c_1^*}|,|IP^{c_2^*}|)</script><p><img s
         
         <article class="media">
             
-            <a href="/2019/07/21/数据挖掘/2019-08-13-实时异常检测/" class="media-left">
+            <a href="/2019/07/21/安全/2019-07-22-xgboost/" class="media-left">
                 <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="实时异常检测（xStream，KDD&#39;18）">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="孤立森林（Isolation Forest）">
                 </p>
             </a>
             
             <div class="media-content">
                 <div class="content">
                     <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-07-20T16:00:00.000Z">2019-07-21</time></div>
-                    <a href="/2019/07/21/数据挖掘/2019-08-13-实时异常检测/" class="title has-link-black-ter is-size-6 has-text-weight-normal">实时异常检测（xStream，KDD&#39;18）</a>
+                    <a href="/2019/07/21/安全/2019-07-22-xgboost/" class="title has-link-black-ter is-size-6 has-text-weight-normal">孤立森林（Isolation Forest）</a>
                     <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/Anomaly-detection/">Anomaly detection</a>
+                        <a class="has-link-grey -link" href="/categories/Security/">Security</a>
                     </p>
                 </div>
             </div>
