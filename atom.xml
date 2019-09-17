@@ -43,9 +43,9 @@
     <link href="http://www.liufr.com/2019/09/12/%E6%95%B0%E6%8D%AE%E6%8C%96%E6%8E%98/2019-09-12-%E6%97%B6%E9%97%B4%E6%B3%A8%E6%84%8F%E5%8A%9B%E6%A8%A1%E5%9E%8B%E4%B8%8B%E7%9A%84%E6%97%B6%E5%BA%8F%E9%A2%84%E6%B5%8B/"/>
     <id>http://www.liufr.com/2019/09/12/数据挖掘/2019-09-12-时间注意力模型下的时序预测/</id>
     <published>2019-09-11T16:00:00.000Z</published>
-    <updated>2019-09-17T09:00:22.072Z</updated>
+    <updated>2019-09-17T09:10:05.869Z</updated>
     
-    <content type="html"><![CDATA[<p>Multi-Horizon Time Series Forecasting with Temporal Attention Learning(KDD' 19)</p><p>文章阐述了历史信息中的时间模式对长时间序列的预测是至关重要的。传统方法中手动设置时间依赖从而探索相关的时序模式是很不靠谱的，本文用DNN的方法提出了端到端的多视界模型来进行预测，从时间的注意力上来更好地捕获历史数据的潜在模式，还提出了一种多模型的融合机制可以结合不同历史数据的特征来更好地预测。</p><p>multi-horizon代表的意思就是在未来时间内进行多步预测。这可以用来进行资源规划的预测以及决策。这对LSTM提出了挑战，因为当前的输入源于历史信息和未来动态输入的变量，我们的可以精确预测是因为，可以通过对潜在模型的适当表示以及历史数据时间模式的参照。</p><h2 id="方法">方法</h2><h3 id="基础编码-解码结构">基础编码-解码结构</h3><p>采用的是seq2seq流水线结构来编码历史/未来的输入变量，然后解码用于未来的预测</p><img src="/2019/09/12/数据挖掘/2019-09-12-时间注意力模型下的时序预测/Multi-Horizon.jpg" title="This is an example image"><p><img src="2019-09-12-时间注意力模型下的时序预测/Multi-Horizon.jpg"></p><p>如上图所示，编码过程是一个两层的LSTM架构，可以将历史信息匹配到隐藏层的上一层的<span class="math inline">\(h_{t-1}\)</span>。其中<span class="math inline">\(x_t\)</span>代表每一个时间戳中的输入，隐藏层就是<span class="math inline">\(h_t\)</span>，内部的门(gate cell)就是<span class="math inline">\(i_t,f_t,o_t,c_t\)</span> <span class="math display">\[\begin{array}{l}{i_{t}=\sigma\left(W_{i x} x_{t}+W_{i m} m_{t-1}\right)} \\ {f_{t}=\sigma\left(W_{f x} x_{t}+W_{f m} m_{t-1}\right)} \\ {o_{t}=\sigma\left(W_{o x} x_{t}+W_{o m} m_{t-1}\right)} \\ {c_{t}=f_{t} \cdot c_{t-1}+i_{t} \cdot \tanh \left(W_{c x} x_{t}+W_{c m} m_{t-1}\right)} \\ {h_{t}=o_{t} \cdot \tanh \left(c_{t}\right)}\end{array}\]</span></p><p>上述复杂的公式简写成<span class="math inline">\(h_t^e=LSTM^e(x_t;h_{t-1})\)</span>, 其中<span class="math inline">\(e\)</span>就表示在隐含层中已经经过了编码。</p><p>解码器就是将编码器的输出当作输入的初始状态，未来的信息也作为输入生成未来序列，也就是输出。解码器设计成一个双向LSTM网络，可以正向和逆向传播未来的输入特征。这个结构可以使得前向和后向的输入都可以在每一个未来的时间步中观察得到。BiLSTM的隐含层传入一个全连接层或者一个时间域上的卷积层来进行最后的预测。我们强调说最后的预测应该是在BiLSTM信息传播后来进行的。通过将信息传播状态和信息预测状态进行分离，防止在一个长视界（long horizon）中错误的累加。这个结构中前向和后向的信息传播是分离的。定义如下： <span class="math display">\[\begin{aligned} h_{t}^{f} &amp;=L S T M^{f}\left(x_{t} ; h_{t-1}\right) \\ h_{t}^{b} &amp;=L S T M^{b}\left(x_{t} ; h_{t+1}\right) \\ h_{t} &amp;=\left[h_{t}^{f} ; h_{t}^{b}\right] \end{aligned}\]</span></p><p>上式可以综合写成<span class="math inline">\(h_t^d = BiLSTM^d(x_t;h_{t-1},h_{t+1})\)</span>，为了从隐含层生成分位数的预测，我们加入了一个线性层，在编码解码层的K维分位数预测则为 <span class="math display">\[\begin{aligned} y_{t}^{e} &amp;=W_{e} h_{t}^{e}+b_{e} \\ y_{t}^{d} &amp;=W_{d} h_{t}^{d}+b_{d}  \end{aligned}\]</span></p><h3 id="embedding">Embedding</h3><p>通过Embedding技术可以将明确的变量映射为数个特征向量，采用one-hot编码代表<span class="math inline">\(|C|\)</span>变量<span class="math inline">\(x_c=\{0...010...0\}\in R^{|C|}\)</span>，学习的嵌入式矩阵<span class="math inline">\(W_c\in R^{D*|C|}\)</span>，变化后的变量可以由<span class="math inline">\(x_c&#39;=W_cx_c\)</span>计算得。</p><h3 id="注意力模型">注意力模型</h3><p>编码解码模型由于内存的更新很难捕获长期的记忆，所以这里使用注意力模型，如图所示 <img src="pictures/multi-scale.jpg"> 最下层的是历史编码模块，最上层是一个BiLSTM的未来解码模块，文章设计了一个多模型的注意力机制，他由每次未来时间步骤中的BiLSTM的隐藏层引导，并且融合不同的权重应用到不同的历史数据中</p><p><strong>时间注意力</strong></p><p>不能使用全体的历史数据，原因是真实世界的时序数据太长了，可能会模糊掉注意力模型，并且计算不够有效率。文章提出了一种分离性注意每个时期下的历史数据并将其结合到多形态融合的模式下，长度可以由人为设定。时间注意力的权重<span class="math inline">\(\gamma_{1:T_h}\)</span>可以表述为 <span class="math display">\[\begin{array}{c}{\mathbf{g}=\mathbf{v}_{g}^{\top} \tanh \left(\mathbf{W}_{g} \mathbf{s}_{t}+\mathbf{V}_{g} \mathbf{h}+\mathbf{b}_{g}\right)} \\ {\gamma_{i}=\frac{\exp \left(g_{i}\right)}{\sum_{j=1}^{T_{h}} \exp \left(g_{j}\right)} \quad \text { for } i=1 \ldots T_{h}}\end{array}\]</span></p><p>然后加入的内容向量<span class="math inline">\(c_t\)</span>和transformer<span class="math inline">\(d_t\)</span>为： <span class="math display">\[\begin{aligned} \mathbf{c}_{t} &amp;=\sum_{i=1}^{T_{h}} \gamma_{i} \mathbf{h}_{i} \\ \mathbf{d}_{t} &amp;=\operatorname{ReLU}\left(\mathbf{W}_{d} \mathbf{c}_{t}+\mathbf{b}_{d}\right) \end{aligned}\]</span></p><p><strong>多形态融合</strong></p><p>图3 给出的是M=2的融合结果， <span class="math display">\[\begin{array}{l}{\mathbf{p}_{t}^{m}=\mathbf{v}_{p}^{\top} \tanh \left(\mathbf{W}_{p} \mathbf{s}_{t}+\mathbf{V}_{p}^{m} \mathbf{d}_{t}^{m}+\mathbf{b}_{p}\right)} \\ {\phi_{t}^{m}=\frac{\exp \left(p_{t}^{m}\right)}{\sum_{k=1}^{M} \exp \left(p_{t}^{k}\right)} \quad \text { for } m=1 \ldots M}\end{array}\]</span></p><p>融合后的知识库<span class="math inline">\(x_t\)</span>可以由<span class="math inline">\(d_t^m\)</span>的加和计算结果给出</p><p><span class="math display">\[x_t=\sum_{m=1}^M\phi_t^md_t^m\]</span></p>]]></content>
+    <content type="html"><![CDATA[<p>Multi-Horizon Time Series Forecasting with Temporal Attention Learning(KDD' 19)</p><p>文章阐述了历史信息中的时间模式对长时间序列的预测是至关重要的。传统方法中手动设置时间依赖从而探索相关的时序模式是很不靠谱的，本文用DNN的方法提出了端到端的多视界模型来进行预测，从时间的注意力上来更好地捕获历史数据的潜在模式，还提出了一种多模型的融合机制可以结合不同历史数据的特征来更好地预测。</p><p>multi-horizon代表的意思就是在未来时间内进行多步预测。这可以用来进行资源规划的预测以及决策。这对LSTM提出了挑战，因为当前的输入源于历史信息和未来动态输入的变量，我们的可以精确预测是因为，可以通过对潜在模型的适当表示以及历史数据时间模式的参照。</p><h2 id="方法">方法</h2><h3 id="基础编码-解码结构">基础编码-解码结构</h3><p>采用的是seq2seq流水线结构来编码历史/未来的输入变量，然后解码用于未来的预测</p><p><img src="2019-09-12-时间注意力模型下的时序预测/Multi-Horizon.jpg"></p><p>如上图所示，编码过程是一个两层的LSTM架构，可以将历史信息匹配到隐藏层的上一层的<span class="math inline">\(h_{t-1}\)</span>。其中<span class="math inline">\(x_t\)</span>代表每一个时间戳中的输入，隐藏层就是<span class="math inline">\(h_t\)</span>，内部的门(gate cell)就是<span class="math inline">\(i_t,f_t,o_t,c_t\)</span> <span class="math display">\[\begin{array}{l}{i_{t}=\sigma\left(W_{i x} x_{t}+W_{i m} m_{t-1}\right)} \\ {f_{t}=\sigma\left(W_{f x} x_{t}+W_{f m} m_{t-1}\right)} \\ {o_{t}=\sigma\left(W_{o x} x_{t}+W_{o m} m_{t-1}\right)} \\ {c_{t}=f_{t} \cdot c_{t-1}+i_{t} \cdot \tanh \left(W_{c x} x_{t}+W_{c m} m_{t-1}\right)} \\ {h_{t}=o_{t} \cdot \tanh \left(c_{t}\right)}\end{array}\]</span></p><p>上述复杂的公式简写成<span class="math inline">\(h_t^e=LSTM^e(x_t;h_{t-1})\)</span>, 其中<span class="math inline">\(e\)</span>就表示在隐含层中已经经过了编码。</p><p>解码器就是将编码器的输出当作输入的初始状态，未来的信息也作为输入生成未来序列，也就是输出。解码器设计成一个双向LSTM网络，可以正向和逆向传播未来的输入特征。这个结构可以使得前向和后向的输入都可以在每一个未来的时间步中观察得到。BiLSTM的隐含层传入一个全连接层或者一个时间域上的卷积层来进行最后的预测。我们强调说最后的预测应该是在BiLSTM信息传播后来进行的。通过将信息传播状态和信息预测状态进行分离，防止在一个长视界（long horizon）中错误的累加。这个结构中前向和后向的信息传播是分离的。定义如下： <span class="math display">\[\begin{aligned} h_{t}^{f} &amp;=L S T M^{f}\left(x_{t} ; h_{t-1}\right) \\ h_{t}^{b} &amp;=L S T M^{b}\left(x_{t} ; h_{t+1}\right) \\ h_{t} &amp;=\left[h_{t}^{f} ; h_{t}^{b}\right] \end{aligned}\]</span></p><p>上式可以综合写成<span class="math inline">\(h_t^d = BiLSTM^d(x_t;h_{t-1},h_{t+1})\)</span>，为了从隐含层生成分位数的预测，我们加入了一个线性层，在编码解码层的K维分位数预测则为 <span class="math display">\[\begin{aligned} y_{t}^{e} &amp;=W_{e} h_{t}^{e}+b_{e} \\ y_{t}^{d} &amp;=W_{d} h_{t}^{d}+b_{d}  \end{aligned}\]</span></p><h3 id="embedding">Embedding</h3><p>通过Embedding技术可以将明确的变量映射为数个特征向量，采用one-hot编码代表<span class="math inline">\(|C|\)</span>变量<span class="math inline">\(x_c=\{0...010...0\}\in R^{|C|}\)</span>，学习的嵌入式矩阵<span class="math inline">\(W_c\in R^{D*|C|}\)</span>，变化后的变量可以由<span class="math inline">\(x_c&#39;=W_cx_c\)</span>计算得。</p><h3 id="注意力模型">注意力模型</h3><p>编码解码模型由于内存的更新很难捕获长期的记忆，所以这里使用注意力模型，如图所示 <img src="2019-09-12-时间注意力模型下的时序预测/multi-scale.jpg"> 最下层的是历史编码模块，最上层是一个BiLSTM的未来解码模块，文章设计了一个多模型的注意力机制，他由每次未来时间步骤中的BiLSTM的隐藏层引导，并且融合不同的权重应用到不同的历史数据中</p><p><strong>时间注意力</strong></p><p>不能使用全体的历史数据，原因是真实世界的时序数据太长了，可能会模糊掉注意力模型，并且计算不够有效率。文章提出了一种分离性注意每个时期下的历史数据并将其结合到多形态融合的模式下，长度可以由人为设定。时间注意力的权重<span class="math inline">\(\gamma_{1:T_h}\)</span>可以表述为 <span class="math display">\[\begin{array}{c}{\mathbf{g}=\mathbf{v}_{g}^{\top} \tanh \left(\mathbf{W}_{g} \mathbf{s}_{t}+\mathbf{V}_{g} \mathbf{h}+\mathbf{b}_{g}\right)} \\ {\gamma_{i}=\frac{\exp \left(g_{i}\right)}{\sum_{j=1}^{T_{h}} \exp \left(g_{j}\right)} \quad \text { for } i=1 \ldots T_{h}}\end{array}\]</span></p><p>然后加入的内容向量<span class="math inline">\(c_t\)</span>和transformer<span class="math inline">\(d_t\)</span>为： <span class="math display">\[\begin{aligned} \mathbf{c}_{t} &amp;=\sum_{i=1}^{T_{h}} \gamma_{i} \mathbf{h}_{i} \\ \mathbf{d}_{t} &amp;=\operatorname{ReLU}\left(\mathbf{W}_{d} \mathbf{c}_{t}+\mathbf{b}_{d}\right) \end{aligned}\]</span></p><p><strong>多形态融合</strong></p><p>图3 给出的是M=2的融合结果， <span class="math display">\[\begin{array}{l}{\mathbf{p}_{t}^{m}=\mathbf{v}_{p}^{\top} \tanh \left(\mathbf{W}_{p} \mathbf{s}_{t}+\mathbf{V}_{p}^{m} \mathbf{d}_{t}^{m}+\mathbf{b}_{p}\right)} \\ {\phi_{t}^{m}=\frac{\exp \left(p_{t}^{m}\right)}{\sum_{k=1}^{M} \exp \left(p_{t}^{k}\right)} \quad \text { for } m=1 \ldots M}\end{array}\]</span></p><p>融合后的知识库<span class="math inline">\(x_t\)</span>可以由<span class="math inline">\(d_t^m\)</span>的加和计算结果给出</p><p><span class="math display">\[x_t=\sum_{m=1}^M\phi_t^md_t^m\]</span></p>]]></content>
     
     <summary type="html">
     
@@ -170,96 +170,9 @@
       <category term="Security" scheme="http://www.liufr.com/categories/Security/"/>
     
     
-      <category term="Security" scheme="http://www.liufr.com/tags/Security/"/>
-    
       <category term="Anomaly detection" scheme="http://www.liufr.com/tags/Anomaly-detection/"/>
     
-  </entry>
-  
-  <entry>
-    <title>孤立森林（Isolation Forest）</title>
-    <link href="http://www.liufr.com/2019/07/21/%E5%AE%89%E5%85%A8/2019-07-22-%E5%AD%A4%E7%AB%8B%E6%A3%AE%E6%9E%97%EF%BC%88Isolation%20Froest%EF%BC%89/"/>
-    <id>http://www.liufr.com/2019/07/21/安全/2019-07-22-孤立森林（Isolation Froest）/</id>
-    <published>2019-07-20T16:00:00.000Z</published>
-    <updated>2019-07-22T02:39:55.715Z</updated>
-    
-    <content type="html"><![CDATA[<h2 id="iforest">iForest</h2><p>无参数无监督方法。</p><p>假设用一个随机超平面切割数据空间，切一次产生两个子空间，依次循环下去直到每个子空间只有一个数据点为止。直观的说那些密度很高的簇需要被切割很多次才会停止，但是那些密度较低的点很容易较早地停在一个子空间里</p><h2 id="实现步骤">实现步骤</h2><p>切割是随机的因此需要集成方法得到一个收敛值，即反复从头开始切然后平均每次的结果。</p><ol type="1"><li>从训练数据集中选择样本点作为subsample,放入树的根节点。</li><li>随机指定一个维度，随机产生一个切割点p，位于当前数据的最大最小值之间。</li><li>以切割点生成超平面，然后将当前的节点数据空间划分为2个子空间，把小于p的放入节点的左孩子，大于等于p的放在右孩子</li><li>在孩子节点中不断递归步骤2和3，直到无法切割，或者达到限定高度。</li></ol><p>获得t个iTree后，训练结束然后可以用生成的iForest来评估测试数据，对于每一个训练数据x遍历每一棵iTree，计算其落在第几层，得到x在每个树高度平均值。获得测试数据的高度平均值后可以设置一个阈值，低于阈值的测试数据为异常。异常在书中往往有较短的平均高度。论文对高度进行归一化结果是一个0到1的数值，越短高度越接近1（异常可能性越高）</p><p><img src="pictures/iForest.webp"></p><p>可以看出d最有可能是异常</p><h2 id="默认参数">默认参数</h2><ul><li>subsample size：256</li><li>Tree height：8</li><li>Number of trees：100</li></ul>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;h2 id=&quot;iforest&quot;&gt;iForest&lt;/h2&gt;
-&lt;p&gt;无参数无监督方法。&lt;/p&gt;
-&lt;p&gt;假设用一个随机超平面切割数据空间，切一次产生两个子空间，依次循环下去直到每个子空间只有一个数据点为止。直观的说那些密度很高的簇需要被切割很多次才会停止，但是那些密度较低的点很容易较
-      
-    
-    </summary>
-    
-      <category term="Security" scheme="http://www.liufr.com/categories/Security/"/>
-    
-    
       <category term="Security" scheme="http://www.liufr.com/tags/Security/"/>
-    
-      <category term="Anomaly detection" scheme="http://www.liufr.com/tags/Anomaly-detection/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>利用时序决策树进行DGA僵尸检测</title>
-    <link href="http://www.liufr.com/2019/07/21/%E5%AE%89%E5%85%A8/2019-07-22-%E5%88%A9%E7%94%A8%E6%97%B6%E5%BA%8F%E5%86%B3%E7%AD%96%E6%A0%91%E8%BF%9B%E8%A1%8CDGA%E5%83%B5%E5%B0%B8%E6%A3%80%E6%B5%8B/"/>
-    <id>http://www.liufr.com/2019/07/21/安全/2019-07-22-利用时序决策树进行DGA僵尸检测/</id>
-    <published>2019-07-20T16:00:00.000Z</published>
-    <updated>2019-07-22T07:12:27.904Z</updated>
-    
-    <content type="html"><![CDATA[<p>DGA Bot Detection with Time Series Decision Trees</p><h2 id="主要思路">主要思路</h2><ol type="1"><li>标签模块依赖分类技术，该模块可以对训练模型生成有标签的数据，并对每一个已经检测到的僵尸网络提供一系列的感染IP</li><li>训练模块使用对生成的标签数据进行有监督的学习，对每一个僵尸网络家族都构造一个检测模型。利用典型的IP时间轮廓评估。</li><li>检测模块在短时间内检测受到影响的IP。</li></ol><h2 id="标签模块">标签模块</h2><p>给有监督训练模型提供受感染IP的实例，该模块只处理在DNS服务器中不存在的域名，利用的原理是通过将相同DGA僵尸网络的子集请求进行聚类。</p><ol type="1"><li><strong>数据预处理</strong> 通过启发式方法减小数据量，减少良性的DNS流量，只保留可疑的NXDOMAIN来进行后续的聚类。（根据域名进行判断）</li><li><strong>分级聚类</strong> D作为一系列的域名，每一个域名d都由一组IP代表，这组IP可以至少区分一个不成功的DNS请求。聚类结果C可以代表D的一种划分，对于每一个类别c都是自底向上聚类的结果。两个类可以计算相似度，如果相似度在限制内可以进行合并；该限制也可以防止没有共享足够IP的两个类进行合并。</li></ol><p>相似度计算公式： <span class="math display">\[\forall(c_i,c_j) \in C^2, sim(c_i.c_j) = |IP^{c_i}\cap IP^{c_j} |\]</span></p><p>相似度限制公式： <span class="math display">\[sim(c_1^*,c_2^*) &gt; \alpha \cdot min(|IP^{c_1^*}|,|IP^{c_2^*}|) \]</span></p><p><img src="pictures/DGA.jpg"></p><ol start="3" type="1"><li><strong>得到受感染的IP</strong> 往往丢弃与恶意行为不相干的类别，对已识别的DGA僵尸网络命名，</li></ol><h2 id="检测模块时序决策树">检测模块：时序决策树</h2><p>输入：DNS时序，每个IP都有标签{Infected，NonInfected}</p><p>在CART决策树的基础上训练，根节点包含所有的训练实例。每个内部节点都包含一系列的训练实例<span class="math inline">\(\tau\)</span>以及根据输入特征确定的分割条件s</p><ol type="1"><li>所有的实例拥有相同的标签 <span class="math display">\[\forall(T_0,T_1) \in \tau^2, label(T_0)=label(T_1)\]</span></li><li>所有的实例根据距离公式都是相等的 <span class="math display">\[\forall(T_0,T_1) \in \tau^2, dist(T_0,T_1)=0\]</span></li></ol><h3 id="训练模块">训练模块</h3><p>分治算法进行决策树的处理，一条子树持续划分直到满足上述两个限制。</p><p>对于一个训练集，首先计算分裂的候选值，要求分裂结果使得子树最干净，干净可以用标签的定义来进行判断。最不干净的结果就是一半为{Infected}另一半为{NonInfected}</p><h3 id="检测模块">检测模块</h3><p>当决策树构建结束后，就可以通过从根节点到叶子节点的一条路径上的划分来区分其属于哪一个类。</p><h3 id="时序划分候选">时序划分候选</h3><ul><li>标准划分：通过半径划分</li><li>聚类划分：根据到中心的的距离进行划分</li></ul><p><img src="pictures/DGA1.jpg"></p><h3 id="时序距离">时序距离</h3><p>DTW距离（很好的分析时序距离的方法）</p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;p&gt;DGA Bot Detection with Time Series Decision Trees&lt;/p&gt;
-&lt;h2 id=&quot;主要思路&quot;&gt;主要思路&lt;/h2&gt;
-&lt;ol type=&quot;1&quot;&gt;
-&lt;li&gt;标签模块依赖分类技术，该模块可以对训练模型生成有标签的数据，并对每一个已经检测到的
-      
-    
-    </summary>
-    
-      <category term="Security" scheme="http://www.liufr.com/categories/Security/"/>
-    
-    
-      <category term="Security" scheme="http://www.liufr.com/tags/Security/"/>
-    
-      <category term="Anomaly detection" scheme="http://www.liufr.com/tags/Anomaly-detection/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>孤立森林（Isolation Forest）</title>
-    <link href="http://www.liufr.com/2019/07/21/%E5%AE%89%E5%85%A8/2019-07-22-xgboost/"/>
-    <id>http://www.liufr.com/2019/07/21/安全/2019-07-22-xgboost/</id>
-    <published>2019-07-20T16:00:00.000Z</published>
-    <updated>2019-07-22T02:50:03.805Z</updated>
-    
-    <content type="html"><![CDATA[]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        
-
-      
-    
-    </summary>
-    
-      <category term="Security" scheme="http://www.liufr.com/categories/Security/"/>
-    
-    
-      <category term="Security" scheme="http://www.liufr.com/tags/Security/"/>
-    
-      <category term="Anomaly detection" scheme="http://www.liufr.com/tags/Anomaly-detection/"/>
     
   </entry>
   
@@ -285,9 +198,9 @@
       <category term="Security" scheme="http://www.liufr.com/categories/Security/"/>
     
     
-      <category term="Security" scheme="http://www.liufr.com/tags/Security/"/>
-    
       <category term="Anomaly detection" scheme="http://www.liufr.com/tags/Anomaly-detection/"/>
+    
+      <category term="Security" scheme="http://www.liufr.com/tags/Security/"/>
     
   </entry>
   
@@ -315,9 +228,96 @@
       <category term="Security" scheme="http://www.liufr.com/categories/Security/"/>
     
     
+      <category term="Anomaly detection" scheme="http://www.liufr.com/tags/Anomaly-detection/"/>
+    
       <category term="Security" scheme="http://www.liufr.com/tags/Security/"/>
     
+  </entry>
+  
+  <entry>
+    <title>孤立森林（Isolation Forest）</title>
+    <link href="http://www.liufr.com/2019/07/21/%E5%AE%89%E5%85%A8/2019-07-22-%E5%AD%A4%E7%AB%8B%E6%A3%AE%E6%9E%97%EF%BC%88Isolation%20Froest%EF%BC%89/"/>
+    <id>http://www.liufr.com/2019/07/21/安全/2019-07-22-孤立森林（Isolation Froest）/</id>
+    <published>2019-07-20T16:00:00.000Z</published>
+    <updated>2019-07-22T02:39:55.715Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="iforest">iForest</h2><p>无参数无监督方法。</p><p>假设用一个随机超平面切割数据空间，切一次产生两个子空间，依次循环下去直到每个子空间只有一个数据点为止。直观的说那些密度很高的簇需要被切割很多次才会停止，但是那些密度较低的点很容易较早地停在一个子空间里</p><h2 id="实现步骤">实现步骤</h2><p>切割是随机的因此需要集成方法得到一个收敛值，即反复从头开始切然后平均每次的结果。</p><ol type="1"><li>从训练数据集中选择样本点作为subsample,放入树的根节点。</li><li>随机指定一个维度，随机产生一个切割点p，位于当前数据的最大最小值之间。</li><li>以切割点生成超平面，然后将当前的节点数据空间划分为2个子空间，把小于p的放入节点的左孩子，大于等于p的放在右孩子</li><li>在孩子节点中不断递归步骤2和3，直到无法切割，或者达到限定高度。</li></ol><p>获得t个iTree后，训练结束然后可以用生成的iForest来评估测试数据，对于每一个训练数据x遍历每一棵iTree，计算其落在第几层，得到x在每个树高度平均值。获得测试数据的高度平均值后可以设置一个阈值，低于阈值的测试数据为异常。异常在书中往往有较短的平均高度。论文对高度进行归一化结果是一个0到1的数值，越短高度越接近1（异常可能性越高）</p><p><img src="pictures/iForest.webp"></p><p>可以看出d最有可能是异常</p><h2 id="默认参数">默认参数</h2><ul><li>subsample size：256</li><li>Tree height：8</li><li>Number of trees：100</li></ul>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h2 id=&quot;iforest&quot;&gt;iForest&lt;/h2&gt;
+&lt;p&gt;无参数无监督方法。&lt;/p&gt;
+&lt;p&gt;假设用一个随机超平面切割数据空间，切一次产生两个子空间，依次循环下去直到每个子空间只有一个数据点为止。直观的说那些密度很高的簇需要被切割很多次才会停止，但是那些密度较低的点很容易较
+      
+    
+    </summary>
+    
+      <category term="Security" scheme="http://www.liufr.com/categories/Security/"/>
+    
+    
       <category term="Anomaly detection" scheme="http://www.liufr.com/tags/Anomaly-detection/"/>
+    
+      <category term="Security" scheme="http://www.liufr.com/tags/Security/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>利用时序决策树进行DGA僵尸检测</title>
+    <link href="http://www.liufr.com/2019/07/21/%E5%AE%89%E5%85%A8/2019-07-22-%E5%88%A9%E7%94%A8%E6%97%B6%E5%BA%8F%E5%86%B3%E7%AD%96%E6%A0%91%E8%BF%9B%E8%A1%8CDGA%E5%83%B5%E5%B0%B8%E6%A3%80%E6%B5%8B/"/>
+    <id>http://www.liufr.com/2019/07/21/安全/2019-07-22-利用时序决策树进行DGA僵尸检测/</id>
+    <published>2019-07-20T16:00:00.000Z</published>
+    <updated>2019-07-22T07:12:27.904Z</updated>
+    
+    <content type="html"><![CDATA[<p>DGA Bot Detection with Time Series Decision Trees</p><h2 id="主要思路">主要思路</h2><ol type="1"><li>标签模块依赖分类技术，该模块可以对训练模型生成有标签的数据，并对每一个已经检测到的僵尸网络提供一系列的感染IP</li><li>训练模块使用对生成的标签数据进行有监督的学习，对每一个僵尸网络家族都构造一个检测模型。利用典型的IP时间轮廓评估。</li><li>检测模块在短时间内检测受到影响的IP。</li></ol><h2 id="标签模块">标签模块</h2><p>给有监督训练模型提供受感染IP的实例，该模块只处理在DNS服务器中不存在的域名，利用的原理是通过将相同DGA僵尸网络的子集请求进行聚类。</p><ol type="1"><li><strong>数据预处理</strong> 通过启发式方法减小数据量，减少良性的DNS流量，只保留可疑的NXDOMAIN来进行后续的聚类。（根据域名进行判断）</li><li><strong>分级聚类</strong> D作为一系列的域名，每一个域名d都由一组IP代表，这组IP可以至少区分一个不成功的DNS请求。聚类结果C可以代表D的一种划分，对于每一个类别c都是自底向上聚类的结果。两个类可以计算相似度，如果相似度在限制内可以进行合并；该限制也可以防止没有共享足够IP的两个类进行合并。</li></ol><p>相似度计算公式： <span class="math display">\[\forall(c_i,c_j) \in C^2, sim(c_i.c_j) = |IP^{c_i}\cap IP^{c_j} |\]</span></p><p>相似度限制公式： <span class="math display">\[sim(c_1^*,c_2^*) &gt; \alpha \cdot min(|IP^{c_1^*}|,|IP^{c_2^*}|) \]</span></p><p><img src="pictures/DGA.jpg"></p><ol start="3" type="1"><li><strong>得到受感染的IP</strong> 往往丢弃与恶意行为不相干的类别，对已识别的DGA僵尸网络命名，</li></ol><h2 id="检测模块时序决策树">检测模块：时序决策树</h2><p>输入：DNS时序，每个IP都有标签{Infected，NonInfected}</p><p>在CART决策树的基础上训练，根节点包含所有的训练实例。每个内部节点都包含一系列的训练实例<span class="math inline">\(\tau\)</span>以及根据输入特征确定的分割条件s</p><ol type="1"><li>所有的实例拥有相同的标签 <span class="math display">\[\forall(T_0,T_1) \in \tau^2, label(T_0)=label(T_1)\]</span></li><li>所有的实例根据距离公式都是相等的 <span class="math display">\[\forall(T_0,T_1) \in \tau^2, dist(T_0,T_1)=0\]</span></li></ol><h3 id="训练模块">训练模块</h3><p>分治算法进行决策树的处理，一条子树持续划分直到满足上述两个限制。</p><p>对于一个训练集，首先计算分裂的候选值，要求分裂结果使得子树最干净，干净可以用标签的定义来进行判断。最不干净的结果就是一半为{Infected}另一半为{NonInfected}</p><h3 id="检测模块">检测模块</h3><p>当决策树构建结束后，就可以通过从根节点到叶子节点的一条路径上的划分来区分其属于哪一个类。</p><h3 id="时序划分候选">时序划分候选</h3><ul><li>标准划分：通过半径划分</li><li>聚类划分：根据到中心的的距离进行划分</li></ul><p><img src="pictures/DGA1.jpg"></p><h3 id="时序距离">时序距离</h3><p>DTW距离（很好的分析时序距离的方法）</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;DGA Bot Detection with Time Series Decision Trees&lt;/p&gt;
+&lt;h2 id=&quot;主要思路&quot;&gt;主要思路&lt;/h2&gt;
+&lt;ol type=&quot;1&quot;&gt;
+&lt;li&gt;标签模块依赖分类技术，该模块可以对训练模型生成有标签的数据，并对每一个已经检测到的
+      
+    
+    </summary>
+    
+      <category term="Security" scheme="http://www.liufr.com/categories/Security/"/>
+    
+    
+      <category term="Anomaly detection" scheme="http://www.liufr.com/tags/Anomaly-detection/"/>
+    
+      <category term="Security" scheme="http://www.liufr.com/tags/Security/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>孤立森林（Isolation Forest）</title>
+    <link href="http://www.liufr.com/2019/07/21/%E5%AE%89%E5%85%A8/2019-07-22-xgboost/"/>
+    <id>http://www.liufr.com/2019/07/21/安全/2019-07-22-xgboost/</id>
+    <published>2019-07-20T16:00:00.000Z</published>
+    <updated>2019-07-22T02:50:03.805Z</updated>
+    
+    <content type="html"><![CDATA[]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        
+
+      
+    
+    </summary>
+    
+      <category term="Security" scheme="http://www.liufr.com/categories/Security/"/>
+    
+    
+      <category term="Anomaly detection" scheme="http://www.liufr.com/tags/Anomaly-detection/"/>
+    
+      <category term="Security" scheme="http://www.liufr.com/tags/Security/"/>
     
   </entry>
   
@@ -348,6 +348,33 @@
   
   <entry>
     <title>大数据存储系统</title>
+    <link href="http://www.liufr.com/2019/06/04/%E6%95%B0%E6%8D%AE%E5%BA%93/2019-06-04-%E5%A4%A7%E6%95%B0%E6%8D%AE%E8%BF%90%E7%AE%97/"/>
+    <id>http://www.liufr.com/2019/06/04/数据库/2019-06-04-大数据运算/</id>
+    <published>2019-06-03T16:00:00.000Z</published>
+    <updated>2019-06-05T02:42:34.192Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="mapreduce">MapReduce</h2><p>程序员写串行程序，系统并行分布式执行。</p><p>数据模型&lt;key,value&gt; * 数据由一条一条记录组成 * 记录之间无序 * 每一条记录有一个key，一个value * key可以不唯一 * key与value具体类型和内部结构由程序员决定</p><ol type="1"><li>Map(ik,iv)-&gt;{&lt;mk,mv&gt;}</li><li>Shuffle = group by mk, 对所有的map输出进行group by，相同mk的所有mv提供给Reduce</li><li>Reduce(mk,{mv})-&gt;{&lt;ok,ov&gt;}</li></ol><p>JobTracker/Name Node控制协调作业的运行；TaskTracker/Data Node执行Map和Reduce的任务。</p><p>MR运行： 1. 提交作业：Map/Reduce函数，配置信息，输入输出路径。 2. Map Task读数据：Split对应一个Map Task数据块个数可能多余Mapper个数，每个Mapper可能处理多个Task，就近处理。 3. Map Task执行：对于产生的mk调用Partitioner计算对应的Reduce task id。同一个task存在同一个文件上，放在本地硬盘上，文件按照mk自小到大排序。在这一步可以使用Combiner：Combiner（mk，{mv}）-&gt; &lt;mk,mv'&gt;，减少后续传输。 4. Shuffle：Reducer从每个Map Task传输中间结果文件，进行归并实现group by 5. Reduce</p><p>图计算模型 1. 运算分成多个超步 2. 超步内并行 3. 超步间全局同步 4. 相邻超步之间存在依赖</p><p>基于顶点的编程模型 1. 每个顶点有一个value 2. 顶点为中心的运算Compute函数可以接收消息，计算，发送消息等 3. 顶点由活跃态（只对活跃态调用compute）和非活跃态（收到信息可以重新活跃） 4. 所有顶点都是非活跃态，结束图运算</p><p>Aggregator 全局统计量：每个超步内每个Worker分别进行本地的统计accumulate();超步间Master进行汇总；下一个超步Worker从Master得到上个超步的全局统计</p><hr><h2 id="graphlab">GraphLab</h2><ul><li>单机系统</li><li>共享内存（可以立即看到完成的计算结果）</li><li>异步计算</li></ul><h3 id="数据模型">数据模型</h3><ul><li>Data graph G=(V,E)。每个顶点和边都可以有数据。</li><li>全局数据表(SDT)，定义全局可见的数据。</li></ul><h3 id="顶点计算">顶点计算</h3><p><span class="math inline">\(Scope_v\)</span>是顶点计算涉及的范围，运算直接访问内存，update直接修改顶点和边上的数据，修改立即可见。</p><h3 id="共享内存">共享内存</h3><p>解决数据竞争的方法：一致性模型 * Full consistency：不允许其他函数访问该Scope。 * Edge consistency：update不写邻居顶点数据，但可能读，不允许其他函数会访问v及其邻边。 * Vertex consistency：只读本顶点和v邻边数据，不允许其他函数访问v本身。</p><p><img src="pictures/consistency.jpg"></p><hr><h2 id="powergraph">PowerGraph</h2><p>问题：图划分有大量的跨边</p><p>解决：把大度顶点分裂成多个，看起来有多个主节点的副本</p><hr><h2 id="数据流系统storm">数据流系统Storm</h2><ul><li>计算形成一个有向无环图DAG（Topology数据结构表示，每个job有一个Topology）</li><li>Topology每一个顶点代表一个运算</li><li>边代表数据流动的关系</li></ul><p>上游节点输出分发到下游： * 随机分发 * 根据tuple指定域取值进行分发</p><hr><h2 id="hivemapreduce-sql">Hive(MapReduce + SQL)</h2><ul><li>数据存在HDFS</li><li>Table是一个单独的hdfs目录</li><li>Table进一步划分为Partition</li><li>Partition可以进一步划分为Bucket</li></ul><p>HDFS不支持修改：Insert是append操作；overwrite是删除然后新创建操作</p><hr><h2 id="内存处理">内存处理</h2><p>去除I/O开销，提高处理速度</p><p>挑战：内存墙（解决：减少cache miss；预取指令降低cache miss对性能的影响）</p><p>MonetDB系统</p><h2 id="内存键值系统">内存键值系统</h2><h3 id="memcached">Memcached</h3><p>单机内存键值对系统，hashtable形式</p><h3 id="redis">Redis</h3><p>分布式内存键值对，hash，list，sets，sorted sets等</p><hr><h2 id="spark">Spark</h2><p>解决MapReduce中多个运算采用同一个数据时，代价太高的问题</p><p>思路：把数据放入多台机器的内存，避免HDFS开销</p><h3 id="基础数据结构rdd">基础数据结构RDD</h3><p>Transformation（RDD-&gt;RDD） Action（RDD-&gt;计算结果）</p><p>读入内存一次可以多次处理</p><h3 id="spark-sql">Spark SQL</h3><p>DataFrame：可以看作RDD定义Relational Schema</p><h3 id="spark-streaming">Spark Streaming</h3><p>输入的数据流转化成一个个minibatch，在mininbatch上运算</p><p><img src="pictures/summary.jpg"></p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h2 id=&quot;mapreduce&quot;&gt;MapReduce&lt;/h2&gt;
+&lt;p&gt;程序员写串行程序，系统并行分布式执行。&lt;/p&gt;
+&lt;p&gt;数据模型&amp;lt;key,value&amp;gt; * 数据由一条一条记录组成 * 记录之间无序 * 每一条记录有一个key，一个value * key可以不唯
+      
+    
+    </summary>
+    
+      <category term="Database" scheme="http://www.liufr.com/categories/Database/"/>
+    
+    
+      <category term="Database" scheme="http://www.liufr.com/tags/Database/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>大数据存储系统</title>
     <link href="http://www.liufr.com/2019/06/04/%E6%95%B0%E6%8D%AE%E5%BA%93/2019-06-04-%E5%A4%A7%E6%95%B0%E6%8D%AE%E5%AD%98%E5%82%A8%E7%B3%BB%E7%BB%9F/"/>
     <id>http://www.liufr.com/2019/06/04/数据库/2019-06-04-大数据存储系统/</id>
     <published>2019-06-03T16:00:00.000Z</published>
@@ -363,33 +390,6 @@
 &lt;p&gt;POSIX文件系统&lt;/p&gt;
 &lt;p&gt;主要目的： * 从不同终端访问同一个目录 * 多用户共享数据 * 集中管理 * 不是处理大规模数据&lt;/p&gt;
 &lt;h3 id=&quot;设计目标1服务器出现故障可以简单快速恢复&quot;&gt;设计目标1：服务器出现故障可
-      
-    
-    </summary>
-    
-      <category term="Database" scheme="http://www.liufr.com/categories/Database/"/>
-    
-    
-      <category term="Database" scheme="http://www.liufr.com/tags/Database/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>大数据存储系统</title>
-    <link href="http://www.liufr.com/2019/06/04/%E6%95%B0%E6%8D%AE%E5%BA%93/2019-06-04-%E5%A4%A7%E6%95%B0%E6%8D%AE%E8%BF%90%E7%AE%97/"/>
-    <id>http://www.liufr.com/2019/06/04/数据库/2019-06-04-大数据运算/</id>
-    <published>2019-06-03T16:00:00.000Z</published>
-    <updated>2019-06-05T02:42:34.192Z</updated>
-    
-    <content type="html"><![CDATA[<h2 id="mapreduce">MapReduce</h2><p>程序员写串行程序，系统并行分布式执行。</p><p>数据模型&lt;key,value&gt; * 数据由一条一条记录组成 * 记录之间无序 * 每一条记录有一个key，一个value * key可以不唯一 * key与value具体类型和内部结构由程序员决定</p><ol type="1"><li>Map(ik,iv)-&gt;{&lt;mk,mv&gt;}</li><li>Shuffle = group by mk, 对所有的map输出进行group by，相同mk的所有mv提供给Reduce</li><li>Reduce(mk,{mv})-&gt;{&lt;ok,ov&gt;}</li></ol><p>JobTracker/Name Node控制协调作业的运行；TaskTracker/Data Node执行Map和Reduce的任务。</p><p>MR运行： 1. 提交作业：Map/Reduce函数，配置信息，输入输出路径。 2. Map Task读数据：Split对应一个Map Task数据块个数可能多余Mapper个数，每个Mapper可能处理多个Task，就近处理。 3. Map Task执行：对于产生的mk调用Partitioner计算对应的Reduce task id。同一个task存在同一个文件上，放在本地硬盘上，文件按照mk自小到大排序。在这一步可以使用Combiner：Combiner（mk，{mv}）-&gt; &lt;mk,mv'&gt;，减少后续传输。 4. Shuffle：Reducer从每个Map Task传输中间结果文件，进行归并实现group by 5. Reduce</p><p>图计算模型 1. 运算分成多个超步 2. 超步内并行 3. 超步间全局同步 4. 相邻超步之间存在依赖</p><p>基于顶点的编程模型 1. 每个顶点有一个value 2. 顶点为中心的运算Compute函数可以接收消息，计算，发送消息等 3. 顶点由活跃态（只对活跃态调用compute）和非活跃态（收到信息可以重新活跃） 4. 所有顶点都是非活跃态，结束图运算</p><p>Aggregator 全局统计量：每个超步内每个Worker分别进行本地的统计accumulate();超步间Master进行汇总；下一个超步Worker从Master得到上个超步的全局统计</p><hr><h2 id="graphlab">GraphLab</h2><ul><li>单机系统</li><li>共享内存（可以立即看到完成的计算结果）</li><li>异步计算</li></ul><h3 id="数据模型">数据模型</h3><ul><li>Data graph G=(V,E)。每个顶点和边都可以有数据。</li><li>全局数据表(SDT)，定义全局可见的数据。</li></ul><h3 id="顶点计算">顶点计算</h3><p><span class="math inline">\(Scope_v\)</span>是顶点计算涉及的范围，运算直接访问内存，update直接修改顶点和边上的数据，修改立即可见。</p><h3 id="共享内存">共享内存</h3><p>解决数据竞争的方法：一致性模型 * Full consistency：不允许其他函数访问该Scope。 * Edge consistency：update不写邻居顶点数据，但可能读，不允许其他函数会访问v及其邻边。 * Vertex consistency：只读本顶点和v邻边数据，不允许其他函数访问v本身。</p><p><img src="pictures/consistency.jpg"></p><hr><h2 id="powergraph">PowerGraph</h2><p>问题：图划分有大量的跨边</p><p>解决：把大度顶点分裂成多个，看起来有多个主节点的副本</p><hr><h2 id="数据流系统storm">数据流系统Storm</h2><ul><li>计算形成一个有向无环图DAG（Topology数据结构表示，每个job有一个Topology）</li><li>Topology每一个顶点代表一个运算</li><li>边代表数据流动的关系</li></ul><p>上游节点输出分发到下游： * 随机分发 * 根据tuple指定域取值进行分发</p><hr><h2 id="hivemapreduce-sql">Hive(MapReduce + SQL)</h2><ul><li>数据存在HDFS</li><li>Table是一个单独的hdfs目录</li><li>Table进一步划分为Partition</li><li>Partition可以进一步划分为Bucket</li></ul><p>HDFS不支持修改：Insert是append操作；overwrite是删除然后新创建操作</p><hr><h2 id="内存处理">内存处理</h2><p>去除I/O开销，提高处理速度</p><p>挑战：内存墙（解决：减少cache miss；预取指令降低cache miss对性能的影响）</p><p>MonetDB系统</p><h2 id="内存键值系统">内存键值系统</h2><h3 id="memcached">Memcached</h3><p>单机内存键值对系统，hashtable形式</p><h3 id="redis">Redis</h3><p>分布式内存键值对，hash，list，sets，sorted sets等</p><hr><h2 id="spark">Spark</h2><p>解决MapReduce中多个运算采用同一个数据时，代价太高的问题</p><p>思路：把数据放入多台机器的内存，避免HDFS开销</p><h3 id="基础数据结构rdd">基础数据结构RDD</h3><p>Transformation（RDD-&gt;RDD） Action（RDD-&gt;计算结果）</p><p>读入内存一次可以多次处理</p><h3 id="spark-sql">Spark SQL</h3><p>DataFrame：可以看作RDD定义Relational Schema</p><h3 id="spark-streaming">Spark Streaming</h3><p>输入的数据流转化成一个个minibatch，在mininbatch上运算</p><p><img src="pictures/summary.jpg"></p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;h2 id=&quot;mapreduce&quot;&gt;MapReduce&lt;/h2&gt;
-&lt;p&gt;程序员写串行程序，系统并行分布式执行。&lt;/p&gt;
-&lt;p&gt;数据模型&amp;lt;key,value&amp;gt; * 数据由一条一条记录组成 * 记录之间无序 * 每一条记录有一个key，一个value * key可以不唯
       
     
     </summary>
