@@ -43,9 +43,9 @@
     <link href="http://www.liufr.com/2019/09/12/%E6%95%B0%E6%8D%AE%E6%8C%96%E6%8E%98/2019-09-12-%E6%97%B6%E9%97%B4%E6%B3%A8%E6%84%8F%E5%8A%9B%E6%A8%A1%E5%9E%8B%E4%B8%8B%E7%9A%84%E6%97%B6%E5%BA%8F%E9%A2%84%E6%B5%8B/"/>
     <id>http://www.liufr.com/2019/09/12/数据挖掘/2019-09-12-时间注意力模型下的时序预测/</id>
     <published>2019-09-11T16:00:00.000Z</published>
-    <updated>2019-09-17T08:05:02.099Z</updated>
+    <updated>2019-09-17T08:30:17.842Z</updated>
     
-    <content type="html"><![CDATA[<p>Multi-Horizon Time Series Forecasting with Temporal Attention Learning(KDD' 19)</p><p>文章阐述了历史信息中的时间模式对长时间序列的预测是至关重要的。传统方法中手动设置时间依赖从而探索相关的时序模式是很不靠谱的，本文用DNN的方法提出了端到端的多视界模型来进行预测，从时间的注意力上来更好地捕获历史数据的潜在模式，还提出了一种多模型的融合机制可以结合不同历史数据的特征来更好地预测。</p><p>multi-horizon代表的意思就是在未来时间内进行多步预测。这可以用来进行资源规划的预测以及决策。这对LSTM提出了挑战，因为当前的输入源于历史信息和未来动态输入的变量，我们的可以精确预测是因为，可以通过对潜在模型的适当表示以及历史数据时间模式的参照。</p><h2 id="方法">方法</h2><h3 id="基础编码-解码结构">基础编码-解码结构</h3><p>采用的是seq2seq流水线结构来编码历史/未来的输入变量，然后解码用于未来的预测</p><p><img src="/.com//Multi-Horizon%20LSTM.jpg"></p><p>如上图所示，编码过程是一个两层的LSTM架构，可以将历史信息匹配到隐藏层的上一层的<span class="math inline">\(h_{t-1}\)</span>。其中<span class="math inline">\(x_t\)</span>代表每一个时间戳中的输入，隐藏层就是<span class="math inline">\(h_t\)</span>，内部的门(gate cell)就是<span class="math inline">\(i_t,f_t,o_t,c_t\)</span> <span class="math display">\[\begin{array}{l}{i_{t}=\sigma\left(W_{i x} x_{t}+W_{i m} m_{t-1}\right)} \\ {f_{t}=\sigma\left(W_{f x} x_{t}+W_{f m} m_{t-1}\right)} \\ {o_{t}=\sigma\left(W_{o x} x_{t}+W_{o m} m_{t-1}\right)} \\ {c_{t}=f_{t} \cdot c_{t-1}+i_{t} \cdot \tanh \left(W_{c x} x_{t}+W_{c m} m_{t-1}\right)} \\ {h_{t}=o_{t} \cdot \tanh \left(c_{t}\right)}\end{array}\]</span></p><p>上述复杂的公式简写成<span class="math inline">\(h_t^e=LSTM^e(x_t;h_{t-1})\)</span>, 其中<span class="math inline">\(e\)</span>就表示在隐含层中已经经过了编码。</p><p>解码器就是将编码器的输出当作输入的初始状态，未来的信息也作为输入生成未来序列，也就是输出。解码器设计成一个双向LSTM网络，可以正向和逆向传播未来的输入特征。这个结构可以使得前向和后向的输入都可以在每一个未来的时间步中观察得到。BiLSTM的隐含层传入一个全连接层或者一个时间域上的卷积层来进行最后的预测。我们强调说最后的预测应该是在BiLSTM信息传播后来进行的。通过将信息传播状态和信息预测状态进行分离，防止在一个长视界（long horizon）中错误的累加。这个结构中前向和后向的信息传播是分离的。定义如下： <span class="math display">\[\begin{aligned} h_{t}^{f} &amp;=L S T M^{f}\left(x_{t} ; h_{t-1}\right) \\ h_{t}^{b} &amp;=L S T M^{b}\left(x_{t} ; h_{t+1}\right) \\ h_{t} &amp;=\left[h_{t}^{f} ; h_{t}^{b}\right] \end{aligned}\]</span></p><p>上式可以综合写成<span class="math inline">\(h_t^d = BiLSTM^d(x_t;h_{t-1},h_{t+1})\)</span>，为了从隐含层生成分位数的预测，我们加入了一个线性层，在编码解码层的K维分位数预测则为 <span class="math display">\[\begin{aligned} y_{t}^{e} &amp;=W_{e} h_{t}^{e}+b_{e} \\ y_{t}^{d} &amp;=W_{d} h_{t}^{d}+b_{d}  \end{aligned}\]</span></p><h3 id="embedding">Embedding</h3><p>通过Embedding技术可以将明确的变量映射为数个特征向量，采用one-hot编码代表<span class="math inline">\(|C|\)</span>变量<span class="math inline">\(x_c=\{0...010...0\}\in R^{|C|}\)</span>，学习的嵌入式矩阵<span class="math inline">\(W_c\in R^{D*|C|}\)</span>，变化后的变量可以由<span class="math inline">\(x_c&#39;=W_cx_c\)</span>计算得。</p><h3 id="注意力模型">注意力模型</h3><p>编码解码模型由于内存的更新很难捕获长期的记忆，所以这里使用注意力模型，如图所示 <img src="/.com//multi-scale.jpg"> 最下层的是历史编码模块，最上层是一个BiLSTM的未来解码模块，文章设计了一个多模型的注意力机制，他由每次未来时间步骤中的BiLSTM的隐藏层引导，并且融合不同的权重应用到不同的历史数据中</p><p><strong>时间注意力</strong></p><p>不能使用全体的历史数据，原因是真实世界的时序数据太长了，可能会模糊掉注意力模型，并且计算不够有效率。文章提出了一种分离性注意每个时期下的历史数据并将其结合到多形态融合的模式下，长度可以由人为设定。时间注意力的权重<span class="math inline">\(\gamma_{1:T_h}\)</span>可以表述为 <span class="math display">\[\begin{array}{c}{\mathbf{g}=\mathbf{v}_{g}^{\top} \tanh \left(\mathbf{W}_{g} \mathbf{s}_{t}+\mathbf{V}_{g} \mathbf{h}+\mathbf{b}_{g}\right)} \\ {\gamma_{i}=\frac{\exp \left(g_{i}\right)}{\sum_{j=1}^{T_{h}} \exp \left(g_{j}\right)} \quad \text { for } i=1 \ldots T_{h}}\end{array}\]</span></p><p>然后加入的内容向量<span class="math inline">\(c_t\)</span>和transformer<span class="math inline">\(d_t\)</span>为： <span class="math display">\[\begin{aligned} \mathbf{c}_{t} &amp;=\sum_{i=1}^{T_{h}} \gamma_{i} \mathbf{h}_{i} \\ \mathbf{d}_{t} &amp;=\operatorname{ReLU}\left(\mathbf{W}_{d} \mathbf{c}_{t}+\mathbf{b}_{d}\right) \end{aligned}\]</span></p><p><strong>多形态融合</strong></p><p>图3 给出的是M=2的融合结果， <span class="math display">\[\begin{array}{l}{\mathbf{p}_{t}^{m}=\mathbf{v}_{p}^{\top} \tanh \left(\mathbf{W}_{p} \mathbf{s}_{t}+\mathbf{V}_{p}^{m} \mathbf{d}_{t}^{m}+\mathbf{b}_{p}\right)} \\ {\phi_{t}^{m}=\frac{\exp \left(p_{t}^{m}\right)}{\sum_{k=1}^{M} \exp \left(p_{t}^{k}\right)} \quad \text { for } m=1 \ldots M}\end{array}\]</span></p><p>融合后的知识库<span class="math inline">\(x_t\)</span>可以由<span class="math inline">\(d_t^m\)</span>的加和计算结果给出</p><p><span class="math display">\[x_t=\sum_{m=1}^M\phi_t^md_t^m\]</span></p>]]></content>
+    <content type="html"><![CDATA[<p>Multi-Horizon Time Series Forecasting with Temporal Attention Learning(KDD' 19)</p><p>文章阐述了历史信息中的时间模式对长时间序列的预测是至关重要的。传统方法中手动设置时间依赖从而探索相关的时序模式是很不靠谱的，本文用DNN的方法提出了端到端的多视界模型来进行预测，从时间的注意力上来更好地捕获历史数据的潜在模式，还提出了一种多模型的融合机制可以结合不同历史数据的特征来更好地预测。</p><p>multi-horizon代表的意思就是在未来时间内进行多步预测。这可以用来进行资源规划的预测以及决策。这对LSTM提出了挑战，因为当前的输入源于历史信息和未来动态输入的变量，我们的可以精确预测是因为，可以通过对潜在模型的适当表示以及历史数据时间模式的参照。</p><h2 id="方法">方法</h2><h3 id="基础编码-解码结构">基础编码-解码结构</h3><p>采用的是seq2seq流水线结构来编码历史/未来的输入变量，然后解码用于未来的预测</p><p>如上图所示，编码过程是一个两层的LSTM架构，可以将历史信息匹配到隐藏层的上一层的<span class="math inline">\(h_{t-1}\)</span>。其中<span class="math inline">\(x_t\)</span>代表每一个时间戳中的输入，隐藏层就是<span class="math inline">\(h_t\)</span>，内部的门(gate cell)就是<span class="math inline">\(i_t,f_t,o_t,c_t\)</span> <span class="math display">\[\begin{array}{l}{i_{t}=\sigma\left(W_{i x} x_{t}+W_{i m} m_{t-1}\right)} \\ {f_{t}=\sigma\left(W_{f x} x_{t}+W_{f m} m_{t-1}\right)} \\ {o_{t}=\sigma\left(W_{o x} x_{t}+W_{o m} m_{t-1}\right)} \\ {c_{t}=f_{t} \cdot c_{t-1}+i_{t} \cdot \tanh \left(W_{c x} x_{t}+W_{c m} m_{t-1}\right)} \\ {h_{t}=o_{t} \cdot \tanh \left(c_{t}\right)}\end{array}\]</span></p><p>上述复杂的公式简写成<span class="math inline">\(h_t^e=LSTM^e(x_t;h_{t-1})\)</span>, 其中<span class="math inline">\(e\)</span>就表示在隐含层中已经经过了编码。</p><p>解码器就是将编码器的输出当作输入的初始状态，未来的信息也作为输入生成未来序列，也就是输出。解码器设计成一个双向LSTM网络，可以正向和逆向传播未来的输入特征。这个结构可以使得前向和后向的输入都可以在每一个未来的时间步中观察得到。BiLSTM的隐含层传入一个全连接层或者一个时间域上的卷积层来进行最后的预测。我们强调说最后的预测应该是在BiLSTM信息传播后来进行的。通过将信息传播状态和信息预测状态进行分离，防止在一个长视界（long horizon）中错误的累加。这个结构中前向和后向的信息传播是分离的。定义如下： <span class="math display">\[\begin{aligned} h_{t}^{f} &amp;=L S T M^{f}\left(x_{t} ; h_{t-1}\right) \\ h_{t}^{b} &amp;=L S T M^{b}\left(x_{t} ; h_{t+1}\right) \\ h_{t} &amp;=\left[h_{t}^{f} ; h_{t}^{b}\right] \end{aligned}\]</span></p><p>上式可以综合写成<span class="math inline">\(h_t^d = BiLSTM^d(x_t;h_{t-1},h_{t+1})\)</span>，为了从隐含层生成分位数的预测，我们加入了一个线性层，在编码解码层的K维分位数预测则为 <span class="math display">\[\begin{aligned} y_{t}^{e} &amp;=W_{e} h_{t}^{e}+b_{e} \\ y_{t}^{d} &amp;=W_{d} h_{t}^{d}+b_{d}  \end{aligned}\]</span></p><h3 id="embedding">Embedding</h3><p>通过Embedding技术可以将明确的变量映射为数个特征向量，采用one-hot编码代表<span class="math inline">\(|C|\)</span>变量<span class="math inline">\(x_c=\{0...010...0\}\in R^{|C|}\)</span>，学习的嵌入式矩阵<span class="math inline">\(W_c\in R^{D*|C|}\)</span>，变化后的变量可以由<span class="math inline">\(x_c&#39;=W_cx_c\)</span>计算得。</p><h3 id="注意力模型">注意力模型</h3><p>编码解码模型由于内存的更新很难捕获长期的记忆，所以这里使用注意力模型，如图所示 <img src="/.com//multi-scale.jpg"> 最下层的是历史编码模块，最上层是一个BiLSTM的未来解码模块，文章设计了一个多模型的注意力机制，他由每次未来时间步骤中的BiLSTM的隐藏层引导，并且融合不同的权重应用到不同的历史数据中</p><p><strong>时间注意力</strong></p><p>不能使用全体的历史数据，原因是真实世界的时序数据太长了，可能会模糊掉注意力模型，并且计算不够有效率。文章提出了一种分离性注意每个时期下的历史数据并将其结合到多形态融合的模式下，长度可以由人为设定。时间注意力的权重<span class="math inline">\(\gamma_{1:T_h}\)</span>可以表述为 <span class="math display">\[\begin{array}{c}{\mathbf{g}=\mathbf{v}_{g}^{\top} \tanh \left(\mathbf{W}_{g} \mathbf{s}_{t}+\mathbf{V}_{g} \mathbf{h}+\mathbf{b}_{g}\right)} \\ {\gamma_{i}=\frac{\exp \left(g_{i}\right)}{\sum_{j=1}^{T_{h}} \exp \left(g_{j}\right)} \quad \text { for } i=1 \ldots T_{h}}\end{array}\]</span></p><p>然后加入的内容向量<span class="math inline">\(c_t\)</span>和transformer<span class="math inline">\(d_t\)</span>为： <span class="math display">\[\begin{aligned} \mathbf{c}_{t} &amp;=\sum_{i=1}^{T_{h}} \gamma_{i} \mathbf{h}_{i} \\ \mathbf{d}_{t} &amp;=\operatorname{ReLU}\left(\mathbf{W}_{d} \mathbf{c}_{t}+\mathbf{b}_{d}\right) \end{aligned}\]</span></p><p><strong>多形态融合</strong></p><p>图3 给出的是M=2的融合结果， <span class="math display">\[\begin{array}{l}{\mathbf{p}_{t}^{m}=\mathbf{v}_{p}^{\top} \tanh \left(\mathbf{W}_{p} \mathbf{s}_{t}+\mathbf{V}_{p}^{m} \mathbf{d}_{t}^{m}+\mathbf{b}_{p}\right)} \\ {\phi_{t}^{m}=\frac{\exp \left(p_{t}^{m}\right)}{\sum_{k=1}^{M} \exp \left(p_{t}^{k}\right)} \quad \text { for } m=1 \ldots M}\end{array}\]</span></p><p>融合后的知识库<span class="math inline">\(x_t\)</span>可以由<span class="math inline">\(d_t^m\)</span>的加和计算结果给出</p><p><span class="math display">\[x_t=\sum_{m=1}^M\phi_t^md_t^m\]</span></p>]]></content>
     
     <summary type="html">
     
@@ -145,94 +145,9 @@
       <category term="Security" scheme="http://www.liufr.com/categories/Security/"/>
     
     
-      <category term="Security" scheme="http://www.liufr.com/tags/Security/"/>
-    
       <category term="Anomaly detection" scheme="http://www.liufr.com/tags/Anomaly-detection/"/>
     
-  </entry>
-  
-  <entry>
-    <title>孤立森林（Isolation Forest）</title>
-    <link href="http://www.liufr.com/2019/07/21/%E5%AE%89%E5%85%A8/2019-07-22-xgboost/"/>
-    <id>http://www.liufr.com/2019/07/21/安全/2019-07-22-xgboost/</id>
-    <published>2019-07-20T16:00:00.000Z</published>
-    <updated>2019-07-22T02:50:03.805Z</updated>
-    
-    <content type="html"><![CDATA[]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        
-
-      
-    
-    </summary>
-    
-      <category term="Security" scheme="http://www.liufr.com/categories/Security/"/>
-    
-    
       <category term="Security" scheme="http://www.liufr.com/tags/Security/"/>
-    
-      <category term="Anomaly detection" scheme="http://www.liufr.com/tags/Anomaly-detection/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>指数加权移动平均法（EWMA）</title>
-    <link href="http://www.liufr.com/2019/07/21/%E5%AE%89%E5%85%A8/2019-07-21-%E6%8C%87%E6%95%B0%E5%8A%A0%E6%9D%83%E7%A7%BB%E5%8A%A8%E5%B9%B3%E5%9D%87%E6%B3%95%EF%BC%88EWMA%EF%BC%89/"/>
-    <id>http://www.liufr.com/2019/07/21/安全/2019-07-21-指数加权移动平均法（EWMA）/</id>
-    <published>2019-07-20T16:00:00.000Z</published>
-    <updated>2019-07-21T11:10:52.001Z</updated>
-    
-    <content type="html"><![CDATA[<h2 id="主要思想">主要思想</h2><p>Exponentially Weighted Moving Average (EWMA)，对观察值给予不同的权重求得平均值，并以平均值为基础确定预测值的方法，往往近期观察值的权重高是因为其更能反映近期变化的趋势。各个指数加权系数是随时间指数递减的，越靠近当前时刻，加权系数就越大。</p><p>可以视作一种理想的最大似然估计，当前估计值由前一次估计值和当前的抽样值共同决定；也可以视作一个低通滤波器，剔除短期波动保留长期发展趋势的平滑形式。</p><h2 id="优点">优点</h2><ol type="1"><li>不需要保存过去的所有数值</li><li>计算量显著减小</li></ol><h2 id="计算">计算</h2><p><span class="math display">\[ v_t = \beta v_{t-1}+(1-\beta)\theta_t\]</span></p><p>其中<span class="math inline">\(\theta_t\)</span>为时刻<span class="math inline">\(t\)</span>的实际温度；<span class="math inline">\(\beta\)</span>表示加权下降的速率，其值越小下降越快；<span class="math inline">\(v_t\)</span>为<span class="math inline">\(t\)</span>时刻的EWMA值。</p><h2 id="变差修正">变差修正</h2><p>如果初始化<span class="math inline">\(v_0=0\)</span>,那么初期值都会偏小，虽然最后会慢慢减小这部分影响但是还是对公式做出适当修正： <span class="math display">\[v_t = \frac{\beta v_{t-1}+(1-\beta)\theta_t}{1-\beta^t}\]</span></p><p>当t表较小（初期）分母可以很好放大当前数值，当t很大，分母趋为1，对数值机会没有影响。</p><h2 id="代码">代码</h2><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Ewma</span><span class="params">(object)</span>:</span></span><br><span class="line">    <span class="string">"""</span></span><br><span class="line"><span class="string">    In statistical quality control, the EWMA chart (or exponentially weighted moving average chart)</span></span><br><span class="line"><span class="string">    is a type of control chart used to monitor either variables or attributes-type data using the monitored business</span></span><br><span class="line"><span class="string">    or industrial process's entire history of output. While other control charts treat rational subgroups of samples</span></span><br><span class="line"><span class="string">    individually, the EWMA chart tracks the exponentially-weighted moving average of all prior sample means.</span></span><br><span class="line"><span class="string">    WIKIPEDIA: https://en.wikipedia.org/wiki/EWMA_chart</span></span><br><span class="line"><span class="string">    """</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, alpha=<span class="number">0.3</span>, coefficient=<span class="number">3</span>)</span>:</span></span><br><span class="line">        <span class="string">"""</span></span><br><span class="line"><span class="string">        :param alpha: Discount rate of ewma, usually in (0.2, 0.3).</span></span><br><span class="line"><span class="string">        :param coefficient: Coefficient is the width of the control limits, usually in (2.7, 3.0).</span></span><br><span class="line"><span class="string">        """</span></span><br><span class="line">        self.alpha = alpha</span><br><span class="line">        self.coefficient = coefficient</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">predict</span><span class="params">(self, X)</span>:</span></span><br><span class="line">        <span class="string">"""</span></span><br><span class="line"><span class="string">        Predict if a particular sample is an outlier or not.</span></span><br><span class="line"><span class="string">        :param X: the time series to detect of</span></span><br><span class="line"><span class="string">        :param type X: pandas.Series</span></span><br><span class="line"><span class="string">        :return: 1 denotes normal, 0 denotes abnormal</span></span><br><span class="line"><span class="string">        """</span></span><br><span class="line">        s = [X[<span class="number">0</span>]]</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">1</span>, len(X)):</span><br><span class="line">            temp = self.alpha * X[i] + (<span class="number">1</span> - self.alpha) * s[<span class="number">-1</span>]</span><br><span class="line">            s.append(temp)</span><br><span class="line">        s_avg = np.mean(s)</span><br><span class="line">        sigma = np.sqrt(np.var(X))</span><br><span class="line">        ucl = s_avg + self.coefficient * sigma * np.sqrt(self.alpha / (<span class="number">2</span> - self.alpha))</span><br><span class="line">        lcl = s_avg - self.coefficient * sigma * np.sqrt(self.alpha / (<span class="number">2</span> - self.alpha))</span><br><span class="line">        <span class="keyword">if</span> s[<span class="number">-1</span>] &gt; ucl <span class="keyword">or</span> s[<span class="number">-1</span>] &lt; lcl:</span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span></span><br><span class="line">        <span class="keyword">return</span> <span class="number">1</span></span><br></pre></td></tr></table></figure>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;h2 id=&quot;主要思想&quot;&gt;主要思想&lt;/h2&gt;
-&lt;p&gt;Exponentially Weighted Moving Average (EWMA)，对观察值给予不同的权重求得平均值，并以平均值为基础确定预测值的方法，往往近期观察值的权重高是因为其更能反映近期变化的趋势。各个指数加权系
-      
-    
-    </summary>
-    
-      <category term="Security" scheme="http://www.liufr.com/categories/Security/"/>
-    
-    
-      <category term="Security" scheme="http://www.liufr.com/tags/Security/"/>
-    
-      <category term="Anomaly detection" scheme="http://www.liufr.com/tags/Anomaly-detection/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>孤立森林（Isolation Forest）</title>
-    <link href="http://www.liufr.com/2019/07/21/%E5%AE%89%E5%85%A8/2019-07-22-%E5%AD%A4%E7%AB%8B%E6%A3%AE%E6%9E%97%EF%BC%88Isolation%20Froest%EF%BC%89/"/>
-    <id>http://www.liufr.com/2019/07/21/安全/2019-07-22-孤立森林（Isolation Froest）/</id>
-    <published>2019-07-20T16:00:00.000Z</published>
-    <updated>2019-07-22T02:39:55.715Z</updated>
-    
-    <content type="html"><![CDATA[<h2 id="iforest">iForest</h2><p>无参数无监督方法。</p><p>假设用一个随机超平面切割数据空间，切一次产生两个子空间，依次循环下去直到每个子空间只有一个数据点为止。直观的说那些密度很高的簇需要被切割很多次才会停止，但是那些密度较低的点很容易较早地停在一个子空间里</p><h2 id="实现步骤">实现步骤</h2><p>切割是随机的因此需要集成方法得到一个收敛值，即反复从头开始切然后平均每次的结果。</p><ol type="1"><li>从训练数据集中选择样本点作为subsample,放入树的根节点。</li><li>随机指定一个维度，随机产生一个切割点p，位于当前数据的最大最小值之间。</li><li>以切割点生成超平面，然后将当前的节点数据空间划分为2个子空间，把小于p的放入节点的左孩子，大于等于p的放在右孩子</li><li>在孩子节点中不断递归步骤2和3，直到无法切割，或者达到限定高度。</li></ol><p>获得t个iTree后，训练结束然后可以用生成的iForest来评估测试数据，对于每一个训练数据x遍历每一棵iTree，计算其落在第几层，得到x在每个树高度平均值。获得测试数据的高度平均值后可以设置一个阈值，低于阈值的测试数据为异常。异常在书中往往有较短的平均高度。论文对高度进行归一化结果是一个0到1的数值，越短高度越接近1（异常可能性越高）</p><p><img src="/.com//iForest.webp"></p><p>可以看出d最有可能是异常</p><h2 id="默认参数">默认参数</h2><ul><li>subsample size：256</li><li>Tree height：8</li><li>Number of trees：100</li></ul>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;h2 id=&quot;iforest&quot;&gt;iForest&lt;/h2&gt;
-&lt;p&gt;无参数无监督方法。&lt;/p&gt;
-&lt;p&gt;假设用一个随机超平面切割数据空间，切一次产生两个子空间，依次循环下去直到每个子空间只有一个数据点为止。直观的说那些密度很高的簇需要被切割很多次才会停止，但是那些密度较低的点很容易较
-      
-    
-    </summary>
-    
-      <category term="Security" scheme="http://www.liufr.com/categories/Security/"/>
-    
-    
-      <category term="Security" scheme="http://www.liufr.com/tags/Security/"/>
-    
-      <category term="Anomaly detection" scheme="http://www.liufr.com/tags/Anomaly-detection/"/>
     
   </entry>
   
@@ -258,9 +173,67 @@
       <category term="Security" scheme="http://www.liufr.com/categories/Security/"/>
     
     
+      <category term="Anomaly detection" scheme="http://www.liufr.com/tags/Anomaly-detection/"/>
+    
       <category term="Security" scheme="http://www.liufr.com/tags/Security/"/>
     
+  </entry>
+  
+  <entry>
+    <title>孤立森林（Isolation Forest）</title>
+    <link href="http://www.liufr.com/2019/07/21/%E5%AE%89%E5%85%A8/2019-07-22-xgboost/"/>
+    <id>http://www.liufr.com/2019/07/21/安全/2019-07-22-xgboost/</id>
+    <published>2019-07-20T16:00:00.000Z</published>
+    <updated>2019-07-22T02:50:03.805Z</updated>
+    
+    <content type="html"><![CDATA[]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        
+
+      
+    
+    </summary>
+    
+      <category term="Security" scheme="http://www.liufr.com/categories/Security/"/>
+    
+    
       <category term="Anomaly detection" scheme="http://www.liufr.com/tags/Anomaly-detection/"/>
+    
+      <category term="Security" scheme="http://www.liufr.com/tags/Security/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>多项式插值</title>
+    <link href="http://www.liufr.com/2019/07/21/%E5%AE%89%E5%85%A8/2019-07-21-%E5%A4%9A%E9%A1%B9%E5%BC%8F%E6%8F%92%E5%80%BC/"/>
+    <id>http://www.liufr.com/2019/07/21/安全/2019-07-21-多项式插值/</id>
+    <published>2019-07-20T16:00:00.000Z</published>
+    <updated>2019-07-21T13:36:30.148Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="polynominal-interpolation">Polynominal Interpolation</h2><p>多项式插值，给定一组数据，寻找一个恰好通过这些数据点的多项式。</p><h2 id="代码">代码</h2><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">from</span> sklearn.linear_model <span class="keyword">import</span> Ridge</span><br><span class="line"><span class="keyword">from</span> sklearn.preprocessing <span class="keyword">import</span> PolynomialFeatures</span><br><span class="line"><span class="keyword">from</span> sklearn.pipeline <span class="keyword">import</span> make_pipeline</span><br><span class="line"><span class="keyword">from</span> time_series_detector.common.tsd_common <span class="keyword">import</span> *</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">PolynomialInterpolation</span><span class="params">(object)</span>:</span></span><br><span class="line">    <span class="string">"""</span></span><br><span class="line"><span class="string">    In statistics, polynomial regression is a form of regression analysis in which the relationship</span></span><br><span class="line"><span class="string">    between the independent variable x and the dependent variable y is modelled as an nth degree polynomial in x.</span></span><br><span class="line"><span class="string">    WIKIPEDIA: https://en.wikipedia.org/wiki/Polynomial_regression</span></span><br><span class="line"><span class="string">    """</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, threshold=<span class="number">0.15</span>, degree=<span class="number">4</span>)</span>:</span></span><br><span class="line">        <span class="string">"""</span></span><br><span class="line"><span class="string">       :param threshold: The critical point of normal.</span></span><br><span class="line"><span class="string">       :param degree: Depth of iteration.</span></span><br><span class="line"><span class="string">        """</span></span><br><span class="line">        self.degree = degree</span><br><span class="line">        self.threshold = threshold</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">predict</span><span class="params">(self, X, window=DEFAULT_WINDOW)</span>:</span></span><br><span class="line">        <span class="string">"""</span></span><br><span class="line"><span class="string">        Predict if a particular sample is an outlier or not.</span></span><br><span class="line"><span class="string">        :param X: the time series to detect of</span></span><br><span class="line"><span class="string">        :param type X: pandas.Series</span></span><br><span class="line"><span class="string">        :param window: the length of window</span></span><br><span class="line"><span class="string">        :param type window: int</span></span><br><span class="line"><span class="string">        :return: 1 denotes normal, 0 denotes abnormal</span></span><br><span class="line"><span class="string">        """</span></span><br><span class="line">        x_train = list(range(<span class="number">0</span>, <span class="number">2</span> * window + <span class="number">1</span>)) + list(range(<span class="number">0</span>, <span class="number">2</span> * window + <span class="number">1</span>)) + list(range(<span class="number">0</span>, window + <span class="number">1</span>))</span><br><span class="line">        x_train = np.array(x_train)</span><br><span class="line">        x_train = x_train[:, np.newaxis]</span><br><span class="line">        avg_value = np.mean(X[-(window + <span class="number">1</span>):])</span><br><span class="line">        <span class="keyword">if</span> avg_value &gt; <span class="number">1</span>:</span><br><span class="line">            y_train = X / avg_value</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            y_train = X</span><br><span class="line">        model = make_pipeline(PolynomialFeatures(self.degree), Ridge())</span><br><span class="line">        model.fit(x_train, y_train)</span><br><span class="line">        <span class="keyword">if</span> abs(y_train[<span class="number">-1</span>] - model.predict(np.array(x_train[<span class="number">-1</span>]).reshape(<span class="number">1</span>, <span class="number">-1</span>))) &gt; self.threshold:</span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span></span><br><span class="line">        <span class="keyword">return</span> <span class="number">1</span></span><br></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h2 id=&quot;polynominal-interpolation&quot;&gt;Polynominal Interpolation&lt;/h2&gt;
+&lt;p&gt;多项式插值，给定一组数据，寻找一个恰好通过这些数据点的多项式。&lt;/p&gt;
+&lt;h2 id=&quot;代码&quot;&gt;代码&lt;/h2&gt;
+&lt;figure class=&quot;
+      
+    
+    </summary>
+    
+      <category term="Security" scheme="http://www.liufr.com/categories/Security/"/>
+    
+    
+      <category term="Anomaly detection" scheme="http://www.liufr.com/tags/Anomaly-detection/"/>
+    
+      <category term="Security" scheme="http://www.liufr.com/tags/Security/"/>
     
   </entry>
   
@@ -292,22 +265,20 @@
   </entry>
   
   <entry>
-    <title>多项式插值</title>
-    <link href="http://www.liufr.com/2019/07/21/%E5%AE%89%E5%85%A8/2019-07-21-%E5%A4%9A%E9%A1%B9%E5%BC%8F%E6%8F%92%E5%80%BC/"/>
-    <id>http://www.liufr.com/2019/07/21/安全/2019-07-21-多项式插值/</id>
+    <title>指数加权移动平均法（EWMA）</title>
+    <link href="http://www.liufr.com/2019/07/21/%E5%AE%89%E5%85%A8/2019-07-21-%E6%8C%87%E6%95%B0%E5%8A%A0%E6%9D%83%E7%A7%BB%E5%8A%A8%E5%B9%B3%E5%9D%87%E6%B3%95%EF%BC%88EWMA%EF%BC%89/"/>
+    <id>http://www.liufr.com/2019/07/21/安全/2019-07-21-指数加权移动平均法（EWMA）/</id>
     <published>2019-07-20T16:00:00.000Z</published>
-    <updated>2019-07-21T13:36:30.148Z</updated>
+    <updated>2019-07-21T11:10:52.001Z</updated>
     
-    <content type="html"><![CDATA[<h2 id="polynominal-interpolation">Polynominal Interpolation</h2><p>多项式插值，给定一组数据，寻找一个恰好通过这些数据点的多项式。</p><h2 id="代码">代码</h2><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">from</span> sklearn.linear_model <span class="keyword">import</span> Ridge</span><br><span class="line"><span class="keyword">from</span> sklearn.preprocessing <span class="keyword">import</span> PolynomialFeatures</span><br><span class="line"><span class="keyword">from</span> sklearn.pipeline <span class="keyword">import</span> make_pipeline</span><br><span class="line"><span class="keyword">from</span> time_series_detector.common.tsd_common <span class="keyword">import</span> *</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">PolynomialInterpolation</span><span class="params">(object)</span>:</span></span><br><span class="line">    <span class="string">"""</span></span><br><span class="line"><span class="string">    In statistics, polynomial regression is a form of regression analysis in which the relationship</span></span><br><span class="line"><span class="string">    between the independent variable x and the dependent variable y is modelled as an nth degree polynomial in x.</span></span><br><span class="line"><span class="string">    WIKIPEDIA: https://en.wikipedia.org/wiki/Polynomial_regression</span></span><br><span class="line"><span class="string">    """</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, threshold=<span class="number">0.15</span>, degree=<span class="number">4</span>)</span>:</span></span><br><span class="line">        <span class="string">"""</span></span><br><span class="line"><span class="string">       :param threshold: The critical point of normal.</span></span><br><span class="line"><span class="string">       :param degree: Depth of iteration.</span></span><br><span class="line"><span class="string">        """</span></span><br><span class="line">        self.degree = degree</span><br><span class="line">        self.threshold = threshold</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">predict</span><span class="params">(self, X, window=DEFAULT_WINDOW)</span>:</span></span><br><span class="line">        <span class="string">"""</span></span><br><span class="line"><span class="string">        Predict if a particular sample is an outlier or not.</span></span><br><span class="line"><span class="string">        :param X: the time series to detect of</span></span><br><span class="line"><span class="string">        :param type X: pandas.Series</span></span><br><span class="line"><span class="string">        :param window: the length of window</span></span><br><span class="line"><span class="string">        :param type window: int</span></span><br><span class="line"><span class="string">        :return: 1 denotes normal, 0 denotes abnormal</span></span><br><span class="line"><span class="string">        """</span></span><br><span class="line">        x_train = list(range(<span class="number">0</span>, <span class="number">2</span> * window + <span class="number">1</span>)) + list(range(<span class="number">0</span>, <span class="number">2</span> * window + <span class="number">1</span>)) + list(range(<span class="number">0</span>, window + <span class="number">1</span>))</span><br><span class="line">        x_train = np.array(x_train)</span><br><span class="line">        x_train = x_train[:, np.newaxis]</span><br><span class="line">        avg_value = np.mean(X[-(window + <span class="number">1</span>):])</span><br><span class="line">        <span class="keyword">if</span> avg_value &gt; <span class="number">1</span>:</span><br><span class="line">            y_train = X / avg_value</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            y_train = X</span><br><span class="line">        model = make_pipeline(PolynomialFeatures(self.degree), Ridge())</span><br><span class="line">        model.fit(x_train, y_train)</span><br><span class="line">        <span class="keyword">if</span> abs(y_train[<span class="number">-1</span>] - model.predict(np.array(x_train[<span class="number">-1</span>]).reshape(<span class="number">1</span>, <span class="number">-1</span>))) &gt; self.threshold:</span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span></span><br><span class="line">        <span class="keyword">return</span> <span class="number">1</span></span><br></pre></td></tr></table></figure>]]></content>
+    <content type="html"><![CDATA[<h2 id="主要思想">主要思想</h2><p>Exponentially Weighted Moving Average (EWMA)，对观察值给予不同的权重求得平均值，并以平均值为基础确定预测值的方法，往往近期观察值的权重高是因为其更能反映近期变化的趋势。各个指数加权系数是随时间指数递减的，越靠近当前时刻，加权系数就越大。</p><p>可以视作一种理想的最大似然估计，当前估计值由前一次估计值和当前的抽样值共同决定；也可以视作一个低通滤波器，剔除短期波动保留长期发展趋势的平滑形式。</p><h2 id="优点">优点</h2><ol type="1"><li>不需要保存过去的所有数值</li><li>计算量显著减小</li></ol><h2 id="计算">计算</h2><p><span class="math display">\[ v_t = \beta v_{t-1}+(1-\beta)\theta_t\]</span></p><p>其中<span class="math inline">\(\theta_t\)</span>为时刻<span class="math inline">\(t\)</span>的实际温度；<span class="math inline">\(\beta\)</span>表示加权下降的速率，其值越小下降越快；<span class="math inline">\(v_t\)</span>为<span class="math inline">\(t\)</span>时刻的EWMA值。</p><h2 id="变差修正">变差修正</h2><p>如果初始化<span class="math inline">\(v_0=0\)</span>,那么初期值都会偏小，虽然最后会慢慢减小这部分影响但是还是对公式做出适当修正： <span class="math display">\[v_t = \frac{\beta v_{t-1}+(1-\beta)\theta_t}{1-\beta^t}\]</span></p><p>当t表较小（初期）分母可以很好放大当前数值，当t很大，分母趋为1，对数值机会没有影响。</p><h2 id="代码">代码</h2><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Ewma</span><span class="params">(object)</span>:</span></span><br><span class="line">    <span class="string">"""</span></span><br><span class="line"><span class="string">    In statistical quality control, the EWMA chart (or exponentially weighted moving average chart)</span></span><br><span class="line"><span class="string">    is a type of control chart used to monitor either variables or attributes-type data using the monitored business</span></span><br><span class="line"><span class="string">    or industrial process's entire history of output. While other control charts treat rational subgroups of samples</span></span><br><span class="line"><span class="string">    individually, the EWMA chart tracks the exponentially-weighted moving average of all prior sample means.</span></span><br><span class="line"><span class="string">    WIKIPEDIA: https://en.wikipedia.org/wiki/EWMA_chart</span></span><br><span class="line"><span class="string">    """</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, alpha=<span class="number">0.3</span>, coefficient=<span class="number">3</span>)</span>:</span></span><br><span class="line">        <span class="string">"""</span></span><br><span class="line"><span class="string">        :param alpha: Discount rate of ewma, usually in (0.2, 0.3).</span></span><br><span class="line"><span class="string">        :param coefficient: Coefficient is the width of the control limits, usually in (2.7, 3.0).</span></span><br><span class="line"><span class="string">        """</span></span><br><span class="line">        self.alpha = alpha</span><br><span class="line">        self.coefficient = coefficient</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">predict</span><span class="params">(self, X)</span>:</span></span><br><span class="line">        <span class="string">"""</span></span><br><span class="line"><span class="string">        Predict if a particular sample is an outlier or not.</span></span><br><span class="line"><span class="string">        :param X: the time series to detect of</span></span><br><span class="line"><span class="string">        :param type X: pandas.Series</span></span><br><span class="line"><span class="string">        :return: 1 denotes normal, 0 denotes abnormal</span></span><br><span class="line"><span class="string">        """</span></span><br><span class="line">        s = [X[<span class="number">0</span>]]</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">1</span>, len(X)):</span><br><span class="line">            temp = self.alpha * X[i] + (<span class="number">1</span> - self.alpha) * s[<span class="number">-1</span>]</span><br><span class="line">            s.append(temp)</span><br><span class="line">        s_avg = np.mean(s)</span><br><span class="line">        sigma = np.sqrt(np.var(X))</span><br><span class="line">        ucl = s_avg + self.coefficient * sigma * np.sqrt(self.alpha / (<span class="number">2</span> - self.alpha))</span><br><span class="line">        lcl = s_avg - self.coefficient * sigma * np.sqrt(self.alpha / (<span class="number">2</span> - self.alpha))</span><br><span class="line">        <span class="keyword">if</span> s[<span class="number">-1</span>] &gt; ucl <span class="keyword">or</span> s[<span class="number">-1</span>] &lt; lcl:</span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span></span><br><span class="line">        <span class="keyword">return</span> <span class="number">1</span></span><br></pre></td></tr></table></figure>]]></content>
     
     <summary type="html">
     
       
       
-        &lt;h2 id=&quot;polynominal-interpolation&quot;&gt;Polynominal Interpolation&lt;/h2&gt;
-&lt;p&gt;多项式插值，给定一组数据，寻找一个恰好通过这些数据点的多项式。&lt;/p&gt;
-&lt;h2 id=&quot;代码&quot;&gt;代码&lt;/h2&gt;
-&lt;figure class=&quot;
+        &lt;h2 id=&quot;主要思想&quot;&gt;主要思想&lt;/h2&gt;
+&lt;p&gt;Exponentially Weighted Moving Average (EWMA)，对观察值给予不同的权重求得平均值，并以平均值为基础确定预测值的方法，往往近期观察值的权重高是因为其更能反映近期变化的趋势。各个指数加权系
       
     
     </summary>
@@ -315,9 +286,38 @@
       <category term="Security" scheme="http://www.liufr.com/categories/Security/"/>
     
     
+      <category term="Anomaly detection" scheme="http://www.liufr.com/tags/Anomaly-detection/"/>
+    
       <category term="Security" scheme="http://www.liufr.com/tags/Security/"/>
     
+  </entry>
+  
+  <entry>
+    <title>孤立森林（Isolation Forest）</title>
+    <link href="http://www.liufr.com/2019/07/21/%E5%AE%89%E5%85%A8/2019-07-22-%E5%AD%A4%E7%AB%8B%E6%A3%AE%E6%9E%97%EF%BC%88Isolation%20Froest%EF%BC%89/"/>
+    <id>http://www.liufr.com/2019/07/21/安全/2019-07-22-孤立森林（Isolation Froest）/</id>
+    <published>2019-07-20T16:00:00.000Z</published>
+    <updated>2019-07-22T02:39:55.715Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="iforest">iForest</h2><p>无参数无监督方法。</p><p>假设用一个随机超平面切割数据空间，切一次产生两个子空间，依次循环下去直到每个子空间只有一个数据点为止。直观的说那些密度很高的簇需要被切割很多次才会停止，但是那些密度较低的点很容易较早地停在一个子空间里</p><h2 id="实现步骤">实现步骤</h2><p>切割是随机的因此需要集成方法得到一个收敛值，即反复从头开始切然后平均每次的结果。</p><ol type="1"><li>从训练数据集中选择样本点作为subsample,放入树的根节点。</li><li>随机指定一个维度，随机产生一个切割点p，位于当前数据的最大最小值之间。</li><li>以切割点生成超平面，然后将当前的节点数据空间划分为2个子空间，把小于p的放入节点的左孩子，大于等于p的放在右孩子</li><li>在孩子节点中不断递归步骤2和3，直到无法切割，或者达到限定高度。</li></ol><p>获得t个iTree后，训练结束然后可以用生成的iForest来评估测试数据，对于每一个训练数据x遍历每一棵iTree，计算其落在第几层，得到x在每个树高度平均值。获得测试数据的高度平均值后可以设置一个阈值，低于阈值的测试数据为异常。异常在书中往往有较短的平均高度。论文对高度进行归一化结果是一个0到1的数值，越短高度越接近1（异常可能性越高）</p><p><img src="/.com//iForest.webp"></p><p>可以看出d最有可能是异常</p><h2 id="默认参数">默认参数</h2><ul><li>subsample size：256</li><li>Tree height：8</li><li>Number of trees：100</li></ul>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h2 id=&quot;iforest&quot;&gt;iForest&lt;/h2&gt;
+&lt;p&gt;无参数无监督方法。&lt;/p&gt;
+&lt;p&gt;假设用一个随机超平面切割数据空间，切一次产生两个子空间，依次循环下去直到每个子空间只有一个数据点为止。直观的说那些密度很高的簇需要被切割很多次才会停止，但是那些密度较低的点很容易较
+      
+    
+    </summary>
+    
+      <category term="Security" scheme="http://www.liufr.com/categories/Security/"/>
+    
+    
       <category term="Anomaly detection" scheme="http://www.liufr.com/tags/Anomaly-detection/"/>
+    
+      <category term="Security" scheme="http://www.liufr.com/tags/Security/"/>
     
   </entry>
   
@@ -528,19 +528,23 @@
   </entry>
   
   <entry>
-    <title>大规模机器学习</title>
-    <link href="http://www.liufr.com/2018/12/05/%E6%95%B0%E6%8D%AE%E6%8C%96%E6%8E%98/2018-12-05-%E5%A4%A7%E8%A7%84%E6%A8%A1%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/"/>
-    <id>http://www.liufr.com/2018/12/05/数据挖掘/2018-12-05-大规模机器学习/</id>
+    <title>互联网搜索与排序</title>
+    <link href="http://www.liufr.com/2018/12/05/%E6%95%B0%E6%8D%AE%E6%8C%96%E6%8E%98/2018-12-05-%E4%BA%92%E8%81%94%E7%BD%91%E6%90%9C%E7%B4%A2%E4%B8%8E%E6%8E%92%E5%BA%8F/"/>
+    <id>http://www.liufr.com/2018/12/05/数据挖掘/2018-12-05-互联网搜索与排序/</id>
     <published>2018-12-04T16:00:00.000Z</published>
-    <updated>2018-12-05T06:43:36.680Z</updated>
+    <updated>2018-12-09T09:12:43.520Z</updated>
     
-    <content type="html"><![CDATA[<p>百万级别的数据样本：<strong>指数级别的算法基本告别了</strong> 十亿级别的数据样本：<strong>开始考虑分布式存储</strong> 万亿级别的数据样本：<strong>无法得知数据全貌，采用Peer-to-peer（机器处理本地的数据无总控）</strong></p><h2 id="理解机器学习">理解机器学习</h2><h3 id="从优化的角度看机器学习">从优化的角度看机器学习</h3><p><span class="math display">\[\arg max_{\vec{\theta}} \equiv \mathcal{L}(\{x_i,y_i\}_{i=1}^N;\vec{\theta})+ \Omega(\vec{\theta})\]</span></p><p>其中<span class="math inline">\(\mathcal{L}\)</span>是一个模型（经验风险），<span class="math inline">\(x_i,y_i\)</span>代表的是数据，<span class="math inline">\(N\)</span>是数据规模，<span class="math inline">\(\vec{\theta}\)</span>代表参数（结构风险），有参数就是有偏估计，方差小，有更好的泛化能力。然后通过迭代求解： <span class="math display">\[\vec{\theta}^{t+1}=g(\vec{\theta}^t,\Delta_f \vec{theta}(\mathcal{D}))\]</span> 其中后一项为模型参数的梯度计算，用于迭代与修正，梯度如果各项独立通常可以并行，即每台电脑可以算本地的，然后多台机器合并，显而易见的是模型并行数据一定并行。</p><p><img src="https://ws3.sinaimg.cn/large/006tNbRwly1fxvp8olas5j30ug0hyq5b.jpg"></p><p>这里的数据与参数都是稀疏的，只拉入必要的参数即可，即使参数有误，也可以在最后收敛。</p><h3 id="参数更新方案">参数更新方案</h3><h4 id="同步更新">同步更新</h4><p><img src="https://ws4.sinaimg.cn/large/006tNbRwly1fxvpauo6vqj30us0iaacd.jpg"></p><h5 id="同步更新特点">同步更新特点</h5><ul><li>设置同步点，通常每一轮迭代至少一个同步点<ul><li>同步点等候所有节点完成任务，统一更新参数</li><li>更新后进入下一轮迭代</li></ul></li><li>最大程度模拟序列计算<ul><li>与序列计算结果基本一致</li><li>与序列计算具有同样的理论保障</li></ul></li></ul><h5 id="同步更新缺点">同步更新缺点</h5><ul><li>低效<ul><li>网络速度慢，延迟大</li></ul></li><li>配置相同的机器计算速度不一致导致等待<ul><li>与机器的即时状态有关</li><li>与需要处理的数据有关</li></ul></li></ul><h4 id="异步更新">异步更新</h4><p><img src="https://ws3.sinaimg.cn/large/006tNbRwly1fxvv2hiw4wj30p00c8t9u.jpg"></p><h5 id="异步更新缺点">异步更新缺点</h5><ul><li>本地数据不全面：单个节点只有部分数据，独立更新参数从总体看结果不正确</li><li>不同的机器执行的更新次数有很大的差异</li><li>参数互相依赖：下一轮的梯度计算可能依赖上一轮所有的正确参数值</li><li>参数过期：本轮更新的参数的梯度不是最新的参数的梯度</li></ul><h4 id="半同步更新">半同步更新</h4><p><img src="https://ws1.sinaimg.cn/large/006tNbRwly1fxvv5ezeg8j31440h0q5q.jpg"></p><h5 id="半同步更新特点">半同步更新特点</h5><ul><li>设置执行最快和最慢的节点间轮数的最大差异</li><li>比同步块，比异步准确</li></ul>]]></content>
+    <content type="html"><![CDATA[<h2 id="向量空间模型vsm">向量空间模型（VSM）</h2><ul><li>将查询字符串表达为带权重的tf-idf向量(查询向量)</li><li>类似,将文档字符串表达为带权重tf-idf向量(文档向量)</li><li>计算查询查询向量和文档向量的余弦相似度</li><li>将文档按照其与查询的相似度分值从大到小进行排序</li><li>返回前K个(e.g.,K=10)文档并展示给用户</li></ul><h3 id="tf-idf">tf-idf</h3><p>衡量某一个词在文档中的重要性</p><ul><li>tf(w,d):term frequency 词w在d中出现的次数，tf值越大，w在文档d中越重要。</li><li>df(w): document frequency 整个数据集中，包含w文档的个数，df越大，w越不重要。</li><li>idf(w): inverse document frequency <span class="math inline">\(idf = log \frac{N}{df}\)</span> 其中N为文档集的个数</li><li>tf-idf(w,d) = tf(w,d)*idf(w)</li></ul><h3 id="bm25best-match-25">BM25(Best match 25)</h3><p><span class="math display">\[BM25 = \sum_{i \in q} \log\frac{N}{df_i} \cdot \frac{(k_1+1)tf_i}{k_1((1-b)+b\frac{dl}{avdl})+tf_i}\]</span></p><ul><li>avgdl:集合中平均文档长度</li><li><span class="math inline">\(k_1\)</span>:控制因<span class="math inline">\(tf\)</span>的增大最终排序值的速度<ul><li>k1=0:二值模型,只反映词是否出现,不考虑出现次数</li><li>k1无穷大:反映真正的tf值</li></ul></li><li>b:控制文档长度归一化程度<ul><li>b=0:不考虑文档长度对最终分值的影响</li><li>b=1:考虑文档长度平均文档长度的相对值</li></ul></li><li>经验值:k1=1.2~2,b=0.75</li></ul><p>在上述公式中，文档长度定义为<span class="math inline">\(dl = \sum_{i\in V}tf_i\)</span>，文档长度归一化部分为<span class="math inline">\((1-b)+b\frac{dl}{avdl}, 0\leq b \leq 1\)</span> 当<span class="math inline">\(b=0\)</span>时，不进行归一化，当<span class="math inline">\(b=1\)</span>时，全文档进行归一化。</p><hr><h2 id="排序评价指标">排序评价指标</h2><h3 id="pkprecision-at-k">P@K(Precision at K)</h3><ul><li>设置一个排序位置K</li><li>前K个位置相关文档所占的比例</li><li>忽略K位置之后的所有值</li></ul><h3 id="mapmean-average-precision">MAP(Mean average precision)</h3><ul><li>只考虑出现过相关文档的位置</li></ul><p><img src="https://ws4.sinaimg.cn/large/006tNbRwly1fxw5h5m1v9j311o0dyt9n.jpg"></p><h3 id="dcgdiscounted-cumulative-gain">DCG(Discounted Cumulative Gain)</h3><ul><li><strong>Gain</strong>: 文档对用户Gain与其查询相关度有关，<span class="math inline">\(2^{label}-1\)</span>，其中<span class="math inline">\(label\)</span>取值如bad(0),fair(1),good(3),excellent(7),perfect(15)等，也就是说Gain是一个指数函数，效果越好影响越大。</li><li><strong>Discounted Cumulative Gain</strong>：由于返回结果有一个排序，因此根据所在排序还需要一定的打折<span class="math inline">\(\frac{1}{log_2(rank+1)}\)</span></li></ul><p>比较二者那么 <strong>CG@N</strong> <span class="math inline">\(CG=r_1+r_2+...+r_n\)</span> <strong>NCG@N</strong> <span class="math inline">\(NCG= \frac{r_1}{\log(1+1)} + \frac{r_2}{\log(1+2)}+...+\frac{r_n}{\log(1+n)}\)</span></p><h3 id="ndcgnormalized-dcg">NDCG(Normalized DCG)</h3><p>利用最优排序对DCG@N进行归一化处理，其中最优排序为按照用户标注对文档进行排序。其中<span class="math inline">\(IDCG_p\)</span>为理想情况下最大的<span class="math inline">\(DCG\)</span>值。 <span class="math display">\[nDCG_p = \frac{DCG_p}{IDCG_p}\]</span></p><h2 id="pair-wise排序学习区分文档间的差异">Pair-wise排序学习：区分文档间的差异</h2><p>核心思想：模型只需要区分同一个查询内部标注为不同相关度文档间的差异</p><h3 id="排序支持向量机ranking-svm">排序支持向量机（ranking SVM）</h3><ul><li>Ranking SVM 训练<ul><li>构造训练数据集合<span class="math inline">\(\{\phi(q_k,d_{ki})-\phi(q_k,d_{kj}),+1\}\)</span></li><li>训练二值分类SVM，得到打分函数<span class="math inline">\(f(q,d)=&lt;w,\phi(q,d)&gt;\)</span></li></ul></li><li>Ranking SVM 在线应用<ul><li>给定一个查询q和检索出的文档集合<span class="math inline">\(C=\{d_i\}\)</span></li><li>用<span class="math inline">\(f(q,d)\)</span>对每一个C中的文档进行打分</li><li>将C中的文档按照<span class="math inline">\(f(q,d)\)</span>从大到小排序</li></ul></li></ul><p><img src="https://ws3.sinaimg.cn/large/006tNbRwly1fxwtpbeiuhj31030u0jut.jpg"></p><p>优点 * 只关注文档间的差异性，解决了查询的差异化问题 * 实际应用效果良好</p><p>缺点 * N个文档有<span class="math inline">\(O(N^2)\)</span>文档有序对，复杂度高 * 没有考虑浏览特性 * 违背分类训练数据独立同分布假设</p><hr><h2 id="语言排序模型">语言排序模型</h2><p>词袋假设<span class="math inline">\(P(w_1,w_2,...w_m)=P(w_1)P(w_2)...P(w_m)\)</span> 估计每一个词的出现概率<span class="math inline">\(P(w)=\frac{#w}{all\,words}\)</span>，其中<span class="math inline">\(\sum_{w\in V}P(w)=1\)</span></p><p>语言模型中的马尔科夫假设，<span class="math inline">\(P(w_n|w_{n-1},w_{n-2},...,w_1)=P(w_n|w_{n-1})\)</span> <span class="math inline">\(P(w_1,w_2,...,w_m)=P(w_1)P(w_2|w_1)P(w_3|w_2)...P(w_m|w_{m-1})\)</span> 给定一个训练文档集合，统计给个一个词之后，其他词出现的概率<span class="math inline">\(P(w_i|w_j)=\frac{#(w_jw_i)}{#w_j}\)</span> 举例来说<span class="math inline">\(\sum_{w_i\in V}P(w_i|&#39;is&#39;)=1\)</span></p><h3 id="数据稀疏问题">数据稀疏问题</h3><p>对于0概率问题采用平滑化方法</p><h3 id="lm-for-ir">LM for IR</h3><ul><li>定义生成模型的细节</li><li>估计模型参数<span class="math inline">\(P(w|d)\)</span></li><li>平滑化，防止零概率</li><li>将文档对应的生成模型应用于查询，计算生成概率</li><li>按照生成概率将文档排序，取topN展现给用户</li></ul><p>给定查询<span class="math inline">\(q\)</span>和文档<span class="math inline">\(d\)</span>，对文档的打分为<span class="math inline">\(P(d|q)\)</span>根据贝叶斯公式 <span class="math display">\[P(d|q) = \frac{P(q|d)P(d)}{P(q)}\]</span> 对于独立假设来说<span class="math inline">\(P(q|d)=P(q_1q_2,....q_m|d)=\Pi_{i=1}^MP(q_i|d)\)</span></p><p>举例： <span class="math inline">\(q\)</span> 中国_科学院_大学 <span class="math inline">\(d\)</span> 科学院_大学_计算机_学院</p><p><span class="math inline">\(P(q|d)=P(中国|d)P(科学院|d)P(大学|d)=0*0.25*0.25=0\)</span></p><h3 id="dirichlet-平滑-与混合平滑">Dirichlet 平滑 与混合平滑</h3><p>D={d1,d2}, Query q: Michael Jackson</p><p>d1: Jackson was one of the most talented entertainers of all time（11） d2: Michael Jackson anointed himself King of Pop（7） <span class="math inline">\(P(q|d_1)=\frac{0}{11}*\frac{1}{11}=0,P(q|d_2)=\frac{1}{7}*\frac{1}{7}=\frac{1}{49},P(Michael|C)=\frac{1}{18},P(Jackson|C)=\frac{2}{18}\)</span></p><p><strong>混合模型</strong><span class="math inline">\(\lambda=0.5\)</span> <span class="math inline">\(P_{mix}(q|d_1)=(\frac{0}{11}*\frac{1}{2}+\frac{1}{18}*\frac{1}{2})*(\frac{1}{11}*\frac{1}{2}+\frac{2}{18}*\frac{1}{2})\)</span> <span class="math inline">\(P_{mix}(q|d_2)=(\frac{1}{7}*\frac{1}{2}+\frac{1}{18}*\frac{1}{2})*(\frac{1}{7}*\frac{1}{2}+\frac{2}{18}*\frac{1}{2})\)</span> <strong>狄里克莱平滑</strong><span class="math inline">\(\mu = 5\)</span> <span class="math inline">\(P_{dir}(q|d_1)=(\frac{0+\frac{5}{18}}{11+5})(\frac{1+5*\frac{2}{18}}{11+5})\)</span> <span class="math inline">\(P_{dir}(q|d_2)=(\frac{1+\frac{5}{18}}{7+5})(\frac{1+5*\frac{2}{18}}{7+5})\)</span></p>]]></content>
     
     <summary type="html">
     
       
       
-        &lt;p&gt;百万级别的数据样本：&lt;strong&gt;指数级别的算法基本告别了&lt;/strong&gt; 十亿级别的数据样本：&lt;strong&gt;开始考虑分布式存储&lt;/strong&gt; 万亿级别的数据样本：&lt;strong&gt;无法得知数据全貌，采用Peer-to-peer（机器处理本地的数据无总控）&lt;/st
+        &lt;h2 id=&quot;向量空间模型vsm&quot;&gt;向量空间模型（VSM）&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;将查询字符串表达为带权重的tf-idf向量(查询向量)&lt;/li&gt;
+&lt;li&gt;类似,将文档字符串表达为带权重tf-idf向量(文档向量)&lt;/li&gt;
+&lt;li&gt;计算查询查询向量和文档向量的余弦相似度
       
     
     </summary>
