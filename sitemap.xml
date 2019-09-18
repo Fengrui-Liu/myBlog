@@ -2,9 +2,44 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>http://www.liufr.com/README.html</loc>
+    <loc>http://www.liufr.com/index.html</loc>
     
-    <lastmod>2019-09-17T13:12:48.454Z</lastmod>
+    <lastmod>2019-09-18T03:07:34.847Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.liufr.com/2019/09/18/%E6%95%B0%E6%8D%AE%E6%8C%96%E6%8E%98/2019-09-18-%E6%97%B6%E9%97%B4%E5%BE%AA%E7%8E%AF%E4%B8%80%E8%87%B4%E6%80%A7%E5%AD%A6%E4%B9%A0/</loc>
+    
+    <lastmod>2019-09-18T02:45:02.589Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.liufr.com/2019/09/09/%E6%95%B0%E6%8D%AE%E6%8C%96%E6%8E%98/2019-09-09-DNN%E5%A4%9A%E7%BB%B4%E6%97%B6%E5%BA%8F%E6%97%A0%E7%9B%91%E7%9D%A3%E5%BC%82%E5%B8%B8%E6%A3%80%E6%B5%8B/</loc>
+    
+    <lastmod>2019-09-17T13:29:36.391Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.liufr.com/2019/07/21/%E6%95%B0%E6%8D%AE%E6%8C%96%E6%8E%98/2019-08-13-%E5%AE%9E%E6%97%B6%E5%BC%82%E5%B8%B8%E6%A3%80%E6%B5%8B/</loc>
+    
+    <lastmod>2019-09-17T13:29:08.814Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.liufr.com/2019/08/14/%E6%95%B0%E6%8D%AE%E6%8C%96%E6%8E%98/2019-08-14-%E5%BC%82%E5%B8%B8%E6%A3%80%E6%B5%8B%EF%BC%88MSRA%20KDD'19%EF%BC%89/</loc>
+    
+    <lastmod>2019-09-17T13:28:59.047Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.liufr.com/2019/09/12/%E6%95%B0%E6%8D%AE%E6%8C%96%E6%8E%98/2019-09-12-%E6%97%B6%E9%97%B4%E6%B3%A8%E6%84%8F%E5%8A%9B%E6%A8%A1%E5%9E%8B%E4%B8%8B%E7%9A%84%E6%97%B6%E5%BA%8F%E9%A2%84%E6%B5%8B/</loc>
+    
+    <lastmod>2019-09-17T13:28:34.676Z</lastmod>
     
   </url>
   
@@ -68,13 +103,6 @@
     <loc>http://www.liufr.com/2016/12/24/%E7%BD%91%E7%BB%9C/2016-12-24-ipv4%E5%9C%A8Linux%E4%B8%8A%E7%9A%84%E5%AE%9E%E7%8E%B0/</loc>
     
     <lastmod>2019-09-17T10:46:41.407Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://www.liufr.com/2019/09/12/%E6%95%B0%E6%8D%AE%E6%8C%96%E6%8E%98/2019-09-12-%E6%97%B6%E9%97%B4%E6%B3%A8%E6%84%8F%E5%8A%9B%E6%A8%A1%E5%9E%8B%E4%B8%8B%E7%9A%84%E6%97%B6%E5%BA%8F%E9%A2%84%E6%B5%8B/</loc>
-    
-    <lastmod>2019-09-17T09:10:05.869Z</lastmod>
     
   </url>
   
@@ -198,13 +226,6 @@
   </url>
   
   <url>
-    <loc>http://www.liufr.com/2019/09/09/%E6%95%B0%E6%8D%AE%E6%8C%96%E6%8E%98/2019-09-09-DNN%E5%A4%9A%E7%BB%B4%E6%97%B6%E5%BA%8F%E6%97%A0%E7%9B%91%E7%9D%A3%E5%BC%82%E5%B8%B8%E6%A3%80%E6%B5%8B/</loc>
-    
-    <lastmod>2019-09-17T07:55:13.178Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>http://www.liufr.com/about/index.html</loc>
     
     <lastmod>2019-09-17T07:53:44.893Z</lastmod>
@@ -229,27 +250,6 @@
     <loc>http://www.liufr.com/404.html</loc>
     
     <lastmod>2019-09-17T03:05:36.068Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://www.liufr.com/2019/09/16/%E6%95%B0%E6%8D%AE%E6%8C%96%E6%8E%98/2019-09-16-%E5%9F%BA%E4%BA%8E%E6%B3%A8%E6%84%8F%E5%8A%9B%E6%A8%A1%E5%9E%8B%E7%9A%84RNN%E6%97%B6%E5%BA%8F%E9%A2%84%E6%B5%8B/</loc>
-    
-    <lastmod>2019-09-16T08:29:00.668Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://www.liufr.com/2019/07/21/%E6%95%B0%E6%8D%AE%E6%8C%96%E6%8E%98/2019-08-13-%E5%AE%9E%E6%97%B6%E5%BC%82%E5%B8%B8%E6%A3%80%E6%B5%8B/</loc>
-    
-    <lastmod>2019-09-10T13:18:59.518Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://www.liufr.com/2019/08/14/%E6%95%B0%E6%8D%AE%E6%8C%96%E6%8E%98/2019-08-14-%E5%BC%82%E5%B8%B8%E6%A3%80%E6%B5%8B%EF%BC%88MSRA%20KDD'19%EF%BC%89/</loc>
-    
-    <lastmod>2019-08-15T09:02:54.964Z</lastmod>
     
   </url>
   
