@@ -4,6 +4,26 @@
 
     
   <url>
+    <loc>http://www.liufr.com/2019/11/26/%E6%95%B0%E6%8D%AE%E6%8C%96%E6%8E%98/2019-11-26-Lifelong%20Anomaly%20Detection%20Through%20Unlearning/</loc>
+    <lastmod>2019-11-27T03:09:23.387Z</lastmod>
+    <data>
+        <display>
+        <title>Lifelong Anomaly Detection Through Unlearning(CCS'19)</title>
+        <pubTime>2019-11-25T16:00:00.000Z</pubTime>
+        
+        <tag>Anomaly detection</tag>
+         
+         
+           
+             
+              <breadCrumb title="Anomaly detection" url="http://www.liufr.com/categories/Anomaly-detection/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://www.liufr.com/2019/11/20/%E6%95%B0%E6%8D%AE%E6%8C%96%E6%8E%98/2019-11-20-Semi-supervised%20Anomaly%20Detection%20with%20an%20Application%20to%20Water%20Analytics/</loc>
     <lastmod>2019-11-20T02:44:00.145Z</lastmod>
     <data>
@@ -724,9 +744,9 @@
         <title>利用时序决策树进行DGA僵尸检测</title>
         <pubTime>2019-07-20T16:00:00.000Z</pubTime>
         
-        <tag>Anomaly detection</tag>
-         
         <tag>Security</tag>
+         
+        <tag>Anomaly detection</tag>
          
          
            
@@ -746,9 +766,9 @@
         <title>孤立森林（Isolation Forest）</title>
         <pubTime>2019-07-20T16:00:00.000Z</pubTime>
         
-        <tag>Anomaly detection</tag>
-         
         <tag>Security</tag>
+         
+        <tag>Anomaly detection</tag>
          
          
            
@@ -768,9 +788,9 @@
         <title>孤立森林（Isolation Forest）</title>
         <pubTime>2019-07-20T16:00:00.000Z</pubTime>
         
-        <tag>Anomaly detection</tag>
-         
         <tag>Security</tag>
+         
+        <tag>Anomaly detection</tag>
          
          
            
@@ -790,9 +810,9 @@
         <title>梯度提升决策树（GBDT）</title>
         <pubTime>2019-07-20T16:00:00.000Z</pubTime>
         
-        <tag>Anomaly detection</tag>
-         
         <tag>Security</tag>
+         
+        <tag>Anomaly detection</tag>
          
          
            
@@ -812,9 +832,9 @@
         <title>多项式插值</title>
         <pubTime>2019-07-20T16:00:00.000Z</pubTime>
         
-        <tag>Anomaly detection</tag>
-         
         <tag>Security</tag>
+         
+        <tag>Anomaly detection</tag>
          
          
            
@@ -834,9 +854,9 @@
         <title>指数加权移动平均法（EWMA）</title>
         <pubTime>2019-07-20T16:00:00.000Z</pubTime>
         
-        <tag>Anomaly detection</tag>
-         
         <tag>Security</tag>
+         
+        <tag>Anomaly detection</tag>
          
          
            
