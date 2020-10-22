@@ -4,11 +4,31 @@
 
     
   <url>
-    <loc>http://www.liufr.com/2019/11/26/%E6%95%B0%E6%8D%AE%E6%8C%96%E6%8E%98/2019-11-26-Lifelong%20Anomaly%20Detection%20Through%20Unlearning/</loc>
-    <lastmod>2019-11-27T03:09:23.387Z</lastmod>
+    <loc>http://www.liufr.com/2019/11/28/%E6%95%B0%E6%8D%AE%E6%8C%96%E6%8E%98/2019-11-28-Learning%20On-the-Job%20to%20Re-rank%20Anomalies%20from%20Top-1%20Feedback/</loc>
+    <lastmod>2019-11-29T08:12:22.725Z</lastmod>
     <data>
         <display>
-        <title>Lifelong Anomaly Detection Through Unlearning(CCS'19)</title>
+        <title>Learning On-the-Job to Re-rank Anomalies from Top-1 Feedback(CMU,SDM'19)</title>
+        <pubTime>2019-11-27T16:00:00.000Z</pubTime>
+        
+        <tag>Anomaly detection</tag>
+         
+         
+           
+             
+              <breadCrumb title="Anomaly detection" url="http://www.liufr.com/categories/Anomaly-detection/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://www.liufr.com/2019/11/26/%E6%95%B0%E6%8D%AE%E6%8C%96%E6%8E%98/2019-11-26-Lifelong%20Anomaly%20Detection%20Through%20Unlearning/</loc>
+    <lastmod>2019-11-28T08:03:31.527Z</lastmod>
+    <data>
+        <display>
+        <title>Lifelong Anomaly Detection Through Unlearning(UCB,CCS'19)</title>
         <pubTime>2019-11-25T16:00:00.000Z</pubTime>
         
         <tag>Anomaly detection</tag>
