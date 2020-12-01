@@ -4,6 +4,28 @@
 
     
   <url>
+    <loc>http://www.liufr.com/2020/12/01/%E6%B5%81%E5%A4%84%E7%90%86/2020-12-1-%E5%A2%9E%E9%87%8F%E8%AE%A1%E7%AE%97--%E6%96%B9%E5%B7%AE%E4%B8%8E%E5%8D%8F%E6%96%B9%E5%B7%AE/</loc>
+    <lastmod>2020-12-01T12:03:21.562Z</lastmod>
+    <data>
+        <display>
+        <title>增量计算——方差与协方差</title>
+        <pubTime>2020-11-30T16:00:00.000Z</pubTime>
+        
+        <tag>Algorithm</tag>
+         
+        <tag>Stream processing</tag>
+         
+         
+           
+             
+              <breadCrumb title="Stream processing" url="http://www.liufr.com/categories/Stream-processing/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://www.liufr.com/2020/10/22/%E6%B5%81%E5%A4%84%E7%90%86/2020-10-22-Kafaka%E5%92%8CFlink%E7%9A%84%E6%B5%81%E5%BC%8F%E5%A4%84%E7%90%86%E6%AF%94%E8%BE%83/</loc>
     <lastmod>2020-10-23T03:16:35.489Z</lastmod>
     <data>
@@ -222,9 +244,9 @@
         
         <tag>Anomaly detection</tag>
          
-        <tag>KDD</tag>
-         
         <tag>time series</tag>
+         
+        <tag>KDD</tag>
          
          
            
