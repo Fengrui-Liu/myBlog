@@ -4,16 +4,62 @@
 
     
   <url>
-    <loc>http://www.liufr.com/2020/12/01/%E6%B5%81%E5%A4%84%E7%90%86/2020-12-1-%E5%A2%9E%E9%87%8F%E8%AE%A1%E7%AE%97--%E6%96%B9%E5%B7%AE%E4%B8%8E%E5%8D%8F%E6%96%B9%E5%B7%AE/</loc>
-    <lastmod>2020-12-01T12:03:21.562Z</lastmod>
+    <loc>http://www.liufr.com/2019/07/21/%E6%B5%81%E5%A4%84%E7%90%86/2019-08-13-%E5%AE%9E%E6%97%B6%E5%BC%82%E5%B8%B8%E6%A3%80%E6%B5%8B/</loc>
+    <lastmod>2020-12-02T01:55:51.085Z</lastmod>
+    <data>
+        <display>
+        <title>实时异常检测（xStream，KDD'18）</title>
+        <pubTime>2019-07-20T16:00:00.000Z</pubTime>
+        
+        <tag>Anomaly detection</tag>
+         
+        <tag>KDD</tag>
+         
+        <tag>Stream processing</tag>
+         
+         
+           
+             
+              <breadCrumb title="Stream processing" url="http://www.liufr.com/categories/Stream-processing/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://www.liufr.com/2020/12/01/%E6%B5%81%E5%A4%84%E7%90%86/2020-12-2-xStream/</loc>
+    <lastmod>2020-12-02T01:51:46.479Z</lastmod>
     <data>
         <display>
         <title>增量计算——方差与协方差</title>
         <pubTime>2020-11-30T16:00:00.000Z</pubTime>
         
+        <tag>Stream processing</tag>
+         
         <tag>Algorithm</tag>
          
+         
+           
+             
+              <breadCrumb title="Stream processing" url="http://www.liufr.com/categories/Stream-processing/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://www.liufr.com/2020/12/01/%E6%B5%81%E5%A4%84%E7%90%86/2020-12-1-%E5%A2%9E%E9%87%8F%E8%AE%A1%E7%AE%97--%E6%96%B9%E5%B7%AE%E4%B8%8E%E5%8D%8F%E6%96%B9%E5%B7%AE/</loc>
+    <lastmod>2020-12-01T12:04:08.377Z</lastmod>
+    <data>
+        <display>
+        <title>增量计算——方差与协方差</title>
+        <pubTime>2020-11-30T16:00:00.000Z</pubTime>
+        
         <tag>Stream processing</tag>
+         
+        <tag>Algorithm</tag>
          
          
            
@@ -191,28 +237,6 @@
 
     
   <url>
-    <loc>http://www.liufr.com/2019/07/21/%E6%95%B0%E6%8D%AE%E6%8C%96%E6%8E%98/2019-08-13-%E5%AE%9E%E6%97%B6%E5%BC%82%E5%B8%B8%E6%A3%80%E6%B5%8B/</loc>
-    <lastmod>2019-09-17T13:29:08.814Z</lastmod>
-    <data>
-        <display>
-        <title>实时异常检测（xStream，KDD'18）</title>
-        <pubTime>2019-07-20T16:00:00.000Z</pubTime>
-        
-        <tag>Anomaly detection</tag>
-         
-        <tag>KDD</tag>
-         
-         
-           
-             
-              <breadCrumb title="Anomaly detection" url="http://www.liufr.com/categories/Anomaly-detection/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
     <loc>http://www.liufr.com/2019/08/14/%E6%95%B0%E6%8D%AE%E6%8C%96%E6%8E%98/2019-08-14-%E5%BC%82%E5%B8%B8%E6%A3%80%E6%B5%8B%EF%BC%88MSRA%20KDD'19%EF%BC%89/</loc>
     <lastmod>2019-09-17T13:28:59.047Z</lastmod>
     <data>
@@ -244,9 +268,9 @@
         
         <tag>Anomaly detection</tag>
          
-        <tag>time series</tag>
-         
         <tag>KDD</tag>
+         
+        <tag>time series</tag>
          
          
            
