@@ -3,24 +3,26 @@
 <head>
     <meta charset="utf-8">
     
-    <title>增量计算——方差与协方差 | Fengrui Liu&#39;s Blog</title>
+    <title>实时异常检测(xStream，KDD&#39;18) | Fengrui Liu&#39;s Blog</title>
     
     
-        <meta name="keywords" content="Stream processing,Algorithm" />
+        <meta name="keywords" content="Anomaly detection,KDD,Stream processing" />
     
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
-    <meta name="description" content="&amp;#x589E;&amp;#x91CF;&amp;#x8BA1;&amp;#x7B97;&amp;#x2014;&amp;#x2014;&amp;#x65B9;&amp;#x5DEE;&amp;#xFF08;Variance&amp;#xFF09; &amp;#x5728;&amp;#x7ED9;&amp;#x5B9A;\(N\)&amp;#x4E2A;&amp;#x6837;&amp;#x672C;\(\begin{bmatrix}x_1 &amp;amp; x_2 &amp;amp; \cdots &amp;amp; x_N\end{">
-<meta name="keywords" content="Stream processing,Algorithm">
+    <meta name="description" content="xStream &amp;#x4EE3;&amp;#x7801; &amp;#x4E3B;&amp;#x8981;&amp;#x5206;&amp;#x6790;xStream &amp;#x7684;python&amp;#x5B9E;&amp;#x73B0; &amp;#x6570;&amp;#x636E;&amp;#x96C6;&amp;#x5206;&amp;#x5E03;  &amp;#x6570;&amp;#x636E;&amp;#x5171;&amp;#x6709;6&amp;#x4E2A;&amp;#x7C7B;&amp;#xFF1A; * &amp;#">
+<meta name="keywords" content="Anomaly detection,KDD,Stream processing">
 <meta property="og:type" content="article">
-<meta property="og:title" content="增量计算——方差与协方差">
-<meta property="og:url" content="http://www.liufr.com/2020/12/01/流处理/2020-12-1-增量计算--方差与协方差/index.html">
+<meta property="og:title" content="实时异常检测(xStream，KDD&#39;18)">
+<meta property="og:url" content="http://www.liufr.com/2020/12/02/流处理/2020-12-03-xStream 实时异常检测代码分析/index.html">
 <meta property="og:site_name" content="Fengrui Liu&#39;s Blog">
-<meta property="og:description" content="&amp;#x589E;&amp;#x91CF;&amp;#x8BA1;&amp;#x7B97;&amp;#x2014;&amp;#x2014;&amp;#x65B9;&amp;#x5DEE;&amp;#xFF08;Variance&amp;#xFF09; &amp;#x5728;&amp;#x7ED9;&amp;#x5B9A;\(N\)&amp;#x4E2A;&amp;#x6837;&amp;#x672C;\(\begin{bmatrix}x_1 &amp;amp; x_2 &amp;amp; \cdots &amp;amp; x_N\end{">
+<meta property="og:description" content="xStream &amp;#x4EE3;&amp;#x7801; &amp;#x4E3B;&amp;#x8981;&amp;#x5206;&amp;#x6790;xStream &amp;#x7684;python&amp;#x5B9E;&amp;#x73B0; &amp;#x6570;&amp;#x636E;&amp;#x96C6;&amp;#x5206;&amp;#x5E03;  &amp;#x6570;&amp;#x636E;&amp;#x5171;&amp;#x6709;6&amp;#x4E2A;&amp;#x7C7B;&amp;#xFF1A; * &amp;#">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2020-12-01T12:04:08.377Z">
+<meta property="og:image" content="https://raw.githubusercontent.com/Fengrui-Liu/cloudimg/master/synData.png">
+<meta property="og:updated_time" content="2020-12-03T08:10:28.431Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="增量计算——方差与协方差">
-<meta name="twitter:description" content="&amp;#x589E;&amp;#x91CF;&amp;#x8BA1;&amp;#x7B97;&amp;#x2014;&amp;#x2014;&amp;#x65B9;&amp;#x5DEE;&amp;#xFF08;Variance&amp;#xFF09; &amp;#x5728;&amp;#x7ED9;&amp;#x5B9A;\(N\)&amp;#x4E2A;&amp;#x6837;&amp;#x672C;\(\begin{bmatrix}x_1 &amp;amp; x_2 &amp;amp; \cdots &amp;amp; x_N\end{">
+<meta name="twitter:title" content="实时异常检测(xStream，KDD&#39;18)">
+<meta name="twitter:description" content="xStream &amp;#x4EE3;&amp;#x7801; &amp;#x4E3B;&amp;#x8981;&amp;#x5206;&amp;#x6790;xStream &amp;#x7684;python&amp;#x5B9E;&amp;#x73B0; &amp;#x6570;&amp;#x636E;&amp;#x96C6;&amp;#x5206;&amp;#x5E03;  &amp;#x6570;&amp;#x636E;&amp;#x5171;&amp;#x6709;6&amp;#x4E2A;&amp;#x7C7B;&amp;#xFF1A; * &amp;#">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/Fengrui-Liu/cloudimg/master/synData.png">
     
 
     
@@ -257,7 +259,7 @@
                             &nbsp;
                             Stream processing
                         </a>
-                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/2020/10/22/流处理/2020-10-22-Kafaka和Flink的流式处理比较/">Kafaka和Flink的流式处理比较</a></li>  <li class="file active"><a href="/2020/12/01/流处理/2020-12-1-增量计算--方差与协方差/">增量计算——方差与协方差</a></li>  <li class="file"><a href="/2020/12/02/流处理/2020-12-03-xStream 实时异常检测代码分析/">实时异常检测(xStream，KDD'18)</a></li>  <li class="file"><a href="/2020/12/02/流处理/2020-12-02-实时异常检测/">实时异常检测(xStream，KDD'18)</a></li>  </ul> 
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/2020/10/22/流处理/2020-10-22-Kafaka和Flink的流式处理比较/">Kafaka和Flink的流式处理比较</a></li>  <li class="file"><a href="/2020/12/01/流处理/2020-12-1-增量计算--方差与协方差/">增量计算——方差与协方差</a></li>  <li class="file active"><a href="/2020/12/02/流处理/2020-12-03-xStream 实时异常检测代码分析/">实时异常检测(xStream，KDD'18)</a></li>  <li class="file"><a href="/2020/12/02/流处理/2020-12-02-实时异常检测/">实时异常检测(xStream，KDD'18)</a></li>  </ul> 
                     </li> 
                     
                     <li class="directory">
@@ -348,7 +350,7 @@
     <div id="toTop" class="fa fa-angle-up"></div>
 </aside>
             
-            <section id="main"><article id="post-流处理/2020-12-1-增量计算--方差与协方差" class="article article-type-post" itemscope itemprop="blogPost">
+            <section id="main"><article id="post-流处理/2020-12-03-xStream 实时异常检测代码分析" class="article article-type-post" itemscope itemprop="blogPost">
     <div class="article-inner">
         
         
@@ -364,14 +366,14 @@
                         
     <div class="article-tag">
         <i class="fa fa-tag"></i>
-        <a class="tag-link" href="/tags/Algorithm/">Algorithm</a>, <a class="tag-link" href="/tags/Stream-processing/">Stream processing</a>
+        <a class="tag-link" href="/tags/Anomaly-detection/">Anomaly detection</a>, <a class="tag-link" href="/tags/KDD/">KDD</a>, <a class="tag-link" href="/tags/Stream-processing/">Stream processing</a>
     </div>
 
                         
     <div class="article-date">
         <i class="fa fa-calendar"></i>
-        <a href="/2020/12/01/流处理/2020-12-1-增量计算--方差与协方差/">
-            <time datetime="2020-11-30T16:00:00.000Z" itemprop="datePublished">2020-12-01</time>
+        <a href="/2020/12/02/流处理/2020-12-03-xStream 实时异常检测代码分析/">
+            <time datetime="2020-12-01T16:00:00.000Z" itemprop="datePublished">2020-12-02</time>
         </a>
     </div>
 
@@ -386,7 +388,7 @@
                 
     
         <h1 class="article-title" itemprop="name">
-            增量计算——方差与协方差
+            实时异常检测(xStream，KDD&#39;18)
         </h1>
     
 
@@ -399,96 +401,16 @@
             
         
         
-            <h2 id="&#x589E;&#x91CF;&#x8BA1;&#x7B97;&#x65B9;&#x5DEE;variance">&#x589E;&#x91CF;&#x8BA1;&#x7B97;&#x2014;&#x2014;&#x65B9;&#x5DEE;&#xFF08;Variance&#xFF09;</h2>
-<p>&#x5728;&#x7ED9;&#x5B9A;<span class="math inline">\(N\)</span>&#x4E2A;&#x6837;&#x672C;<span class="math inline">\(\begin{bmatrix}x_1 &amp; x_2 &amp; \cdots &amp; x_N\end{bmatrix}^T\)</span>&#x7684;&#x65B9;&#x5DEE;&#x8BA1;&#x7B97;&#x5982;&#x4E0B;&#xFF1A; <span class="math display">\[
-s_N^2=\frac{1}{N}\sum_{i=1}^{N}{\left(\,x_i-\bar{x}_N\right)^2}
-\]</span></p>
-<p>&#x5982;&#x679C;&#x6211;&#x4EEC;&#x4EE4; <span class="math display">\[
-\mathbf{1}_N=[\underbrace{1, 1, \dotsc, 1}_{N\text{ times}}]^T
-\]</span> &#x8868;&#x793A;&#x4E00;&#x4E2A;&#x5168;1&#x77E2;&#x91CF;&#xFF0C;&#x4E14; <span class="math display">\[
-\tilde{\mathbf{x}}_N=\mathbf{x}_N-\bar{x}_N\mathbf{1}_N
-\]</span> &#x8868;&#x793A;&#x539F;&#x6837;&#x672C;&#x51CF;&#x53BB;&#x5747;&#x503C;&#x540E;&#x7684;&#x6B8B;&#x5DEE;&#x503C;&#xFF0C;&#x90A3;&#x4E48;&#x65B9;&#x5DEE;&#x5C31;&#x53EF;&#x4EE5;&#x7B80;&#x5316;&#x8868;&#x793A;&#x5982;&#x4E0B;&#xFF1A; <span class="math display">\[
-s_N^2=\tilde{\mathbf{x}}_N^T\tilde{\mathbf{x}}_N\left/{N}\right.
-\]</span> &#x4E3E;&#x4F8B;&#x6765;&#x8BF4;&#xFF1A; <span class="math display">\[
-\tilde{\mathbf{x}}_5
-=\begin{bmatrix}48 \\ 29 \\ 46 \\ 57 \\ 34\end{bmatrix}
-- \left(\bar{x}_5=\frac{214}{5}\right)\times
-\begin{bmatrix}1 \\ 1 \\ 1 \\ 1 \\ 1\end{bmatrix}
-=\begin{bmatrix}26\,/\,5 \\ -69\,/\,5 \\ 16\,/\,5 \\ 71\,/\,5 \\ -44\,/\,5\end{bmatrix} \\
-s_5^2
-=\frac{\tilde{\mathbf{x}}_5^T\tilde{\mathbf{x}}_5}{5}
-=\frac{2534}{25}
-\]</span></p>
-<p>&#x5982;&#x679C;&#x8981;&#x662F;&#x5C06;&#x7B80;&#x5316;&#x5F62;&#x5F0F;&#x5C55;&#x5F00;&#x8BA1;&#x7B97;&#xFF0C;&#x90A3;&#x4E48;&#x5C31;&#x80FD;&#x5F97;&#x5230;&#x4E00;&#x4E2A;&#x6709;&#x76CA;&#x4E8E;&#x589E;&#x91CF;&#x8BA1;&#x7B97;&#x7684;&#x8868;&#x8FBE;&#x65B9;&#x5F0F;&#xFF1A; <span class="math display">\[
-\begin{aligned}
-\tilde{\mathbf{x}}_N^T\tilde{\mathbf{x}}_N\left/{N}\right.&amp;=\left(\mathbf{x}_N-\bar{x}_N\mathbf{1}_N\right)^T\left(\mathbf{x}_N-\bar{x}_N\mathbf{1}_N\right)\left/N\right. \\
-&amp;=\left(\mathbf{x}_N^T\mathbf{x}_N - N\bar{x}_N^2\right)\left/N\right. \\
-s_N^2&amp;=\mathbf{x}_N^T\mathbf{x}_N\left/N\right. - \bar{x}_N^2
-\end{aligned}
-\]</span> &#x4F8B;&#x5982;&#x4E0B;&#x5F0F;&#x53EF;&#x4EE5;&#x8BC1;&#x660E;&#x7ED3;&#x679C;&#x6B63;&#x786E; <span class="math display">\[
-s_5^2
-=\frac{\mathbf{x}_5^T\mathbf{x}_5=9666}{5}-\left(\frac{214}{5}\right)^2=\frac{2534}{25}
-\]</span> &#x90A3;&#x4E48;&#xFF0C;&#x5982;&#x679C;&#x6709;&#x65B0;&#x7684;&#x5143;&#x7D20;<span class="math inline">\(x_{N+1}\)</span>&#x5728;&#x6D41;&#x6570;&#x636E;&#x4E2D;&#x5230;&#x8FBE;&#x65F6;&#xFF0C;&#x65B9;&#x5DEE;&#x5C31;&#x53EF;&#x4EE5;&#x589E;&#x91CF;&#x66F4;&#x65B0;&#x4E86;&#xFF1A; <span class="math display">\[
-\begin{aligned}
-s_{N+1}^2&amp;=\frac{\tilde{\mathbf{x}}_{N+1}^T\tilde{\mathbf{x}}_{N+1}}{N+1}\\
-&amp;=\frac{\left(\mathbf{x}_{N+1}-\bar{x}_{N+1}\mathbf{1}_{N+1}\right)^T\left(\mathbf{x}_{N+1}-\bar{x}_{N+1}\mathbf{1}_{N+1}\right)}{N+1}\\
-&amp;=\frac{\mathbf{x}_{N+1}^T\mathbf{x}_{N+1}-\left(N+1\right)\:\bar{x}_{N+1}^2}{N+1}\\
-&amp;=\frac{\mathbf{x}_N^T\mathbf{x}_N+x_{N+1}^2-\left(N+1\right)\:\bar{x}_{N+1}^2}{N+1}\\
-&amp;=\frac{\mathbf{x}_N^T\mathbf{x}_N+x_{N+1}^2}{N+1}-\bar{x}_{N+1}^2\\
-\end{aligned}
-\]</span></p>
-<p>&#x4F8B;&#x5982;&#xFF1A;</p>
-<p><span class="math display">\[
-s_6^2=\frac{\mathbf{x}_N^T\mathbf{x}_N+x_{N+1}^2
-=9666+66^2}{6}-\left(\frac{140}{3}\right)^2=\frac{1433}{9}
-\]</span> &#x53C8;&#x56E0;&#x4E3A; <span class="math display">\[
-\mathbf{x}_N^T\mathbf{x}_N=\sum_{i=1}^{N}{x_i^2}
-\]</span> &#x6240;&#x4EE5;&#x5728;&#x8BA1;&#x7B97;&#x8FC7;&#x7A0B;&#x4E2D;&#x53EA;&#x9700;&#x8981;&#x8BB0;&#x5F55;&#xFF08;1&#xFF09;&#x7D2F;&#x52A0;&#x5E73;&#x65B9;&#x548C;&#xFF08;2&#xFF09;&#x5747;&#x503C; &#x8FD9;&#x4E24;&#x4E2A;&#x53D8;&#x91CF;&#x5C31;&#x884C;&#x4E86;&#x3002;</p>
-<hr>
-<h2 id="&#x589E;&#x91CF;&#x8BA1;&#x7B97;&#x534F;&#x65B9;&#x5DEE;">&#x589E;&#x91CF;&#x8BA1;&#x7B97;&#x2014;&#x2014;&#x534F;&#x65B9;&#x5DEE;</h2>
-<p>&#x8003;&#x8651;&#x4E00;&#x5BF9;&#x5411;&#x91CF; <span class="math display">\[
-\begin{aligned}
-\mathbf{x}&amp;=\left[x_1, x_2, \dotsc, x_N\right]^T\\
-\mathbf{y}&amp;=\left[y_1, y_2, \dotsc, y_N\right]^T
-\end{aligned}
-\]</span> &#x5747;&#x503C; <span class="math display">\[
-\bar{x}_N=\Sigma_N\mathbf{x}_N\left/N\right.,\;\; \bar{y}_N=\Sigma_N\mathbf{y}_N\left/N\right.
-\]</span></p>
-<p>&#x6B8B;&#x5DEE; <span class="math display">\[
-\tilde{\mathbf{x}}_N=\mathbf{x}_N-\bar{x}_N\mathbf{1}_N,\;\; \tilde{\mathbf{y}}_N=\mathbf{y}_N-\bar{y}_N\mathbf{1}_N
-\]</span></p>
-<p>&#x8003;&#x8651;&#x5916;&#x79EF; <span class="math display">\[
-\begin{bmatrix}
-\tilde{\mathbf{x}}_N^T \\ \tilde{\mathbf{y}}_N^T
-\end{bmatrix}
-\begin{bmatrix}
-\tilde{\mathbf{x}}_N    &amp; \tilde{\mathbf{y}}_N
-\end{bmatrix}
-=
-\begin{bmatrix}
-\tilde{\mathbf{x}}_N^T\tilde{\mathbf{x}}_N &amp; \tilde{\mathbf{x}}_N^T\tilde{\mathbf{y}}_N \\
-\tilde{\mathbf{y}}_N^T\tilde{\mathbf{x}}_N &amp; \tilde{\mathbf{y}}_N^T\tilde{\mathbf{y}}_N
-\end{bmatrix}
-\]</span></p>
-<p>&#x90A3;&#x4E48;&#x6709; <span class="math display">\[
-S_N^2=
-\frac{1}{N}
-\begin{bmatrix}
-\tilde{\mathbf{x}}_N^T\tilde{\mathbf{x}}_N &amp; \tilde{\mathbf{x}}_N^T\tilde{\mathbf{y}}_N \\
-\tilde{\mathbf{y}}_N^T\tilde{\mathbf{x}}_N &amp; \tilde{\mathbf{y}}_N^T\tilde{\mathbf{y}}_N
-\end{bmatrix}
-\]</span></p>
-<p>&#x4E0A;&#x5F0F;&#x4E2D;&#x6BCF;&#x4E00;&#x9879;&#x90FD;&#x53EF;&#x4EE5;&#x6839;&#x636E;&#x589E;&#x91CF;&#x65B9;&#x5DEE;&#x7684;&#x516C;&#x5F0F;&#x8FDB;&#x884C;&#x589E;&#x91CF;&#x8BA1;&#x7B97;&#xFF0C;&#x90A3;&#x4E48;&#x7528;&#x603B;&#x4F53;&#x6837;&#x672C;&#x7684;&#x534F;&#x65B9;&#x5DEE;&#x8F6C;&#x6362;&#x6210;&#x6837;&#x672C;&#x534F;&#x65B9;&#x5DEE;&#x7684;&#x65E0;&#x504F;&#x4F30;&#x8BA1;&#xFF0C;&#x5148;&#x4E58;<span class="math inline">\(N\)</span> &#x518D;&#x9664;&#x4EE5;<span class="math inline">\(N-1\)</span>&#xFF0C;&#x90A3;&#x4E48;&#x6709;&#xFF1A;</p>
-<p><span class="math display">\[
-\Sigma_N^2=
-\frac{1}{N-1}
-\begin{bmatrix}
-\tilde{\mathbf{x}}_N^T\tilde{\mathbf{x}}_N &amp; \tilde{\mathbf{x}}_N^T\tilde{\mathbf{y}}_N \\
-\tilde{\mathbf{y}}_N^T\tilde{\mathbf{x}}_N &amp; \tilde{\mathbf{y}}_N^T\tilde{\mathbf{y}}_N
-\end{bmatrix}=
-\frac{N S_N^2}{N-1}
-\]</span></p>
-<p>ref: <a href="http://rebcabin.github.io/blog/2013/01/22/covariance-matrices/" target="_blank" rel="noopener">Incremental Covariance</a></p>
+            <p><a href="https://github.com/cmuxstream/cmuxstream-core" target="_blank" rel="noopener">xStream &#x4EE3;&#x7801;</a></p>
+<p>&#x4E3B;&#x8981;&#x5206;&#x6790;xStream &#x7684;python&#x5B9E;&#x73B0;</p>
+<h2 id="&#x6570;&#x636E;&#x96C6;&#x5206;&#x5E03;">&#x6570;&#x636E;&#x96C6;&#x5206;&#x5E03;</h2>
+<p><img src="https://raw.githubusercontent.com/Fengrui-Liu/cloudimg/master/synData.png"></p>
+<p>&#x6570;&#x636E;&#x5171;&#x6709;6&#x4E2A;&#x7C7B;&#xFF1A; * &#x7C7B;&#x522B;0&#xFF1A;&#x8303;&#x56F4;0000-1000&#xFF0C;&#x7A00;&#x758F;&#x6B63;&#x5E38;&#x7C7B; * &#x7C7B;&#x522B;1&#xFF1A;&#x8303;&#x56F4;1000-3000&#xFF0C;&#x5BC6;&#x96C6;&#x6B63;&#x5E38;&#x7C7B; * &#x7C7B;&#x522B;2&#xFF1A;&#x8303;&#x56F4;3000-3050&#xFF0C;&#x805A;&#x96C6;&#x6027;&#x7684;&#x5F02;&#x5E38; * &#x7C7B;&#x522B;3&#xFF1A;&#x8303;&#x56F4;3050-3075&#xFF0C;&#x7A00;&#x758F;&#x7684;&#x5F02;&#x5E38; * &#x7C7B;&#x522B;4&#xFF1A;&#x8303;&#x56F4;3076-3082&#xFF0C;&#x5C40;&#x90E8;&#x5F02;&#x5E38;&#x7C7B; * &#x7C7B;&#x522B;5&#xFF1A;&#x8303;&#x56F4;3075-3076&#xFF0C;&#x5355;&#x70B9;&#x5F02;&#x5E38;</p>
+<h2 id="class-streamhashprojection">class StreamhashProjection</h2>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> math</span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">import</span> random</span><br><span class="line"><span class="keyword">import</span> mmh3</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">StreamhashProjection</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, n_components, density=<span class="number">1</span> / <span class="number">3.0</span>, random_state=None)</span>:</span></span><br><span class="line">        <span class="string">&quot;&quot;&quot;&#x6570;&#x636E;&#x6D41;&#x7279;&#x5F81;&#x7684;&#x54C8;&#x5E0C;&#x6295;&#x5F71;</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">        Args:</span></span><br><span class="line"><span class="string">            n_components (int): &#x7279;&#x5F81;&#x7684;&#x4E2A;&#x6570;</span></span><br><span class="line"><span class="string">            density (float, optional): &#x5BC6;&#x5EA6;&#x7684;&#x9608;&#x503C;. Defaults to 1/3.0.</span></span><br><span class="line"><span class="string">            random_state (int, optional): &#x968F;&#x673A;&#x6570;&#x7684;&#x79CD;&#x5B50;. Defaults to None.</span></span><br><span class="line"><span class="string">        &quot;&quot;&quot;</span></span><br><span class="line">        <span class="comment"># &#x751F;&#x6210;&#x4E0E;&#x7279;&#x5F81;&#x6570;&#x91CF;&#x76F8;&#x7B49;&#x6570;&#x91CF;&#x7684;key&#x4F5C;&#x4E3A;&#x54C8;&#x5E0C;&#x51FD;&#x6570;&#x65CF;&#x7684;index&#xFF0C;&#x8FD9;&#x4E2A;index&#x4E5F;&#x5BF9;&#x5E94;mmh3&#x54C8;&#x5E0C;&#x65CF;&#x51FD;&#x6570;&#x4E2D;&#x7684;seed</span></span><br><span class="line">        self.keys = np.arange(<span class="number">0</span>, n_components, <span class="number">1</span>)</span><br><span class="line">        self.constant = np.sqrt(<span class="number">1.0</span> / density) / np.sqrt(</span><br><span class="line">            n_components</span><br><span class="line">        )  <span class="comment"># &#x8FD9;&#x4E2A;&#x5BF9;&#x5E94;&#x516C;&#x5F0F;&#x91CC;&#x9762;&#x7684; \sqrt{3/K}</span></span><br><span class="line">        self.density = density</span><br><span class="line">        self.n_components = n_components</span><br><span class="line">        random.seed(random_state)</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">fit_transform</span><span class="params">(self, X, feature_names=None)</span>:</span></span><br><span class="line">        nsamples = X.shape[<span class="number">0</span>]</span><br><span class="line">        ndim = X.shape[<span class="number">1</span>]</span><br><span class="line">        <span class="keyword">if</span> feature_names <span class="keyword">is</span> <span class="keyword">None</span>:</span><br><span class="line">            feature_names = [str(i) <span class="keyword">for</span> i <span class="keyword">in</span> range(ndim)]</span><br><span class="line"></span><br><span class="line">        <span class="comment"># &#x5BF9;&#x54C8;&#x5E0C;&#x65CF;&#x4E2D;&#x7684;&#x6BCF;&#x4E00;&#x4E2A;&#x54C8;&#x5E0C;&#x51FD;&#x6570;&#x90FD;&#x8FDB;&#x884C;&#x5168;&#x7279;&#x5F81;&#x7684;&#x4E00;&#x4E2A;&#x54C8;&#x5E0C;&#x5904;&#x7406;&#xFF0C;&#x7ED3;&#x679C;&#x4E3A;&#x4E00;&#x4E2A;k*f&#x7684;&#x77E9;&#x9635;&#xFF0C;&#x5BF9;&#x5E94;r[i]&#x7684;&#x5206;&#x5E03;&#x6982;&#x7387;&#xFF0C;&#x5B9E;&#x73B0;&#x964D;&#x7EF4;</span></span><br><span class="line">        R = np.array(</span><br><span class="line">            [[self._hash_string(k, f) <span class="keyword">for</span> f <span class="keyword">in</span> feature_names] <span class="keyword">for</span> k <span class="keyword">in</span> self.keys]</span><br><span class="line">        )</span><br><span class="line">        <span class="comment"># check if density matches</span></span><br><span class="line">        <span class="comment"># print &quot;R&quot;, np.sum(R.ravel() == 0)/float(len(R.ravel()))</span></span><br><span class="line"></span><br><span class="line">        Y = np.dot(X, R.T)  <span class="comment"># Y&#x662F;&#x90A3;&#x4E9B;&#x88AB;&#x9009;&#x4E2D;&#x7279;&#x5F81;&#x4E0B;&#x7684;&#x6570;&#x636E;</span></span><br><span class="line">        <span class="keyword">return</span> Y</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">transform</span><span class="params">(self, X, feature_names=None)</span>:</span></span><br><span class="line">        <span class="keyword">return</span> self.fit_transform(X, feature_names)</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">_hash_string</span><span class="params">(self, k, s)</span>:</span></span><br><span class="line"></span><br><span class="line">        hash_value = int(mmh3.hash(s, signed=<span class="keyword">False</span>, seed=k)) / (<span class="number">2.0</span> ** <span class="number">32</span> - <span class="number">1</span>)</span><br><span class="line">        s = self.density</span><br><span class="line">        <span class="comment"># &#x6839;&#x636E;hash&#x7ED3;&#x679C;&#xFF0C;&#x53EA;&#x4FDD;&#x7559;3/1&#x7684;&#x7279;&#x5F81;&#xFF0C;&#x5BF9;&#x5E94;&#x8BBA;&#x6587;streamhash&#x90E8;&#x5206;&#x4E2D;&#x7684;&#x5206;&#x6BB5;&#x51FD;&#x6570;&#x516C;&#x5F0F;</span></span><br><span class="line">        <span class="keyword">if</span> hash_value &lt;= s / <span class="number">2.0</span>:</span><br><span class="line">            <span class="keyword">return</span> <span class="number">-1</span> * self.constant</span><br><span class="line">        <span class="keyword">elif</span> hash_value &lt;= s:</span><br><span class="line">            <span class="keyword">return</span> self.constant</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span></span><br></pre></td></tr></table></figure>
+<h2 id="class-chains">class Chains</h2>
+<p>chians&#xFF1A;&#x6240;&#x6709;&#x94FE;&#x7684;&#x521D;&#x59CB;&#x5316;</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment">#!/usr/bin/env python</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> itertools</span><br><span class="line"><span class="keyword">from</span> StreamhashProjection <span class="keyword">import</span> StreamhashProjection</span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">import</span> tqdm</span><br><span class="line"></span><br><span class="line">tqdm.tqdm.monitor_interval = <span class="number">0</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Chain</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, deltamax, depth=<span class="number">25</span>)</span>:</span></span><br><span class="line">        <span class="string">&quot;&quot;&quot;&#x5355;&#x6761;&#x94FE;&#x7684;&#x521D;&#x59CB;&#x5316;</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">        Args:</span></span><br><span class="line"><span class="string">            deltamax (int): &#x7279;&#x5F81;&#x8303;&#x56F4;</span></span><br><span class="line"><span class="string">            depth (int, optional): &#x5C42;&#x7EA7;. Defaults to 25.</span></span><br><span class="line"><span class="string">        &quot;&quot;&quot;</span></span><br><span class="line">        k = len(deltamax)</span><br><span class="line">        self.deltamax = deltamax  <span class="comment"># feature ranges</span></span><br><span class="line">        self.depth = depth</span><br><span class="line">        self.fs = [</span><br><span class="line">            np.random.randint(<span class="number">0</span>, k) <span class="keyword">for</span> d <span class="keyword">in</span> range(depth)</span><br><span class="line">        ]  <span class="comment"># &#x968F;&#x673A;&#x9009;&#x62E9;&#x4E00;&#x4E2A;&#x7279;&#x5F81;&#xFF0C;&#x5E94;&#x8BE5;&#x662F;feature select&#x7684;&#x7F29;&#x5199;</span></span><br><span class="line">        self.cmsketches = [<span class="keyword">None</span>] * depth  <span class="comment"># &#x8FD9;&#x4E2A;&#x662F; count-min-sketch&#x7B97;&#x6CD5;&#x7684;&#x53D8;&#x91CF;</span></span><br><span class="line">        self.shift = np.random.rand(k) * deltamax  <span class="comment"># &#x968F;&#x673A;&#x504F;&#x79FB;&#x91CF;</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">fit</span><span class="params">(self, X, verbose=False, update=False)</span>:</span></span><br><span class="line">        prebins = np.zeros(X.shape, dtype=np.float)</span><br><span class="line">        depthcount = np.zeros(len(self.deltamax), dtype=np.int)</span><br><span class="line">        <span class="keyword">for</span> depth <span class="keyword">in</span> range(self.depth):</span><br><span class="line">            f = self.fs[depth]  <span class="comment"># &#x9009;&#x62E9;&#x8981;&#x5212;&#x5206;&#x7684;&#x7279;&#x5F81;</span></span><br><span class="line">            depthcount[f] += <span class="number">1</span>  <span class="comment"># &#x7EDF;&#x8BA1;&#x8BE5;&#x7279;&#x5F81;&#x662F;&#x7B2C;&#x51E0;&#x6B21;&#x88AB;&#x9009;&#x62E9;</span></span><br><span class="line"></span><br><span class="line">            <span class="keyword">if</span> depthcount[f] == <span class="number">1</span>:  <span class="comment"># &#x7B2C;&#x4E00;&#x6B21;&#x88AB;&#x9009;&#x62E9;&#x7684;&#x5904;&#x7406;</span></span><br><span class="line">                prebins[:, f] = (X[:, f] + self.shift[f]) / self.deltamax[f]</span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                prebins[:, f] = (</span><br><span class="line">                    <span class="number">2.0</span> * prebins[:, f] - self.shift[f] / self.deltamax[f]</span><br><span class="line">                )  <span class="comment"># &#x8FD9;&#x4E2A;&#x770B;&#x7740;&#x548C;&#x539F;&#x59CB;&#x516C;&#x5F0F;&#x8868;&#x793A;&#x65B9;&#x6CD5;&#x4E0D;&#x592A;&#x4E00;&#x6837;&#xFF0C;&#x4F46;&#x5B9E;&#x9645;&#x662F;&#x62C6;&#x5206;&#x540E;&#x7684;&#x4E00;&#x79CD;&#x8FED;&#x4EE3;&#x66F4;&#x65B0;&#x65B9;&#x5F0F;</span></span><br><span class="line"></span><br><span class="line">            <span class="keyword">if</span> update:</span><br><span class="line">                cmsketch = self.cmsketches[depth]</span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                cmsketch = {}</span><br><span class="line">            <span class="keyword">for</span> prebin <span class="keyword">in</span> prebins:  <span class="comment"># &#x904D;&#x5386;&#x6BCF;&#x4E2A;&#x7EC4;&#x7684;&#x7279;&#x5F81;&#xFF0C;&#x5C06;&#x5176;&#x7EDF;&#x8BA1;&#x503C;&#x901A;&#x8FC7;count-min-sketch&#x4FDD;&#x5B58;&#x8D77;&#x6765;</span></span><br><span class="line">                l = tuple(np.floor(prebin).astype(np.int))</span><br><span class="line">                <span class="keyword">if</span> <span class="keyword">not</span> l <span class="keyword">in</span> cmsketch:</span><br><span class="line">                    cmsketch[l] = <span class="number">0</span></span><br><span class="line">                cmsketch[l] += <span class="number">1</span></span><br><span class="line">            self.cmsketches[depth] = cmsketch</span><br><span class="line">        <span class="keyword">return</span> self</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">bincount</span><span class="params">(self, X)</span>:</span></span><br><span class="line">        <span class="string">&quot;&quot;&quot;&#x8BA1;&#x7B97;&#x6BCF;&#x4E2A;&#x5C42;&#x7EA7;&#x4E0B;&#xFF0C;&#x5BF9;&#x5E94;&#x7279;&#x5F81;&#xFF08;&#x4FDD;&#x5B58;&#x81F3;&#x7EC4;&#x5185;&#xFF09;&#x7684;&#x7EDF;&#x8BA1;&#x6B21;&#x6570;</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">        Args:</span></span><br><span class="line"><span class="string">            X ([type]): &#x6570;&#x636E;&#x96C6;</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">        Returns:</span></span><br><span class="line"><span class="string">            [type]: &#x6BCF;&#x4E2A;&#x88AB;&#x9009;&#x62E9;&#x7684;&#x7279;&#x5F81;&#x7684;&#x6B21;&#x6570;&#x7EDF;&#x8BA1;</span></span><br><span class="line"><span class="string">        &quot;&quot;&quot;</span></span><br><span class="line">        scores = np.zeros((X.shape[<span class="number">0</span>], self.depth))</span><br><span class="line">        prebins = np.zeros(X.shape, dtype=np.float)</span><br><span class="line">        depthcount = np.zeros(len(self.deltamax), dtype=np.int)</span><br><span class="line">        <span class="keyword">for</span> depth <span class="keyword">in</span> range(self.depth):</span><br><span class="line">            f = self.fs[depth]</span><br><span class="line">            depthcount[f] += <span class="number">1</span></span><br><span class="line"></span><br><span class="line">            <span class="keyword">if</span> depthcount[f] == <span class="number">1</span>:</span><br><span class="line">                prebins[:, f] = (X[:, f] + self.shift[f]) / self.deltamax[f]</span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                prebins[:, f] = <span class="number">2.0</span> * prebins[:, f] - self.shift[f] / self.deltamax[f]</span><br><span class="line"></span><br><span class="line">            cmsketch = self.cmsketches[depth]</span><br><span class="line">            <span class="keyword">for</span> i, prebin <span class="keyword">in</span> enumerate(prebins):</span><br><span class="line">                l = tuple(np.floor(prebin).astype(np.int))</span><br><span class="line">                <span class="keyword">if</span> <span class="keyword">not</span> l <span class="keyword">in</span> cmsketch:</span><br><span class="line">                    scores[i, depth] = <span class="number">0.0</span></span><br><span class="line">                <span class="keyword">else</span>:</span><br><span class="line">                    scores[i, depth] = cmsketch[l]</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> scores</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">score</span><span class="params">(self, X, adjusted=False)</span>:</span></span><br><span class="line">        <span class="comment"># scale score logarithmically to avoid overflow:</span></span><br><span class="line">        <span class="comment">#    score = min_d [ log2(bincount x 2^d) = log2(bincount) + d ]</span></span><br><span class="line">        scores = self.bincount(X)</span><br><span class="line">        depths = np.array([d <span class="keyword">for</span> d <span class="keyword">in</span> range(<span class="number">1</span>, self.depth + <span class="number">1</span>)])</span><br><span class="line">        scores = np.log2(<span class="number">1.0</span> + scores) + depths  <span class="comment"># add 1 to avoid log(0)</span></span><br><span class="line">        <span class="keyword">return</span> np.min(scores, axis=<span class="number">1</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Chains</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, k=<span class="number">50</span>, nchains=<span class="number">100</span>, depth=<span class="number">25</span>, seed=<span class="number">42</span>)</span>:</span></span><br><span class="line">        <span class="string">&quot;&quot;&quot;&#x6240;&#x6709;&#x94FE;&#x7684;&#x521D;&#x59CB;&#x5316;</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">        Args:</span></span><br><span class="line"><span class="string">            k (int, optional): &#x6700;&#x5927;&#x7279;&#x5F81;&#x4E2A;&#x6570;. Defaults to 50.</span></span><br><span class="line"><span class="string">            nchains (int, optional): &#x94FE;&#x7684;&#x4E2A;&#x6570;. Defaults to 100.</span></span><br><span class="line"><span class="string">            depth (int, optional): &#x6DF1;&#x5EA6;&#xFF0C;&#x5BF9;&#x5E94;&#x8BBA;&#x6587;&#x4E2D;&#x7684;level. Defaults to 25.</span></span><br><span class="line"><span class="string">            seed (int, optional): &#x968F;&#x673A;&#x6570;&#x79CD;&#x5B50;. Defaults to 42.</span></span><br><span class="line"><span class="string">        &quot;&quot;&quot;</span></span><br><span class="line">        self.nchains = nchains</span><br><span class="line">        self.depth = depth</span><br><span class="line">        self.chains = []</span><br><span class="line">        self.projector = StreamhashProjection(</span><br><span class="line">            n_components=k, density=<span class="number">1</span> / <span class="number">3.0</span>, random_state=seed</span><br><span class="line">        )</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">fit</span><span class="params">(self, X)</span>:</span></span><br><span class="line">        <span class="string">&quot;&quot;&quot;fit&#x51FD;&#x6570;</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">        Args:</span></span><br><span class="line"><span class="string">            X ([type]): &#x6570;&#x636E;&#x96C6;</span></span><br><span class="line"><span class="string">        &quot;&quot;&quot;</span></span><br><span class="line">        projected_X = self.projector.fit_transform(X)</span><br><span class="line">        deltamax = np.ptp(projected_X, axis=<span class="number">0</span>) / <span class="number">2.0</span>  <span class="comment"># &#x7EC4;&#xFF08;bin&#xFF09;&#x7684;&#x5BBD;&#x5EA6;&#xFF0C;&#x4E5F;&#x662F;&#x53D6;&#x4E86;&#x4E00;&#x534A;&#x4F5C;&#x4E3A;&#x521D;&#x59CB;&#x5316;&#x7684;&#x503C;</span></span><br><span class="line">        deltamax[deltamax == <span class="number">0</span>] = <span class="number">1.0</span>  <span class="comment"># &#x4E3A;&#x4E86;&#x4FDD;&#x8BC1;&#x9664;&#x6CD5;&#x5206;&#x6BCD;&#x4E0D;&#x4E3A;0</span></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> tqdm.tqdm(range(self.nchains), desc=<span class="string">&quot;Fitting...&quot;</span>):</span><br><span class="line">            c = Chain(deltamax, depth=self.depth)</span><br><span class="line">            c.fit(projected_X)</span><br><span class="line">            self.chains.append(c)</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">score</span><span class="params">(self, X, adjusted=False)</span>:</span></span><br><span class="line">        <span class="string">&quot;&quot;&quot;score&#x51FD;&#x6570;</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">        Args:</span></span><br><span class="line"><span class="string">            X ([type]): &#x6570;&#x636E;&#x96C6;</span></span><br><span class="line"><span class="string">            adjusted (bool, optional): &#x8FD9;&#x90E8;&#x5206;&#x4EE3;&#x7801;&#x6CA1;&#x6709;&#x7528;&#x5230;&#x8FD9;&#x4E2A;&#x53D8;&#x91CF;. Defaults to False.</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">        Returns:</span></span><br><span class="line"><span class="string">            [type]: &#x6253;&#x5206;&#x7ED3;&#x679C;</span></span><br><span class="line"><span class="string">        &quot;&quot;&quot;</span></span><br><span class="line">        projected_X = self.projector.transform(X)</span><br><span class="line">        scores = np.zeros(X.shape[<span class="number">0</span>])</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> tqdm.tqdm(range(self.nchains), desc=<span class="string">&quot;Scoring...&quot;</span>):</span><br><span class="line">            chain = self.chains[i]</span><br><span class="line">            scores += chain.score(projected_X, adjusted)</span><br><span class="line">        scores /= float(self.nchains)  <span class="comment"># &#x6700;&#x540E;&#x7684;&#x8F93;&#x51FA;&#x7ED3;&#x679C;&#x662F;&#x6240;&#x6709;&#x94FE;&#x7684;&#x8BC4;&#x5206;&#x7684;&#x5747;&#x503C;</span></span><br><span class="line">        <span class="keyword">return</span> scores</span><br></pre></td></tr></table></figure>
 
             </div>
         
@@ -501,7 +423,7 @@ S_N^2=
     
 <nav id="article-nav">
     
-        <a href="/2020/12/02/流处理/2020-12-03-xStream 实时异常检测代码分析/" id="article-nav-newer" class="article-nav-link-wrap">
+        <a href="/2020/12/02/流处理/2020-12-02-实时异常检测/" id="article-nav-newer" class="article-nav-link-wrap">
             <strong class="article-nav-caption">上一篇</strong>
             <div class="article-nav-title">
                 
@@ -511,9 +433,9 @@ S_N^2=
         </a>
     
     
-        <a href="/2020/10/22/流处理/2020-10-22-Kafaka和Flink的流式处理比较/" id="article-nav-older" class="article-nav-link-wrap">
+        <a href="/2020/12/01/流处理/2020-12-1-增量计算--方差与协方差/" id="article-nav-older" class="article-nav-link-wrap">
             <strong class="article-nav-caption">下一篇</strong>
-            <div class="article-nav-title">Kafaka和Flink的流式处理比较</div>
+            <div class="article-nav-title">增量计算——方差与协方差</div>
         </a>
     
 </nav>
@@ -561,9 +483,9 @@ S_N^2=
     <script>
     var disqus_config = function () {
         
-            this.page.url = 'http://www.liufr.com/2020/12/01/流处理/2020-12-1-增量计算--方差与协方差/';
+            this.page.url = 'http://www.liufr.com/2020/12/02/流处理/2020-12-03-xStream 实时异常检测代码分析/';
         
-        this.page.identifier = '流处理/2020-12-1-增量计算--方差与协方差';
+        this.page.identifier = '流处理/2020-12-03-xStream 实时异常检测代码分析';
     };
     (function() { 
         var d = document, s = d.createElement('script');  
