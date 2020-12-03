@@ -5,7 +5,7 @@
     
   <url>
     <loc>http://www.liufr.com/2020/12/02/%E6%B5%81%E5%A4%84%E7%90%86/2020-12-02-%E5%AE%9E%E6%97%B6%E5%BC%82%E5%B8%B8%E6%A3%80%E6%B5%8B/</loc>
-    <lastmod>2020-12-03T00:54:55.083Z</lastmod>
+    <lastmod>2020-12-03T01:18:20.096Z</lastmod>
     <data>
         <display>
         <title>实时异常检测(xStream，KDD'18)</title>
@@ -35,9 +35,9 @@
         <title>增量计算——方差与协方差</title>
         <pubTime>2020-11-30T16:00:00.000Z</pubTime>
         
-        <tag>Stream processing</tag>
-         
         <tag>Algorithm</tag>
+         
+        <tag>Stream processing</tag>
          
          
            
@@ -808,9 +808,9 @@
         <title>利用时序决策树进行DGA僵尸检测</title>
         <pubTime>2019-07-20T16:00:00.000Z</pubTime>
         
-        <tag>Security</tag>
-         
         <tag>Anomaly detection</tag>
+         
+        <tag>Security</tag>
          
          
            
@@ -830,9 +830,9 @@
         <title>孤立森林（Isolation Forest）</title>
         <pubTime>2019-07-20T16:00:00.000Z</pubTime>
         
-        <tag>Security</tag>
-         
         <tag>Anomaly detection</tag>
+         
+        <tag>Security</tag>
          
          
            
@@ -852,9 +852,9 @@
         <title>孤立森林（Isolation Forest）</title>
         <pubTime>2019-07-20T16:00:00.000Z</pubTime>
         
-        <tag>Security</tag>
-         
         <tag>Anomaly detection</tag>
+         
+        <tag>Security</tag>
          
          
            
@@ -874,9 +874,9 @@
         <title>梯度提升决策树（GBDT）</title>
         <pubTime>2019-07-20T16:00:00.000Z</pubTime>
         
-        <tag>Security</tag>
-         
         <tag>Anomaly detection</tag>
+         
+        <tag>Security</tag>
          
          
            
@@ -896,9 +896,9 @@
         <title>多项式插值</title>
         <pubTime>2019-07-20T16:00:00.000Z</pubTime>
         
-        <tag>Security</tag>
-         
         <tag>Anomaly detection</tag>
+         
+        <tag>Security</tag>
          
          
            
@@ -918,9 +918,9 @@
         <title>指数加权移动平均法（EWMA）</title>
         <pubTime>2019-07-20T16:00:00.000Z</pubTime>
         
-        <tag>Security</tag>
-         
         <tag>Anomaly detection</tag>
+         
+        <tag>Security</tag>
          
          
            
