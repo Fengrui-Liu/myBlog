@@ -1,0 +1,56 @@
+==================================================================
+https://keybase.io/liufr
+--------------------------------------------------------------------
+
+I hereby claim:
+
+  * I am an admin of http://liufr.com
+  * I am liufr (https://keybase.io/liufr) on keybase.
+  * I have a public key ASDjskVY4gpMAnIGRE8BdHetsrO5e9Rzy3xf5jT7XzETsgo
+
+To do so, I am signing this object:
+
+{
+  "body": {
+    "key": {
+      "eldest_kid": "0120e3b24558e20a4c027206444f017477adb2b3b97bd473cb7c5fe634fb5f3113b20a",
+      "host": "keybase.io",
+      "kid": "0120e3b24558e20a4c027206444f017477adb2b3b97bd473cb7c5fe634fb5f3113b20a",
+      "uid": "98c41a20c26ba270c22a890fb23fec19",
+      "username": "liufr"
+    },
+    "merkle_root": {
+      "ctime": 1608260404,
+      "hash": "9f6198495cdc89f6ac0b4eae8566ce03ee51bbc1bea3d769b44c3966853d52521bdf36ae693ee8f7975bbd4ca621219a99c971846196639031c566f5b7fd1cac",
+      "hash_meta": "9784a890d519eea8123d983088e5fcab692202cee371003331b08a7c8ae87339",
+      "seqno": 18436243
+    },
+    "service": {
+      "entropy": "XA/EhTLlodo++keHDe+hM/6k",
+      "hostname": "liufr.com",
+      "protocol": "http:"
+    },
+    "type": "web_service_binding",
+    "version": 2
+  },
+  "client": {
+    "name": "keybase.io go client",
+    "version": "5.5.0"
+  },
+  "ctime": 1608260420,
+  "expire_in": 504576000,
+  "prev": "543da9ff5fbe7e5543629712edc9496a2032113846e95080db36105f31b569ad",
+  "seqno": 7,
+  "tag": "signature"
+}
+
+which yields the signature:
+
+hKRib2R5hqhkZXRhY2hlZMOpaGFzaF90eXBlCqNrZXnEIwEg47JFWOIKTAJyBkRPAXR3rbKzuXvUc8t8X+Y0+18xE7IKp3BheWxvYWTESpcCB8QgVD2p/1++flVDYpcS7clJaiAyEThG6VCA2zYQXzG1aa3EIH+H09pCIAjF+5HIbkAKAQC0Gu85qRkVo7Yum03CkpnAAgHCo3NpZ8RAt9T6v3Nf/WIpd9qAlMa1359lF6G/DebhOaigC1oXoRXX+C9PIte2soUGdt+7pdubdzC7PZyTRzNBOKwq6wU1D6hzaWdfdHlwZSCkaGFzaIKkdHlwZQildmFsdWXEIIzIHr9OGRG92KaPh+sNh76SSLyKRSrNujMJfC18a9jko3RhZ80CAqd2ZXJzaW9uAQ==
+
+And finally, I am proving ownership of this host by posting or
+appending to this document.
+
+View my publicly-auditable identity here: https://keybase.io/liufr
+
+==================================================================

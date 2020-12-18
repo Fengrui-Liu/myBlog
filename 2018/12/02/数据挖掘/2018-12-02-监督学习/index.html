@@ -9,13 +9,13 @@
         <meta name="keywords" content="Data mining" />
     
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
-    <meta name="description" content="&amp;#x76D1;&amp;#x7763;&amp;#x5B66;&amp;#x4E60;&amp;#x7684;&amp;#x5F62;&amp;#x5F0F;&amp;#x5316;&amp;#x63CF;&amp;#x8FF0; &amp;#x95EE;&amp;#x9898;&amp;#x63CF;&amp;#x8FF0;  &amp;#x6837;&amp;#x672C;&amp;#x7A7A;&amp;#x95F4;\(X\)(&amp;#x5982;X&amp;#x4E3A;&amp;#x6240;&amp;#x6709;&amp;#x7684;&amp;#x7F5">
+    <meta name="description" content="&amp;#x76D1;&amp;#x7763;&amp;#x5B66;&amp;#x4E60;&amp;#x7684;&amp;#x5F62;&amp;#x5F0F;&amp;#x5316;&amp;#x63CF;&amp;#x8FF0;&amp;#x95EE;&amp;#x9898;&amp;#x63CF;&amp;#x8FF0; &amp;#x6837;&amp;#x672C;&amp;#x7A7A;&amp;#x95F4;$X$(&amp;#x5982;X&amp;#x4E3A;&amp;#x6240;&amp;#x6709;&amp;#x7684;&amp;#x7F51;&amp;#">
 <meta name="keywords" content="Data mining">
 <meta property="og:type" content="article">
 <meta property="og:title" content="监督学习 Supervised Learning(决策树+SVM&#x2F;Perceptron+AdaBoost)">
 <meta property="og:url" content="http://www.liufr.com/2018/12/02/数据挖掘/2018-12-02-监督学习/index.html">
 <meta property="og:site_name" content="Fengrui Liu&#39;s Blog">
-<meta property="og:description" content="&amp;#x76D1;&amp;#x7763;&amp;#x5B66;&amp;#x4E60;&amp;#x7684;&amp;#x5F62;&amp;#x5F0F;&amp;#x5316;&amp;#x63CF;&amp;#x8FF0; &amp;#x95EE;&amp;#x9898;&amp;#x63CF;&amp;#x8FF0;  &amp;#x6837;&amp;#x672C;&amp;#x7A7A;&amp;#x95F4;\(X\)(&amp;#x5982;X&amp;#x4E3A;&amp;#x6240;&amp;#x6709;&amp;#x7684;&amp;#x7F5">
+<meta property="og:description" content="&amp;#x76D1;&amp;#x7763;&amp;#x5B66;&amp;#x4E60;&amp;#x7684;&amp;#x5F62;&amp;#x5F0F;&amp;#x5316;&amp;#x63CF;&amp;#x8FF0;&amp;#x95EE;&amp;#x9898;&amp;#x63CF;&amp;#x8FF0; &amp;#x6837;&amp;#x672C;&amp;#x7A7A;&amp;#x95F4;$X$(&amp;#x5982;X&amp;#x4E3A;&amp;#x6240;&amp;#x6709;&amp;#x7684;&amp;#x7F51;&amp;#">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://ws4.sinaimg.cn/large/006tNbRwly1fxs8tdtjifj31bk0e8whc.jpg">
 <meta property="og:image" content="https://ws2.sinaimg.cn/large/006tNbRwly1fxshxs5q39j31dv0u042r.jpg">
@@ -29,7 +29,7 @@
 <meta property="og:updated_time" content="2018-12-03T09:10:37.250Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="监督学习 Supervised Learning(决策树+SVM&#x2F;Perceptron+AdaBoost)">
-<meta name="twitter:description" content="&amp;#x76D1;&amp;#x7763;&amp;#x5B66;&amp;#x4E60;&amp;#x7684;&amp;#x5F62;&amp;#x5F0F;&amp;#x5316;&amp;#x63CF;&amp;#x8FF0; &amp;#x95EE;&amp;#x9898;&amp;#x63CF;&amp;#x8FF0;  &amp;#x6837;&amp;#x672C;&amp;#x7A7A;&amp;#x95F4;\(X\)(&amp;#x5982;X&amp;#x4E3A;&amp;#x6240;&amp;#x6709;&amp;#x7684;&amp;#x7F5">
+<meta name="twitter:description" content="&amp;#x76D1;&amp;#x7763;&amp;#x5B66;&amp;#x4E60;&amp;#x7684;&amp;#x5F62;&amp;#x5F0F;&amp;#x5316;&amp;#x63CF;&amp;#x8FF0;&amp;#x95EE;&amp;#x9898;&amp;#x63CF;&amp;#x8FF0; &amp;#x6837;&amp;#x672C;&amp;#x7A7A;&amp;#x95F4;$X$(&amp;#x5982;X&amp;#x4E3A;&amp;#x6240;&amp;#x6709;&amp;#x7684;&amp;#x7F51;&amp;#">
 <meta name="twitter:image" content="https://ws4.sinaimg.cn/large/006tNbRwly1fxs8tdtjifj31bk0e8whc.jpg">
     
 
@@ -177,7 +177,7 @@
                             &nbsp;
                             Algorithm
                         </a>
-                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/2016/10/25/算法/2016-10-25-BellmanFord算法/">Bellman-Ford算法</a></li>  <li class="file"><a href="/2016/10/25/算法/2016-10-25-Dijkstra算法/">Dijkstra算法</a></li>  <li class="file"><a href="/2016/12/08/算法/2016-12-08-Bloom Filter/">Bloom Filter</a></li>  <li class="file"><a href="/2017/07/14/算法/2017-7-14-tf-idf/">tf-idf</a></li>  <li class="file"><a href="/2017/09/13/算法/2017-9-13-前缀和/">前缀和（SJTU OJ 1002）</a></li>  <li class="file"><a href="/2017/09/14/算法/2017-9-14-超大数求和/">超大数求和（SJTU OJ 1007）</a></li>  <li class="file"><a href="/2017/09/15/算法/2017-9-15-DP(0"1背包)/">DP（0/1背包）</a></li>  <li class="file"><a href="/2017/09/15/算法/2017-9-15-DP最长公共子序列/">DP（最长公共子序列）</a></li>  <li class="file"><a href="/2017/09/15/算法/2017-9-15-完全背包/">DP（完全背包）</a></li>  <li class="file"><a href="/2017/09/15/算法/2017-9-15-DP问题/">DP（SJTU OJ 1012）</a></li>  <li class="file"><a href="/2017/09/25/算法/2017-9-25-约瑟夫问题/">约瑟夫问题(SJTU OJ 1038)</a></li>  <li class="file"><a href="/2018/04/02/算法/2018-4-2-排序(位图数据结构)/">排序(位图数据结构)</a></li>  <li class="file"><a href="/2018/10/18/算法/2018-10-15-非负矩阵分解/">非负矩阵分解</a></li>  </ul> 
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/2016/10/25/算法/2016-10-25-BellmanFord算法/">Bellman-Ford算法</a></li>  <li class="file"><a href="/2016/10/25/算法/2016-10-25-Dijkstra算法/">Dijkstra算法</a></li>  <li class="file"><a href="/2016/12/08/算法/2016-12-08-Bloom Filter/">Bloom Filter</a></li>  <li class="file"><a href="/2017/07/14/算法/2017-7-14-tf-idf/">tf-idf</a></li>  <li class="file"><a href="/2017/09/13/算法/2017-9-13-前缀和/">前缀和（SJTU OJ 1002）</a></li>  <li class="file"><a href="/2017/09/14/算法/2017-9-14-超大数求和/">超大数求和（SJTU OJ 1007）</a></li>  <li class="file"><a href="/2017/09/15/算法/2017-9-15-DP(0"1背包)/">DP（0/1背包）</a></li>  <li class="file"><a href="/2017/09/15/算法/2017-9-15-DP问题/">DP（SJTU OJ 1012）</a></li>  <li class="file"><a href="/2017/09/15/算法/2017-9-15-DP最长公共子序列/">DP（最长公共子序列）</a></li>  <li class="file"><a href="/2017/09/15/算法/2017-9-15-完全背包/">DP（完全背包）</a></li>  <li class="file"><a href="/2017/09/25/算法/2017-9-25-约瑟夫问题/">约瑟夫问题(SJTU OJ 1038)</a></li>  <li class="file"><a href="/2018/04/02/算法/2018-4-2-排序(位图数据结构)/">排序(位图数据结构)</a></li>  <li class="file"><a href="/2018/10/18/算法/2018-10-15-非负矩阵分解/">非负矩阵分解</a></li>  </ul> 
                     </li> 
                     
                     <li class="directory">
@@ -222,7 +222,7 @@
                             &nbsp;
                             Networking
                         </a>
-                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/2016/12/24/网络/2016-12-24-ipv4在Linux上的实现/">学习构造用户空间的IP栈（资料总结）</a></li>  <li class="file"><a href="/2017/07/14/网络/2017-07-14-Ego networks/">Ego networks</a></li>  <li class="file"><a href="/2017/11/28/网络/2017-11-28-路由协议汇总整理/">路由协议汇总整理</a></li>  <li class="file"><a href="/2018/04/24/网络/2018-4-24-Mininet拓扑学习/">Mininet拓扑学习</a></li>  <li class="file"><a href="/2018/08/23/网络/2018-8-24-SketchLearn/">SketchLearn: Relieving User Burdens in Approximate Measurement with Automated Statistical Inference</a></li>  <li class="file"><a href="/2018/08/23/网络/2018-8-23-Elastic Sketch/">Elastic Sketch: Adaptive and Fast Network-wide Measurements</a></li>  <li class="file"><a href="/2018/08/23/网络/2018-8-23-SketchVisor/">SketchVisor: Robust Network Measurement for Soware Packet Processing</a></li>  </ul> 
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/2016/12/24/网络/2016-12-24-ipv4在Linux上的实现/">学习构造用户空间的IP栈（资料总结）</a></li>  <li class="file"><a href="/2017/07/14/网络/2017-07-14-Ego networks/">Ego networks</a></li>  <li class="file"><a href="/2017/11/28/网络/2017-11-28-路由协议汇总整理/">路由协议汇总整理</a></li>  <li class="file"><a href="/2018/04/24/网络/2018-4-24-Mininet拓扑学习/">Mininet拓扑学习</a></li>  <li class="file"><a href="/2018/08/23/网络/2018-8-24-SketchLearn/">SketchLearn: Relieving User Burdens in Approximate Measurement with Automated Statistical Inference</a></li>  <li class="file"><a href="/2018/08/23/网络/2018-8-23-SketchVisor/">SketchVisor: Robust Network Measurement for Soware Packet Processing</a></li>  <li class="file"><a href="/2018/08/23/网络/2018-8-23-Elastic Sketch/">Elastic Sketch: Adaptive and Fast Network-wide Measurements</a></li>  </ul> 
                     </li> 
                     
                     <li class="directory">
@@ -240,7 +240,7 @@
                             &nbsp;
                             Pi
                         </a>
-                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/2016/08/06/Pi/2016-08-06-Raspberry Pi OK02/">Raspberry Pi OK02</a></li>  <li class="file"><a href="/2016/08/06/Pi/2016-08-06-Raspberry Pi OK01/">Raspberry Pi OK01</a></li>  <li class="file"><a href="/2016/08/06/Pi/2016-08-06-Baking Pi – Operating Systems Development前言/">Raspberry Pi OS Development 前言</a></li>  <li class="file"><a href="/2016/08/06/Pi/2016-08-06-Raspberry Pi OK03/">Raspberry Pi OK03</a></li>  <li class="file"><a href="/2016/08/09/Pi/2016-08-09-Raspberry Pi OK05/">Raspberry Pi OK05</a></li>  <li class="file"><a href="/2016/08/09/Pi/2016-08-11-Raspberry Pi Screen02/">Raspberry Pi Screen02</a></li>  <li class="file"><a href="/2016/08/09/Pi/2016-08-09-Raspberry Pi OK04/">Raspberry Pi OK04</a></li>  <li class="file"><a href="/2016/08/09/Pi/2016-08-10-Raspberry Pi Screen01/">Raspberry Pi Screen01</a></li>  <li class="file"><a href="/2016/08/14/Pi/2016-08-14-Raspberry Pi Screen03/">Raspberry Pi Screen03</a></li>  <li class="file"><a href="/2016/08/16/Pi/2016-08-16-Raspberry Pi Screen04/">Raspberry Pi Screen04</a></li>  <li class="file"><a href="/2016/08/31/Pi/2016-08-31-Raspberry Pi Input01/">Raspberry Pi Input01</a></li>  <li class="file"><a href="/2016/09/01/Pi/2016-09-01-Raspberry Pi Input02/">Raspberry Pi Input02</a></li>  </ul> 
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/2016/08/06/Pi/2016-08-06-Baking Pi – Operating Systems Development前言/">Raspberry Pi OS Development 前言</a></li>  <li class="file"><a href="/2016/08/06/Pi/2016-08-06-Raspberry Pi OK01/">Raspberry Pi OK01</a></li>  <li class="file"><a href="/2016/08/06/Pi/2016-08-06-Raspberry Pi OK03/">Raspberry Pi OK03</a></li>  <li class="file"><a href="/2016/08/06/Pi/2016-08-06-Raspberry Pi OK02/">Raspberry Pi OK02</a></li>  <li class="file"><a href="/2016/08/09/Pi/2016-08-11-Raspberry Pi Screen02/">Raspberry Pi Screen02</a></li>  <li class="file"><a href="/2016/08/09/Pi/2016-08-09-Raspberry Pi OK04/">Raspberry Pi OK04</a></li>  <li class="file"><a href="/2016/08/09/Pi/2016-08-09-Raspberry Pi OK05/">Raspberry Pi OK05</a></li>  <li class="file"><a href="/2016/08/09/Pi/2016-08-10-Raspberry Pi Screen01/">Raspberry Pi Screen01</a></li>  <li class="file"><a href="/2016/08/14/Pi/2016-08-14-Raspberry Pi Screen03/">Raspberry Pi Screen03</a></li>  <li class="file"><a href="/2016/08/16/Pi/2016-08-16-Raspberry Pi Screen04/">Raspberry Pi Screen04</a></li>  <li class="file"><a href="/2016/08/31/Pi/2016-08-31-Raspberry Pi Input01/">Raspberry Pi Input01</a></li>  <li class="file"><a href="/2016/09/01/Pi/2016-09-01-Raspberry Pi Input02/">Raspberry Pi Input02</a></li>  </ul> 
                     </li> 
                     
                     <li class="directory">
@@ -258,7 +258,7 @@
                             &nbsp;
                             Security
                         </a>
-                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/2018/09/02/安全/2018-09-02-蜜罐技术/">蜜罐技术</a></li>  <li class="file"><a href="/2019/06/22/安全/2019-06-22-网络异常行为检测/">网络异常行为检测</a></li>  <li class="file"><a href="/2019/07/21/安全/2019-07-21-多项式插值/">多项式插值</a></li>  <li class="file"><a href="/2019/07/21/安全/2019-07-21-指数加权移动平均法（EWMA）/">指数加权移动平均法（EWMA）</a></li>  <li class="file"><a href="/2019/07/21/安全/2019-07-21-梯度提升决策树(GBDT)/">梯度提升决策树（GBDT）</a></li>  <li class="file"><a href="/2019/07/21/安全/2019-07-22-xgboost/">孤立森林（Isolation Forest）</a></li>  <li class="file"><a href="/2019/07/21/安全/2019-07-22-利用时序决策树进行DGA僵尸检测/">利用时序决策树进行DGA僵尸检测</a></li>  <li class="file"><a href="/2019/07/21/安全/2019-07-22-孤立森林（Isolation Froest）/">孤立森林（Isolation Forest）</a></li>  </ul> 
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/2018/09/02/安全/2018-09-02-蜜罐技术/">蜜罐技术</a></li>  <li class="file"><a href="/2019/06/22/安全/2019-06-22-网络异常行为检测/">网络异常行为检测</a></li>  <li class="file"><a href="/2019/07/21/安全/2019-07-21-多项式插值/">多项式插值</a></li>  <li class="file"><a href="/2019/07/21/安全/2019-07-22-xgboost/">孤立森林（Isolation Forest）</a></li>  <li class="file"><a href="/2019/07/21/安全/2019-07-21-指数加权移动平均法（EWMA）/">指数加权移动平均法（EWMA）</a></li>  <li class="file"><a href="/2019/07/21/安全/2019-07-21-梯度提升决策树(GBDT)/">梯度提升决策树（GBDT）</a></li>  <li class="file"><a href="/2019/07/21/安全/2019-07-22-利用时序决策树进行DGA僵尸检测/">利用时序决策树进行DGA僵尸检测</a></li>  <li class="file"><a href="/2019/07/21/安全/2019-07-22-孤立森林（Isolation Froest）/">孤立森林（Isolation Forest）</a></li>  </ul> 
                     </li> 
                     
                     <li class="directory">
@@ -267,7 +267,7 @@
                             &nbsp;
                             Stream processing
                         </a>
-                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/2020/10/22/流处理/2020-10-22-Kafaka和Flink的流式处理比较/">Kafaka和Flink的流式处理比较</a></li>  <li class="file"><a href="/2020/12/01/流处理/2020-12-1-增量计算--方差与协方差/">增量计算——方差与协方差</a></li>  <li class="file"><a href="/2020/12/02/流处理/2020-12-07-rrcf基于随机森林划分的流数据异常检测/">基于Random cut forest的流数据异常检测(rrcf, UPenn, Amazon, ICML'16)</a></li>  <li class="file"><a href="/2020/12/02/流处理/2020-12-02-在变化特征的数据流中进行实时异常检测/">在变化特征的数据流中进行实时异常检测(xStream，KDD'18)</a></li>  <li class="file"><a href="/2020/12/02/流处理/2020-12-03-xStream 实时异常检测代码分析/">实时异常检测(xStream, CMU, KDD'18)</a></li>  <li class="file"><a href="/2020/12/14/流处理/2020-12-14-基于极值理论的流数据异常检测/">基于极值理论的流数据异常检测(SPOT/DSPOT, KDD'17)</a></li>  </ul> 
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/2020/10/22/流处理/2020-10-22-Kafaka和Flink的流式处理比较/">Kafaka和Flink的流式处理比较</a></li>  <li class="file"><a href="/2020/12/01/流处理/2020-12-1-增量计算--方差与协方差/">增量计算——方差与协方差</a></li>  <li class="file"><a href="/2020/12/02/流处理/2020-12-07-rrcf基于随机森林划分的流数据异常检测/">基于Random cut forest的流数据异常检测(rrcf, UPenn, Amazon, ICML'16)</a></li>  <li class="file"><a href="/2020/12/02/流处理/2020-12-03-xStream 实时异常检测代码分析/">实时异常检测(xStream, CMU, KDD'18)</a></li>  <li class="file"><a href="/2020/12/02/流处理/2020-12-02-在变化特征的数据流中进行实时异常检测/">在变化特征的数据流中进行实时异常检测(xStream，KDD'18)</a></li>  <li class="file"><a href="/2020/12/14/流处理/2020-12-14-基于极值理论的流数据异常检测/">基于极值理论的流数据异常检测(SPOT/DSPOT, KDD'17)</a></li>  </ul> 
                     </li> 
                     
                     <li class="directory">
@@ -276,7 +276,7 @@
                             &nbsp;
                             VANET
                         </a>
-                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/2017/03/12/VANET/2017-3-12-Vanet仿真-ns3(1)/">VANET仿真-ns3(1)</a></li>  <li class="file"><a href="/2017/03/12/VANET/2017-3-12-Vanet仿真-ns3(3)/">VANET仿真-ns3(3)</a></li>  <li class="file"><a href="/2017/03/12/VANET/2017-3-12-Vanet仿真-ns3(2)/">VANET仿真-ns3(2)</a></li>  <li class="file"><a href="/2017/03/13/VANET/2017-3-13-Vanet仿真-ns3(4)/">VANET仿真-ns3(4)</a></li>  <li class="file"><a href="/2017/03/13/VANET/2017-3-13-Vanet仿真-ns3(5)/">VANET仿真-ns3(5)</a></li>  <li class="file"><a href="/2017/03/15/VANET/2017-3-15-Vanet仿真-ns3(6)/">VANET仿真-ns3(6)</a></li>  </ul> 
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/2017/03/12/VANET/2017-3-12-Vanet仿真-ns3(1)/">VANET仿真-ns3(1)</a></li>  <li class="file"><a href="/2017/03/12/VANET/2017-3-12-Vanet仿真-ns3(2)/">VANET仿真-ns3(2)</a></li>  <li class="file"><a href="/2017/03/12/VANET/2017-3-12-Vanet仿真-ns3(3)/">VANET仿真-ns3(3)</a></li>  <li class="file"><a href="/2017/03/13/VANET/2017-3-13-Vanet仿真-ns3(4)/">VANET仿真-ns3(4)</a></li>  <li class="file"><a href="/2017/03/13/VANET/2017-3-13-Vanet仿真-ns3(5)/">VANET仿真-ns3(5)</a></li>  <li class="file"><a href="/2017/03/15/VANET/2017-3-15-Vanet仿真-ns3(6)/">VANET仿真-ns3(6)</a></li>  </ul> 
                     </li> 
                      </ul> 
     </div>
@@ -409,140 +409,138 @@
             
         
         
-            <h2 id="&#x76D1;&#x7763;&#x5B66;&#x4E60;&#x7684;&#x5F62;&#x5F0F;&#x5316;&#x63CF;&#x8FF0;">&#x76D1;&#x7763;&#x5B66;&#x4E60;&#x7684;&#x5F62;&#x5F0F;&#x5316;&#x63CF;&#x8FF0;</h2>
-<h3 id="&#x95EE;&#x9898;&#x63CF;&#x8FF0;">&#x95EE;&#x9898;&#x63CF;&#x8FF0;</h3>
-<ul>
-<li>&#x6837;&#x672C;&#x7A7A;&#x95F4;<span class="math inline">\(X\)</span>(&#x5982;X&#x4E3A;&#x6240;&#x6709;&#x7684;&#x7F51;&#x9875;&#x96C6;&#x5408;)&#x548C;&#x76EE;&#x6807;&#x7A7A;&#x95F4;<span class="math inline">\(Y\)</span>(Y={&#x4E2A;&#x4EBA;&#x4E3B;&#x9875;&#xFF0C;&#x516C;&#x53F8;&#x4E3B;&#x9875;&#xFF0C;&#x79D1;&#x7814;&#x673A;&#x6784;&#x4E3B;&#x9875;&#xFF0C;&#x5176;&#x4ED6;&#x7F51;&#x9875;})</li>
-<li>&#x9884;&#x6D4B;&#x51FD;&#x6570;<span class="math inline">\(f&#xFF1A;X-&gt;Y\)</span></li>
-<li>&#x5047;&#x8BBE;&#x7A7A;&#x95F4;<span class="math inline">\(H=\{h|h:X-&gt;Y\}\)</span></li>
+            <h2 id="&#x76D1;&#x7763;&#x5B66;&#x4E60;&#x7684;&#x5F62;&#x5F0F;&#x5316;&#x63CF;&#x8FF0;"><a href="#&#x76D1;&#x7763;&#x5B66;&#x4E60;&#x7684;&#x5F62;&#x5F0F;&#x5316;&#x63CF;&#x8FF0;" class="headerlink" title="&#x76D1;&#x7763;&#x5B66;&#x4E60;&#x7684;&#x5F62;&#x5F0F;&#x5316;&#x63CF;&#x8FF0;"></a>&#x76D1;&#x7763;&#x5B66;&#x4E60;&#x7684;&#x5F62;&#x5F0F;&#x5316;&#x63CF;&#x8FF0;</h2><h3 id="&#x95EE;&#x9898;&#x63CF;&#x8FF0;"><a href="#&#x95EE;&#x9898;&#x63CF;&#x8FF0;" class="headerlink" title="&#x95EE;&#x9898;&#x63CF;&#x8FF0;"></a>&#x95EE;&#x9898;&#x63CF;&#x8FF0;</h3><ul>
+<li>&#x6837;&#x672C;&#x7A7A;&#x95F4;$X$(&#x5982;X&#x4E3A;&#x6240;&#x6709;&#x7684;&#x7F51;&#x9875;&#x96C6;&#x5408;)&#x548C;&#x76EE;&#x6807;&#x7A7A;&#x95F4;$Y$(Y={&#x4E2A;&#x4EBA;&#x4E3B;&#x9875;&#xFF0C;&#x516C;&#x53F8;&#x4E3B;&#x9875;&#xFF0C;&#x79D1;&#x7814;&#x673A;&#x6784;&#x4E3B;&#x9875;&#xFF0C;&#x5176;&#x4ED6;&#x7F51;&#x9875;})</li>
+<li>&#x9884;&#x6D4B;&#x51FD;&#x6570;$f&#xFF1A;X-&gt;Y$</li>
+<li>&#x5047;&#x8BBE;&#x7A7A;&#x95F4;$H=\{h|h:X-&gt;Y\}$</li>
 </ul>
-<h3 id="&#x7B97;&#x6CD5;&#x8F93;&#x5165;">&#x7B97;&#x6CD5;&#x8F93;&#x5165;</h3>
-<ul>
-<li>&#x8BAD;&#x7EC3;&#x96C6;&#x5408;<span class="math inline">\(D={(x_i,y_i)}_{i=1}^N\)</span>,&#x5176;&#x4E2D;<span class="math inline">\((x_i,y_i)\in X*Y\)</span></li>
+<h3 id="&#x7B97;&#x6CD5;&#x8F93;&#x5165;"><a href="#&#x7B97;&#x6CD5;&#x8F93;&#x5165;" class="headerlink" title="&#x7B97;&#x6CD5;&#x8F93;&#x5165;"></a>&#x7B97;&#x6CD5;&#x8F93;&#x5165;</h3><ul>
+<li>&#x8BAD;&#x7EC3;&#x96C6;&#x5408;$D={(x_i,y_i)}_{i=1}^N$,&#x5176;&#x4E2D;$(x_i,y_i)\in X*Y$</li>
 </ul>
-<h3 id="&#x7B97;&#x6CD5;&#x8F93;&#x51FA;">&#x7B97;&#x6CD5;&#x8F93;&#x51FA;</h3>
-<ul>
-<li>&#x6839;&#x636E;D&#x4E2D;&#x7684;&#x6837;&#x672C;&#x4F30;&#x8BA1;&quot;&#x6700;&#x4F18;&quot;&#x7684;&#x51FD;&#x6570;<span class="math inline">\(h\in H\)</span>,&#x4F7F;&#x4E4B;&#x80FD;&#x591F;&#x5BF9;<strong>&#x672A;&#x51FA;&#x73B0;&#x5728;D&#x4E2D;&#x7684;&#x6837;&#x672C;</strong>&#x7684;&#x6807;&#x7B7E;&#x8FDB;&#x884C;&#x9884;&#x6D4B;</li>
+<h3 id="&#x7B97;&#x6CD5;&#x8F93;&#x51FA;"><a href="#&#x7B97;&#x6CD5;&#x8F93;&#x51FA;" class="headerlink" title="&#x7B97;&#x6CD5;&#x8F93;&#x51FA;"></a>&#x7B97;&#x6CD5;&#x8F93;&#x51FA;</h3><ul>
+<li>&#x6839;&#x636E;D&#x4E2D;&#x7684;&#x6837;&#x672C;&#x4F30;&#x8BA1;&#x201D;&#x6700;&#x4F18;&#x201D;&#x7684;&#x51FD;&#x6570;$h\in H$,&#x4F7F;&#x4E4B;&#x80FD;&#x591F;&#x5BF9;<strong>&#x672A;&#x51FA;&#x73B0;&#x5728;D&#x4E2D;&#x7684;&#x6837;&#x672C;</strong>&#x7684;&#x6807;&#x7B7E;&#x8FDB;&#x884C;&#x9884;&#x6D4B;</li>
 </ul>
 <hr>
+<div class="table-container">
 <table>
-<colgroup>
-<col style="width: 25%">
-<col style="width: 25%">
-<col style="width: 25%">
-<col style="width: 25%">
-</colgroup>
 <thead>
-<tr class="header">
-<th style="text-align: center;"></th>
-<th style="text-align: center;">&#x4E8C;&#x503C;&#x5206;&#x7C7B;&#xFF08;Y&#x4E3A;&#x7C7B;&#x522B;&#x96C6;&#x5408;&#xFF09;</th>
-<th style="text-align: center;">&#x56DE;&#x5F52;&#xFF08;Y&#x4E3A;&#x5B9E;&#x6570;&#x96C6;&#x5408;&#xFF09;</th>
-<th style="text-align: center;">&#x7ED3;&#x6784;&#x9884;&#x6D4B;/&#x6392;&#x5E8F;&#xFF08;Y&#x4E3A;&#x7ED3;&#x6784;&#x7C7B;&#x578B;/&#x6392;&#x5E8F;&#xFF09;</th>
+<tr>
+<th style="text-align:center"></th>
+<th style="text-align:center">&#x4E8C;&#x503C;&#x5206;&#x7C7B;&#xFF08;Y&#x4E3A;&#x7C7B;&#x522B;&#x96C6;&#x5408;&#xFF09;</th>
+<th style="text-align:center">&#x56DE;&#x5F52;&#xFF08;Y&#x4E3A;&#x5B9E;&#x6570;&#x96C6;&#x5408;&#xFF09;</th>
+<th style="text-align:center">&#x7ED3;&#x6784;&#x9884;&#x6D4B;/&#x6392;&#x5E8F;&#xFF08;Y&#x4E3A;&#x7ED3;&#x6784;&#x7C7B;&#x578B;/&#x6392;&#x5E8F;&#xFF09;</th>
 </tr>
 </thead>
 <tbody>
-<tr class="odd">
-<td style="text-align: center;">&#x7EBF;&#x6027;&#x51FD;&#x6570;<span class="math inline">\(f(x)=&lt;w,x&gt;\)</span></td>
-<td style="text-align: center;">Perceptron,SVM</td>
-<td style="text-align: center;">Ridge regression SVR</td>
-<td style="text-align: center;">Structured SVM,Ranking SVM</td>
+<tr>
+<td style="text-align:center">&#x7EBF;&#x6027;&#x51FD;&#x6570;$f(x)=<w,x>$</w,x></td>
+<td style="text-align:center">Perceptron,SVM</td>
+<td style="text-align:center">Ridge regression SVR</td>
+<td style="text-align:center">Structured SVM,Ranking SVM</td>
 </tr>
-<tr class="even">
-<td style="text-align: center;">&#x6811;</td>
-<td style="text-align: center;">Decision tree</td>
-<td style="text-align: center;">Regression tree</td>
-<td style="text-align: center;">LambdaMART</td>
+<tr>
+<td style="text-align:center">&#x6811;</td>
+<td style="text-align:center">Decision tree</td>
+<td style="text-align:center">Regression tree</td>
+<td style="text-align:center">LambdaMART</td>
 </tr>
-<tr class="odd">
-<td style="text-align: center;">&#x795E;&#x7ECF;&#x7F51;&#x7EDC;</td>
-<td style="text-align: center;">&#x795E;&#x7ECF;&#x7F51;&#x7EDC;</td>
-<td style="text-align: center;">&#x795E;&#x7ECF;&#x7F51;&#x7EDC;</td>
-<td style="text-align: center;">RankNet</td>
+<tr>
+<td style="text-align:center">&#x795E;&#x7ECF;&#x7F51;&#x7EDC;</td>
+<td style="text-align:center">&#x795E;&#x7ECF;&#x7F51;&#x7EDC;</td>
+<td style="text-align:center">&#x795E;&#x7ECF;&#x7F51;&#x7EDC;</td>
+<td style="text-align:center">RankNet</td>
 </tr>
-<tr class="even">
-<td style="text-align: center;">&#x53E0;&#x52A0;&#x51FD;&#x6570;<span class="math inline">\(f(x)=\sum_th_t(x)\)</span></td>
-<td style="text-align: center;">AdaBoost</td>
-<td style="text-align: center;">Boosted Regression Tree</td>
-<td style="text-align: center;">RankBoost</td>
+<tr>
+<td style="text-align:center">&#x53E0;&#x52A0;&#x51FD;&#x6570;$f(x)=\sum_th_t(x)$</td>
+<td style="text-align:center">AdaBoost</td>
+<td style="text-align:center">Boosted Regression Tree</td>
+<td style="text-align:center">RankBoost</td>
 </tr>
 </tbody>
 </table>
+</div>
 <hr>
-<h2 id="&#x5206;&#x7C7B;&#x6A21;&#x578B;&#x7684;&#x8BC4;&#x4EF7;&#x65B9;&#x6CD5;">&#x5206;&#x7C7B;&#x6A21;&#x578B;&#x7684;&#x8BC4;&#x4EF7;&#x65B9;&#x6CD5;</h2>
-<h3 id="n&#x6298;&#x4EA4;&#x53C9;&#x9A8C;&#x8BC1;">n&#x6298;&#x4EA4;&#x53C9;&#x9A8C;&#x8BC1;</h3>
-<p><img src="https://ws4.sinaimg.cn/large/006tNbRwly1fxs8tdtjifj31bk0e8whc.jpg"></p>
-<h3 id="&#x8BC4;&#x4EF7;&#x51C6;&#x5219;">&#x8BC4;&#x4EF7;&#x51C6;&#x5219;</h3>
+<h2 id="&#x5206;&#x7C7B;&#x6A21;&#x578B;&#x7684;&#x8BC4;&#x4EF7;&#x65B9;&#x6CD5;"><a href="#&#x5206;&#x7C7B;&#x6A21;&#x578B;&#x7684;&#x8BC4;&#x4EF7;&#x65B9;&#x6CD5;" class="headerlink" title="&#x5206;&#x7C7B;&#x6A21;&#x578B;&#x7684;&#x8BC4;&#x4EF7;&#x65B9;&#x6CD5;"></a>&#x5206;&#x7C7B;&#x6A21;&#x578B;&#x7684;&#x8BC4;&#x4EF7;&#x65B9;&#x6CD5;</h2><h3 id="n&#x6298;&#x4EA4;&#x53C9;&#x9A8C;&#x8BC1;"><a href="#n&#x6298;&#x4EA4;&#x53C9;&#x9A8C;&#x8BC1;" class="headerlink" title="n&#x6298;&#x4EA4;&#x53C9;&#x9A8C;&#x8BC1;"></a>n&#x6298;&#x4EA4;&#x53C9;&#x9A8C;&#x8BC1;</h3><p><img src="https://ws4.sinaimg.cn/large/006tNbRwly1fxs8tdtjifj31bk0e8whc.jpg" alt=""></p>
+<h3 id="&#x8BC4;&#x4EF7;&#x51C6;&#x5219;"><a href="#&#x8BC4;&#x4EF7;&#x51C6;&#x5219;" class="headerlink" title="&#x8BC4;&#x4EF7;&#x51C6;&#x5219;"></a>&#x8BC4;&#x4EF7;&#x51C6;&#x5219;</h3><div class="table-container">
 <table>
 <thead>
-<tr class="header">
-<th style="text-align: center;"></th>
-<th style="text-align: center;">&#x9884;&#x6D4B;&#x4E3A;&#x6B63;&#x6837;&#x672C;</th>
-<th style="text-align: center;">&#x9884;&#x6D4B;&#x4E3A;&#x8D1F;&#x6837;&#x672C;</th>
+<tr>
+<th style="text-align:center"></th>
+<th style="text-align:center">&#x9884;&#x6D4B;&#x4E3A;&#x6B63;&#x6837;&#x672C;</th>
+<th style="text-align:center">&#x9884;&#x6D4B;&#x4E3A;&#x8D1F;&#x6837;&#x672C;</th>
 </tr>
 </thead>
 <tbody>
-<tr class="odd">
-<td style="text-align: center;">&#x6807;&#x6CE8;&#x4E3A;&#x6B63;&#x6837;&#x672C;</td>
-<td style="text-align: center;">TP(true positive)</td>
-<td style="text-align: center;">FN(false negative)</td>
+<tr>
+<td style="text-align:center">&#x6807;&#x6CE8;&#x4E3A;&#x6B63;&#x6837;&#x672C;</td>
+<td style="text-align:center">TP(true positive)</td>
+<td style="text-align:center">FN(false negative)</td>
 </tr>
-<tr class="even">
-<td style="text-align: center;">&#x6807;&#x6CE8;&#x4E3A;&#x8D1F;&#x6837;&#x672C;</td>
-<td style="text-align: center;">FP(false positive)</td>
-<td style="text-align: center;">TN(true negative)</td>
+<tr>
+<td style="text-align:center">&#x6807;&#x6CE8;&#x4E3A;&#x8D1F;&#x6837;&#x672C;</td>
+<td style="text-align:center">FP(false positive)</td>
+<td style="text-align:center">TN(true negative)</td>
 </tr>
 </tbody>
 </table>
+</div>
 <ul>
-<li><span class="math inline">\(Accuracy = \frac{TP+TN}{TP+FN+FP+TN}\)</span></li>
-<li><span class="math inline">\(Precision = \frac{TP}{TP+FP}\)</span></li>
-<li><span class="math inline">\(Recall = \frac{TP}{TP+FN}\)</span></li>
-<li><span class="math inline">\(F = \frac{2PR}{P+R}\)</span> &#x8C03;&#x548C;&#x5E73;&#x5747;&#x6570;</li>
+<li>$Accuracy = \frac{TP+TN}{TP+FN+FP+TN}$</li>
+<li>$Precision = \frac{TP}{TP+FP}$</li>
+<li>$Recall = \frac{TP}{TP+FN}$</li>
+<li>$F = \frac{2PR}{P+R}$ &#x8C03;&#x548C;&#x5E73;&#x5747;&#x6570;</li>
 </ul>
 <p>&#x7531;&#x4E8E;&#x6570;&#x636E;&#x5927;&#x591A;&#x4E0D;&#x5E73;&#x8861;&#xFF0C;Accuracy&#x5728;&#x6240;&#x6709;&#x7684;&#x9884;&#x6D4B;&#x6837;&#x672C;&#x5747;&#x9884;&#x6D4B;&#x5230;&#x8D1F;&#x6837;&#x672C;&#x7684;&#x65F6;&#x5019;&#xFF0C;&#x4F1A;&#x4E25;&#x91CD;&#x504F;&#x5DEE;&#x3002;</p>
 <hr>
-<h2 id="&#x51B3;&#x7B56;&#x6811;">&#x51B3;&#x7B56;&#x6811;</h2>
-<p>&#x5206;&#x7C7B;&#x51FD;&#x6570;<span class="math inline">\(f\)</span>&#x4E3A;&#x4E00;&#x68F5;&#x6811;&#xFF0C;&#x79F0;&#x4E3A;&#x51B3;&#x7B56;&#x6811; &#x4E2D;&#x95F4;&#x8282;&#x70B9;&#xFF1A;&#x51B3;&#x7B56;&#x6B65;&#x9AA4; &#x53F6;&#x5B50;&#x8282;&#x70B9;&#xFF1A;&#x51B3;&#x7B56;&#x7ED3;&#x679C;&#x3001;&#x7C7B;&#x522B;&#x6807;&#x7B7E; <img src="https://ws2.sinaimg.cn/large/006tNbRwly1fxshxs5q39j31dv0u042r.jpg"></p>
-<p>&#x7ED9;&#x5B9A;&#x7684;&#x8BAD;&#x7EC3;&#x6570;&#x636E;&#xFF0C;&#x53EF;&#x80FD;&#x5B58;&#x5728;&#x591A;&#x9897;&#x80FD;&#x591F;&#x62DF;&#x5408;&#x6570;&#x636E;&#x7684;&#x51B3;&#x7B56;&#x6811;&#xFF0C;&#x90A3;&#x4E48;&#x5982;&#x4F55;&#x9009;&#x62E9;&#x5462;&#xFF1F; 1. &#x9009;&#x62E9;&#x6700;&#x7B80;&#x5355;&#x7684;&#x6811; 2. &#x62DF;&#x5408;&#x7CBE;&#x5EA6;&#x9AD8;&#x7684;&#x6811;</p>
-<h3 id="&#x9009;&#x62E9;&#x51B3;&#x7B56;&#x7279;&#x5F81;">&#x9009;&#x62E9;&#x51B3;&#x7B56;&#x7279;&#x5F81;</h3>
-<p>&#x6838;&#x5FC3;&#x6B65;&#x9AA4;&#xFF1A;&#x9009;&#x62E9;<strong>&#x5408;&#x9002;</strong>&#x7684;&#x7279;&#x5F81;&#x8FDB;&#x884C;&#x51B3;&#x7B56;&#xFF0C;&#x5212;&#x5206;&#x6570;&#x636E;&#xFF0C;&#x751F;&#x6210;&#x5B50;&#x8282;&#x70B9; &#x5408;&#x9002;&#xFF1A;&#x5C3D;&#x91CF;&#x5927;&#x7684;&#x51CF;&#x5C11;&#x5212;&#x5206;&#x540E;&#x81EA;&#x6570;&#x636E;&#x96C6;&#x7684;&#x6DF7;&#x6742;&#x5EA6;</p>
-<p><img src="https://ws3.sinaimg.cn/large/006tNbRwly1fxsi7sec7gj31660hqjsv.jpg"></p>
-<h3 id="&#x4FE1;&#x606F;&#x589E;&#x76CA;information-gain">&#x4FE1;&#x606F;&#x589E;&#x76CA;(Information gain)</h3>
-<p><img src="https://ws2.sinaimg.cn/small/006tNbRwly1fxss71x6b0j30gi0d4js6.jpg"></p>
-<p>&#x4ECE;&#x4E0A;&#x56FE;&#x53EF;&#x4EE5;&#x770B;&#x51FA;&#x6709;&#x4EE5;&#x4E0B;&#x6027;&#x8D28; <span class="math display">\[
+<h2 id="&#x51B3;&#x7B56;&#x6811;"><a href="#&#x51B3;&#x7B56;&#x6811;" class="headerlink" title="&#x51B3;&#x7B56;&#x6811;"></a>&#x51B3;&#x7B56;&#x6811;</h2><p>&#x5206;&#x7C7B;&#x51FD;&#x6570;$f$&#x4E3A;&#x4E00;&#x68F5;&#x6811;&#xFF0C;&#x79F0;&#x4E3A;&#x51B3;&#x7B56;&#x6811;<br>&#x4E2D;&#x95F4;&#x8282;&#x70B9;&#xFF1A;&#x51B3;&#x7B56;&#x6B65;&#x9AA4;<br>&#x53F6;&#x5B50;&#x8282;&#x70B9;&#xFF1A;&#x51B3;&#x7B56;&#x7ED3;&#x679C;&#x3001;&#x7C7B;&#x522B;&#x6807;&#x7B7E;<br><img src="https://ws2.sinaimg.cn/large/006tNbRwly1fxshxs5q39j31dv0u042r.jpg" alt=""></p>
+<p>&#x7ED9;&#x5B9A;&#x7684;&#x8BAD;&#x7EC3;&#x6570;&#x636E;&#xFF0C;&#x53EF;&#x80FD;&#x5B58;&#x5728;&#x591A;&#x9897;&#x80FD;&#x591F;&#x62DF;&#x5408;&#x6570;&#x636E;&#x7684;&#x51B3;&#x7B56;&#x6811;&#xFF0C;&#x90A3;&#x4E48;&#x5982;&#x4F55;&#x9009;&#x62E9;&#x5462;&#xFF1F;</p>
+<ol>
+<li>&#x9009;&#x62E9;&#x6700;&#x7B80;&#x5355;&#x7684;&#x6811;</li>
+<li>&#x62DF;&#x5408;&#x7CBE;&#x5EA6;&#x9AD8;&#x7684;&#x6811;</li>
+</ol>
+<h3 id="&#x9009;&#x62E9;&#x51B3;&#x7B56;&#x7279;&#x5F81;"><a href="#&#x9009;&#x62E9;&#x51B3;&#x7B56;&#x7279;&#x5F81;" class="headerlink" title="&#x9009;&#x62E9;&#x51B3;&#x7B56;&#x7279;&#x5F81;"></a>&#x9009;&#x62E9;&#x51B3;&#x7B56;&#x7279;&#x5F81;</h3><p>&#x6838;&#x5FC3;&#x6B65;&#x9AA4;&#xFF1A;&#x9009;&#x62E9;<strong>&#x5408;&#x9002;</strong>&#x7684;&#x7279;&#x5F81;&#x8FDB;&#x884C;&#x51B3;&#x7B56;&#xFF0C;&#x5212;&#x5206;&#x6570;&#x636E;&#xFF0C;&#x751F;&#x6210;&#x5B50;&#x8282;&#x70B9;<br>&#x5408;&#x9002;&#xFF1A;&#x5C3D;&#x91CF;&#x5927;&#x7684;&#x51CF;&#x5C11;&#x5212;&#x5206;&#x540E;&#x81EA;&#x6570;&#x636E;&#x96C6;&#x7684;&#x6DF7;&#x6742;&#x5EA6;</p>
+<p><img src="https://ws3.sinaimg.cn/large/006tNbRwly1fxsi7sec7gj31660hqjsv.jpg" alt=""></p>
+<h3 id="&#x4FE1;&#x606F;&#x589E;&#x76CA;-Information-gain"><a href="#&#x4FE1;&#x606F;&#x589E;&#x76CA;-Information-gain" class="headerlink" title="&#x4FE1;&#x606F;&#x589E;&#x76CA;(Information gain)"></a>&#x4FE1;&#x606F;&#x589E;&#x76CA;(Information gain)</h3><p><img src="https://ws2.sinaimg.cn/small/006tNbRwly1fxss71x6b0j30gi0d4js6.jpg" alt=""></p>
+<p>&#x4ECE;&#x4E0A;&#x56FE;&#x53EF;&#x4EE5;&#x770B;&#x51FA;&#x6709;&#x4EE5;&#x4E0B;&#x6027;&#x8D28;</p>
+<script type="math/tex; mode=display">
 \begin{aligned}
-&amp;H(A,X) = H(X,A)\\
-&amp;IG(X|A) = IG(A|X)\\
-&amp;IG(X|X) = H(X)\\
-&amp;IG(X|A) = H(X) + H(A) - H(X,A)
-\end{aligned}
-\]</span></p>
-<p>&#x5BF9;&#x4E8E;&#x4E0A;&#x8FF0;&#x51B3;&#x7B56;&#x6811;&#x7B97;&#x6CD5;&#x6709;&#x4EE5;&#x4E0B;&#x7279;&#x5F81;&#xFF1A; * &#x8D2A;&#x5FC3;&#x7B56;&#x7565; * &#x4ECE;&#x6839;&#x8282;&#x70B9;&#x5F00;&#x59CB;&#xFF0C;&#x5DF2;&#x5EFA;&#x7ACB;&#x7684;&#x6811;&#x4E0D;&#x518D;&#x6539;&#x53D8; * &#x6570;&#x636E;&#x5212;&#x5206;&#x540E;&#x4E0D;&#x518D;&#x6539;&#x53D8; * &#x6BCF;&#x6B21;&#x9009;&#x62E9;&#x5C40;&#x90E8;&#x4FE1;&#x606F;&#x589E;&#x76CA;&#x6700;&#x5927;&#x7684;&#x7279;&#x5F81;&#x5212;&#x5206;&#x6570;&#x636E; * &#x5C40;&#x90E8;&#x6700;&#x4F18;&#x89E3; * &#x9012;&#x5F52;&#x7B97;&#x6CD5; - &#x6BCF;&#x4E00;&#x4E2A;&#x51B3;&#x7B56;&#x8282;&#x70B9;&#x7528;&#x76F8;&#x540C;&#x7684;&#x7B56;&#x7565;&#x6269;&#x5F20; * &#x4FE1;&#x606F;&#x589E;&#x76CA;IG&#x4E0D;&#x662F;&#x552F;&#x4E00;&#x7684;&#x9009;&#x62E9;</p>
-<h3 id="&#x6539;&#x8FDB;">&#x6539;&#x8FDB;</h3>
-<p>&#x4E0A;&#x8FF0;&#x7B97;&#x6CD5;&#x53EA;&#x80FD;&#x591F;&#x5904;&#x7406;&#x7C7B;&#x522B;&#x578B;&#x7684;&#x7279;&#x5F81;&#xFF0C;&#x5BF9;&#x4E8E;&#x6570;&#x503C;&#x578B;&#x7279;&#x5F81;&#x9700;&#x8981;&#x5212;&#x5206;&#x533A;&#x95F4;&#xFF0C;&#x6309;&#x7167;IG&#x6700;&#x5927;&#x5316;&#x7684;&#x539F;&#x5219;&#x9009;&#x62E9;&#x9608;&#x503C;&#x3002; &#x5BF9;&#x4E8E;&#x8FC7;&#x62DF;&#x5408;&#x7684;&#x60C5;&#x51B5;&#x8981;&#x964D;&#x4F4E;&#x6A21;&#x578B;&#x590D;&#x6742;&#x5EA6;&#xFF0C;&#x91C7;&#x7528;&#x526A;&#x679D;&#x65B9;&#x6CD5;&#x51CF;&#x5C11;&#x8282;&#x70B9;&#x6570;&#x76EE;(post-pruning)&#x3002;</p>
-<p><img src="https://ws4.sinaimg.cn/large/006tNbRwly1fxssoc2linj312a0u0grf.jpg"></p>
-<hr>
-<h2 id="svmperceptron">SVM/Perceptron</h2>
-<p>&#x5206;&#x7C7B;&#x8FB9;&#x8DDD;Margin&#xFF1A;&#x5BF9;&#x7EBF;&#x6027;&#x5206;&#x7C7B;&#x5668;&#x800C;&#x8A00;&#xFF0C;&#x8FB9;&#x8DDD;&#x5C31;&#x662F;&#x4ECE;&#x5206;&#x7C7B;&#x9762;&#x5230;&#x6700;&#x8FD1;&#x7684;&#x8BAD;&#x7EC3;&#x6837;&#x672C;&#x7684;&#x8DDD;&#x79BB;&#x3002; SVM(support vector machine)&#xFF1A;&#x6700;&#x5927;&#x5316;&#x5206;&#x7C7B;&#x8FB9;&#x8DDD;&#xFF0C;VC&#x7406;&#x8BBA;&#x8BC1;&#x660E;&#x6700;&#x5927;&#x8FB9;&#x8DDD;&#x5206;&#x7C7B;&#x5668;&#x6709;&#x8F83;&#x597D;&#x7684;&#x6CDB;&#x5316;&#x80FD;&#x529B;&#x3002;</p>
-<p><img src="https://ws2.sinaimg.cn/large/006tNbRwly1fxssvady1bj31bw0iu772.jpg"></p>
-<p><span class="math display">\[
-Margin = |x^+-x^-| = |\lambda w|=\frac{2}{&lt;w,w&gt;}\sqrt{&lt;w,w&gt;}=\frac{2}{\sqrt{w,w}}
-\]</span></p>
-<p>&#x4F18;&#x5316;&#x76EE;&#x6807;: <span class="math inline">\(min_{w,b}|w|^2\)</span>&#xFF0C;&#x7EA6;&#x675F;&#x6761;&#x4EF6;<span class="math inline">\(y_i(&lt;w,x_i&gt;+b)\geq 1, for \,i=1,...,N\)</span></p>
-<p>&#x5F53;&#x51FA;&#x73B0;&#x7EBF;&#x6027;&#x4E0D;&#x53EF;&#x5206;&#x7684;&#x65F6;&#x5019;&#xFF0C;&#x89E3;&#x51B3;&#x65B9;&#x6848;&#x662F;&#x5BB9;&#x5FCD;&#x9519;&#x8BEF;&#x7684;&#x53D1;&#x751F;&#xFF0C;&#x91C7;&#x7528;&#x8F6F;&#x8FB9;&#x8DDD;</p>
-<p><img src="https://ws3.sinaimg.cn/large/006tNbRwly1fxstiyn2x1j31ac0he40m.jpg"></p>
-<p>&#x4F18;&#x5316;&#x76EE;&#x6807;&#xFF1A;<span class="math inline">\(min_{w,b}|w|^2+C\cdot \sum_{i=1}^N\xi_i\)</span>&#xFF0C;&#x7EA6;&#x675F;&#x6761;&#x4EF6;<span class="math inline">\(y_i(&lt;w,x_i&gt;+b)\geq 1-\xi_i,\xi_i \geq 0\)</span> <span class="math inline">\(C\)</span>&#xFF1A;&#x6743;&#x8861;&#x8FB9;&#x8DDD;&#x5927;&#x5C0F;&#x4E0E;&#x9519;&#x8BEF;&#x5BB9;&#x5FCD;&#x5EA6;&#xFF0C;C&#x53D8;&#x5927;&#x727A;&#x7272;&#x8FB9;&#x8DDD;&#x51CF;&#x5C11;&#x8BAD;&#x7EC3;&#x96C6;&#x5408;&#x4E0A;&#x7684;&#x9519;&#x8BEF;</p>
-<hr>
-<h2 id="adaboost">AdaBoost</h2>
+&H(A,X) = H(X,A)\\
+&IG(X|A) = IG(A|X)\\
+&IG(X|X) = H(X)\\
+&IG(X|A) = H(X) + H(A) - H(X,A)
+\end{aligned}</script><p>&#x5BF9;&#x4E8E;&#x4E0A;&#x8FF0;&#x51B3;&#x7B56;&#x6811;&#x7B97;&#x6CD5;&#x6709;&#x4EE5;&#x4E0B;&#x7279;&#x5F81;&#xFF1A;</p>
 <ul>
+<li>&#x8D2A;&#x5FC3;&#x7B56;&#x7565; <ul>
+<li>&#x4ECE;&#x6839;&#x8282;&#x70B9;&#x5F00;&#x59CB;&#xFF0C;&#x5DF2;&#x5EFA;&#x7ACB;&#x7684;&#x6811;&#x4E0D;&#x518D;&#x6539;&#x53D8;</li>
+<li>&#x6570;&#x636E;&#x5212;&#x5206;&#x540E;&#x4E0D;&#x518D;&#x6539;&#x53D8;</li>
+<li>&#x6BCF;&#x6B21;&#x9009;&#x62E9;&#x5C40;&#x90E8;&#x4FE1;&#x606F;&#x589E;&#x76CA;&#x6700;&#x5927;&#x7684;&#x7279;&#x5F81;&#x5212;&#x5206;&#x6570;&#x636E;</li>
+<li>&#x5C40;&#x90E8;&#x6700;&#x4F18;&#x89E3;</li>
+</ul>
+</li>
+<li>&#x9012;&#x5F52;&#x7B97;&#x6CD5; - &#x6BCF;&#x4E00;&#x4E2A;&#x51B3;&#x7B56;&#x8282;&#x70B9;&#x7528;&#x76F8;&#x540C;&#x7684;&#x7B56;&#x7565;&#x6269;&#x5F20;</li>
+<li>&#x4FE1;&#x606F;&#x589E;&#x76CA;IG&#x4E0D;&#x662F;&#x552F;&#x4E00;&#x7684;&#x9009;&#x62E9;</li>
+</ul>
+<h3 id="&#x6539;&#x8FDB;"><a href="#&#x6539;&#x8FDB;" class="headerlink" title="&#x6539;&#x8FDB;"></a>&#x6539;&#x8FDB;</h3><p>&#x4E0A;&#x8FF0;&#x7B97;&#x6CD5;&#x53EA;&#x80FD;&#x591F;&#x5904;&#x7406;&#x7C7B;&#x522B;&#x578B;&#x7684;&#x7279;&#x5F81;&#xFF0C;&#x5BF9;&#x4E8E;&#x6570;&#x503C;&#x578B;&#x7279;&#x5F81;&#x9700;&#x8981;&#x5212;&#x5206;&#x533A;&#x95F4;&#xFF0C;&#x6309;&#x7167;IG&#x6700;&#x5927;&#x5316;&#x7684;&#x539F;&#x5219;&#x9009;&#x62E9;&#x9608;&#x503C;&#x3002;<br>&#x5BF9;&#x4E8E;&#x8FC7;&#x62DF;&#x5408;&#x7684;&#x60C5;&#x51B5;&#x8981;&#x964D;&#x4F4E;&#x6A21;&#x578B;&#x590D;&#x6742;&#x5EA6;&#xFF0C;&#x91C7;&#x7528;&#x526A;&#x679D;&#x65B9;&#x6CD5;&#x51CF;&#x5C11;&#x8282;&#x70B9;&#x6570;&#x76EE;(post-pruning)&#x3002;</p>
+<p><img src="https://ws4.sinaimg.cn/large/006tNbRwly1fxssoc2linj312a0u0grf.jpg" alt=""></p>
+<hr>
+<h2 id="SVM-Perceptron"><a href="#SVM-Perceptron" class="headerlink" title="SVM/Perceptron"></a>SVM/Perceptron</h2><p>&#x5206;&#x7C7B;&#x8FB9;&#x8DDD;Margin&#xFF1A;&#x5BF9;&#x7EBF;&#x6027;&#x5206;&#x7C7B;&#x5668;&#x800C;&#x8A00;&#xFF0C;&#x8FB9;&#x8DDD;&#x5C31;&#x662F;&#x4ECE;&#x5206;&#x7C7B;&#x9762;&#x5230;&#x6700;&#x8FD1;&#x7684;&#x8BAD;&#x7EC3;&#x6837;&#x672C;&#x7684;&#x8DDD;&#x79BB;&#x3002;<br>SVM(support vector machine)&#xFF1A;&#x6700;&#x5927;&#x5316;&#x5206;&#x7C7B;&#x8FB9;&#x8DDD;&#xFF0C;VC&#x7406;&#x8BBA;&#x8BC1;&#x660E;&#x6700;&#x5927;&#x8FB9;&#x8DDD;&#x5206;&#x7C7B;&#x5668;&#x6709;&#x8F83;&#x597D;&#x7684;&#x6CDB;&#x5316;&#x80FD;&#x529B;&#x3002;</p>
+<p><img src="https://ws2.sinaimg.cn/large/006tNbRwly1fxssvady1bj31bw0iu772.jpg" alt=""></p>
+<p>$$<br>Margin = |x^+-x^-| = |\lambda w|=\frac{2}{<w,w>}\sqrt{<w,w>}=\frac{2}{\sqrt{w,w}}</w,w></w,w></p>
+<p>$$</p>
+<p>&#x4F18;&#x5316;&#x76EE;&#x6807;: $min_{w,b}|w|^2$&#xFF0C;&#x7EA6;&#x675F;&#x6761;&#x4EF6;$y_i(<w,x_i>+b)\geq 1, for \,i=1,&#x2026;,N$</w,x_i></p>
+<p>&#x5F53;&#x51FA;&#x73B0;&#x7EBF;&#x6027;&#x4E0D;&#x53EF;&#x5206;&#x7684;&#x65F6;&#x5019;&#xFF0C;&#x89E3;&#x51B3;&#x65B9;&#x6848;&#x662F;&#x5BB9;&#x5FCD;&#x9519;&#x8BEF;&#x7684;&#x53D1;&#x751F;&#xFF0C;&#x91C7;&#x7528;&#x8F6F;&#x8FB9;&#x8DDD;</p>
+<p><img src="https://ws3.sinaimg.cn/large/006tNbRwly1fxstiyn2x1j31ac0he40m.jpg" alt=""></p>
+<p>&#x4F18;&#x5316;&#x76EE;&#x6807;&#xFF1A;$min_{w,b}|w|^2+C\cdot \sum_{i=1}^N\xi_i$&#xFF0C;&#x7EA6;&#x675F;&#x6761;&#x4EF6;$y_i(<w,x_i>+b)\geq 1-\xi_i,\xi_i \geq 0$<br>$C$&#xFF1A;&#x6743;&#x8861;&#x8FB9;&#x8DDD;&#x5927;&#x5C0F;&#x4E0E;&#x9519;&#x8BEF;&#x5BB9;&#x5FCD;&#x5EA6;&#xFF0C;C&#x53D8;&#x5927;&#x727A;&#x7272;&#x8FB9;&#x8DDD;&#x51CF;&#x5C11;&#x8BAD;&#x7EC3;&#x96C6;&#x5408;&#x4E0A;&#x7684;&#x9519;&#x8BEF;</w,x_i></p>
+<hr>
+<h2 id="AdaBoost"><a href="#AdaBoost" class="headerlink" title="AdaBoost"></a>AdaBoost</h2><ul>
 <li>&#x7EC4;&#x4F1A;&#x6709;&#x5DEE;&#x5F02;&#x6027;&#x7684;&#x5F31;&#x5206;&#x7C7B;&#x5668;&#x53EF;&#x4EE5;&#x5F97;&#x5230;&#x5F3A;&#x5206;&#x7C7B;&#x5668;</li>
 <li>&#x4E0D;&#x540C;&#x7684;&#x5F31;&#x5206;&#x7C7B;&#x5668;&#x53EF;&#x4EE5;&#x901A;&#x8FC7;&#x4E0D;&#x540C;&#x7684;&#x7B97;&#x6CD5;&#x3001;&#x7279;&#x5F81;&#x3001;&#x6570;&#x636E;&#x8BAD;&#x7EC3;&#x5F97;&#x5230;</li>
 <li>&#x5F31;&#x5206;&#x7C7B;&#x5668;&#x7684;&#x9884;&#x6D4B;&#x7CBE;&#x5EA6;&#x5F3A;&#x4E8E;&#x968F;&#x673A;&#x9884;&#x6D4B;</li>
 </ul>
 <p>&#x57FA;&#x672C;&#x8BAD;&#x7EC3;&#x8FC7;&#x7A0B;&#x5982;&#x4E0B;&#xFF1A;</p>
-<p><img src="https://ws4.sinaimg.cn/large/006tNbRwly1fxstsvq2jnj31400s80vt.jpg"></p>
+<p><img src="https://ws4.sinaimg.cn/large/006tNbRwly1fxstsvq2jnj31400s80vt.jpg" alt=""></p>
 <p>AdaBoost &#x7B97;&#x6CD5;&#x5982;&#x4E0B;&#xFF1A;</p>
-<p><img src="https://ws1.sinaimg.cn/large/006tNbRwly1fxstukht4mj31aa0u0ajy.jpg"></p>
+<p><img src="https://ws1.sinaimg.cn/large/006tNbRwly1fxstukht4mj31aa0u0ajy.jpg" alt=""></p>
 
             </div>
         
