@@ -4,6 +4,112 @@
 
     
   <url>
+    <loc>http://www.liufr.com/2019/11/28/%E6%95%B0%E6%8D%AE%E6%8C%96%E6%8E%98/2019-11-28-Learning%20On-the-Job%20to%20Re-rank%20Anomalies%20from%20Top-1%20Feedback/</loc>
+    <lastmod>2020-12-29T01:51:31.029Z</lastmod>
+    <data>
+        <display>
+        <title>Learning On-the-Job to Re-rank Anomalies from Top-1 Feedback(CMU,SDM'19)</title>
+        <pubTime>2019-11-27T16:00:00.000Z</pubTime>
+        
+        <tag>Anomaly detection</tag>
+         
+         
+           
+             
+              <breadCrumb title="Anomaly detection" url="http://www.liufr.com/categories/Anomaly-detection/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://www.liufr.com/2020/12/02/%E6%B5%81%E5%A4%84%E7%90%86/2020-12-02-%E5%9C%A8%E5%8F%98%E5%8C%96%E7%89%B9%E5%BE%81%E7%9A%84%E6%95%B0%E6%8D%AE%E6%B5%81%E4%B8%AD%E8%BF%9B%E8%A1%8C%E5%AE%9E%E6%97%B6%E5%BC%82%E5%B8%B8%E6%A3%80%E6%B5%8B/</loc>
+    <lastmod>2020-12-29T01:40:52.951Z</lastmod>
+    <data>
+        <display>
+        <title>在变化特征的数据流中进行实时异常检测(xStream，KDD'18)</title>
+        <pubTime>2020-12-01T16:00:00.000Z</pubTime>
+        
+        <tag>Anomaly detection</tag>
+         
+        <tag>KDD</tag>
+         
+        <tag>Stream processing</tag>
+         
+         
+           
+             
+              <breadCrumb title="Stream processing" url="http://www.liufr.com/categories/Stream-processing/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://www.liufr.com/2020/12/01/%E6%B5%81%E5%A4%84%E7%90%86/2020-12-1-%E5%A2%9E%E9%87%8F%E8%AE%A1%E7%AE%97--%E6%96%B9%E5%B7%AE%E4%B8%8E%E5%8D%8F%E6%96%B9%E5%B7%AE/</loc>
+    <lastmod>2020-12-29T01:40:52.554Z</lastmod>
+    <data>
+        <display>
+        <title>增量计算——方差与协方差</title>
+        <pubTime>2020-11-30T16:00:00.000Z</pubTime>
+        
+        <tag>Stream processing</tag>
+         
+        <tag>Algorithm</tag>
+         
+         
+           
+             
+              <breadCrumb title="Stream processing" url="http://www.liufr.com/categories/Stream-processing/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://www.liufr.com/2020/10/22/%E6%B5%81%E5%A4%84%E7%90%86/2020-10-22-Kafaka%E5%92%8CFlink%E7%9A%84%E6%B5%81%E5%BC%8F%E5%A4%84%E7%90%86%E6%AF%94%E8%BE%83/</loc>
+    <lastmod>2020-12-29T01:39:02.160Z</lastmod>
+    <data>
+        <display>
+        <title>Kafaka和Flink的流式处理比较</title>
+        <pubTime>2020-10-21T16:00:00.000Z</pubTime>
+        
+        <tag>Stream processing</tag>
+         
+         
+           
+             
+              <breadCrumb title="Stream processing" url="http://www.liufr.com/categories/Stream-processing/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://www.liufr.com/2020/12/24/%E6%95%B0%E6%8D%AE%E6%8C%96%E6%8E%98/2020-12-24-KDD'99%E7%BD%91%E7%BB%9C%E5%BC%82%E5%B8%B8%E6%A3%80%E6%B5%8B%E5%88%86%E6%9E%90%E6%96%B9%E6%B3%95%E6%B1%87%E6%80%BB/</loc>
+    <lastmod>2020-12-28T01:27:54.760Z</lastmod>
+    <data>
+        <display>
+        <title>KDD'19网络流量异常检测分析方法汇总</title>
+        <pubTime>2020-12-23T16:00:00.000Z</pubTime>
+        
+        <tag>Anomaly detection</tag>
+         
+         
+           
+             
+              <breadCrumb title="Anomaly detection" url="http://www.liufr.com/categories/Anomaly-detection/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://www.liufr.com/2020/12/14/%E6%B5%81%E5%A4%84%E7%90%86/2020-12-14-%E5%9F%BA%E4%BA%8E%E6%9E%81%E5%80%BC%E7%90%86%E8%AE%BA%E7%9A%84%E6%B5%81%E6%95%B0%E6%8D%AE%E5%BC%82%E5%B8%B8%E6%A3%80%E6%B5%8B/</loc>
     <lastmod>2020-12-15T02:58:10.649Z</lastmod>
     <data>
@@ -67,92 +173,6 @@
            
              
               <breadCrumb title="Stream processing" url="http://www.liufr.com/categories/Stream-processing/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://www.liufr.com/2020/12/02/%E6%B5%81%E5%A4%84%E7%90%86/2020-12-02-%E5%9C%A8%E5%8F%98%E5%8C%96%E7%89%B9%E5%BE%81%E7%9A%84%E6%95%B0%E6%8D%AE%E6%B5%81%E4%B8%AD%E8%BF%9B%E8%A1%8C%E5%AE%9E%E6%97%B6%E5%BC%82%E5%B8%B8%E6%A3%80%E6%B5%8B/</loc>
-    <lastmod>2020-12-07T02:24:04.254Z</lastmod>
-    <data>
-        <display>
-        <title>在变化特征的数据流中进行实时异常检测(xStream，KDD'18)</title>
-        <pubTime>2020-12-01T16:00:00.000Z</pubTime>
-        
-        <tag>Anomaly detection</tag>
-         
-        <tag>KDD</tag>
-         
-        <tag>Stream processing</tag>
-         
-         
-           
-             
-              <breadCrumb title="Stream processing" url="http://www.liufr.com/categories/Stream-processing/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://www.liufr.com/2020/12/01/%E6%B5%81%E5%A4%84%E7%90%86/2020-12-1-%E5%A2%9E%E9%87%8F%E8%AE%A1%E7%AE%97--%E6%96%B9%E5%B7%AE%E4%B8%8E%E5%8D%8F%E6%96%B9%E5%B7%AE/</loc>
-    <lastmod>2020-12-01T12:04:08.377Z</lastmod>
-    <data>
-        <display>
-        <title>增量计算——方差与协方差</title>
-        <pubTime>2020-11-30T16:00:00.000Z</pubTime>
-        
-        <tag>Stream processing</tag>
-         
-        <tag>Algorithm</tag>
-         
-         
-           
-             
-              <breadCrumb title="Stream processing" url="http://www.liufr.com/categories/Stream-processing/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://www.liufr.com/2020/10/22/%E6%B5%81%E5%A4%84%E7%90%86/2020-10-22-Kafaka%E5%92%8CFlink%E7%9A%84%E6%B5%81%E5%BC%8F%E5%A4%84%E7%90%86%E6%AF%94%E8%BE%83/</loc>
-    <lastmod>2020-10-23T03:16:35.489Z</lastmod>
-    <data>
-        <display>
-        <title>Kafaka和Flink的流式处理比较</title>
-        <pubTime>2020-10-21T16:00:00.000Z</pubTime>
-        
-        <tag>Stream processing</tag>
-         
-         
-           
-             
-              <breadCrumb title="Stream processing" url="http://www.liufr.com/categories/Stream-processing/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://www.liufr.com/2019/11/28/%E6%95%B0%E6%8D%AE%E6%8C%96%E6%8E%98/2019-11-28-Learning%20On-the-Job%20to%20Re-rank%20Anomalies%20from%20Top-1%20Feedback/</loc>
-    <lastmod>2019-11-29T08:12:22.725Z</lastmod>
-    <data>
-        <display>
-        <title>Learning On-the-Job to Re-rank Anomalies from Top-1 Feedback(CMU,SDM'19)</title>
-        <pubTime>2019-11-27T16:00:00.000Z</pubTime>
-        
-        <tag>Anomaly detection</tag>
-         
-         
-           
-             
-              <breadCrumb title="Anomaly detection" url="http://www.liufr.com/categories/Anomaly-detection/"/>
           
         </display>
     </data>
