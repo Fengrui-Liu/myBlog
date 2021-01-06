@@ -13,18 +13,18 @@
 <meta name="keywords" content="Anomaly detection,CVPR">
 <meta property="og:type" content="article">
 <meta property="og:title" content="时间循环一致性学习">
-<meta property="og:url" content="http://www.liufr.com/myblog/2019/09/18/数据挖掘/2019-09-18-时间循环一致性学习/index.html">
+<meta property="og:url" content="http://www.liufr.com/myBlog/2019/09/18/数据挖掘/2019-09-18-时间循环一致性学习/index.html">
 <meta property="og:site_name" content="Fengrui Liu&#39;s Blog">
 <meta property="og:description" content="Temporal Cycle-Consistency Learning(CVPR&amp;apos;19) &amp;#x672C;&amp;#x6587;&amp;#x4ECB;&amp;#x7ECD;&amp;#x7684;&amp;#x662F;&amp;#x4E00;&amp;#x79CD;&amp;#x81EA;&amp;#x76D1;&amp;#x7763;&amp;#x5B66;&amp;#x4E60;&amp;#x7684;&amp;#x65B9;&amp;#x6CD5;&amp;#xFF0C;&amp;#x901A;&amp;#x8FC">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="http://www.liufr.com/myblog/2019/09/18/数据挖掘/2019-09-18-时间循环一致性学习/TCC.jpg">
-<meta property="og:image" content="http://www.liufr.com/myblog/2019/09/18/数据挖掘/2019-09-18-时间循环一致性学习/TCC-Regression.jpg">
-<meta property="og:image" content="http://www.liufr.com/myblog/2019/09/18/数据挖掘/2019-09-18-时间循环一致性学习/TCC-Anomaly.jpg">
+<meta property="og:image" content="http://www.liufr.com/myBlog/2019/09/18/数据挖掘/2019-09-18-时间循环一致性学习/TCC.jpg">
+<meta property="og:image" content="http://www.liufr.com/myBlog/2019/09/18/数据挖掘/2019-09-18-时间循环一致性学习/TCC-Regression.jpg">
+<meta property="og:image" content="http://www.liufr.com/myBlog/2019/09/18/数据挖掘/2019-09-18-时间循环一致性学习/TCC-Anomaly.jpg">
 <meta property="og:updated_time" content="2019-09-18T09:05:28.901Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="时间循环一致性学习">
 <meta name="twitter:description" content="Temporal Cycle-Consistency Learning(CVPR&amp;apos;19) &amp;#x672C;&amp;#x6587;&amp;#x4ECB;&amp;#x7ECD;&amp;#x7684;&amp;#x662F;&amp;#x4E00;&amp;#x79CD;&amp;#x81EA;&amp;#x76D1;&amp;#x7763;&amp;#x5B66;&amp;#x4E60;&amp;#x7684;&amp;#x65B9;&amp;#x6CD5;&amp;#xFF0C;&amp;#x901A;&amp;#x8FC">
-<meta name="twitter:image" content="http://www.liufr.com/myblog/2019/09/18/数据挖掘/2019-09-18-时间循环一致性学习/TCC.jpg">
+<meta name="twitter:image" content="http://www.liufr.com/myBlog/2019/09/18/数据挖掘/2019-09-18-时间循环一致性学习/TCC.jpg">
     
 
     
@@ -32,22 +32,22 @@
     
 
     
-        <link rel="icon" href="/favicon.ico" />
+        <link rel="icon" href="/myBlog/favicon.ico" />
     
 
-    <link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
-    <link rel="stylesheet" href="/libs/open-sans/styles.css">
-    <link rel="stylesheet" href="/libs/source-code-pro/styles.css">
+    <link rel="stylesheet" href="/myBlog/libs/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/myBlog/libs/open-sans/styles.css">
+    <link rel="stylesheet" href="/myBlog/libs/source-code-pro/styles.css">
 
-    <link rel="stylesheet" href="/css/style.css">
-    <script src="/libs/jquery/2.1.3/jquery.min.js"></script>
-    <script src="/libs/jquery/plugins/cookie/1.4.1/jquery.cookie.js"></script>
+    <link rel="stylesheet" href="/myBlog/css/style.css">
+    <script src="/myBlog/libs/jquery/2.1.3/jquery.min.js"></script>
+    <script src="/myBlog/libs/jquery/plugins/cookie/1.4.1/jquery.cookie.js"></script>
     
     
-        <link rel="stylesheet" href="/libs/lightgallery/css/lightgallery.min.css">
+        <link rel="stylesheet" href="/myBlog/libs/lightgallery/css/lightgallery.min.css">
     
     
-        <link rel="stylesheet" href="/libs/justified-gallery/justifiedGallery.min.css">
+        <link rel="stylesheet" href="/myBlog/libs/justified-gallery/justifiedGallery.min.css">
     
     
     
@@ -64,21 +64,21 @@
         <header id="header">
     <div id="header-main" class="header-inner">
         <div class="outer">
-            <a href="/" id="logo">
+            <a href="/myBlog/" id="logo">
                 <i class="logo"></i>
                 <span class="site-title">Fengrui Liu&#39;s Blog</span>
             </a>
             <nav id="main-nav">
                 
-                    <a class="main-nav-link" href="/">首页</a>
+                    <a class="main-nav-link" href="/myBlog/">首页</a>
                 
-                    <a class="main-nav-link" href="/archives">归档</a>
+                    <a class="main-nav-link" href="/myBlog/archives">归档</a>
                 
-                    <a class="main-nav-link" href="/categories">分类</a>
+                    <a class="main-nav-link" href="/myBlog/categories">分类</a>
                 
-                    <a class="main-nav-link" href="/tags">标签</a>
+                    <a class="main-nav-link" href="/myBlog/tags">标签</a>
                 
-                    <a class="main-nav-link" href="/about">关于</a>
+                    <a class="main-nav-link" href="/myBlog/about">关于</a>
                 
             </nav>
             
@@ -110,13 +110,13 @@
             TAGS: '标签',
             UNTITLED: '(未命名)',
         },
-        ROOT_URL: '/',
-        CONTENT_URL: '/content.json',
+        ROOT_URL: '/myBlog/',
+        CONTENT_URL: '/myBlog/content.json',
     };
     window.INSIGHT_CONFIG = INSIGHT_CONFIG;
 })(window);
 </script>
-<script src="/js/insight.js"></script>
+<script src="/myBlog/js/insight.js"></script>
 
 </div>
         </div>
@@ -125,15 +125,15 @@
         <table class="menu outer">
             <tr>
                 
-                    <td><a class="main-nav-link" href="/">首页</a></td>
+                    <td><a class="main-nav-link" href="/myBlog/">首页</a></td>
                 
-                    <td><a class="main-nav-link" href="/archives">归档</a></td>
+                    <td><a class="main-nav-link" href="/myBlog/archives">归档</a></td>
                 
-                    <td><a class="main-nav-link" href="/categories">分类</a></td>
+                    <td><a class="main-nav-link" href="/myBlog/categories">分类</a></td>
                 
-                    <td><a class="main-nav-link" href="/tags">标签</a></td>
+                    <td><a class="main-nav-link" href="/myBlog/tags">标签</a></td>
                 
-                    <td><a class="main-nav-link" href="/about">关于</a></td>
+                    <td><a class="main-nav-link" href="/myBlog/about">关于</a></td>
                 
                 <td>
                     
@@ -171,7 +171,7 @@
                             &nbsp;
                             Algorithm
                         </a>
-                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/2016/10/25/算法/2016-10-25-BellmanFord算法/">Bellman-Ford算法</a></li>  <li class="file"><a href="/2016/10/25/算法/2016-10-25-Dijkstra算法/">Dijkstra算法</a></li>  <li class="file"><a href="/2016/12/08/算法/2016-12-08-Bloom Filter/">Bloom Filter</a></li>  <li class="file"><a href="/2017/07/14/算法/2017-7-14-tf-idf/">tf-idf</a></li>  <li class="file"><a href="/2017/09/13/算法/2017-9-13-前缀和/">前缀和（SJTU OJ 1002）</a></li>  <li class="file"><a href="/2017/09/14/算法/2017-9-14-超大数求和/">超大数求和（SJTU OJ 1007）</a></li>  <li class="file"><a href="/2017/09/15/算法/2017-9-15-DP(0"1背包)/">DP（0/1背包）</a></li>  <li class="file"><a href="/2017/09/15/算法/2017-9-15-DP问题/">DP（SJTU OJ 1012）</a></li>  <li class="file"><a href="/2017/09/15/算法/2017-9-15-DP最长公共子序列/">DP（最长公共子序列）</a></li>  <li class="file"><a href="/2017/09/15/算法/2017-9-15-完全背包/">DP（完全背包）</a></li>  <li class="file"><a href="/2017/09/25/算法/2017-9-25-约瑟夫问题/">约瑟夫问题(SJTU OJ 1038)</a></li>  <li class="file"><a href="/2018/04/02/算法/2018-4-2-排序(位图数据结构)/">排序(位图数据结构)</a></li>  <li class="file"><a href="/2018/10/18/算法/2018-10-15-非负矩阵分解/">非负矩阵分解</a></li>  </ul> 
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/myBlog/2016/10/25/算法/2016-10-25-BellmanFord算法/">Bellman-Ford算法</a></li>  <li class="file"><a href="/myBlog/2016/10/25/算法/2016-10-25-Dijkstra算法/">Dijkstra算法</a></li>  <li class="file"><a href="/myBlog/2016/12/08/算法/2016-12-08-Bloom Filter/">Bloom Filter</a></li>  <li class="file"><a href="/myBlog/2017/07/14/算法/2017-7-14-tf-idf/">tf-idf</a></li>  <li class="file"><a href="/myBlog/2017/09/13/算法/2017-9-13-前缀和/">前缀和（SJTU OJ 1002）</a></li>  <li class="file"><a href="/myBlog/2017/09/14/算法/2017-9-14-超大数求和/">超大数求和（SJTU OJ 1007）</a></li>  <li class="file"><a href="/myBlog/2017/09/15/算法/2017-9-15-DP(0"1背包)/">DP（0/1背包）</a></li>  <li class="file"><a href="/myBlog/2017/09/15/算法/2017-9-15-DP最长公共子序列/">DP（最长公共子序列）</a></li>  <li class="file"><a href="/myBlog/2017/09/15/算法/2017-9-15-DP问题/">DP（SJTU OJ 1012）</a></li>  <li class="file"><a href="/myBlog/2017/09/15/算法/2017-9-15-完全背包/">DP（完全背包）</a></li>  <li class="file"><a href="/myBlog/2017/09/25/算法/2017-9-25-约瑟夫问题/">约瑟夫问题(SJTU OJ 1038)</a></li>  <li class="file"><a href="/myBlog/2018/04/02/算法/2018-4-2-排序(位图数据结构)/">排序(位图数据结构)</a></li>  <li class="file"><a href="/myBlog/2018/10/18/算法/2018-10-15-非负矩阵分解/">非负矩阵分解</a></li>  </ul> 
                     </li> 
                     
                     <li class="directory open">
@@ -180,7 +180,7 @@
                             &nbsp;
                             Anomaly detection
                         </a>
-                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/2019/08/14/数据挖掘/2019-08-14-异常检测（MSRA KDD'19）/">异常检测（MSRA，KDD'19）</a></li>  <li class="file"><a href="/2019/09/09/数据挖掘/2019-09-09-DNN多维时序无监督异常检测/">多维时序无监督异常检测</a></li>  <li class="file"><a href="/2019/09/12/数据挖掘/2019-09-12-时间注意力模型下的时序预测/">时间注意力模型下的时序预测</a></li>  <li class="file active"><a href="/2019/09/18/数据挖掘/2019-09-18-时间循环一致性学习/">时间循环一致性学习</a></li>  <li class="file"><a href="/2019/10/30/数据挖掘/2019-10-30-logparser/">logparser</a></li>  <li class="file"><a href="/2019/11/01/数据挖掘/2019-11-01-混合告警管理策略/">Signature-based IDS 混合告警管理策略</a></li>  <li class="file"><a href="/2019/11/20/数据挖掘/2019-11-20-Semi-supervised Anomaly Detection with an Application to Water Analytics/">Semi-supervised Anomaly Detection with an Application to Water Analytics</a></li>  <li class="file"><a href="/2019/11/26/数据挖掘/2019-11-26-Lifelong Anomaly Detection Through Unlearning/">Lifelong Anomaly Detection Through Unlearning(UCB,CCS'19)</a></li>  <li class="file"><a href="/2019/11/28/数据挖掘/2019-11-28-Learning On-the-Job to Re-rank Anomalies from Top-1 Feedback/">Learning On-the-Job to Re-rank Anomalies from Top-1 Feedback(CMU,SDM'19)</a></li>  <li class="file"><a href="/2020/12/24/数据挖掘/2020-12-24-KDD'99网络异常检测分析方法汇总/">KDD'19网络流量异常检测分析方法汇总</a></li>  </ul> 
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/myBlog/2019/08/14/数据挖掘/2019-08-14-异常检测（MSRA KDD'19）/">异常检测（MSRA，KDD'19）</a></li>  <li class="file"><a href="/myBlog/2019/09/09/数据挖掘/2019-09-09-DNN多维时序无监督异常检测/">多维时序无监督异常检测</a></li>  <li class="file"><a href="/myBlog/2019/09/12/数据挖掘/2019-09-12-时间注意力模型下的时序预测/">时间注意力模型下的时序预测</a></li>  <li class="file active"><a href="/myBlog/2019/09/18/数据挖掘/2019-09-18-时间循环一致性学习/">时间循环一致性学习</a></li>  <li class="file"><a href="/myBlog/2019/10/30/数据挖掘/2019-10-30-logparser/">logparser</a></li>  <li class="file"><a href="/myBlog/2019/11/01/数据挖掘/2019-11-01-混合告警管理策略/">Signature-based IDS 混合告警管理策略</a></li>  <li class="file"><a href="/myBlog/2019/11/20/数据挖掘/2019-11-20-Semi-supervised Anomaly Detection with an Application to Water Analytics/">Semi-supervised Anomaly Detection with an Application to Water Analytics</a></li>  <li class="file"><a href="/myBlog/2019/11/26/数据挖掘/2019-11-26-Lifelong Anomaly Detection Through Unlearning/">Lifelong Anomaly Detection Through Unlearning(UCB,CCS'19)</a></li>  <li class="file"><a href="/myBlog/2019/11/28/数据挖掘/2019-11-28-Learning On-the-Job to Re-rank Anomalies from Top-1 Feedback/">Learning On-the-Job to Re-rank Anomalies from Top-1 Feedback(CMU,SDM'19)</a></li>  <li class="file"><a href="/myBlog/2020/12/24/数据挖掘/2020-12-24-KDD'99网络异常检测分析方法汇总/">KDD'19网络流量异常检测分析方法汇总</a></li>  </ul> 
                     </li> 
                     
                     <li class="directory">
@@ -189,7 +189,7 @@
                             &nbsp;
                             Concept
                         </a>
-                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/2017/10/31/概念/2017-10-31-张量(Tensor)/">张量(Tensor)</a></li>  <li class="file"><a href="/2017/11/22/概念/2017-11-22-奇异值分解/">奇异值分解</a></li>  <li class="file"><a href="/2017/11/22/概念/2017-11-22-马哈拉诺比斯距离/">马哈拉诺比斯距离(马氏距离)</a></li>  </ul> 
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/myBlog/2017/10/31/概念/2017-10-31-张量(Tensor)/">张量(Tensor)</a></li>  <li class="file"><a href="/myBlog/2017/11/22/概念/2017-11-22-马哈拉诺比斯距离/">马哈拉诺比斯距离(马氏距离)</a></li>  <li class="file"><a href="/myBlog/2017/11/22/概念/2017-11-22-奇异值分解/">奇异值分解</a></li>  </ul> 
                     </li> 
                     
                     <li class="directory">
@@ -198,7 +198,7 @@
                             &nbsp;
                             Data mining
                         </a>
-                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/2018/12/02/数据挖掘/2018-12-02-监督学习/">监督学习 Supervised Learning(决策树+SVM/Perceptron+AdaBoost)</a></li>  <li class="file"><a href="/2018/12/03/数据挖掘/2018-12-03-非监督学习/">无监督学习 Unsupervised Learning(聚类、矩阵分解、话题模型)</a></li>  <li class="file"><a href="/2018/12/05/数据挖掘/2018-12-05-互联网搜索与排序/">互联网搜索与排序</a></li>  <li class="file"><a href="/2018/12/05/数据挖掘/2018-12-05-大规模机器学习/">大规模机器学习</a></li>  </ul> 
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/myBlog/2018/12/02/数据挖掘/2018-12-02-监督学习/">监督学习 Supervised Learning(决策树+SVM/Perceptron+AdaBoost)</a></li>  <li class="file"><a href="/myBlog/2018/12/03/数据挖掘/2018-12-03-非监督学习/">无监督学习 Unsupervised Learning(聚类、矩阵分解、话题模型)</a></li>  <li class="file"><a href="/myBlog/2018/12/05/数据挖掘/2018-12-05-互联网搜索与排序/">互联网搜索与排序</a></li>  <li class="file"><a href="/myBlog/2018/12/05/数据挖掘/2018-12-05-大规模机器学习/">大规模机器学习</a></li>  </ul> 
                     </li> 
                     
                     <li class="directory">
@@ -207,7 +207,7 @@
                             &nbsp;
                             Information Retrieval
                         </a>
-                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/2018/11/07/检索/2018-11-7-ETH Zurich at TREC Precision Medicine 2017/">ETH Zurich at TREC Precision Medicine 2017</a></li>  </ul> 
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/myBlog/2018/11/07/检索/2018-11-7-ETH Zurich at TREC Precision Medicine 2017/">ETH Zurich at TREC Precision Medicine 2017</a></li>  </ul> 
                     </li> 
                     
                     <li class="directory">
@@ -216,7 +216,7 @@
                             &nbsp;
                             Networking
                         </a>
-                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/2016/12/24/网络/2016-12-24-ipv4在Linux上的实现/">学习构造用户空间的IP栈（资料总结）</a></li>  <li class="file"><a href="/2017/07/14/网络/2017-07-14-Ego networks/">Ego networks</a></li>  <li class="file"><a href="/2017/11/28/网络/2017-11-28-路由协议汇总整理/">路由协议汇总整理</a></li>  <li class="file"><a href="/2018/04/24/网络/2018-4-24-Mininet拓扑学习/">Mininet拓扑学习</a></li>  <li class="file"><a href="/2018/08/23/网络/2018-8-24-SketchLearn/">SketchLearn: Relieving User Burdens in Approximate Measurement with Automated Statistical Inference</a></li>  <li class="file"><a href="/2018/08/23/网络/2018-8-23-Elastic Sketch/">Elastic Sketch: Adaptive and Fast Network-wide Measurements</a></li>  <li class="file"><a href="/2018/08/23/网络/2018-8-23-SketchVisor/">SketchVisor: Robust Network Measurement for Soware Packet Processing</a></li>  </ul> 
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/myBlog/2016/12/24/网络/2016-12-24-ipv4在Linux上的实现/">学习构造用户空间的IP栈（资料总结）</a></li>  <li class="file"><a href="/myBlog/2017/07/14/网络/2017-07-14-Ego networks/">Ego networks</a></li>  <li class="file"><a href="/myBlog/2017/11/28/网络/2017-11-28-路由协议汇总整理/">路由协议汇总整理</a></li>  <li class="file"><a href="/myBlog/2018/04/24/网络/2018-4-24-Mininet拓扑学习/">Mininet拓扑学习</a></li>  <li class="file"><a href="/myBlog/2018/08/23/网络/2018-8-24-SketchLearn/">SketchLearn: Relieving User Burdens in Approximate Measurement with Automated Statistical Inference</a></li>  <li class="file"><a href="/myBlog/2018/08/23/网络/2018-8-23-Elastic Sketch/">Elastic Sketch: Adaptive and Fast Network-wide Measurements</a></li>  <li class="file"><a href="/myBlog/2018/08/23/网络/2018-8-23-SketchVisor/">SketchVisor: Robust Network Measurement for Soware Packet Processing</a></li>  </ul> 
                     </li> 
                     
                     <li class="directory">
@@ -225,7 +225,7 @@
                             &nbsp;
                             Pattern recognition
                         </a>
-                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/2018/11/19/模式识别/2018-11-19-证明拉普拉斯矩阵是半正定矩阵/">证明拉普拉斯矩阵是半正定矩阵</a></li>  </ul> 
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/myBlog/2018/11/19/模式识别/2018-11-19-证明拉普拉斯矩阵是半正定矩阵/">证明拉普拉斯矩阵是半正定矩阵</a></li>  </ul> 
                     </li> 
                     
                     <li class="directory">
@@ -234,7 +234,7 @@
                             &nbsp;
                             Pi
                         </a>
-                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/2016/08/06/Pi/2016-08-06-Raspberry Pi OK01/">Raspberry Pi OK01</a></li>  <li class="file"><a href="/2016/08/06/Pi/2016-08-06-Raspberry Pi OK02/">Raspberry Pi OK02</a></li>  <li class="file"><a href="/2016/08/06/Pi/2016-08-06-Raspberry Pi OK03/">Raspberry Pi OK03</a></li>  <li class="file"><a href="/2016/08/06/Pi/2016-08-06-Baking Pi – Operating Systems Development前言/">Raspberry Pi OS Development 前言</a></li>  <li class="file"><a href="/2016/08/09/Pi/2016-08-09-Raspberry Pi OK04/">Raspberry Pi OK04</a></li>  <li class="file"><a href="/2016/08/09/Pi/2016-08-10-Raspberry Pi Screen01/">Raspberry Pi Screen01</a></li>  <li class="file"><a href="/2016/08/09/Pi/2016-08-09-Raspberry Pi OK05/">Raspberry Pi OK05</a></li>  <li class="file"><a href="/2016/08/09/Pi/2016-08-11-Raspberry Pi Screen02/">Raspberry Pi Screen02</a></li>  <li class="file"><a href="/2016/08/14/Pi/2016-08-14-Raspberry Pi Screen03/">Raspberry Pi Screen03</a></li>  <li class="file"><a href="/2016/08/16/Pi/2016-08-16-Raspberry Pi Screen04/">Raspberry Pi Screen04</a></li>  <li class="file"><a href="/2016/08/31/Pi/2016-08-31-Raspberry Pi Input01/">Raspberry Pi Input01</a></li>  <li class="file"><a href="/2016/09/01/Pi/2016-09-01-Raspberry Pi Input02/">Raspberry Pi Input02</a></li>  </ul> 
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/myBlog/2016/08/06/Pi/2016-08-06-Raspberry Pi OK01/">Raspberry Pi OK01</a></li>  <li class="file"><a href="/myBlog/2016/08/06/Pi/2016-08-06-Raspberry Pi OK02/">Raspberry Pi OK02</a></li>  <li class="file"><a href="/myBlog/2016/08/06/Pi/2016-08-06-Raspberry Pi OK03/">Raspberry Pi OK03</a></li>  <li class="file"><a href="/myBlog/2016/08/06/Pi/2016-08-06-Baking Pi – Operating Systems Development前言/">Raspberry Pi OS Development 前言</a></li>  <li class="file"><a href="/myBlog/2016/08/09/Pi/2016-08-11-Raspberry Pi Screen02/">Raspberry Pi Screen02</a></li>  <li class="file"><a href="/myBlog/2016/08/09/Pi/2016-08-09-Raspberry Pi OK04/">Raspberry Pi OK04</a></li>  <li class="file"><a href="/myBlog/2016/08/09/Pi/2016-08-09-Raspberry Pi OK05/">Raspberry Pi OK05</a></li>  <li class="file"><a href="/myBlog/2016/08/09/Pi/2016-08-10-Raspberry Pi Screen01/">Raspberry Pi Screen01</a></li>  <li class="file"><a href="/myBlog/2016/08/14/Pi/2016-08-14-Raspberry Pi Screen03/">Raspberry Pi Screen03</a></li>  <li class="file"><a href="/myBlog/2016/08/16/Pi/2016-08-16-Raspberry Pi Screen04/">Raspberry Pi Screen04</a></li>  <li class="file"><a href="/myBlog/2016/08/31/Pi/2016-08-31-Raspberry Pi Input01/">Raspberry Pi Input01</a></li>  <li class="file"><a href="/myBlog/2016/09/01/Pi/2016-09-01-Raspberry Pi Input02/">Raspberry Pi Input02</a></li>  </ul> 
                     </li> 
                     
                     <li class="directory">
@@ -243,7 +243,7 @@
                             &nbsp;
                             RL
                         </a>
-                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/2019/05/27/强化学习/2019-05-27-强化学习(1)/">强化学习(1)</a></li>  <li class="file"><a href="/2019/05/28/强化学习/2019-05-28-强化学习(2)/">强化学习(2)</a></li>  <li class="file"><a href="/2019/05/29/强化学习/2019-05-29-强化学习(3)/">强化学习(3)</a></li>  </ul> 
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/myBlog/2019/05/27/强化学习/2019-05-27-强化学习(1)/">强化学习(1)</a></li>  <li class="file"><a href="/myBlog/2019/05/28/强化学习/2019-05-28-强化学习(2)/">强化学习(2)</a></li>  <li class="file"><a href="/myBlog/2019/05/29/强化学习/2019-05-29-强化学习(3)/">强化学习(3)</a></li>  </ul> 
                     </li> 
                     
                     <li class="directory">
@@ -252,7 +252,7 @@
                             &nbsp;
                             Security
                         </a>
-                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/2018/09/02/安全/2018-09-02-蜜罐技术/">蜜罐技术</a></li>  <li class="file"><a href="/2019/06/22/安全/2019-06-22-网络异常行为检测/">网络异常行为检测</a></li>  <li class="file"><a href="/2019/07/21/安全/2019-07-21-指数加权移动平均法（EWMA）/">指数加权移动平均法（EWMA）</a></li>  <li class="file"><a href="/2019/07/21/安全/2019-07-21-多项式插值/">多项式插值</a></li>  <li class="file"><a href="/2019/07/21/安全/2019-07-22-利用时序决策树进行DGA僵尸检测/">利用时序决策树进行DGA僵尸检测</a></li>  <li class="file"><a href="/2019/07/21/安全/2019-07-21-梯度提升决策树(GBDT)/">梯度提升决策树（GBDT）</a></li>  <li class="file"><a href="/2019/07/21/安全/2019-07-22-孤立森林（Isolation Froest）/">孤立森林（Isolation Forest）</a></li>  <li class="file"><a href="/2019/07/21/安全/2019-07-22-xgboost/">孤立森林（Isolation Forest）</a></li>  </ul> 
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/myBlog/2018/09/02/安全/2018-09-02-蜜罐技术/">蜜罐技术</a></li>  <li class="file"><a href="/myBlog/2019/06/22/安全/2019-06-22-网络异常行为检测/">网络异常行为检测</a></li>  <li class="file"><a href="/myBlog/2019/07/21/安全/2019-07-21-多项式插值/">多项式插值</a></li>  <li class="file"><a href="/myBlog/2019/07/21/安全/2019-07-21-指数加权移动平均法（EWMA）/">指数加权移动平均法（EWMA）</a></li>  <li class="file"><a href="/myBlog/2019/07/21/安全/2019-07-22-xgboost/">孤立森林（Isolation Forest）</a></li>  <li class="file"><a href="/myBlog/2019/07/21/安全/2019-07-22-利用时序决策树进行DGA僵尸检测/">利用时序决策树进行DGA僵尸检测</a></li>  <li class="file"><a href="/myBlog/2019/07/21/安全/2019-07-21-梯度提升决策树(GBDT)/">梯度提升决策树（GBDT）</a></li>  <li class="file"><a href="/myBlog/2019/07/21/安全/2019-07-22-孤立森林（Isolation Froest）/">孤立森林（Isolation Forest）</a></li>  </ul> 
                     </li> 
                     
                     <li class="directory">
@@ -261,7 +261,7 @@
                             &nbsp;
                             Stream processing
                         </a>
-                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/2020/10/22/流处理/2020-10-22-Kafaka和Flink的流式处理比较/">Kafaka和Flink的流式处理比较</a></li>  <li class="file"><a href="/2020/12/01/流处理/2020-12-1-增量计算--方差与协方差/">增量计算——方差与协方差</a></li>  <li class="file"><a href="/2020/12/02/流处理/2020-12-07-rrcf基于随机森林划分的流数据异常检测/">基于Random cut forest的流数据异常检测(rrcf, UPenn, Amazon, ICML'16)</a></li>  <li class="file"><a href="/2020/12/02/流处理/2020-12-03-xStream 实时异常检测代码分析/">实时异常检测(xStream, CMU, KDD'18)</a></li>  <li class="file"><a href="/2020/12/02/流处理/2020-12-02-在变化特征的数据流中进行实时异常检测/">在变化特征的数据流中进行实时异常检测(xStream，KDD'18)</a></li>  <li class="file"><a href="/2020/12/14/流处理/2020-12-14-基于极值理论的流数据异常检测/">基于极值理论的流数据异常检测(SPOT/DSPOT, KDD'17)</a></li>  </ul> 
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/myBlog/2020/10/22/流处理/2020-10-22-Kafaka和Flink的流式处理比较/">Kafaka和Flink的流式处理比较</a></li>  <li class="file"><a href="/myBlog/2020/12/01/流处理/2020-12-1-增量计算--方差与协方差/">增量计算——方差与协方差</a></li>  <li class="file"><a href="/myBlog/2020/12/02/流处理/2020-12-07-rrcf基于随机森林划分的流数据异常检测/">基于Random cut forest的流数据异常检测(rrcf, UPenn, Amazon, ICML'16)</a></li>  <li class="file"><a href="/myBlog/2020/12/02/流处理/2020-12-02-在变化特征的数据流中进行实时异常检测/">在变化特征的数据流中进行实时异常检测(xStream，KDD'18)</a></li>  <li class="file"><a href="/myBlog/2020/12/02/流处理/2020-12-03-xStream 实时异常检测代码分析/">实时异常检测(xStream, CMU, KDD'18)</a></li>  <li class="file"><a href="/myBlog/2020/12/14/流处理/2020-12-14-基于极值理论的流数据异常检测/">基于极值理论的流数据异常检测(SPOT/DSPOT, KDD'17)</a></li>  </ul> 
                     </li> 
                     
                     <li class="directory">
@@ -270,7 +270,7 @@
                             &nbsp;
                             VANET
                         </a>
-                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/2017/03/12/VANET/2017-3-12-Vanet仿真-ns3(1)/">VANET仿真-ns3(1)</a></li>  <li class="file"><a href="/2017/03/12/VANET/2017-3-12-Vanet仿真-ns3(2)/">VANET仿真-ns3(2)</a></li>  <li class="file"><a href="/2017/03/12/VANET/2017-3-12-Vanet仿真-ns3(3)/">VANET仿真-ns3(3)</a></li>  <li class="file"><a href="/2017/03/13/VANET/2017-3-13-Vanet仿真-ns3(4)/">VANET仿真-ns3(4)</a></li>  <li class="file"><a href="/2017/03/13/VANET/2017-3-13-Vanet仿真-ns3(5)/">VANET仿真-ns3(5)</a></li>  <li class="file"><a href="/2017/03/15/VANET/2017-3-15-Vanet仿真-ns3(6)/">VANET仿真-ns3(6)</a></li>  </ul> 
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/myBlog/2017/03/12/VANET/2017-3-12-Vanet仿真-ns3(1)/">VANET仿真-ns3(1)</a></li>  <li class="file"><a href="/myBlog/2017/03/12/VANET/2017-3-12-Vanet仿真-ns3(3)/">VANET仿真-ns3(3)</a></li>  <li class="file"><a href="/myBlog/2017/03/12/VANET/2017-3-12-Vanet仿真-ns3(2)/">VANET仿真-ns3(2)</a></li>  <li class="file"><a href="/myBlog/2017/03/13/VANET/2017-3-13-Vanet仿真-ns3(5)/">VANET仿真-ns3(5)</a></li>  <li class="file"><a href="/myBlog/2017/03/13/VANET/2017-3-13-Vanet仿真-ns3(4)/">VANET仿真-ns3(4)</a></li>  <li class="file"><a href="/myBlog/2017/03/15/VANET/2017-3-15-Vanet仿真-ns3(6)/">VANET仿真-ns3(6)</a></li>  </ul> 
                     </li> 
                      </ul> 
     </div>
@@ -344,7 +344,7 @@
     <div class="widget-wrap">
         <h3 class="widget-title"><span>标签云</span></h3>
         <div class="widget tagcloud">
-            <a href="/tags/AAAI/" style="font-size: 10px;">AAAI</a> <a href="/tags/Algorithm/" style="font-size: 18.75px;">Algorithm</a> <a href="/tags/Anomaly-detection/" style="font-size: 20px;">Anomaly detection</a> <a href="/tags/CVPR/" style="font-size: 10px;">CVPR</a> <a href="/tags/Concept/" style="font-size: 11.25px;">Concept</a> <a href="/tags/Data-mining/" style="font-size: 12.5px;">Data mining</a> <a href="/tags/IPv4/" style="font-size: 10px;">IPv4</a> <a href="/tags/Information-Retrieval/" style="font-size: 10px;">Information Retrieval</a> <a href="/tags/KDD/" style="font-size: 13.75px;">KDD</a> <a href="/tags/Mininet/" style="font-size: 10px;">Mininet</a> <a href="/tags/Networking/" style="font-size: 16.25px;">Networking</a> <a href="/tags/OS/" style="font-size: 17.5px;">OS</a> <a href="/tags/Pattern-recognition/" style="font-size: 10px;">Pattern recognition</a> <a href="/tags/RL/" style="font-size: 11.25px;">RL</a> <a href="/tags/Raspberry-Pi/" style="font-size: 17.5px;">Raspberry-Pi</a> <a href="/tags/Security/" style="font-size: 16.25px;">Security</a> <a href="/tags/Stream-processing/" style="font-size: 15px;">Stream processing</a> <a href="/tags/VANET/" style="font-size: 15px;">VANET</a> <a href="/tags/ns3/" style="font-size: 15px;">ns3</a> <a href="/tags/time-series/" style="font-size: 10px;">time series</a>
+            <a href="/myBlog/tags/AAAI/" style="font-size: 10px;">AAAI</a> <a href="/myBlog/tags/Algorithm/" style="font-size: 18.75px;">Algorithm</a> <a href="/myBlog/tags/Anomaly-detection/" style="font-size: 20px;">Anomaly detection</a> <a href="/myBlog/tags/CVPR/" style="font-size: 10px;">CVPR</a> <a href="/myBlog/tags/Concept/" style="font-size: 11.25px;">Concept</a> <a href="/myBlog/tags/Data-mining/" style="font-size: 12.5px;">Data mining</a> <a href="/myBlog/tags/IPv4/" style="font-size: 10px;">IPv4</a> <a href="/myBlog/tags/Information-Retrieval/" style="font-size: 10px;">Information Retrieval</a> <a href="/myBlog/tags/KDD/" style="font-size: 13.75px;">KDD</a> <a href="/myBlog/tags/Mininet/" style="font-size: 10px;">Mininet</a> <a href="/myBlog/tags/Networking/" style="font-size: 16.25px;">Networking</a> <a href="/myBlog/tags/OS/" style="font-size: 17.5px;">OS</a> <a href="/myBlog/tags/Pattern-recognition/" style="font-size: 10px;">Pattern recognition</a> <a href="/myBlog/tags/RL/" style="font-size: 11.25px;">RL</a> <a href="/myBlog/tags/Raspberry-Pi/" style="font-size: 17.5px;">Raspberry-Pi</a> <a href="/myBlog/tags/Security/" style="font-size: 16.25px;">Security</a> <a href="/myBlog/tags/Stream-processing/" style="font-size: 15px;">Stream processing</a> <a href="/myBlog/tags/VANET/" style="font-size: 15px;">VANET</a> <a href="/myBlog/tags/ns3/" style="font-size: 15px;">ns3</a> <a href="/myBlog/tags/time-series/" style="font-size: 10px;">time series</a>
         </div>
     </div>
 
@@ -362,19 +362,19 @@
                         
     <div class="article-category">
     	<i class="fa fa-folder"></i>
-        <a class="article-category-link" href="/categories/Anomaly-detection/">Anomaly detection</a>
+        <a class="article-category-link" href="/myBlog/categories/Anomaly-detection/">Anomaly detection</a>
     </div>
 
                         
     <div class="article-tag">
         <i class="fa fa-tag"></i>
-        <a class="tag-link" href="/tags/Anomaly-detection/">Anomaly detection</a>, <a class="tag-link" href="/tags/CVPR/">CVPR</a>
+        <a class="tag-link" href="/myBlog/tags/Anomaly-detection/">Anomaly detection</a>, <a class="tag-link" href="/myBlog/tags/CVPR/">CVPR</a>
     </div>
 
                         
     <div class="article-date">
         <i class="fa fa-calendar"></i>
-        <a href="/2019/09/18/数据挖掘/2019-09-18-时间循环一致性学习/">
+        <a href="/myBlog/2019/09/18/数据挖掘/2019-09-18-时间循环一致性学习/">
             <time datetime="2019-09-17T16:00:00.000Z" itemprop="datePublished">2019-09-18</time>
         </a>
     </div>
@@ -407,7 +407,7 @@
 <p>&#x672C;&#x6587;&#x4ECB;&#x7ECD;&#x7684;&#x662F;&#x4E00;&#x79CD;&#x81EA;&#x76D1;&#x7763;&#x5B66;&#x4E60;&#x7684;&#x65B9;&#x6CD5;&#xFF0C;&#x901A;&#x8FC7;TCC&#x7684;&#x65B9;&#x6CD5;&#x8BAD;&#x7EC3;&#x7F51;&#x7EDC;&#xFF0C;&#x7136;&#x540E;&#x901A;&#x8FC7;&#x4E0D;&#x540C;&#x89C6;&#x9891;&#x7684;&#x5FAA;&#x73AF;&#x4E00;&#x81F4;&#x6027;&#x635F;&#x5931;&#x627E;&#x5230;&#x4E0D;&#x540C;&#x89C6;&#x9891;&#x5E27;&#x4E4B;&#x95F4;&#x7684;&#x4E00;&#x81F4;&#x6027;&#xFF0C;&#x7136;&#x540E;&#x4F7F;&#x7528;&#x6700;&#x8FD1;&#x90BB;&#x65B9;&#x6CD5;&#x8FDB;&#x884C;&#x89C6;&#x9891;&#x5BF9;&#x9F50;&#x3002;</p>
 <h2 id="&#x5FAA;&#x73AF;&#x4E00;&#x81F4;&#x8868;&#x793A;&#x5B66;&#x4E60;">&#x5FAA;&#x73AF;&#x4E00;&#x81F4;&#x8868;&#x793A;&#x5B66;&#x4E60;</h2>
 <p>&#x4E3B;&#x8981;&#x8D21;&#x732E;&#x662F;&#x91C7;&#x7528;&#x4E86;&#x81EA;&#x76D1;&#x7763;&#x7684;&#x5B66;&#x4E60;&#x65B9;&#x6CD5;&#xFF0C;&#x5B66;&#x4E60;&#x4E86;&#x4E00;&#x4E2A;&#x5D4C;&#x5165;&#x7A7A;&#x95F4;&#xFF08;embedding space&#xFF09;&#x4ECE;&#x800C;&#x4F7F;&#x5F97;&#x4E24;&#x4E2A;&#x76F8;&#x4F3C;&#x7684;&#x89C6;&#x9891;&#x5E8F;&#x5217;&#x53EF;&#x4EE5;&#x624D;&#x65F6;&#x95F4;&#x4E0A;&#x8FDB;&#x884C;&#x5BF9;&#x9F50;&#x3002;&#x53E6;&#x4E00;&#x79CD;&#x89E3;&#x91CA;&#x5C31;&#x662F;&#x8BF4;&#xFF0C;&#x5728;&#x5D4C;&#x5165;&#x5F0F;&#x7A7A;&#x95F4;&#x91CC;&#x5C06;&#x4E24;&#x4E2A;&#x5E8F;&#x5217;&#x4E0A;&#x6700;&#x77ED;&#x8DDD;&#x79BB;&#x7684;&#x70B9;&#x4E00;&#x5BF9;&#x4E00;&#x8FDE;&#x63A5;&#x540E;&#x7684;&#x6570;&#x91CF;&#x6700;&#x5927;&#x5316;&#x3002;&#x4E3A;&#x4E86;&#x5B9E;&#x73B0;&#x8FD9;&#x6837;&#x7684;&#x76EE;&#x6807;&#xFF0C;&#x672C;&#x6587;&#x901A;&#x8FC7;&#x5C06;&#x4E24;&#x4E2A;&#x5E8F;&#x5217;&#x4E2D;&#x5FAA;&#x73AF;&#x4E00;&#x81F4;&#x6027;&#x7684;&#x5E27;&#x7684;&#x6570;&#x91CF;&#x6700;&#x5927;&#x5316;&#xFF0C;&#x5982;&#x4E0B;&#x56FE;&#x6240;&#x793A;&#xFF1A;</p>
-<p><img src="/myblog/2019/09/18/&#x6570;&#x636E;&#x6316;&#x6398;/2019-09-18-&#x65F6;&#x95F4;&#x5FAA;&#x73AF;&#x4E00;&#x81F4;&#x6027;&#x5B66;&#x4E60;/TCC.jpg"></p>
+<p><img src="/myBlog/2019/09/18/&#x6570;&#x636E;&#x6316;&#x6398;/2019-09-18-&#x65F6;&#x95F4;&#x5FAA;&#x73AF;&#x4E00;&#x81F4;&#x6027;&#x5B66;&#x4E60;/TCC.jpg"></p>
 <p>&#x5FAA;&#x73AF;&#x4E00;&#x81F4;&#x6027;&#x7684;&#x8BA1;&#x7B97;&#x8FC7;&#x7A0B;&#x662F;&#x79BB;&#x6563;&#x4E0D;&#x53EF;&#x5FAE;&#x7684;&#xFF0C;&#x4E3A;&#x4E86;&#x80FD;&#x4F7F;&#x7528;&#x53CD;&#x5411;&#x4F20;&#x64AD;&#x5728;&#x5D4C;&#x5165;&#x5F0F;&#x7A7A;&#x95F4;&#x91CC;&#x8FDB;&#x884C;&#x5B66;&#xFF0C;&#x672C;&#x6587;&#x63D0;&#x51FA;&#x4E24;&#x79CD;&#x4E0D;&#x540C;&#x7684;&#x5FAA;&#x73AF;&#x4E00;&#x81F4;&#x6027;&#x7684;&#x635F;&#x5931;&#xFF08;cycle-consistency loss&#xFF09;&#xFF0C;&#x4E0B;&#x4E00;&#x8282;&#x8BE6;&#x7EC6;&#x4ECB;&#x7ECD;&#x3002;</p>
 <p>&#x7ED9;&#x5B9A;&#x4E00;&#x4E2A;&#x5E8F;&#x5217;&#x4E2D;&#x7684;&#x67D0;&#x4E00;&#x5E27;<span class="math inline">\(s_i\)</span>&#xFF0C;&#x5D4C;&#x5165;&#x8868;&#x8FBE;&#xFF08;embedding&#xFF09;&#x4E3A;<span class="math inline">\(u_i=\phi(s_i;\theta)\)</span>&#xFF0C;&#x5176;&#x4E2D;<span class="math inline">\(\phi\)</span>&#x662F;&#x4EE5;<span class="math inline">\(\theta\)</span>&#x4F5C;&#x4E3A;&#x53C2;&#x6570;&#x7684;&#x795E;&#x7ECF;&#x7F51;&#x7EDC;encoder&#x3002;&#x8FD9;&#x6837;&#x5BF9;&#x4E8E;&#x7ED9;&#x5B9A;&#x7684;&#x4E24;&#x4E2A;&#x89C6;&#x9891;&#x5E8F;&#x5217;<span class="math inline">\(S,T\)</span>&#xFF0C;&#x957F;&#x5EA6;&#x5206;&#x522B;&#x4E3A;<span class="math inline">\(N,M\)</span>&#xFF0C;embedding&#x7684;&#x8868;&#x8FBE;&#x5F0F;&#x8BA1;&#x7B97;&#x4E3A;<span class="math inline">\(U={u_1,u_2,...,u_N}\)</span>&#x548C;<span class="math inline">\(V={v_1,v_2,...v_M}\)</span>,&#x5176;&#x4E2D;&#x6709;<span class="math inline">\(u_i=\phi(s_i;\theta),v_i=\phi(t_i;\theta)\)</span></p>
 <h3 id="&#x5FAA;&#x73AF;&#x4E00;&#x81F4;&#x6027;">&#x5FAA;&#x73AF;&#x4E00;&#x81F4;&#x6027;</h3>
@@ -422,7 +422,7 @@ L_{abc} = -\sum_j^Ny_jlog(\hat{y_j})
 \]</span></p>
 <h3 id="&#x53CD;&#x5411;&#x5FAA;&#x73AF;&#x56DE;&#x5F52;cycle-back-regression">&#x53CD;&#x5411;&#x5FAA;&#x73AF;&#x56DE;&#x5F52;&#xFF08;cycle-back Regression&#xFF09;</h3>
 <p>&#x5C3D;&#x7BA1;&#x4E0A;&#x9762;&#x7684;Classification&#x53EF;&#x4EE5;&#x5B9A;&#x4E49;&#x4E00;&#x4E2A;&#x635F;&#x5931;&#x51FD;&#x6570;&#x7528;&#x4F5C;&#x5B66;&#x4E60;&#xFF0C;&#x4F46;&#x662F;&#x635F;&#x5931;&#x51FD;&#x6570;&#x65E0;&#x6CD5;&#x76F4;&#x89C2;&#x611F;&#x53D7;&#x5FAA;&#x73AF;&#x56DE;&#x6765;&#x540E;&#x7684;&#x8DDD;&#x79BB;&#x7ED3;&#x679C;&#xFF0C;&#x4E5F;&#x5C31;&#x662F;&#x8BF4;&#x6CA1;&#x6CD5;&#x8861;&#x91CF;cycle-back&#x56DE;&#x6765;&#x7684;&#x65F6;&#x95F4;&#x70B9;&#x4E0E;&#x5F53;&#x524D;&#x65F6;&#x95F4;&#x70B9;&#x7684;&#x8FDC;&#x8FD1;&#xFF0C;&#x5982;&#x679C;&#x67D0;&#x4E2A;&#x70B9;&#x5728;&#x5411;&#x56DE;&#x5FAA;&#x73AF;&#x7684;&#x65F6;&#x5019;&#x80FD;&#x53CA;&#x65F6;&#x627E;&#x5230;&#x5408;&#x7406;&#x7684;&#x5E27;&#xFF0C;&#x90A3;&#x4E48;&#x60E9;&#x7F5A;&#x5E94;&#x8BE5;&#x662F;&#x8F83;&#x5C0F;&#x7684;&#x3002;&#x672C;&#x6587;&#x63D0;&#x51FA;&#x53CD;&#x5411;&#x5FAA;&#x73AF;&#x56DE;&#x5F52;&#x5982;&#x4E0B;&#x56FE;&#x6240;&#x793A;</p>
-<p><img src="/myblog/2019/09/18/&#x6570;&#x636E;&#x6316;&#x6398;/2019-09-18-&#x65F6;&#x95F4;&#x5FAA;&#x73AF;&#x4E00;&#x81F4;&#x6027;&#x5B66;&#x4E60;/TCC-Regression.jpg"></p>
+<p><img src="/myBlog/2019/09/18/&#x6570;&#x636E;&#x6316;&#x6398;/2019-09-18-&#x65F6;&#x95F4;&#x5FAA;&#x73AF;&#x4E00;&#x81F4;&#x6027;&#x5B66;&#x4E60;/TCC-Regression.jpg"></p>
 <p>&#x9664;&#x4E86;&#x50CF;&#x4E0A;&#x6587;&#x4E00;&#x6837;&#x8BA1;&#x7B97;&#x6700;&#x8FD1;&#x90BB;<span class="math inline">\(\tilde{v}\)</span>&#x4E4B;&#x5916;&#xFF0C;&#x8FD8;&#x8981;&#x8BA1;&#x7B97;&#x76F8;&#x4F3C;&#x6027;&#x5411;&#x91CF; <span class="math display">\[
 \beta_k=\frac{e^{-||\tilde{v}-u_k||^2}}{\sum_j^Ne^{-||\tilde{v}_i-u_j||^2}}
 \]</span></p>
@@ -430,7 +430,7 @@ L_{abc} = -\sum_j^Ny_jlog(\hat{y_j})
 L{cbr}=\frac{|i-\mu|^2}{\sigma^2} + \lambda\ log(\sigma)
 \]</span> &#x5176;&#x4E2D;<span class="math inline">\(\mu=\sum_k^N\beta_k*k, \sigma^2=\sum_k^N\beta_k*(k-\mu)^2, \lambda\)</span> &#x662F;&#x6B63;&#x5219;&#x5316;&#x7684;&#x6743;&#x91CD;&#x53C2;&#x6570;</p>
 <h2 id="&#x5BF9;&#x4E8E;&#x5F02;&#x5E38;&#x68C0;&#x6D4B;&#x7684;&#x5E94;&#x7528;&#x601D;&#x8003;">&#x5BF9;&#x4E8E;&#x5F02;&#x5E38;&#x68C0;&#x6D4B;&#x7684;&#x5E94;&#x7528;&#x601D;&#x8003;</h2>
-<p><img src="/myblog/2019/09/18/&#x6570;&#x636E;&#x6316;&#x6398;/2019-09-18-&#x65F6;&#x95F4;&#x5FAA;&#x73AF;&#x4E00;&#x81F4;&#x6027;&#x5B66;&#x4E60;/TCC-Anomaly.jpg"></p>
+<p><img src="/myBlog/2019/09/18/&#x6570;&#x636E;&#x6316;&#x6398;/2019-09-18-&#x65F6;&#x95F4;&#x5FAA;&#x73AF;&#x4E00;&#x81F4;&#x6027;&#x5B66;&#x4E60;/TCC-Anomaly.jpg"></p>
 <p>&#x7528;TCC&#x6765;&#x505A;&#x7684;&#x5F02;&#x5E38;&#x68C0;&#x6D4B;&#x6709;&#x8F83;&#x5F3A;&#x7684;&#x5047;&#x8BBE;&#xFF0C;&#x7528;&#x4F5C;&#x6BD4;&#x5BF9;&#x7684;&#x5E8F;&#x5217;&#x4E0E;&#x5F53;&#x524D;&#x5E8F;&#x5217;&#x8981;&#x6709;&#x76F8;&#x4F3C;&#x7684;&#x4E0A;&#x4E0B;&#x6587;&#x5173;&#x7CFB;&#x624D;&#x53EF;&#x4EE5;&#x8FDB;&#x884C;&#x5F02;&#x5E38;&#x68C0;&#x6D4B;&#xFF0C;&#x800C;&#x4E14;&#x6BD4;&#x8F83;&#x9002;&#x5408;&#x9759;&#x6001;&#x6570;&#x636E;&#xFF0C;&#x56E0;&#x4E3A;&#x4E0D;&#x4EC5;&#x4EC5;&#x662F;&#x8DDF;&#x540E;&#x5411;&#x7684;&#x6570;&#x636E;&#x8FDB;&#x884C;&#x8BA1;&#x7B97;&#xFF0C;&#x8FD8;&#x53EF;&#x80FD;&#x524D;&#x5411;&#x8BA1;&#x7B97;&#xFF08;&#x9AD8;&#x65AF;&#x5206;&#x5E03;&#xFF0C;&#x6700;&#x7406;&#x60F3;&#x662F;&#x6BD4;&#x5BF9;&#x5230;&#x9AD8;&#x65AF;&#x7684;&#x6CE2;&#x5CF0;&#x4F4D;&#x7F6E;&#xFF09;&#xFF0C;&#x597D;&#x5728;&#x5BF9;&#x4E8E;&#x65F6;&#x5E8F;&#x6570;&#x636E;&#x6765;&#x8BF4;&#xFF0C;&#x4E0D;&#x9700;&#x8981;embedding&#x7684;&#x8FC7;&#x7A0B;&#xFF0C;&#x53EF;&#x80FD;&#x4F1A;&#x9700;&#x8981;&#x4E0B;&#x91C7;&#x6837;&#x6765;&#x66FF;&#x4EE3;&#x4ECE;&#x800C;&#x5F97;&#x5230;&#x66F4;&#x597D;&#x7684;&#x6027;&#x80FD;</p>
 <p>&#x63A5;&#x4E0B;&#x6765;&#x6253;&#x7B97;&#x5F00;&#x6E90;&#x7801;+TCC&#x5B9E;&#x73B0;&#x65F6;&#x5E8F;&#x7684;&#x5F02;&#x5E38;&#x68C0;&#x6D4B;&#x770B;&#x770B;&#x6548;&#x679C;</p>
 
@@ -445,7 +445,7 @@ L{cbr}=\frac{|i-\mu|^2}{\sigma^2} + \lambda\ log(\sigma)
     
 <nav id="article-nav">
     
-        <a href="/2019/10/30/数据挖掘/2019-10-30-logparser/" id="article-nav-newer" class="article-nav-link-wrap">
+        <a href="/myBlog/2019/10/30/数据挖掘/2019-10-30-logparser/" id="article-nav-newer" class="article-nav-link-wrap">
             <strong class="article-nav-caption">上一篇</strong>
             <div class="article-nav-title">
                 
@@ -455,7 +455,7 @@ L{cbr}=\frac{|i-\mu|^2}{\sigma^2} + \lambda\ log(\sigma)
         </a>
     
     
-        <a href="/2019/09/12/数据挖掘/2019-09-12-时间注意力模型下的时序预测/" id="article-nav-older" class="article-nav-link-wrap">
+        <a href="/myBlog/2019/09/12/数据挖掘/2019-09-12-时间注意力模型下的时序预测/" id="article-nav-older" class="article-nav-link-wrap">
             <strong class="article-nav-caption">下一篇</strong>
             <div class="article-nav-title">时间注意力模型下的时序预测</div>
         </a>
@@ -505,7 +505,7 @@ L{cbr}=\frac{|i-\mu|^2}{\sigma^2} + \lambda\ log(\sigma)
     <script>
     var disqus_config = function () {
         
-            this.page.url = 'http://www.liufr.com/myblog/2019/09/18/数据挖掘/2019-09-18-时间循环一致性学习/';
+            this.page.url = 'http://www.liufr.com/myBlog/2019/09/18/数据挖掘/2019-09-18-时间循环一致性学习/';
         
         this.page.identifier = '数据挖掘/2019-09-18-时间循环一致性学习';
     };
@@ -520,18 +520,18 @@ L{cbr}=\frac{|i-\mu|^2}{\sigma^2} + \lambda\ log(\sigma)
 
 
     
-        <script src="/libs/lightgallery/js/lightgallery.min.js"></script>
-        <script src="/libs/lightgallery/js/lg-thumbnail.min.js"></script>
-        <script src="/libs/lightgallery/js/lg-pager.min.js"></script>
-        <script src="/libs/lightgallery/js/lg-autoplay.min.js"></script>
-        <script src="/libs/lightgallery/js/lg-fullscreen.min.js"></script>
-        <script src="/libs/lightgallery/js/lg-zoom.min.js"></script>
-        <script src="/libs/lightgallery/js/lg-hash.min.js"></script>
-        <script src="/libs/lightgallery/js/lg-share.min.js"></script>
-        <script src="/libs/lightgallery/js/lg-video.min.js"></script>
+        <script src="/myBlog/libs/lightgallery/js/lightgallery.min.js"></script>
+        <script src="/myBlog/libs/lightgallery/js/lg-thumbnail.min.js"></script>
+        <script src="/myBlog/libs/lightgallery/js/lg-pager.min.js"></script>
+        <script src="/myBlog/libs/lightgallery/js/lg-autoplay.min.js"></script>
+        <script src="/myBlog/libs/lightgallery/js/lg-fullscreen.min.js"></script>
+        <script src="/myBlog/libs/lightgallery/js/lg-zoom.min.js"></script>
+        <script src="/myBlog/libs/lightgallery/js/lg-hash.min.js"></script>
+        <script src="/myBlog/libs/lightgallery/js/lg-share.min.js"></script>
+        <script src="/myBlog/libs/lightgallery/js/lg-video.min.js"></script>
     
     
-        <script src="/libs/justified-gallery/jquery.justifiedGallery.min.js"></script>
+        <script src="/myBlog/libs/justified-gallery/jquery.justifiedGallery.min.js"></script>
     
     
         <script type="text/x-mathjax-config">
@@ -559,8 +559,23 @@ L{cbr}=\frac{|i-\mu|^2}{\sigma^2} + \lambda\ log(\sigma)
 
 
 <!-- Custom Scripts -->
-<script src="/js/main.js"></script>
+<script src="/myBlog/js/main.js"></script>
 
     </div>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
 </body>
 </html>
